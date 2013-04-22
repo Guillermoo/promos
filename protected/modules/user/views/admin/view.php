@@ -1,3 +1,4 @@
+<?php echo __FILE__; ?> 
 <?php
 $this->breadcrumbs=array(
 	UserModule::t('Users')=>array('admin'),

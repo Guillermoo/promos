@@ -2,13 +2,13 @@
 
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
-
+Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'My Web Application',
-
+	'theme'=>'classic',	
 	// preloading 'log' component
 	'preload'=>array('log'),
 
@@ -83,24 +83,26 @@ return array(
  
             # page after logout
             'returnLogoutUrl' => array('/user/login'),
-        ),
-        'rights'=>array(
-                'install'=>false,
+            
         ),
 	),
 
 	// application components
 	'components'=>array(
+		'bootstrap'=>array(
+				//'class'=>'bootstrap.components.Bootstrap',
+				'class' => 'ext.bootstrap.components.Bootstrap',
+				//'coreCss' => false, //use css themes
+		),
 		// uncomment the following to enable URLs in path-format
-		
-		/*'urlManager'=>array(
+		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'rules'=>array(
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
-		),*/
+		),
 		'user'=>array(
                 'class'=>'RWebUser',
                 // enable cookie-based authentication
@@ -116,7 +118,6 @@ return array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
 		),*/
 		// uncomment the following to use a MySQL database
-		
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=promos',
 			'emulatePrepare' => true,
@@ -125,6 +126,15 @@ return array(
 			'charset' => 'utf8',
 			'tablePrefix' => 'tbl_',
 		),
+		
+		/*'widgetFactory'=>array(
+				'widgets'=>array(
+						'TbGridView'=>array(
+								//'cssFile' => 'application.css.css.style-gridview.css',
+								'cssFile' => '',
+						),
+				),
+		),*/
 		
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors

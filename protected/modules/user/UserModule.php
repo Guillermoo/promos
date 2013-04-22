@@ -122,6 +122,17 @@ class UserModule extends CWebModule
 			'user.models.*',
 			'user.components.*',
 		));
+		
+		$this->set_Theme(1);
+	}
+	
+	public function set_Theme($superuser=0)
+	{
+		if ($superuser == 1){
+			Yii::app()->theme = 'admin';
+		}
+		else
+			Yii::app()->theme = 'classic';
 	}
 	
 	public function getBehaviorsFor($componentName){

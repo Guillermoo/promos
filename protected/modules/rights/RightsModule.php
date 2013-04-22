@@ -132,9 +132,21 @@ class RightsModule extends CWebModule
 
 			// When installing we need to set the default controller to Install.
 			$this->defaultController = 'install';
+			
+			//Asignamos el theme en función del tipo de usuario
+			$this->set_Theme(1);
 		}
 	}
 
+	public function set_Theme($superuser=0)
+	{
+		if ($superuser == 1){
+			Yii::app()->theme = 'admin';
+		}
+		else
+			Yii::app()->theme = 'classic';
+	}
+	
 	/**
 	* Registers the necessary scripts.
 	*/

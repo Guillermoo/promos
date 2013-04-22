@@ -45,6 +45,8 @@ class UserIdentity extends CUserIdentity
 		}
 		return !$this->errorCode;
 	}
+	
+	
     
     /**
     * @return integer the ID of the user record

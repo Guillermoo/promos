@@ -47,7 +47,7 @@
 			'links'=>$this->breadcrumbs,
 		)); ?><!-- breadcrumbs -->
 	<?php endif?>
-
+	<?php echo __FILE__; ?>
 	<?php echo $content; ?>
 
 	<div class="clear"></div>

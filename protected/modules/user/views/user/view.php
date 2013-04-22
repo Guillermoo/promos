@@ -1,3 +1,4 @@
+<?php echo __FILE__; ?>
 <?php
 $this->breadcrumbs=array(
 	UserModule::t('Users')=>array('index'),
@@ -23,7 +24,6 @@ $this->menu=array(
 					'label' => UserModule::t($field->title),
 					'name' => $field->varname,
 					'value' => (($field->widgetView($model->profile))?$field->widgetView($model->profile):(($field->range)?Profile::range($field->range,$model->profile->getAttribute($field->varname)):$model->profile->getAttribute($field->varname))),
-
 				));
 		}
 	}

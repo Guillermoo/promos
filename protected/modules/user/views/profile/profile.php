@@ -1,3 +1,4 @@
+<?php echo __FILE__; ?>
 <?php $this->pageTitle=Yii::app()->name . ' - '.UserModule::t("Profile");
 $this->breadcrumbs=array(
 	UserModule::t("Profile"),

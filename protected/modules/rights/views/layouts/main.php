@@ -1,3 +1,5 @@
+<?php echo __FILE__; ?>
+
 <?php $this->beginContent(Rights::module()->appLayout); ?>
 
 <div id="rights" class="container">
