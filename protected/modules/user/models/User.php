@@ -23,6 +23,15 @@ class User extends CActiveRecord
      * @var timestamp $create_at
      * @var timestamp $lastvisit_at
 	 */
+	
+	/*Función creada para que no se muestre el superadmin en el gridview*/
+	public static function rulesUser(){
+	    if (Yii::app()->user->id=1){
+	        return false;
+	    }else{
+	        return true;
+	    }  
+	}
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -172,6 +181,7 @@ class User extends CActiveRecord
         $criteria->compare('lastvisit_at',$this->lastvisit_at);
         $criteria->compare('superuser',$this->superuser);
         $criteria->compare('status',$this->status);
+        $criteria->condition = ('user.id != 1'); /*Para que no se muestre el superuser!!!!*/
 
         return new CActiveDataProvider(get_class($this), array(
             'criteria'=>$criteria,

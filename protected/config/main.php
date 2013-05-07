@@ -11,7 +11,7 @@ return array(
 	'theme'=>'classic',	
 	// preloading 'log' component
 	'preload'=>array('log'),
-
+ 
 	// autoloading model and component classes
 	'import'=>array(
 		'application.models.*',
@@ -71,6 +71,8 @@ return array(
  
             # registration path
             'registrationUrl' => array('/user/registration'),
+		
+			'registrationCompanyUrl' => array('/user/registration2'),
  
             # recovery password path
             'recoveryUrl' => array('/user/recovery'),
@@ -97,6 +99,7 @@ return array(
 		// uncomment the following to enable URLs in path-format
 		'urlManager'=>array(
 			'urlFormat'=>'path',
+			'showScriptName'=>false,
 			'rules'=>array(
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
@@ -148,11 +151,11 @@ return array(
 					'levels'=>'error, warning',
 				),
 				// uncomment the following to show log messages on web pages
-				/*
+				
 				array(
 					'class'=>'CWebLogRoute',
 				),
-				*/
+				
 			),
 		),
 	),

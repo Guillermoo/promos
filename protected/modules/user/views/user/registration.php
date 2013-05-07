@@ -4,7 +4,7 @@ $this->breadcrumbs=array(
 );
 ?>
 
-<h1><?php echo UserModule::t("Registration"); ?></h1>
+<h1><?php echo UserModule::t("Registration User"); ?></h1>
 
 <?php if(Yii::app()->user->hasFlash('registration')): ?>
 <div class="success">
@@ -57,6 +57,7 @@ $this->breadcrumbs=array(
 <?php 
 		$profileFields=$profile->getFields();
 		if ($profileFields) {
+			//Se generan los campos que hayamos añadido nosotros
 			foreach($profileFields as $field) {
 			?>
 	<div class="row">

@@ -33,6 +33,8 @@ class UserController extends Controller
 			),
 		);
 	}	
+	
+	
 
 	/**
 	 * Displays a particular model.
@@ -52,7 +54,7 @@ class UserController extends Controller
 	{
 		$dataProvider=new CActiveDataProvider('User', array(
 			'criteria'=>array(
-		        'condition'=>'status>'.User::STATUS_BANNED,
+		        'condition'=>'status>'.User::STATUS_BANNED. ' AND id != 1',
 		    ),
 				
 			'pagination'=>array(

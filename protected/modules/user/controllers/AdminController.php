@@ -57,6 +57,15 @@ class AdminController extends Controller
 		));//*/
 	}
 
+	/**
+	 * Lists all models.
+	 */
+	public function actionHome()
+	{
+		$this->render('home',array(
+				'dataProvider'=>$dataProvider,
+		));
+	}
 
 	/**
 	 * Displays a particular model.
