@@ -1,6 +1,6 @@
 <?php
 
-class AdminController extends Controller
+class CompanyController extends Controller
 {
 	public $defaultAction = 'admin';
 	public $layout='//layouts/column2';
@@ -101,33 +101,12 @@ class AdminController extends Controller
 				}
 				$this->redirect(array('view','id'=>$model->id));
 			} else $profile->validate();
-			
-			//assign role
-			$this->setRole($model->id,$model->superuser);
 		}
-		
-		
 
 		$this->render('create',array(
 			'model'=>$model,
 			'profile'=>$profile,
 		));
-	}
-	
-	/*Se le asigna el rol según el tipo de usuario que se está creando
-	 * desde el menú del administrador*/
-	private function setRole($id = null, $superuser = null){
-		
-		if ( isset($id) ){
-			$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
-			
-			if ($superuser = 1)
-				$authorizer->authManager->assign('admin', $id);		
-			elseif($superuser = 2)
-				$authorizer->authManager->assign('empresa', $id);	
-			else // $superuser=0
-				$authorizer->authManager->assign('comprador', $id);
-		}
 	}
 
 	/**

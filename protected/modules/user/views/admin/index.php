@@ -47,6 +47,7 @@ $('.search-form form').submit(function(){
 			'name' => 'id',
 			'type'=>'raw',
 			'value' => 'CHtml::link(CHtml::encode($data->id),array("admin/update","id"=>$data->id))',
+			'visible'=> YII_DEBUG,
 		),
 		array(
 			'name' => 'username',

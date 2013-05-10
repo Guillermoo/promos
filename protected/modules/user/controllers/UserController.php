@@ -33,8 +33,6 @@ class UserController extends Controller
 			),
 		);
 	}	
-	
-	
 
 	/**
 	 * Displays a particular model.

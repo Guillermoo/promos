@@ -25,13 +25,13 @@ class User extends CActiveRecord
 	 */
 	
 	/*Función creada para que no se muestre el superadmin en el gridview*/
-	public static function rulesUser(){
+	/*public static function rulesUser(){
 	    if (Yii::app()->user->id=1){
 	        return false;
 	    }else{
 	        return true;
 	    }  
-	}
+	}*/
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -65,7 +65,7 @@ class User extends CActiveRecord
 			array('email', 'unique', 'message' => UserModule::t("This user's email address already exists.")),
 			array('username', 'match', 'pattern' => '/^[A-Za-z0-9_]+$/u','message' => UserModule::t("Incorrect symbols (A-z0-9).")),
 			array('status', 'in', 'range'=>array(self::STATUS_NOACTIVE,self::STATUS_ACTIVE,self::STATUS_BANNED)),
-			array('superuser', 'in', 'range'=>array(0,1)),
+			array('superuser', 'in', 'range'=>array(0,1,2)),
             array('create_at', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true, 'on' => 'insert'),
             array('lastvisit_at', 'default', 'value' => '0000-00-00 00:00:00', 'setOnEmpty' => true, 'on' => 'insert'),
 			array('username, email, superuser, status', 'required'),
@@ -151,8 +151,9 @@ class User extends CActiveRecord
 				self::STATUS_BANNED => UserModule::t('Banned'),
 			),
 			'AdminStatus' => array(
-				'0' => UserModule::t('No'),
-				'1' => UserModule::t('Yes'),
+				'0' => UserModule::t('Comprador'),
+				'1' => UserModule::t('Admin'),
+				'2' => UserModule::t('Empresa'),
 			),
 		);
 		if (isset($code))
@@ -206,4 +207,26 @@ class User extends CActiveRecord
     public function setLastvisit($value) {
         $this->lastvisit_at=date('Y-m-d H:i:s',$value);
     }
+    
+    /* Antes de  guardar el modelo le asignamos el rol*/
+	public function afterSave(){
+		
+	   if(parent::afterSave()){
+	   		$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
+			
+	   		echo Yii::trace(CVarDumper::dumpAsString('Test!!!'));
+	   		echo Yii::trace(CVarDumper::dumpAsString($authorizer));
+	   		
+	   		if ($this->superuser = 1)
+				$authorizer->authManager->assign('admin', $model->id);		
+			elseif ($this->superuser = 2)
+				$authorizer->authManager->assign('empresa', $model->id);
+			else //0
+				$authorizer->authManager->assign('comprador', $model->id);
+				
+        	return true;
+			
+	   }
+	   return false;
+	}
 }

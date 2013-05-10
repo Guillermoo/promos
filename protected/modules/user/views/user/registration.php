@@ -54,6 +54,8 @@ $this->breadcrumbs=array(
 	<?php echo $form->error($model,'email'); ?>
 	</div>
 	
+	
+	
 <?php 
 		$profileFields=$profile->getFields();
 		if ($profileFields) {

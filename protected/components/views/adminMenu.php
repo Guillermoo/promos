@@ -19,7 +19,8 @@
     	array('url'=>Yii::app()->getModule('user')->logoutUrl, 'label'=>Yii::app()->getModule('user')->t("Logout").' ('.Yii::app()->user->name.')', 'visible'=>!Yii::app()->user->isGuest),
 		//array('label'=>UserModule::t('Update User'), 'url'=>array('update','id'=>Yii::app()->user->id)),
 		//array('label'=>UserModule::t('Delete User'), 'url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>Yii::app()->id),'confirm'=>UserModule::t('Are you sure to delete this item?'))),
-		//array('label'=>UserModule::t('Manage Profile Field'), 'url'=>array('/user/profileField/admin')),
+		array('label'=>UserModule::t('Manage Profile Field'), 'url'=>array('/user/profileField/admin')),
+		array('label'=>UserModule::t('Create Profile Field'), 'url'=>array('/user/profileField/create')),
     	/*array('url'=>Yii::app()->getModule('user')->loginUrl, 'label'=>Yii::app()->getModule('user')->t("Login"), 'visible'=>Yii::app()->user->isGuest),
     	array('url'=>Yii::app()->getModule('user')->registrationUrl, 'label'=>Yii::app()->getModule('user')->t("Register"), 'visible'=>Yii::app()->user->isGuest),*/
         /*array('label'=>'LIST HEADER'),

@@ -154,6 +154,11 @@ return array(
 				
 				array(
 					'class'=>'CWebLogRoute',
+					'enabled' => YII_DEBUG,
+					'levels'=>'trace',
+					//'filter'=>'CLogFilter',
+					//'categories'=>'vardump',
+					//'showInFireBug'=>true
 				),
 				
 			),
