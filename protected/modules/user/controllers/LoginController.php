@@ -33,7 +33,7 @@ class LoginController extends Controller
 						//$this->redirect(Yii::app()->controller->module->returnUrl);
 						$this->redirect(Yii::app()->controller->module->returnUrl);
 					elseif(Yii::app()->user->checkAccess('empresa',$params))
-						$this->redirect('promociones');//A promociones, la url est� mal
+						$this->redirect('profile');//A promociones, la url est� mal
 					elseif(Yii::app()->user->checkAccess('superadmin',$params) || Yii::app()->user->checkAccess('admin',$params))
 						$this->redirect("profile");
 					else 

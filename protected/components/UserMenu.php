@@ -15,6 +15,6 @@ class UserMenu extends CPortlet
 		if (Yii::app()->authManager->checkAccess('admin', Yii::app()->user->id) || Yii::app()->authManager->checkAccess('superadmin', Yii::app()->user->id))
 			$this->render('adminMenu');
 		else
-			$this->render('empresaMenu');
+			$this->render('usuarioMenu');
 	}
 }
