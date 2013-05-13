@@ -124,17 +124,11 @@ class UserModule extends CWebModule
 			'user.components.*',
 		));
 		
-		$this->set_Theme(1);
+		//En cualquiera de las vistas del módulo user se cargará el theme 'admin'
+		Yii::app()->theme = 'admin';
 	}
 	
-	public function set_Theme($superuser=0)
-	{
-		if ($superuser == 1){
-			Yii::app()->theme = 'admin';
-		}
-		else
-			Yii::app()->theme = 'classic';
-	}
+
 	
 	public function getBehaviorsFor($componentName){
         if (isset($this->componentBehaviors[$componentName])) {

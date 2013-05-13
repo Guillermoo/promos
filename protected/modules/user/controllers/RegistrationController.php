@@ -24,6 +24,9 @@ class RegistrationController extends Controller
             $profile=new Profile;
             $profile->regMode = true;
             
+            //La página de registro tiene que cargarse con el theme classic
+            Yii::app()->theme = 'classic';
+            
 			// ajax validator
 			if(isset($_POST['ajax']) && $_POST['ajax']==='registration-form')
 			{
@@ -78,7 +81,8 @@ class RegistrationController extends Controller
 		    }
 	}
 	
-	
+	/*Cuando se haya pensado como separar las vistas para la creación de usuario-comprador y usuairo-empresa
+	 habrá que tener una función de este tipo para asignarle el rol*/
 	private function setRole($model = null){
 		if (isset($model)){
 			$authorizer = Yii::app()->getModule("rights")->getAuthorizer();

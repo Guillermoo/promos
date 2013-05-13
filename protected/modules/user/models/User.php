@@ -214,9 +214,6 @@ class User extends CActiveRecord
 	   if(parent::afterSave()){
 	   		$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
 			
-	   		echo Yii::trace(CVarDumper::dumpAsString('Test!!!'));
-	   		echo Yii::trace(CVarDumper::dumpAsString($authorizer));
-	   		
 	   		if ($this->superuser = 1)
 				$authorizer->authManager->assign('admin', $model->id);		
 			elseif ($this->superuser = 2)

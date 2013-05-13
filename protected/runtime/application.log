@@ -8136,3 +8136,528 @@ Stack trace:
 REQUEST_URI=/promos/themes/admin/css/bootstrap-responsive.min.css
 HTTP_REFERER=http://localhost/promos/user/login
 ---
+2013/05/12 08:06:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/main.css
+HTTP_REFERER=http://localhost/promos/user/login
+---
+2013/05/12 08:06:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap.min.css
+HTTP_REFERER=http://localhost/promos/user/login
+---
+2013/05/12 08:06:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap-responsive.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap-responsive.min.css
+HTTP_REFERER=http://localhost/promos/user/login
+---
+2013/05/12 08:06:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap.min.css
+HTTP_REFERER=http://localhost/promos/user/profile
+---
+2013/05/12 08:06:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/main.css
+HTTP_REFERER=http://localhost/promos/user/profile
+---
+2013/05/12 08:06:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap-responsive.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap-responsive.min.css
+HTTP_REFERER=http://localhost/promos/user/profile
+---
+2013/05/12 08:06:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap-responsive.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap-responsive.min.css
+HTTP_REFERER=http://localhost/promos/user/promociones
+---
+2013/05/12 08:06:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/main.css
+HTTP_REFERER=http://localhost/promos/user/promociones
+---
+2013/05/12 08:06:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap.min.css
+HTTP_REFERER=http://localhost/promos/user/promociones
+---
+2013/05/12 08:20:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap-responsive.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap-responsive.min.css
+HTTP_REFERER=http://localhost/promos/user/profile/edit/id/3
+---
+2013/05/12 08:20:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/main.css
+HTTP_REFERER=http://localhost/promos/user/profile/edit/id/3
+---
+2013/05/12 08:20:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap.min.css
+HTTP_REFERER=http://localhost/promos/user/profile/edit/id/3
+---
+2013/05/13 23:48:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap.min.css
+HTTP_REFERER=http://localhost/promos/user/login
+---
+2013/05/13 23:48:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap-responsive.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap-responsive.min.css
+HTTP_REFERER=http://localhost/promos/user/login
+---
+2013/05/13 23:48:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/main.css
+HTTP_REFERER=http://localhost/promos/user/login
+---
+2013/05/14 00:14:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap-responsive.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap-responsive.min.css
+HTTP_REFERER=http://localhost/promos/user/registration
+---
+2013/05/14 00:14:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap.min.css
+HTTP_REFERER=http://localhost/promos/user/registration
+---
+2013/05/14 00:14:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/main.css
+HTTP_REFERER=http://localhost/promos/user/registration
+---
+2013/05/14 00:29:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/main.css
+HTTP_REFERER=http://localhost/promos/user/login
+---
+2013/05/14 00:29:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap.min.css
+HTTP_REFERER=http://localhost/promos/user/login
+---
+2013/05/14 00:29:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap-responsive.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap-responsive.min.css
+HTTP_REFERER=http://localhost/promos/user/login
+---
+2013/05/14 00:29:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap.min.css
+HTTP_REFERER=http://localhost/promos/user/profile
+---
+2013/05/14 00:29:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/main.css
+HTTP_REFERER=http://localhost/promos/user/profile
+---
+2013/05/14 00:29:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap-responsive.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap-responsive.min.css
+HTTP_REFERER=http://localhost/promos/user/profile
+---
+2013/05/14 00:30:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap.min.css
+HTTP_REFERER=http://localhost/promos/user/registration
+---
+2013/05/14 00:30:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/main.css
+HTTP_REFERER=http://localhost/promos/user/registration
+---
+2013/05/14 00:30:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap-responsive.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap-responsive.min.css
+HTTP_REFERER=http://localhost/promos/user/registration
+---
+2013/05/14 00:30:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap.min.css
+HTTP_REFERER=http://localhost/promos/user/login
+---
+2013/05/14 00:30:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/main.css
+HTTP_REFERER=http://localhost/promos/user/login
+---
+2013/05/14 00:30:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap-responsive.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap-responsive.min.css
+HTTP_REFERER=http://localhost/promos/user/login
+---
+2013/05/14 00:30:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap.min.css
+HTTP_REFERER=http://localhost/promos/user/profile
+---
+2013/05/14 00:30:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap-responsive.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap-responsive.min.css
+HTTP_REFERER=http://localhost/promos/user/profile
+---
+2013/05/14 00:30:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/main.css
+HTTP_REFERER=http://localhost/promos/user/profile
+---
+2013/05/14 00:31:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap.min.css
+HTTP_REFERER=http://localhost/promos/user/registration
+---
+2013/05/14 00:31:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap-responsive.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap-responsive.min.css
+HTTP_REFERER=http://localhost/promos/user/registration
+---
+2013/05/14 00:31:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/main.css
+HTTP_REFERER=http://localhost/promos/user/registration
+---
+2013/05/14 00:31:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap.min.css
+HTTP_REFERER=http://localhost/promos/user/login
+---
+2013/05/14 00:31:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/main.css
+HTTP_REFERER=http://localhost/promos/user/login
+---
+2013/05/14 00:31:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap-responsive.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap-responsive.min.css
+HTTP_REFERER=http://localhost/promos/user/login
+---
+2013/05/14 00:31:49 [warning] [application] Failed to set unsafe attribute "verifyCode" of "RegistrationForm".
+in /opt/lampp/htdocs/promos/protected/modules/user/controllers/RegistrationController.php (32)
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/05/14 00:31:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap.min.css
+HTTP_REFERER=http://localhost/promos/user/login
+---
+2013/05/14 00:31:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/main.css
+HTTP_REFERER=http://localhost/promos/user/login
+---
+2013/05/14 00:31:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap-responsive.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap-responsive.min.css
+HTTP_REFERER=http://localhost/promos/user/login
+---
+2013/05/14 00:31:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap.min.css
+HTTP_REFERER=http://localhost/promos/user/profile
+---
+2013/05/14 00:31:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap-responsive.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap-responsive.min.css
+HTTP_REFERER=http://localhost/promos/user/profile
+---
+2013/05/14 00:31:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/main.css
+HTTP_REFERER=http://localhost/promos/user/profile
+---
+2013/05/14 00:34:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap-responsive.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap-responsive.min.css
+HTTP_REFERER=http://localhost/promos/user/login
+---
+2013/05/14 00:34:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap.min.css
+HTTP_REFERER=http://localhost/promos/user/login
+---
+2013/05/14 00:34:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/main.css
+HTTP_REFERER=http://localhost/promos/user/login
+---
+2013/05/14 00:35:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/main.css
+HTTP_REFERER=http://localhost/promos/user/profile
+---
+2013/05/14 00:35:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap.min.css
+HTTP_REFERER=http://localhost/promos/user/profile
+---
+2013/05/14 00:35:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap-responsive.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap-responsive.min.css
+HTTP_REFERER=http://localhost/promos/user/profile
+---
+2013/05/14 00:35:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap.min.css
+HTTP_REFERER=http://localhost/promos/user/profileField/create
+---
+2013/05/14 00:35:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/main.css
+HTTP_REFERER=http://localhost/promos/user/profileField/create
+---
+2013/05/14 00:35:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/f375f3fa/js/form.js".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/f375f3fa...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/assets/f375f3fa/js/form.js
+HTTP_REFERER=http://localhost/promos/user/profileField/create
+---
+2013/05/14 00:35:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap-responsive.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap-responsive.min.css
+HTTP_REFERER=http://localhost/promos/user/profileField/create
+---
+2013/05/14 00:35:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/main.css
+HTTP_REFERER=http://localhost/promos/user/profile/edit/id/3
+---
+2013/05/14 00:35:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap-responsive.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap-responsive.min.css
+HTTP_REFERER=http://localhost/promos/user/profile/edit/id/3
+---
+2013/05/14 00:35:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap.min.css
+HTTP_REFERER=http://localhost/promos/user/profile/edit/id/3
+---
