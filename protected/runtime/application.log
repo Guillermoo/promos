@@ -13611,3 +13611,30 @@ Stack trace:
 REQUEST_URI=/promos/themes/admin/css/main.css
 HTTP_REFERER=http://localhost/promos/user/profileField/admin
 ---
+2013/05/14 23:26:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/main.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/main.css
+HTTP_REFERER=http://localhost/promos/user/login
+---
+2013/05/14 23:26:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap-responsive.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap-responsive.min.css
+HTTP_REFERER=http://localhost/promos/user/login
+---
+2013/05/14 23:26:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/admin/css/bootstrap.min.css".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/admin/cs...')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/htdocs/promos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/promos/themes/admin/css/bootstrap.min.css
+HTTP_REFERER=http://localhost/promos/user/login
+---
