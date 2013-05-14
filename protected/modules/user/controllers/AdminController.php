@@ -40,6 +40,7 @@ class AdminController extends Controller
 	{
 		$model=new User('search');
         $model->unsetAttributes();  // clear any default values
+        
         if(isset($_GET['User']))
             $model->attributes=$_GET['User'];
 
@@ -93,20 +94,20 @@ class AdminController extends Controller
 			$model->activkey=Yii::app()->controller->module->encrypting(microtime().$model->password);
 			$profile->attributes=$_POST['Profile'];
 			$profile->user_id=0;
+			
 			if($model->validate()&&$profile->validate()) {
 				$model->password=Yii::app()->controller->module->encrypting($model->password);
 				if($model->save()) {
 					$profile->user_id=$model->id;
 					$profile->save();
+					//Asignamos el rol dinámicamente
+					$model->setRole();
 				}
 				$this->redirect(array('view','id'=>$model->id));
 			} else $profile->validate();
 			
-			//assign role
-			$this->setRole($model->id,$model->superuser);
+			
 		}
-		
-		
 
 		$this->render('create',array(
 			'model'=>$model,
@@ -114,21 +115,7 @@ class AdminController extends Controller
 		));
 	}
 	
-	/*Se le asigna el rol según el tipo de usuario que se está creando
-	 * desde el menú del administrador*/
-	private function setRole($id = null, $superuser = null){
-		
-		if ( isset($id) ){
-			$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
-			
-			if ($superuser = 1)
-				$authorizer->authManager->assign('admin', $id);		
-			elseif($superuser = 2)
-				$authorizer->authManager->assign('empresa', $id);	
-			else // $superuser=0
-				$authorizer->authManager->assign('comprador', $id);
-		}
-	}
+	
 
 	/**
 	 * Updates a particular model.

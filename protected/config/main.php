@@ -72,7 +72,7 @@ return array(
             # registration path
             'registrationUrl' => array('/user/registration'),
 		
-			'registrationCompanyUrl' => array('/user/registration2'),
+			'registrationCompanyUrl' => array('/user/registrationcompany'),
  
             # recovery password path
             'recoveryUrl' => array('/user/recovery'),
@@ -104,6 +104,7 @@ return array(
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+				'promociones'=>'promociones/index',
 			),
 		),
 		'user'=>array(
@@ -128,6 +129,8 @@ return array(
 			'password' => '',
 			'charset' => 'utf8',
 			'tablePrefix' => 'tbl_',
+        	'enableProfiling' => true,
+        	'enableParamLogging' => true,
 		),
 		
 		/*'widgetFactory'=>array(
@@ -160,7 +163,10 @@ return array(
 					//'categories'=>'vardump',
 					//'showInFireBug'=>true
 				),
-				
+				array(
+	                'class'=>'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
+	                'ipFilters'=>array('127.0.0.1','192.168.1.215'),
+	            ),
 			),
 		),
 	),

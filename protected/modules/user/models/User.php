@@ -5,6 +5,7 @@ class User extends CActiveRecord
 	const STATUS_NOACTIVE=0;
 	const STATUS_ACTIVE=1;
 	const STATUS_BANNED=-1;
+	const ID_SUPERADMIN=1;
 	
 	//TODO: Delete for next version (backward compatibility)
 	const STATUS_BANED=-1;
@@ -23,15 +24,7 @@ class User extends CActiveRecord
      * @var timestamp $create_at
      * @var timestamp $lastvisit_at
 	 */
-	
-	/*Función creada para que no se muestre el superadmin en el gridview*/
-	/*public static function rulesUser(){
-	    if (Yii::app()->user->id=1){
-	        return false;
-	    }else{
-	        return true;
-	    }  
-	}*/
+
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -150,7 +143,8 @@ class User extends CActiveRecord
 				self::STATUS_ACTIVE => UserModule::t('Active'),
 				self::STATUS_BANNED => UserModule::t('Banned'),
 			),
-			'AdminStatus' => array(
+			'AdminStatus' => array(/*Se cargará el combo tipos de usuarios a la hora de crear usuarios desde
+									desde el menú admin*/
 				'0' => UserModule::t('Comprador'),
 				'1' => UserModule::t('Admin'),
 				'2' => UserModule::t('Empresa'),
@@ -182,7 +176,7 @@ class User extends CActiveRecord
         $criteria->compare('lastvisit_at',$this->lastvisit_at);
         $criteria->compare('superuser',$this->superuser);
         $criteria->compare('status',$this->status);
-        $criteria->condition = ('user.id != 1'); /*Para que no se muestre el superuser!!!!*/
+        $criteria->condition = ('id != '. User::ID_SUPERADMIN . ''); /*Para que no se muestre el superuser!!!!*/
 
         return new CActiveDataProvider(get_class($this), array(
             'criteria'=>$criteria,
@@ -208,22 +202,17 @@ class User extends CActiveRecord
         $this->lastvisit_at=date('Y-m-d H:i:s',$value);
     }
     
-    /* Antes de  guardar el modelo le asignamos el rol*/
-	public function afterSave(){
-		
-	   if(parent::afterSave()){
-	   		$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
+
+	/*Función que asigna el rol según el tipo de usuario*/
+	public function setRole(){
+			$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
 			
-	   		if ($this->superuser = 1)
-				$authorizer->authManager->assign('admin', $model->id);		
-			elseif ($this->superuser = 2)
-				$authorizer->authManager->assign('empresa', $model->id);
-			else //0
-				$authorizer->authManager->assign('comprador', $model->id);
-				
-        	return true;
-			
-	   }
-	   return false;
+			if ($this->superuser == 0)
+				$authorizer->authManager->assign('comprador', $this->id);			
+			elseif($this->superuser == 1)
+				$authorizer->authManager->assign('admin', $this->id);
+			else //=2
+				$authorizer->authManager->assign('empresa', $this->id);
 	}
+    
 }

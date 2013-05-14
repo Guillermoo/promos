@@ -16,6 +16,7 @@ class UserController extends Controller
 			'accessControl', // perform access control for CRUD operations
 		));
 	}
+	
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
@@ -52,7 +53,7 @@ class UserController extends Controller
 	{
 		$dataProvider=new CActiveDataProvider('User', array(
 			'criteria'=>array(
-		        'condition'=>'status>'.User::STATUS_BANNED. ' AND id != 1',
+		        'condition'=>'status>'.User::STATUS_BANNED. ' AND id!='.User::ID_SUPERADMIN,
 		    ),
 				
 			'pagination'=>array(
@@ -80,7 +81,6 @@ class UserController extends Controller
 		}
 		return $this->_model;
 	}
-
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.

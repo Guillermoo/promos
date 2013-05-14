@@ -54,6 +54,10 @@ $this->breadcrumbs=array(
 	<?php echo $form->error($model,'email'); ?>
 	</div>
 	
+	<div class="row">
+		<b>Aquí van nuestros campos metidos a mano. Los siguientes campos que aparecen son los generados automáticamente por yii-user.</b>
+	</div>
+	
 <?php 
 		$profileFields=$profile->getFields();
 		if ($profileFields) {

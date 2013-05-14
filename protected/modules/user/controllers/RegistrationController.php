@@ -46,12 +46,15 @@ class RegistrationController extends Controller
 						$model->activkey=UserModule::encrypting(microtime().$model->password);
 						$model->password=UserModule::encrypting($model->password);
 						$model->verifyPassword=UserModule::encrypting($model->verifyPassword);
-						$model->superuser=0; //Then role = comprador;
+						//$model->superuser=0; //Then role = comprador;
 						$model->status=((Yii::app()->controller->module->activeAfterRegister)?User::STATUS_ACTIVE:User::STATUS_NOACTIVE);
 						
 						if ($model->save()) {
 							$profile->user_id=$model->id;
 							$profile->save();
+							
+							$model->setRole();
+							
 							if (Yii::app()->controller->module->sendActivationMail) {
 								$activation_url = $this->createAbsoluteUrl('/user/activation/activation',array("activkey" => $model->activkey, "email" => $model->email));
 								UserModule::sendMail($model->email,UserModule::t("You registered from {site_name}",array('{site_name}'=>Yii::app()->name)),UserModule::t("Please activate you account go to {activation_url}",array('{activation_url}'=>$activation_url)));
@@ -81,14 +84,6 @@ class RegistrationController extends Controller
 		    }
 	}
 	
-	/*Cuando se haya pensado como separar las vistas para la creación de usuario-comprador y usuairo-empresa
-	 habrá que tener una función de este tipo para asignarle el rol*/
-	private function setRole($model = null){
-		if (isset($model)){
-			$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
-			$authorizer->authManager->assign('comprador', $model->id);			
-		}
-		
-	}
+
 	
 }

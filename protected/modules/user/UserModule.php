@@ -53,7 +53,7 @@ class UserModule extends CWebModule
 	public $autoLogin=true;
 	
 	public $registrationUrl = array("/user/registration");
-	public $registrationCompanyUrl = array("/user/registrationCompany");
+	public $registrationCompanyUrl = array("/user/registrationcompany");
 	public $recoveryUrl = array("/user/recovery/recovery");
 	public $loginUrl = array("/user/login");
 	public $logoutUrl = array("/user/logout");
@@ -124,8 +124,10 @@ class UserModule extends CWebModule
 			'user.components.*',
 		));
 		
-		//En cualquiera de las vistas del módulo user se cargará el theme 'admin'
+		//En cualquiera de las vistas del módulo user se cargará el theme 'admin'.
 		Yii::app()->theme = 'admin';
+		
+		
 	}
 	
 
