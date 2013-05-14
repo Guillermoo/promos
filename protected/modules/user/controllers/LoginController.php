@@ -18,7 +18,7 @@ class LoginController extends Controller
 				// validate user input and redirect to previous page if valid
 				if($model->validate()) {
 					
-					$this->lastViset();//Last time visited
+					$this->lastViset();//Para que se actualize la última vez visitado
 					
 					$id =Yii::app()->user->getId();
 					$params=array('id'=>$id);
