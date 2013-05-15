@@ -29,8 +29,7 @@ class LoginController extends Controller
 						$this->render('empresaMenu');*/
 						
 					if(Yii::app()->user->checkAccess('comprador',$params))
-						//devuelve el usuario a la página anterior, debería mandarlo a profile?
-						$this->redirect(Yii::app()->controller->module->returnUrl);
+						$this->redirect('profile');
 					elseif(Yii::app()->user->checkAccess('empresa',$params))
 						$this->redirect('profile');//A promociones, la url habrá que cambiarla cuando se cree el modelo promociones
 					elseif(Yii::app()->user->checkAccess('superadmin',$params) || Yii::app()->user->checkAccess('admin',$params))
