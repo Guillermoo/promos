@@ -92,21 +92,25 @@ class AdminController extends Controller
 		{
 			$model->attributes=$_POST['User'];
 			$model->activkey=Yii::app()->controller->module->encrypting(microtime().$model->password);
-			$profile->attributes=$_POST['Profile'];
-			$profile->user_id=0;
+			/*$profile->attributes=$_POST['Profile'];
+			$profile->user_id=0;*/
 			
 			if($model->validate()&&$profile->validate()) {
 				$model->password=Yii::app()->controller->module->encrypting($model->password);
 				if($model->save()) {
-					$profile->user_id=$model->id;
-					$profile->save();
 					//Asignamos el rol dinámicamente
 					$model->setRole();
+					
+					/*(G)Creamos el perfil con el id del nuevo usuario. Al ser creado desde el admin sólo hay
+					que crear el usuario, no los datos del perfil, eso ya lo hará el usuario.*/
+					$profile->user_id=$model->id;
+					/*$profile->tipocuenta=; (G)FALTA ASIGNAR VALORES AUTOMÁTICOS
+					$profile->fecha_creacion=;*/
+					
+					$profile->save();
 				}
 				$this->redirect(array('view','id'=>$model->id));
 			} else $profile->validate();
-			
-			
 		}
 
 		$this->render('create',array(
@@ -124,28 +128,34 @@ class AdminController extends Controller
 	public function actionUpdate()
 	{
 		$model=$this->loadModel();
-		$profile=$model->profile;
-		$this->performAjaxValidation(array($model,$profile));
+		
+		$this->performAjaxValidation(array($model,$model->profile));
 		if(isset($_POST['User']))
 		{
 			$model->attributes=$_POST['User'];
-			$profile->attributes=$_POST['Profile'];
+			$model->profile->attributes=$_POST['Profile'];
+			$model->contacto->attributes=$_POST['Contacto'];
 			
-			if($model->validate()&&$profile->validate()) {
+			if($model->validate()&&$model->profile->validate()&&$model->contacto->validate()) {
 				$old_password = User::model()->notsafe()->findByPk($model->id);
 				if ($old_password->password!=$model->password) {
 					$model->password=Yii::app()->controller->module->encrypting($model->password);
 					$model->activkey=Yii::app()->controller->module->encrypting(microtime().$model->password);
 				}
 				$model->save();
-				$profile->save();
+				$model->profile->save();
+				$model->contacto->save();
 				$this->redirect(array('view','id'=>$model->id));
-			} else $profile->validate();
+			} else {
+				$model->profile->validate();	
+				$model->contacto->validate();
+			}
 		}
 
 		$this->render('update',array(
 			'model'=>$model,
-			'profile'=>$profile,
+			'profile'=>$model->profile,
+			'contacto'=>$model->contacto,
 		));
 	}
 

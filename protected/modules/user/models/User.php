@@ -10,6 +10,11 @@ class User extends CActiveRecord
 	//TODO: Delete for next version (backward compatibility)
 	const STATUS_BANED=-1;
 	
+	public $regMode = false;
+	
+	private $_modelReg;
+	private $_model;
+	
 	/**
 	 * The followings are the available columns in table 'users':
 	 * @var integer $id
@@ -82,6 +87,8 @@ class User extends CActiveRecord
         $relations = Yii::app()->getModule('user')->relations;
         if (!isset($relations['profile']))
             $relations['profile'] = array(self::HAS_ONE, 'Profile', 'user_id');
+        if (!isset($relations['contacto']))
+            $relations['contacto'] = array(self::HAS_ONE, 'Contacto', 'user_id');
         return $relations;
 	}
 
@@ -202,8 +209,23 @@ class User extends CActiveRecord
         $this->lastvisit_at=date('Y-m-d H:i:s',$value);
     }
     
-
-	/*Función que asigna el rol según el tipo de usuario*/
+    /*Función para obtener los campos*/
+	public static function getFields() {
+		$this->_model=Profile::model()->paraTodos()->findAll();
+		
+		return $this->_model;
+		/*if ($this->regMode) {
+			if (!$this->_modelReg)
+				$this->_modelReg=Profile::model()->paraTodos()->findAll();
+			return $this->_modelReg;
+		} else {
+			if (!$this->_model)
+				$this->_model=Profile::model()->paraCommprador()->findAll();
+			return $this->_model;
+		}*/
+	}
+    
+	/*Función que asigna el rol según el tipo de usuario, se ejecuta nada mas crear el usuario*/
 	public function setRole(){
 			$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
 			

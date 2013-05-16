@@ -1,6 +1,6 @@
 <?php
 return array (
-  'template' => 'nested',
+  'template' => 'default',
   'connectionId' => 'db',
   'tablePrefix' => 'tbl_',
   'modelPath' => 'application.models',

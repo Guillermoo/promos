@@ -126,6 +126,15 @@ class Category extends CActiveRecord
 	            )
 	    );
 	}
+	
+	/*Función para obtener todas las categorías con nivel 2. */
+	public static function getCategorias() {
+			
+		$categorias=Category::model()->findByAttributes(array('level'=>'2'));
+		print_r($categorias);
+
+		return $categorias;
+	}
 
   public static  function printULTree(){
      $categories=Category::model()->findAll(array('order'=>'root,lft'));
@@ -165,38 +174,35 @@ class Category extends CActiveRecord
 
 }
 
-public static  function printULTree_noAnchors(){
-    $categories=Category::model()->findAll(array('order'=>'lft'));
-    $level=0;
-
-	foreach($categories as $n=>$category)
-	{
-	    if($category->level == $level)
-	        echo CHtml::closeTag('li')."\n";
-	    else if ($category->level > $level)
-	        echo CHtml::openTag('ul')."\n";
-	    else         //if $category->level<$level
-	    {
-	        echo CHtml::closeTag('li')."\n";
+	public static  function printULTree_noAnchors(){
+	    $categories=Category::model()->findAll(array('order'=>'lft'));
+	    $level=0;
 	
-	        for ($i = $level - $category->level; $i; $i--) {
-	                    echo CHtml::closeTag('ul') . "\n";
-	                    echo CHtml::closeTag('li') . "\n";
-	                }
-	    }
+		foreach($categories as $n=>$category)
+		{
+		    if($category->level == $level)
+		        echo CHtml::closeTag('li')."\n";
+		    else if ($category->level > $level)
+		        echo CHtml::openTag('ul')."\n";
+		    else         //if $category->level<$level
+		    {
+		        echo CHtml::closeTag('li')."\n";
+		
+		        for ($i = $level - $category->level; $i; $i--) {
+		                    echo CHtml::closeTag('ul') . "\n";
+		                    echo CHtml::closeTag('li') . "\n";
+		                }
+		    }
+		
+		    echo CHtml::openTag('li');
+		    echo CHtml::encode($category->name);
+		    $level=$category->level;
+		}
 	
-	    echo CHtml::openTag('li');
-	    echo CHtml::encode($category->name);
-	    $level=$category->level;
+		for ($i = $level; $i; $i--) {
+		            echo CHtml::closeTag('li') . "\n";
+		            echo CHtml::closeTag('ul') . "\n";
+		        }
+		
+		}
 	}
-
-	for ($i = $level; $i; $i--) {
-	            echo CHtml::closeTag('li') . "\n";
-	            echo CHtml::closeTag('ul') . "\n";
-	        }
-	
-	}
-
-
-
-}

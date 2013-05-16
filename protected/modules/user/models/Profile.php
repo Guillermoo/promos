@@ -1,21 +1,29 @@
 <?php
 
-class Profile extends UActiveRecord
+/**
+ * This is the model class for table "{{profiles}}".
+ *
+ * The followings are the available columns in table '{{profiles}}':
+ * @property integer $user_id
+ * @property string $username
+ * @property string $lastname
+ * @property integer $contacto_id
+ * @property string $paypal_id
+ * @property string $tipocuenta
+ * @property string $fecha_creacion
+ * @property string $fecha_fin
+ * @property string $fecha_pago
+ *
+ * The followings are the available model relations:
+ * @property Contactos $contacto
+ * @property Users $user
+ */
+class Profile extends CActiveRecord
 {
 	/**
-	 * The followings are the available columns in table 'profiles':
-	 * @var integer $user_id
-	 * @var boolean $regMode
-	 */
-	public $regMode = false;
-	
-	private $_model;
-	private $_modelReg;
-	private $_rules = array();
-
-	/**
 	 * Returns the static model of the specified AR class.
-	 * @return CActiveRecord the static model class
+	 * @param string $className active record class name.
+	 * @return Profile the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -27,7 +35,7 @@ class Profile extends UActiveRecord
 	 */
 	public function tableName()
 	{
-		return Yii::app()->getModule('user')->tableProfiles;
+		return '{{profiles}}';
 	}
 
 	/**
@@ -35,68 +43,18 @@ class Profile extends UActiveRecord
 	 */
 	public function rules()
 	{
-		if (!$this->_rules) {
-			$required = array();
-			$numerical = array();
-			$float = array();		
-			$decimal = array();
-			$rules = array();
-			
-			$model=$this->getFields();
-			
-			foreach ($model as $field) {
-				$field_rule = array();
-				if ($field->required==ProfileField::REQUIRED_YES_NOT_SHOW_REG||$field->required==ProfileField::REQUIRED_YES_SHOW_REG)
-					array_push($required,$field->varname);
-				if ($field->field_type=='FLOAT')
-					array_push($float,$field->varname);
-				if ($field->field_type=='DECIMAL')
-					array_push($decimal,$field->varname);
-				if ($field->field_type=='INTEGER')
-					array_push($numerical,$field->varname);
-				if ($field->field_type=='VARCHAR'||$field->field_type=='TEXT') {
-					$field_rule = array($field->varname, 'length', 'max'=>$field->field_size, 'min' => $field->field_size_min);
-					if ($field->error_message) $field_rule['message'] = UserModule::t($field->error_message);
-					array_push($rules,$field_rule);
-				}
-				if ($field->other_validator) {
-					if (strpos($field->other_validator,'{')===0) {
-						$validator = (array)CJavaScript::jsonDecode($field->other_validator);
-						foreach ($validator as $name=>$val) {
-							$field_rule = array($field->varname, $name);
-							$field_rule = array_merge($field_rule,(array)$validator[$name]);
-							if ($field->error_message) $field_rule['message'] = UserModule::t($field->error_message);
-							array_push($rules,$field_rule);
-						}
-					} else {
-						$field_rule = array($field->varname, $field->other_validator);
-						if ($field->error_message) $field_rule['message'] = UserModule::t($field->error_message);
-						array_push($rules,$field_rule);
-					}
-				} elseif ($field->field_type=='DATE') {
-					$field_rule = array($field->varname, 'type', 'type' => 'date', 'dateFormat' => 'yyyy-mm-dd', 'allowEmpty'=>true);
-					if ($field->error_message) $field_rule['message'] = UserModule::t($field->error_message);
-					array_push($rules,$field_rule);
-				}
-				if ($field->match) {
-					$field_rule = array($field->varname, 'match', 'pattern' => $field->match);
-					if ($field->error_message) $field_rule['message'] = UserModule::t($field->error_message);
-					array_push($rules,$field_rule);
-				}
-				if ($field->range) {
-					$field_rule = array($field->varname, 'in', 'range' => self::rangeRules($field->range));
-					if ($field->error_message) $field_rule['message'] = UserModule::t($field->error_message);
-					array_push($rules,$field_rule);
-				}
-			}
-			
-			array_push($rules,array(implode(',',$required), 'required'));
-			array_push($rules,array(implode(',',$numerical), 'numerical', 'integerOnly'=>true));
-			array_push($rules,array(implode(',',$float), 'type', 'type'=>'float'));
-			array_push($rules,array(implode(',',$decimal), 'match', 'pattern' => '/^\s*[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?\s*$/'));
-			$this->_rules = $rules;
-		}
-		return $this->_rules;
+		// NOTE: you should only define rules for those attributes that
+		// will receive user inputs.
+		return array(
+			array('username, lastname, contacto_id, paypal_id, tipocuenta, fecha_creacion, fecha_fin, fecha_pago', 'required'),
+			array('contacto_id', 'numerical', 'integerOnly'=>true),
+			array('username, lastname', 'length', 'max'=>50),
+			array('paypal_id', 'length', 'max'=>40),
+			array('tipocuenta', 'length', 'max'=>11),
+			// The following rule is used by search().
+			// Please remove those attributes that should not be searched.
+			array('user_id, username, lastname, contacto_id, paypal_id, tipocuenta, fecha_creacion, fecha_fin, fecha_pago', 'safe', 'on'=>'search'),
+		);
 	}
 
 	/**
@@ -106,78 +64,78 @@ class Profile extends UActiveRecord
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
-		$relations = array(
-			'user'=>array(self::HAS_ONE, 'User', 'id'),
+		return array(
+			'user' => array(self::BELONGS_TO, 'User', 'id'),
 		);
-		if (isset(Yii::app()->getModule('user')->profileRelations)) $relations = array_merge($relations,Yii::app()->getModule('user')->profileRelations);
-		return $relations;
 	}
+	
+	/*Función que determina los campos que va a devolver según nos convenga, desde
+	 * user se llamara a field algo así:
+	 * $this->_modelReg=Profile::model()->paraComprador()->findAll();*/
+	public function scopes()
+	    {
+	        return array(
+	            'paraTodos'=>array(
+	                //'condition'=>'visible='.self::VISIBLE_ALL,
+	                //'order'=>'position',
+	            ),
+	            'paraAdmin'=>array(
+	                //'condition'=>'visible>='.self::VISIBLE_REGISTER_USER,
+	                'order'=>'position',
+	            ),
+	            'paraComprador'=>array(
+	                //'condition'=>'visible>='.self::VISIBLE_REGISTER_USER,
+	                'order'=>'position',
+	            ),
+	            'paraEmpresa'=>array(
+	                //'condition'=>'visible>='.self::VISIBLE_ONLY_OWNER,
+	                'order'=>'position',
+	            ),
+	        );
+	    }
 
 	/**
 	 * @return array customized attribute labels (name=>label)
 	 */
 	public function attributeLabels()
 	{
-		$labels = array(
-			'user_id' => UserModule::t('User ID'),
+		return array(
+			'user_id' => 'User',
+			'username' => 'Username',
+			'lastname' => 'Lastname',
+			'contacto_id' => 'Contacto',
+			'paypal_id' => 'Paypal',
+			'tipocuenta' => 'Tipo de cuenta',
+			'fecha_creacion' => 'Fecha Creacion',
+			'fecha_fin' => 'Fecha Fin',
+			'fecha_pago' => 'Fecha Pago',
 		);
-		$model=$this->getFields();
-		
-		foreach ($model as $field)
-			$labels[$field->varname] = ((Yii::app()->getModule('user')->fieldsMessage)?UserModule::t($field->title,array(),Yii::app()->getModule('user')->fieldsMessage):UserModule::t($field->title));
-			
-		return $labels;
+	}
+
+	/**
+	 * Retrieves a list of models based on the current search/filter conditions.
+	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+	 */
+	public function search()
+	{
+		// Warning: Please modify the following code to remove attributes that
+		// should not be searched.
+
+		$criteria=new CDbCriteria;
+
+		$criteria->compare('user_id',$this->user_id);
+		$criteria->compare('username',$this->username,true);
+		$criteria->compare('lastname',$this->lastname,true);
+		$criteria->compare('contacto_id',$this->contacto_id);
+		$criteria->compare('paypal_id',$this->paypal_id,true);
+		$criteria->compare('tipocuenta',$this->tipocuenta,true);
+		$criteria->compare('fecha_creacion',$this->fecha_creacion,true);
+		$criteria->compare('fecha_fin',$this->fecha_fin,true);
+		$criteria->compare('fecha_pago',$this->fecha_pago,true);
+
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+		));
 	}
 	
-	private function rangeRules($str) {
-		$rules = explode(';',$str);
-		for ($i=0;$i<count($rules);$i++)
-			$rules[$i] = current(explode("==",$rules[$i]));
-		return $rules;
-	}
-	
-	static public function range($str,$fieldValue=NULL) {
-		$rules = explode(';',$str);
-		$array = array();
-		for ($i=0;$i<count($rules);$i++) {
-			$item = explode("==",$rules[$i]);
-			if (isset($item[0])) $array[$item[0]] = ((isset($item[1]))?$item[1]:$item[0]);
-		}
-		if (isset($fieldValue)) 
-			if (isset($array[$fieldValue])) return $array[$fieldValue]; else return '';
-		else
-			return $array;
-	}
-	
-	public function widgetAttributes() {
-		$data = array();
-		$model=$this->getFields();
-		
-		foreach ($model as $field) {
-			if ($field->widget) $data[$field->varname]=$field->widget;
-		}
-		return $data;
-	}
-	
-	public function widgetParams($fieldName) {
-		$data = array();
-		$model=$this->getFields();
-		
-		foreach ($model as $field) {
-			if ($field->widget) $data[$field->varname]=$field->widgetparams;
-		}
-		return $data[$fieldName];
-	}
-	
-	public function getFields() {
-		if ($this->regMode) {
-			if (!$this->_modelReg)
-				$this->_modelReg=ProfileField::model()->forRegistration()->findAll();
-			return $this->_modelReg;
-		} else {
-			if (!$this->_model)
-				$this->_model=ProfileField::model()->forOwner()->findAll();
-			return $this->_model;
-		}
-	}
 }

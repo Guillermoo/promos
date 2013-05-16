@@ -22,23 +22,8 @@ $this->menu=array(
 	$attributes = array(
 		'id',
 		'username',
-	);
-	
-	$profileFields=ProfileField::model()->forOwner()->sort()->findAll();
-	if ($profileFields) {
-		foreach($profileFields as $field) {
-			array_push($attributes,array(
-					'label' => UserModule::t($field->title),
-					'name' => $field->varname,
-					'type'=>'raw',
-					'value' => (($field->widgetView($model->profile))?$field->widgetView($model->profile):(($field->range)?Profile::range($field->range,$model->profile->getAttribute($field->varname)):$model->profile->getAttribute($field->varname))),
-				));
-		}
-	}
-	
-	array_push($attributes,
-		'password',
 		'email',
+		'password',
 		'activkey',
 		'create_at',
 		'lastvisit_at',
@@ -49,8 +34,43 @@ $this->menu=array(
 		array(
 			'name' => 'status',
 			'value' => User::itemAlias("UserStatus",$model->status),
-		)
+		),
 	);
+	
+	/*campos de profile y contacto*/
+	array_push($attributes,
+		'profile.username',
+		'profile.lastname',
+		'profile.paypal_id',
+		'profile.tipocuenta',
+		'profile.fecha_creacion',
+		'profile.fecha_fin',
+		'profile.fecha_pago',
+		'contacto.telefono',
+		'contacto.fax',
+		'contacto.cp',
+		'contacto.barrio',
+		'contacto.direccion'
+		);
+	
+	/*array(
+			'name' => 'user',
+			'type' => 'raw',
+			'value' => $model->user !== null ? GxHtml::link(GxHtml::encode(GxHtml::valueEx($model->user)), array('users/view', 'id' => GxActiveRecord::extractPkValue($model->user, true))) : null,
+			),*/
+			
+	
+	/*$profileFields=Profile::model()->paraAdmin()->sort()->findAll();
+	if ($profileFields) {
+		foreach($profileFields as $field) {
+			array_push($attributes,array(
+					'label' => UserModule::t($field->title),
+					'name' => $field->varname,
+					'type'=>'raw',
+					'value' => (($field->widgetView($model->profile))?$field->widgetView($model->profile):(($field->range)?Profile::range($field->range,$model->profile->getAttribute($field->varname)):$model->profile->getAttribute($field->varname))),
+				));
+		}
+	}*/
 	
 	$this->widget('zii.widgets.CDetailView', array(
 		'data'=>$model,
