@@ -199,7 +199,8 @@ class UserModule extends CWebModule
 			return false;
 		else {
 			if (!isset(self::$_admin)) {
-				if(self::user()->superuser)
+				//if(self::user()->superuser)
+				if(Yii::app()->authManager->checkAccess('admin', Yii::app()->user->id))
 					self::$_admin = true;
 				else
 					self::$_admin = false;	

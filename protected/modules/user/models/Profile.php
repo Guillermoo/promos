@@ -46,8 +46,8 @@ class Profile extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, lastname, contacto_id, paypal_id, tipocuenta, fecha_creacion, fecha_fin, fecha_pago', 'required'),
-			array('contacto_id', 'numerical', 'integerOnly'=>true),
+			//array('username, lastname, contacto_id, paypal_id, tipocuenta, fecha_creacion, fecha_fin, fecha_pago', 'required'),
+			//array('contacto_id', 'numerical', 'integerOnly'=>true),
 			array('username, lastname', 'length', 'max'=>50),
 			array('paypal_id', 'length', 'max'=>40),
 			array('tipocuenta', 'length', 'max'=>11),
@@ -94,6 +94,23 @@ class Profile extends CActiveRecord
 	        );
 	    }
 
+    /*(G) De momento no hay nada programado.*/
+    public function setFechaActivacion($value) {
+        $this->fecha_activacion=date('Y-m-d H:i:s',$value);
+    }
+    
+    public function setFechaFin($value) {
+    	/*Código necesario para calcular la fecha en la que se le acaba al usuario
+    	 el periodo activo*/
+        $this->fecha_fin=date('Y-m-d H:i:s',$value);
+    }
+    
+    
+    /*Código necesario para calcular la fecha en la que realizó el pago*/
+	public function setFechaPago($value) {
+        $this->fecha_pago=date('Y-m-d H:i:s',$value);
+    }
+	    
 	/**
 	 * @return array customized attribute labels (name=>label)
 	 */

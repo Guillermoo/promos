@@ -21,6 +21,23 @@ class RWebUser extends CWebUser
 		if( Rights::getAuthorizer()->isSuperuser($this->getId())===true )
 			$this->isSuperuser = true;
 	}
+	
+	/*(G) He añadido esta función porque daba error al editar el perfil. Está sacada del módulo 
+	 * user(/components/WebUser.php)*/
+	public function updateSession() 
+	{
+		$user = Yii::app()->getModule('user')->user($this->id);
+		$userAttributes = CMap::mergeArray(array(                                                                                               'email'=>$user->email,
+            'username'=>$user->username,
+            'create_at'=>$user->create_at,
+            'lastvisit_at'=>$user->lastvisit_at,
+		),$user->profile->getAttributes());
+
+		foreach ($userAttributes as $attrName=>$attrValue) 
+		{
+			$this->setState($attrName,$attrValue);
+		}
+	}
 
 	/**
 	* Performs access check for this user.

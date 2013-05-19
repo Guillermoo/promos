@@ -87,39 +87,45 @@ class AdminController extends Controller
 	{
 		$model=new User;
 		$profile=new Profile;
-		$this->performAjaxValidation(array($model,$profile));
+		$contacto= new Contacto;
+		
+		$this->performAjaxValidation(array($model));
 		if(isset($_POST['User']))
 		{
+			/*Desde el menú de admin el admin sólo podrá crear usuarios
+			  con la información mínima(tabla tbl_user 
+			 */
 			$model->attributes=$_POST['User'];
 			$model->activkey=Yii::app()->controller->module->encrypting(microtime().$model->password);
 			/*$profile->attributes=$_POST['Profile'];
 			$profile->user_id=0;*/
-			
-			if($model->validate()&&$profile->validate()) {
+			if($model->validate()) {
 				$model->password=Yii::app()->controller->module->encrypting($model->password);
 				if($model->save()) {
 					//Asignamos el rol dinámicamente
 					$model->setRole();
-					
 					/*(G)Creamos el perfil con el id del nuevo usuario. Al ser creado desde el admin sólo hay
-					que crear el usuario, no los datos del perfil, eso ya lo hará el usuario.*/
+					que crear el usuario, no los datos del perfil o contacto, eso ya lo hará el usuario(o el admin desde update.*/
 					$profile->user_id=$model->id;
+					$profile->save();
+					$contacto->user_id=$model->id;
+					$contacto->save();
 					/*$profile->tipocuenta=; (G)FALTA ASIGNAR VALORES AUTOMÁTICOS
 					$profile->fecha_creacion=;*/
 					
-					$profile->save();
+					//$profile->save();
 				}
 				$this->redirect(array('view','id'=>$model->id));
-			} else $profile->validate();
+			} else {
+			//	$model->profile->validate();
+			//	$model->contacto->validate();
+			}
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
-			'profile'=>$profile,
 		));
 	}
-	
-	
 
 	/**
 	 * Updates a particular model.
@@ -129,7 +135,7 @@ class AdminController extends Controller
 	{
 		$model=$this->loadModel();
 		
-		$this->performAjaxValidation(array($model,$model->profile));
+		$this->performAjaxValidation(array($model,$model->profile,$model->contacto));
 		if(isset($_POST['User']))
 		{
 			$model->attributes=$_POST['User'];
@@ -170,8 +176,10 @@ class AdminController extends Controller
 		{
 			// we only allow deletion via POST request
 			$model = $this->loadModel();
-			$profile = Profile::model()->findByPk($model->id);
-			$profile->delete();
+			//$profile = Profile::model()->findByPk($model->id);
+			//$profile->delete();
+			$model->profile->delete();
+			$model->contacto->delete();
 			$model->delete();
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_POST['ajax']))

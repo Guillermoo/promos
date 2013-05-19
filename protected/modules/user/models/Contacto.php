@@ -45,11 +45,12 @@ class Contacto extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_id, telefono, fax, cp, barrio, direccion, poblacion_id', 'required'),
+			//array('user_id', 'required'),
 			array('user_id, barrio, poblacion_id', 'numerical', 'integerOnly'=>true),
 			array('telefono, fax', 'length', 'max'=>50),
 			array('cp', 'length', 'max'=>11),
 			array('direccion', 'length', 'max'=>120),
+			array('telefono,fax,cp', 'numerical','integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('user_id, telefono, fax, cp, barrio, direccion, poblacion_id', 'safe', 'on'=>'search'),

@@ -209,7 +209,9 @@ class User extends CActiveRecord
         $this->lastvisit_at=date('Y-m-d H:i:s',$value);
     }
     
-    /*Función para obtener los campos*/
+    /*(G) Función para obtener los campos. 
+     * Si queremos que se muestren unos campos u otros en función de quien los llama,
+     * este es el momento. */
 	public static function getFields() {
 		$this->_model=Profile::model()->paraTodos()->findAll();
 		

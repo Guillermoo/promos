@@ -22,7 +22,8 @@ class RegistrationController extends Controller
 	public function actionRegistration() {
             $model = new RegistrationForm;
             $profile=new Profile;
-            $profile->regMode = true;
+            $contacto=new Contacto;
+            //$profile->regMode = true;
             
             //La página de registro tiene que cargarse con el theme classic
             Yii::app()->theme = 'classic';
@@ -52,6 +53,9 @@ class RegistrationController extends Controller
 						if ($model->save()) {
 							$profile->user_id=$model->id;
 							$profile->save();
+							
+							$contacto->user_id=$model->id;
+							$contacto->save();
 							
 							$model->setRole();
 							

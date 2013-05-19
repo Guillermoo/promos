@@ -28,13 +28,14 @@ class LoginController extends Controller
 					else
 						$this->render('empresaMenu');*/
 						
+					/*(G) No se porqué pero se mete otra vez en login*/
 					if(Yii::app()->user->checkAccess('comprador',$params))
 						$this->redirect('profile');
 					elseif(Yii::app()->user->checkAccess('empresa',$params))
 						$this->redirect('profile');//A promociones, la url habrá que cambiarla cuando se cree el modelo promociones
 					elseif(Yii::app()->user->checkAccess('superadmin',$params) || Yii::app()->user->checkAccess('admin',$params))
 						$this->redirect('admin');
-					else 
+					else
 						$this->redirect(Yii::app()->homeUrl);
 					/*if (Yii::app()->user->returnUrl=='/index.php')
 						$this->redirect(Yii::app()->controller->module->returnUrl);
@@ -44,8 +45,10 @@ class LoginController extends Controller
 			}
 			// display the login form
 			$this->render('/user/login',array('model'=>$model));
-		} else
-			$this->redirect(Yii::app()->controller->module->returnUrl);
+		} else{
+			//$this->redirect(Yii::app()->controller->module->returnUrl);
+			$this->redirect('profile');
+		}
 	}
 
 	
