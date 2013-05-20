@@ -89,6 +89,8 @@ class User extends CActiveRecord
             $relations['profile'] = array(self::HAS_ONE, 'Profile', 'user_id');
         if (!isset($relations['contacto']))
             $relations['contacto'] = array(self::HAS_ONE, 'Contacto', 'user_id');
+        if (Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id))
+            $relations['empresa'] = array(self::HAS_ONE, 'Empresa', 'user_id');
         return $relations;
 	}
 
@@ -237,6 +239,33 @@ class User extends CActiveRecord
 				$authorizer->authManager->assign('admin', $this->id);
 			else //=2
 				$authorizer->authManager->assign('empresa', $this->id);
+	}
+	
+	/*Función que asigna el rol según el tipo de usuario, se ejecuta nada mas crear el usuario*/
+	public function crearModelosRelacionados(){
+		
+		$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
+		
+		$profile=new Profile;
+		$contacto= new Contacto;
+		
+		/*(G)Creamos el perfil con el id del nuevo usuario. Al ser creado desde el admin sólo hay
+		que crear el usuario, no los datos del perfil o contacto, eso ya lo hará el usuario(o el admin desde update.*/
+		$profile->user_id=$this->id;
+		$profile->save();
+		$contacto->user_id=$this->id;
+		$contacto->save();
+		/*$profile->tipocuenta=; (G)FALTA ASIGNAR VALORES AUTOMÁTICOS
+		$profile->fecha_creacion=;*/
+		
+		if ($this->superuser == 2){
+			$empresa= new Empresa;
+			$empresa->user_id = $this->id;
+			$empresa->creado = NOW();
+			$empresa->modificado = NOW();
+			$empresa->save();
+		}	
+				
 	}
     
 }

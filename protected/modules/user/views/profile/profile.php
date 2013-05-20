@@ -34,12 +34,6 @@
 			<?php echo $form->error($model,'username'); ?>
 		</div>
 	
-		<!-- <div class="row">
-			<?php //echo $form->labelEx($model,'password'); ?>
-			<?php //echo $form->passwordField($model,'password',array('size'=>60,'maxlength'=>128)); ?>
-			<?php //echo $form->error($model,'password'); ?>
-		</div> -->
-	
 		<div class="row">
 			<?php echo $form->labelEx($model,'email'); ?>
 			<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>128)); ?>
@@ -105,28 +99,14 @@
 			
 		</div> 
 		<!-- Inicio contacto -->
-		<div class="row">
-			<?php echo $form->labelEx($model->contacto,'telefono'); ?>
-			<?php echo $form->textField($model->contacto,'telefono',array('size'=>60,'maxlength'=>128)); ?>
-			<?php echo $form->error($model->contacto,'telefono'); ?>
+		<div id="row">
+	    	<?php $this->renderPartial('/layouts/_contacto',array('contacto' => $model->contacto) );?>
 		</div>
-		
-		<div class="row">
-			<?php echo $form->labelEx($model->contacto,'fax'); ?>
-			<?php echo $form->textField($model->contacto,'fax',array('size'=>60,'maxlength'=>128)); ?>
-			<?php echo $form->error($model->contacto,'fax'); ?>
-		</div>
-		
-		<div class="row">
-			<?php echo $form->labelEx($model->contacto,'cp'); ?>
-			<?php echo $form->textField($model->contacto,'cp',array('size'=>60,'maxlength'=>128)); ?>
-			<?php echo $form->error($model->contacto,'cp'); ?>
-		</div>
+	
 	<?php endif;?>
 	<div class="row buttons">
 			<?php echo CHtml::submitButton($model->isNewRecord ? UserModule::t('Create') : UserModule::t('Save')); ?>
 		</div>
- <!-- </table> --> 
 	
 	<?php $this->endWidget(); ?>	
 	

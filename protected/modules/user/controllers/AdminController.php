@@ -86,14 +86,12 @@ class AdminController extends Controller
 	public function actionCreate()
 	{
 		$model=new User;
-		$profile=new Profile;
-		$contacto= new Contacto;
 		
 		$this->performAjaxValidation(array($model));
 		if(isset($_POST['User']))
 		{
 			/*Desde el menú de admin el admin sólo podrá crear usuarios
-			  con la información mínima(tabla tbl_user 
+			  con la información mínima(tabla tbl_user)
 			 */
 			$model->attributes=$_POST['User'];
 			$model->activkey=Yii::app()->controller->module->encrypting(microtime().$model->password);
@@ -104,16 +102,8 @@ class AdminController extends Controller
 				if($model->save()) {
 					//Asignamos el rol dinámicamente
 					$model->setRole();
-					/*(G)Creamos el perfil con el id del nuevo usuario. Al ser creado desde el admin sólo hay
-					que crear el usuario, no los datos del perfil o contacto, eso ya lo hará el usuario(o el admin desde update.*/
-					$profile->user_id=$model->id;
-					$profile->save();
-					$contacto->user_id=$model->id;
-					$contacto->save();
-					/*$profile->tipocuenta=; (G)FALTA ASIGNAR VALORES AUTOMÁTICOS
-					$profile->fecha_creacion=;*/
-					
-					//$profile->save();
+					//(G)Creamos contacto, profile, empresa(si es usuario empresa)
+					$model->crearModelosRelacionados();
 				}
 				$this->redirect(array('view','id'=>$model->id));
 			} else {

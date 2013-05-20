@@ -65,6 +65,8 @@ class UserController extends Controller
 			'dataProvider'=>$dataProvider,
 		));
 	}
+	
+
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
