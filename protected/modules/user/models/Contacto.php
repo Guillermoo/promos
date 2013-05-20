@@ -46,7 +46,7 @@ class Contacto extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			//array('user_id', 'required'),
-			array('user_id, barrio, poblacion_id', 'numerical', 'integerOnly'=>true),
+			array('user_id, barrio, poblacion_id,telefono,fax,cp', 'numerical', 'integerOnly'=>true),
 			array('telefono, fax', 'length', 'max'=>50),
 			array('cp', 'length', 'max'=>11),
 			array('direccion', 'length', 'max'=>120),

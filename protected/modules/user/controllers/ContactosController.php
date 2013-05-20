@@ -1,20 +1,13 @@
 <?php
 
-class ProfileController extends Controller
+class ContactosController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
 	public $layout='//layouts/column2';
-	public $defaultAction = 'profile';
-	
-	/**
-	 * @var CActiveRecord the currently loaded data model instance.
-	 */
-	private $_model;
-	
-	
+
 	/**
 	 * @return array action filters
 	 */
@@ -25,26 +18,13 @@ class ProfileController extends Controller
 			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
-	
-	/**
-	 * Shows a particular model.
-	 */
-	public function actionProfile()
-	{
-		$model = $this->loadUser();
-	    $this->render('profile',array(
-	    	'model'=>$model,
-			'profile'=>$model->profile,
-	    	'contacto'=>$model->contacto,
-	    ));
-	}
 
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
 	 * @return array access control rules
 	 */
-	/*public function accessRules()
+	public function accessRules()
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
@@ -63,7 +43,7 @@ class ProfileController extends Controller
 				'users'=>array('*'),
 			),
 		);
-	}*/
+	}
 
 	/**
 	 * Displays a particular model.
@@ -82,14 +62,14 @@ class ProfileController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Profile;
+		$model=new Contactos;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Profile']))
+		if(isset($_POST['Contactos']))
 		{
-			$model->attributes=$_POST['Profile'];
+			$model->attributes=$_POST['Contactos'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->user_id));
 		}
@@ -104,16 +84,16 @@ class ProfileController extends Controller
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
 	 */
-	/*public function actionUpdate($id)
+	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Profile']))
+		if(isset($_POST['Contactos']))
 		{
-			$model->attributes=$_POST['Profile'];
+			$model->attributes=$_POST['Contactos'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->user_id));
 		}
@@ -122,7 +102,7 @@ class ProfileController extends Controller
 			'model'=>$model,
 		));
 	}
-*/
+
 	/**
 	 * Deletes a particular model.
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
@@ -136,110 +116,56 @@ class ProfileController extends Controller
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
-	
-	
-	public function actionEdit()
-		{
-			$model = $this->loadUser();
-			$profile=$model->profile;
-			$contacto=$model->contacto;
-			// ajax validator
-			if(isset($_POST['ajax']) && $_POST['ajax']==='profile-form')
-			{
-				echo UActiveForm::validate(array($model,$profile,$contacto));
-				Yii::app()->end();
-			}
-			
-			if(isset($_POST['Profile']))
-			{
-				//$model->attributes=$_POST['User'];
-				$profile->attributes=$_POST['Profile'];
-				$contacto->attributes=$_POST['Contacto'];
-				
-				if($contacto->validate()&&$profile->validate()) {
-					//$model->save();
-					$profile->save();
-					$contacto->save();
-	                Yii::app()->user->updateSession();
-					Yii::app()->user->setFlash('profileMessage',UserModule::t("Changes is saved."));
-					$this->redirect(array('/user/profile'));
-				} else $profile->validate();
-			}
-	
-			$this->render('profile',array(
-				'model'=>$model,
-				'profile'=>$profile,
-				'contacto'=>$contacto,
-			));
-		}
 
 	/**
 	 * Lists all models.
 	 */
-	/*public function actionIndex()
+	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Profile');
+		$dataProvider=new CActiveDataProvider('Contactos');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
-	}*/
+	}
 
 	/**
 	 * Manages all models.
 	 */
-	/*public function actionAdmin()
+	public function actionAdmin()
 	{
-		$model=new Profile('search');
+		$model=new Contactos('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Profile']))
-			$model->attributes=$_GET['Profile'];
+		if(isset($_GET['Contactos']))
+			$model->attributes=$_GET['Contactos'];
 
 		$this->render('admin',array(
 			'model'=>$model,
 		));
-	}*/
-	
-	/**
-	 * Returns the data model based on the primary key given in the GET variable.
-	 * If the data model is not found, an HTTP exception will be raised.
-	 * @param integer the primary key value. Defaults to null, meaning using the 'id' GET variable
-	 */
-	public function loadUser()
-	{
-		if($this->_model===null)
-		{
-			if(Yii::app()->user->id)
-				$this->_model=Yii::app()->controller->module->user();
-			if($this->_model===null)
-				$this->redirect(Yii::app()->controller->module->loginUrl);
-		}
-		return $this->_model;
 	}
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Profile the loaded model
+	 * @return Contactos the loaded model
 	 * @throws CHttpException
 	 */
-	/*public function loadModel($id)
+	public function loadModel($id)
 	{
-		$model=Profile::model()->findByPk($id);
+		$model=Contactos::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
-	}*/
+	}
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Profile $model the model to be validated
+	 * @param Contactos $model the model to be validated
 	 */
-	/*(G) Debería validar contacto y profile*/
 	protected function performAjaxValidation($model)
 	{
-		sdg;
-		if(isset($_POST['ajax']) && $_POST['ajax']==='profile-form')
+		contact_user;
+		if(isset($_POST['ajax']) && $_POST['ajax']==='contactos-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

@@ -55,7 +55,7 @@ class ContactosController extends Controller
 			'model'=>$this->loadModel($id),
 		));
 	}
-
+	
 	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
@@ -164,6 +164,7 @@ class ContactosController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
+		contact_def;
 		if(isset($_POST['ajax']) && $_POST['ajax']==='contactos-form')
 		{
 			echo CActiveForm::validate($model);

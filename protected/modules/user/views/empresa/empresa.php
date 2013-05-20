@@ -68,7 +68,7 @@
 	</div>
 	
 	<div class="row">
-    	<?php $this->renderPartial('/layouts/_contacto',array('contacto' => $model->contacto) );?>
+    	<?php //$this->renderPartial('/layouts/_contacto',array('contacto' => $model->contacto) );?>
 	</div>
 
 	<div class="row buttons">

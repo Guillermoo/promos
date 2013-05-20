@@ -50,7 +50,7 @@ class Profile extends CActiveRecord
 			//array('contacto_id', 'numerical', 'integerOnly'=>true),
 			array('username, lastname', 'length', 'max'=>50),
 			array('paypal_id', 'length', 'max'=>40),
-			array('tipocuenta', 'length', 'max'=>11),
+			//array('tipocuenta', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('user_id, username, lastname, contacto_id, paypal_id, tipocuenta, fecha_creacion, fecha_fin, fecha_pago', 'safe', 'on'=>'search'),
