@@ -56,7 +56,7 @@ class RegistrationController extends Controller
 							
 							$contacto->user_id=$model->id;
 							$contacto->save();
-							
+							 
 							$model->setRole();
 							
 							if (Yii::app()->controller->module->sendActivationMail) {
