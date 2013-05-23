@@ -103,12 +103,12 @@ class AdminController extends Controller
 					//Asignamos el rol dinámicamente
 					$model->setRole();
 					//(G)Creamos contacto, profile, empresa(si es usuario empresa)
-					$model->crearModelosRelacionados();
+					$model->crearModelosRelacionados($model->superUser);
 				}
 				$this->redirect(array('view','id'=>$model->id));
 			} else {
 			//	$model->profile->validate();
-			//	$model->contacto->validate();
+			//	$contacto->validate();
 			}
 		}
 
@@ -124,34 +124,37 @@ class AdminController extends Controller
 	public function actionUpdate()
 	{
 		$model=$this->loadModel();
+		$profile=$model->profile;
+		$contacto=$model->profile->contacto;
 		
-		$this->performAjaxValidation(array($model,$model->profile,$model->contacto));
+		$this->performAjaxValidation(array($model,$profile,$contacto));
+		
 		if(isset($_POST['User']))
 		{
 			$model->attributes=$_POST['User'];
-			$model->profile->attributes=$_POST['Profile'];
-			$model->contacto->attributes=$_POST['Contacto'];
+			$profile->attributes=$_POST['Profile'];
+			$contacto->attributes=$_POST['Contacto'];
 			
-			if($model->validate()&&$model->profile->validate()&&$model->contacto->validate()) {
+			if($model->validate()&&$profile->validate()&&$contacto->validate()) {
 				$old_password = User::model()->notsafe()->findByPk($model->id);
 				if ($old_password->password!=$model->password) {
 					$model->password=Yii::app()->controller->module->encrypting($model->password);
 					$model->activkey=Yii::app()->controller->module->encrypting(microtime().$model->password);
 				}
 				$model->save();
-				$model->profile->save();
-				$model->contacto->save();
+				$profile->save();
+				$contacto->save();
 				$this->redirect(array('view','id'=>$model->id));
 			} else {
-				$model->profile->validate();	
-				$model->contacto->validate();
+				$profile->validate();	
+				$contacto->validate();
 			}
 		}
 
 		$this->render('update',array(
 			'model'=>$model,
-			'profile'=>$model->profile,
-			'contacto'=>$model->contacto,
+			'profile'=>$profile,
+			'contacto'=>$contacto,
 		));
 	}
 
@@ -166,10 +169,12 @@ class AdminController extends Controller
 		{
 			// we only allow deletion via POST request
 			$model = $this->loadModel();
+			$profile = $model->profile;
+			$contacto=$model->profile->contacto;
 			//$profile = Profile::model()->findByPk($model->id);
 			//$profile->delete();
-			$model->profile->delete();
-			$model->contacto->delete();
+			$profile->delete();
+			$contacto->delete();
 			$model->delete();
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_POST['ajax']))

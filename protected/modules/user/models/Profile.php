@@ -50,12 +50,27 @@ class Profile extends CActiveRecord
 			//array('contacto_id', 'numerical', 'integerOnly'=>true),
 			array('username, lastname', 'length', 'max'=>50),
 			array('paypal_id', 'length', 'max'=>40),
-			//array('tipocuenta', 'length', 'max'=>11),
+			array('tipocuenta', 'length', 'max'=>11),
+			//array('fecha_activacion,fecha_fin,fecha_pago', 'date'),
+			array('fecha_activacion, fecha_fin,fecha_pago', 'type', 'type' => 'date', 'message' => '{attribute}: is not a date!', 'dateFormat' => 'yyyy-MM-dd'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('user_id, username, lastname, contacto_id, paypal_id, tipocuenta, fecha_creacion, fecha_fin, fecha_pago', 'safe', 'on'=>'search'),
+			array('user_id, username, lastname, contacto_id, paypal_id, tipocuenta, fecha_activacion, fecha_fin, fecha_pago', 'safe', 'on'=>'search'),
 		);
 	}
+	
+	protected function beforeSave()
+	  {
+	  	if ($this->checkeaFechas()==true)
+	  		return true;
+  		else
+	  		return false;
+	  }
+	  
+	  /*Esta función tiene que comprobar que las fechas sean correctas. Fecha pago < Fecha activacion < Fecha Fin*/
+	  private function checkeaFechas(){
+	  	return true;
+	  }
 
 	/**
 	 * @return array relational rules.
@@ -66,6 +81,7 @@ class Profile extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'user' => array(self::BELONGS_TO, 'User', 'id'),
+            'contacto' => array(self::HAS_ONE, 'Contacto', 'id'),
 		);
 	}
 	
@@ -118,12 +134,12 @@ class Profile extends CActiveRecord
 	{
 		return array(
 			'user_id' => 'User',
-			'username' => 'Username',
-			'lastname' => 'Lastname',
+			'username' => 'Nombre',
+			'lastname' => 'Apellido',
 			'contacto_id' => 'Contacto',
-			'paypal_id' => 'Paypal',
+			'paypal_id' => 'Cuenta de Paypal',
 			'tipocuenta' => 'Tipo de cuenta',
-			'fecha_creacion' => 'Fecha Creacion',
+			'fecha_activacion' => 'Fecha Activación',
 			'fecha_fin' => 'Fecha Fin',
 			'fecha_pago' => 'Fecha Pago',
 		);

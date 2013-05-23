@@ -55,84 +55,138 @@
 	
 	<?php if (!UserModule::isAdmin()):?>
 		<div class="fields">
+		
+			
+			<?php $this->widget('bootstrap.widgets.TbLabel', array(
+			    'type'=>'info', // 'success', 'warning', 'important', 'info' or 'inverse'
+			    'label'=>'Profile',
+			)); ?>
 			<!-- Inicio profile -->
 			<div class="row">
-				<?php echo $form->labelEx($model->profile,'username'); ?>
-				<?php echo $form->textField($model->profile,'username',array('size'=>60,'maxlength'=>128)); ?>
-				<?php echo $form->error($model->profile,'username'); ?>
+				<?php echo $form->labelEx($profile,'username'); ?>
+				<?php echo $form->textField($profile,'username',array('size'=>60,'maxlength'=>128)); ?>
+				<?php echo $form->error($profile,'username'); ?>
 			</div>
 			
 			<div class="row">
-				<?php echo $form->labelEx($model->profile,'lastname'); ?>
-				<?php echo $form->textField($model->profile,'lastname',array('size'=>60,'maxlength'=>128)); ?>
-				<?php echo $form->error($model->profile,'lastname'); ?>
+				<?php echo $form->labelEx($profile,'lastname'); ?>
+				<?php echo $form->textField($profile,'lastname',array('size'=>60,'maxlength'=>128)); ?>
+				<?php echo $form->error($profile,'lastname'); ?>
 			</div>
 			
 			<div class="row">
-				<?php echo $form->labelEx($model->profile,'paypal_id'); ?>
-				<?php echo $form->textField($model->profile,'paypal_id',array('size'=>60,'maxlength'=>128)); ?>
-				<?php echo $form->error($model->profile,'paypal_id'); ?>
+				<?php echo $form->labelEx($profile,'paypal_id'); ?>
+				<?php echo $form->textField($profile,'paypal_id',array('size'=>60,'maxlength'=>128)); ?>
+				<?php echo $form->error($profile,'paypal_id'); ?>
 			</div>
 			
 			<div class="row">
-				<?php echo $form->labelEx($model->profile,'tipocuenta'); ?>
-				<?php echo $form->textField($model->profile,'tipocuenta',array('size'=>60,'maxlength'=>128)); ?>
-				<?php echo $form->error($model->profile,'tipocuenta'); ?>
+				<?php echo $form->labelEx($profile,'tipocuenta'); ?>
+				<?php echo $form->textField($profile,'tipocuenta'); ?>
+				<?php echo $form->error($profile,'tipocuenta'); ?>
 			</div>
 			
 			<div class="row">
-				<?php echo $form->labelEx($model->profile,'fecha_activacion'); ?>
-				<?php echo $form->textField($model->profile,'fecha_activacion',array('size'=>60,'maxlength'=>128)); ?>
-				<?php echo $form->error($model->profile,'fecha_activacion'); ?>
+				<?php echo $form->labelEx($profile,'fecha_activacion'); ?>
+				<?php $this->widget('zii.widgets.jui.CJuiDatePicker',array(
+				    'attribute'=>'fecha_activacion',
+					'model'=>$profile,
+					'value'=>$profile->fecha_activacion,
+  					//'name' => $model->profile->fecha_activacion,
+					//'name'=>'fecha_activacion',
+				    // additional javascript options for the date picker plugin
+				    'options'=>array(
+						'dateFormat'=>'yy-mm-dd',
+				        'showAnim'=>'fold',
+						'changeMonth'=>'true', 
+    					'changeYear'=>'true',
+				    	'debug'=>true,
+				    ),
+				    /*'htmlOptions'=>array(
+				        'style'=>'height:20px;'
+				    ),*/
+				));?>
+				<?php echo $form->error($profile,'fecha_activacion'); ?>
+				<?php /*echo $form->textField($model->profile,'fecha_activacion',array('size'=>60,'maxlength'=>128)); */?>
+			</div>
+			<div class="row">
+				<?php echo $form->labelEx($profile,'fecha_fin'); ?>
+				<?php //echo $form->textField($model->profile,'fecha_fin',array('size'=>60,'maxlength'=>128)); ?>
+				<?php $this->widget('zii.widgets.jui.CJuiDatePicker',array(
+				    'attribute'=>'fecha_fin',
+					'model'=>$profile,
+					'value'=>$profile->fecha_fin,
+  					//'name' => $model->profile->fecha_fin,
+				    // additional javascript options for the date picker plugin
+				    'options'=>array(
+						'dateFormat'=>'yy-mm-dd',
+				        'showAnim'=>'fold',
+						'changeMonth'=>'true', 
+    					'changeYear'=>'true',
+					    'debug'=>true,
+				    ),
+				));?>
+				<?php echo $form->error($profile,'fecha_fin'); ?>
 			</div>
 			
 			<div class="row">
-				<?php echo $form->labelEx($model->profile,'fecha_fin'); ?>
-				<?php echo $form->textField($model->profile,'fecha_fin',array('size'=>60,'maxlength'=>128)); ?>
-				<?php echo $form->error($model->profile,'fecha_fin'); ?>
+				<?php echo $form->labelEx($profile,'fecha_pago'); ?>
+				<?php //echo $form->textField($model->profile,'fecha_pago'); ?>
+				<?php $this->widget('zii.widgets.jui.CJuiDatePicker',array(
+				    'attribute'=>'fecha_pago',
+					'model'=>$profile,
+					'value'=>$profile->fecha_pago,
+  					//'name' => $model->profile->fecha_pago,
+				    // additional javascript options for the date picker plugin
+				    'options'=>array(
+						'dateFormat'=>'yy-mm-dd',
+				        'showAnim'=>'fold',
+						'changeMonth'=>'true', 
+    					'changeYear'=>'true',
+				    ),
+				));?>
+				<?php echo $form->error($profile,'fecha_pago'); ?>
 			</div>
 			
-			<div class="row">
-				<?php echo $form->labelEx($model->profile,'fecha_pago'); ?>
-				<?php echo $form->textField($model->profile,'fecha_pago',array('size'=>60,'maxlength'=>128)); ?>
-				<?php echo $form->error($model->profile,'fecha_pago'); ?>
-			</div>
-			
+		<?php $this->widget('bootstrap.widgets.TbLabel', array(
+		    'type'=>'info', // 'success', 'warning', 'important', 'info' or 'inverse'
+		    'label'=>'Contacto',
+		)); ?>
 		<!-- Inicio contacto -->
 		<div class="row">
-			<?php echo $form->labelEx($model->contacto,'telefono'); ?>
-			<?php echo $form->textField($model->contacto,'telefono',array('size'=>50,'maxlength'=>50)); ?>
-			<?php echo $form->error($model->contacto,'telefono'); ?>
+			<?php echo $form->labelEx($contacto,'telefono'); ?>
+			<?php echo $form->textField($contacto,'telefono',array('size'=>50,'maxlength'=>50)); ?>
+			<?php echo $form->error($contacto,'telefono'); ?>
 		</div>
 	
 		<div class="row">
-			<?php echo $form->labelEx($model->contacto,'fax'); ?>
-			<?php echo $form->textField($model->contacto,'fax',array('size'=>50,'maxlength'=>50)); ?>
-			<?php echo $form->error($model->contacto,'fax'); ?>
+			<?php echo $form->labelEx($contacto,'fax'); ?>
+			<?php echo $form->textField($contacto,'fax',array('size'=>50,'maxlength'=>50)); ?>
+			<?php echo $form->error($contacto,'fax'); ?>
 		</div>
 	
 		<div class="row">
-			<?php echo $form->labelEx($model->contacto,'cp'); ?>
-			<?php echo $form->textField($model->contacto,'cp',array('size'=>11,'maxlength'=>11)); ?>
-			<?php echo $form->error($model->contacto,'cp'); ?>
+			<?php echo $form->labelEx($contacto,'cp'); ?>
+			<?php echo $form->textField($contacto,'cp',array('size'=>11,'maxlength'=>11)); ?>
+			<?php echo $form->error($contacto,'cp'); ?>
 		</div>
 	
 		<div class="row">
-			<?php echo $form->labelEx($model->contacto,'barrio'); ?>
-			<?php echo $form->textField($model->contacto,'barrio'); ?>
-			<?php echo $form->error($model->contacto,'barrio'); ?>
+			<?php echo $form->labelEx($contacto,'barrio'); ?>
+			<?php echo $form->textField($contacto,'barrio'); ?>
+			<?php echo $form->error($contacto,'barrio'); ?>
 		</div>
 	
 		<div class="row">
-			<?php echo $form->labelEx($model->contacto,'direccion'); ?>
-			<?php echo $form->textField($model->contacto,'direccion',array('size'=>60,'maxlength'=>120)); ?>
-			<?php echo $form->error($model->contacto,'direccion'); ?>
+			<?php echo $form->labelEx($contacto,'direccion'); ?>
+			<?php echo $form->textField($contacto,'direccion',array('size'=>60,'maxlength'=>120)); ?>
+			<?php echo $form->error($contacto,'direccion'); ?>
 		</div>
 	
 		<div class="row">
-			<?php echo $form->labelEx($model->contacto,'poblacion_id'); ?>
-			<?php echo $form->textField($model->contacto,'poblacion_id'); ?>
-			<?php echo $form->error($model->contacto,'poblacion_id'); ?>
+			<?php echo $form->labelEx($contacto,'poblacion_id'); ?>
+			<?php echo $form->textField($contacto,'poblacion_id'); ?>
+			<?php echo $form->error($contacto,'poblacion_id'); ?>
 		</div>
 			
 		</div> 

@@ -15,21 +15,24 @@
 </head>
 
 <body>
-
-<?php $this->widget('bootstrap.widgets.TbNavbar',array(
+		<?php echo 'DEBUG:'?>
+	<?php if(!empty(Yii::app()->params['debugContent'])):?>
+		<?php echo Yii::app()->params['debugContent'];?>
+	<?php endif;?>
+<?php /*$this->widget('bootstrap.widgets.TbNavbar',array(
     'items'=>array(
         array(
             'class'=>'bootstrap.widgets.TbMenu',
-            /*'items'=>array(
+            'items'=>array(
                 array('label'=>'Home', 'url'=>array('/site/index')),
                 array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
                 array('label'=>'Contact', 'url'=>array('/site/contact')),
                 array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
                 array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
-            ),*/
+            ),
         ),
     ),
-)); ?>
+));*/ ?>
 
 <div class="container" id="page">
 
@@ -39,6 +42,7 @@
 		));*/ ?><!-- breadcrumbs -->
 	<?php //endif?>
 	<?php echo __FILE__; ?>
+
 	<?php echo $content; ?>
 
 	<div class="clear"></div>

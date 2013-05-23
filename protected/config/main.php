@@ -155,19 +155,19 @@ return array(
 		'log'=>array(
 			'class'=>'CLogRouter',
 			'routes'=>array(
-				array(
-					'class'=>'CFileLogRoute',
-					'levels'=>'error, warning',
-				),
 				// uncomment the following to show log messages on web pages
-				
+				array(
+                    'class' => 'CFileLogRoute',
+                    'levels' => 'error, warning, info',
+                    'categories'=>'system.*',
+                ),
 				array(
 					'class'=>'CWebLogRoute',
 					'enabled' => YII_DEBUG,
 					'levels'=>'trace',
 					//'filter'=>'CLogFilter',
-					//'categories'=>'vardump',
-					//'showInFireBug'=>true
+					'categories'=>'vardump',
+					'showInFireBug'=>true
 				),
 				array(
 	                'class'=>'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
@@ -181,6 +181,7 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
+		'debugContent'=>'',
 		'adminEmail'=>'webmaster@example.com',
 	),
 );

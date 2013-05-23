@@ -21,9 +21,6 @@ class RegistrationController extends Controller
 	 */
 	public function actionRegistration() {
             $model = new RegistrationForm;
-            $profile=new Profile;
-            $contacto=new Contacto;
-            //$profile->regMode = true;
             
             //La página de registro tiene que cargarse con el theme classic
             Yii::app()->theme = 'classic';
@@ -40,25 +37,22 @@ class RegistrationController extends Controller
 		    } else {
 		    	if(isset($_POST['RegistrationForm'])) {
 					$model->attributes=$_POST['RegistrationForm'];
-					$profile->attributes=((isset($_POST['Profile'])?$_POST['Profile']:array()));
-					if($model->validate()&&$profile->validate())
+					//$profile->attributes=((isset($_POST['Profile'])?$_POST['Profile']:array()));
+					if($model->validate())
 					{
 						$soucePassword = $model->password;
 						$model->activkey=UserModule::encrypting(microtime().$model->password);
 						$model->password=UserModule::encrypting($model->password);
 						$model->verifyPassword=UserModule::encrypting($model->verifyPassword);
-						//$model->superuser=0; //Then role = comprador;
+						$model->superuser=0; //Then role = comprador;
 						$model->status=((Yii::app()->controller->module->activeAfterRegister)?User::STATUS_ACTIVE:User::STATUS_NOACTIVE);
 						
 						if ($model->save()) {
-							$profile->user_id=$model->id;
-							$profile->save();
-							
-							$contacto->user_id=$model->id;
-							$contacto->save();
-							 
+
 							$model->setRole();
 							
+							$model->crearModelosRelacionados($model->superUser);
+							 
 							if (Yii::app()->controller->module->sendActivationMail) {
 								$activation_url = $this->createAbsoluteUrl('/user/activation/activation',array("activkey" => $model->activkey, "email" => $model->email));
 								UserModule::sendMail($model->email,UserModule::t("You registered from {site_name}",array('{site_name}'=>Yii::app()->name)),UserModule::t("Please activate you account go to {activation_url}",array('{activation_url}'=>$activation_url)));
@@ -84,7 +78,7 @@ class RegistrationController extends Controller
 						}
 					} else $profile->validate();
 				}
-			    $this->render('/user/registration',array('model'=>$model,'profile'=>$profile));
+			    $this->render('/user/registration',array('model'=>$model));
 		    }
 	}
 	

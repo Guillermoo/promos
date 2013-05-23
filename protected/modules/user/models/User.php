@@ -85,10 +85,8 @@ class User extends CActiveRecord
 	public function relations()
 	{
         $relations = Yii::app()->getModule('user')->relations;
-        if (!isset($relations['profile']))
-            $relations['profile'] = array(self::HAS_ONE, 'Profile', 'user_id');
-        if (!isset($relations['contacto']))
-            $relations['contacto'] = array(self::HAS_ONE, 'Contacto', 'user_id');
+        //if (!isset($relations['profile']))
+        $relations['profile'] = array(self::HAS_ONE, 'Profile', 'user_id');
         if (Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id))
             $relations['empresa'] = array(self::HAS_ONE, 'Empresa', 'user_id');
         return $relations;
@@ -129,7 +127,7 @@ class User extends CActiveRecord
                 'condition'=>'status='.self::STATUS_BANNED,
             ),
             'superuser'=>array(
-                'condition'=>'superuser=1',
+                'condition'=>'superuser=1 || superuser=-1',
             ),
             'notsafe'=>array(
             	'select' => 'id, username, password, email, activkey, create_at, lastvisit_at, superuser, status',
@@ -145,6 +143,9 @@ class User extends CActiveRecord
         ));
     }
 	
+    /*
+     * Función que devuelve lo items de los desplegables.
+     * */
 	public static function itemAlias($type,$code=NULL) {
 		$_items = array(
 			'UserStatus' => array(
@@ -173,7 +174,6 @@ class User extends CActiveRecord
     {
         // Warning: Please modify the following code to remove attributes that
         // should not be searched.
-
         $criteria=new CDbCriteria;
         
         $criteria->compare('id',$this->id);
@@ -185,7 +185,7 @@ class User extends CActiveRecord
         $criteria->compare('lastvisit_at',$this->lastvisit_at);
         $criteria->compare('superuser',$this->superuser);
         $criteria->compare('status',$this->status);
-        $criteria->condition = ('id != '. User::ID_SUPERADMIN . ''); /*Para que no se muestre el superuser!!!!*/
+        //$criteria->condition = ('id != '. User::ID_SUPERADMIN . ''); /*Para que no se muestre el superuser!!!!*/
 
         return new CActiveDataProvider(get_class($this), array(
             'criteria'=>$criteria,
@@ -242,30 +242,61 @@ class User extends CActiveRecord
 	}
 	
 	/*Función que asigna el rol según el tipo de usuario, se ejecuta nada mas crear el usuario*/
-	public function crearModelosRelacionados(){
+	public function crearModelosRelacionados($isUser){
+
+		$this->crearNuevoProfileParaElUsuario();
 		
-		$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
+		//Primero creamos el contacto para obtener su id y guardarlo en empresa
+		if ($isUser == 2){//Es un usuario-empresa
+			$this->crearNuevaEmpresaParaElUsuario();
+			
+		}
+	}
+	
+	//Primero creamos el contacto para obtener su id y guardarlo en profil
+	private function crearNuevoProfileParaElUsuario(){
+		$id_contactoprofile = $this->creaContactoVacia();//Contacto para el perfil
+		$this->creaProfileVacio($id_profile);
+	}
+	
+	private function crearNuevaEmpresaParaElUsuario(){
+		$id_contactoempresa = $this->creaContactoVacia();//Contacto para la empresa
+		$this->creaEmpresaVacia($id_contactoempresa);
+	}
+	
+	private function creaProfileVacio($contacto_id){
 		
 		$profile=new Profile;
-		$contacto= new Contacto;
-		
 		/*(G)Creamos el perfil con el id del nuevo usuario. Al ser creado desde el admin sólo hay
 		que crear el usuario, no los datos del perfil o contacto, eso ya lo hará el usuario(o el admin desde update.*/
 		$profile->user_id=$this->id;
+		$profile->contacto_id = $contacto_id;
 		$profile->save();
-		$contacto->user_id=$this->id;
+		
+	}
+	
+	private function creaEmpresaVacia($contacto_id){
+		
+		$empresa= new Empresa;
+		$empresa->user_id = $this->id;
+		$empresa->contacto_id = $contacto_id;
+		$empresa->creado = NOW();
+		$empresa->modificado = NOW();
+		$empresa->save();
+		
+	}
+	
+	private function creaContactoVacia($isUser){
+		
+		$contacto = new Contacto;
 		$contacto->save();
+		
+		return $contacto->id;
 		/*$profile->tipocuenta=; (G)FALTA ASIGNAR VALORES AUTOMÁTICOS
 		$profile->fecha_creacion=;*/
-		
-		if ($this->superuser == 2){
-			$empresa= new Empresa;
-			$empresa->user_id = $this->id;
-			$empresa->creado = NOW();
-			$empresa->modificado = NOW();
-			$empresa->save();
-		}	
-				
+			
 	}
     
 }
+
+//echo Yii::trace(CVarDumper::dumpAsString(Yii::app()->user),'vardump');

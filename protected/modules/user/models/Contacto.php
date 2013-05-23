@@ -4,7 +4,7 @@
  * This is the model class for table "{{contactos}}".
  *
  * The followings are the available columns in table '{{contactos}}':
- * @property integer $user_id
+ * @property integer $id
  * @property string $telefono
  * @property string $fax
  * @property string $cp
@@ -46,14 +46,14 @@ class Contacto extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			//array('user_id', 'required'),
-			array('user_id, barrio, poblacion_id,telefono,fax,cp', 'numerical', 'integerOnly'=>true),
+			array('id, barrio, poblacion_id,telefono,fax,cp', 'numerical', 'integerOnly'=>true),
 			array('telefono, fax', 'length', 'max'=>50),
 			array('cp', 'length', 'max'=>11),
 			array('direccion', 'length', 'max'=>120),
-			array('telefono,fax,cp', 'numerical','integerOnly'=>true),
+			//array('telefono,fax,cp', 'numerical','integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('user_id, telefono, fax, cp, barrio, direccion, poblacion_id', 'safe', 'on'=>'search'),
+			array('id, telefono, fax, cp, barrio, direccion, poblacion_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -65,7 +65,9 @@ class Contacto extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'user' => array(self::BELONGS_TO, 'Users', 'user_id'),
+			//'user' => array(self::BELONGS_TO, 'Users', 'user_id'),
+			'profile' => array(self::BELONGS_TO, 'Profile', 'id'),
+			'empresa'=>array(self::BELONGS_TO, 'Empresa', 'id'),
 		);
 	}
 
@@ -75,7 +77,7 @@ class Contacto extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'user_id' => 'User',
+			'id' => 'User',
 			'telefono' => 'Telefono',
 			'fax' => 'Fax',
 			'cp' => 'Cp',
@@ -96,7 +98,7 @@ class Contacto extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('user_id',$this->user_id);
+		$criteria->compare('id',$this->id);
 		$criteria->compare('telefono',$this->telefono,true);
 		$criteria->compare('fax',$this->fax,true);
 		$criteria->compare('cp',$this->cp,true);
