@@ -15,10 +15,11 @@
 </head>
 
 <body>
-		<?php echo 'DEBUG:'?>
+	<!-- DEBUG -->
 	<?php if(!empty(Yii::app()->params['debugContent'])):?>
 		<?php echo Yii::app()->params['debugContent'];?>
 	<?php endif;?>
+	<!-- END DEBUG -->
 <?php /*$this->widget('bootstrap.widgets.TbNavbar',array(
     'items'=>array(
         array(

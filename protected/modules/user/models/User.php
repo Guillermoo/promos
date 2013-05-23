@@ -247,16 +247,14 @@ class User extends CActiveRecord
 		$this->crearNuevoProfileParaElUsuario();
 		
 		//Primero creamos el contacto para obtener su id y guardarlo en empresa
-		if ($isUser == 2){//Es un usuario-empresa
+		if ($isUser == 2)//Es un usuario-empresa
 			$this->crearNuevaEmpresaParaElUsuario();
-			
-		}
 	}
 	
 	//Primero creamos el contacto para obtener su id y guardarlo en profil
 	private function crearNuevoProfileParaElUsuario(){
 		$id_contactoprofile = $this->creaContactoVacia();//Contacto para el perfil
-		$this->creaProfileVacio($id_profile);
+		$this->creaProfileVacio($id_contactoprofile);
 	}
 	
 	private function crearNuevaEmpresaParaElUsuario(){
@@ -271,7 +269,10 @@ class User extends CActiveRecord
 		que crear el usuario, no los datos del perfil o contacto, eso ya lo hará el usuario(o el admin desde update.*/
 		$profile->user_id=$this->id;
 		$profile->contacto_id = $contacto_id;
+		//$this->debug($this->id);
 		$profile->save();
+		$this->debug($profile->getErrors());
+		
 		
 	}
 	
@@ -280,22 +281,35 @@ class User extends CActiveRecord
 		$empresa= new Empresa;
 		$empresa->user_id = $this->id;
 		$empresa->contacto_id = $contacto_id;
-		$empresa->creado = NOW();
-		$empresa->modificado = NOW();
+		//$empresa->creado = NOW();
+		//$empresa->modificado = NOW();
 		$empresa->save();
 		
 	}
 	
-	private function creaContactoVacia($isUser){
+	private function creaContactoVacia(){
 		
 		$contacto = new Contacto;
 		$contacto->save();
 		
+		//$this->debug($contacto->id);
+		//echo Yii::trace(CVarDumper::dumpAsString($contacto->id),'vardump');
 		return $contacto->id;
 		/*$profile->tipocuenta=; (G)FALTA ASIGNAR VALORES AUTOMÁTICOS
 		$profile->fecha_creacion=;*/
 			
 	}
+	
+	/* Used to debug variables*/
+    protected function Debug($var){
+        $bt = debug_backtrace();
+        $dump = new CVarDumper();
+        $debug = '<div style="display:block;background-color:gold;border-radius:10px;border:solid 1px brown;padding:10px;z-index:10000;"><pre>';
+        $debug .= '<h4>function: '.$bt[1]['function'].'() line('.$bt[0]['line'].')'.'</h4>';
+        $debug .=  $dump->dumpAsString($var);
+        $debug .= "</pre></div>\n";
+        Yii::app()->params['debugContent'] .=$debug;
+    }
     
 }
 

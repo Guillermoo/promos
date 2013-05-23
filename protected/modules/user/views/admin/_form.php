@@ -103,8 +103,7 @@
 				</div>
 			<?php //endif;?>
 			</div>
-			<div class="fields">
-			<?php //if (isset($contacto)):?>
+			<?php if (isset($contacto)):?>
 			
 				<div class="row">
 					<?php echo $form->labelEx($contacto,'telefono'); ?>
@@ -135,9 +134,8 @@
 					<?php echo $form->textField($contacto,'direccion',array('size'=>60,'maxlength'=>128)); ?>
 					<?php echo $form->error($contacto,'direccion'); ?>
 				</div>
-			<?php //endif;?>
+			<?php endif;?>
 			
-		</div>
 	
 	<?php endif;?>
 		

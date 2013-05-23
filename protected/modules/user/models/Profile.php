@@ -51,8 +51,8 @@ class Profile extends CActiveRecord
 			array('username, lastname', 'length', 'max'=>50),
 			array('paypal_id', 'length', 'max'=>40),
 			array('tipocuenta', 'length', 'max'=>11),
-			//array('fecha_activacion,fecha_fin,fecha_pago', 'date'),
-			array('fecha_activacion, fecha_fin,fecha_pago', 'type', 'type' => 'date', 'message' => '{attribute}: is not a date!', 'dateFormat' => 'yyyy-MM-dd'),
+			array('fecha_activacion, fecha_fin,fecha_pago', 'length', 'max'=>51),
+			//array('fecha_activacion, fecha_fin,fecha_pago', 'type', 'type' => 'date', 'message' => '{attribute}: is not a date!', 'dateFormat' => 'yyyy-MM-dd'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('user_id, username, lastname, contacto_id, paypal_id, tipocuenta, fecha_activacion, fecha_fin, fecha_pago', 'safe', 'on'=>'search'),

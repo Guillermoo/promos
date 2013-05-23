@@ -51,7 +51,7 @@ class RegistrationController extends Controller
 
 							$model->setRole();
 							
-							$model->crearModelosRelacionados($model->superUser);
+							$model->crearModelosRelacionados($model->superuser);
 							 
 							if (Yii::app()->controller->module->sendActivationMail) {
 								$activation_url = $this->createAbsoluteUrl('/user/activation/activation',array("activkey" => $model->activkey, "email" => $model->email));

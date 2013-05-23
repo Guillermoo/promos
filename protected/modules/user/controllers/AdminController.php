@@ -91,8 +91,7 @@ class AdminController extends Controller
 		if(isset($_POST['User']))
 		{
 			/*Desde el menú de admin el admin sólo podrá crear usuarios
-			  con la información mínima(tabla tbl_user)
-			 */
+			  con la información mínima(tabla tbl_user)*/
 			$model->attributes=$_POST['User'];
 			$model->activkey=Yii::app()->controller->module->encrypting(microtime().$model->password);
 			/*$profile->attributes=$_POST['Profile'];
@@ -103,9 +102,9 @@ class AdminController extends Controller
 					//Asignamos el rol dinámicamente
 					$model->setRole();
 					//(G)Creamos contacto, profile, empresa(si es usuario empresa)
-					$model->crearModelosRelacionados($model->superUser);
+					$model->crearModelosRelacionados($model->superuser);
 				}
-				$this->redirect(array('view','id'=>$model->id));
+				//$this->redirect(array('view','id'=>$model->id));
 			} else {
 			//	$model->profile->validate();
 			//	$contacto->validate();
@@ -126,6 +125,9 @@ class AdminController extends Controller
 		$model=$this->loadModel();
 		$profile=$model->profile;
 		$contacto=$model->profile->contacto;
+		
+		$this->debug($profile);
+		$this->debug($contacto);
 		
 		$this->performAjaxValidation(array($model,$profile,$contacto));
 		
@@ -213,6 +215,17 @@ class AdminController extends Controller
 		}
 		return $this->_model;
 	}
+	
+	/* Used to debug variables*/
+    protected function Debug($var){
+        $bt = debug_backtrace();
+        $dump = new CVarDumper();
+        $debug = '<div style="display:block;background-color:gold;border-radius:10px;border:solid 1px brown;padding:10px;z-index:10000;"><pre>';
+        $debug .= '<h4>function: '.$bt[1]['function'].'() line('.$bt[0]['line'].')'.'</h4>';
+        $debug .=  $dump->dumpAsString($var);
+        $debug .= "</pre></div>\n";
+        Yii::app()->params['debugContent'] .=$debug;
+    }
 	
 	
 	/**
