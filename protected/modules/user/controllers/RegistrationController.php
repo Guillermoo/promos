@@ -21,7 +21,7 @@ class RegistrationController extends Controller
 	 */
 	public function actionRegistration() {
 			/* ## hugo ## */
-			Yii::import("ext.mailer.*");
+			Yii::import('ext.mailer.*',true);
 			/* ### */
             $model = new RegistrationForm;
             $profile=new Profile;
