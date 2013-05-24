@@ -20,6 +20,9 @@ class RegistrationController extends Controller
 	 * Registration user
 	 */
 	public function actionRegistration() {
+			/* ## hugo ## */
+			Yii::import("ext.mailer.*");
+			/* ### */
             $model = new RegistrationForm;
             $profile=new Profile;
             $contacto=new Contacto;
@@ -84,6 +87,24 @@ class RegistrationController extends Controller
 						}
 					} else $profile->validate();
 				}
+				/* hugo */
+				//Envío el email al usuario registrado
+				$mail = new PHPMailer;
+				$mail->From = 'promos@promos.com';
+				$mail->AddCC('hugoepila@gmail.com');
+				$mail->FromName = 'Promos';
+				$mail->AddAddress($model->email);             
+				$mail->subject();
+
+				$mail->Body    = 'Uohhh! gracias por registrarte!!<b>ko!</b>';
+				$mail->AltBody = 'Uohhh! gracias por registrarte!!';
+
+				if(!$mail->Send()) {
+   					echo 'El email no se ha podido enviar.';
+   					echo 'Error: ' . $mail->ErrorInfo;
+   					exit;
+				}
+				/* ### */
 			    $this->render('/user/registration',array('model'=>$model,'profile'=>$profile));
 		    }
 	}
