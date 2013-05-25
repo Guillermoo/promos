@@ -31,7 +31,7 @@ class RegistrationController extends Controller
 			// ajax validator
 			if(isset($_POST['ajax']) && $_POST['ajax']==='registration-form')
 			{
-				echo UActiveForm::validate(array($model,$profile));
+				echo UActiveForm::validate(array($model));
 				Yii::app()->end();
 			}
 			

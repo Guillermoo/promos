@@ -234,7 +234,7 @@ class UserModule extends CWebModule
 	    return mail($email,'=?UTF-8?B?'.base64_encode($subject).'?=',$message,$headers);
 	}
 	
-	public function enviarEmail($email,$subject,$message, $altBody){
+	public static function enviarEmail($email,$subject,$message, $altBody){
 			
 			/* hugo */
 			//Envío el email al usuario registrado
