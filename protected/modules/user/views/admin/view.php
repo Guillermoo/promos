@@ -46,11 +46,11 @@ $this->menu=array(
 		'profile.fecha_creacion',
 		'profile.fecha_fin',
 		'profile.fecha_pago',
-		'contacto.telefono',
-		'contacto.fax',
-		'contacto.cp',
-		'contacto.barrio',
-		'contacto.direccion'
+		'profile.contacto.telefono',
+		'profile.contacto.fax',
+		'profile.contacto.cp',
+		'profile.contacto.barrio',
+		'profile.contacto.direccion'
 		);
 	
 	/*array(

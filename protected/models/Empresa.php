@@ -6,7 +6,7 @@
  * The followings are the available columns in table '{{empresas}}':
  * @property integer $empresa_id
  * @property integer $user_id
- * @property integer $contacto_id
+ 
  * @property integer $categoria_id
  * @property integer $logo_id
  * @property string $cif
@@ -52,13 +52,14 @@ class Empresa extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('user_id', 'required'),
-			array('user_id, contacto_id, categoria_id, logo_id', 'numerical', 'integerOnly'=>true),
-			array('cif', 'length', 'max'=>15),
+			array('user_id, categoria_id, logo_id', 'numerical', 'integerOnly'=>true),
+			array('cif', 'length', 'max'=>9),
+			array('cif', 'match', 'pattern' => '(X(-|\.)?0?\d{7}(-|\.)?[A-Z]|[A-Z](-|\.)?\d{7}(-|\.)?[0-9A-Z]|\d{8}(-|\.)?[A-Z])'),
 			array('web, twitter, facebook, urlTienda', 'length', 'max'=>100),
 			array('creado, modificado', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('empresa_id, user_id, contacto_id, categoria_id, logo_id, cif, web, twitter, facebook, urlTienda, creado, modificado', 'safe', 'on'=>'search'),
+			array('empresa_id, user_id, categoria_id, logo_id, cif, web, twitter, facebook, urlTienda, creado, modificado', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -72,7 +73,7 @@ class Empresa extends CActiveRecord
 		return array(
 			'logo' => array(self::BELONGS_TO, 'Items', 'logo_id'),
 			'usuario' => array(self::BELONGS_TO, 'Usuarios', 'user_id'),
-			'contacto' => array(self::BELONGS_TO, 'Contactos', 'contacto_id'),
+			'contacto' => array(self::BELONGS_TO, 'Contacto', 'contacto_id'),
 			'categoria' => array(self::BELONGS_TO, 'Category', 'categoria_id'),
 		);
 	}
@@ -111,7 +112,7 @@ class Empresa extends CActiveRecord
 
 		$criteria->compare('empresa_id',$this->empresa_id);
 		$criteria->compare('user_id',$this->user_id);
-		$criteria->compare('contacto_id',$this->contacto_id);
+		//$criteria->compare('contacto_id',$this->contacto_id);
 		$criteria->compare('categoria_id',$this->categoria_id);
 		$criteria->compare('logo_id',$this->logo_id);
 		$criteria->compare('cif',$this->cif,true);
