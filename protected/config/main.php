@@ -21,6 +21,7 @@ return array(
         'application.modules.rights.*',
         'application.modules.rights.components.*',
 		'ext.giix-components.*', // giix components
+		'ext.mailer.*',
 	),
 
 	'modules'=>array(
