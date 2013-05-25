@@ -89,9 +89,9 @@ class RegistrationController extends Controller
 				}
 				/* hugo */
 				//Envío el email al usuario registrado
-				$mail = new PHPMailer();
+				$mail = new phpmailer();
 				$mail->From = 'promos@promos.com';
-				$mail->AddCC('hugoepila@gmail.com');
+				$mail->AddCC('grillermo@gmail.com');
 				$mail->FromName = 'Promos';
 				$mail->AddAddress($model->email);             
 				$mail->subject();
