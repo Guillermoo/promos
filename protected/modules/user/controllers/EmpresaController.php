@@ -33,27 +33,23 @@ class EmpresaController extends Controller
 	{
 		$model = $this->loadUser();
 		
-		//$this->debug($model->empresa);
+		//Obtenemos todas las categorías con nivel 2(suponiendo que no hay subcategorías
+		$cat_model = Category::getCategorias();
+		$categorias = CHtml::listData($cat_model,'id', 'name');
+		
+		//Para cargar/gestionar el logo
+	 	Yii::import("xupload.models.XUploadForm");
+        $logo = new XUploadForm;
+		
 		$this->render('empresa',array(
 	    	'model'=>$model,
 			'empresa'=>$model->empresa,
 	    	'contacto'=>$model->empresa->contacto,
+			'categorias'=>$categorias,
+			'logo'=>$logo,
 	    ));
 	    
-		/*$dataProvider=new CActiveDataProvider('Empresa', array(
-			'criteria'=>array(
-		        'condition'=>'id>'.$model->id. ''
-		    ),
-				
-			/*'pagination'=>array(
-				'pageSize'=>Yii::app()->controller->module->user_page_size,
-			),
-		));*/
-
-		//$this->redirect(array('empresa/view','id'=>$model->id));
 	}
-	
-	
 
 	/**
 	 * Specifies the access control rules.

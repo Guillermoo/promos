@@ -24,7 +24,10 @@ return array(
 		'ext.giix-components.*', // giix components
 		'ext.mailer.*',
 	),
-
+	'aliases' => array(
+	    //If you manually installed it
+	    'xupload' => 'ext.xupload',
+	),
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
 		

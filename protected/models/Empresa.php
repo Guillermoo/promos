@@ -14,7 +14,6 @@
  * @property string $twitter
  * @property string $facebook
  * @property string $urlTienda
- * @property string $creado
  * @property string $modificado
  *
  * The followings are the available model relations:
@@ -56,10 +55,10 @@ class Empresa extends CActiveRecord
 			array('cif', 'length', 'max'=>9),
 			array('cif', 'match', 'pattern' => '(X(-|\.)?0?\d{7}(-|\.)?[A-Z]|[A-Z](-|\.)?\d{7}(-|\.)?[0-9A-Z]|\d{8}(-|\.)?[A-Z])'),
 			array('web, twitter, facebook, urlTienda', 'length', 'max'=>100),
-			array('creado, modificado', 'safe'),
+			array('modificado', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('empresa_id, user_id, categoria_id, logo_id, cif, web, twitter, facebook, urlTienda, creado, modificado', 'safe', 'on'=>'search'),
+			array('empresa_id, user_id, categoria_id, logo_id, cif, web, twitter, facebook, urlTienda, modificado', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -94,7 +93,6 @@ class Empresa extends CActiveRecord
 			'twitter' => 'Twitter',
 			'facebook' => 'Facebook',
 			'urlTienda' => 'Url Tienda',
-			'creado' => 'Creado',
 			'modificado' => 'Modificado',
 		);
 	}
@@ -120,7 +118,6 @@ class Empresa extends CActiveRecord
 		$criteria->compare('twitter',$this->twitter,true);
 		$criteria->compare('facebook',$this->facebook,true);
 		$criteria->compare('urlTienda',$this->urlTienda,true);
-		$criteria->compare('creado',$this->creado,true);
 		$criteria->compare('modificado',$this->modificado,true);
 
 		return new CActiveDataProvider($this, array(

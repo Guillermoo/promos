@@ -11,9 +11,10 @@
 </div>
 <?php endif; ?>
 
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'empresa-form',
 	'enableAjaxValidation'=>true,
+	//'type'=>'horizontal',
 	'action'=>'empresa/edit',
 	'htmlOptions' => array('enctype'=>'multipart/form-data')
 ));
@@ -29,14 +30,23 @@
 	    'label'=>'Empresa',
 	)); ?>
 	<div class="row">
-		<?php echo $form->labelEx($empresa,'categoria_id'); ?>
-		<?php echo $form->textField($empresa,'categoria_id'); ?>
+		<?php //echo $form->labelEx($empresa,'categoria_id'); ?>
+		<?php //echo $form->dropDownList($empresa,'categoria_id',$categorias, array('empty' => '(Select a category)'));?>
+		<?php echo $form->dropDownListRow($empresa, 'categoria_id', $categorias); ?>
 		<?php echo $form->error($empresa,'categoria_id'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($empresa,'logo_id'); ?>
-		<?php echo $form->textField($empresa,'logo_id'); ?>
+		<?php //echo $form->textField($empresa,'logo_id'); ?>
+		<?php $this->widget('xupload.XUpload', array(
+                    'url' => Yii::app()->createUrl("site/upload"),
+                    'model' => $logo,
+                    'attribute' => 'file',
+                    'multiple' => false,
+			));
+		?>
+		<?php //echo $form->fileFieldRow($empresa, 'logo_id'); ?>
 		<?php echo $form->error($empresa,'logo_id'); ?>
 	</div>
 

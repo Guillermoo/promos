@@ -126,9 +126,6 @@ class AdminController extends Controller
 		$profile=$model->profile;
 		$contacto=$model->profile->contacto;
 		
-		$this->debug($profile);
-		$this->debug($contacto);
-		
 		$this->performAjaxValidation(array($model,$profile,$contacto));
 		
 		if(isset($_POST['User']))
