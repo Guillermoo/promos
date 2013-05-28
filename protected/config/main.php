@@ -187,6 +187,6 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'debugContent'=>'',
-		'adminEmail'=>'webmaster@example.com',
+		'adminEmail'=>'grillermo@gmail.com',
 	),
 );
