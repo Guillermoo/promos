@@ -5,7 +5,11 @@ class User extends CActiveRecord
 	const STATUS_NOACTIVE=0;
 	const STATUS_ACTIVE=1;
 	const STATUS_BANNED=-1;
-	const ID_SUPERADMIN=1;
+	const ID_SUPERADMIN=-1;
+	const ID_COMPRADOR=0;
+	const ID_ADMIN=1;
+	const ID_EMPRESA=2;
+	
 	
 	//TODO: Delete for next version (backward compatibility)
 	const STATUS_BANED=-1;
@@ -63,7 +67,7 @@ class User extends CActiveRecord
 			array('email', 'unique', 'message' => UserModule::t("This user's email address already exists.")),
 			array('username', 'match', 'pattern' => '/^[A-Za-z0-9_]+$/u','message' => UserModule::t("Incorrect symbols (A-z0-9).")),
 			array('status', 'in', 'range'=>array(self::STATUS_NOACTIVE,self::STATUS_ACTIVE,self::STATUS_BANNED)),
-			array('superuser', 'in', 'range'=>array(0,1,2)),
+			array('superuser', 'in', 'range'=>array(self::ID_COMPRADOR,self::ID_ADMIN,self::ID_EMPRESA)),
             array('create_at', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true, 'on' => 'insert'),
             array('lastvisit_at', 'default', 'value' => '0000-00-00 00:00:00', 'setOnEmpty' => true, 'on' => 'insert'),
 			array('username, email, superuser, status', 'required'),
@@ -88,7 +92,9 @@ class User extends CActiveRecord
         if (!isset($relations['profile']))
             $relations['profile'] = array(self::HAS_ONE, 'Profile', 'user_id');
         if (!isset($relations['contacto']))
-            $relations['contacto'] = array(self::HAS_ONE, 'Contacto', 'user_id');
+            $relations['contacto'] = array(self::HAS_ONE, 'Contacto', 'id');
+        //if (!isset($relations['profile']))
+        $relations['profile'] = array(self::HAS_ONE, 'Profile', 'user_id');
         if (Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id))
             $relations['empresa'] = array(self::HAS_ONE, 'Empresa', 'user_id');
         return $relations;
@@ -129,7 +135,7 @@ class User extends CActiveRecord
                 'condition'=>'status='.self::STATUS_BANNED,
             ),
             'superuser'=>array(
-                'condition'=>'superuser=1',
+                'condition'=>'superuser=1 || superuser=-1',
             ),
             'notsafe'=>array(
             	'select' => 'id, username, password, email, activkey, create_at, lastvisit_at, superuser, status',
@@ -145,6 +151,9 @@ class User extends CActiveRecord
         ));
     }
 	
+    /*
+     * Función que devuelve lo items de los desplegables.
+     * */
 	public static function itemAlias($type,$code=NULL) {
 		$_items = array(
 			'UserStatus' => array(
@@ -173,7 +182,6 @@ class User extends CActiveRecord
     {
         // Warning: Please modify the following code to remove attributes that
         // should not be searched.
-
         $criteria=new CDbCriteria;
         
         $criteria->compare('id',$this->id);
@@ -185,7 +193,7 @@ class User extends CActiveRecord
         $criteria->compare('lastvisit_at',$this->lastvisit_at);
         $criteria->compare('superuser',$this->superuser);
         $criteria->compare('status',$this->status);
-        $criteria->condition = ('id != '. User::ID_SUPERADMIN . ''); /*Para que no se muestre el superuser!!!!*/
+        //$criteria->condition = ('id != '. User::ID_SUPERADMIN . ''); /*Para que no se muestre el superuser!!!!*/
 
         return new CActiveDataProvider(get_class($this), array(
             'criteria'=>$criteria,
@@ -243,29 +251,73 @@ class User extends CActiveRecord
 	
 	/*Función que asigna el rol según el tipo de usuario, se ejecuta nada mas crear el usuario*/
 	public function crearModelosRelacionados(){
+
+		$this->crearNuevoProfileParaElUsuario();
 		
-		$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
+		//Primero creamos el contacto para obtener su id y guardarlo en empresa
+		if ($this->superuser == 2)//Es un usuario-empresa
+			$this->crearNuevaEmpresaParaElUsuario();
+	}
+	
+	//Primero creamos el contacto para obtener su id y guardarlo en profil
+	public function crearNuevoProfileParaElUsuario(){
+		$id_contactoprofile = $this->creaContactoVacia();//Contacto para el perfil
+		$this->creaProfileVacio($id_contactoprofile);
+	}
+	
+	public function crearNuevaEmpresaParaElUsuario(){
+		$id_contactoempresa = $this->creaContactoVacia();//Contacto para la empresa
+		$this->creaEmpresaVacia($id_contactoempresa);
+	}
+	
+	private function creaProfileVacio($contacto_id){
 		
 		$profile=new Profile;
-		$contacto= new Contacto;
-		
 		/*(G)Creamos el perfil con el id del nuevo usuario. Al ser creado desde el admin sólo hay
 		que crear el usuario, no los datos del perfil o contacto, eso ya lo hará el usuario(o el admin desde update.*/
 		$profile->user_id=$this->id;
+		$profile->contacto_id = $contacto_id;
+		//$this->debug($this->id);
 		$profile->save();
-		$contacto->user_id=$this->id;
+		$this->debug($profile->getErrors());
+		
+	}
+	
+	private function creaEmpresaVacia($contacto_id){
+		
+		$empresa= new Empresa;
+		$empresa->user_id = $this->id;
+		$empresa->contacto_id = $contacto_id;
+		//$empresa->creado = NOW();
+		//$empresa->modificado = NOW();
+		$empresa->save();
+		
+	}
+	
+	private function creaContactoVacia(){
+		
+		$contacto = new Contacto;
 		$contacto->save();
+		
+		//$this->debug($contacto->id);
+		//echo Yii::trace(CVarDumper::dumpAsString($contacto->id),'vardump');
+		return $contacto->id;
 		/*$profile->tipocuenta=; (G)FALTA ASIGNAR VALORES AUTOMÁTICOS
 		$profile->fecha_creacion=;*/
-		
-		if ($this->superuser == 2){
-			$empresa= new Empresa;
-			$empresa->user_id = $this->id;
-			$empresa->creado = NOW();
-			$empresa->modificado = NOW();
-			$empresa->save();
-		}	
-				
+			
 	}
+	
+	/* Used to debug variables*/
+    protected function Debug($var){
+        $bt = debug_backtrace();
+        $dump = new CVarDumper();
+        $debug = '<div style="display:block;background-color:gold;border-radius:10px;border:solid 1px brown;padding:10px;z-index:10000;"><pre>';
+        $debug .= '<h4>function: '.$bt[1]['function'].'() line('.$bt[0]['line'].')'.'</h4>';
+        $debug .=  $dump->dumpAsString($var);
+        $debug .= "</pre></div>\n";
+        Yii::app()->params['debugContent'] .=$debug;
+    }
     
 }
+
+//echo Yii::trace(CVarDumper::dumpAsString(Yii::app()->user),'vardump');

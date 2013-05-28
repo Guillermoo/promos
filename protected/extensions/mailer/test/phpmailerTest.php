@@ -713,8 +713,7 @@ class phpmailerTest extends PHPUnit_Framework_TestCase
         $this->Mail->IsHTML(true);
         $this->Mail->Subject .= ": HTML only";
 
-        $this->Mail->Body = <<<'EOT'
-<html>
+        $this->Mail->Body = '<html>
     <head>
         <title>HTML email test</title>
     </head>
@@ -725,8 +724,7 @@ class phpmailerTest extends PHPUnit_Framework_TestCase
         for new versions of PHPMailer.</p>
         <p>Thank you!</p>
     </body>
-</html>
-EOT;
+</html>';
         $this->BuildBody();
         $this->assertTrue($this->Mail->Send(), $this->Mail->ErrorInfo);
     }

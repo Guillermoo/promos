@@ -234,6 +234,27 @@ class UserModule extends CWebModule
 	    return mail($email,'=?UTF-8?B?'.base64_encode($subject).'?=',$message,$headers);
 	}
 	
+	public static function enviarEmail($email,$subject,$message, $altBody){
+			
+			/* hugo */
+			//Envío el email al usuario registrado
+			$mail = new phpmailer();
+			$mail->From = 'promos@promos.com';
+			$mail->AddCC('grillermo@gmail.com');
+			$mail->FromName = 'Promos';
+			$mail->AddAddress($email);             
+			$mail->subject();
+			$mail->Body = $message;
+			$mail->AltBody = $altBody;
+			/*$mail->Body    = 'Uohhh! gracias por registrarte!!<b>ko!</b>';
+			$mail->AltBody = 'Uohhh! gracias por registrarte!!';*/
+			if(!$mail->Send()) {
+				Yii::app()->user->setFlash('registration',UserModule::t("El email no se ha podido enviar.."));
+				Yii::app()->user->setFlash('registration',UserModule::t('Error: ' . $mail->ErrorInfo));
+   				exit;
+			}
+		}
+		
 	/**
 	 * Return safe user data.
 	 * @param user id not required

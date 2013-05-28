@@ -33,26 +33,23 @@ class EmpresaController extends Controller
 	{
 		$model = $this->loadUser();
 		
+		//Obtenemos todas las categorías con nivel 2(suponiendo que no hay subcategorías
+		$cat_model = Category::getCategorias();
+		$categorias = CHtml::listData($cat_model,'id', 'name');
+		
+		//Para cargar/gestionar el logo
+	 	Yii::import("xupload.models.XUploadForm");
+        $logo = new XUploadForm;
+		
 		$this->render('empresa',array(
 	    	'model'=>$model,
-			//'empresa'=>$model->empresa,
-	    	//'contacto'=>$model->contacto,
+			'empresa'=>$model->empresa,
+	    	'contacto'=>$model->empresa->contacto,
+			'categorias'=>$categorias,
+			'logo'=>$logo,
 	    ));
 	    
-		/*$dataProvider=new CActiveDataProvider('Empresa', array(
-			'criteria'=>array(
-		        'condition'=>'id>'.$model->id. ''
-		    ),
-				
-			/*'pagination'=>array(
-				'pageSize'=>Yii::app()->controller->module->user_page_size,
-			),
-		));*/
-
-		//$this->redirect(array('empresa/view','id'=>$model->id));
 	}
-	
-	
 
 	/**
 	 * Specifies the access control rules.
@@ -84,7 +81,8 @@ class EmpresaController extends Controller
 		{
 			$model = $this->loadUser();
 			$empresa=$model->empresa;
-			$contacto=$model->contacto;
+			$contacto=$model->empresa->contacto;
+			
 			// ajax validator
 			if(isset($_POST['ajax']) && $_POST['ajax']==='empresa-form')
 			{
@@ -98,9 +96,9 @@ class EmpresaController extends Controller
 				$empresa->attributes=$_POST['Empresa'];
 				$contacto->attributes=$_POST['Contacto'];
 				
-				if($contacto->validate()&&$empresa->validate()) {
+				if($empresa->validate()) {
 					//$model->save();
-					$empresa->modificado = NOW();
+					//$empresa->modificado = NOW();
 					$empresa->save();
 					$contacto->save();
 	                Yii::app()->user->updateSession();
@@ -144,7 +142,7 @@ class EmpresaController extends Controller
 		}
 		return $this->_model;
 	}
-
+	
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
@@ -173,4 +171,15 @@ class EmpresaController extends Controller
 			Yii::app()->end();
 		}
 	}
+	
+	/* Used to debug variables*/
+    protected function Debug($var){
+        $bt = debug_backtrace();
+        $dump = new CVarDumper();
+        $debug = '<div style="display:block;background-color:gold;border-radius:10px;border:solid 1px brown;padding:10px;z-index:10000;"><pre>';
+        $debug .= '<h4>function: '.$bt[1]['function'].'() line('.$bt[0]['line'].')'.'</h4>';
+        $debug .=  $dump->dumpAsString($var);
+        $debug .= "</pre></div>\n";
+        Yii::app()->params['debugContent'] .=$debug;
+    }
 }

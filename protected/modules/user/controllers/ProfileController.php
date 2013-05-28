@@ -31,11 +31,25 @@ class ProfileController extends Controller
 	 */
 	public function actionProfile()
 	{
-		$model = $this->loadUser();
-	    $this->render('profile',array(
-	    	'model'=>$model,
-			'profile'=>$model->profile,
-	    	'contacto'=>$model->contacto,
+		$_model = $this->loadUser();
+		if (UserModule::isAdmin())
+			$this->renderParaAdmin($_model);
+		else
+		 	$this->renderParaUsuario($_model);
+	}
+	
+	private function renderParaAdmin($_model){
+		$this->render('profile',array(
+	    	'model'=>$_model,
+			'profile'=>$_model->profile,
+	    ));
+	}
+	
+	private function renderParaUsuario($_model){
+		$this->render('profile',array(
+	    	'model'=>$_model,
+			'profile'=>$_model->profile,
+	    	'contacto'=>$_model->profile->contacto,
 	    ));
 	}
 
@@ -140,35 +154,34 @@ class ProfileController extends Controller
 	
 	public function actionEdit()
 		{
-			$model = $this->loadUser();
-			$profile=$model->profile;
-			$contacto=$model->contacto;
+			$_model = $this->loadUser();
+			$profile=$_model->profile;
+			$contacto=$_model->profile->contacto;
 			// ajax validator
 			if(isset($_POST['ajax']) && $_POST['ajax']==='profile-form')
 			{
-				echo UActiveForm::validate(array($model,$profile,$contacto));
+				echo UActiveForm::validate(array($_model,$_model->profile,$contacto));
 				Yii::app()->end();
 			}
 			
 			if(isset($_POST['Profile']))
 			{
 				//$model->attributes=$_POST['User'];
-				$profile->attributes=$_POST['Profile'];
+				$profile ->attributes=$_POST['Profile'];
 				$contacto->attributes=$_POST['Contacto'];
-				
-				if($contacto->validate()&&$profile->validate()) {
+				if($profile ->validate()) {
 					//$model->save();
-					$profile->save();
+					$profile ->save();
 					$contacto->save();
 	                Yii::app()->user->updateSession();
 					Yii::app()->user->setFlash('profileMessage',UserModule::t("Changes is saved."));
 					$this->redirect(array('/user/profile'));
-				} else $profile->validate();
+				} else $profile ->validate();
 			}
 	
 			$this->render('profile',array(
-				'model'=>$model,
-				'profile'=>$profile,
+				'model'=>$_model,
+				'profile'=>$profile ,
 				'contacto'=>$contacto,
 			));
 		}
@@ -208,10 +221,12 @@ class ProfileController extends Controller
 	{
 		if($this->_model===null)
 		{
-			if(Yii::app()->user->id)
+			if(Yii::app()->user->id){
 				$this->_model=Yii::app()->controller->module->user();
-			if($this->_model===null)
+			}
+			if($this->_model===null){
 				$this->redirect(Yii::app()->controller->module->loginUrl);
+			}
 		}
 		return $this->_model;
 	}
@@ -236,13 +251,23 @@ class ProfileController extends Controller
 	 * @param Profile $model the model to be validated
 	 */
 	/*(G) Debería validar contacto y profile*/
-	protected function performAjaxValidation($model)
+	/*protected function performAjaxValidation($model)
 	{
-		sdg;
 		if(isset($_POST['ajax']) && $_POST['ajax']==='profile-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
-	}
+	}*/
+	
+	/* Used to debug variables*/
+    protected function Debug($var){
+        $bt = debug_backtrace();
+        $dump = new CVarDumper();
+        $debug = '<div style="display:block;background-color:gold;border-radius:10px;border:solid 1px brown;padding:10px;z-index:10000;"><pre>';
+        $debug .= '<h4>function: '.$bt[1]['function'].'() line('.$bt[0]['line'].')'.'</h4>';
+        $debug .=  $dump->dumpAsString($var);
+        $debug .= "</pre></div>\n";
+        Yii::app()->params['debugContent'] .=$debug;
+    }
 }

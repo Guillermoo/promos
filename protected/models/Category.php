@@ -129,14 +129,15 @@ class Category extends CActiveRecord
 	
 	/*Función para obtener todas las categorías con nivel 2. */
 	public static function getCategorias() {
-			
-		$categorias=Category::model()->findByAttributes(array('level'=>'2'));
-		print_r($categorias);
+		
+		$criteria = new CDbCriteria;  
+		$criteria->condition ='level > 1';
+		$categorias=Category::model()->findAll($criteria);
 
 		return $categorias;
 	}
 
-  public static  function printULTree(){
+  public static function printULTree(){
      $categories=Category::model()->findAll(array('order'=>'root,lft'));
      $level=0;
 

@@ -24,9 +24,6 @@ class RegistrationController extends Controller
 			Yii::import('ext.mailer.*',true);
 			/* ### */
             $model = new RegistrationForm;
-            $profile=new Profile;
-            $contacto=new Contacto;
-            //$profile->regMode = true;
             
             //La página de registro tiene que cargarse con el theme classic
             Yii::app()->theme = 'classic';
@@ -34,7 +31,7 @@ class RegistrationController extends Controller
 			// ajax validator
 			if(isset($_POST['ajax']) && $_POST['ajax']==='registration-form')
 			{
-				echo UActiveForm::validate(array($model,$profile));
+				echo UActiveForm::validate(array($model));
 				Yii::app()->end();
 			}
 			
@@ -43,28 +40,28 @@ class RegistrationController extends Controller
 		    } else {
 		    	if(isset($_POST['RegistrationForm'])) {
 					$model->attributes=$_POST['RegistrationForm'];
-					$profile->attributes=((isset($_POST['Profile'])?$_POST['Profile']:array()));
-					if($model->validate()&&$profile->validate())
+					//$profile->attributes=((isset($_POST['Profile'])?$_POST['Profile']:array()));
+					if($model->validate())
 					{
 						$soucePassword = $model->password;
 						$model->activkey=UserModule::encrypting(microtime().$model->password);
 						$model->password=UserModule::encrypting($model->password);
 						$model->verifyPassword=UserModule::encrypting($model->verifyPassword);
-						//$model->superuser=0; //Then role = comprador;
+						$model->superuser=User::ID_COMPRADOR; //Then role = comprador;
 						$model->status=((Yii::app()->controller->module->activeAfterRegister)?User::STATUS_ACTIVE:User::STATUS_NOACTIVE);
 						
 						if ($model->save()) {
-							$profile->user_id=$model->id;
-							$profile->save();
-							
-							$contacto->user_id=$model->id;
-							$contacto->save();
-							
+
 							$model->setRole();
 							
+							$model->crearModelosRelacionados($model->superuser);
+							 
 							if (Yii::app()->controller->module->sendActivationMail) {
 								$activation_url = $this->createAbsoluteUrl('/user/activation/activation',array("activkey" => $model->activkey, "email" => $model->email));
-								UserModule::sendMail($model->email,UserModule::t("You registered from {site_name}",array('{site_name}'=>Yii::app()->name)),UserModule::t("Please activate you account go to {activation_url}",array('{activation_url}'=>$activation_url)));
+								//UserModule::sendMail($model->email,UserModule::t("You registered from {site_name}",array('{site_name}'=>Yii::app()->name)),UserModule::t("Please activate you account go to {activation_url}",array('{activation_url}'=>$activation_url)));
+								
+								UserModule::enviarEmail($model->email,UserModule::t("You registered from {site_name}",array('{site_name}'=>Yii::app()->name)),UserModule::t("Uohhh! gracias por registrarte!!<b>ko!</b>, {activation_url}",array('Uohhh! gracias por registrarte!!, {activation_url}')));
+								//$this->enviarEmail($model->email);
 							}
 							
 							if ((Yii::app()->controller->module->loginNotActiv||(Yii::app()->controller->module->activeAfterRegister&&Yii::app()->controller->module->sendActivationMail==false))&&Yii::app()->controller->module->autoLogin) {
@@ -87,28 +84,9 @@ class RegistrationController extends Controller
 						}
 					} else $profile->validate();
 				}
-				/* hugo */
-				//Envío el email al usuario registrado
-				$mail = new PHPMailer();
-				$mail->From = 'promos@promos.com';
-				$mail->AddCC('hugoepila@gmail.com');
-				$mail->FromName = 'Promos';
-				$mail->AddAddress($model->email);             
-				$mail->subject();
-
-				$mail->Body    = 'Uohhh! gracias por registrarte!!<b>ko!</b>';
-				$mail->AltBody = 'Uohhh! gracias por registrarte!!';
-
-				if(!$mail->Send()) {
-   					echo 'El email no se ha podido enviar.';
-   					echo 'Error: ' . $mail->ErrorInfo;
-   					exit;
-				}
-				/* ### */
-			    $this->render('/user/registration',array('model'=>$model,'profile'=>$profile));
+			    $this->render('/user/registration',array('model'=>$model));
 		    }
 	}
 	
-
 	
 }

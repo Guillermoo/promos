@@ -41,7 +41,8 @@ $('.search-form form').submit(function(){
 	'id'=>'user-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
-	'type'=>'striped condensed',
+	'type'=>'condensed',
+	'enableSorting' => false,
 	'columns'=>array(
 		array(
 			'name' => 'id',

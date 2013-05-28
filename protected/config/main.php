@@ -9,6 +9,7 @@ return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'My Web Application',
 	'theme'=>'classic',	
+	'language'=>'es',
 	// preloading 'log' component
 	'preload'=>array('log'),
  
@@ -21,8 +22,12 @@ return array(
         'application.modules.rights.*',
         'application.modules.rights.components.*',
 		'ext.giix-components.*', // giix components
+		'ext.mailer.*',
 	),
-
+	'aliases' => array(
+	    //If you manually installed it
+	    'xupload' => 'ext.xupload',
+	),
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
 		
@@ -76,9 +81,9 @@ return array(
             'autoLogin' => true,
  
             # registration path
-            'registrationUrl' => array('/user/registration'),
+            //'registrationUrl' => array('/user/registration'),
 		
-			'registrationCompanyUrl' => array('/user/registrationcompany'),
+			//'registrationCompanyUrl' => array('/user/registrationcompany'),
  
             # recovery password path
             'recoveryUrl' => array('/user/recovery'),
@@ -155,19 +160,19 @@ return array(
 		'log'=>array(
 			'class'=>'CLogRouter',
 			'routes'=>array(
-				array(
-					'class'=>'CFileLogRoute',
-					'levels'=>'error, warning',
-				),
 				// uncomment the following to show log messages on web pages
-				
+				array(
+                    'class' => 'CFileLogRoute',
+                    'levels' => 'error, warning, info',
+                    'categories'=>'system.*',
+                ),
 				array(
 					'class'=>'CWebLogRoute',
 					'enabled' => YII_DEBUG,
 					'levels'=>'trace',
 					//'filter'=>'CLogFilter',
-					//'categories'=>'vardump',
-					//'showInFireBug'=>true
+					'categories'=>'vardump',
+					'showInFireBug'=>true
 				),
 				array(
 	                'class'=>'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
@@ -181,6 +186,7 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
+		'debugContent'=>'',
 		'adminEmail'=>'webmaster@example.com',
 	),
 );
