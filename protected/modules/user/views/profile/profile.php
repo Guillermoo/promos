@@ -146,7 +146,8 @@
 				));?>
 				<?php echo $form->error($profile,'fecha_pago'); ?>
 			</div>
-			
+		<?php if (Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id) ):?>
+		<!-- Se supone que contacto sólo va a tener la empresa -->
 		<?php $this->widget('bootstrap.widgets.TbLabel', array(
 		    'type'=>'info', // 'success', 'warning', 'important', 'info' or 'inverse'
 		    'label'=>'Contacto',
@@ -187,6 +188,7 @@
 			<?php echo $form->textField($contacto,'poblacion_id'); ?>
 			<?php echo $form->error($contacto,'poblacion_id'); ?>
 		</div>
+		<?php endif;?>
 			
 		</div> 
 	<?php endif;?>
