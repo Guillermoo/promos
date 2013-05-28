@@ -137,7 +137,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=promos',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => '',
+			'password' => '523360',
 			'charset' => 'utf8',
 			'tablePrefix' => 'tbl_',
         	'enableProfiling' => true,
@@ -173,11 +173,7 @@ return array(
 					//'filter'=>'CLogFilter',
 					'categories'=>'vardump',
 					'showInFireBug'=>true
-				),
-				array(
-	                'class'=>'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
-	                'ipFilters'=>array('127.0.0.1','192.168.1.215'),
-	            ),
+				),				
 			),
 		),
 	),
