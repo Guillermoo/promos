@@ -2,6 +2,7 @@
 /* @var $this SiteController */
 /* @var $model LoginForm */
 /* @var $form CActiveForm  */
+$this->layout = 'column3';
 
 $this->pageTitle=Yii::app()->name . ' - Login';
 $this->breadcrumbs=array(
