@@ -37,6 +37,9 @@ class EmpresaController extends Controller
 		$cat_model = Category::getCategorias();
 		$categorias = CHtml::listData($cat_model,'id', 'name');
 		
+		$cuentas = Cuenta::getCuentas();
+		$cuentas_list = CHtml::listData($cuentas,'id', 'nombre');
+		
 		//Para cargar/gestionar el logo
 	 	Yii::import("xupload.models.XUploadForm");
         $logo = new XUploadForm;
@@ -46,6 +49,7 @@ class EmpresaController extends Controller
 			'empresa'=>$model->empresa,
 	    	'contacto'=>$model->empresa->contacto,
 			'categorias'=>$categorias,
+			'cuentas'=>$cuentas_list,
 			'logo'=>$logo,
 	    ));
 	    
