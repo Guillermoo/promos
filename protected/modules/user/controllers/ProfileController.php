@@ -31,25 +31,52 @@ class ProfileController extends Controller
 	 */
 	public function actionProfile()
 	{
-		$_model = $this->loadUser();
+		$this->_model = $this->loadUser();
 		if (UserModule::isAdmin())
-			$this->renderParaAdmin($_model);
+			$this->renderParaAdmin();
 		else
-		 	$this->renderParaUsuario($_model);
+		 	$this->renderParaUsuario();
 	}
 	
-	private function renderParaAdmin($_model){
+	private function renderParaAdmin(){
 		$this->render('profile',array(
-	    	'model'=>$_model,
-			'profile'=>$_model->profile,
+	    	'model'=>$this->_model,
+			'profile'=>$this->_model->profile,
 	    ));
 	}
 	
-	private function renderParaUsuario($_model){
+	private function renderParaUsuario(){
+		
+		$esEmpresa = Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id);
+		
+		if($esEmpresa)
+			$this->renderParaEmpresa();
+		else
+			$this->renderParaComprador();
+	}
+	
+	private function renderParaEmpresa(){
+		
+		$cuentas = Cuenta::getCuentas();
+		$cuentas_list = CHtml::listData($cuentas,'id', 'nombre');
+		
+		//Para cargar/gestionar el logo
+	 	Yii::import("xupload.models.XUploadForm");
+        $logo = new XUploadForm;
+        
 		$this->render('profile',array(
-	    	'model'=>$_model,
-			'profile'=>$_model->profile,
-	    	'contacto'=>$_model->profile->contacto,
+	    	'model'=>$this->_model,
+			'profile'=>$this->_model->profile,
+			'empresa'=>$this->_model->empresa,
+			'cuentas'=>$cuentas,
+	    	'contacto'=>$this->_model->empresa->contacto,
+			'logo'=>$logo,
+	    ));
+	}
+	
+	private function renderParaComprador(){
+		$this->render('profile',array(
+	    	'model'=>$this->_model,
 	    ));
 	}
 

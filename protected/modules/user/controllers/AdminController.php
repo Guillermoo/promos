@@ -74,6 +74,7 @@ class AdminController extends Controller
 	public function actionView()
 	{
 		$model = $this->loadModel();
+		$this->debug($model);
 		$this->render('view',array(
 			'model'=>$model,
 		));
@@ -122,39 +123,88 @@ class AdminController extends Controller
 	 */
 	public function actionUpdate()
 	{
-		$model=$this->loadModel();
-		$profile=$model->profile;
-		$contacto=$model->profile->contacto;
+		$this->_model=$this->loadModel();
+		$profile=$this->_model->profile;
 		
-		$this->performAjaxValidation(array($model,$profile,$contacto));
+		//Obtenemos todas las categorías con nivel 2(suponiendo que no hay subcategorías
+		/*$cat_model = Category::getCategorias();
+		$categorias = CHtml::listData($cat_model,'id', 'name');
 		
+		$cuentas = Cuenta::getCuentas();
+		$cuentas_list = CHtml::listData($cuentas,'id', 'nombre');
+		
+		//Para cargar/gestionar el logo
+	 	Yii::import("xupload.models.XUploadForm");
+        $logo = new XUploadForm;*/
+        
+		$esEmpresa = Yii::app()->authManager->checkAccess('empresa', $this->_model->id);
+
 		if(isset($_POST['User']))
 		{
-			$model->attributes=$_POST['User'];
-			$profile->attributes=$_POST['Profile'];
-			$contacto->attributes=$_POST['Contacto'];
+			$this->performAjaxValidation(array($this->_model,$profile));
+			$this->_model->attributes=$_POST['User'];
+			if ($esEmpresa){
+				$profile->attributes=$_POST['Profile'];
+				$empresa->attributes=$_POST['Empresa'];
+			}
 			
-			if($model->validate()&&$profile->validate()&&$contacto->validate()) {
-				$old_password = User::model()->notsafe()->findByPk($model->id);
-				if ($old_password->password!=$model->password) {
-					$model->password=Yii::app()->controller->module->encrypting($model->password);
-					$model->activkey=Yii::app()->controller->module->encrypting(microtime().$model->password);
+			if($this->_model->validate()) {
+				$old_password = User::model()->notsafe()->findByPk($this->_model->id);
+				if ($old_password->password!=$this->_model->password) {
+					$this->_model->password=Yii::app()->controller->module->encrypting($this->_model->password);
+					$this->_model->activkey=Yii::app()->controller->module->encrypting(microtime().$this->_model->password);
 				}
-				$model->save();
+				$this->_model->save();
 				$profile->save();
-				$contacto->save();
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('view','id'=>$this->_model->id));
 			} else {
 				$profile->validate();	
-				$contacto->validate();
 			}
 		}
-
+		
+		//$this->debug($this->_model);
+		
+		$this->renderParaUsuario();
+	}
+	
+	private function renderParaUsuario(){
+		
+		$esEmpresa = Yii::app()->authManager->checkAccess('empresa', $this->_model->id);
+		
+		if($esEmpresa)
+			$this->renderParaEmpresa();
+		else
+			$this->renderParaComprador();
+	}
+	
+	private function renderParaEmpresa(){
+		
+		$cat_model = Category::getCategorias();
+		$categorias = CHtml::listData($cat_model,'id', 'name');
+		
+		$cuentas = Cuenta::getCuentas();
+		$cuentas_list = CHtml::listData($cuentas,'id', 'nombre');
+		
+		//Para cargar/gestionar el logo
+	 	Yii::import("xupload.models.XUploadForm");
+        $logo = new XUploadForm;
+        
 		$this->render('update',array(
-			'model'=>$model,
-			'profile'=>$profile,
-			'contacto'=>$contacto,
-		));
+	    	'model'=>$this->_model,
+			'profile'=>$this->_model->profile,
+			'empresa'=>$this->_model->empresa,
+			'categorias'=>$categorias,
+			'esEmpresa'=>true,
+			'cuentas'=>$cuentas_list,
+	    	'contacto'=>$this->_model->empresa->contacto,
+			'logo'=>$logo,
+	    ));
+	}
+	
+	private function renderParaComprador(){
+		$this->render('update',array(
+	    	'model'=>$this->_model,
+	    ));
 	}
 
 
@@ -168,13 +218,18 @@ class AdminController extends Controller
 		{
 			// we only allow deletion via POST request
 			$model = $this->loadModel();
-			$profile = $model->profile;
-			$contacto=$model->profile->contacto;
-			//$profile = Profile::model()->findByPk($model->id);
-			//$profile->delete();
-			$profile->delete();
-			$contacto->delete();
-			$model->delete();
+			
+			if (Yii::app()->authManager->checkAccess('comprador', Yii::app()->user->id)){
+
+			}elseif(Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id)){
+				$profile = $model->profile;	
+				$contacto=$model->profile->contacto;
+				$profile->delete();
+				$contacto->delete();
+			}else
+				Yii::app()->user->getFlash("It's not allowed to delete admin users");
+			
+				$model->delete();
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_POST['ajax']))
 				$this->redirect(array('/user/admin'));

@@ -97,7 +97,12 @@ class User extends CActiveRecord
             $relations['contacto'] = array(self::HAS_ONE, 'Contacto', 'id');*/
         //if (!isset($relations['profile']))
         //$relations['profile'] = array(self::HAS_ONE, 'Profile', 'user_id');
-        if (Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id))
+        if(isset($_GET['id']))
+			$id=$_GET['id'];
+		else
+			$id=Yii::app()->user->id;
+				
+        if (Yii::app()->authManager->checkAccess('empresa', $id))
             $relations['empresa'] = array(self::HAS_ONE, 'Empresa', 'user_id');
             $relations['profile'] = array(self::HAS_ONE, 'Profile', 'user_id');
         return $relations;

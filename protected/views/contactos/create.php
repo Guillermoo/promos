@@ -2,7 +2,7 @@
 /* @var $this ContactosController */
 /* @var $model Contactos */
 
-$this->breadcrumbs=array(
+/*$this->breadcrumbs=array(
 	'Contactoses'=>array('index'),
 	'Create',
 );
@@ -10,7 +10,7 @@ $this->breadcrumbs=array(
 $this->menu=array(
 	array('label'=>'List Contactos', 'url'=>array('index')),
 	array('label'=>'Manage Contactos', 'url'=>array('admin')),
-);
+);*/
 ?>
 
 <h1>Create Contactos</h1>

@@ -55,7 +55,7 @@ class Profile extends CActiveRecord
 			//array('fecha_activacion, fecha_fin,fecha_pago', 'type', 'type' => 'date', 'message' => '{attribute}: is not a date!', 'dateFormat' => 'yyyy-MM-dd'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('user_id, username, lastname, contacto_id, paypal_id, tipocuenta, fecha_activacion, fecha_fin, fecha_pago', 'safe', 'on'=>'search'),
+			array('user_id, username, lastname, paypal_id, tipocuenta, fecha_activacion, fecha_fin, fecha_pago', 'safe', 'on'=>'search'),
 		);
 	}
 	
@@ -67,10 +67,10 @@ class Profile extends CActiveRecord
 	  		return false;
 	  }
 	  
-	  /*Esta función tiene que comprobar que las fechas sean correctas. Fecha pago < Fecha activacion < Fecha Fin*/
-	  private function checkeaFechas(){
-	  	return true;
-	  }
+	/*Esta función tiene que comprobar que las fechas sean correctas. Fecha pago < Fecha activacion < Fecha Fin*/
+	private function checkeaFechas(){
+		return true;
+	}
 
 	/**
 	 * @return array relational rules.
@@ -81,7 +81,7 @@ class Profile extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'user' => array(self::BELONGS_TO, 'User', 'id'),
-            'contacto' => array(self::HAS_ONE, 'Contacto', 'id'),
+            //'contacto' => array(self::HAS_ONE, 'Contacto', 'id'),
 		);
 	}
 	
@@ -136,7 +136,7 @@ class Profile extends CActiveRecord
 			'user_id' => 'User',
 			'username' => 'Nombre',
 			'lastname' => 'Apellido',
-			'contacto_id' => 'Contacto',
+			//'contacto_id' => 'Contacto',
 			'paypal_id' => 'Cuenta de Paypal',
 			'tipocuenta' => 'Tipo de cuenta',
 			'fecha_activacion' => 'Fecha Activación',
@@ -159,7 +159,7 @@ class Profile extends CActiveRecord
 		$criteria->compare('user_id',$this->user_id);
 		$criteria->compare('username',$this->username,true);
 		$criteria->compare('lastname',$this->lastname,true);
-		$criteria->compare('contacto_id',$this->contacto_id);
+		//$criteria->compare('contacto_id',$this->contacto_id);
 		$criteria->compare('paypal_id',$this->paypal_id,true);
 		$criteria->compare('tipocuenta',$this->tipocuenta,true);
 		$criteria->compare('fecha_creacion',$this->fecha_creacion,true);
