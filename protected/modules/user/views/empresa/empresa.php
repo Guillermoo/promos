@@ -19,21 +19,28 @@
 	'htmlOptions' => array('enctype'=>'multipart/form-data')
 ));
 ?>
-
+<fieldset>
 	<p class="note"><?php echo UserModule::t('Fields with <span class="required">*</span> are required.'); ?></p>
+
+	<?php echo $form->dropDownListRow($empresa->cuenta, 'id', $cuentas); ?>
 	
 	<?php if (Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id) ):?>
-		<?php //echo $form->errorSummary(array($model,$empresa,$contacto)); ?>
+		<?php echo $form->errorSummary(array($model)); ?>
 	<?php endif;?>
 	<?php $this->widget('bootstrap.widgets.TbLabel', array(
 	    'type'=>'info', // 'success', 'warning', 'important', 'info' or 'inverse'
 	    'label'=>'Empresa',
 	)); ?>
+	<?php //$this->debug($empresa);?>
 	<div class="row">
 		<?php //echo $form->labelEx($empresa,'categoria_id'); ?>
-		<?php //echo $form->dropDownList($empresa,'categoria_id',$categorias, array('empty' => '(Select a category)'));?>
-		<?php echo $form->dropDownListRow($empresa, 'categoria_id', $categorias); ?>
-		<?php echo $form->error($empresa,'categoria_id'); ?>
+		<?php echo $form->dropDownListRow($empresa, 'contacto_id', $categorias, array('multiple'=>true)); ?>
+		<?php echo $form->checkBoxListRow($empresa, 'contacto_id', array(
+	        'Option one is this and that—be sure to include why it\'s great',
+	        'Option two can also be checked and included in form results',
+	        'Option three can—yes, you guessed it—also be checked and included in form results',
+	    ), array('hint'=>'<strong>Note:</strong> Labels surround all the options for much larger click areas.')); ?>
+		<?php echo $form->error($empresa,'contacto_id'); ?>
 	</div>
 
 	<div class="row">
@@ -126,5 +133,5 @@
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
-	
-	<?php $this->endWidget(); ?>	
+</fieldset>
+<?php $this->endWidget(); ?>	
