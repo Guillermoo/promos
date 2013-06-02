@@ -60,7 +60,7 @@
 						<?php echo $form->textField($profile,'username',array('size'=>60,'maxlength'=>128)); ?>
 						<?php echo $form->error($profile,'username'); ?>
 					</div>
-					
+
 					<div class="row">
 						<?php echo $form->labelEx($profile,'lastname'); ?>
 						<?php echo $form->textField($profile,'lastname',array('size'=>60,'maxlength'=>128)); ?>

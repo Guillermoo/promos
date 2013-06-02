@@ -87,6 +87,12 @@ class EmpresaController extends Controller
 			$empresa=$model->empresa;
 			$contacto=$model->empresa->contacto;
 			
+			$cuentas = Cuenta::getCuentas();
+			$cuentas_list = CHtml::listData($cuentas,'id', 'nombre');
+			
+			//Para cargar/gestionar el logo
+		 	Yii::import("xupload.models.XUploadForm");
+	        $logo = new XUploadForm;
 			// ajax validator
 			if(isset($_POST['ajax']) && $_POST['ajax']==='empresa-form')
 			{
@@ -96,7 +102,6 @@ class EmpresaController extends Controller
 			
 			if(isset($_POST['Empresa']))
 			{
-				//$model->attributes=$_POST['User'];
 				$empresa->attributes=$_POST['Empresa'];
 				$contacto->attributes=$_POST['Contacto'];
 				
@@ -115,6 +120,8 @@ class EmpresaController extends Controller
 				'model'=>$model,
 				'empresa'=>$empresa,
 				'contacto'=>$contacto,
+				'cuentas'=>$cuentas,
+				'logo'=>$logo,
 			));
 		}
 

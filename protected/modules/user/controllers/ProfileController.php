@@ -183,11 +183,10 @@ class ProfileController extends Controller
 		{
 			$_model = $this->loadUser();
 			$profile=$_model->profile;
-			$contacto=$_model->profile->contacto;
 			// ajax validator
 			if(isset($_POST['ajax']) && $_POST['ajax']==='profile-form')
 			{
-				echo UActiveForm::validate(array($_model,$_model->profile,$contacto));
+				echo UActiveForm::validate(array($profile));
 				Yii::app()->end();
 			}
 			
@@ -195,11 +194,8 @@ class ProfileController extends Controller
 			{
 				//$model->attributes=$_POST['User'];
 				$profile ->attributes=$_POST['Profile'];
-				$contacto->attributes=$_POST['Contacto'];
 				if($profile ->validate()) {
-					//$model->save();
 					$profile ->save();
-					$contacto->save();
 	                Yii::app()->user->updateSession();
 					Yii::app()->user->setFlash('profileMessage',UserModule::t("Changes is saved."));
 					$this->redirect(array('/user/profile'));
@@ -209,7 +205,6 @@ class ProfileController extends Controller
 			$this->render('profile',array(
 				'model'=>$_model,
 				'profile'=>$profile ,
-				'contacto'=>$contacto,
 			));
 		}
 

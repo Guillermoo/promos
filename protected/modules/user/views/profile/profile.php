@@ -23,11 +23,10 @@
 
 	<p class="note"><?php echo UserModule::t('Fields with <span class="required">*</span> are required.'); ?></p>
 	
-	<?php if (!Yii::app()->authManager->checkAccess('admin', Yii::app()->user->id) ):?>
-		<?php echo $form->errorSummary(array($model,$profile,$contacto)); ?>
-	<?php endif;?>
-	
 	<?php if (Yii::app()->authManager->checkAccess('admin', Yii::app()->user->id) ):?>
+
+		<?php echo $form->errorSummary(array($model,$profile)); ?>
+
 		<div class="row">
 			<?php echo $form->labelEx($model,'username'); ?>
 			<?php echo $form->textField($model,'username',array('size'=>20,'maxlength'=>20)); ?>

@@ -51,14 +51,14 @@ class Empresa extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('user_id', 'required'),
-			array('user_id, categoria_id,cuenta_id, logo_id', 'numerical', 'integerOnly'=>true),
+			array('user_id, cuenta_id, logo_id', 'numerical', 'integerOnly'=>true),
 			array('cif', 'length', 'max'=>9),
 			array('cif', 'match', 'pattern' => '(X(-|\.)?0?\d{7}(-|\.)?[A-Z]|[A-Z](-|\.)?\d{7}(-|\.)?[0-9A-Z]|\d{8}(-|\.)?[A-Z])'),
 			array('web, twitter, facebook, urlTienda', 'length', 'max'=>100),
 			array('modificado', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('empresa_id, user_id, categoria_id,cuenta_id, logo_id, cif, web, twitter, facebook, urlTienda, modificado', 'safe', 'on'=>'search'),
+			array('empresa_id, user_id,cuenta_id, logo_id, cif, web, twitter, facebook, urlTienda, modificado', 'safe', 'on'=>'search'),
 		);
 	}
 
