@@ -15,7 +15,6 @@ class ItemController extends Controller
     }
     
 	public function actionUpload( ) {
-
 		Yii::import( "xupload.models.XUploadForm" );
 	    //Here we define the paths where the files will be stored temporarily
 	    $path = realpath( Yii::app( )->getBasePath( )."/../uploads/images/tmp/" )."/";
@@ -45,6 +44,7 @@ class ItemController extends Controller
 	        $file = new XUploadForm;
 	        $file->file = CUploadedFile::getInstance( $file, 'file' );
 	        //We check that the file was successfully uploaded
+                CVarDumper::dumpAsString( $file->file );
 	        if( $file->file !== null ) {
 	            //Grab some data
 	            $file->mime_type = $file->file->getType( );
@@ -100,6 +100,7 @@ class ItemController extends Controller
 	                echo json_encode( array( 
 	                    array( "error" => $file->getErrors( 'file' ),
 	                ) ) );
+	                $this->debug($file->getErrors( ));
 	                Yii::log( "XUploadAction: ".CVarDumper::dumpAsString( $file->getErrors( ) ),
 	                    CLogger::LEVEL_ERROR, "xupload.actions.XUploadAction" 
 	                );
@@ -110,12 +111,12 @@ class ItemController extends Controller
 	    }
 	}
 	
-	public function addImages( ) {
+	private function addImages( ) {
 		    //If we have pending images
 		    if( Yii::app( )->user->hasState( 'images' ) ) {
 		        $userImages = Yii::app( )->user->getState( 'images' );
 		        //Resolve the final path for our images
-		        $path = Yii::app( )->getBasePath( )."/../uploads/images/{$this->id}/";
+		        $path = Yii::app( )->getBasePath( )."/../uploads/images/";
 		        //Create the folder and give permissions if it doesnt exists
 		        if( !is_dir( $path ) ) {
 		            mkdir( $path );
@@ -136,11 +137,16 @@ class ItemController extends Controller
 		                    //$img->path = "/uploads/images/{$this->id}/".$image["filename"];
 		                    $img->foreign_id = Yii::app()->user->id;
 		                    $img->model = 'empresa';
+		                    //$objDateTime = new DateTime('NOW');
+		                    //$img->created = $objDateTime;
+		                    //$img->modified = $objDateTime;
 		                    
 		                    if( !$img->save( ) ) {
 		                        //Its always good to log something
 		                        Yii::log( "Could not save Image:\n".CVarDumper::dumpAsString( 
-		                            $img->getErrors( ) ), CLogger::LEVEL_ERROR );
+		                            $img->getErrors( ) ), CLogger::LEVEL_ERROR,"" );
+	                            Yii::trace(CVarDumper::dumpAsString($img->getErrors( )),'vardump');
+		                            
 		                        //this exception will rollback the transaction
 		                        throw new Exception( 'Could not save Image');
 		                    }

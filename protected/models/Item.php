@@ -47,15 +47,15 @@ class Item extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name,tipo,filename,size, thumb, path, foreign_id, model, created, modified', 'required'),
+			array('name,tipo,filename,size, thumb, path, foreign_id, model', 'required'),
 			array('thumb', 'numerical', 'integerOnly'=>true),
-			array('tipo', 'length', 'max'=>10),
+			array('tipo', 'length', 'max'=>12),
 			array('name, filename, path', 'length', 'max'=>255),
 			array('foreign_id', 'length', 'max'=>11),
 			array('model', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, tipo, name, thumb, filename, path, foreign_id, model, created, modified', 'safe', 'on'=>'search'),
+			array('id, tipo,size , name, thumb, filename, path, foreign_id, model, created, modified', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,7 +67,7 @@ class Item extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'empresases' => array(self::HAS_MANY, 'Empresas', 'logo_id'),
+			//'empresas' => array(self::HAS_MANY, 'Empresas', 'logo_id'),
 		);
 	}
 
@@ -82,6 +82,7 @@ class Item extends CActiveRecord
 			'tipo' => 'Tipo',
 			'thumb' => 'Thumb',
 			'filename' => 'Filename',
+			'size'=>'Size',
 			'path' => 'Path',
 			'foreign_id' => 'Foreign',
 			'model' => 'Model',
@@ -103,6 +104,7 @@ class Item extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
+		$criteria->compare('Size',$this->size,true);
 		$criteria->compare('tipo',$this->tipo,true);
 		$criteria->compare('thumb',$this->thumb,true);
 		$criteria->compare('filename',$this->filename);
@@ -135,7 +137,7 @@ class Item extends CActiveRecord
             $model->thumb = 1;
             $model->filename = $filename;
             $model->model = 'empresa';
-			//$model->size = $item->file->getSize( );
+			$model->size = $item->file->getSize( );
 			$model->foreign_id = Yii::app()->user->id;
 			$model->tipo = $item->mime_type;
             $model->name = $item->name;

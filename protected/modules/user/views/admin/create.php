@@ -13,5 +13,6 @@ $this->breadcrumbs=array(
 <h1><?php echo UserModule::t("Create User"); ?></h1>
 
 <?php
-	echo $this->renderPartial('_form', array('model'=>$model));
+	//echo $this->renderPartial('_form', array('model'=>$model));
+	echo $this->renderPartial('_form', array('model'=>$model,'action'=>'admin/create','profile'=>$profile,'empresa'=>$empresa,'categorias'=>$categorias,'esEmpresa'=>$esEmpresa,'cuentas'=>$cuentas,'contacto'=>$contacto,'logo'=>$logo));
 ?>

@@ -137,7 +137,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=promos',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => '523360',
+			'password' => '',
 			'charset' => 'utf8',
 			'tablePrefix' => 'tbl_',
         	'enableProfiling' => true,
@@ -163,7 +163,8 @@ return array(
 				// uncomment the following to show log messages on web pages
 				array(
                     'class' => 'CFileLogRoute',
-                    'levels' => 'error, warning, info',
+					'logFile'=>'trace.log',
+                    'levels' => 'error, trace,warning, info',
                     'categories'=>'system.*',
                 ),
 				array(

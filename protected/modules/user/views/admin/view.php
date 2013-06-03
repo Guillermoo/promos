@@ -5,15 +5,6 @@ $this->breadcrumbs=array(
 	$model->username,
 );
 
-
-$this->menu=array(
-    array('label'=>UserModule::t('Create User'), 'url'=>array('create')),
-    array('label'=>UserModule::t('Update User'), 'url'=>array('update','id'=>$model->id)),
-    array('label'=>UserModule::t('Delete User'), 'url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>UserModule::t('Are you sure to delete this item?'))),
-    array('label'=>UserModule::t('Manage Users'), 'url'=>array('admin')),
-    array('label'=>UserModule::t('Manage Profile Field'), 'url'=>array('profileField/admin')),
-    array('label'=>UserModule::t('List User'), 'url'=>array('/user')),
-);
 ?>
 <h1><?php echo UserModule::t('View User').' "'.$model->username.'"'; ?></h1>
 
@@ -37,21 +28,24 @@ $this->menu=array(
 		),
 	);
 	
-	/*campos de profile y contacto*/
-	array_push($attributes,
-		'profile.username',
-		'profile.lastname',
-		'profile.paypal_id',
-		'profile.tipocuenta',
-		'profile.fecha_creacion',
-		'profile.fecha_fin',
-		'profile.fecha_pago',
-		'profile.contacto.telefono',
-		'profile.contacto.fax',
-		'profile.contacto.cp',
-		'profile.contacto.barrio',
-		'profile.contacto.direccion'
+	if (Yii::app()->authManager->checkAccess('empresa', $model->id)){
+		/*campos de profile y contacto*/
+		array_push($attributes,
+			'profile.username',
+			'profile.lastname',
+			'profile.paypal_id',
+			'profile.tipocuenta',
+			'profile.fecha_activacion',
+			'profile.fecha_fin',
+			'profile.fecha_pago',
+			'empresa.contacto.telefono',
+			'empresa.contacto.fax',
+			'empresa.contacto.cp',
+			'empresa.contacto.barrio',
+			'empresa.contacto.direccion',
+			'empresa.contacto.poblacion'
 		);
+	}
 	
 	/*array(
 			'name' => 'user',

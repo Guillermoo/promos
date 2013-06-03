@@ -31,7 +31,7 @@ class EmpresaController extends Controller
 	 */
 	public function actionEmpresa()
 	{
-		$model = $this->loadUser();
+		$_model = $this->loadUser();
 		
 		//Obtenemos todas las categorías con nivel 2(suponiendo que no hay subcategorías
 		$cat_model = Category::getCategorias();
@@ -45,9 +45,9 @@ class EmpresaController extends Controller
         $logo = new XUploadForm;
 		
 		$this->render('empresa',array(
-	    	'model'=>$model,
-			'empresa'=>$model->empresa,
-	    	'contacto'=>$model->empresa->contacto,
+	    	'model'=>$_model,
+			'empresa'=>$_model->empresa,
+	    	'contacto'=>$_model->empresa->contacto,
 			'categorias'=>$categorias,
 			'cuentas'=>$cuentas_list,
 			'logo'=>$logo,
@@ -87,6 +87,12 @@ class EmpresaController extends Controller
 			$empresa=$model->empresa;
 			$contacto=$model->empresa->contacto;
 			
+			$cuentas = Cuenta::getCuentas();
+			$cuentas_list = CHtml::listData($cuentas,'id', 'nombre');
+			
+			//Para cargar/gestionar el logo
+		 	Yii::import("xupload.models.XUploadForm");
+	        $logo = new XUploadForm;
 			// ajax validator
 			if(isset($_POST['ajax']) && $_POST['ajax']==='empresa-form')
 			{
@@ -96,7 +102,6 @@ class EmpresaController extends Controller
 			
 			if(isset($_POST['Empresa']))
 			{
-				//$model->attributes=$_POST['User'];
 				$empresa->attributes=$_POST['Empresa'];
 				$contacto->attributes=$_POST['Contacto'];
 				
@@ -107,7 +112,7 @@ class EmpresaController extends Controller
 					$contacto->save();
 	                Yii::app()->user->updateSession();
 					Yii::app()->user->setFlash('empresaMessage',UserModule::t("Changes is saved."));
-					$this->redirect(array('/user/empresa'));
+					$this->redirect(array('/user/profile'));
 				} else $empresa->validate();
 			}
 	
@@ -115,6 +120,8 @@ class EmpresaController extends Controller
 				'model'=>$model,
 				'empresa'=>$empresa,
 				'contacto'=>$contacto,
+				'cuentas'=>$cuentas,
+				'logo'=>$logo,
 			));
 		}
 

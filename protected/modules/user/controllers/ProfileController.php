@@ -31,25 +31,90 @@ class ProfileController extends Controller
 	 */
 	public function actionProfile()
 	{
-		$_model = $this->loadUser();
+		$this->_model = $this->loadUser();
 		if (UserModule::isAdmin())
-			$this->renderParaAdmin($_model);
+			$this->renderParaAdmin();
 		else
-		 	$this->renderParaUsuario($_model);
+		 	$this->renderParaUsuario();
 	}
 	
-	private function renderParaAdmin($_model){
+	public function getTabularFormTabs($model,$categorias,$cuentas,$logo)
+	{
+	    $tabs = array();
+	    $count = 0;
+	    //foreach (array('pro'=>'Profile', 'com'=>'Company', 'prom'=>'Promotions') as $locale => $language)
+	    //{
+	    if(Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id)){
+	        $tabs[0] = array(
+	            'active'=>0,
+	            'label'=>'Profile',
+	            'content'=>$this->renderPartial('_form', array('model'=>$model, 'profile'=>$model->profile), true),
+	        );
+	        $tabs[1] = array(
+	            'active'=>1,
+	            'label'=>'Company',
+	            'content'=>$this->renderPartial('/empresa/_form', array('model'=>$model, 'profile'=>$model->profile, 'empresa'=>$model->empresa, 'contacto'=>$model->empresa->contacto, 'categorias'=>$categorias, 'cuentas'=>$cuentas, 'logo'=>$logo), true),
+	        );
+	    }
+        /*$tabs[2] = array(
+            'active'=>2,
+            'label'=>'Promotions',
+            'content'=>$this->renderPartial('_form', array('model'=>$model, 'profile'=>$model->profile), true),
+        );*/
+	    //}
+	    return $tabs;
+	}
+	
+	private function renderParaAdmin(){
 		$this->render('profile',array(
-	    	'model'=>$_model,
-			'profile'=>$_model->profile,
+	    	'model'=>$this->_model,
+			//'profile'=>$this->_model->profile,
 	    ));
 	}
 	
-	private function renderParaUsuario($_model){
+	private function renderParaUsuario(){
+		
+		$esEmpresa = Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id);
+		
+		if($esEmpresa)
+			$this->renderParaEmpresa();
+		else
+			$this->renderParaComprador();
+	}
+	
+	private function renderParaEmpresa(){
+		
+		$cuentas = Cuenta::getCuentas();
+		$cuentas_list = CHtml::listData($cuentas,'id', 'nombre');
+		
+		//Obtenemos todas las categorías con nivel 2(suponiendo que no hay subcategorías
+		$cat_model = Category::getCategorias();
+		$categorias = CHtml::listData($cat_model,'id', 'name');
+		
+		//Para cargar/gestionar el logo
+	 	Yii::import("xupload.models.XUploadForm");
+        $logo = new XUploadForm;
+        
 		$this->render('profile',array(
-	    	'model'=>$_model,
-			'profile'=>$_model->profile,
-	    	'contacto'=>$_model->profile->contacto,
+	    	'model'=>$this->_model,
+			'profile'=>$this->_model->profile,
+			'empresa'=>$this->_model->empresa,
+			'categorias'=>$categorias,
+			'cuentas'=>$cuentas,
+	    	'contacto'=>$this->_model->empresa->contacto,
+			'logo'=>$logo,
+	    ));
+	}
+	
+	private function renderParaComprador(){
+		$this->render('profile',array(
+	    	'model'=>$this->_model,
+			'profile'=>null,
+			'empresa'=>null,
+			'categorias'=>null,
+			'cuentas'=>null,
+	    	'contacto'=>null,
+			'logo'=>null,
 	    ));
 	}
 
@@ -156,11 +221,11 @@ class ProfileController extends Controller
 		{
 			$_model = $this->loadUser();
 			$profile=$_model->profile;
-			$contacto=$_model->profile->contacto;
+			
 			// ajax validator
 			if(isset($_POST['ajax']) && $_POST['ajax']==='profile-form')
 			{
-				echo UActiveForm::validate(array($_model,$_model->profile,$contacto));
+				echo UActiveForm::validate(array($profile));
 				Yii::app()->end();
 			}
 			
@@ -168,11 +233,8 @@ class ProfileController extends Controller
 			{
 				//$model->attributes=$_POST['User'];
 				$profile ->attributes=$_POST['Profile'];
-				$contacto->attributes=$_POST['Contacto'];
 				if($profile ->validate()) {
-					//$model->save();
 					$profile ->save();
-					$contacto->save();
 	                Yii::app()->user->updateSession();
 					Yii::app()->user->setFlash('profileMessage',UserModule::t("Changes is saved."));
 					$this->redirect(array('/user/profile'));
@@ -182,7 +244,6 @@ class ProfileController extends Controller
 			$this->render('profile',array(
 				'model'=>$_model,
 				'profile'=>$profile ,
-				'contacto'=>$contacto,
 			));
 		}
 
