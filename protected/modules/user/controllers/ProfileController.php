@@ -41,7 +41,7 @@ class ProfileController extends Controller
 	private function renderParaAdmin(){
 		$this->render('profile',array(
 	    	'model'=>$this->_model,
-			'profile'=>$this->_model->profile,
+			//'profile'=>$this->_model->profile,
 	    ));
 	}
 	

@@ -25,7 +25,7 @@
 	
 	<?php if (Yii::app()->authManager->checkAccess('admin', Yii::app()->user->id) ):?>
 
-		<?php echo $form->errorSummary(array($model,$profile)); ?>
+	<?php echo $form->errorSummary(array($model)); ?>
 
 		<div class="row">
 			<?php echo $form->labelEx($model,'username'); ?>
@@ -52,7 +52,9 @@
 		</div>
 	<?php endif; ?>
 	
-	<?php if (!UserModule::isAdmin()):?>
+	<?php //if (!UserModule::isAdmin()):?>
+	<?php if (Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id) ):?>
+	
 		<div class="fields">
 		
 			<?php $this->widget('bootstrap.widgets.TbLabel', array(
@@ -147,6 +149,7 @@
 			</div>
 		</div> 
 	<?php endif;?>
+	
 	<div class="row buttons">
 			<?php echo CHtml::submitButton($model->isNewRecord ? UserModule::t('Create') : UserModule::t('Save')); ?>
 		</div>

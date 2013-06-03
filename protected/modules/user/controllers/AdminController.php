@@ -74,7 +74,7 @@ class AdminController extends Controller
 	public function actionView()
 	{
 		$model = $this->loadModel();
-		$this->debug($model);
+		//$this->debug($model);
 		$this->render('view',array(
 			'model'=>$model,
 		));
@@ -89,6 +89,7 @@ class AdminController extends Controller
 		$model=new User;
 		
 		$this->performAjaxValidation(array($model));
+		
 		if(isset($_POST['User']))
 		{
 			/*Desde el menú de admin el admin sólo podrá crear usuarios
@@ -102,10 +103,12 @@ class AdminController extends Controller
 				if($model->save()) {
 					//Asignamos el rol dinámicamente
 					$model->setRole();
-					//(G)Creamos contacto, profile, empresa(si es usuario empresa)
-					$model->crearModelosRelacionados($model->superuser);
+					$esEmpresa = Yii::app()->authManager->checkAccess('empresa', $model->id);
+					
+					if($esEmpresa)//(G)Creamos contacto, profile, empresa(si es usuario empresa)
+						$model->crearModelosRelacionados();
 				}
-				//$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('view','id'=>$model->id));
 			} else {
 			//	$model->profile->validate();
 			//	$contacto->validate();
@@ -114,6 +117,13 @@ class AdminController extends Controller
 
 		$this->render('create',array(
 			'model'=>$model,
+			'profile'=>null,
+			'empresa'=>null,
+			'categorias'=>null,
+			'esEmpresa'=>false,
+			'cuentas'=>null,
+	    	'contacto'=>null,
+			'logo'=>null,
 		));
 	}
 
@@ -124,28 +134,24 @@ class AdminController extends Controller
 	public function actionUpdate()
 	{
 		$this->_model=$this->loadModel();
-		$profile=$this->_model->profile;
-		
-		//Obtenemos todas las categorías con nivel 2(suponiendo que no hay subcategorías
-		/*$cat_model = Category::getCategorias();
-		$categorias = CHtml::listData($cat_model,'id', 'name');
-		
-		$cuentas = Cuenta::getCuentas();
-		$cuentas_list = CHtml::listData($cuentas,'id', 'nombre');
-		
-		//Para cargar/gestionar el logo
-	 	Yii::import("xupload.models.XUploadForm");
-        $logo = new XUploadForm;*/
         
 		$esEmpresa = Yii::app()->authManager->checkAccess('empresa', $this->_model->id);
 
-		if(isset($_POST['User']))
-		{
-			$this->performAjaxValidation(array($this->_model,$profile));
+		if(isset($_POST['User'])){
+
 			$this->_model->attributes=$_POST['User'];
+			
 			if ($esEmpresa){
+				$profile=$this->_model->profile;
+				$empresa=$this->_model->empresa;
+				$contacto=$this->_model->empresa->contacto;
+				$this->performAjaxValidation(array($this->_model,$profile,$empresa,$contacto));
+				
 				$profile->attributes=$_POST['Profile'];
 				$empresa->attributes=$_POST['Empresa'];
+				$contacto->attributes=$_POST['Contacto'];
+			}else{
+				$this->performAjaxValidation(array($this->_model));
 			}
 			
 			if($this->_model->validate()) {
@@ -155,7 +161,11 @@ class AdminController extends Controller
 					$this->_model->activkey=Yii::app()->controller->module->encrypting(microtime().$this->_model->password);
 				}
 				$this->_model->save();
-				$profile->save();
+				if ($esEmpresa){
+					$profile->save();
+					$empresa->save();
+					$contacto->save();
+				}
 				$this->redirect(array('view','id'=>$this->_model->id));
 			} else {
 				$profile->validate();	
@@ -163,7 +173,6 @@ class AdminController extends Controller
 		}
 		
 		//$this->debug($this->_model);
-		
 		$this->renderParaUsuario();
 	}
 	
@@ -204,6 +213,13 @@ class AdminController extends Controller
 	private function renderParaComprador(){
 		$this->render('update',array(
 	    	'model'=>$this->_model,
+			'profile'=>null,
+			'empresa'=>null,
+			'categorias'=>null,
+			'esEmpresa'=>false,
+			'cuentas'=>null,
+	    	'contacto'=>null,
+			'logo'=>null,
 	    ));
 	}
 

@@ -4,13 +4,13 @@
 </div>
 <?php endif; ?>
 
-<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+<?php /*$form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'empresa-form',
 	'enableAjaxValidation'=>true,
 	//'type'=>'horizontal',
 	'action'=>'empresa/edit',
 	'htmlOptions' => array('enctype'=>'multipart/form-data')
-));
+));*/
 ?>
 
 <fieldset>
@@ -83,9 +83,6 @@
     	<?php $this->renderPartial('/layouts/_contacto',array('form'=>$form,'contacto'=>$contacto) );?>
 	</div>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Save'); ?>
-	</div>
 </fieldset>
 
-<?php $this->endWidget(); ?>	
+<?php //$this->endWidget(); ?>	

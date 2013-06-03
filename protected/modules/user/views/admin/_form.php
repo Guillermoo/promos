@@ -1,9 +1,15 @@
 <div class="form">
 
+<?php if(Yii::app()->user->hasFlash('profileMessage')): ?>
+<div class="success">
+	<?php echo Yii::app()->user->getFlash('profileMessage'); ?>
+</div>
+<?php endif; ?>
+
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
-	'id'=>'empresa-form',
+	'id'=>'user-form',
 	'enableAjaxValidation'=>true,
-	'action'=>'admin/update',
+	//'action'=>'admin/update',
 	'htmlOptions' => array('enctype'=>'multipart/form-data')
 ));
 ?>
@@ -15,9 +21,10 @@
 		<tr>
 			<td>	
 				<?php $this->widget('bootstrap.widgets.TbLabel', array(
-			    'type'=>'info', // 'success', 'warning', 'important', 'info' or 'inverse'
-				    'label'=>'User',
-				)); ?>
+				    'type'=>'info', // 'success', 'warning', 'important', 'info' or 'inverse'
+					    'label'=>'User',
+					)); 
+				?>
 				<div class="row">
 					<?php echo $form->labelEx($model,'username'); ?>
 					<?php echo $form->textField($model,'username',array('size'=>20,'maxlength'=>20)); ?>
@@ -47,7 +54,14 @@
 					<?php echo $form->dropDownList($model,'status',User::itemAlias('UserStatus')); ?>
 					<?php echo $form->error($model,'status'); ?>
 				</div>
-			
+				<div class="row">
+					<div class="row"><!-- HAy que mostrar las categorías a las que pertenece pero no dejar editar -->
+						<?php /*echo $form->labelEx($empresa,'categoria_id'); ?>
+						<?php echo $form->dropDownListRow($empresa, 'contacto_id', $categorias, array('multiple'=>true)); ?>
+						<?php echo $form->checkBoxListRow($empresa, 'contacto_id', $categorias, array('hint'=>'<strong>Note:</strong> Choose only two categories.')); ?>
+						<?php echo $form->error($empresa,'contacto_id');*/ ?>
+					</div>
+				</div>
 			<!-- Si es un NOadmin logeado, queremos ver el perfil de un NOadmin --> 
 			<?php if ($esEmpresa):?> 
 					<?php $this->widget('bootstrap.widgets.TbLabel', array(
@@ -117,7 +131,7 @@
 		<tr>
 			<td>
 				<?php 
-					echo $this->renderPartial('/empresa/_form', array('empresa'=>$empresa,'categorias'=>$categorias,'cuentas'=>$cuentas,'contacto'=>$contacto,'logo'=>$logo));
+					echo $this->renderPartial('/empresa/_form', array('form'=>$form,'empresa'=>$empresa,'categorias'=>$categorias,'cuentas'=>$cuentas,'contacto'=>$contacto,'logo'=>$logo));
 				?>
 			</td>
 		</tr>

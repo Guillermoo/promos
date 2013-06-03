@@ -11,7 +11,7 @@
         array('label'=>'LIST HEADER'),
         array('label'=>'Datos Empresa', 'icon'=>'book', 'url'=>'empresa', 'active'=>true, 'visible'=>Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id)),
         array('label'=>'Promociones', 'icon'=>'home', 'url'=>'#', 'active'=>true),
-        array('label'=>'Suscripción', 'url'=>'#','active'=>true);
+        array('label'=>'Suscripción', 'url'=>'#','active'=>true),
         /*array('label'=>'Library', 'icon'=>'book', 'url'=>'#'),
         array('label'=>'Application', 'icon'=>'pencil', 'url'=>'#'),
         array('label'=>'ANOTHER LIST HEADER'),

@@ -260,17 +260,16 @@ class User extends CActiveRecord
 	/*Función que asigna el rol según el tipo de usuario, se ejecuta nada mas crear el usuario*/
 	public function crearModelosRelacionados(){
 
-		$this->crearNuevoProfileParaElUsuario();
-		
-		//Primero creamos el contacto para obtener su id y guardarlo en empresa
-		if ($this->superuser == 2)//Es un usuario-empresa
+		if ($this->superuser == 2){//Es un usuario-empresa
+			$this->crearNuevoProfileParaElUsuario();
+			//Primero creamos el contacto para obtener su id y guardarlo en empresa
 			$this->crearNuevaEmpresaParaElUsuario();
+		}
 	}
 	
 	//Primero creamos el contacto para obtener su id y guardarlo en profil
 	public function crearNuevoProfileParaElUsuario(){
-		$id_contactoprofile = $this->creaContactoVacia();//Contacto para el perfil
-		$this->creaProfileVacio($id_contactoprofile);
+		$this->creaProfileVacio();
 	}
 	
 	public function crearNuevaEmpresaParaElUsuario(){
@@ -278,17 +277,16 @@ class User extends CActiveRecord
 		$this->creaEmpresaVacia($id_contactoempresa);
 	}
 	
-	private function creaProfileVacio($contacto_id){
+	private function creaProfileVacio(){
 		
 		$profile=new Profile;
 		/*(G)Creamos el perfil con el id del nuevo usuario. Al ser creado desde el admin sólo hay
 		que crear el usuario, no los datos del perfil o contacto, eso ya lo hará el usuario(o el admin desde update.*/
 		$profile->user_id=$this->id;
-		$profile->contacto_id = $contacto_id;
+		//$profile->contacto_id = $contacto_id;
 		//$this->debug($this->id);
 		$profile->save();
 		$this->debug($profile->getErrors());
-		
 	}
 	
 	private function creaEmpresaVacia($contacto_id){
@@ -296,8 +294,7 @@ class User extends CActiveRecord
 		$empresa= new Empresa;
 		$empresa->user_id = $this->id;
 		$empresa->contacto_id = $contacto_id;
-		//$empresa->creado = NOW();
-		//$empresa->modificado = NOW();
+		$empresa->cuenta_id = 1;//Habría que pasarle la variable con el valor que ha elegido el admin
 		$empresa->save();
 		
 	}
