@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 20, 2013 at 04:41 AM
+-- Generation Time: Jun 03, 2013 at 02:09 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -56,13 +56,42 @@ INSERT INTO `AuthAssignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES
 ('comprador', '37', NULL, 'N;'),
 ('comprador', '39', NULL, 'N;'),
 ('comprador', '4', NULL, 'N;'),
+('comprador', '42', NULL, 'N;'),
 ('comprador', '5', NULL, 'N;'),
+('comprador', '58', NULL, 'N;'),
+('comprador', '60', NULL, 'N;'),
+('comprador', '61', NULL, 'N;'),
+('comprador', '62', NULL, 'N;'),
+('comprador', '63', NULL, 'N;'),
+('comprador', '64', NULL, 'N;'),
+('comprador', '65', NULL, 'N;'),
+('comprador', '69', NULL, 'N;'),
 ('empresa', '27', NULL, 'N;'),
 ('empresa', '36', NULL, 'N;'),
 ('empresa', '38', NULL, 'N;'),
 ('empresa', '40', NULL, 'N;'),
 ('empresa', '41', NULL, 'N;'),
+('empresa', '43', NULL, 'N;'),
+('empresa', '44', NULL, 'N;'),
+('empresa', '45', NULL, 'N;'),
+('empresa', '46', NULL, 'N;'),
+('empresa', '47', NULL, 'N;'),
+('empresa', '48', NULL, 'N;'),
+('empresa', '49', NULL, 'N;'),
+('empresa', '50', NULL, 'N;'),
+('empresa', '51', NULL, 'N;'),
+('empresa', '52', NULL, 'N;'),
+('empresa', '53', NULL, 'N;'),
+('empresa', '54', NULL, 'N;'),
+('empresa', '55', NULL, 'N;'),
+('empresa', '56', NULL, 'N;'),
+('empresa', '57', NULL, 'N;'),
+('empresa', '59', NULL, 'N;'),
+('empresa', '66', NULL, 'N;'),
+('empresa', '67', NULL, 'N;'),
+('empresa', '68', NULL, 'N;'),
 ('empresa', '7', NULL, 'N;'),
+('empresa', '70', NULL, 'N;'),
 ('empresa', '9', NULL, 'N;'),
 ('superadmin', '1', NULL, 'N;');
 
@@ -160,38 +189,53 @@ CREATE TABLE IF NOT EXISTS `Rights` (
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_contactos` (
-  `user_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `telefono` varchar(50) DEFAULT NULL,
   `fax` varchar(50) DEFAULT NULL,
   `cp` varchar(11) DEFAULT NULL,
   `barrio` int(11) DEFAULT NULL,
   `direccion` varchar(120) DEFAULT NULL,
   `poblacion_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`user_id`),
+  PRIMARY KEY (`id`),
   KEY `poblacion` (`poblacion_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `tbl_contactos`
 --
 
-INSERT INTO `tbl_contactos` (`user_id`, `telefono`, `fax`, `cp`, `barrio`, `direccion`, `poblacion_id`) VALUES
+INSERT INTO `tbl_contactos` (`id`, `telefono`, `fax`, `cp`, `barrio`, `direccion`, `poblacion_id`) VALUES
+(1, '32421', '423', '42342', NULL, '', NULL),
 (2, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, '', '', '', NULL, NULL, NULL),
-(5, NULL, NULL, NULL, NULL, NULL, NULL),
-(7, '', '', '', NULL, NULL, NULL),
-(9, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, '434242', '312532', '4322', 1, '', NULL),
+(11, '34252', '4353311', '342352', 1, 'calleeee232', NULL),
 (12, NULL, NULL, NULL, NULL, NULL, NULL),
-(20, NULL, NULL, NULL, NULL, NULL, NULL),
-(24, NULL, NULL, NULL, NULL, NULL, NULL),
-(25, NULL, NULL, NULL, NULL, NULL, NULL),
-(27, NULL, NULL, NULL, NULL, NULL, NULL),
-(30, '1614684654', '1514684', '50002', 0, 'C/Jorge Coci nº3 1ºC', 8168),
-(36, '', '', '', NULL, '', NULL),
-(37, '', '', '43252', NULL, '', NULL),
-(38, '', '', '', NULL, NULL, NULL),
-(39, NULL, NULL, NULL, NULL, NULL, NULL),
-(41, '494654', '', '', NULL, NULL, NULL);
+(13, '1231', '23524', '', NULL, '', NULL),
+(15, NULL, NULL, NULL, NULL, NULL, NULL),
+(16, '', '', '34242', NULL, '', NULL),
+(17, '', '', '', NULL, '', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_cuentas`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_cuentas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(45) NOT NULL,
+  `precio` varchar(45) NOT NULL,
+  `duracion` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `tbl_cuentas`
+--
+
+INSERT INTO `tbl_cuentas` (`id`, `nombre`, `precio`, `duracion`) VALUES
+(1, 'lite', '5', '1'),
+(2, 'Basic', '8', '1');
 
 -- --------------------------------------------------------
 
@@ -202,30 +246,58 @@ INSERT INTO `tbl_contactos` (`user_id`, `telefono`, `fax`, `cp`, `barrio`, `dire
 CREATE TABLE IF NOT EXISTS `tbl_empresas` (
   `empresa_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `contacto_id` int(11) DEFAULT NULL,
-  `categoria_id` int(11) DEFAULT NULL,
+  `cuenta_id` int(11) NOT NULL,
+  `contacto_id` int(11) NOT NULL,
   `logo_id` int(11) DEFAULT NULL,
   `cif` varchar(15) DEFAULT NULL,
   `web` varchar(100) DEFAULT NULL,
   `twitter` varchar(100) DEFAULT NULL,
   `facebook` varchar(100) DEFAULT NULL,
   `urlTienda` varchar(100) DEFAULT NULL,
-  `creado` datetime DEFAULT NULL,
   `modificado` datetime DEFAULT NULL,
   PRIMARY KEY (`empresa_id`),
   KEY `usuario_id` (`user_id`),
-  KEY `contacto_id` (`contacto_id`,`categoria_id`,`logo_id`),
-  KEY `categoria_id` (`categoria_id`,`logo_id`),
-  KEY `logo_id` (`logo_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  KEY `contacto_id` (`logo_id`),
+  KEY `categoria_id` (`logo_id`),
+  KEY `logo_id` (`logo_id`),
+  KEY `cuenta_id` (`cuenta_id`),
+  KEY `contacto_id_2` (`contacto_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `tbl_empresas`
 --
 
-INSERT INTO `tbl_empresas` (`empresa_id`, `user_id`, `contacto_id`, `categoria_id`, `logo_id`, `cif`, `web`, `twitter`, `facebook`, `urlTienda`, `creado`, `modificado`) VALUES
-(1, 7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, 41, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `tbl_empresas` (`empresa_id`, `user_id`, `cuenta_id`, `contacto_id`, `logo_id`, `cif`, `web`, `twitter`, `facebook`, `urlTienda`, `modificado`) VALUES
+(1, 7, 1, 1, NULL, '', 'few3e', '3r23fs43', 'wqrf3wgr', 'ewger11', NULL),
+(2, 48, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 49, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(11, 57, 1, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(12, 59, 1, 12, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(15, 9, 2, 13, NULL, '', 'ewdgsg', '', '', '', NULL),
+(17, 68, 1, 16, NULL, '', 'asdfsd', '', '', '', NULL),
+(18, 70, 1, 17, NULL, '', 'saefwew3', '', '', '', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_emp_cat`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_emp_cat` (
+  `empresa_id` int(11) NOT NULL,
+  `categoria_id` int(11) NOT NULL,
+  PRIMARY KEY (`empresa_id`,`categoria_id`),
+  KEY `categoria_id` (`categoria_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_emp_cat`
+--
+
+INSERT INTO `tbl_emp_cat` (`empresa_id`, `categoria_id`) VALUES
+(1, 97),
+(1, 98);
 
 -- --------------------------------------------------------
 
@@ -234,11 +306,18 @@ INSERT INTO `tbl_empresas` (`empresa_id`, `user_id`, `contacto_id`, `categoria_i
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_items` (
-  `item_id` int(11) NOT NULL AUTO_INCREMENT,
-  `titulo` varchar(250) NOT NULL,
-  `archivo` varchar(250) NOT NULL,
-  `formato` varchar(15) NOT NULL,
-  PRIMARY KEY (`item_id`)
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `tipo` varchar(10) NOT NULL DEFAULT 'image/jpeg',
+  `thumb` tinyint(1) NOT NULL,
+  `filename` varchar(255) NOT NULL,
+  `size` varchar(100) NOT NULL,
+  `path` varchar(255) NOT NULL,
+  `foreign_id` int(11) unsigned NOT NULL,
+  `model` varchar(50) NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -8373,39 +8452,28 @@ INSERT INTO `tbl_poblaciones` (`idpoblacion`, `idprovincia`, `poblacion`, `pobla
 
 CREATE TABLE IF NOT EXISTS `tbl_profiles` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(50) NOT NULL,
-  `lastname` varchar(50) NOT NULL,
-  `contacto_id` int(11) DEFAULT NULL,
+  `username` varchar(50) DEFAULT NULL,
+  `lastname` varchar(50) DEFAULT NULL,
   `paypal_id` varchar(40) DEFAULT NULL,
   `tipocuenta` varchar(11) DEFAULT NULL,
-  `fecha_activacion` date NOT NULL DEFAULT '0000-00-00',
-  `fecha_fin` date NOT NULL DEFAULT '0000-00-00',
-  `fecha_pago` date NOT NULL DEFAULT '0000-00-00',
-  PRIMARY KEY (`user_id`),
-  UNIQUE KEY `contacto_id` (`contacto_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=42 ;
+  `fecha_activacion` date DEFAULT '0000-00-00',
+  `fecha_fin` date DEFAULT '0000-00-00',
+  `fecha_pago` date DEFAULT '0000-00-00',
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=71 ;
 
 --
 -- Dumping data for table `tbl_profiles`
 --
 
-INSERT INTO `tbl_profiles` (`user_id`, `username`, `lastname`, `contacto_id`, `paypal_id`, `tipocuenta`, `fecha_activacion`, `fecha_fin`, `fecha_pago`) VALUES
-(2, '', '', NULL, NULL, NULL, '0000-00-00', '0000-00-00', '0000-00-00'),
-(4, 'NbComprador1', '', NULL, '', '', '0000-00-00', '0000-00-00', '0000-00-00'),
-(5, '', '', NULL, NULL, NULL, '0000-00-00', '0000-00-00', '0000-00-00'),
-(7, 'NbEmpresa1', '', NULL, '', '', '0000-00-00', '0000-00-00', '0000-00-00'),
-(9, '', '', NULL, NULL, NULL, '0000-00-00', '0000-00-00', '0000-00-00'),
-(12, '', '', NULL, NULL, NULL, '0000-00-00', '0000-00-00', '0000-00-00'),
-(20, '', '', NULL, NULL, NULL, '0000-00-00', '0000-00-00', '0000-00-00'),
-(24, '', '', NULL, NULL, NULL, '0000-00-00', '0000-00-00', '0000-00-00'),
-(25, 'Comprador4', 'ApComprador', NULL, 'q23r3wef', '1', '2013-05-17', '2013-05-22', '2013-05-24'),
-(27, '', '', NULL, NULL, NULL, '0000-00-00', '0000-00-00', '0000-00-00'),
-(30, 'Guillermoaa', 'Canoaa', 30, '684654dgf', '1', '2013-05-07', '2013-05-24', '2013-05-28'),
-(36, '', '', NULL, '', '', '0000-00-00', '0000-00-00', '0000-00-00'),
-(37, 'NbComprador6', 'ApComprador6', NULL, '', '', '0000-00-00', '0000-00-00', '0000-00-00'),
-(38, 'NbEmpresa5', 'ApEmpresa5', NULL, '', '', '0000-00-00', '0000-00-00', '0000-00-00'),
-(39, '', '', NULL, NULL, NULL, '0000-00-00', '0000-00-00', '0000-00-00'),
-(41, 'NbEmpresa6', '', NULL, '', '', '0000-00-00', '0000-00-00', '0000-00-00');
+INSERT INTO `tbl_profiles` (`user_id`, `username`, `lastname`, `paypal_id`, `tipocuenta`, `fecha_activacion`, `fecha_fin`, `fecha_pago`) VALUES
+(2, '', '', NULL, NULL, '0000-00-00', '0000-00-00', '0000-00-00'),
+(5, 'Comprador2', '', NULL, NULL, '0000-00-00', '0000-00-00', '0000-00-00'),
+(7, 'Empresa1', '', '', '', '2013-06-11', '2013-06-11', '2013-06-11'),
+(9, 'NbEmpresa2', '', '', '', '2013-06-19', '0000-00-00', '0000-00-00'),
+(20, '', '', NULL, NULL, '0000-00-00', '0000-00-00', '0000-00-00'),
+(68, 'NbNuevaEmpresa1', '', '', '', '2013-06-12', '2013-06-22', '2013-06-25'),
+(70, 'NbNuevaEmpresa2', '', '', '', '0000-00-00', '0000-00-00', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -8442,6 +8510,32 @@ INSERT INTO `tbl_profiles_fields` (`id`, `varname`, `title`, `field_type`, `fiel
 (1, 'lastname', 'Last Name', 'VARCHAR', '50', '3', 1, '', '', 'Incorrect Last Name (length between 3 and 50 characters).', '', '', '', '', 1, 3),
 (2, 'firstname', 'First Name', 'VARCHAR', '50', '3', 1, '', '', 'Incorrect First Name (length between 3 and 50 characters).', '', '', '', '', 0, 3),
 (3, 'cif', 'CIF', 'VARCHAR', '255', '10', 1, '', '', 'CIF must be valid', '', '', '', '', 2, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_promociones`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_promociones` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `empresa_id` int(11) NOT NULL,
+  `titulo` varchar(100) NOT NULL,
+  `slug` varchar(100) NOT NULL,
+  `resumen` varchar(100) NOT NULL,
+  `descripcion` varchar(1000) NOT NULL,
+  `descripcion_html` varchar(1000) NOT NULL,
+  `fecha_inicio` date NOT NULL,
+  `fecha_fin` date NOT NULL,
+  `fechaCreacion` date NOT NULL,
+  `destacado` tinyint(1) NOT NULL,
+  `precioActual` varchar(45) NOT NULL,
+  `rebaja` varchar(45) NOT NULL,
+  `condiciones` varchar(1000) NOT NULL,
+  `agotado` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `empresa_id` (`empresa_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -8537,35 +8631,62 @@ CREATE TABLE IF NOT EXISTS `tbl_users` (
   UNIQUE KEY `email` (`email`),
   KEY `status` (`status`),
   KEY `superuser` (`superuser`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=42 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=71 ;
 
 --
 -- Dumping data for table `tbl_users`
 --
 
 INSERT INTO `tbl_users` (`id`, `username`, `password`, `email`, `activkey`, `create_at`, `lastvisit_at`, `superuser`, `status`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'webmaster@example.com', '9a24eff8c15a6a141ece27eb6947da0f', '2013-05-07 06:39:24', '2013-05-19 00:04:46', 1, 1),
-(2, 'demo', 'fe01ce2a7fbac8fafaed7c982a04e229', 'demo@example.com', '099f825543f7850cc038b90aaff39fac', '2013-05-07 06:39:24', '2013-05-13 14:28:03', 0, 1),
-(3, 'admin1', 'e00cf25ad42683b3df678c61f42c6bda', 'admin1@admin1.com', '9ffe8215d86586c1d55b4e0174f87a89', '2013-05-07 00:19:52', '2013-05-19 17:47:51', 1, 1),
-(4, 'comprador1', 'c31aab258c67129c404893865da1ac16', 'comprador1@comprador1.com', 'e0c70c109d219c864854c2218886f2d2', '2013-05-07 01:32:43', '2013-05-19 01:19:22', 0, 1),
-(5, 'comprador2', '7f51a4e12062f6351ec1d5424ce2d9a3', 'comprador2@comprador2.com', '8e4372011412b995eba4ce723cd49677', '2013-05-08 01:16:56', '0000-00-00 00:00:00', 0, 0),
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'webmaster@example.com', '9a24eff8c15a6a141ece27eb6947da0f', '2013-05-07 06:39:24', '2013-05-20 04:41:17', -1, 1),
+(2, 'demo', 'fe01ce2a7fbac8fafaed7c982a04e229', 'demo@example.com', '099f825543f7850cc038b90aaff39fac', '2013-05-07 06:39:24', '2013-05-31 22:18:39', 0, 1),
+(3, 'admin1', 'e00cf25ad42683b3df678c61f42c6bda', 'admin1@admin1.com', '9ffe8215d86586c1d55b4e0174f87a89', '2013-05-07 00:19:52', '2013-06-02 16:06:45', 1, 1),
+(5, 'comprador2', '7f51a4e12062f6351ec1d5424ce2d9a3', 'comprador2@comprador2.com', '8e4372011412b995eba4ce723cd49677', '2013-05-08 01:16:56', '2013-06-02 13:48:55', 0, 1),
 (6, 'admin2', 'c84258e9c39059a89ab77d846ddab909', 'admin2@admin2.com', '5fd6693f561b2aea7cb6fec08cdae19e', '2013-05-07 17:36:40', '2013-05-07 17:36:48', 1, 1),
-(7, 'empresa1', 'a24df02d86e0f2c0c70c1423a90837a8', 'empresa1@empresa.com', 'fa2a955301a997db335d5d9e1bf09d79', '2013-05-09 21:21:40', '2013-05-19 15:46:00', 2, 1),
-(9, 'empresa2', 'e8790a92abdfc3d10e7dea6091bafc35', 'empresa2@empresa.com', '4f407aad1347d3afc0df57a2cf4166a0', '2013-05-09 21:36:20', '2013-05-09 21:54:45', 2, 1),
+(7, 'empresa1', 'a24df02d86e0f2c0c70c1423a90837a8', 'empresa1@empresa11.com', 'fa2a955301a997db335d5d9e1bf09d79', '2013-05-09 21:21:40', '2013-06-02 15:03:38', 2, 1),
+(9, 'empresa2', 'e8790a92abdfc3d10e7dea6091bafc35', 'empresa2@empresa.com', '4f407aad1347d3afc0df57a2cf4166a0', '2013-05-09 21:36:20', '2013-06-02 13:45:10', 2, 1),
 (12, 'empresa7', '590fb77fd6a5e286f0cb8b18ac2c08fa', 'empresa6@empresa6.com77', '57bb126336aacd070f191c6f7ce7f9d3', '2013-05-09 21:51:36', '0000-00-00 00:00:00', 2, 0),
 (13, 'admin3', '32cacb2f994f6b42183a1300d9a3e8d6', 'admin3@admin.com', 'fe03aebe57b96a901c56a0aec557f637', '2013-05-09 21:56:05', '0000-00-00 00:00:00', 1, 1),
 (20, 'comprador5', '397596bd2837b34da8f1feef12257ccc', 'comprador5@comprador5.com', '49b6fc5c3babb2ec3cdd9d180ee5be5a', '2013-05-13 19:13:38', '0000-00-00 00:00:00', 0, 0),
 (24, 'comprador3', '5b9d60e3121d86140c32979e2bdc288d', 'comprador3@comprador3.com', '0c0a54603d5b271d482187ef4ceff3d4', '2013-05-13 20:49:11', '0000-00-00 00:00:00', 0, 0),
 (25, 'comprador4', '06301f3a52cc7e809f7495ec1fd3fa41', 'comprador4@comprador4.com', 'dfc9b90569057cf5ce8eac2469ddcc09', '2013-05-13 20:49:47', '0000-00-00 00:00:00', 0, 0),
-(26, 'admin4', 'fc1ebc848e31e0a68e868432225e3c82', 'admin4@admin.com', '79cff1850cbac31f2e5ad83a0d95910f', '2013-05-13 20:50:25', '0000-00-00 00:00:00', 1, 0),
+(26, 'admin4', 'fc1ebc848e31e0a68e868432225e3c82', 'admin4@admin.com', '79cff1850cbac31f2e5ad83a0d95910f', '2013-05-13 20:50:25', '0000-00-00 00:00:00', 1, 1),
 (27, 'empresa3', '2000c35211e5324a4fda771f7148d924', 'empresa3@empresa.com', '236c478fbfcbfcad0e353e9f31b939b0', '2013-05-13 20:50:59', '0000-00-00 00:00:00', 2, 0),
 (29, 'admin9', 'eed57216df3731106517ccaf5da2122d', 'admin9@admin9.com', '3574d098e93a74fe2a84a62f65e97e25', '2013-05-13 21:25:11', '2013-05-13 21:25:21', 1, 1),
 (30, 'guillermo', 'd7ed8e65834e0f58fa7c43f332e64cfe', 'grillermo@gmail.com', '00d4be409561a5f09899c7985e0f083e', '2013-05-15 00:11:06', '2013-05-16 22:39:39', 0, 1),
-(36, 'empresa4', 'ee1dd733f329cec8289a5697cd26f80c', 'empresa4@empresa4.com', '30c18e59d06152324d438207678dc012', '2013-05-16 23:13:05', '2013-05-16 23:21:57', 2, 1),
+(36, 'empresa4', 'ee1dd733f329cec8289a5697cd26f80c', 'empresa4@empresa4.com', '30c18e59d06152324d438207678dc012', '2013-05-16 23:13:05', '2013-05-26 16:34:51', 2, 1),
 (37, 'comprador6', '71d2732affe1002a21bfdf7fa6bc0cc8', 'comprador6@comprador6.com', '5cee3949ee4bd7fd6a0ebe0b180bd603', '2013-05-18 08:37:25', '2013-05-18 01:58:00', 0, 1),
 (38, 'empresa5', 'ca16303d94eff24d56dc0097a2a2343d', 'empresa5@empresa5.com', '5df3352a3b20d95fbffd60223c3bee4d', '2013-05-19 00:08:55', '2013-05-19 00:09:05', 2, 1),
 (39, 'comprador_test', '69e3fca9e935bb9ba1b64f928c3973d9', 'compradortest@compradortest.com', '708a5279e09fc24bf6772884665db85c', '2013-05-19 09:21:48', '0000-00-00 00:00:00', 0, 0),
-(41, 'empresa6', '1981f3d899ee22e64b991ffc4818026d', 'empresa6@empresa6.com', '20f6d019d3fb66e9b72abe077c6ec349', '2013-05-19 17:50:44', '2013-05-19 17:51:13', 2, 1);
+(41, 'empresa6', '1981f3d899ee22e64b991ffc4818026d', 'empresa6@empresa6.com', '20f6d019d3fb66e9b72abe077c6ec349', '2013-05-19 17:50:44', '2013-05-19 17:51:13', 2, 1),
+(42, 'Hugomierdas', '8c9977d9170c82f412cb92179706be81', 'hugomierdas@hugomierdas.com', 'b9a53a18b80864f19c581e85c3704295', '2013-05-20 12:27:05', '2013-05-20 04:43:36', 0, 1),
+(48, 'Empresaa', '8c40bf22b4207900f35646f4d7f2aaa1', 'Empresacontact@Empresacontact.com', 'a5d7a199c3ce58031da20d4ebdcb7a7d', '2013-05-22 23:33:10', '0000-00-00 00:00:00', 2, 0),
+(49, 'Empresaaa', '7b49c82f8ef9227dc06d0d0f23e917bb', 'Empresaaa@Empresaaa.com', '15517e4f5aed7fe8a2303c6b541e3728', '2013-05-22 23:43:42', '0000-00-00 00:00:00', 2, 0),
+(57, 'empre', 'b9f7a7cfe7eabbb45f236c715d76cad4', 'empre@empre.com', '13fb76a79b5d5d94dcc5d4a73e0f1600', '2013-05-23 01:36:46', '0000-00-00 00:00:00', 2, 1),
+(58, 'usuario_test', '912ec803b2ce49e4a541068d495ab570', 'test@test.com', '3886cca6ecdc3ae386bbfc4f2eb67a47', '2013-05-25 11:15:53', '2013-05-25 03:21:05', 0, 1),
+(59, 'empresa_test', '912ec803b2ce49e4a541068d495ab570', 'empresa@empresa.com', 'af7bb6bfdb2e906796c2d121154092a1', '2013-05-25 11:18:05', '2013-05-25 03:21:24', 2, 1),
+(60, 'usuario', '912ec803b2ce49e4a541068d495ab570', 'usuario@usuario.com', '2d68c4dec123e4a370579ef8c08b487a', '2013-05-28 22:24:14', '0000-00-00 00:00:00', 0, 0),
+(61, 'usuario1', '5259ee4a034fdeddd1b65be92debe731', 'usuario1@usuario1.com', '5518b1dfbc5aaa239bad5fc08f2d5b90', '2013-05-28 22:26:59', '0000-00-00 00:00:00', 0, 0),
+(62, 'usuario2', '912ec803b2ce49e4a541068d495ab570', 'usuario2@usuario2.com', '9452cd180c6688cd44be776ecdb6dc3c', '2013-05-28 22:28:24', '0000-00-00 00:00:00', 0, 0),
+(63, 'usuario3', '912ec803b2ce49e4a541068d495ab570', 'usuario3@usuario3.com', 'dc3a534c176df022dea585fbb337ac50', '2013-05-28 22:30:00', '0000-00-00 00:00:00', 0, 0),
+(65, 'NuevoComprador1', '912ec803b2ce49e4a541068d495ab570', 'nuevocomprador1@nuevocomprador.com', '8c1c3f09d9179f5207972cfaa1b9d2ce', '2013-06-02 15:39:53', '2013-06-02 15:40:31', 0, 1),
+(68, 'NuevaEmpresa1', '912ec803b2ce49e4a541068d495ab570', 'NuevaEmpresa1@NuevaEmpresa1.com', 'd4772b3d952e90aa5cba37fe7a0fc09d', '2013-06-02 15:57:33', '2013-06-02 15:59:17', 2, 1),
+(69, 'NuevoComprador', '912ec803b2ce49e4a541068d495ab570', 'NuevoComprador@nuevocomprador.com', '664c05365ea2dabf9f615ee6490ceb03', '2013-06-03 00:02:13', '0000-00-00 00:00:00', 0, 0),
+(70, 'NuevaEmpresa2', '912ec803b2ce49e4a541068d495ab570', 'NuevaEmpresa2@NuevaEmpresa2.com', 'adcc612dbca654f1aaa66b5edfcba23e', '2013-06-03 00:05:43', '2013-06-02 16:07:06', 2, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `_tbl_items`
+--
+
+CREATE TABLE IF NOT EXISTS `_tbl_items` (
+  `item_id` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(250) NOT NULL,
+  `archivo` varchar(250) NOT NULL,
+  `formato` varchar(15) NOT NULL,
+  PRIMARY KEY (`item_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -8589,7 +8710,6 @@ INSERT INTO `_tbl_profiles` (`user_id`, `lastname`, `firstname`, `cif`) VALUES
 (1, 'Admin', 'Administrator', ''),
 (2, 'Demo', 'Demo', ''),
 (3, 'LastName admin1', 'admin1', ''),
-(4, 'LastName Comprador1', 'Comprador1', ''),
 (5, 'Apellidi comprador2', 'Nombre comprador2', ''),
 (6, 'Ap_admin2', 'Nb_admin2', ''),
 (7, 'Ap_Empresa1', 'Nb_Empresa1', '1234567890'),
@@ -8631,17 +8751,23 @@ ALTER TABLE `Rights`
 -- Constraints for table `tbl_contactos`
 --
 ALTER TABLE `tbl_contactos`
-  ADD CONSTRAINT `tbl_contactos_ibfk_2` FOREIGN KEY (`poblacion_id`) REFERENCES `tbl_poblaciones` (`idpoblacion`),
-  ADD CONSTRAINT `tbl_contactos_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `tbl_users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tbl_contactos_ibfk_2` FOREIGN KEY (`poblacion_id`) REFERENCES `tbl_poblaciones` (`idpoblacion`);
 
 --
 -- Constraints for table `tbl_empresas`
 --
 ALTER TABLE `tbl_empresas`
-  ADD CONSTRAINT `tbl_empresas_ibfk_6` FOREIGN KEY (`user_id`) REFERENCES `tbl_users` (`id`),
-  ADD CONSTRAINT `tbl_empresas_ibfk_2` FOREIGN KEY (`contacto_id`) REFERENCES `tbl_contactos` (`user_id`),
-  ADD CONSTRAINT `tbl_empresas_ibfk_3` FOREIGN KEY (`categoria_id`) REFERENCES `category` (`id`),
-  ADD CONSTRAINT `tbl_empresas_ibfk_4` FOREIGN KEY (`logo_id`) REFERENCES `tbl_items` (`item_id`);
+  ADD CONSTRAINT `tbl_empresas_ibfk_12` FOREIGN KEY (`logo_id`) REFERENCES `tbl_items` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_empresas_ibfk_13` FOREIGN KEY (`user_id`) REFERENCES `tbl_users` (`id`),
+  ADD CONSTRAINT `tbl_empresas_ibfk_15` FOREIGN KEY (`contacto_id`) REFERENCES `tbl_contactos` (`id`),
+  ADD CONSTRAINT `tbl_empresas_ibfk_9` FOREIGN KEY (`cuenta_id`) REFERENCES `tbl_cuentas` (`id`);
+
+--
+-- Constraints for table `tbl_emp_cat`
+--
+ALTER TABLE `tbl_emp_cat`
+  ADD CONSTRAINT `tbl_emp_cat_ibfk_1` FOREIGN KEY (`empresa_id`) REFERENCES `tbl_empresas` (`empresa_id`),
+  ADD CONSTRAINT `tbl_emp_cat_ibfk_2` FOREIGN KEY (`categoria_id`) REFERENCES `category` (`id`);
 
 --
 -- Constraints for table `tbl_poblaciones`
@@ -8653,8 +8779,13 @@ ALTER TABLE `tbl_poblaciones`
 -- Constraints for table `tbl_profiles`
 --
 ALTER TABLE `tbl_profiles`
-  ADD CONSTRAINT `tbl_profiles_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `tbl_users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tbl_profiles_ibfk_3` FOREIGN KEY (`contacto_id`) REFERENCES `tbl_contactos` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tbl_profiles_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `tbl_users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tbl_promociones`
+--
+ALTER TABLE `tbl_promociones`
+  ADD CONSTRAINT `tbl_promociones_ibfk_1` FOREIGN KEY (`empresa_id`) REFERENCES `tbl_empresas` (`empresa_id`);
 
 --
 -- Constraints for table `_tbl_profiles`
