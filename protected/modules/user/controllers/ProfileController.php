@@ -38,6 +38,33 @@ class ProfileController extends Controller
 		 	$this->renderParaUsuario();
 	}
 	
+	public function getTabularFormTabs($model,$categorias,$cuentas,$logo)
+	{
+	    $tabs = array();
+	    $count = 0;
+	    //foreach (array('pro'=>'Profile', 'com'=>'Company', 'prom'=>'Promotions') as $locale => $language)
+	    //{
+	    if(Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id)){
+	        $tabs[0] = array(
+	            'active'=>0,
+	            'label'=>'Profile',
+	            'content'=>$this->renderPartial('_form', array('model'=>$model, 'profile'=>$model->profile), true),
+	        );
+	        $tabs[1] = array(
+	            'active'=>1,
+	            'label'=>'Company',
+	            'content'=>$this->renderPartial('/empresa/_form', array('model'=>$model, 'profile'=>$model->profile, 'empresa'=>$model->empresa, 'contacto'=>$model->empresa->contacto, 'categorias'=>$categorias, 'cuentas'=>$cuentas, 'logo'=>$logo), true),
+	        );
+	    }
+        /*$tabs[2] = array(
+            'active'=>2,
+            'label'=>'Promotions',
+            'content'=>$this->renderPartial('_form', array('model'=>$model, 'profile'=>$model->profile), true),
+        );*/
+	    //}
+	    return $tabs;
+	}
+	
 	private function renderParaAdmin(){
 		$this->render('profile',array(
 	    	'model'=>$this->_model,
@@ -60,6 +87,10 @@ class ProfileController extends Controller
 		$cuentas = Cuenta::getCuentas();
 		$cuentas_list = CHtml::listData($cuentas,'id', 'nombre');
 		
+		//Obtenemos todas las categorías con nivel 2(suponiendo que no hay subcategorías
+		$cat_model = Category::getCategorias();
+		$categorias = CHtml::listData($cat_model,'id', 'name');
+		
 		//Para cargar/gestionar el logo
 	 	Yii::import("xupload.models.XUploadForm");
         $logo = new XUploadForm;
@@ -68,6 +99,7 @@ class ProfileController extends Controller
 	    	'model'=>$this->_model,
 			'profile'=>$this->_model->profile,
 			'empresa'=>$this->_model->empresa,
+			'categorias'=>$categorias,
 			'cuentas'=>$cuentas,
 	    	'contacto'=>$this->_model->empresa->contacto,
 			'logo'=>$logo,
@@ -77,6 +109,12 @@ class ProfileController extends Controller
 	private function renderParaComprador(){
 		$this->render('profile',array(
 	    	'model'=>$this->_model,
+			'profile'=>null,
+			'empresa'=>null,
+			'categorias'=>null,
+			'cuentas'=>null,
+	    	'contacto'=>null,
+			'logo'=>null,
 	    ));
 	}
 
@@ -183,6 +221,7 @@ class ProfileController extends Controller
 		{
 			$_model = $this->loadUser();
 			$profile=$_model->profile;
+			
 			// ajax validator
 			if(isset($_POST['ajax']) && $_POST['ajax']==='profile-form')
 			{

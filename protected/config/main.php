@@ -163,7 +163,8 @@ return array(
 				// uncomment the following to show log messages on web pages
 				array(
                     'class' => 'CFileLogRoute',
-                    'levels' => 'error, warning, info',
+					'logFile'=>'trace.log',
+                    'levels' => 'error, trace,warning, info',
                     'categories'=>'system.*',
                 ),
 				array(

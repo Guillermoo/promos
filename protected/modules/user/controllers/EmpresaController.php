@@ -112,7 +112,7 @@ class EmpresaController extends Controller
 					$contacto->save();
 	                Yii::app()->user->updateSession();
 					Yii::app()->user->setFlash('empresaMessage',UserModule::t("Changes is saved."));
-					$this->redirect(array('/user/empresa'));
+					$this->redirect(array('/user/profile'));
 				} else $empresa->validate();
 			}
 	

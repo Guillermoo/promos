@@ -3,8 +3,14 @@
 /*$this->breadcrumbs=array(
 	UserModule::t("Profile"),
 );*/
-?>
-<h1><?php echo UserModule::t('Your company'); ?></h1>
+?><h1><?php echo UserModule::t('Your company'); ?></h1>
+
+<?php if(Yii::app()->user->hasFlash('profileMessage')): ?>
+<div class="success">
+	<?php echo Yii::app()->user->getFlash('profileMessage'); ?>
+</div>
+<?php endif; ?>
+
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'empresa-form',
 	'enableAjaxValidation'=>true,
@@ -14,8 +20,8 @@
 ));
 ?>
 
-		
 <fieldset>
+	<p class="note"><?php //echo UserModule::t('Fields with <span class="required">*</span> are required.'); ?></p>
 
 	<div class="row"><!-- Tipo de cuenta -->
 		<?php //echo $form->labelEx($empresa,'logo_id'); ?>
@@ -38,24 +44,15 @@
 	</div>
 
 	<div class="row">
-		<?php //$this->debug($empresa->item->attributes)?>
-		<?php if (isset($empresa->item)):?>
-		<?php 
-			$imghtml=CHtml::image(Yii::app( )->getBaseUrl( ).$empresa->item->path);
-			echo CHtml::link($imghtml, array('view', 'id'=>$imghtml));
-		?>
-		<?php else:?>
 		<?php echo $form->labelEx($empresa,'logo_id'); ?>
 		<?php //echo $form->textField($empresa,'logo_id'); ?>
 		<?php $this->widget('xupload.XUpload', array(
-                    'url' => Yii::app()->createUrl("item/upload"),
-                    'model' => $empresa,
+                    'url' => Yii::app()->createUrl("site/upload"),
+                    'model' => $logo,
                     'attribute' => 'file',
                     'multiple' => false,
-					'htmlOptions' => array('id'=>'empresa-form'),
 			));
 		?>
-		<?php endif;?>
 		<?php //echo $form->fileFieldRow($empresa, 'logo_id'); ?>
 		<?php echo $form->error($empresa,'logo_id'); ?>
 	</div>
