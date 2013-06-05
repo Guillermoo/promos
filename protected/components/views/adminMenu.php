@@ -14,7 +14,7 @@
 		array('label'=>UserModule::t('Create User'), 'icon'=>'home', 'url'=>array('/user/admin/create')),
 		array('label'=>UserModule::t('Manage Users'), 'url'=>array('/user/admin')),
     	array('label'=>'Roles', 'url'=>array('/rights'), 'visible'=>Yii::app()->authManager->checkAccess('superadmin', Yii::app()->user->id)),
-		array('label'=>UserModule::t('List User'), 'url'=>array('/user')),
+		//array('label'=>UserModule::t('List User'), 'url'=>array('/user')),
     	//array('url'=>Yii::app()->getModule('user')->profileUrl, 'label'=>Yii::app()->getModule('user')->t("Profile"), 'visible'=>!Yii::app()->user->isGuest),
 		//array('label'=>UserModule::t('Edit User'), 'url'=>array('/user/profile')),
 		array('url'=>Yii::app()->getModule('user')->profileUrl, 'label'=>Yii::app()->getModule('user')->t("Profile"), 'visible'=>!Yii::app()->user->isGuest),

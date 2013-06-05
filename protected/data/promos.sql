@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 03, 2013 at 09:33 AM
+-- Generation Time: Jun 05, 2013 at 10:53 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -269,12 +269,12 @@ CREATE TABLE IF NOT EXISTS `tbl_empresas` (
 --
 
 INSERT INTO `tbl_empresas` (`empresa_id`, `user_id`, `cuenta_id`, `contacto_id`, `logo_id`, `cif`, `web`, `twitter`, `facebook`, `urlTienda`, `modificado`) VALUES
-(1, 7, 1, 1, 2, '', 'few3e', '3r23fs43', 'wqrf3wgr', 'ewger11', NULL),
+(1, 7, 1, 1, 3, '', 'few3e', '3r23fs43', 'wqrf3wgr', 'ewger11', NULL),
 (2, 48, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (3, 49, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (11, 57, 1, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (12, 59, 1, 12, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(15, 9, 2, 13, NULL, '', 'ewdgsg', '', '', '', NULL),
+(15, 9, 2, 13, 5, '', 'ewdgsg', '', '', '', NULL),
 (17, 68, 1, 16, NULL, '', 'asdfsd', '', '', '', NULL),
 (18, 70, 1, 17, NULL, '', 'saefwew3', '', '', '', NULL);
 
@@ -311,6 +311,7 @@ CREATE TABLE IF NOT EXISTS `tbl_items` (
   `tipo` varchar(100) NOT NULL,
   `thumb` tinyint(1) NOT NULL,
   `filename` varchar(255) NOT NULL,
+  `attribute` varchar(45) NOT NULL,
   `size` varchar(100) NOT NULL,
   `path` varchar(255) NOT NULL,
   `foreign_id` int(11) NOT NULL,
@@ -319,14 +320,15 @@ CREATE TABLE IF NOT EXISTS `tbl_items` (
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `foreign_id` (`foreign_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `tbl_items`
 --
 
-INSERT INTO `tbl_items` (`id`, `name`, `tipo`, `thumb`, `filename`, `size`, `path`, `foreign_id`, `model`, `created`, `modified`) VALUES
-(2, 'bamboo.jpg', 'image/jpeg', 1, 'b733c413931d1bac784df534f8ca76fb.jpg', '915784', '/uploads/images/b733c413931d1bac784df534f8ca76fb.jpg', 1, 'empresa', NULL, NULL);
+INSERT INTO `tbl_items` (`id`, `name`, `tipo`, `thumb`, `filename`, `attribute`, `size`, `path`, `foreign_id`, `model`, `created`, `modified`) VALUES
+(3, '1920x1080_HD_Wallpaper_124_zixpkcom.jpg', 'image/jpeg', 1, 'a37f13c61feb0e1b31789167cfbceb29.jpg', 'file', '127936', '/uploads/images/a37f13c61feb0e1b31789167cfbceb29.jpg', 7, 'empresa', NULL, NULL),
+(5, 'artistic_wallpaper_1366x768.jpeg', 'image/jpeg', 1, 'f69d6677dd6f6d761d32de7b27179800.jpeg', 'file', '79316', '/uploads/images/f69d6677dd6f6d761d32de7b27179800.jpeg', 9, 'empresa', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -8648,11 +8650,11 @@ CREATE TABLE IF NOT EXISTS `tbl_users` (
 INSERT INTO `tbl_users` (`id`, `username`, `password`, `email`, `activkey`, `create_at`, `lastvisit_at`, `superuser`, `status`) VALUES
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'webmaster@example.com', '9a24eff8c15a6a141ece27eb6947da0f', '2013-05-07 06:39:24', '2013-05-20 04:41:17', -1, 1),
 (2, 'demo', 'fe01ce2a7fbac8fafaed7c982a04e229', 'demo@example.com', '099f825543f7850cc038b90aaff39fac', '2013-05-07 06:39:24', '2013-05-31 22:18:39', 0, 1),
-(3, 'admin1', 'e00cf25ad42683b3df678c61f42c6bda', 'admin1@admin1.com', '9ffe8215d86586c1d55b4e0174f87a89', '2013-05-07 00:19:52', '2013-06-02 16:06:45', 1, 1),
+(3, 'admin1', 'e00cf25ad42683b3df678c61f42c6bda', 'admin1@admin1.com', '9ffe8215d86586c1d55b4e0174f87a89', '2013-05-07 00:19:52', '2013-06-04 17:02:51', 1, 1),
 (5, 'comprador2', '7f51a4e12062f6351ec1d5424ce2d9a3', 'comprador2@comprador2.com', '8e4372011412b995eba4ce723cd49677', '2013-05-08 01:16:56', '2013-06-02 20:44:23', 0, 1),
 (6, 'admin2', 'c84258e9c39059a89ab77d846ddab909', 'admin2@admin2.com', '5fd6693f561b2aea7cb6fec08cdae19e', '2013-05-07 17:36:40', '2013-05-07 17:36:48', 1, 1),
-(7, 'empresa1', 'a24df02d86e0f2c0c70c1423a90837a8', 'empresa1@empresa11.com', 'fa2a955301a997db335d5d9e1bf09d79', '2013-05-09 21:21:40', '2013-06-02 20:46:34', 2, 1),
-(9, 'empresa2', 'e8790a92abdfc3d10e7dea6091bafc35', 'empresa2@empresa.com', '4f407aad1347d3afc0df57a2cf4166a0', '2013-05-09 21:36:20', '2013-06-02 23:08:43', 2, 1),
+(7, 'empresa1', 'a24df02d86e0f2c0c70c1423a90837a8', 'empresa1@empresa11.com', 'fa2a955301a997db335d5d9e1bf09d79', '2013-05-09 21:21:40', '2013-06-05 00:16:18', 2, 1),
+(9, 'empresa2', 'e8790a92abdfc3d10e7dea6091bafc35', 'empresa2@empresa.com', '4f407aad1347d3afc0df57a2cf4166a0', '2013-05-09 21:36:20', '2013-06-05 00:22:46', 2, 1),
 (12, 'empresa7', '590fb77fd6a5e286f0cb8b18ac2c08fa', 'empresa6@empresa6.com77', '57bb126336aacd070f191c6f7ce7f9d3', '2013-05-09 21:51:36', '0000-00-00 00:00:00', 2, 0),
 (13, 'admin3', '32cacb2f994f6b42183a1300d9a3e8d6', 'admin3@admin.com', 'fe03aebe57b96a901c56a0aec557f637', '2013-05-09 21:56:05', '0000-00-00 00:00:00', 1, 1),
 (20, 'comprador5', '397596bd2837b34da8f1feef12257ccc', 'comprador5@comprador5.com', '49b6fc5c3babb2ec3cdd9d180ee5be5a', '2013-05-13 19:13:38', '0000-00-00 00:00:00', 0, 0),

@@ -25,7 +25,7 @@ class AdminController extends Controller
 	{
 		return array(
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete','create','update','view'),
+				'actions'=>array('admin','delete','create','updateAjax','update','view'),
 				'users'=>UserModule::getAdmins(),
 			),
 			array('deny',  // deny all users
@@ -176,6 +176,14 @@ class AdminController extends Controller
 		$this->renderParaUsuario();
 	}
 	
+	public function actionUpdateAjax()
+    {
+        $data = array();
+        $data["myValue"] = "Content updated in AJAX";
+ 
+        $this->renderPartial('_ajaxAdminContent', $data, false, true);
+    }
+	
 	private function renderParaUsuario(){
 		
 		$esEmpresa = Yii::app()->authManager->checkAccess('empresa', $this->_model->id);
@@ -195,8 +203,10 @@ class AdminController extends Controller
 		$cuentas_list = CHtml::listData($cuentas,'id', 'nombre');
 		
 		//Para cargar/gestionar el logo
-	 	Yii::import("xupload.models.XUploadForm");
-        $logo = new XUploadForm;
+	 	/*Yii::import("xupload.models.XUploadForm");
+        $logo = new XUploadForm;*/
+        
+        $myValue = "Content loaded";
         
 		$this->render('update',array(
 	    	'model'=>$this->_model,
@@ -206,7 +216,8 @@ class AdminController extends Controller
 			'esEmpresa'=>true,
 			'cuentas'=>$cuentas_list,
 	    	'contacto'=>$this->_model->empresa->contacto,
-			'logo'=>$logo,
+			//'logo'=>$logo,
+			'myValue'=>$myValue,
 	    ));
 	}
 	

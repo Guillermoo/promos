@@ -7,7 +7,7 @@
 <h1><?php echo UserModule::t('Your company'); ?></h1>
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'empresa-form',
-	'enableAjaxValidation'=>true,
+	'enableAjaxValidation'=>false,
 	//'type'=>'horizontal',
 	'action'=>'empresa/edit',
 	'htmlOptions' => array('enctype'=>'multipart/form-data')
@@ -38,25 +38,33 @@
 	</div>
 
 	<div class="row">
-		<?php //$this->debug($empresa->item->attributes)?>
+	<?php //$this->debug($model->empresa->item)?>
 		<?php if (isset($empresa->item)):?>
 		<?php 
 			$imghtml=CHtml::image(Yii::app( )->getBaseUrl( ).$empresa->item->path);
-			echo CHtml::link($imghtml, array('view', 'id'=>$imghtml));
-		?>
+			echo CHtml::link($imghtml);?>
 		<?php else:?>
-		<?php echo $form->labelEx($empresa,'logo_id'); ?>
-		<?php //echo $form->textField($empresa,'logo_id'); ?>
-		<?php $this->widget('xupload.XUpload', array(
-                    'url' => Yii::app()->createUrl("item/upload"),
-                    'model' => $empresa,
+            <?php
+				$this->widget('xupload.XUpload', array(
+                    'url' => Yii::app()->createUrl("/item/upload"),
+                    'model' => $image,
                     'attribute' => 'file',
+                    'htmlOptions' => array('id'=>'empresa-form'),
                     'multiple' => false,
-					'htmlOptions' => array('id'=>'empresa-form'),
-			));
-		?>
-		<?php endif;?>
-		<?php //echo $form->fileFieldRow($empresa, 'logo_id'); ?>
+					/*'url' => Yii::app( )->createUrl( "/item/upload"),
+	                //our XUploadForm
+	                'model' => $image,
+	                //We set this for the widget to be able to target our own form
+	                'htmlOptions' => array('id'=>'empresa-form'),
+	                'attribute' => 'file',
+	                'multiple' => false,*/
+	                //Note that we are using a custom view for our widget
+	                //Thats becase the default widget includes the 'form' 
+	                //which we don't want here
+	                //'formView' => 'application.views.somemodel._form',
+				));
+			?>
+			<?php endif;?>
 		<?php echo $form->error($empresa,'logo_id'); ?>
 	</div>
 
@@ -93,9 +101,9 @@
     	<?php $this->renderPartial('/layouts/_contacto',array('form'=>$form,'contacto'=>$contacto) );?>
 	</div>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Save'); ?>
-	</div>
+	<!-- <div class="row buttons">
+		<?php //echo CHtml::submitButton('Save'); ?>
+	</div> -->
 </fieldset>
 
 <?php $this->endWidget(); ?>

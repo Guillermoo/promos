@@ -73,6 +73,7 @@ class Empresa extends CActiveRecord
 			'item' => array(self::BELONGS_TO, 'Item', 'logo_id'),
 			'usuario' => array(self::BELONGS_TO, 'Usuarios', 'user_id'),
 			'contacto' => array(self::BELONGS_TO, 'Contacto', 'contacto_id'),
+			'items' => array(self::HAS_ONE, 'Item', 'logo_id'),
 			'cuenta' => array(self::HAS_ONE, 'Cuenta', 'id'),
 			'categoria' => array(self::MANY_MANY, 'Category', 'tbl_emp_cat(empresa_id,categoria_id)'),
 			//'categoria' => array(self::BELONGS_TO, 'Category', 'categoria_id'),

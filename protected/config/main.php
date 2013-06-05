@@ -185,5 +185,6 @@ return array(
 		// this is used in contact page
 		'debugContent'=>'',
 		'adminEmail'=>'grillermo@gmail.com',
+		'img_default'=>'/img/noprofile.jpg',
 	),
 );

@@ -31,11 +31,12 @@
 		'htmlOptions' => array('enctype'=>'multipart/form-data'),
 	    'type'=>'horizontal'
 	));*/?>
-	 
-	<?php $this->widget('bootstrap.widgets.TbTabs', array(
-	    'tabs'=>$this->getTabularFormTabs($model,$categorias,$cuentas,$logo),
-	)); ?>
-	 
+	<?php if(Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id)):?>
+		<?php $this->widget('bootstrap.widgets.TbTabs', array(
+		    'tabs'=>$this->getTabularFormTabs($model,$categorias,$cuentas),
+		)); ?>
+ 	<?php endif;?>
+ 	
 	<!-- <div class="form-actions">
 	    <?php /*$this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'label'=>'Submit')); ?>
 	    <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'reset', 'label'=>'Reset'));*/ ?>
