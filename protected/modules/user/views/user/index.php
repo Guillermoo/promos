@@ -9,6 +9,8 @@ if(UserModule::isAdmin()) {
 	    array('label'=>UserModule::t('Manage Users'), 'url'=>array('/user/admin')),
 	    array('label'=>UserModule::t('Manage Profile Field'), 'url'=>array('profileField/admin')),
 	);
+}else{
+	$this->layout='//layouts/user_column2';
 }
 ?>
 

@@ -8,6 +8,7 @@
     </div>
     <div class="span3">
         <div id="sidebar">
+            column2 de theme->classic->admin
         <?php
             
             if(!Yii::app()->user->isGuest) $this->widget('UserMenu');
