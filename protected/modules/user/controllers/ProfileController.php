@@ -41,31 +41,160 @@ class ProfileController extends Controller
 		 	$this->renderParaUsuario();
 	}
 	
-	public function getTabularFormTabs($model,$categorias,$cuentas)
+	
+	
+	public function actionError()
+	{
+	 if($error=Yii::app()->errorHandler->error)
+	 {
+	        if(Yii::app()->request->isAjaxRequest)
+	                echo $error['message'];
+	        else
+	        $this->render('error', $error);
+	 }
+	}
+
+	/**
+	 * Specifies the access control rules.
+	 * This method is used by the 'accessControl' filter.
+	 * @return array access control rules
+	 */
+	public function accessRules()
+	{
+		return array(
+			array('allow',  // allow all users to perform 'index' and 'view' actions
+				'actions'=>array('index','view','updateAjax','profile'),
+				'users'=>array('*'),
+			),
+			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('create','update','edit'),
+				'users'=>array('@'),
+			),
+			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+				'actions'=>array('admin','delete'),
+				'users'=>array('admin'),
+			),
+			array('deny',  // deny all users
+				'users'=>array('*'),
+			),
+		);
+	}
+
+	/**
+	 * Displays a particular model.
+	 * @param integer $id the ID of the model to be displayed
+	 */
+	public function actionView($id)
+	{
+		$this->render('view',array(
+			'model'=>$this->loadModel($id),
+		));
+	}
+	
+	/**
+	 * Creates a new model.
+	 * If creation is successful, the browser will be redirected to the 'view' page.
+	 */
+	public function actionCreate()
+	{
+		$model=new Profile;
+
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+
+		if(isset($_POST['Profile']))
+		{
+			$model->attributes=$_POST['Profile'];
+			if($model->save())
+				$this->redirect(array('view','id'=>$model->user_id));
+		}
+
+		$this->render('create',array(
+			'model'=>$model,
+		));
+	}
+    
+	/**
+	 * Deletes a particular model.
+	 * If deletion is successful, the browser will be redirected to the 'admin' page.
+	 * @param integer $id the ID of the model to be deleted
+	 */
+	public function actionDelete($id)
+	{
+		$this->loadModel($id)->delete();
+
+		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+		if(!isset($_GET['ajax']))
+			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+	}
+	
+	public function actionEdit()
+		{
+			$_model = $this->loadUser();
+			$profile=$_model->profile;
+			
+			// ajax validator
+			if(isset($_POST['ajax']) && $_POST['ajax']==='profile-form')
+			{
+				echo UActiveForm::validate(array($profile));
+				Yii::app()->end();
+			}
+			
+			if(isset($_POST['Profile']))
+			{
+				//$model->attributes=$_POST['User'];
+				$profile ->attributes=$_POST['Profile'];
+				if($profile ->validate()) {
+					$profile ->save();
+	                Yii::app()->user->updateSession();
+					Yii::app()->user->setFlash('profileMessage',UserModule::t("Changes is saved."));
+					$this->redirect(array('/user/profile'));
+				} else $profile ->validate();
+			}
+	
+			$this->render('profile',array(
+				'model'=>$_model,
+				'profile'=>$profile ,
+			));
+		}
+		
+		
+public function getTabularFormTabs($model,$categorias,$cuentas)
 	{
 		
 	    $tabs = array();
 	    $count = 0;
 	    
-		if (isset($model->empresa->item))
-			$image = $model->empresa->item;
+		/*if (isset($model->item))
+			$image = $model->item;*/
+		//else
 	   	/*else{
 	   	
 	   	}*/
-     	$item = new Item;
+     	
 	    Yii::import("xupload.models.XUploadForm");
         $image = new XUploadForm;
 
 	    if(Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id)){
 	        $tabs[0] = array(
+	            'active'=>1,
+	            'label'=>'Welcome',
+	            'content'=>$this->renderPartial('/layouts/_welcome', array(), true),
+	        );
+	    	$tabs[1] = array(
 	            'active'=>0,
 	            'label'=>'Profile',
 	            'content'=>$this->renderPartial('_form', array('model'=>$model, 'profile'=>$model->profile), true),
 	        );
-	        $tabs[1] = array(
-	            'active'=>1,
+	        $tabs[2] = array(
+	            'active'=>0,
 	            'label'=>'Company',
-	            'content'=>$this->renderPartial('/empresa/_form', array('model'=>$model,'empresa'=>$model->empresa, 'contacto'=>$model->empresa->contacto, 'categorias'=>$categorias, 'cuentas'=>$cuentas,'item'=>$item,'image'=>$image), true),
+	            'content'=>$this->renderPartial('/empresa/_form', array('model'=>$model,'categorias'=>$categorias, 'cuentas'=>$cuentas, 'image'=>$image), true),
+	        );
+	        $tabs[3] = array(
+	            'active'=>0,
+	            'label'=>'Promotions',
+	            'content'=>$this->renderPartial('/layouts/_welcome', array('model'=>$model,'categorias'=>$categorias, 'cuentas'=>$cuentas, 'image'=>$image), true),
 	        );
 	    }
 	    return $tabs;
@@ -131,25 +260,11 @@ class ProfileController extends Controller
         
 		$this->render('profile',array(
 	    	'model'=>$this->_model,
-			'profile'=>$this->_model->profile,
-			'empresa'=>$this->_model->empresa,
 			'categorias'=>$categorias,
 			'cuentas'=>$cuentas,
-	    	'contacto'=>$this->_model->empresa->contacto,
 			'image'=>$image,
 			//'myImg'=>$myImg,
 	    ));
-	}
-	
-	private function setImage(){
-		
-		if (isset($this->_model->empresa->item))
-			$myImg = $this->_model->empresa->item->path;
-		else
-			$myImg = Yii::app()->params['img_default'];
-		
-		return $myImg;
-			
 	}
 	
 	private function renderParaComprador(){
@@ -163,146 +278,6 @@ class ProfileController extends Controller
 			'logo'=>null,
 	    ));
 	}
-	
-	public function actionError()
-	{
-	 if($error=Yii::app()->errorHandler->error)
-	 {
-	        if(Yii::app()->request->isAjaxRequest)
-	                echo $error['message'];
-	        else
-	        $this->render('error', $error);
-	 }
-	}
-
-	/**
-	 * Specifies the access control rules.
-	 * This method is used by the 'accessControl' filter.
-	 * @return array access control rules
-	 */
-	public function accessRules()
-	{
-		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','updateAjax','profile'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
-			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-			),
-		);
-	}
-
-	/**
-	 * Displays a particular model.
-	 * @param integer $id the ID of the model to be displayed
-	 */
-	public function actionView($id)
-	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
-	}
-	
-	/**
-	 * Creates a new model.
-	 * If creation is successful, the browser will be redirected to the 'view' page.
-	 */
-	public function actionCreate()
-	{
-		$model=new Profile;
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['Profile']))
-		{
-			$model->attributes=$_POST['Profile'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->user_id));
-		}
-
-		$this->render('create',array(
-			'model'=>$model,
-		));
-	}
-    
-	/**
-	 * Updates a particular model.
-	 * If update is successful, the browser will be redirected to the 'view' page.
-	 * @param integer $id the ID of the model to be updated
-	 */
-	/*public function actionUpdate($id)
-	{
-		$model=$this->loadModel($id);
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['Profile']))
-		{
-			$model->attributes=$_POST['Profile'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->user_id));
-		}
-
-		$this->render('update',array(
-			'model'=>$model,
-		));
-	}
-*/
-	/**
-	 * Deletes a particular model.
-	 * If deletion is successful, the browser will be redirected to the 'admin' page.
-	 * @param integer $id the ID of the model to be deleted
-	 */
-	public function actionDelete($id)
-	{
-		$this->loadModel($id)->delete();
-
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
-	}
-	
-	
-	public function actionEdit()
-		{
-			$_model = $this->loadUser();
-			$profile=$_model->profile;
-			
-			// ajax validator
-			if(isset($_POST['ajax']) && $_POST['ajax']==='profile-form')
-			{
-				echo UActiveForm::validate(array($profile));
-				Yii::app()->end();
-			}
-			
-			if(isset($_POST['Profile']))
-			{
-				//$model->attributes=$_POST['User'];
-				$profile ->attributes=$_POST['Profile'];
-				if($profile ->validate()) {
-					$profile ->save();
-	                Yii::app()->user->updateSession();
-					Yii::app()->user->setFlash('profileMessage',UserModule::t("Changes is saved."));
-					$this->redirect(array('/user/profile'));
-				} else $profile ->validate();
-			}
-	
-			$this->render('profile',array(
-				'model'=>$_model,
-				'profile'=>$profile ,
-			));
-		}
 
 	/**
 	 * Lists all models.

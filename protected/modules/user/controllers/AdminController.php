@@ -4,7 +4,7 @@ class AdminController extends Controller
 {
 	public $defaultAction = 'admin';
 	public $layout='//layouts/column2';
-	
+
 	private $_model;
 
 	/**
@@ -24,13 +24,13 @@ class AdminController extends Controller
 	public function accessRules()
 	{
 		return array(
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+		array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete','create','updateAjax','update','view'),
 				'users'=>UserModule::getAdmins(),
-			),
-			array('deny',  // deny all users
+		),
+		array('deny',  // deny all users
 				'users'=>array('*'),
-			),
+		),
 		);
 	}
 	/**
@@ -39,91 +39,67 @@ class AdminController extends Controller
 	public function actionAdmin()
 	{
 		$model=new User('search');
-        $model->unsetAttributes();  // clear any default values
-        
-        if(isset($_GET['User']))
-            $model->attributes=$_GET['User'];
+		$model->unsetAttributes();  // clear any default values
 
-        $this->render('index',array(
-            'model'=>$model,
-        ));
-		/*$dataProvider=new CActiveDataProvider('User', array(
-			'pagination'=>array(
-				'pageSize'=>Yii::app()->controller->module->user_page_size,
-			),
-		));
+		if(isset($_GET['User']))
+		$model->attributes=$_GET['User'];
 
 		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));//*/
-	}
-
-	/**
-	 * Lists all models.
-	 */
-	public function actionHome()
-	{
-		$this->render('home',array(
-				'dataProvider'=>$dataProvider,
+            'model'=>$model,
 		));
 	}
 
 	/**
 	 * Displays a particular model.
+	 * De momento no lo dejamos accesible
 	 */
-	public function actionView()
+	/*public function actionView()
 	{
 		$model = $this->loadModel();
-		//$this->debug($model);
+
 		$this->render('view',array(
 			'model'=>$model,
 		));
-	}
+	}*/
 
 	/**
-	 * Creates a new model.
-	 * If creation is successful, the browser will be redirected to the 'view' page.
+	 * Crea un nuevo usuario desde el menú administrador. Puede crear compradores, empresas y admins.
 	 */
 	public function actionCreate()
 	{
 		$model=new User;
-		
+
 		$this->performAjaxValidation(array($model));
-		
+
 		if(isset($_POST['User']))
 		{
 			/*Desde el menú de admin el admin sólo podrá crear usuarios
-			  con la información mínima(tabla tbl_user)*/
+			 con la información mínima(tabla tbl_user)*/
 			$model->attributes=$_POST['User'];
 			$model->activkey=Yii::app()->controller->module->encrypting(microtime().$model->password);
-			/*$profile->attributes=$_POST['Profile'];
-			$profile->user_id=0;*/
+
 			if($model->validate()) {
 				$model->password=Yii::app()->controller->module->encrypting($model->password);
 				if($model->save()) {
 					//Asignamos el rol dinámicamente
 					$model->setRole();
 					$esEmpresa = Yii::app()->authManager->checkAccess('empresa', $model->id);
-					
+						
 					if($esEmpresa)//(G)Creamos contacto, profile, empresa(si es usuario empresa)
 						$model->crearModelosRelacionados();
 				}
 				$this->redirect(array('view','id'=>$model->id));
 			} else {
-			//	$model->profile->validate();
-			//	$contacto->validate();
+				//	$model->profile->validate();
+				//	$contacto->validate();
 			}
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
-			'profile'=>null,
-			'empresa'=>null,
 			'categorias'=>null,
 			'esEmpresa'=>false,
 			'cuentas'=>null,
-	    	'contacto'=>null,
-			'logo'=>null,
 		));
 	}
 
@@ -134,26 +110,27 @@ class AdminController extends Controller
 	public function actionUpdate()
 	{
 		$this->_model=$this->loadModel();
-        
+
 		$esEmpresa = Yii::app()->authManager->checkAccess('empresa', $this->_model->id);
 
 		if(isset($_POST['User'])){
 
 			$this->_model->attributes=$_POST['User'];
-			
+				
 			if ($esEmpresa){
+				
 				$profile=$this->_model->profile;
 				$empresa=$this->_model->empresa;
-				$contacto=$this->_model->empresa->contacto;
+				$contacto=$this->_model->contacto;
 				$this->performAjaxValidation(array($this->_model,$profile,$empresa,$contacto));
-				
+
 				$profile->attributes=$_POST['Profile'];
 				$empresa->attributes=$_POST['Empresa'];
 				$contacto->attributes=$_POST['Contacto'];
 			}else{
 				$this->performAjaxValidation(array($this->_model));
 			}
-			
+				
 			if($this->_model->validate()) {
 				$old_password = User::model()->notsafe()->findByPk($this->_model->id);
 				if ($old_password->password!=$this->_model->password) {
@@ -166,72 +143,59 @@ class AdminController extends Controller
 					$empresa->save();
 					$contacto->save();
 				}
-				$this->redirect(array('view','id'=>$this->_model->id));
+				$this->redirect(array('admin'));
 			} else {
-				$profile->validate();	
+				$profile->validate();
 			}
 		}
-		
-		//$this->debug($this->_model);
+
 		$this->renderParaUsuario();
 	}
-	
-	public function actionUpdateAjax()
-    {
-        $data = array();
-        $data["myValue"] = "Content updated in AJAX";
- 
-        $this->renderPartial('_ajaxAdminContent', $data, false, true);
-    }
-	
+
 	private function renderParaUsuario(){
-		
+
 		$esEmpresa = Yii::app()->authManager->checkAccess('empresa', $this->_model->id);
-		
+
 		if($esEmpresa)
 			$this->renderParaEmpresa();
 		else
 			$this->renderParaComprador();
 	}
-	
+
 	private function renderParaEmpresa(){
-		
+
 		$cat_model = Category::getCategorias();
 		$categorias = CHtml::listData($cat_model,'id', 'name');
-		
+
 		$cuentas = Cuenta::getCuentas();
 		$cuentas_list = CHtml::listData($cuentas,'id', 'nombre');
-		
+
 		//Para cargar/gestionar el logo
-	 	/*Yii::import("xupload.models.XUploadForm");
-        $logo = new XUploadForm;*/
-        
-        $myValue = "Content loaded";
-        
+		Yii::import("xupload.models.XUploadForm");
+		$image = new XUploadForm;
+
 		$this->render('update',array(
 	    	'model'=>$this->_model,
-			'profile'=>$this->_model->profile,
-			'empresa'=>$this->_model->empresa,
 			'categorias'=>$categorias,
 			'esEmpresa'=>true,
 			'cuentas'=>$cuentas_list,
-	    	'contacto'=>$this->_model->empresa->contacto,
-			//'logo'=>$logo,
-			'myValue'=>$myValue,
-	    ));
+			'image'=>$image,
+		));
 	}
-	
+
 	private function renderParaComprador(){
+		
+		//Para cargar/gestionar el logo
+		Yii::import("xupload.models.XUploadForm");
+		$image = new XUploadForm;
+		
 		$this->render('update',array(
 	    	'model'=>$this->_model,
-			'profile'=>null,
-			'empresa'=>null,
 			'categorias'=>null,
 			'esEmpresa'=>false,
 			'cuentas'=>null,
-	    	'contacto'=>null,
-			'logo'=>null,
-	    ));
+			'image'=>$image,
+		));
 	}
 
 
@@ -245,40 +209,51 @@ class AdminController extends Controller
 		{
 			// we only allow deletion via POST request
 			$model = $this->loadModel();
-			
+				
 			if (Yii::app()->authManager->checkAccess('comprador', Yii::app()->user->id)){
 
 			}elseif(Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id)){
-				$profile = $model->profile;	
-				$contacto=$model->profile->contacto;
+				//(G)Habrá que ver si se borra por sql al ser cascade
+				$profile = $model->profile;
+				$contacto=$model->contacto;
+				$empresa=$model->empresa;
 				$profile->delete();
 				$contacto->delete();
+				$empresa->empresa();
 			}else
-				Yii::app()->user->getFlash("It's not allowed to delete admin users");
-			
-				$model->delete();
+			Yii::app()->user->getFlash("It's not allowed to delete admin users");
+				
+			$model->delete();
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_POST['ajax']))
-				$this->redirect(array('/user/admin'));
+			$this->redirect(array('/user/admin'));
 		}
 		else
-			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+		throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+	}
+
+	public function actionUpdateAjax()
+	{
+		/*$data = array();
+		$data["myValue"] = "Content updated in AJAX";
+
+		$this->renderPartial('_ajaxAdminContent', $data, false, true);*/
 	}
 	
 	/**
-     * Performs the AJAX validation.
-     * @param CModel the model to be validated
-     */
-    protected function performAjaxValidation($validate)
-    {
-        if(isset($_POST['ajax']) && $_POST['ajax']==='user-form')
-        {
-            echo CActiveForm::validate($validate);
-            Yii::app()->end();
-        }
-    }
-	
-	
+	 * Performs the AJAX validation.
+	 * @param CModel the model to be validated
+	 */
+	protected function performAjaxValidation($validate)
+	{
+		if(isset($_POST['ajax']) && $_POST['ajax']==='user-form')
+		{
+			echo CActiveForm::validate($validate);
+			Yii::app()->end();
+		}
+	}
+
+
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
@@ -288,28 +263,28 @@ class AdminController extends Controller
 		if($this->_model===null)
 		{
 			if(isset($_GET['id']))
-				$this->_model=User::model()->notsafe()->findbyPk($_GET['id']);
+			$this->_model=User::model()->notsafe()->findbyPk($_GET['id']);
 			if($this->_model===null)
-				throw new CHttpException(404,'The requested page does not exist.');
+			throw new CHttpException(404,'The requested page does not exist.');
 		}
 		return $this->_model;
 	}
-	
+
 	/* Used to debug variables*/
-    protected function Debug($var){
-        $bt = debug_backtrace();
-        $dump = new CVarDumper();
-        $debug = '<div style="display:block;background-color:gold;border-radius:10px;border:solid 1px brown;padding:10px;z-index:10000;"><pre>';
-        $debug .= '<h4>function: '.$bt[1]['function'].'() line('.$bt[0]['line'].')'.'</h4>';
-        $debug .=  $dump->dumpAsString($var);
-        $debug .= "</pre></div>\n";
-        Yii::app()->params['debugContent'] .=$debug;
-    }
-	
-	
+	protected function Debug($var){
+		$bt = debug_backtrace();
+		$dump = new CVarDumper();
+		$debug = '<div style="display:block;background-color:gold;border-radius:10px;border:solid 1px brown;padding:10px;z-index:10000;"><pre>';
+		$debug .= '<h4>function: '.$bt[1]['function'].'() line('.$bt[0]['line'].')'.'</h4>';
+		$debug .=  $dump->dumpAsString($var);
+		$debug .= "</pre></div>\n";
+		Yii::app()->params['debugContent'] .=$debug;
+	}
+
+
 	/**
 	 * Register Script
-	 * Esta función es para gestionar el jquery de las vistas para que se muestren los cmapos según 
+	 * Esta función es para gestionar el jquery de las vistas para que se muestren los cmapos según
 	 * el valor seleccionado en el combo SuperUser(tipo de usuario). Está copiado y pegado de profileFields.
 	 */
 	public function registerScript() {
@@ -322,14 +297,14 @@ class AdminController extends Controller
 		$cs->registerScriptFile($baseUrl.'/js/jquery-ui.min.js');
 		$cs->registerScriptFile($baseUrl.'/js/form.js');
 		$cs->registerScriptFile($baseUrl.'/js/jquery.json.js');
-		
+
 		$widgets = self::getWidgets();
-		
+
 		$wgByTypes = ProfileField::itemAlias('field_type');
 		foreach ($wgByTypes as $k=>$v) {
 			$wgByTypes[$k] = array();
 		}
-		
+
 		foreach ($widgets[1] as $widget) {
 			if (isset($widget['fieldType'])&&count($widget['fieldType'])) {
 				foreach($widget['fieldType'] as $type) {
@@ -573,6 +548,6 @@ class AdminController extends Controller
 	
 	";
 		$cs->registerScript(__CLASS__.'#dialog', $js);
-	} 
-	
+	}
+
 }

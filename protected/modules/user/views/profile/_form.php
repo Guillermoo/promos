@@ -44,7 +44,6 @@
 		</div>
 	<?php endif; ?>
 	
-	<?php //if (!UserModule::isAdmin()):?>
 	<?php if (Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id) ):?>
 		
 		<div class="fields">
@@ -84,8 +83,6 @@
 				    'attribute'=>'fecha_activacion',
 					'model'=>$profile,
 					'value'=>$profile->fecha_activacion,
-  					//'name' => $model->profile->fecha_activacion,
-					//'name'=>'fecha_activacion',
 				    // additional javascript options for the date picker plugin
 				    'options'=>array(
 						'dateFormat'=>'yy-mm-dd',
@@ -94,21 +91,15 @@
     					'changeYear'=>'true',
 				    	'debug'=>true,
 				    ),
-				    /*'htmlOptions'=>array(
-				        'style'=>'height:20px;'
-				    ),*/
 				));?>
 				<?php echo $form->error($profile,'fecha_activacion'); ?>
-				<?php /*echo $form->textField($model->profile,'fecha_activacion',array('size'=>60,'maxlength'=>128)); */?>
 			</div>
 			<div class="row">
 				<?php echo $form->labelEx($profile,'fecha_fin'); ?>
-				<?php //echo $form->textField($model->profile,'fecha_fin',array('size'=>60,'maxlength'=>128)); ?>
 				<?php $this->widget('zii.widgets.jui.CJuiDatePicker',array(
 				    'attribute'=>'fecha_fin',
 					'model'=>$profile,
 					'value'=>$profile->fecha_fin,
-  					//'name' => $model->profile->fecha_fin,
 				    // additional javascript options for the date picker plugin
 				    'options'=>array(
 						'dateFormat'=>'yy-mm-dd',
@@ -128,7 +119,6 @@
 				    'attribute'=>'fecha_pago',
 					'model'=>$profile,
 					'value'=>$profile->fecha_pago,
-  					//'name' => $model->profile->fecha_pago,
 				    // additional javascript options for the date picker plugin
 				    'options'=>array(
 						'dateFormat'=>'yy-mm-dd',

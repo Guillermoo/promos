@@ -65,7 +65,7 @@
 			<!-- Si es un NOadmin logeado, queremos ver el perfil de un NOadmin --> 
 			<?php if ($esEmpresa):?> 
 				<?php 
-					//echo $this->renderPartial('profile/_form', array('form'=>$form,'profile'=>$profile));
+					$profile = $model->profile;
 				?>
 					<?php $this->widget('bootstrap.widgets.TbLabel', array(
 					    'type'=>'info', // 'success', 'warning', 'important', 'info' or 'inverse'
@@ -134,7 +134,7 @@
 		<tr>
 			<td>
 				<?php 
-					echo $this->renderPartial('/empresa/_form', array('form'=>$form,'empresa'=>$empresa,'categorias'=>$categorias,'cuentas'=>$cuentas,'contacto'=>$contacto,'myValue'=>$myValue));
+					echo $this->renderPartial('/empresa/_form', array('form'=>$form,'model'=>$model,'image'=>$image,'categorias'=>$categorias,'cuentas'=>$cuentas));
 				?>
 			</td>
 		</tr>

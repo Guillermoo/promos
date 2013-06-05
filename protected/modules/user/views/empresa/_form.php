@@ -1,9 +1,5 @@
 <?php echo __FILE__; ?>
-<?php $this->pageTitle=Yii::app()->name . ' - '.UserModule::t("Profile");
-/*$this->breadcrumbs=array(
-	UserModule::t("Profile"),
-);*/
-?>
+<?php $this->pageTitle=Yii::app()->name . ' - '.UserModule::t("Profile");?>
 <h1><?php echo UserModule::t('Your company'); ?></h1>
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'empresa-form',
@@ -23,7 +19,7 @@
 	<?php //echo $form->dropDownListRow($empresa->cuenta, 'id', $cuentas); ?>
 	
 	<?php if (Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id) ):?>
-		<?php echo $form->errorSummary(array($model)); ?>
+		<?php echo $form->errorSummary(array($model->empresa)); ?>
 	<?php endif;?>
 	<?php $this->widget('bootstrap.widgets.TbLabel', array(
 	    'type'=>'info', // 'success', 'warning', 'important', 'info' or 'inverse'
@@ -39,10 +35,10 @@
 
 	<div class="row">
 	<?php //$this->debug($model->empresa->item)?>
-		<?php if (isset($empresa->item)):?>
-		<?php 
-			$imghtml=CHtml::image(Yii::app( )->getBaseUrl( ).$empresa->item->path);
-			echo CHtml::link($imghtml);?>
+		<?php if (isset($model->item)):?>
+			<?php 
+				$imghtml=CHtml::image(Yii::app( )->getBaseUrl( ).$model->item->path);
+				echo CHtml::link($imghtml);?>
 		<?php else:?>
             <?php
 				$this->widget('xupload.XUpload', array(
@@ -65,9 +61,11 @@
 				));
 			?>
 			<?php endif;?>
-		<?php echo $form->error($empresa,'logo_id'); ?>
+		<?php //echo $form->error($empresa,'logo_id'); ?>
 	</div>
 
+	<?php $empresa = $model->empresa;?>
+	
 	<div class="row">
 		<?php echo $form->labelEx($empresa,'cif'); ?>
 		<?php echo $form->textField($empresa,'cif',array('size'=>9,'maxlength'=>9)); ?>
@@ -98,12 +96,12 @@
 		<?php echo $form->error($empresa,'urlTienda'); ?>
 	</div>
 	<div class="row">
-    	<?php $this->renderPartial('/layouts/_contacto',array('form'=>$form,'contacto'=>$contacto) );?>
+    	<?php $this->renderPartial('/layouts/_contacto',array('form'=>$form,'contacto'=>$model->contacto) );?>
 	</div>
 
-	<!-- <div class="row buttons">
-		<?php //echo CHtml::submitButton('Save'); ?>
-	</div> -->
+	<div class="row buttons">
+		<?php echo CHtml::submitButton('Save'); ?>
+	</div>
 </fieldset>
 
 <?php $this->endWidget(); ?>

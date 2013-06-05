@@ -105,6 +105,8 @@ class User extends CActiveRecord
         if (Yii::app()->authManager->checkAccess('empresa', $id))
             $relations['empresa'] = array(self::HAS_ONE, 'Empresa', 'user_id');
             $relations['profile'] = array(self::HAS_ONE, 'Profile', 'user_id');
+            $relations['item'] = array(self::HAS_ONE, 'Item', 'foreign_id');
+            $relations['contacto'] = array(self::HAS_ONE, 'Contacto', 'user_id');
         return $relations;
 	}
 
@@ -262,51 +264,37 @@ class User extends CActiveRecord
 
 		if ($this->superuser == 2){//Es un usuario-empresa
 			$this->crearNuevoProfileParaElUsuario();
-			//Primero creamos el contacto para obtener su id y guardarlo en empresa
 			$this->crearNuevaEmpresaParaElUsuario();
+			$this->crearNuevoContactoParaElUsuario();
 		}
 	}
 	
-	//Primero creamos el contacto para obtener su id y guardarlo en profil
-	public function crearNuevoProfileParaElUsuario(){
-		$this->creaProfileVacio();
-	}
-	
-	public function crearNuevaEmpresaParaElUsuario(){
-		$id_contactoempresa = $this->creaContactoVacia();//Contacto para la empresa
-		$this->creaEmpresaVacia($id_contactoempresa);
-	}
-	
-	private function creaProfileVacio(){
+	private function crearNuevoProfileParaElUsuario(){
 		
 		$profile=new Profile;
 		/*(G)Creamos el perfil con el id del nuevo usuario. Al ser creado desde el admin sólo hay
 		que crear el usuario, no los datos del perfil o contacto, eso ya lo hará el usuario(o el admin desde update.*/
 		$profile->user_id=$this->id;
 		//$profile->contacto_id = $contacto_id;
-		//$this->debug($this->id);
 		$profile->save();
 		$this->debug($profile->getErrors());
 	}
 	
-	private function creaEmpresaVacia($contacto_id){
+	private function crearNuevaEmpresaParaElUsuario(){
 		
 		$empresa= new Empresa;
 		$empresa->user_id = $this->id;
-		$empresa->contacto_id = $contacto_id;
 		$empresa->cuenta_id = 1;//Habría que pasarle la variable con el valor que ha elegido el admin
 		$empresa->save();
 		
 	}
 	
-	private function creaContactoVacia(){
+	private function crearNuevoContactoParaElUsuario(){
 		
 		$contacto = new Contacto;
+		$contacto->user_id = $this->id;
 		$contacto->save();
 		
-		//$this->debug($contacto->id);
-		//echo Yii::trace(CVarDumper::dumpAsString($contacto->id),'vardump');
-		return $contacto->id;
 		/*$profile->tipocuenta=; (G)FALTA ASIGNAR VALORES AUTOMÁTICOS
 		$profile->fecha_creacion=;*/
 			

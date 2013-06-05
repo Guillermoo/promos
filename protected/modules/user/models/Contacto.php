@@ -65,9 +65,9 @@ class Contacto extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			//'user' => array(self::BELONGS_TO, 'Users', 'user_id'),
-			'profile' => array(self::BELONGS_TO, 'Profile', 'id'),
-			'empresa'=>array(self::BELONGS_TO, 'Empresa', 'id'),
+			'user' => array(self::BELONGS_TO, 'User', 'id'),
+			//'profile' => array(self::BELONGS_TO, 'Profile', 'id'),
+			//'empresa'=>array(self::BELONGS_TO, 'Empresa', 'id'),
 		);
 	}
 

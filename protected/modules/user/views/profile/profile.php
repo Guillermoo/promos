@@ -11,13 +11,6 @@
 </div>
 <?php endif; ?>
 
-<?php /*$form=$this->beginWidget('CActiveForm', array(
-	'id'=>'profile-form',
-	'enableAjaxValidation'=>true,
-	'action'=>'profile/edit',
-	'htmlOptions' => array('enctype'=>'multipart/form-data')
-));*/
-?>
 <?php if(Yii::app()->user->hasFlash('profileMessage')): ?>
 <div class="success">
 	<?php echo Yii::app()->user->getFlash('profileMessage'); ?>
@@ -37,16 +30,3 @@
 		)); ?>
  	<?php endif;?>
  	
-	<!-- <div class="form-actions">
-	    <?php /*$this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'label'=>'Submit')); ?>
-	    <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'reset', 'label'=>'Reset'));*/ ?>
-	</div>-->
-  
-<?php //$this->endWidget(); ?>
-
-	
-	
-	
-	<?php //$this->endWidget(); ?>	
-	
-

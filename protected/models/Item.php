@@ -78,6 +78,7 @@ class Item extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			//'empresas' => array(self::HAS_MANY, 'Empresas', 'logo_id'),
+			'usuario' => array(self::BELONGS_TO, 'Usuarios', 'foreign_id'),
 		);
 	}
 
