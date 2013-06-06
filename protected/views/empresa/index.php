@@ -6,7 +6,7 @@ $this->breadcrumbs=array(
 	'Empresas',
 );
 
-$this->layout = "empresa_column3";
+$this->layout='//layouts/user_column2';
 
 $this->menu=array(
 	array('label'=>'Create Empresa', 'url'=>array('create')),

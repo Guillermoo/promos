@@ -6,9 +6,10 @@
 	<meta name="language" content="en" />
 
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/cierzodevs.css" />
 	<link media="screen" rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/main.css"  />
-    <link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/_bootstrap.css">
+    <link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/_bootstrap-responsive.min.css">
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 
 	<?php Yii::app()->bootstrap->register(); ?>
@@ -36,7 +37,20 @@
 ));*/ ?>
 
 <div class="container" id="page">
-	
+	<!-- menu horizontal -->
+	<div id="mainmenu">
+		<?php $this->widget('zii.widgets.CMenu',array(
+			'items'=>array(
+				array('label'=>'Home', 'url'=>array('/site/index')),				
+				array('label'=>'Contact', 'url'=>array('/site/contact')),
+				/*array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)*/	
+				array('url'=>Yii::app()->getModule('user')->profileUrl, 'label'=>Yii::app()->getModule('user')->t("Profile"), 'visible'=>!Yii::app()->user->isGuest),
+				array('url'=>Yii::app()->getModule('user')->logoutUrl, 'label'=>Yii::app()->getModule('user')->t("Logout").' ('.Yii::app()->user->name.')', 'visible'=>!Yii::app()->user->isGuest),
+			),
+		)); ?>
+	</div><!-- mainmenu -->
+	<!-- --------------- -->
 	<?php //if(isset($this->breadcrumbs)):?>
 		<?php /*$this->widget('bootstrap.widgets.TbBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,
@@ -46,7 +60,7 @@
 
 	<?php echo $content; ?>
 
-	<div class="clear"></div>
+	<div class="clearfix">&nbsp;</div>
 
 	<div id="footer">
 		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
