@@ -26,12 +26,18 @@ $('.search-form form').submit(function(){
 )); ?>
 </div><!-- search-form -->
 
+<?php $this->widget('application.extensions.flash.Flash', array(
+    'keys'=>array('success','error'), 
+    'htmlOptions'=>array('id'=>'flash'),
+)); ?><!-- flashes -->
+    
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
 	'id'=>'user-grid',
+	'ajaxUpdate' => 'flash',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
-	'type'=>'condensed',
-	'enableSorting' => false,
+	'type'=>'striped',
+	'enableSorting' => true,
 	'columns'=>array(
 		array(
 			'name' => 'id',
@@ -42,15 +48,47 @@ $('.search-form form').submit(function(){
 		array(
 			'name' => 'username',
 			'type'=>'raw',
-			'value' => 'CHtml::link(UHtml::markSearch($data,"username"),array("admin/view","id"=>$data->id))',
+			'value' => 'CHtml::link(UHtml::markSearch($data,"username"),array("admin/update","id"=>$data->id))',
 		),
 		array(
 			'name'=>'email',
 			'type'=>'raw',
 			'value'=>'CHtml::link(UHtml::markSearch($data,"email"), "mailto:".$data->email)',
 		),
-		'create_at',
-		'lastvisit_at',
+		array(
+			'name'=>'create_at',
+			'type'=>'raw',
+			//'value' => Yii::app()->format->date(strtotime($model->create_at)),
+			//'value' => Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse($model->create_at, 'yyyy-MM-dd'),'medium',null),
+			//'value' => date("yy/mm/dd",strtotime($model->create_at)),
+			'filter'=>$this->widget('zii.widgets.jui.CJuiDatepicker', 
+				array(
+					'model'=>$model, 
+					'attribute'=>'create_at', 
+					'htmlOptions' => array('id' => 'create_at_search'), 
+					'options' => array(
+							'dateFormat' => 'yy-mm-dd',
+							'constrainInput' => 'true',
+							//'showButtonPanel' => 'true',
+							'duration'=>'fast',
+							'showAnim'=>'fold','changeMonth'=>'true', 
+	    					'changeYear'=>'true',)), true)
+	    ),
+
+		//'lastvisit_at',
+		array(
+			'name'=>'lastvisit_at',
+			'type'=>'raw',
+			'filter'=>$this->widget('zii.widgets.jui.CJuiDatepicker', 
+				array(
+					'model'=>$model, 
+					'attribute'=>'lastvisit_at', 
+					'htmlOptions' => array('id' => 'lastvisit_at_search'), 
+					'options' => array(
+							'dateFormat' => 'yy-mm-dd',
+							'showAnim'=>'fold','changeMonth'=>'true', 
+	    					'changeYear'=>'true',)), true)
+	    ),
 		array(
 			'name'=>'superuser',
 			'value'=>'User::itemAlias("AdminStatus",$data->superuser)',
@@ -63,6 +101,7 @@ $('.search-form form').submit(function(){
 		),
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
+			'template'=>'{update} {delete}',
 			'htmlOptions'=>array('style'=>'width: 50px'),
 		),
 	),

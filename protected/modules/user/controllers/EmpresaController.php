@@ -109,9 +109,9 @@ class EmpresaController extends Controller
 	    ) );
 	}
 	
-	public function actionForm( ) {
+	/*public function actionForm( ) {
 	    /*$model = new SomeModel;
-	    Yii::import( "xupload.models.XUploadForm" );*/
+	    Yii::import( "xupload.models.XUploadForm" );
 	    $photos = new Item;
 	    //Check if the form has been submitted
 	    if( isset( $_POST['Item'] ) ) {
@@ -133,13 +133,13 @@ class EmpresaController extends Controller
 	        //'model' => $model,
 	        'photos' => $photos,
 	    ) );
-	}
+	}*/
 
 	public function actionEdit()
 		{
 			$model = $this->loadUser();
 			$empresa=$model->empresa;
-			$contacto=$model->empresa->contacto;
+			$contacto=$model->contacto;
 			
 			$cuentas = Cuenta::getCuentas();
 			$cuentas_list = CHtml::listData($cuentas,'id', 'nombre');

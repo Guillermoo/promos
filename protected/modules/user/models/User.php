@@ -5,7 +5,7 @@ class User extends CActiveRecord
 	const STATUS_NOACTIVE=0;
 	const STATUS_ACTIVE=1;
 	const STATUS_BANNED=-1;
-	const ID_SUPERADMIN=-1;
+	const ID_SUPERADMIN=1;
 	const ID_COMPRADOR=0;
 	const ID_ADMIN=1;
 	const ID_EMPRESA=2;
@@ -89,14 +89,6 @@ class User extends CActiveRecord
 	public function relations()
 	{
         $relations = Yii::app()->getModule('user')->relations;
-        /*if (!isset($relations['profile']))
-            $relations['profile'] = array(self::HAS_ONE, 'Profile', 'user_id');
-       if (Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id))
-            $relations['empresa'] = array(self::HAS_ONE, 'Empresa', 'user_id');*/
-        /*if (!isset($relations['contacto']))
-            $relations['contacto'] = array(self::HAS_ONE, 'Contacto', 'id');*/
-        //if (!isset($relations['profile']))
-        //$relations['profile'] = array(self::HAS_ONE, 'Profile', 'user_id');
         if(isset($_GET['id']))
 			$id=$_GET['id'];
 		else
@@ -123,11 +115,10 @@ class User extends CActiveRecord
 			'email'=>UserModule::t("E-mail"),
 			'verifyCode'=>UserModule::t("Verification Code"),
 			'activkey' => UserModule::t("activation key"),
-			'createtime' => UserModule::t("Registration date"),
+			//'createtime' => UserModule::t("Registration date"),
 			'create_at' => UserModule::t("Registration date"),
-			
 			'lastvisit_at' => UserModule::t("Last visit"),
-			'superuser' => UserModule::t("Superuser"),
+			'superuser' => UserModule::t("User type"),
 			'status' => UserModule::t("Status"),
 		);
 	}
@@ -137,6 +128,9 @@ class User extends CActiveRecord
         return array(
             'active'=>array(
                 'condition'=>'status='.self::STATUS_ACTIVE,
+            ),
+            'MuestraEnIndex'=>array(
+                'condition'=>'id!='.self::ID_SUPERADMIN,
             ),
             'notactive'=>array(
                 'condition'=>'status='.self::STATUS_NOACTIVE,
@@ -203,7 +197,7 @@ class User extends CActiveRecord
         $criteria->compare('lastvisit_at',$this->lastvisit_at);
         $criteria->compare('superuser',$this->superuser);
         $criteria->compare('status',$this->status);
-        //$criteria->condition = ('id != '. User::ID_SUPERADMIN . ''); /*Para que no se muestre el superuser!!!!*/
+        //$criteria->condition = array('condition'=>'id > '. User::ID_SUPERADMIN . ''); /*Para que no se muestre el superuser!!!!*/
 
         return new CActiveDataProvider(get_class($this), array(
             'criteria'=>$criteria,

@@ -23,6 +23,7 @@ return array(
         'application.modules.rights.components.*',
 		'ext.giix-components.*', // giix components
 		'ext.mailer.*',
+		'ext.flash',
 	),
 	'aliases' => array(
 	    //If you manually installed it

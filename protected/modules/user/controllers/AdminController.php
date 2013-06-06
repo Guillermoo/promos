@@ -88,7 +88,7 @@ class AdminController extends Controller
 					if($esEmpresa)//(G)Creamos contacto, profile, empresa(si es usuario empresa)
 						$model->crearModelosRelacionados();
 				}
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('admin'));
 			} else {
 				//	$model->profile->validate();
 				//	$contacto->validate();
@@ -143,7 +143,7 @@ class AdminController extends Controller
 					$empresa->save();
 					$contacto->save();
 				}
-				$this->redirect(array('admin'));
+				$this->redirect(array('update', 'id'=>$this->_model->id));
 			} else {
 				$profile->validate();
 			}
@@ -210,23 +210,26 @@ class AdminController extends Controller
 			// we only allow deletion via POST request
 			$model = $this->loadModel();
 				
-			if (Yii::app()->authManager->checkAccess('comprador', Yii::app()->user->id)){
-
-			}elseif(Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id)){
-				//(G)Habrá que ver si se borra por sql al ser cascade
-				$profile = $model->profile;
-				$contacto=$model->contacto;
-				$empresa=$model->empresa;
-				$profile->delete();
-				$contacto->delete();
-				$empresa->empresa();
-			}else
-			Yii::app()->user->getFlash("It's not allowed to delete admin users");
-				
-			$model->delete();
-			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-			if(!isset($_POST['ajax']))
-			$this->redirect(array('/user/admin'));
+			if (Yii::app()->authManager->checkAccess('admin', $model->id) || Yii::app()->authManager->checkAccess('superadmin', $model->id)){
+				 Yii::app()->user->setFlash('error',"It's not allowed to delete admin users");
+			}else{
+				try{
+					$model->delete();
+				    if(!isset($_GET['ajax']))
+				        Yii::app()->user->setFlash('success','Normal - Deleted Successfully');
+				    else
+				        echo "<div class='flash-success'>Ajax - Deleted Successfully</div>";
+					}catch(CDbException $e){
+					    if(!isset($_GET['ajax']))
+					        Yii::app()->user->setFlash('error','Normal - error message');
+					    else
+					        echo "<div class='flash-error'>Ajax - error message</div>"; //for ajax
+					}
+					
+					// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+					if(!isset($_POST['ajax']))
+						$this->redirect(array('/user/admin'));
+			}
 		}
 		else
 		throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');

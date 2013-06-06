@@ -1,3 +1,5 @@
+<?php echo __FILE__; ?>
+</br>
 <?php $this->widget('bootstrap.widgets.TbLabel', array(
     'type'=>'info', // 'success', 'warning', 'important', 'info' or 'inverse'
     'label'=>'Contacto empresa',

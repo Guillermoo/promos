@@ -3,7 +3,7 @@
 <h1><?php echo UserModule::t('Your company'); ?></h1>
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'empresa-form',
-	'enableAjaxValidation'=>false,
+	'enableAjaxValidation'=>true,
 	//'type'=>'horizontal',
 	'action'=>'empresa/edit',
 	'htmlOptions' => array('enctype'=>'multipart/form-data')

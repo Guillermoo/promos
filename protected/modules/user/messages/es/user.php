@@ -42,6 +42,7 @@ return array(
     'Registration date' => "Fecha de registro",
     'Last visit' => 'Última visita',
     'Superuser' => 'Superusuario',
+	'User type' => 'Tipo de usuario',
     'Status' => 'Estado',
     'Ok' => "Aceptar",
 	'Show all'=> 'Mostrar todas las',
