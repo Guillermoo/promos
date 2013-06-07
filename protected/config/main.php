@@ -163,8 +163,7 @@ return array(
 				// uncomment the following to show log messages on web pages
 				array(
                     'class' => 'CFileLogRoute',
-					'logFile'=>'trace.log',
-                    'levels' => 'error, trace,warning, info',
+                    'levels' => 'error, warning, info',
                     'categories'=>'system.*',
                 ),
 				array(
@@ -174,7 +173,11 @@ return array(
 					//'filter'=>'CLogFilter',
 					'categories'=>'vardump',
 					'showInFireBug'=>true
-				),				
+				),
+				array(
+	                'class'=>'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
+	                'ipFilters'=>array('127.0.0.1','192.168.1.215'),
+	            ),
 			),
 		),
 	),
