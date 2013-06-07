@@ -9,7 +9,6 @@
 	'htmlOptions' => array('enctype'=>'multipart/form-data')
 ));
 ?>
-
 		
 <fieldset>
 
@@ -27,14 +26,18 @@
 	)); ?>
 	
 	<div class="row"><!-- HAy que mostrar las categorías a las que pertenece pero no dejar editar -->
-		<?php //echo $form->labelEx($empresa,'categoria_id'); ?>
-		<?php /*echo $form->dropDownListRow($empresa, 'contacto_id', $categorias, array('multiple'=>true)); ?>
-		<?php echo $form->checkBoxListRow($empresa, 'contacto_id', $categorias, array('hint'=>'<strong>Note:</strong> Choose only two categories.')); ?>
-		<?php echo $form->error($empresa,'contacto_id');*/ ?>
+		<!-- (G)De moment lo dejo así, ya se me ocurrirá algo mejor -->
+		<?php echo $form->labelEx($model->empresa,'categoria_id'); ?>
+		<?php echo "Categorías a las que pertenece: "?><br>
+		<?php foreach ($model->empresa->categoria as $miCat):?>
+			<b><?php echo $miCat->name;?></b><br>
+		<?php endforeach;?>
+		<?php //echo $form->dropDownListRow($empresa, 'contacto_id', $categorias, array('multiple'=>true)); ?>
+		<?php //echo $form->checkBoxListRow($listCat, 'id', array($categorias), array('hint'=>'<strong>Note:</strong> Labels surround all the options for much larger click areas.')); ?>
+		<?php //echo $form->error($empresa,'contacto_id'); ?>
 	</div>
-
+	<?php //$this->debug($model); ?>
 	<div class="row">
-	<?php //$this->debug($model->empresa->item)?>
 		<?php if (isset($model->item)):?>
 			<?php 
 				$imghtml=CHtml::image(Yii::app( )->getBaseUrl( ).$model->item->path);

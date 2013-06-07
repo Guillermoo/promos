@@ -42,7 +42,7 @@ class Category extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'category';
+		return 'tbl_categoria';
 	}
 
 	/**
@@ -137,8 +137,8 @@ class Category extends CActiveRecord
 
 		return $categorias;
 	}
-
-  public static function printULTree(){
+	
+  	public static function printULTree(){
      $categories=Category::model()->findAll(array('order'=>'root,lft'));
      $level=0;
 
@@ -161,20 +161,20 @@ class Category extends CActiveRecord
 	    }
 	
 	    echo CHtml::openTag('li',array('id'=>'node_'.$category->id,'rel'=>$category->name));
-	      echo CHtml::openTag('a',array('href'=>'#'));
+      	echo CHtml::openTag('a',array('href'=>'#'));
 	    echo CHtml::encode($category->name);
-	      echo CHtml::closeTag('a');
+      	echo CHtml::closeTag('a');
 	
 	    $level=$category->level;
-	}
+		}
+	
+		for($i=$level;$i;$i--)
+		{
+		    echo CHtml::closeTag('li')."\n";
+		    echo CHtml::closeTag('ul')."\n";
+		}
 
-	for($i=$level;$i;$i--)
-	{
-	    echo CHtml::closeTag('li')."\n";
-	    echo CHtml::closeTag('ul')."\n";
 	}
-
-}
 
 	public static  function printULTree_noAnchors(){
 	    $categories=Category::model()->findAll(array('order'=>'lft'));
@@ -207,4 +207,6 @@ class Category extends CActiveRecord
 		        }
 		
 		}
-	}
+	
+
+}

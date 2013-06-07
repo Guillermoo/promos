@@ -134,6 +134,31 @@ class EmpresaController extends Controller
 	        'photos' => $photos,
 	    ) );
 	}*/
+	
+	public function actionMisdebugs(){
+		
+		$model = $this->loadUser();
+	 	
+		$cat_model = Category::getCategorias();
+		$categorias = CHtml::listData($cat_model,'id', 'name');
+		
+		$listCat = array();
+		foreach($categorias as $cat){
+			//$listCat = array('label'=>$cat);
+			array_push($listCat, $cat);
+		}
+		//$this->debug($listCat);
+	 	$misCategorias = $model->empresa->categoria;
+		
+	 	//$this->debug($misCategorias);
+		$this->render( 'misdebugs', array(
+	        'model' => $model,
+			'misCat' => $misCategorias,
+			'listCat' => $listCat,
+			'categorias' => $categorias,
+	    ) );
+	    
+	}
 
 	public function actionEdit()
 		{

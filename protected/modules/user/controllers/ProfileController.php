@@ -165,13 +165,6 @@ public function getTabularFormTabs($model,$categorias,$cuentas)
 	    $tabs = array();
 	    $count = 0;
 	    
-		/*if (isset($model->item))
-			$image = $model->item;*/
-		//else
-	   	/*else{
-	   	
-	   	}*/
-     	
 	    Yii::import("xupload.models.XUploadForm");
         $image = new XUploadForm;
 

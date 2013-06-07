@@ -19,7 +19,10 @@
 <div class="container" id="page">
 	
 	<?php echo __FILE__; ?>
-
+	<!-- Para debugear como en cake -->
+	<?php if(!empty(Yii::app()->params['debugContent'])):?>
+                <?php echo Yii::app()->params['debugContent'];?>
+	<?php endif;?>
 	<?php echo $content; ?>
 
 	<div class="clear"></div>
