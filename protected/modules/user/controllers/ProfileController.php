@@ -9,6 +9,8 @@ class ProfileController extends Controller
 	public $layout='//layouts/column2';
 	public $defaultAction = 'profile';
 	
+	public $stateVariable = 'xuploadFiles';
+	
 	/**
 	 * @var CActiveRecord the currently loaded data model instance.
 	 */
@@ -32,90 +34,24 @@ class ProfileController extends Controller
 	public function actionProfile()
 	{
 		$this->_model = $this->loadUser();
+		
 		if (UserModule::isAdmin())
 			$this->renderParaAdmin();
 		else
 		 	$this->renderParaUsuario();
 	}
 	
-	public function getTabularFormTabs($model,$categorias,$cuentas,$logo)
+	
+	
+	public function actionError()
 	{
-	    $tabs = array();
-	    $count = 0;
-	    //foreach (array('pro'=>'Profile', 'com'=>'Company', 'prom'=>'Promotions') as $locale => $language)
-	    //{
-	    if(Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id)){
-	        $tabs[0] = array(
-	            'active'=>0,
-	            'label'=>'Profile',
-	            'content'=>$this->renderPartial('_form', array('model'=>$model, 'profile'=>$model->profile), true),
-	        );
-	        $tabs[1] = array(
-	            'active'=>1,
-	            'label'=>'Company',
-	            'content'=>$this->renderPartial('/empresa/_form', array('model'=>$model, 'profile'=>$model->profile, 'empresa'=>$model->empresa, 'contacto'=>$model->empresa->contacto, 'categorias'=>$categorias, 'cuentas'=>$cuentas, 'logo'=>$logo), true),
-	        );
-	    }
-        /*$tabs[2] = array(
-            'active'=>2,
-            'label'=>'Promotions',
-            'content'=>$this->renderPartial('_form', array('model'=>$model, 'profile'=>$model->profile), true),
-        );*/
-	    //}
-	    return $tabs;
-	}
-	
-	private function renderParaAdmin(){
-		$this->render('profile',array(
-	    	'model'=>$this->_model,
-			//'profile'=>$this->_model->profile,
-	    ));
-	}
-	
-	private function renderParaUsuario(){
-		
-		$esEmpresa = Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id);
-		
-		if($esEmpresa)
-			$this->renderParaEmpresa();
-		else
-			$this->renderParaComprador();
-	}
-	
-	private function renderParaEmpresa(){
-		
-		$cuentas = Cuenta::getCuentas();
-		$cuentas_list = CHtml::listData($cuentas,'id', 'nombre');
-		
-		//Obtenemos todas las categorías con nivel 2(suponiendo que no hay subcategorías
-		$cat_model = Category::getCategorias();
-		$categorias = CHtml::listData($cat_model,'id', 'name');
-		
-		//Para cargar/gestionar el logo
-	 	Yii::import("xupload.models.XUploadForm");
-        $logo = new XUploadForm;
-        
-		$this->render('profile',array(
-	    	'model'=>$this->_model,
-			'profile'=>$this->_model->profile,
-			'empresa'=>$this->_model->empresa,
-			'categorias'=>$categorias,
-			'cuentas'=>$cuentas,
-	    	'contacto'=>$this->_model->empresa->contacto,
-			'logo'=>$logo,
-	    ));
-	}
-	
-	private function renderParaComprador(){
-		$this->render('profile',array(
-	    	'model'=>$this->_model,
-			'profile'=>null,
-			'empresa'=>null,
-			'categorias'=>null,
-			'cuentas'=>null,
-	    	'contacto'=>null,
-			'logo'=>null,
-	    ));
+	 if($error=Yii::app()->errorHandler->error)
+	 {
+	        if(Yii::app()->request->isAjaxRequest)
+	                echo $error['message'];
+	        else
+	        $this->render('error', $error);
+	 }
 	}
 
 	/**
@@ -123,15 +59,15 @@ class ProfileController extends Controller
 	 * This method is used by the 'accessControl' filter.
 	 * @return array access control rules
 	 */
-	/*public function accessRules()
+	public function accessRules()
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','updateAjax','profile'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','edit'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -142,7 +78,7 @@ class ProfileController extends Controller
 				'users'=>array('*'),
 			),
 		);
-	}*/
+	}
 
 	/**
 	 * Displays a particular model.
@@ -154,7 +90,7 @@ class ProfileController extends Controller
 			'model'=>$this->loadModel($id),
 		));
 	}
-
+	
 	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
@@ -177,31 +113,7 @@ class ProfileController extends Controller
 			'model'=>$model,
 		));
 	}
-
-	/**
-	 * Updates a particular model.
-	 * If update is successful, the browser will be redirected to the 'view' page.
-	 * @param integer $id the ID of the model to be updated
-	 */
-	/*public function actionUpdate($id)
-	{
-		$model=$this->loadModel($id);
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['Profile']))
-		{
-			$model->attributes=$_POST['Profile'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->user_id));
-		}
-
-		$this->render('update',array(
-			'model'=>$model,
-		));
-	}
-*/
+    
 	/**
 	 * Deletes a particular model.
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
@@ -215,7 +127,6 @@ class ProfileController extends Controller
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
-	
 	
 	public function actionEdit()
 		{
@@ -246,6 +157,120 @@ class ProfileController extends Controller
 				'profile'=>$profile ,
 			));
 		}
+		
+		
+public function getTabularFormTabs($model,$categorias,$cuentas)
+	{
+		
+	    $tabs = array();
+	    $count = 0;
+	    
+	    Yii::import("xupload.models.XUploadForm");
+        $image = new XUploadForm;
+
+	    if(Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id)){
+	        $tabs[0] = array(
+	            'active'=>1,
+	            'label'=>'Welcome',
+	            'content'=>$this->renderPartial('/layouts/_welcome', array(), true),
+	        );
+	    	$tabs[1] = array(
+	            'active'=>0,
+	            'label'=>'Profile',
+	            'content'=>$this->renderPartial('_form', array('model'=>$model, 'profile'=>$model->profile), true),
+	        );
+	        $tabs[2] = array(
+	            'active'=>0,
+	            'label'=>'Company',
+	            'content'=>$this->renderPartial('/empresa/_form', array('model'=>$model,'categorias'=>$categorias, 'cuentas'=>$cuentas, 'image'=>$image), true),
+	        );
+	        $tabs[3] = array(
+	            'active'=>0,
+	            'label'=>'Promotions',
+	            'content'=>$this->renderPartial('/layouts/_welcome', array('model'=>$model,'categorias'=>$categorias, 'cuentas'=>$cuentas, 'image'=>$image), true),
+	        );
+	    }
+	    return $tabs;
+	}
+	
+	private function renderParaAdmin(){
+		$this->render('profile',array(
+	    	'model'=>$this->_model,
+			//'profile'=>$this->_model->profile,
+	    ));
+	}
+	
+	private function renderParaUsuario(){
+		
+		$esEmpresa = Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id);
+		
+		if($esEmpresa)
+			$this->renderParaEmpresa();
+		else
+			$this->renderParaComprador();
+	}
+	
+	private function getImage($img,$logo){
+			
+			//$img = new XUploadForm;
+			//$img->model = $logo->tipo;
+			$img->name = $logo->name;
+	        $img->mime_type = $logo->tipo;
+	        //$img->type = $logo->mime_type;
+	        $img->file = $logo->path;
+	        
+	        //$img->url = $logo->path;
+	        $img->filename = $logo->filename;
+	        $img->size = $logo->size;
+	        //$img->delete_type = 'POST';
+	        /*0: {name:1920x1080_HD_Wallpaper_124_zixpkcom.jpg, type:image/jpeg, size:127936,…}
+			delete_type: "POST"
+			delete_url: "/promos/item/upload?_method=delete&file=5c8081f28c55d6da66ed22feca2d8bcd.jpg"
+			name: "1920x1080_HD_Wallpaper_124_zixpkcom.jpg"
+			size: 127936
+			thumbnail_url: "/promos/uploads/images/tmp/thumbs/5c8081f28c55d6da66ed22feca2d8bcd.jpg"
+			type: "image/jpeg"
+			url: "/promos/uploads/images/tmp/5c8081f28c55d6da66ed22feca2d8bcd.jpg"*/
+
+	        return $img;
+	        
+		}
+	
+	private function renderParaEmpresa(){
+		
+		$cuentas = Cuenta::getCuentas();
+		$cuentas_list = CHtml::listData($cuentas,'id', 'nombre');
+		
+		//Obtenemos todas las categorías con nivel 2(suponiendo que no hay subcategorías
+		$cat_model = Category::getCategorias();
+		$categorias = CHtml::listData($cat_model,'id', 'name');
+
+		/*$myImg = $this->setImage();
+		
+		Yii::import("xupload.models.XUploadForm");
+        $image = new XUploadForm;*/
+		$image = new Item;
+        
+		$this->render('profile',array(
+	    	'model'=>$this->_model,
+			'categorias'=>$categorias,
+			'cuentas'=>$cuentas,
+			'image'=>$image,
+			//'myImg'=>$myImg,
+	    ));
+	}
+	
+	private function renderParaComprador(){
+		$this->render('profile',array(
+	    	'model'=>$this->_model,
+			'profile'=>null,
+			'empresa'=>null,
+			'categorias'=>null,
+			'cuentas'=>null,
+	    	'contacto'=>null,
+			'logo'=>null,
+	    ));
+	}
 
 	/**
 	 * Lists all models.

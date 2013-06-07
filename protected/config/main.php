@@ -23,6 +23,7 @@ return array(
         'application.modules.rights.components.*',
 		'ext.giix-components.*', // giix components
 		'ext.mailer.*',
+		'ext.flash',
 	),
 	'aliases' => array(
 	    //If you manually installed it
@@ -185,5 +186,6 @@ return array(
 		// this is used in contact page
 		'debugContent'=>'',
 		'adminEmail'=>'grillermo@gmail.com',
+		'img_default'=>'/img/noprofile.jpg',
 	),
 );

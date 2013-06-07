@@ -21,6 +21,16 @@
  */
 class Item extends CActiveRecord
 {
+
+	public $file;
+	
+		/**
+         * @var boolean dictates whether to use sha1 to hash the file names
+         * along with time and the user id to make it much harder for malicious users
+         * to attempt to delete another user's file
+        */
+        public $secureFileNames = false;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -47,7 +57,7 @@ class Item extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name,tipo,filename,size, thumb, path, foreign_id, model', 'required'),
+			array('name,tipo,filename,size, thumb, path,attribute, foreign_id, model', 'required'),
 			array('thumb', 'numerical', 'integerOnly'=>true),
 			array('tipo', 'length', 'max'=>12),
 			array('name, filename, path', 'length', 'max'=>255),
@@ -55,7 +65,7 @@ class Item extends CActiveRecord
 			array('model', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, tipo,size , name, thumb, filename, path, foreign_id, model, created, modified', 'safe', 'on'=>'search'),
+			array('id, tipo,size , name, thumb, filename, path, foreign_id, model,attribute, created, modified', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,6 +78,7 @@ class Item extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			//'empresas' => array(self::HAS_MANY, 'Empresas', 'logo_id'),
+			'usuario' => array(self::BELONGS_TO, 'Usuarios', 'foreign_id'),
 		);
 	}
 
@@ -125,6 +136,22 @@ class Item extends CActiveRecord
 	    parent::afterSave( );
 	}*/
 	 
+		/**
+         * Change our filename to match our own naming convention
+        * @return bool
+        */
+        public function beforeValidate() {
+
+            //(optional) Generate a random name for our file to work on preventing
+            // malicious users from determining / deleting other users' files
+            if($this->secureFileNames)
+            {
+                $this->filename = sha1( Yii::app( )->user->id.microtime( ).$this->name);
+                $this->filename .= ".".$this->file->getExtensionName( );
+            }
+
+            return parent::beforeValidate();
+        }
 	
 	
 	private function saveItem($item,$path,$filename){

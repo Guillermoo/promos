@@ -38,11 +38,11 @@ class EmpresaController extends Controller
 		$categorias = CHtml::listData($cat_model,'id', 'name');
 		
 		$cuentas = Cuenta::getCuentas();
-		$cuentas_list = CHtml::listData($cuentas,'id', 'nombre');
+		$cuentfas_list = CHtml::listData($cuentas,'id', 'nombre');
 		
 		//Para cargar/gestionar el logo
-	 	Yii::import("xupload.models.XUploadForm");
-        $logo = new XUploadForm;
+	 	/*Yii::import("xupload.models.XUploadForm");
+        $logo = new XUploadForm;*/
 		
 		$this->render('empresa',array(
 	    	'model'=>$_model,
@@ -80,12 +80,91 @@ class EmpresaController extends Controller
 			),
 		);
 	}*/
+	
+	
+	
+	public function actionForm( ) {
+	    $model = new Item;
+	    Yii::import( "xupload.models.XUploadForm" );
+	    $photos = new XUploadForm;
+	    //Check if the form has been submitted
+	    if( isset( $_POST['Item'] ) ) {
+	        //Assign our safe attributes
+	        $model->attributes = $_POST['Item'];
+	        //Start a transaction in case something goes wrong
+	        $transaction = Yii::app( )->db->beginTransaction( );
+	        try {
+	            //Save the model to the database
+	            if($model->save()){
+	                $transaction->commit();
+	            }
+	        } catch(Exception $e) {
+	            $transaction->rollback( );
+	            Yii::app( )->handleException( $e );
+	        }
+	    }
+	    $this->render( 'form', array(
+	        'model' => $model,
+	        'photos' => $photos,
+	    ) );
+	}
+	
+	/*public function actionForm( ) {
+	    /*$model = new SomeModel;
+	    Yii::import( "xupload.models.XUploadForm" );
+	    $photos = new Item;
+	    //Check if the form has been submitted
+	    if( isset( $_POST['Item'] ) ) {
+	        //Assign our safe attributes
+	        $photos->attributes = $_POST['Item'];
+	        //Start a transaction in case something goes wrong
+	        $transaction = Yii::app( )->db->beginTransaction( );
+	        try {
+	            //Save the model to the database
+	            if($photos->save()){
+	                $transaction->commit();
+	            }
+	        } catch(Exception $e) {
+	            $transaction->rollback( );
+	            Yii::app( )->handleException( $e );
+	        }
+	    }
+	    $this->render( 'form', array(
+	        //'model' => $model,
+	        'photos' => $photos,
+	    ) );
+	}*/
+	
+	public function actionMisdebugs(){
+		
+		$model = $this->loadUser();
+	 	
+		$cat_model = Category::getCategorias();
+		$categorias = CHtml::listData($cat_model,'id', 'name');
+		
+		$listCat = array();
+		foreach($categorias as $cat){
+			//$listCat = array('label'=>$cat);
+			array_push($listCat, $cat);
+		}
+		//$this->debug($listCat);
+	 	$misCategorias = $model->empresa->categoria;
+		
+	 	//$this->debug($misCategorias);
+		$this->render( 'misdebugs', array(
+	        'model' => $model,
+			'misCat' => $misCategorias,
+			'listCat' => $listCat,
+			'categorias' => $categorias,
+	    ) );
+	    
+	}
 
 	public function actionEdit()
 		{
 			$model = $this->loadUser();
 			$empresa=$model->empresa;
-			$contacto=$model->empresa->contacto;
+			$contacto=$model->contacto;
 			
 			$cuentas = Cuenta::getCuentas();
 			$cuentas_list = CHtml::listData($cuentas,'id', 'nombre');
