@@ -34,7 +34,7 @@ class EmpresaController extends Controller
 		$_model = $this->loadUser();
 		
 		//Obtenemos todas las categorías con nivel 2(suponiendo que no hay subcategorías
-		$cat_model = Category::getCategorias();
+		$cat_model = Categoria::getCategorias();
 		$categorias = CHtml::listData($cat_model,'id', 'name');
 		
 		$cuentas = Cuenta::getCuentas();
@@ -139,26 +139,34 @@ class EmpresaController extends Controller
 		
 		$model = $this->loadUser();
 	 	
-		$cat_model = Category::getCategorias();
+		$cat_model = Categoria::getCategorias();
 		$categorias = CHtml::listData($cat_model,'id', 'name');
-		
 		$listCat = array();
 		foreach($categorias as $cat){
 			//$listCat = array('label'=>$cat);
 			array_push($listCat, $cat);
 		}
 		//$this->debug($listCat);
-	 	$misCategorias = $model->empresa->categoria;
+	 	$misCat = $model->empresa->empCat;
 		
-	 	//$this->debug($misCategorias);
+	 	$ids=array();
+        foreach($misCat as $c)
+                $ids[]=$c->categoria_id;
+        //return $ids;
+        
+	 	$this->debug($misCat[0]->attributes);
+	 	//$this->debug($misCat[1]->attributes);
+	 	
 		$this->render( 'misdebugs', array(
 	        'model' => $model,
-			'misCat' => $misCategorias,
+			'misCat' => $misCat[0],
 			'listCat' => $listCat,
 			'categorias' => $categorias,
 	    ) );
 	    
 	}
+	
+	
 
 	public function actionEdit()
 		{

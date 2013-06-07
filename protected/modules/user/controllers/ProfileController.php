@@ -242,7 +242,7 @@ public function getTabularFormTabs($model,$categorias,$cuentas)
 		$cuentas_list = CHtml::listData($cuentas,'id', 'nombre');
 		
 		//Obtenemos todas las categorías con nivel 2(suponiendo que no hay subcategorías
-		$cat_model = Category::getCategorias();
+		$cat_model = Categoria::getCategorias();
 		$categorias = CHtml::listData($cat_model,'id', 'name');
 
 		/*$myImg = $this->setImage();

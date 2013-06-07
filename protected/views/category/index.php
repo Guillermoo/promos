@@ -27,18 +27,18 @@
 
 <!--The tree will be rendered in this div-->
 
-<div id="<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>" >
+<div id="<?php echo Categoria::ADMIN_TREE_CONTAINER_ID;?>" >
 
 </div>
 
 <script  type="text/javascript">
 $(function () {
-$("#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>")
+$("#<?php echo Categoria::ADMIN_TREE_CONTAINER_ID;?>")
 		.jstree({
                            "html_data" : {
 	            "ajax" : {
                                  "type":"POST",
- 	                          "url" : "<?php echo $baseUrl;?>/category/fetchTree",
+ 	                          "url" : "<?php echo $baseUrl;?>/categoria/fetchTree",
 	                         "data" : function (n) {
 	                          return {
                                                   id : n.attr ? n.attr("id") : 0,
@@ -60,16 +60,16 @@ $("#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>")
                                                 id=obj.attr("id").replace("node_","");
                      $.ajax({
                                  type: "POST",
-                                 url: "<?php echo $baseUrl;?>/category/returnForm",
+                                 url: "<?php echo $baseUrl;?>/categoria/returnForm",
                                 data:{
                                           'update_id':  id,
                                            "YII_CSRF_TOKEN":"<?php echo Yii::app()->request->csrfToken;?>"
                                               },
 			       'beforeSend' : function(){
-                                           $("#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>").addClass("ajax-sending");
+                                           $("#<?php echo Categoria::ADMIN_TREE_CONTAINER_ID;?>").addClass("ajax-sending");
                                                              },
                                'complete' : function(){
-                                           $("#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>").removeClass("ajax-sending");
+                                           $("#<?php echo Categoria::ADMIN_TREE_CONTAINER_ID;?>").removeClass("ajax-sending");
                                                    },
                     success: function(data){
 
@@ -97,16 +97,16 @@ $("#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>")
                                    id=obj.attr("id").replace("node_","")
                              $.ajax({
                                    type:"POST",
-			           url:"<?php echo $baseUrl;?>/category/returnView",
+			           url:"<?php echo $baseUrl;?>/categoria/returnView",
 		                   data:   {
                                              "id" :id,
                                             "YII_CSRF_TOKEN":"<?php echo Yii::app()->request->csrfToken;?>"
                                               },
 			         beforeSend : function(){
-                                               $("#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>").addClass("ajax-sending");
+                                               $("#<?php echo Categoria::ADMIN_TREE_CONTAINER_ID;?>").addClass("ajax-sending");
                                                                },
                                 complete : function(){
-                                              $("#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>").removeClass("ajax-sending");
+                                              $("#<?php echo Categoria::ADMIN_TREE_CONTAINER_ID;?>").removeClass("ajax-sending");
                                                              },
                                success :  function(data){
                         $.fancybox(data,
@@ -145,7 +145,7 @@ $("#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>")
 			modal: true,
 			buttons: {
 				       "Delete": function() {
-                                        jQuery("#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>").jstree("remove",obj);
+                                        jQuery("#<?php echo Categoria::ADMIN_TREE_CONTAINER_ID;?>").jstree("remove",obj);
 					$( this ).dialog( "close" );
 				},
 				Cancel: function() {
@@ -261,17 +261,17 @@ $("#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>")
                .bind("rename.jstree", function (e, data) {
 		$.ajax({
                            type:"POST",
-			   url:"<?php echo $baseUrl;?>/category/rename",
+			   url:"<?php echo $baseUrl;?>/categoria/rename",
 			   data:  {
 				        "id" : data.rslt.obj.attr("id").replace("node_",""),
                                          "new_name" : data.rslt.new_name,
 			                 "YII_CSRF_TOKEN":"<?php echo Yii::app()->request->csrfToken;?>"
                                        },
                          beforeSend : function(){
-                                                     $("#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>").addClass("ajax-sending");
+                                                     $("#<?php echo Categoria::ADMIN_TREE_CONTAINER_ID;?>").addClass("ajax-sending");
                                                              },
                          complete : function(){
-                                                       $("#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>").removeClass("ajax-sending");
+                                                       $("#<?php echo Categoria::ADMIN_TREE_CONTAINER_ID;?>").removeClass("ajax-sending");
                                                              },
 			success:function (r) {  response= $.parseJSON(r);
 				           if(!response.success) {
@@ -286,16 +286,16 @@ $("#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>")
          .bind("remove.jstree", function (e, data) {
 		$.ajax({
                            type:"POST",
-			    url:"<?php echo $baseUrl;?>/category/remove",
+			    url:"<?php echo $baseUrl;?>/categoria/remove",
 			    data:{
 				        "id" : data.rslt.obj.attr("id").replace("node_",""),
 			                "YII_CSRF_TOKEN":"<?php echo Yii::app()->request->csrfToken;?>"
                                         },
                            beforeSend : function(){
-                                                     $("#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>").addClass("ajax-sending");
+                                                     $("#<?php echo Categoria::ADMIN_TREE_CONTAINER_ID;?>").addClass("ajax-sending");
                                                              },
                           complete: function(){
-                                                       $("#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>").removeClass("ajax-sending");
+                                                       $("#<?php echo Categoria::ADMIN_TREE_CONTAINER_ID;?>").removeClass("ajax-sending");
                                                              },
 			  success:function (r) {  response= $.parseJSON(r);
 				           if(!response.success) {
@@ -310,16 +310,16 @@ $("#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>")
                            parent_id=data.rslt.parent.attr("id").replace("node_","");
             $.ajax({
                     type: "POST",
-                    url: "<?php echo $baseUrl;?>/category/returnForm",
+                    url: "<?php echo $baseUrl;?>/categoria/returnForm",
                       data:{   'name': newname,
                                  'parent_id':   parent_id,
                                  "YII_CSRF_TOKEN":"<?php echo Yii::app()->request->csrfToken;?>"
                                                           },
                            beforeSend : function(){
-                                                     $("#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>").addClass("ajax-sending");
+                                                     $("#<?php echo Categoria::ADMIN_TREE_CONTAINER_ID;?>").addClass("ajax-sending");
                                                              },
                            complete : function(){
-                                                       $("#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>").removeClass("ajax-sending");
+                                                       $("#<?php echo Categoria::ADMIN_TREE_CONTAINER_ID;?>").removeClass("ajax-sending");
                                                              },
                           success: function(data){
 
@@ -345,8 +345,8 @@ $("#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>")
                 //not all are needed for this view,but they are there if you need them.
                 //Commented out logs  are for debugging and exploration of jstree.
 
-                 next= jQuery.jstree._reference('#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>')._get_next (this, true);
-                 previous= jQuery.jstree._reference('#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>')._get_prev(this,true);
+                 next= jQuery.jstree._reference('#<?php echo Categoria::ADMIN_TREE_CONTAINER_ID;?>')._get_next (this, true);
+                 previous= jQuery.jstree._reference('#<?php echo Categoria::ADMIN_TREE_CONTAINER_ID;?>')._get_prev(this,true);
 
                     pos=data.rslt.cp;
                     moved_node=$(this).attr('id').replace("node_","");
@@ -382,7 +382,7 @@ $("#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>")
 			$.ajax({
 				async : false,
 				type: 'POST',
-				url: "<?php echo $baseUrl;?>/category/moveCopy",
+				url: "<?php echo $baseUrl;?>/categoria/moveCopy",
 
 				data : {
 					"moved_node" : moved_node,

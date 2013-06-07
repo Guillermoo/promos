@@ -72,7 +72,8 @@ class Empresa extends CActiveRecord
 		return array(
 			'usuario' => array(self::BELONGS_TO, 'Usuarios', 'user_id'),
 			'cuenta' => array(self::HAS_ONE, 'Cuenta', 'id'),
-			'categoria' => array(self::MANY_MANY, 'Category', 'tbl_emp_cat(empresa_id,categoria_id)'),
+			'categoria' => array(self::MANY_MANY, 'Categoria', 'tbl_emp_cat(empresa_id,categoria_id)'),
+			'empCat' => array(self::HAS_MANY, 'EmpCat', 'empresa_id'),
 		);
 	}
 
@@ -120,5 +121,27 @@ class Empresa extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	
+	public function getEmpCategories()
+	{
+	    $ids=array();
+	    foreach($this->categoria as $c)
+	        $ids[]=$c->id;
+	    return $ids;
+	}
+	
+	public function setEmpCategories($values)
+	{
+	    // 1. delete all related rows in item_category (use a AR for this table)
+	
+	    // 2. create new links:
+	    foreach($values as $id)
+	    {
+	        $r=new ItemCategory;
+	        $r->category_id=$id;
+	        $r->item_id=$this->id;
+	    }
 	}
 }

@@ -62,7 +62,7 @@ abstract class BaseEmpresa extends GxActiveRecord {
 			'logo' => array(self::BELONGS_TO, 'Items', 'logo_id'),
 			'usuario' => array(self::BELONGS_TO, 'Profiles', 'usuario_id'),
 			'contacto' => array(self::BELONGS_TO, 'Contactos', 'contacto_id'),
-			'categoria' => array(self::BELONGS_TO, 'Category', 'categoria_id'),
+			'categoria' => array(self::BELONGS_TO, 'Categoria', 'categoria_id'),
 		);
 	}
 
