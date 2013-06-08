@@ -13,16 +13,8 @@
 	<?php echo CHtml::encode($data->user_id); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('contacto_id')); ?>:</b>
-	<?php echo CHtml::encode($data->contacto_id); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('categoria_id')); ?>:</b>
-	<?php echo CHtml::encode($data->categoria_id); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('logo_id')); ?>:</b>
-	<?php echo CHtml::encode($data->logo_id); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('cuenta_id')); ?>:</b>
+	<?php echo CHtml::encode($data->cuenta_id); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('cif')); ?>:</b>
@@ -33,7 +25,6 @@
 	<?php echo CHtml::encode($data->web); ?>
 	<br />
 
-	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('twitter')); ?>:</b>
 	<?php echo CHtml::encode($data->twitter); ?>
 	<br />
@@ -41,13 +32,16 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('facebook')); ?>:</b>
 	<?php echo CHtml::encode($data->facebook); ?>
 	<br />
+	
+	<?php $this->widget('bootstrap.widgets.TbButton', array(
+	    'label'=>'Show promotions',
+	    'type'=>'primary', // null, 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
+	    'size'=>'large', // null, 'large', 'small' or 'mini'
+	)); ?>
 
+	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('urlTienda')); ?>:</b>
 	<?php echo CHtml::encode($data->urlTienda); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('creado')); ?>:</b>
-	<?php echo CHtml::encode($data->creado); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('modificado')); ?>:</b>

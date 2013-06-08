@@ -9,7 +9,7 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
  
  <?php //$this->debug($model->empresa->empCat[0]->categoria->attributes)?>
 <?php //echo $form->radioButtonList($misCat, 'id', CHtml::listData(Category::model()->findAll(), 'id', 'name')); ?>
-<?php echo $form->checkBoxList($misCat,'categoria_id',$categorias) ?>
+<?php echo $form->checkBoxList($misCat[0],'id',$categorias) ?>
 <?php 
   // Calls getOrderDisclaimers in Order Model
   /*echo $form->checkBoxList($misCat,'orderDisclaimers',     

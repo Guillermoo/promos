@@ -34,7 +34,7 @@ class EmpresaController extends Controller
 		$_model = $this->loadUser();
 		
 		//Obtenemos todas las categorías con nivel 2(suponiendo que no hay subcategorías
-		$cat_model = Categoria::getCategorias();
+		$cat_model = Category::getCategorias();
 		$categorias = CHtml::listData($cat_model,'id', 'name');
 		
 		$cuentas = Cuenta::getCuentas();
@@ -139,7 +139,7 @@ class EmpresaController extends Controller
 		
 		$model = $this->loadUser();
 	 	
-		$cat_model = Categoria::getCategorias();
+		$cat_model = Category::getCategorias();
 		$categorias = CHtml::listData($cat_model,'id', 'name');
 		$listCat = array();
 		foreach($categorias as $cat){
@@ -147,19 +147,31 @@ class EmpresaController extends Controller
 			array_push($listCat, $cat);
 		}
 		//$this->debug($listCat);
-	 	$misCat = $model->empresa->empCat;
+	 	//$misCat = $model->empresa->categoria;
+	 	//$misCat = $model->empresa->empCat;
+	 	$misCat = Empresa::getEmpCategories();
+	 	$misCat2=EmpCat::model()->findAll(array(
+		    'condition'=>'empresa_id='.$model->empresa->empresa_id,
+		));
+		foreach($categorias as $cat){
+			//$listCat = array('label'=>$cat);
+			array_push($listCat, $cat);
+		}
 		
-	 	$ids=array();
-        foreach($misCat as $c)
-                $ids[]=$c->categoria_id;
+	 	/*$ids=array();
+        foreach($misCat2 as $c)
+                $ids[]=$c->categoria->id;*/
+                //$ids[]=$c->id;
         //return $ids;
         
-	 	$this->debug($misCat[0]->attributes);
+	 	//$this->debug($misCat);
+	 	//$this->debug($model);
+	 	$this->debug($misCat);
 	 	//$this->debug($misCat[1]->attributes);
 	 	
 		$this->render( 'misdebugs', array(
 	        'model' => $model,
-			'misCat' => $misCat[0],
+			'misCat' => $misCat,
 			'listCat' => $listCat,
 			'categorias' => $categorias,
 	    ) );
@@ -248,13 +260,13 @@ class EmpresaController extends Controller
 	 * @return Profile the loaded model
 	 * @throws CHttpException
 	 */
-	/*public function loadModel($id)
+	public function loadModel($id)
 	{
 		$model=Profile::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
-	}*/
+	}
 
 	/**
 	 * Performs the AJAX validation.

@@ -242,7 +242,7 @@ public function getTabularFormTabs($model,$categorias,$cuentas)
 		$cuentas_list = CHtml::listData($cuentas,'id', 'nombre');
 		
 		//Obtenemos todas las categorías con nivel 2(suponiendo que no hay subcategorías
-		$cat_model = Categoria::getCategorias();
+		$cat_model = Category::getCategorias();
 		$categorias = CHtml::listData($cat_model,'id', 'name');
 
 		/*$myImg = $this->setImage();
@@ -250,7 +250,6 @@ public function getTabularFormTabs($model,$categorias,$cuentas)
 		Yii::import("xupload.models.XUploadForm");
         $image = new XUploadForm;*/
 		$image = new Item;
-        
 		$this->render('profile',array(
 	    	'model'=>$this->_model,
 			'categorias'=>$categorias,

@@ -16,27 +16,15 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'usuario_id'); ?>
-		<?php echo $form->textField($model,'usuario_id'); ?>
-		<?php echo $form->error($model,'usuario_id'); ?>
+		<?php echo $form->labelEx($model,'user_id'); ?>
+		<?php echo $form->textField($model,'user_id'); ?>
+		<?php echo $form->error($model,'user_id'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'contacto_id'); ?>
-		<?php echo $form->textField($model,'contacto_id'); ?>
-		<?php echo $form->error($model,'contacto_id'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'categoria_id'); ?>
-		<?php echo $form->textField($model,'categoria_id'); ?>
-		<?php echo $form->error($model,'categoria_id'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'logo_id'); ?>
-		<?php echo $form->textField($model,'logo_id'); ?>
-		<?php echo $form->error($model,'logo_id'); ?>
+		<?php echo $form->labelEx($model,'cuenta_id'); ?>
+		<?php echo $form->textField($model,'cuenta_id'); ?>
+		<?php echo $form->error($model,'cuenta_id'); ?>
 	</div>
 
 	<div class="row">
@@ -67,12 +55,6 @@
 		<?php echo $form->labelEx($model,'urlTienda'); ?>
 		<?php echo $form->textField($model,'urlTienda',array('size'=>60,'maxlength'=>100)); ?>
 		<?php echo $form->error($model,'urlTienda'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'creado'); ?>
-		<?php echo $form->textField($model,'creado'); ?>
-		<?php echo $form->error($model,'creado'); ?>
 	</div>
 
 	<div class="row">

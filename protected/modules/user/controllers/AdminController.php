@@ -164,7 +164,7 @@ class AdminController extends Controller
 
 	private function renderParaEmpresa(){
 
-		$cat_model = Categoria::getCategorias();
+		$cat_model = Category::getCategorias();
 		$categorias = CHtml::listData($cat_model,'id', 'name');
 
 		$cuentas = Cuenta::getCuentas();

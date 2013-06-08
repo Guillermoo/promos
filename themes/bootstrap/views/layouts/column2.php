@@ -1,29 +1,18 @@
+<?php /* @var $this Controller */ ?>
 <?php $this->beginContent('//layouts/main'); ?>
-<div class="container">
-	<div class="appcontent">
-<?php if($this->pageCaption !== '') : ?>
-		<div class="page-header">
-			<h1><?php echo CHtml::encode($this->pageCaption); ?> <small><?php echo CHtml::encode($this->pageDescription)?></small></h1>
-		</div>
-<?php endif; ?>
-		<div class="row">
-			<div class="span8">
-				<?php echo $content; ?>
-			</div>
-			<div class="span4">
-				<h3><?php echo CHtml::encode($this->sidebarCaption); ?></h3>
-				<?php
-					$this->beginWidget('zii.widgets.CPortlet', array(
-						'title'=>'Operations',
-					));
-					$this->widget('zii.widgets.CMenu', array(
-						'items'=>$this->menu,
-						'htmlOptions'=>array('class'=>'operations'),
-					));
-					$this->endWidget();
-				?>
-			</div>
-		</div>
-	</div>
-</div> <!-- /container -->
+<div class="row">
+<?php echo __FILE__; ?>
+    <div class="span9">
+        <div id="content">
+            <?php echo $content; ?>
+        </div><!-- content -->
+    </div>
+    <div class="span3">
+        <div id="sidebar">
+        <?php
+            //if(!Yii::app()->user->isGuest) $this->widget('UserMenu');
+        ?>
+        </div><!-- sidebar -->
+    </div>
+</div>
 <?php $this->endContent(); ?>

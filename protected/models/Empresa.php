@@ -58,7 +58,7 @@ class Empresa extends CActiveRecord
 			array('modificado', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('empresa_id, user_id,cuenta_id, cif, web, twitter, facebook, urlTienda, modificado', 'safe', 'on'=>'search'),
+			array('emp_cat,empresa_id, user_id,cuenta_id, cif, web, twitter, facebook, urlTienda, modificado', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -72,7 +72,8 @@ class Empresa extends CActiveRecord
 		return array(
 			'usuario' => array(self::BELONGS_TO, 'Usuarios', 'user_id'),
 			'cuenta' => array(self::HAS_ONE, 'Cuenta', 'id'),
-			'categoria' => array(self::MANY_MANY, 'Categoria', 'tbl_emp_cat(empresa_id,categoria_id)'),
+			'categoria' => array(self::MANY_MANY, 'Category', 'tbl_emp_cat(empresa_id,categoria_id)'),
+			//(G)O la de arriba o la de abajo, no las dos
 			'empCat' => array(self::HAS_MANY, 'EmpCat', 'empresa_id'),
 		);
 	}
@@ -85,7 +86,7 @@ class Empresa extends CActiveRecord
 		return array(
 			'empresa_id' => 'Empresa',
 			'user_id' => 'Usuario',
-			'categoria_id' => 'Categoria',
+			'categoria_id' => 'Category',
 			'cuenta_id' => 'Cuenta',
 			'cif' => 'Cif',
 			'web' => 'Web',
@@ -112,10 +113,10 @@ class Empresa extends CActiveRecord
 		$criteria->compare('cuenta_id',$this->cuenta_id);
 		$criteria->compare('categoria_id',$this->categoria_id);
 		$criteria->compare('cif',$this->cif,true);
-		$criteria->compare('web',$this->web,true);
+		/*$criteria->compare('web',$this->web,true);
 		$criteria->compare('twitter',$this->twitter,true);
 		$criteria->compare('facebook',$this->facebook,true);
-		$criteria->compare('urlTienda',$this->urlTienda,true);
+		$criteria->compare('urlTienda',$this->urlTienda,true);*/
 		$criteria->compare('modificado',$this->modificado,true);
 
 		return new CActiveDataProvider($this, array(
@@ -124,15 +125,16 @@ class Empresa extends CActiveRecord
 	}
 	
 	
-	public function getEmpCategories()
+	public static function getEmpCategories()
 	{
 	    $ids=array();
-	    foreach($this->categoria as $c)
-	        $ids[]=$c->id;
+	    $this->debug($this);
+	    /*foreach($this->categoria as $c)
+	        $ids[]=$c->id;*/
 	    return $ids;
 	}
 	
-	public function setEmpCategories($values)
+	public static function setEmpCategories($values)
 	{
 	    // 1. delete all related rows in item_category (use a AR for this table)
 	
@@ -144,4 +146,15 @@ class Empresa extends CActiveRecord
 	        $r->item_id=$this->id;
 	    }
 	}
+	
+/* Used to debug variables*/
+    protected function Debug($var){
+        $bt = debug_backtrace();
+        $dump = new CVarDumper();
+        $debug = '<div style="display:block;background-color:gold;border-radius:10px;border:solid 1px brown;padding:10px;z-index:10000;"><pre>';
+        $debug .= '<h4>function: '.$bt[1]['function'].'() line('.$bt[0]['line'].')'.'</h4>';
+        $debug .=  $dump->dumpAsString($var);
+        $debug .= "</pre></div>\n";
+        Yii::app()->params['debugContent'] .=$debug;
+    }
 }

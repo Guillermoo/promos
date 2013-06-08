@@ -42,7 +42,7 @@ class Category extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'tbl_categoria';
+		return 'category';
 	}
 
 	/**
@@ -74,6 +74,7 @@ class Category extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'empresa' => array(self::MANY_MANY, 'Empresa', 'tbl_emp_cat(categoria_id,empresa_id)'),
+			'empCat' => array(self::HAS_MANY, 'EmpCat', 'categoria_id'),
 		);
 	}
 
@@ -115,6 +116,16 @@ class Category extends CActiveRecord
 		));
 	}
 
+	public function scopes()
+    {
+        return array(
+            'seleccionables'=>array(
+                'condition'=>'level=2',
+            ),
+
+        );
+    }
+    
     public function behaviors()
 	{
 	    return array(
@@ -131,9 +142,7 @@ class Category extends CActiveRecord
 	/*Función para obtener todas las categorías con nivel 2. */
 	public static function getCategorias() {
 		
-		$criteria = new CDbCriteria;  
-		$criteria->condition ='level > 1';
-		$categorias=Category::model()->findAll($criteria);
+		$categorias=Category::model()->seleccionables()->findAll();;
 
 		return $categorias;
 	}
@@ -207,6 +216,7 @@ class Category extends CActiveRecord
 		        }
 		
 		}
+		
 	
 
 }

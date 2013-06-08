@@ -51,8 +51,8 @@ class EmpCat extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'empresa' => array(self::BELONGS_TO, 'Empresa', 'empresa_id'),
-			'categoria' => array(self::BELONGS_TO, 'Categoria', 'categoria_id'),
+			'empresa' => array(self::HAS_MANY, 'Empresa', 'empresa_id'),
+			'categoria' => array(self::HAS_MANY, 'Category', 'categoria_id'),
 		);
 	}
 
