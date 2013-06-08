@@ -4,7 +4,6 @@ $this->breadcrumbs=array(
 	UserModule::t('Users')=>array('index'),
 	$model->username,
 );
-$this->layout='//layouts/column2';
 $this->menu=array(
     array('label'=>UserModule::t('List User'), 'url'=>array('index')),
 );

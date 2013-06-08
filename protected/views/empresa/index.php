@@ -6,8 +6,6 @@ $this->breadcrumbs=array(
 	'Empresas',
 );
 
-$this->layout='//layouts/user_column2';
-
 $this->menu=array(
 	array('label'=>'Create Empresa', 'url'=>array('create')),
 	array('label'=>'Manage Empresa', 'url'=>array('admin')),

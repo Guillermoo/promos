@@ -3,6 +3,7 @@
 /*$this->breadcrumbs=array(
 	UserModule::t("Profile"),
 );*/
+
 ?><h1><?php echo UserModule::t('Your company'); ?></h1>
 
 <?php if(Yii::app()->user->hasFlash('profileMessage')): ?>

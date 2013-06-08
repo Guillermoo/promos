@@ -1,5 +1,5 @@
 <?php /* @var $this Controller */ ?>
-<?php $this->beginContent('//layouts/main'); ?>
+<?php $this->beginContent('//layouts/empresa_main'); ?>
 <div class="span-5 last">
 	<div id="sidebar">
 		<div class="categoriasizda">
@@ -10,8 +10,7 @@
         // Important: you need to specify url as 'controller/action',
         // not just as 'controller' even if default acion is used.
         array('label'=>'Datos empresa', 'url'=>array('site/index')),
-        // 'Products' menu item will be selected no matter which tag parameter value is since it's not specified.
-        array('label'=>'Suscripción', 'url'=>array('product/index')),        
+        // 'Products' menu item will be selected no matter which tag parameter value is since it's not specified.         
         array('label'=>'Mis promociones', 'url'=>array('site/login')),
         array('label'=>'Nueva promoción', 'url'=>array('site/login')),
     ),
