@@ -26,6 +26,12 @@
 		<?php echo $form->textField($model,'cuenta_id'); ?>
 		<?php echo $form->error($model,'cuenta_id'); ?>
 	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'nombre'); ?>
+		<?php echo $form->textField($model,'nombre',array('size'=>128,'maxlength'=>128)); ?>
+		<?php echo $form->error($model,'nombre'); ?>
+	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'cif'); ?>

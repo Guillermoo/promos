@@ -53,8 +53,15 @@
 		<?php endif;?>
 		<?php //echo $form->fileFieldRow($empresa, 'logo_id'); ?>
 		<?php echo $form->error($empresa,'logo_id'); ?>
+		
 	</div>
-
+	
+	<div class="row">
+		<?php echo $form->labelEx($empresa,'nombre'); ?>
+		<?php echo $form->textField($empresa,'nombre',array('size'=>128,'maxlength'=>128)); ?>
+		<?php echo $form->error($empresa,'nombre'); ?>
+	</div>
+	
 	<div class="row">
 		<?php echo $form->labelEx($empresa,'cif'); ?>
 		<?php echo $form->textField($empresa,'cif',array('size'=>9,'maxlength'=>9)); ?>

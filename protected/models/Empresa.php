@@ -53,12 +53,13 @@ class Empresa extends CActiveRecord
 			array('user_id', 'required'),
 			array('user_id, cuenta_id', 'numerical', 'integerOnly'=>true),
 			array('cif', 'length', 'max'=>9),
+			array('nombre','required','on'=>'update'),
 			array('cif', 'match', 'pattern' => '(X(-|\.)?0?\d{7}(-|\.)?[A-Z]|[A-Z](-|\.)?\d{7}(-|\.)?[0-9A-Z]|\d{8}(-|\.)?[A-Z])'),
-			array('web, twitter, facebook, urlTienda', 'length', 'max'=>100),
+			array('nombre,nombre_slug,web, twitter, facebook, urlTienda', 'length', 'max'=>100),
 			array('modificado', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('emp_cat,empresa_id, user_id,cuenta_id, cif, web, twitter, facebook, urlTienda, modificado', 'safe', 'on'=>'search'),
+			array('nombre,nombre_slug,emp_cat,empresa_id, user_id,cuenta_id, cif, web, twitter, facebook, urlTienda, modificado', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -88,6 +89,8 @@ class Empresa extends CActiveRecord
 			'user_id' => 'Usuario',
 			'categoria_id' => 'Category',
 			'cuenta_id' => 'Cuenta',
+			'nombre' => 'Name',
+			'nombre_slug' => 'Friendly name',
 			'cif' => 'Cif',
 			'web' => 'Web',
 			'twitter' => 'Twitter',
@@ -112,6 +115,8 @@ class Empresa extends CActiveRecord
 		$criteria->compare('user_id',$this->user_id);
 		$criteria->compare('cuenta_id',$this->cuenta_id);
 		$criteria->compare('categoria_id',$this->categoria_id);
+		$criteria->compare('nombre',$this->nombre,true);
+		$criteria->compare('nombre_slug',$this->nombre_slug,true);
 		$criteria->compare('cif',$this->cif,true);
 		/*$criteria->compare('web',$this->web,true);
 		$criteria->compare('twitter',$this->twitter,true);
@@ -127,11 +132,13 @@ class Empresa extends CActiveRecord
 	
 	public static function getEmpCategories()
 	{
-	    $ids=array();
-	    $this->debug($this);
-	    /*foreach($this->categoria as $c)
-	        $ids[]=$c->id;*/
-	    return $ids;
+	    //$ids=array();
+	    $list = new CList();
+	    foreach($this->categoria as $c)
+	        //$ids[]=$c->id;
+	        $list.add($c->id);
+	    $this->debug($list);
+	    return $list;
 	}
 	
 	public static function setEmpCategories($values)

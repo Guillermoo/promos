@@ -70,6 +70,19 @@
 	<?php $empresa = $model->empresa;?>
 	
 	<div class="row">
+		<?php echo $form->labelEx($empresa,'nombre'); ?>
+		<?php echo $form->textField($empresa,'nombre',array('size'=>128,'maxlength'=>128)); ?>
+		<?php echo $form->error($empresa,'nombre'); ?>
+	</div>
+	
+	<!-- (G)El slug se hará automático o lo podrá elegir la empresa? -->
+	<!-- <div class="row">
+		<?php /*echo $form->labelEx($empresa,'nombre_slug'); ?>
+		<?php echo $form->textField($empresa,'nombre_slug',array('size'=>128,'maxlength'=>128)); ?>
+		<?php echo $form->error($empresa,'nombre_slug');*/ ?>
+	</div> -->
+	
+	<div class="row">
 		<?php echo $form->labelEx($empresa,'cif'); ?>
 		<?php echo $form->textField($empresa,'cif',array('size'=>9,'maxlength'=>9)); ?>
 		<?php echo $form->error($empresa,'cif'); ?>

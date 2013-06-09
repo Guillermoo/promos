@@ -142,17 +142,32 @@ class EmpresaController extends Controller
 		$cat_model = Category::getCategorias();
 		$categorias = CHtml::listData($cat_model,'id', 'name');
 		$listCat = array();
+		
 		foreach($categorias as $cat){
 			//$listCat = array('label'=>$cat);
 			array_push($listCat, $cat);
 		}
 		//$this->debug($listCat);
 	 	//$misCat = $model->empresa->categoria;
-	 	//$misCat = $model->empresa->empCat;
-	 	$misCat = Empresa::getEmpCategories();
+	 	$misCat = $model->empresa->empCat;
+	 	//$misCat = Empresa::getEmpCategories();
+	 	
+	 	$list = new CList();
+	    foreach($misCat as $c)
+	        $list->add($c->categoria_id);
+	        //$ids[]=$c->id;
+	        
+	    $col = new CAttributeCollection();
+		// $col->add('name','Alexander');
+		foreach($misCat as $c)
+			$col->categoria_id=$c->categoria_id;   
+		
+	    $this->debug($col);	
+	    
 	 	$misCat2=EmpCat::model()->findAll(array(
 		    'condition'=>'empresa_id='.$model->empresa->empresa_id,
 		));
+		
 		foreach($categorias as $cat){
 			//$listCat = array('label'=>$cat);
 			array_push($listCat, $cat);
@@ -171,7 +186,7 @@ class EmpresaController extends Controller
 	 	
 		$this->render( 'misdebugs', array(
 	        'model' => $model,
-			'misCat' => $misCat,
+			'misCat' => $misCat[0],
 			'listCat' => $listCat,
 			'categorias' => $categorias,
 	    ) );

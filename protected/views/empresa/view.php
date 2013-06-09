@@ -2,10 +2,10 @@
 /* @var $this EmpresaController */
 /* @var $model Empresa */
 
-$this->breadcrumbs=array(
-	'Empresas'=>array('index'),
-	$model->empresa_id,
-);
+/*$this->breadcrumbs=array(
+	'Empresas'=>array('empresa'),
+	$model->nombre,
+);*/
 
 /*$this->menu=array(
 	array('label'=>'List Empresa', 'url'=>array('index')),
@@ -21,6 +21,7 @@ $this->breadcrumbs=array(
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
+		'nombre',
 		'web',
 		'twitter',
 		'facebook',
