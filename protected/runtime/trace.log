@@ -6240,3 +6240,240 @@ in /opt/lampp/htdocs/promos/protected/controllers/EmpresaController.php (128)
 in /opt/lampp/htdocs/promos/protected/modules/user/UserModule.php (161)
 in /opt/lampp/htdocs/promos/themes/classic/views/layouts/main.php (45)
 in /opt/lampp/htdocs/promos/themes/classic/views/layouts/column2.php (24)
+2013/06/08 12:01:53 [trace] [system.CModule] Loading "log" application component
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/08 12:01:53 [trace] [system.CModule] Loading "request" application component
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/08 12:01:53 [trace] [system.CModule] Loading "urlManager" application component
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/08 12:01:53 [trace] [system.CModule] Loading "coreMessages" application component
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/08 12:01:53 [trace] [system.CModule] Loading "errorHandler" application component
+2013/06/08 12:01:53 [trace] [system.CModule] Loading "themeManager" application component
+in /opt/lampp/htdocs/promos/protected/controllers/SiteController.php (50)
+2013/06/08 12:01:53 [trace] [system.CModule] Loading "widgetFactory" application component
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/column1.php (2)
+in /opt/lampp/htdocs/promos/protected/controllers/SiteController.php (50)
+2013/06/08 12:01:53 [trace] [system.base.CModule] Loading "user" module
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/main.php (45)
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/column1.php (6)
+in /opt/lampp/htdocs/promos/protected/controllers/SiteController.php (50)
+2013/06/08 12:01:53 [trace] [system.CModule] Loading "messages" application component
+in /opt/lampp/htdocs/promos/protected/modules/user/UserModule.php (161)
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/main.php (45)
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/column1.php (6)
+2013/06/08 12:01:53 [trace] [system.CModule] Loading "user" application component
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/main.php (45)
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/column1.php (6)
+in /opt/lampp/htdocs/promos/protected/controllers/SiteController.php (50)
+2013/06/08 12:01:53 [trace] [system.CModule] Loading "session" application component
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/main.php (45)
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/column1.php (6)
+in /opt/lampp/htdocs/promos/protected/controllers/SiteController.php (50)
+2013/06/08 12:01:53 [trace] [system.CModule] Loading "clientScript" application component
+in /opt/lampp/htdocs/promos/protected/controllers/SiteController.php (50)
+2013/06/08 12:58:30 [trace] [system.CModule] Loading "log" application component
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/08 12:58:30 [trace] [system.CModule] Loading "request" application component
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/08 12:58:30 [trace] [system.CModule] Loading "urlManager" application component
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/08 12:58:30 [trace] [system.CModule] Loading "coreMessages" application component
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/08 12:58:30 [trace] [system.CModule] Loading "errorHandler" application component
+2013/06/08 12:58:30 [trace] [system.CModule] Loading "themeManager" application component
+in /opt/lampp/htdocs/promos/protected/controllers/SiteController.php (50)
+2013/06/08 12:58:30 [trace] [system.CModule] Loading "widgetFactory" application component
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/column1.php (2)
+in /opt/lampp/htdocs/promos/protected/controllers/SiteController.php (50)
+2013/06/08 12:58:30 [trace] [system.base.CModule] Loading "user" module
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/main.php (45)
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/column1.php (6)
+in /opt/lampp/htdocs/promos/protected/controllers/SiteController.php (50)
+2013/06/08 12:58:30 [trace] [system.CModule] Loading "messages" application component
+in /opt/lampp/htdocs/promos/protected/modules/user/UserModule.php (161)
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/main.php (45)
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/column1.php (6)
+2013/06/08 12:58:30 [trace] [system.CModule] Loading "user" application component
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/main.php (45)
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/column1.php (6)
+in /opt/lampp/htdocs/promos/protected/controllers/SiteController.php (50)
+2013/06/08 12:58:30 [trace] [system.CModule] Loading "session" application component
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/main.php (45)
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/column1.php (6)
+in /opt/lampp/htdocs/promos/protected/controllers/SiteController.php (50)
+2013/06/08 12:58:30 [trace] [system.CModule] Loading "clientScript" application component
+in /opt/lampp/htdocs/promos/protected/controllers/SiteController.php (50)
+2013/06/09 07:44:02 [trace] [system.CModule] Loading "log" application component
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:02 [trace] [system.CModule] Loading "request" application component
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:02 [trace] [system.CModule] Loading "urlManager" application component
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:02 [trace] [system.base.CModule] Loading "user" module
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:02 [trace] [system.CModule] Loading "clientScript" application component
+in /opt/lampp/htdocs/promos/protected/modules/user/controllers/CategoryController.php (18)
+in /opt/lampp/htdocs/promos/protected/modules/user/controllers/CategoryController.php (12)
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:02 [trace] [system.CModule] Loading "assetManager" application component
+in /opt/lampp/htdocs/promos/protected/modules/user/controllers/CategoryController.php (388)
+in /opt/lampp/htdocs/promos/protected/modules/user/controllers/CategoryController.php (19)
+in /opt/lampp/htdocs/promos/protected/modules/user/controllers/CategoryController.php (12)
+2013/06/09 07:44:02 [trace] [system.CModule] Loading "db" application component
+in /opt/lampp/htdocs/promos/protected/models/Category.php (29)
+in /opt/lampp/htdocs/promos/protected/modules/user/controllers/CategoryController.php (75)
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:02 [trace] [system.db.CDbConnection] Opening DB connection
+in /opt/lampp/htdocs/promos/protected/models/Category.php (29)
+in /opt/lampp/htdocs/promos/protected/modules/user/controllers/CategoryController.php (75)
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:02 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `category`
+in /opt/lampp/htdocs/promos/protected/models/Category.php (29)
+in /opt/lampp/htdocs/promos/protected/modules/user/controllers/CategoryController.php (75)
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:02 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `category`
+in /opt/lampp/htdocs/promos/protected/models/Category.php (29)
+in /opt/lampp/htdocs/promos/protected/modules/user/controllers/CategoryController.php (75)
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:02 [trace] [system.db.ar.CActiveRecord] Category.findAll()
+in /opt/lampp/htdocs/promos/protected/modules/user/controllers/CategoryController.php (75)
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:02 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `category` `t` ORDER BY lft
+in /opt/lampp/htdocs/promos/protected/modules/user/controllers/CategoryController.php (75)
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:02 [trace] [system.CModule] Loading "themeManager" application component
+in /opt/lampp/htdocs/promos/protected/modules/user/controllers/CategoryController.php (90)
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:02 [trace] [system.CModule] Loading "widgetFactory" application component
+in /opt/lampp/htdocs/promos/themes/admin/views/layouts/column2.php (2)
+in /opt/lampp/htdocs/promos/protected/modules/user/controllers/CategoryController.php (90)
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:03 [trace] [system.CModule] Loading "user" application component
+in /opt/lampp/htdocs/promos/themes/admin/views/layouts/column2.php (13)
+in /opt/lampp/htdocs/promos/protected/modules/user/controllers/CategoryController.php (90)
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:03 [trace] [system.CModule] Loading "session" application component
+in /opt/lampp/htdocs/promos/themes/admin/views/layouts/column2.php (13)
+in /opt/lampp/htdocs/promos/protected/modules/user/controllers/CategoryController.php (90)
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:03 [trace] [system.CModule] Loading "bootstrap" application component
+in /opt/lampp/htdocs/promos/themes/admin/views/layouts/main.php (14)
+in /opt/lampp/htdocs/promos/themes/admin/views/layouts/column2.php (18)
+in /opt/lampp/htdocs/promos/protected/modules/user/controllers/CategoryController.php (90)
+2013/06/09 07:44:03 [trace] [system.CModule] Loading "coreMessages" application component
+in /opt/lampp/htdocs/promos/themes/admin/views/layouts/main.php (33)
+in /opt/lampp/htdocs/promos/themes/admin/views/layouts/column2.php (18)
+in /opt/lampp/htdocs/promos/protected/modules/user/controllers/CategoryController.php (90)
+2013/06/09 07:44:03 [trace] [system.CModule] Loading "log" application component
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:03 [trace] [system.CModule] Loading "request" application component
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:03 [trace] [system.CModule] Loading "urlManager" application component
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:03 [trace] [system.base.CModule] Loading "user" module
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:03 [trace] [system.CModule] Loading "clientScript" application component
+in /opt/lampp/htdocs/promos/protected/modules/user/controllers/CategoryController.php (18)
+in /opt/lampp/htdocs/promos/protected/modules/user/controllers/CategoryController.php (12)
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:03 [trace] [system.CModule] Loading "assetManager" application component
+in /opt/lampp/htdocs/promos/protected/modules/user/controllers/CategoryController.php (388)
+in /opt/lampp/htdocs/promos/protected/modules/user/controllers/CategoryController.php (19)
+in /opt/lampp/htdocs/promos/protected/modules/user/controllers/CategoryController.php (12)
+2013/06/09 07:44:03 [trace] [system.CModule] Loading "db" application component
+in /opt/lampp/htdocs/promos/protected/models/Category.php (29)
+in /opt/lampp/htdocs/promos/protected/models/Category.php (151)
+in /opt/lampp/htdocs/promos/protected/modules/user/controllers/CategoryController.php (107)
+2013/06/09 07:44:03 [trace] [system.db.CDbConnection] Opening DB connection
+in /opt/lampp/htdocs/promos/protected/models/Category.php (29)
+in /opt/lampp/htdocs/promos/protected/models/Category.php (151)
+in /opt/lampp/htdocs/promos/protected/modules/user/controllers/CategoryController.php (107)
+2013/06/09 07:44:03 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `category`
+in /opt/lampp/htdocs/promos/protected/models/Category.php (29)
+in /opt/lampp/htdocs/promos/protected/models/Category.php (151)
+in /opt/lampp/htdocs/promos/protected/modules/user/controllers/CategoryController.php (107)
+2013/06/09 07:44:03 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `category`
+in /opt/lampp/htdocs/promos/protected/models/Category.php (29)
+in /opt/lampp/htdocs/promos/protected/models/Category.php (151)
+in /opt/lampp/htdocs/promos/protected/modules/user/controllers/CategoryController.php (107)
+2013/06/09 07:44:03 [trace] [system.db.ar.CActiveRecord] Category.findAll()
+in /opt/lampp/htdocs/promos/protected/models/Category.php (151)
+in /opt/lampp/htdocs/promos/protected/modules/user/controllers/CategoryController.php (107)
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:03 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `category` `t` ORDER BY root,lft
+in /opt/lampp/htdocs/promos/protected/models/Category.php (151)
+in /opt/lampp/htdocs/promos/protected/modules/user/controllers/CategoryController.php (107)
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:20 [trace] [system.CModule] Loading "log" application component
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:20 [trace] [system.CModule] Loading "request" application component
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:20 [trace] [system.CModule] Loading "urlManager" application component
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:20 [trace] [system.CModule] Loading "themeManager" application component
+in /opt/lampp/htdocs/promos/protected/controllers/SiteController.php (37)
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:20 [trace] [system.CModule] Loading "widgetFactory" application component
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/column3.php (2)
+in /opt/lampp/htdocs/promos/protected/controllers/SiteController.php (37)
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:20 [trace] [system.CModule] Loading "user" application component
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/column3.php (29)
+in /opt/lampp/htdocs/promos/protected/controllers/SiteController.php (37)
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:20 [trace] [system.CModule] Loading "session" application component
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/column3.php (29)
+in /opt/lampp/htdocs/promos/protected/controllers/SiteController.php (37)
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:20 [trace] [system.base.CModule] Loading "user" module
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/main.php (45)
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/column3.php (59)
+in /opt/lampp/htdocs/promos/protected/controllers/SiteController.php (37)
+2013/06/09 07:44:20 [trace] [system.CModule] Loading "messages" application component
+in /opt/lampp/htdocs/promos/protected/modules/user/UserModule.php (161)
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/main.php (45)
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/column3.php (59)
+2013/06/09 07:44:20 [trace] [system.CModule] Loading "coreMessages" application component
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/main.php (67)
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/column3.php (59)
+in /opt/lampp/htdocs/promos/protected/controllers/SiteController.php (37)
+2013/06/09 07:44:20 [trace] [system.CModule] Loading "clientScript" application component
+in /opt/lampp/htdocs/promos/protected/controllers/SiteController.php (37)
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:20 [trace] [system.CModule] Loading "log" application component
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:20 [trace] [system.CModule] Loading "request" application component
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:20 [trace] [system.CModule] Loading "urlManager" application component
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:20 [trace] [system.CModule] Loading "themeManager" application component
+in /opt/lampp/htdocs/promos/protected/controllers/SiteController.php (37)
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:20 [trace] [system.CModule] Loading "widgetFactory" application component
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/column3.php (2)
+in /opt/lampp/htdocs/promos/protected/controllers/SiteController.php (37)
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:20 [trace] [system.CModule] Loading "user" application component
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/column3.php (29)
+in /opt/lampp/htdocs/promos/protected/controllers/SiteController.php (37)
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:20 [trace] [system.CModule] Loading "session" application component
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/column3.php (29)
+in /opt/lampp/htdocs/promos/protected/controllers/SiteController.php (37)
+in /opt/lampp/htdocs/promos/index.php (13)
+2013/06/09 07:44:20 [trace] [system.base.CModule] Loading "user" module
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/main.php (45)
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/column3.php (59)
+in /opt/lampp/htdocs/promos/protected/controllers/SiteController.php (37)
+2013/06/09 07:44:20 [trace] [system.CModule] Loading "messages" application component
+in /opt/lampp/htdocs/promos/protected/modules/user/UserModule.php (161)
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/main.php (45)
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/column3.php (59)
+2013/06/09 07:44:20 [trace] [system.CModule] Loading "coreMessages" application component
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/main.php (67)
+in /opt/lampp/htdocs/promos/themes/classic/views/layouts/column3.php (59)
+in /opt/lampp/htdocs/promos/protected/controllers/SiteController.php (37)
+2013/06/09 07:44:20 [trace] [system.CModule] Loading "clientScript" application component
+in /opt/lampp/htdocs/promos/protected/controllers/SiteController.php (37)
+in /opt/lampp/htdocs/promos/index.php (13)

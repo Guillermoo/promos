@@ -21,7 +21,7 @@ return array(
         'application.modules.user.components.*',
         'application.modules.rights.*',
         'application.modules.rights.components.*',
-		'ext.giix-components.*', // giix components
+		//'ext.giix-components.*', // giix components
 		'ext.mailer.*',
 		'ext.flash',
 	),
