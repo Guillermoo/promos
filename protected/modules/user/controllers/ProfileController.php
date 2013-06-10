@@ -168,7 +168,7 @@ public function getTabularFormTabs($model,$categorias,$cuentas)
 	    Yii::import("xupload.models.XUploadForm");
         $image = new XUploadForm;
 
-	    if(Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id)){
+	    if(Yii::app()->authManager->checkAccess('admin', $model->id)){
 	        $tabs[0] = array(
 	            'active'=>1,
 	            'label'=>'Welcome',
@@ -202,7 +202,7 @@ public function getTabularFormTabs($model,$categorias,$cuentas)
 	
 	private function renderParaUsuario(){
 		
-		$esEmpresa = Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id);
+		$esEmpresa = UserModule::isCompany();
 		
 		if($esEmpresa)
 			$this->renderParaEmpresa();
@@ -266,7 +266,6 @@ public function getTabularFormTabs($model,$categorias,$cuentas)
 			'empresa'=>null,
 			'categorias'=>null,
 			'cuentas'=>null,
-	    	'contacto'=>null,
 			'logo'=>null,
 	    ));
 	}

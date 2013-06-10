@@ -27,7 +27,9 @@ If you have business inquiries or other questions, please fill out the following
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'contact-form',
+	'id'=>'paypal_form',
+	'action'=>Yii::app()->params['url_paypal'],
+	'method'=>POST,
 	'enableClientValidation'=>true,
 	'clientOptions'=>array(
 		'validateOnSubmit'=>true,

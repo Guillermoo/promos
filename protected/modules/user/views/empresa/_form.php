@@ -12,11 +12,6 @@
 		
 <fieldset>
 
-	<div class="row"><!-- Tipo de cuenta -->
-		<?php //echo $form->labelEx($empresa,'logo_id'); ?>
-	</div>
-	<?php //echo $form->dropDownListRow($empresa->cuenta, 'id', $cuentas); ?>
-	
 	<?php if (Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id) ):?>
 		<?php echo $form->errorSummary(array($model->empresa)); ?>
 	<?php endif;?>
@@ -111,10 +106,7 @@
 		<?php echo $form->textField($empresa,'urlTienda',array('size'=>60,'maxlength'=>100)); ?>
 		<?php echo $form->error($empresa,'urlTienda'); ?>
 	</div>
-	<div class="row">
-    	<?php $this->renderPartial('/layouts/_contacto',array('form'=>$form,'contacto'=>$model->contacto) );?>
-	</div>
-
+	
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Save'); ?>
 	</div>

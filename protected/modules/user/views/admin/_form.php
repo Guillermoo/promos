@@ -141,7 +141,7 @@
 	<?php endif;?>
 </table>
 <div class="row buttons">
-	<?php echo CHtml::submitButton($model->isNewRecord ? UserModule::t('Create') : UserModule::t('Save')); ?>
+	<?php //echo CHtml::submitButton($model->isNewRecord ? UserModule::t('Create') : UserModule::t('Save')); ?>
 </div>
 
 <?php $this->endWidget(); ?>

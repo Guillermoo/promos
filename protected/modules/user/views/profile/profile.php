@@ -24,7 +24,7 @@
 		'htmlOptions' => array('enctype'=>'multipart/form-data'),
 	    'type'=>'horizontal'
 	));*/?>
-	<?php if(Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id)):?>
+	<?php if(UserModule::isCompany()):?>
 		<?php $this->widget('bootstrap.widgets.TbTabs', array(
 		    'tabs'=>$this->getTabularFormTabs($model,$categorias,$cuentas),
 		)); ?>

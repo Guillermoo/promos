@@ -51,7 +51,7 @@ class Empresa extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('user_id', 'required'),
-			array('user_id, cuenta_id', 'numerical', 'integerOnly'=>true),
+			array('user_id,', 'numerical', 'integerOnly'=>true),
 			array('cif', 'length', 'max'=>9),
 			array('nombre','required','on'=>'update'),
 			array('cif', 'match', 'pattern' => '(X(-|\.)?0?\d{7}(-|\.)?[A-Z]|[A-Z](-|\.)?\d{7}(-|\.)?[0-9A-Z]|\d{8}(-|\.)?[A-Z])'),
@@ -59,7 +59,7 @@ class Empresa extends CActiveRecord
 			array('modificado', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('nombre,nombre_slug,emp_cat,empresa_id, user_id,cuenta_id, cif, web, twitter, facebook, urlTienda, modificado', 'safe', 'on'=>'search'),
+			array('nombre,nombre_slug,emp_cat,empresa_id, user_id, cif, web, twitter, facebook, urlTienda, modificado', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -72,7 +72,7 @@ class Empresa extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'usuario' => array(self::BELONGS_TO, 'Usuarios', 'user_id'),
-			'cuenta' => array(self::HAS_ONE, 'Cuenta', 'id'),
+			//'cuenta' => array(self::HAS_ONE, 'Cuenta', 'id'),
 			'categoria' => array(self::MANY_MANY, 'Category', 'tbl_emp_cat(empresa_id,categoria_id)'),
 			//(G)O la de arriba o la de abajo, no las dos
 			'empCat' => array(self::HAS_MANY, 'EmpCat', 'empresa_id'),
@@ -88,7 +88,6 @@ class Empresa extends CActiveRecord
 			'empresa_id' => 'Empresa',
 			'user_id' => 'Usuario',
 			'categoria_id' => 'Category',
-			'cuenta_id' => 'Cuenta',
 			'nombre' => 'Name',
 			'nombre_slug' => 'Friendly name',
 			'cif' => 'Cif',
@@ -97,6 +96,12 @@ class Empresa extends CActiveRecord
 			'facebook' => 'Facebook',
 			'urlTienda' => 'Url Tienda',
 			'modificado' => 'Modificado',
+			'telefono' => 'Telefono',
+			'fax' => 'Fax',
+			'cp' => 'Cp',
+			'barrio' => 'Barrio',
+			'direccion' => 'Direccion',
+			'poblacion_id' => 'Poblacion',
 		);
 	}
 
@@ -113,11 +118,16 @@ class Empresa extends CActiveRecord
 
 		$criteria->compare('empresa_id',$this->empresa_id);
 		$criteria->compare('user_id',$this->user_id);
-		$criteria->compare('cuenta_id',$this->cuenta_id);
 		$criteria->compare('categoria_id',$this->categoria_id);
 		$criteria->compare('nombre',$this->nombre,true);
 		$criteria->compare('nombre_slug',$this->nombre_slug,true);
 		$criteria->compare('cif',$this->cif,true);
+		$criteria->compare('telefono',$this->telefono,true);
+		$criteria->compare('fax',$this->fax,true);
+		$criteria->compare('cp',$this->cp,true);
+		$criteria->compare('barrio',$this->barrio);
+		$criteria->compare('direccion',$this->direccion,true);
+		$criteria->compare('poblacion_id',$this->poblacion_id);
 		/*$criteria->compare('web',$this->web,true);
 		$criteria->compare('twitter',$this->twitter,true);
 		$criteria->compare('facebook',$this->facebook,true);

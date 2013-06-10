@@ -20,20 +20,12 @@ class LoginController extends Controller
 					
 					$this->lastViset();//Para que se actualize la última vez visitado
 					
-					$id =Yii::app()->user->getId();
-					$params=array('id'=>$id);
-					
-					/*if (Yii::app()->authManager->checkAccess('admin', Yii::app()->user->id))
-						$this->render('adminMenu');
-					else
-						$this->render('empresaMenu');*/
-						
 					/*(G) No se porqué pero se mete otra vez en login*/
-					if(Yii::app()->user->checkAccess('comprador',$params))
+					if(UserModule::isBuyer())
 						$this->redirect('profile');
-					elseif(Yii::app()->user->checkAccess('empresa',$params))
+					elseif(UserModule::isCompany())
 						$this->redirect('profile');//A promociones, la url habrá que cambiarla cuando se cree el modelo promociones}
-					elseif(Yii::app()->user->checkAccess('superadmin',$params) || Yii::app()->user->checkAccess('admin',$params))
+					elseif(UserModule::isSuperAdmin() || UserModule::isAdmin())
 						$this->redirect('admin');
 					else
 						$this->redirect(Yii::app()->homeUrl);

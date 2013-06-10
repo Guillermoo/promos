@@ -105,6 +105,8 @@ class UserModule extends CWebModule
 	static private $_users=array();
 	static private $_userByName=array();
 	static private $_admin;
+	static private $_company;
+	static private $_buyer;
 	static private $_admins;
 	
 	/**
@@ -200,6 +202,63 @@ class UserModule extends CWebModule
 			if (!isset(self::$_admin)) {
 				//if(self::user()->superuser)
 				if(Yii::app()->authManager->checkAccess('admin', Yii::app()->user->id))
+					self::$_admin = true;
+				else
+					self::$_admin = false;	
+			}
+			return self::$_admin;
+		}
+	}
+	
+	/**
+	 * Return admin status.
+	 * @return boolean
+	 */
+	public static function isCompany() {
+		if(Yii::app()->user->isGuest)
+			return false;
+		else {
+			if (!isset(self::$_company)) {
+				//if(self::user()->superuser)
+				if(Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id))
+					self::$_company = true;
+				else
+					self::$_company = false;	
+			}
+			return self::$_company;
+		}
+	}
+	
+/**
+	 * Return admin status.
+	 * @return boolean
+	 */
+	public static function isBuyer() {
+		if(Yii::app()->user->isGuest)
+			return false;
+		else {
+			if (!isset(self::$_buyer)) {
+				//if(self::user()->superuser)
+				if(Yii::app()->authManager->checkAccess('comprador', Yii::app()->user->id))
+					self::$_buyer = true;
+				else
+					self::$_buyer = false;	
+			}
+			return self::$_buyer;
+		}
+	}
+	
+/**
+	 * Return admin status.
+	 * @return boolean
+	 */
+	public static function isSuperAdmin() {
+		if(Yii::app()->user->isGuest)
+			return false;
+		else {
+			if (!isset(self::$_admin)) {
+				//if(self::user()->superuser)
+				if(Yii::app()->authManager->checkAccess('superadmin', Yii::app()->user->id))
 					self::$_admin = true;
 				else
 					self::$_admin = false;	

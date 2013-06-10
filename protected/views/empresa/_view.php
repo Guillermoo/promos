@@ -12,10 +12,6 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('user_id')); ?>:</b>
 	<?php echo CHtml::encode($data->user_id); ?>
 	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('cuenta_id')); ?>:</b>
-	<?php echo CHtml::encode($data->cuenta_id); ?>
-	<br />
 	
 	<b><?php echo CHtml::encode($data->getAttributeLabel('nombre')); ?>:</b>
 	<?php echo CHtml::link(CHtml::encode($data->nombre), array('view', 'id'=>$data->nombre_slug)); ?>

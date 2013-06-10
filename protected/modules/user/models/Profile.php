@@ -50,12 +50,14 @@ class Profile extends CActiveRecord
 			//array('contacto_id', 'numerical', 'integerOnly'=>true),
 			array('username, lastname', 'length', 'max'=>50),
 			array('paypal_id', 'length', 'max'=>40),
+			array('barrio, poblacion_id,telefono,fax,cp', 'numerical', 'integerOnly'=>true),
+			array('telefono, fax', 'length', 'max'=>50),
 			array('tipocuenta', 'length', 'max'=>11),
 			array('fecha_activacion, fecha_fin,fecha_pago', 'length', 'max'=>51),
 			//array('fecha_activacion, fecha_fin,fecha_pago', 'type', 'type' => 'date', 'message' => '{attribute}: is not a date!', 'dateFormat' => 'yyyy-MM-dd'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('user_id, username, lastname, paypal_id, tipocuenta, fecha_activacion, fecha_fin, fecha_pago', 'safe', 'on'=>'search'),
+			array('user_id, username, lastname, paypal_id, tipocuenta, fecha_activacion, fecha_fin, fecha_pago,telefono, fax, cp, barrio, direccion, poblacion_id', 'safe', 'on'=>'search'),
 		);
 	}
 	
@@ -80,8 +82,8 @@ class Profile extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'user' => array(self::BELONGS_TO, 'User', 'id'),
-            //'contacto' => array(self::HAS_ONE, 'Contacto', 'id'),
+			//'user' => array(self::BELONGS_TO, 'User', 'id'),
+            'cuenta' => array(self::BELONGS_TO, 'Cuenta', 'tipocuenta'),
 		);
 	}
 	

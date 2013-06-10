@@ -16,6 +16,7 @@ class AdminController extends Controller
 			'accessControl', // perform access control for CRUD operations
 		));
 	}
+	
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
@@ -25,7 +26,7 @@ class AdminController extends Controller
 	{
 		return array(
 		array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete','create','updateAjax','update','view'),
+				'actions'=>array('admin','delete','create','updateAjax','update','view','ok'),
 				'users'=>UserModule::getAdmins(),
 		),
 		array('deny',  // deny all users
@@ -83,15 +84,14 @@ class AdminController extends Controller
 				if($model->save()) {
 					//Asignamos el rol dinámicamente
 					$model->setRole();
-					$esEmpresa = Yii::app()->authManager->checkAccess('empresa', $model->id);
+					$esEmpresa = UserModule::isCompany();
 						
-					if($esEmpresa)//(G)Creamos contacto, profile, empresa(si es usuario empresa)
+					if($esEmpresa)//(G)Creamos profile, empresa(si es usuario empresa)
 						$model->crearModelosRelacionados();
 				}
 				$this->redirect(array('admin'));
 			} else {
 				//	$model->profile->validate();
-				//	$contacto->validate();
 			}
 		}
 
@@ -121,12 +121,10 @@ class AdminController extends Controller
 				
 				$profile=$this->_model->profile;
 				$empresa=$this->_model->empresa;
-				$contacto=$this->_model->contacto;
-				$this->performAjaxValidation(array($this->_model,$profile,$empresa,$contacto));
+				$this->performAjaxValidation(array($this->_model,$profile,$empresa));
 
 				$profile->attributes=$_POST['Profile'];
 				$empresa->attributes=$_POST['Empresa'];
-				$contacto->attributes=$_POST['Contacto'];
 			}else{
 				$this->performAjaxValidation(array($this->_model));
 			}
@@ -141,20 +139,18 @@ class AdminController extends Controller
 				if ($esEmpresa){
 					$profile->save();
 					$empresa->save();
-					$contacto->save();
 				}
+				Yii::app()->user->setFlash('success', '<strong>Well done!</strong> You successfully read this important alert message.');
 				$this->redirect(array('update', 'id'=>$this->_model->id));
 			} else {
 				$profile->validate();
 			}
 		}
 
-		$this->renderParaUsuario();
+		$this->renderParaUsuario($esEmpresa);
 	}
 
-	private function renderParaUsuario(){
-
-		$esEmpresa = Yii::app()->authManager->checkAccess('empresa', $this->_model->id);
+	private function renderParaUsuario($esEmpresa){
 
 		if($esEmpresa)
 			$this->renderParaEmpresa();

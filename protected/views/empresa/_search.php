@@ -22,11 +22,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'cuenta_id'); ?>
-		<?php echo $form->textField($model,'cuenta_id'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'cif'); ?>
 		<?php echo $form->textField($model,'cif',array('size'=>15,'maxlength'=>15)); ?>
 	</div>

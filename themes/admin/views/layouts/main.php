@@ -12,6 +12,7 @@
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 
 	<?php Yii::app()->bootstrap->register(); ?>
+	
 </head>
 
 <body>
@@ -23,6 +24,24 @@
 	<?php if(!empty(Yii::app()->params['debugContent'])):?>
                 <?php echo Yii::app()->params['debugContent'];?>
 	<?php endif;?>
+	<?php if(Yii::app()->user->hasFlash('success')):?>
+		<div class="flash-notice">
+			<?php $this->widget('bootstrap.widgets.TbAlert', array(
+		        /*'block'=>true, // display a larger alert block?
+		        'fade'=>true, // use transitions?
+		        'closeText'=>true,*/ // close link text - if set to false, no close link is displayed
+		        'alerts'=>array( // configurations per alert type
+		            'success'=>array('block'=>true, 'fade'=>true, 'closeText'=>true), // success, info, warning, error or danger
+		            'error'=>array('block'=>true, 'fade'=>true, 'closeText'=>true), // success, info, warning, error or danger
+		        ),
+		    )); ?>
+		</div>
+	<?php endif?>
+	<?php /*if(Yii::app()->user->hasFlash('error')):?>
+		<div class="flash-error">
+	<?php echo Yii::app()->user->getFlash('error')?>
+	</div>
+	<?php endif */?>
 	<?php echo $content; ?>
 
 	<div class="clear"></div>

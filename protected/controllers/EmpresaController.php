@@ -142,6 +142,21 @@ class EmpresaController extends Controller
 			'model'=>$model,
 		));
 	}
+	
+	public function actionPaypal()
+	{
+		$model=new PaypalForm;
+		if(isset($_POST['PaypalForm']))
+		{
+			$model->attributes=$_POST['PaypalForm'];
+			if($model->validate())
+			{
+				Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
+				$this->refresh();
+			}
+		}
+		$this->render('paypal',array('model'=>$model));
+	}
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.

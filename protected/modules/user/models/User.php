@@ -98,7 +98,7 @@ class User extends CActiveRecord
             $relations['empresa'] = array(self::HAS_ONE, 'Empresa', 'user_id');
             $relations['profile'] = array(self::HAS_ONE, 'Profile', 'user_id');
             $relations['item'] = array(self::HAS_ONE, 'Item', 'foreign_id');
-            $relations['contacto'] = array(self::HAS_ONE, 'Contacto', 'user_id');
+            //$relations['contacto'] = array(self::HAS_ONE, 'Contacto', 'user_id');
         return $relations;
 	}
 
@@ -206,6 +206,14 @@ class User extends CActiveRecord
 			),
         ));
     }
+    
+	protected function beforeSave()
+	{
+	  if ($this->isNewRecord) {
+	        $this->passwordHash = sha1($this->password);
+	  }
+	  return parent::beforeSave(); // don't forget this line!
+	}
 
     public function getCreatetime() {
         return strtotime($this->create_at);
@@ -226,7 +234,7 @@ class User extends CActiveRecord
     /*(G) Función para obtener los campos. 
      * Si queremos que se muestren unos campos u otros en función de quien los llama,
      * este es el momento. */
-	public static function getFields() {
+	/*public static function getFields() {
 		$this->_model=Profile::model()->paraTodos()->findAll();
 		
 		return $this->_model;
@@ -238,8 +246,8 @@ class User extends CActiveRecord
 			if (!$this->_model)
 				$this->_model=Profile::model()->paraCommprador()->findAll();
 			return $this->_model;
-		}*/
-	}
+		}
+	}*/
     
 	/*Función que asigna el rol según el tipo de usuario, se ejecuta nada mas crear el usuario*/
 	public function setRole(){
@@ -259,7 +267,7 @@ class User extends CActiveRecord
 		if ($this->superuser == 2){//Es un usuario-empresa
 			$this->crearNuevoProfileParaElUsuario();
 			$this->crearNuevaEmpresaParaElUsuario();
-			$this->crearNuevoContactoParaElUsuario();
+			//$this->crearNuevoContactoParaElUsuario();
 		}
 	}
 	
@@ -283,16 +291,16 @@ class User extends CActiveRecord
 		
 	}
 	
-	private function crearNuevoContactoParaElUsuario(){
+	/*private function crearNuevoContactoParaElUsuario(){
 		
 		$contacto = new Contacto;
 		$contacto->user_id = $this->id;
 		$contacto->save();
 		
 		/*$profile->tipocuenta=; (G)FALTA ASIGNAR VALORES AUTOMÁTICOS
-		$profile->fecha_creacion=;*/
+		$profile->fecha_creacion=;
 			
-	}
+	}*/
 	
 	/* Used to debug variables*/
     protected function Debug($var){

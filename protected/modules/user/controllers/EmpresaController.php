@@ -199,7 +199,7 @@ class EmpresaController extends Controller
 		{
 			$model = $this->loadUser();
 			$empresa=$model->empresa;
-			$contacto=$model->contacto;
+			//$contacto=$model->contacto;
 			
 			$cuentas = Cuenta::getCuentas();
 			$cuentas_list = CHtml::listData($cuentas,'id', 'nombre');
@@ -217,13 +217,13 @@ class EmpresaController extends Controller
 			if(isset($_POST['Empresa']))
 			{
 				$empresa->attributes=$_POST['Empresa'];
-				$contacto->attributes=$_POST['Contacto'];
+				//$contacto->attributes=$_POST['Contacto'];
 				
 				if($empresa->validate()) {
 					//$model->save();
 					//$empresa->modificado = NOW();
 					$empresa->save();
-					$contacto->save();
+					//$contacto->save();
 	                Yii::app()->user->updateSession();
 					Yii::app()->user->setFlash('empresaMessage',UserModule::t("Changes is saved."));
 					$this->redirect(array('/user/profile'));
@@ -233,7 +233,7 @@ class EmpresaController extends Controller
 			$this->render('empresa',array(
 				'model'=>$model,
 				'empresa'=>$empresa,
-				'contacto'=>$contacto,
+				//'contacto'=>$contacto,
 				'cuentas'=>$cuentas,
 				'logo'=>$logo,
 			));

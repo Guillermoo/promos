@@ -113,7 +113,9 @@ return array(
 			'urlFormat'=>'path',
 			'showScriptName'=>false,
 			'rules'=>array(
-				'empresa/<alias:[-a-z]+>' => 'empresa/view',
+				'empresa/<alias:[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]+>' => 'empresa/view',
+				'page/<view>'=>array('site/page'),
+                                'index'=>array('site/index'),
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
@@ -188,6 +190,8 @@ return array(
 		// this is used in contact page
 		'debugContent'=>'',
 		'adminEmail'=>'grillermo@gmail.com',
+		'websiteEmail'=>'promos@promos.com',
 		'img_default'=>'/img/noprofile.jpg',
+		'url_paypal'=>'wwww.sadfsdf.com',
 	),
 );
