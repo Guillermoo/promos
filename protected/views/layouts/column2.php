@@ -2,6 +2,7 @@
 <?php $this->beginContent('//layouts/main'); ?>
 <div class="span-19">
 	<div id="content">
+		<p>Layout column2, carpeta views de PROTECTED</p>
 		<?php echo $content; ?>
 	</div><!-- content -->
 </div>

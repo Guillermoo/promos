@@ -3,7 +3,12 @@
 /*$this->breadcrumbs=array(
 	UserModule::t("Profile"),
 );*/
+<<<<<<< HEAD
 ?><h1><?php //echo UserModule::t('Your profile'); ?></h1>
+=======
+
+?><h1><?php echo UserModule::t('Your company'); ?></h1>
+>>>>>>> hugo_layouts
 
 <?php if(Yii::app()->user->hasFlash('companyMessage')): ?>
 <div class="success">

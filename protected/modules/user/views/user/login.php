@@ -1,5 +1,6 @@
 <?php
 $this->pageTitle=Yii::app()->name . ' - '.UserModule::t("Login");
+
 $this->breadcrumbs=array(
 	UserModule::t("Login"),
 );
@@ -14,7 +15,7 @@ $this->breadcrumbs=array(
 
 <?php endif; ?>
 
-<p><?php echo UserModule::t("Please fill out the following form with your login credentials:"); ?></p>
+<p><?php echo UserModule::t("Please fill out the following form with your login credentials:"); ?>aaaaaa</p>
 
 <div class="form">
 <?php echo CHtml::beginForm(); ?>
