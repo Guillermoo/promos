@@ -34,11 +34,8 @@ class ProfileController extends Controller
 	public function actionProfile()
 	{
 		$this->_model = $this->loadUser();
+		$this->render('profile', array('model'=>$this->_model));
 		
-		if (UserModule::isAdmin())
-			$this->renderParaAdmin();
-		else
-		 	$this->renderParaUsuario();
 	}
 	
 	
@@ -158,57 +155,7 @@ class ProfileController extends Controller
 			));
 		}
 		
-		
-	public function getTabularFormTabs($model,$categorias,$cuentas)
-	{
-		
-	    $tabs = array();
-	    $count = 0;
-	    
-	    Yii::import("xupload.models.XUploadForm");
-        $image = new XUploadForm;
 
-	    if(UserModule::isCompany()){
-	        $tabs[0] = array(
-	            'active'=>1,
-	            'label'=>'Welcome',
-	            'content'=>$this->renderPartial('/layouts/_welcome', array(), true),
-	        );
-	    	$tabs[1] = array(
-	            'active'=>0,
-	            'label'=>'Profile',
-	            'content'=>$this->renderPartial('_form', array('model'=>$model, 'profile'=>$model->profile), true),
-	        );
-	        $tabs[2] = array(
-	            'active'=>0,
-	            'label'=>'Company',
-	            'content'=>$this->renderPartial('/empresa/_form', array('model'=>$model,'categorias'=>$categorias, 'cuentas'=>$cuentas, 'image'=>$image), true),
-	        );
-	        $tabs[3] = array(
-	            'active'=>0,
-	            'label'=>'Promotions',
-	            'content'=>$this->renderPartial('/layouts/_welcome', array('model'=>$model,'categorias'=>$categorias, 'cuentas'=>$cuentas, 'image'=>$image), true),
-	        );
-	    }
-	    return $tabs;
-	}
-	
-	private function renderParaAdmin(){
-		$this->render('profile',array(
-	    	'model'=>$this->_model,
-			//'profile'=>$this->_model->profile,
-	    ));
-	}
-	
-	private function renderParaUsuario(){
-		
-		$esEmpresa = UserModule::isCompany();
-		
-		if($esEmpresa)
-			$this->renderParaEmpresa();
-		else
-			$this->renderParaComprador();
-	}
 	
 	private function getImage($img,$logo){
 			
@@ -236,40 +183,8 @@ class ProfileController extends Controller
 	        
 		}
 	
-	private function renderParaEmpresa(){
-		
-		$cuentas = Cuenta::getCuentas();
-		$cuentas_list = CHtml::listData($cuentas,'id', 'nombre');
-		
-		//Obtenemos todas las categorías con nivel 2(suponiendo que no hay subcategorías
-		$cat_model = Category::getCategorias();
-		$categorias = CHtml::listData($cat_model,'id', 'name');
-
-		/*$myImg = $this->setImage();
-		
-		Yii::import("xupload.models.XUploadForm");
-        $image = new XUploadForm;*/
-		$image = new Item;
-		$this->render('profile',array(
-	    	'model'=>$this->_model,
-			'categorias'=>$categorias,
-			'cuentas'=>$cuentas,
-			'image'=>$image,
-			//'myImg'=>$myImg,
-	    ));
-	}
 	
-	private function renderParaComprador(){
-		$this->render('profile',array(
-	    	'model'=>$this->_model,
-			'profile'=>null,
-			'empresa'=>null,
-			'categorias'=>null,
-			'cuentas'=>null,
-			'logo'=>null,
-	    ));
-	}
-
+	
 	/**
 	 * Lists all models.
 	 */
@@ -354,4 +269,40 @@ class ProfileController extends Controller
         $debug .= "</pre></div>\n";
         Yii::app()->params['debugContent'] .=$debug;
     }
+    
+    /********CODIGO COMENTADO *************/
+    
+    /*public function getTabularFormTabs($model,$categorias,$cuentas)
+	{
+		
+	    $tabs = array();
+	    $count = 0;
+	    
+	    Yii::import("xupload.models.XUploadForm");
+        $image = new XUploadForm;
+
+	    if(UserModule::isCompany()){
+	        $tabs[0] = array(
+	            'active'=>1,
+	            'label'=>'Welcome',
+	            'content'=>$this->renderPartial('/layouts/_welcome', array(), true),
+	        );
+	    	$tabs[1] = array(
+	            'active'=>0,
+	            'label'=>'Profile',
+	            'content'=>$this->renderPartial('_form', array('model'=>$model, 'profile'=>$model->profile), true),
+	        );
+	        $tabs[2] = array(
+	            'active'=>0,
+	            'label'=>'Company',
+	            'content'=>$this->renderPartial('/empresa/_form', array('model'=>$model,'categorias'=>$categorias, 'cuentas'=>$cuentas, 'image'=>$image), true),
+	        );
+	        $tabs[3] = array(
+	            'active'=>0,
+	            'label'=>'Promotions',
+	            'content'=>$this->renderPartial('/layouts/_welcome', array('model'=>$model,'categorias'=>$categorias, 'cuentas'=>$cuentas, 'image'=>$image), true),
+	        );
+	    }
+	    return $tabs;
+	}*/
 }

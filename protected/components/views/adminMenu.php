@@ -12,8 +12,8 @@
     'type'=>'list',
     'items'=>array(
 		array('label'=>UserModule::t('Create User'), 'icon'=>'home', 'url'=>array('/user/admin/create')),
-		array('label'=>UserModule::t('Manage Users'), 'url'=>array('/user/admin')),
-    	array('label'=>'Roles', 'url'=>array('/rights'), 'visible'=>UserModule::isSuperAdmin()),
+		array('label'=>UserModule::t('Manage Users'), 'url'=>Yii::app()->getModule('user')->adminUrl),
+    	array('label'=>UserModule::t('Rols'), 'url'=>array('/rights'), 'visible'=>UserModule::isSuperAdmin()),
 		//array('label'=>UserModule::t('List User'), 'url'=>array('/user')),
     	//array('url'=>Yii::app()->getModule('user')->profileUrl, 'label'=>Yii::app()->getModule('user')->t("Profile"), 'visible'=>!Yii::app()->user->isGuest),
 		//array('label'=>UserModule::t('Edit User'), 'url'=>array('/user/profile')),

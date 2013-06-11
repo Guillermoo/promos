@@ -26,31 +26,69 @@ class EmpresaController extends Controller
 		);
 	}
 	
-	/**
-	 * Lists all models.
-	 */
+/*  
+		 * (G)De momento abrimos home que no hay nada pensado en que se mostrará.
+		 * Dejo el código comentado por si hace falta.
+		 * */
+	public function actionHome(){
+		
+		/*$cuentas = Cuenta::getCuentas();
+		$cuentas_list = CHtml::listData($cuentas,'id', 'nombre');
+		
+		//Obtenemos todas las categorías con nivel 2(suponiendo que no hay subcategorías
+		$cat_model = Category::getCategorias();
+		$categorias = CHtml::listData($cat_model,'id', 'name');*/
+
+		/*$myImg = $this->setImage();
+		
+		Yii::import("xupload.models.XUploadForm");
+        $image = new XUploadForm;*/
+		//$image = new Item;
+		
+		$this->render('home',array(
+	    	/*'model'=>$this->_model,
+			'categorias'=>$categorias,
+			'cuentas'=>$cuentas,
+			'image'=>$image,*/
+			//'myImg'=>$myImg,
+	    ));
+	}
+	
+	/*  
+	 * (G)De momento abrimos home que no hay nada pensado en que se mostrará.
+	 * Dejo el código comentado por si hace falta.
+	 * */
 	public function actionEmpresa()
 	{
 		$_model = $this->loadUser();
 		
 		//Obtenemos todas las categorías con nivel 2(suponiendo que no hay subcategorías
-		$cat_model = Category::getCategorias();
+		/*$cat_model = Category::getCategorias();
 		$categorias = CHtml::listData($cat_model,'id', 'name');
 		
 		$cuentas = Cuenta::getCuentas();
 		$cuentfas_list = CHtml::listData($cuentas,'id', 'nombre');
-		
+		*/
 		//Para cargar/gestionar el logo
-	 	/*Yii::import("xupload.models.XUploadForm");
-        $logo = new XUploadForm;*/
+		Yii::import("xupload.models.XUploadForm");
+        $image = new XUploadForm;
 		
-		$this->render('empresa',array(
+		/*$this->render('empresa',array(
 	    	'model'=>$_model,
 			'empresa'=>$_model->empresa,
 	    	'contacto'=>$_model->empresa->contacto,
 			'categorias'=>$categorias,
 			'cuentas'=>$cuentas_list,
 			'logo'=>$logo,
+	    ));*/
+	    
+	    $this->render('empresa',array(
+	    	'model'=>$_model,
+			/*'empresa'=>$_model->empresa,
+	    	'contacto'=>$_model->empresa->contacto,
+			'categorias'=>$categorias,
+			'cuentas'=>$cuentas_list,*/
+			'image'=>$image,
 	    ));
 	    
 	}

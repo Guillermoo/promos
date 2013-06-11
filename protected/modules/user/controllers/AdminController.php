@@ -84,6 +84,7 @@ class AdminController extends Controller
 				if($model->save()) {
 					//Asignamos el rol dinámicamente
 					$model->setRole();
+					
 					$esEmpresa = UserModule::isCompany();
 						
 					if($esEmpresa)//(G)Creamos profile, empresa(si es usuario empresa)

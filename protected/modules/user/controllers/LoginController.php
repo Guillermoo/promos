@@ -23,7 +23,7 @@ class LoginController extends Controller
 					if(UserModule::isBuyer())
 						$this->redirect('profile');
 					elseif(UserModule::isCompany())
-						$this->redirect('profile');//A promociones, la url habrá que cambiarla cuando se cree el modelo promociones}
+						$this->redirect(Yii::app()->getModule('user')->homeUrl);//A promociones, la url habrá que cambiarla cuando se cree el modelo promociones}
 					elseif(UserModule::isSuperAdmin() || UserModule::isAdmin())
 						$this->redirect('admin');
 					else

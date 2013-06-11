@@ -54,33 +54,17 @@ $this->breadcrumbs=array(
 	<?php echo $form->error($model,'email'); ?>
 	</div>
 	
-	<div class="row">
-	De momento está hecho estático
-	<?php echo $form->labelEx($model,'cuenta'); ?>
-	<?php echo CHtml::dropDownList('region_id','', 
-		  array(0=>'Trial',1=>'Lite',2=>'Basic',3=>'Deluxe'),
-		  array(
-		    'prompt'=>'Selecciona una categoría',
-		    'ajax' => array(
-		    'type'=>'POST', 
-		    'url'=>CController::createUrl('loadcities'),
-		    'update'=>'#city_name', 
-		  	'data'=>array('region_id'=>'js:this.value'),
-		  )));  ?>
-	<?php echo $form->error($model,'cuenta'); ?>
-	</div>
-
 	<?php if (UserModule::doCaptcha('registration')): ?>
-	<div class="row">
-		<?php echo $form->labelEx($model,'verifyCode'); ?>
-		
-		<?php $this->widget('CCaptcha'); ?>
-		<?php echo $form->textField($model,'verifyCode'); ?>
-		<?php echo $form->error($model,'verifyCode'); ?>
-		
-		<p class="hint"><?php echo UserModule::t("Please enter the letters as they are shown in the image above."); ?>
-		<br/><?php echo UserModule::t("Letters are not case-sensitive."); ?></p>
-	</div>
+		<div class="row">
+			<?php echo $form->labelEx($model,'verifyCode'); ?>
+			
+			<?php $this->widget('CCaptcha'); ?>
+			<?php echo $form->textField($model,'verifyCode'); ?>
+			<?php echo $form->error($model,'verifyCode'); ?>
+			
+			<p class="hint"><?php echo UserModule::t("Please enter the letters as they are shown in the image above."); ?>
+			<br/><?php echo UserModule::t("Letters are not case-sensitive."); ?></p>
+		</div>
 	<?php endif; ?>
 	
 	<div class="row submit">

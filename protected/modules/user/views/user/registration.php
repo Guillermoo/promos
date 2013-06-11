@@ -54,33 +54,6 @@ $this->breadcrumbs=array(
 	<?php echo $form->error($model,'email'); ?>
 	</div>
 	
-	
-	
-<?php 
-		/*$profileFields=$profile->getFields();
-		if ($profileFields) {
-			//Se generan los campos que hayamos añadido nosotros
-			foreach($profileFields as $field) {*/
-			?>
-	<div class="row">
-		<?php //echo $form->labelEx($profile,$field->varname); ?>
-		<?php 
-		/*if ($widgetEdit = $field->widgetEdit($profile)) {
-			echo $widgetEdit;
-		} elseif ($field->range) {
-			echo $form->dropDownList($profile,$field->varname,Profile::range($field->range));
-		} elseif ($field->field_type=="TEXT") {
-			echo$form->textArea($profile,$field->varname,array('rows'=>6, 'cols'=>50));
-		} else {
-			echo $form->textField($profile,$field->varname,array('size'=>60,'maxlength'=>(($field->field_size)?$field->field_size:255)));
-		}*/
-		 ?>
-		<?php //echo $form->error($profile,$field->varname); ?>
-	</div>	
-			<?php
-			/*}
-		}*/
-?>
 	<?php if (UserModule::doCaptcha('registration')): ?>
 	<div class="row">
 		<?php echo $form->labelEx($model,'verifyCode'); ?>

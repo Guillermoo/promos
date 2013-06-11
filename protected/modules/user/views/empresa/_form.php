@@ -23,7 +23,7 @@
 	<div class="row"><!-- HAy que mostrar las categorías a las que pertenece pero no dejar editar -->
 		<!-- (G)De moment lo dejo así, ya se me ocurrirá algo mejor -->
 		<?php echo $form->labelEx($model->empresa,'categoria_id'); ?>
-		<?php echo "Categorías a las que pertenece: "?><br>
+		<?php echo "Belonged categories: "?><br>
 		<?php foreach ($model->empresa->categoria as $miCat):?>
 			<b><?php echo $miCat->name;?></b><br>
 		<?php endforeach;?>

@@ -127,4 +127,6 @@ return array(
     'Display order of fields.' => 'Mostrar orden de los campos',
 	'Not visited' => 'No visitó',
 	'Company' => 'Empresa',
+	'Logout' => 'Salir',
+	'Belonged categories: ' => 'Categorías a las que pertenece: ',
 );

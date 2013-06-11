@@ -57,7 +57,11 @@ class UserModule extends CWebModule
 	public $recoveryUrl = array("/user/recovery/recovery");
 	public $loginUrl = array("/user/login");
 	public $logoutUrl = array("/user/logout");
+	public $adminUrl = array("/user/admin");
+	public $homeUrl = array("/user/home");
 	public $profileUrl = array("/user/profile");
+	public $promocionesUrl = array("/user/promociones");
+	public $empresaUrl = array("/user/empresa");
 	public $returnUrl = array("/user/profile");
 	public $returnLogoutUrl = array("/user/login");
 	
@@ -211,7 +215,7 @@ class UserModule extends CWebModule
 	}
 	
 	/**
-	 * Return admin status.
+	 * (G)Return company status.
 	 * @return boolean
 	 */
 	public static function isCompany() {
@@ -230,7 +234,7 @@ class UserModule extends CWebModule
 	}
 	
 /**
-	 * Return admin status.
+	 * (G)Return buyer status.
 	 * @return boolean
 	 */
 	public static function isBuyer() {
@@ -249,7 +253,7 @@ class UserModule extends CWebModule
 	}
 	
 /**
-	 * Return admin status.
+	 * (G)Return superadmin status.
 	 * @return boolean
 	 */
 	public static function isSuperAdmin() {
@@ -293,6 +297,7 @@ class UserModule extends CWebModule
 	    return mail($email,'=?UTF-8?B?'.base64_encode($subject).'?=',$message,$headers);
 	}
 	
+	//(H)
 	public static function enviarEmail($email,$subject,$message, $altBody){
 			
 			/* hugo */

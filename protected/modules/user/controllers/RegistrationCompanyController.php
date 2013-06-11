@@ -23,7 +23,7 @@ class RegistrationCompanyController extends Controller
             $model = new RegistrationForm;
             //$profile=new Profile;
             $profile->regMode = true;
-            
+            asdf;
 			// ajax validator
 			if(isset($_POST['ajax']) && $_POST['ajax']==='registration-form')
 			{
@@ -76,7 +76,7 @@ class RegistrationCompanyController extends Controller
 						}
 					} else $profile->validate();
 				}
-			    $this->render('/user/registration',array('model'=>$model,'profile'=>$profile));
+			    $this->render('registrationcompany',array('model'=>$model,'profile'=>$profile));
 		    }
 	}
 }

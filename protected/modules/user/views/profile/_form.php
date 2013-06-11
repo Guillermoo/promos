@@ -45,7 +45,7 @@
 	<?php endif; ?>
 	
 	<?php if (UserModule::isCompany() ):?>
-		
+		<?php $profile = $model->profile;?>
 		<div class="fields">
 		
 			<?php $this->widget('bootstrap.widgets.TbLabel', array(
