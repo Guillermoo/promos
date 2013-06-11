@@ -15,7 +15,6 @@ class ItemController extends CController
 	    //Here we define the paths where the files will be stored temporarily
 	    $path = realpath( Yii::app( )->getBasePath( )."/../uploads/images/" )."/";
 	    $publicPath = Yii::app( )->getBaseUrl( )."/uploads/images/";
-	 
 	    //This is for IE which doens't handle 'Content-type: application/json' correctly
 	    header( 'Vary: Accept' );
 	    if( isset( $_SERVER['HTTP_ACCEPT'] ) 
@@ -32,6 +31,7 @@ class ItemController extends CController
 	                $file = $path.$_GET["file"];
 	                if( is_file( $file ) ) {
 	                    unlink( $file );
+	                    Item::deleteItem($_GET["file"]);
 	                }
 	            }
 	            echo json_encode( true );
@@ -91,7 +91,7 @@ class ItemController extends CController
 	                        "delete_type" => "POST"
 	                    ) ) );
 	                    
-	                   $this->addImages();
+	                   $this->addImages(); //Añadimos los items a la BD
 	            } else {
 	                //If the upload failed for some reason we log some data and let the widget know
 	                echo json_encode( array( 
@@ -163,6 +163,20 @@ class ItemController extends CController
 	        //Clear the user's session
 	        Yii::app( )->user->setState( 'images', null );
 	    }
+	}
+	
+	public function actionDelete(){
+		//Here we check if we are deleting and uploaded file
+    	sdhg;
+		$id = $_POST["id"];
+	        
+        if( isset( $id )) {
+        	Item::deleteItemFromDisk($id);
+			//Item::deteleItemFromDB($id);
+			echo json_encode( array( 
+                    array( "error" => "Borradooo",
+                ) ) );
+        }
 	}
 	
 	/* Used to debug variables*/

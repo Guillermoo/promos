@@ -159,7 +159,7 @@ class ProfileController extends Controller
 		}
 		
 		
-public function getTabularFormTabs($model,$categorias,$cuentas)
+	public function getTabularFormTabs($model,$categorias,$cuentas)
 	{
 		
 	    $tabs = array();
@@ -168,7 +168,7 @@ public function getTabularFormTabs($model,$categorias,$cuentas)
 	    Yii::import("xupload.models.XUploadForm");
         $image = new XUploadForm;
 
-	    if(Yii::app()->authManager->checkAccess('admin', $model->id)){
+	    if(UserModule::isCompany()){
 	        $tabs[0] = array(
 	            'active'=>1,
 	            'label'=>'Welcome',

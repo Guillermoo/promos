@@ -87,7 +87,7 @@
 		<?php echo $form->error($empresa,'urlTienda'); ?>
 	</div>
 	<div class="row">
-    	<?php $this->renderPartial('/layouts/_contacto',array('form'=>$form,'contacto'=>$contacto) );?>
+    	<?php //$this->renderPartial('/layouts/_contacto',array('form'=>$form,'contacto'=>$contacto) );?>
 	</div>
 
 	<div class="row buttons">

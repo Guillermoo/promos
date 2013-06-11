@@ -33,33 +33,16 @@
 	</div>
 	<?php //$this->debug($model); ?>
 	<div class="row">
-		<?php if (isset($model->item)):?>
-			<?php 
-				$imghtml=CHtml::image(Yii::app( )->getBaseUrl( ).$model->item->path);
-				echo CHtml::link($imghtml);?>
-		<?php else:?>
-            <?php
-				$this->widget('xupload.XUpload', array(
-                    'url' => Yii::app()->createUrl("/item/upload"),
-                    'model' => $image,
-                    'attribute' => 'file',
-                    'htmlOptions' => array('id'=>'empresa-form'),
-                    'multiple' => false,
-					/*'url' => Yii::app( )->createUrl( "/item/upload"),
-	                //our XUploadForm
-	                'model' => $image,
-	                //We set this for the widget to be able to target our own form
-	                'htmlOptions' => array('id'=>'empresa-form'),
-	                'attribute' => 'file',
-	                'multiple' => false,*/
-	                //Note that we are using a custom view for our widget
-	                //Thats becase the default widget includes the 'form' 
-	                //which we don't want here
-	                //'formView' => 'application.views.somemodel._form',
-				));
-			?>
-			<?php endif;?>
-		<?php //echo $form->error($empresa,'logo_id'); ?>
+		<div id="logo_form">
+			<?php if (isset($model->item)):?>
+				<?php $imghtml=CHtml::image(Yii::app( )->getBaseUrl( ).$model->item->path);?>
+				<?php $this->renderPartial('../layouts/_viewitem', array(
+					'imghtml' => $imghtml,'idimage'=>$model->item->id,'muestraBorrar'=>UserModule::isCompany()));?>
+			<?php else:?>
+				<?php $this->renderPartial('../layouts/_itemupload', array(
+					'image' => $image,'idform'=>'empresa-form'));?>
+				<?php endif;?>
+		</div>
 	</div>
 
 	<?php $empresa = $model->empresa;?>

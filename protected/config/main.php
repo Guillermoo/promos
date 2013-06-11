@@ -193,5 +193,6 @@ return array(
 		'websiteEmail'=>'promos@promos.com',
 		'img_default'=>'/img/noprofile.jpg',
 		'url_paypal'=>'wwww.sadfsdf.com',
+		'path_imgs'=> realpath( Yii::app( )->getBasePath( )."/../" ),
 	),
 );

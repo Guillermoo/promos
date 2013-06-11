@@ -54,6 +54,25 @@ class EmpresaController extends Controller
 	    ));
 	    
 	}
+	
+	public function actionDeleteItem($id){
+		//Here we check if we are deleting and uploaded file
+		if(Yii::app()->request->isAjaxRequest)
+		{    
+	        if( isset( $id )) {
+	        	Item::deleteItemFromDisk($id);
+				Item::deteleItemFromDB($id);
+				Yii::import( "xupload.models.XUploadForm" );
+				$image = new XUploadForm;
+				
+				echo $this->renderPartial('../layouts/_itemupload', array(
+					'image' => $image,'idform'=>'empresa-form'));
+	        }
+		 
+         	
+		}
+        
+	}
 
 	/**
 	 * Specifies the access control rules.

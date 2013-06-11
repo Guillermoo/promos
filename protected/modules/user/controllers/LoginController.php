@@ -20,7 +20,6 @@ class LoginController extends Controller
 					
 					$this->lastViset();//Para que se actualize la última vez visitado
 					
-					/*(G) No se porqué pero se mete otra vez en login*/
 					if(UserModule::isBuyer())
 						$this->redirect('profile');
 					elseif(UserModule::isCompany())
