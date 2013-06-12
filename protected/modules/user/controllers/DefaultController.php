@@ -6,6 +6,10 @@ class DefaultController extends Controller
 	/**
 	 * Lists all models.
 	 */
+	//hugo-------------------
+	//le digo que el layout que utilice por defecto en el dashboard sea column2
+	public $layout = "column2";
+	/* ---------------------------*/
 	public function actionIndex()
 	{
 		$dataProvider=new CActiveDataProvider('User', array(

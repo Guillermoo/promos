@@ -4,7 +4,7 @@
 	<div id="sidebar">
 		<div class="categoriasizda">
 	<?php
-	echo "<h4>Menú de usuario</h4>";
+	echo "<h4>Menú de usuario user-modulo</h4>";
 	$this->widget('zii.widgets.CMenu', array(
     'items'=>array(
         // Important: you need to specify url as 'controller/action',

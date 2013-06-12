@@ -11,7 +11,7 @@
             column2 de theme->classic->admin
         <?php
             
-            if(!Yii::app()->user->isGuest) $this->widget('UserMenu');
+            if(!Yii::app()->user->isCompany) $this->widget('UserMenu');
             
             /*$this->widget('bootstrap.widgets.TbMenu', array(
                 'items'=>$this->menu,
