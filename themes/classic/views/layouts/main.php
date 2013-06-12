@@ -29,7 +29,8 @@
 <div class="container" id="page">
 
 	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
+		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?>
+			<p>Yo soy el layout main de la carpeta views/layouts del tema classic</p></div>
 	</div><!-- header -->
 
 	<div id="mainmenu">

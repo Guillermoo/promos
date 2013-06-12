@@ -3,8 +3,8 @@
 /*$this->breadcrumbs=array(
 	UserModule::t("Profile"),
 );*/
-?><h1><?php //echo UserModule::t('Your profile'); ?></h1>
 
+?><h1><?php echo UserModule::t('Your profile'); ?></h1>
 <?php if(Yii::app()->user->hasFlash('profileMessage')): ?>
 <div class="success">
 	<?php echo Yii::app()->user->getFlash('profileMessage'); ?>
