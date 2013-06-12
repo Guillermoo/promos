@@ -54,14 +54,6 @@
 					<?php echo $form->dropDownList($model,'status',User::itemAlias('UserStatus')); ?>
 					<?php echo $form->error($model,'status'); ?>
 				</div>
-				<div class="row">
-					<div class="row"><!-- HAy que mostrar las categorías a las que pertenece pero no dejar editar -->
-						<?php /*echo $form->labelEx($empresa,'categoria_id'); ?>
-						<?php echo $form->dropDownListRow($empresa, 'contacto_id', $categorias, array('multiple'=>true)); ?>
-						<?php echo $form->checkBoxListRow($empresa, 'contacto_id', $categorias, array('hint'=>'<strong>Note:</strong> Choose only two categories.')); ?>
-						<?php echo $form->error($empresa,'contacto_id');*/ ?>
-					</div>
-				</div>
 			<!-- Si es un NOadmin logeado, queremos ver el perfil de un NOadmin --> 
 			<?php if ($esEmpresa):?> 
 				<?php 
@@ -89,7 +81,7 @@
 						<?php echo $form->textField($profile,'paypal_id',array('size'=>60,'maxlength'=>128)); ?>
 						<?php echo $form->error($profile,'paypal_id'); ?>
 					</div>
-					
+					scenario!!!
 					<div class="row">
 						<?php echo $form->labelEx($profile,'tipocuenta'); ?>
 						<?php echo $form->textField($profile,'tipocuenta',array('size'=>60,'maxlength'=>128)); ?>

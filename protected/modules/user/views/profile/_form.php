@@ -16,7 +16,7 @@
 	<p class="note"><?php echo UserModule::t('Fields with <span class="required">*</span> are required.'); ?></p>
 	
 	<?php if (UserModule::isSuperAdmin() || UserModule::isAdmin() ):?>
-
+	<?php //Estos campos sólo se muestran al admin ya que son de uso interno. ?>
 	<?php echo $form->errorSummary(array($model)); ?>
 
 		<div class="row">

@@ -53,8 +53,8 @@ class Empresa extends CActiveRecord
 			array('user_id', 'required'),
 			array('user_id,', 'numerical', 'integerOnly'=>true),
 			array('cif', 'length', 'max'=>9),
-			array('nombre','required','on'=>'update'),
-			array('cif', 'match', 'pattern' => '(X(-|\.)?0?\d{7}(-|\.)?[A-Z]|[A-Z](-|\.)?\d{7}(-|\.)?[0-9A-Z]|\d{8}(-|\.)?[A-Z])'),
+			array('nombre','required','message' => UserModule::t("The company name is required.")),
+			array('cif', 'match', 'pattern' => '(X(-|\.)?0?\d{7}(-|\.)?[A-Z]|[A-Z](-|\.)?\d{7}(-|\.)?[0-9A-Z]|\d{8}(-|\.)?[A-Z])','message' => UserModule::t("The cif must be valid.")),
 			array('nombre,nombre_slug,web, twitter, facebook, urlTienda', 'length', 'max'=>100),
 			array('modificado', 'safe'),
 			// The following rule is used by search().
@@ -78,6 +78,14 @@ class Empresa extends CActiveRecord
 			'empCat' => array(self::HAS_MANY, 'EmpCat', 'empresa_id'),
 		);
 	}
+	
+	/*public function defaultScope()
+    {
+        return CMap::mergeArray(Yii::app()->getModule('user')->defaultScope,array(
+            'alias'=>'empresa',
+            'select' => 'empresa.empresa_id,empresa.user_id, empresa.nombre, empresa.cif',
+        ));
+    }*/
 
 	/**
 	 * @return array customized attribute labels (name=>label)
@@ -118,16 +126,9 @@ class Empresa extends CActiveRecord
 
 		$criteria->compare('empresa_id',$this->empresa_id);
 		$criteria->compare('user_id',$this->user_id);
-		$criteria->compare('categoria_id',$this->categoria_id);
 		$criteria->compare('nombre',$this->nombre,true);
 		$criteria->compare('nombre_slug',$this->nombre_slug,true);
 		$criteria->compare('cif',$this->cif,true);
-		$criteria->compare('telefono',$this->telefono,true);
-		$criteria->compare('fax',$this->fax,true);
-		$criteria->compare('cp',$this->cp,true);
-		$criteria->compare('barrio',$this->barrio);
-		$criteria->compare('direccion',$this->direccion,true);
-		$criteria->compare('poblacion_id',$this->poblacion_id);
 		/*$criteria->compare('web',$this->web,true);
 		$criteria->compare('twitter',$this->twitter,true);
 		$criteria->compare('facebook',$this->facebook,true);

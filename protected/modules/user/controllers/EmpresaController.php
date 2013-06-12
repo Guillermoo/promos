@@ -26,10 +26,10 @@ class EmpresaController extends Controller
 		);
 	}
 	
-/*  
-		 * (G)De momento abrimos home que no hay nada pensado en que se mostrará.
-		 * Dejo el código comentado por si hace falta.
-		 * */
+	/*  	
+	 * (G)De momento abrimos home que no hay nada pensado en que se mostrará.
+	 * Dejo el código comentado por si hace falta.
+	 * */
 	public function actionHome(){
 		
 		/*$cuentas = Cuenta::getCuentas();
@@ -44,10 +44,30 @@ class EmpresaController extends Controller
 		Yii::import("xupload.models.XUploadForm");
         $image = new XUploadForm;*/
 		//$image = new Item;
+		$_model = $this->loadUser();
+		
+		if(isset($_POST['EmpresaForm']) && ($_POST['ProfileForm']) ){
+			
+			$_model->empresa->attributes=$_POST['EmpresaForm'];
+			$_model->profile->attributes=$_POST['ProfileForm'];
+			//$contacto->attributes=$_POST['Contacto'];
+			
+			if($_model->empresa->validate()) {
+				if($_model->profile->validate()) {
+
+					$_model->empresa->save();
+					$_model->profile->save();
+					
+	                Yii::app()->user->updateSession();
+					Yii::app()->user->setFlash('empresaMessage',UserModule::t("Changes is saved."));
+					//$this->redirect(array('/user/profile'));
+				}//else $_model->profile->validate();
+			}// else $_model->empresa->validate();
+		}
 		
 		$this->render('home',array(
-	    	/*'model'=>$this->_model,
-			'categorias'=>$categorias,
+	    	'model'=>$this->_model,
+			/*'categorias'=>$categorias,
 			'cuentas'=>$cuentas,
 			'image'=>$image,*/
 			//'myImg'=>$myImg,
@@ -61,7 +81,6 @@ class EmpresaController extends Controller
 	public function actionEmpresa()
 	{
 		$_model = $this->loadUser();
-		
 		//Obtenemos todas las categorías con nivel 2(suponiendo que no hay subcategorías
 		/*$cat_model = Category::getCategorias();
 		$categorias = CHtml::listData($cat_model,'id', 'name');
@@ -137,8 +156,6 @@ class EmpresaController extends Controller
 			),
 		);
 	}*/
-	
-	
 	
 	public function actionForm( ) {
 	    $model = new Item;
@@ -249,8 +266,6 @@ class EmpresaController extends Controller
 	    ) );
 	    
 	}
-	
-	
 
 	public function actionEdit()
 		{
@@ -296,6 +311,42 @@ class EmpresaController extends Controller
 			));
 		}
 
+	public function actionActualizacontacto(){
+		
+			$model = $this->loadUser();
+			$empresa=$model->empresa;
+			$profile = $model->profile;
+			if(Yii::app()->request->isAjaxRequest){
+				if(isset($_POST['Empresa']) && ($_POST['Profile']) )
+				{
+					$empresa->attributes=$_POST['Empresa'];
+					$profile->attributes=$_POST['Profile'];
+					if($empresa->validate()) {
+						if($profile->validate()) {
+							
+						//$model->save();
+						//$empresa->modificado = NOW();
+						//$empresa->save();
+						//$contacto->save();
+		                Yii::app()->user->updateSession();
+						Yii::app()->user->setFlash('empresaMessage',UserModule::t("Changes is saved."));
+						$this->redirect(array('/user/profile'));
+						}
+					} else $empresa->validate();
+				}
+			}
+			
+	
+			/*$this->render('empresa',array(
+				'model'=>$model,
+				'empresa'=>$empresa,
+				//'contacto'=>$contacto,
+				'cuentas'=>$cuentas,
+				'logo'=>$logo,
+			));*/
+		
+	}
+		
 	/**
 	 * Lists all models.
 	 */

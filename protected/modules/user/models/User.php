@@ -5,6 +5,8 @@ class User extends CActiveRecord
 	const STATUS_NOACTIVE=0;
 	const STATUS_ACTIVE=1;
 	const STATUS_BANNED=-1;
+	const STATUS_PAGAR=2;//Si es = a 2 es que tiene que pagar
+	const STATUS_TRIAL=3;
 	const ID_SUPERADMIN=1;
 	const ID_COMPRADOR=0;
 	const ID_ADMIN=1;
@@ -156,7 +158,7 @@ class User extends CActiveRecord
     }
 	
     /*
-     * Función que devuelve lo items de los desplegables.
+     * Función que devuelve lo items de los desplegables. En el futuro habría que hacerlo dinámico.
      * */
 	public static function itemAlias($type,$code=NULL) {
 		$_items = array(
@@ -262,22 +264,23 @@ class User extends CActiveRecord
 	}
 	
 	/*Función que asigna el rol según el tipo de usuario, se ejecuta nada mas crear el usuario*/
-	public function crearModelosRelacionados(){
+	public function crearModelosRelacionados($tipocuenta,$meses){
 
 		if ($this->superuser == 2){//Es un usuario-empresa
-			$this->crearNuevoProfileParaElUsuario();
+			$this->crearNuevoProfileParaElUsuario($tipocuenta,$meses);
 			$this->crearNuevaEmpresaParaElUsuario();
 			//$this->crearNuevoContactoParaElUsuario();
 		}
 	}
 	
-	private function crearNuevoProfileParaElUsuario(){
+	private function crearNuevoProfileParaElUsuario($tipocuenta,$meses){
 		
 		$profile=new Profile;
 		/*(G)Creamos el perfil con el id del nuevo usuario. Al ser creado desde el admin sólo hay
 		que crear el usuario, no los datos del perfil o contacto, eso ya lo hará el usuario(o el admin desde update.*/
 		$profile->user_id=$this->id;
-		//$profile->contacto_id = $contacto_id;
+		$profile->tipocuenta = $tipocuenta;
+		$profile->meses = $meses;
 		$profile->save();
 		$this->debug($profile->getErrors());
 	}
@@ -286,7 +289,7 @@ class User extends CActiveRecord
 		
 		$empresa= new Empresa;
 		$empresa->user_id = $this->id;
-		$empresa->cuenta_id = 1;//Habría que pasarle la variable con el valor que ha elegido el admin
+		//$empresa->cuenta_id = 1;//Habría que pasarle la variable con el valor que ha elegido el admin
 		$empresa->save();
 		
 	}

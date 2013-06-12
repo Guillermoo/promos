@@ -1,5 +1,5 @@
 <?php echo __FILE__; ?>
-<?php $this->pageTitle=Yii::app()->name . ' - '.UserModule::t("Profile");?>
+<?php $this->pageTitle=Yii::app()->name . ' - '.UserModule::t("Company");?>
 <h1><?php echo UserModule::t('Your company'); ?></h1>
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'empresa-form',
@@ -9,7 +9,7 @@
 	'htmlOptions' => array('enctype'=>'multipart/form-data')
 ));
 ?>
-		
+	
 <fieldset>
 
 	<?php if (Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id) ):?>
@@ -20,20 +20,20 @@
 	    'label'=>'Empresa',
 	)); ?>
 	
-	<div class="row"><!-- HAy que mostrar las categorías a las que pertenece pero no dejar editar -->
-		<!-- (G)De moment lo dejo así, ya se me ocurrirá algo mejor -->
-		<?php echo $form->labelEx($model->empresa,'categoria_id'); ?>
+	<!-- <div class="row"><!-- HAy que mostrar las categorías a las que pertenece pero no dejar editar -->
+		<!-- (G)De moment lo dejo así, ya se me ocurrirá algo mejor 
+		<?php /*echo $form->labelEx($model->empresa->categoria,'categoria_id'); ?>
 		<?php echo "Belonged categories: "?><br>
 		<?php foreach ($model->empresa->categoria as $miCat):?>
 			<b><?php echo $miCat->name;?></b><br>
-		<?php endforeach;?>
+		<?php endforeach;*/?>
 		<?php //echo $form->dropDownListRow($empresa, 'contacto_id', $categorias, array('multiple'=>true)); ?>
 		<?php //echo $form->checkBoxListRow($listCat, 'id', array($categorias), array('hint'=>'<strong>Note:</strong> Labels surround all the options for much larger click areas.')); ?>
 		<?php //echo $form->error($empresa,'contacto_id'); ?>
-	</div>
-	<?php //$this->debug($model); ?>
+	</div> -->
 	<div class="row">
 		<div id="logo_form">
+			<?php echo $form->labelEx($model,'logo'); ?>
 			<?php if (isset($model->item)):?>
 				<?php $imghtml=CHtml::image(Yii::app( )->getBaseUrl( ).$model->item->path);?>
 				<?php $this->renderPartial('../layouts/_viewitem', array(
@@ -44,7 +44,6 @@
 				<?php endif;?>
 		</div>
 	</div>
-
 	<?php $empresa = $model->empresa;?>
 	
 	<div class="row">

@@ -28,9 +28,9 @@ $this->breadcrumbs=array(
 	<?php echo $form->errorSummary(array($model)); ?>
 	
 	<div class="row">
-	<?php echo $form->labelEx($model,'username'); ?>
-	<?php echo $form->textField($model,'username'); ?>
-	<?php echo $form->error($model,'username'); ?>
+	<?php echo $form->labelEx($model,'email'); ?>
+	<?php echo $form->textField($model,'email'); ?>
+	<?php echo $form->error($model,'email'); ?>
 	</div>
 	
 	<div class="row">
@@ -48,39 +48,51 @@ $this->breadcrumbs=array(
 	<?php echo $form->error($model,'verifyPassword'); ?>
 	</div>
 	
+	De momento está hecho estático, cuando esté creado el modelo cuenta se carga aquí.
+	Al elegir
 	<div class="row">
-	<?php echo $form->labelEx($model,'email'); ?>
-	<?php echo $form->textField($model,'email'); ?>
-	<?php echo $form->error($model,'email'); ?>
+		<?php echo $form->labelEx($model,'tipocuenta'); ?>
+		<?php echo CHtml::dropDownList('tipocuenta','', 
+			  array(0=>'Trial',1=>'Lite',2=>'Basic',3=>'Deluxe'),
+			  array(
+			    'prompt'=>'Selecciona el tipo de cuenta',
+			    'ajax' => array(
+			    'type'=>'POST', 
+			    'url'=>CController::createUrl('categoriaElegida'),
+			    'update'=>'#precioSeleccionado', 
+			  	'data'=>array('categoria_id'=>'js:this.value'),
+			  )));  ?>
+		<?php echo $form->error($model,'tipocuenta'); ?>
 	</div>
+	<div id="precioSeleccionado"></div>
 	
 	<div class="row">
-	De momento está hecho estático
-	<?php echo $form->labelEx($model,'cuenta'); ?>
-	<?php echo CHtml::dropDownList('region_id','', 
-		  array(0=>'Trial',1=>'Lite',2=>'Basic',3=>'Deluxe'),
-		  array(
-		    'prompt'=>'Selecciona una categoría',
-		    'ajax' => array(
-		    'type'=>'POST', 
-		    'url'=>CController::createUrl('loadcities'),
-		    'update'=>'#city_name', 
-		  	'data'=>array('region_id'=>'js:this.value'),
-		  )));  ?>
-	<?php echo $form->error($model,'cuenta'); ?>
+		<?php echo $form->labelEx($model,'meses'); ?>
+		<?php echo CHtml::dropDownList('meses','', 
+			  array(0=>'Mensual',1=>'Trimestral',2=>'Semestral',3=>'Anual'),
+			  array(
+			    'prompt'=>'Selecciona el tiempo que quiere contratar',
+			    'ajax' => array(
+			    'type'=>'POST', 
+			    'url'=>CController::createUrl('mesesElegidos'),
+			    'update'=>'#mesesSeleccionados', 
+			  	'data'=>array('meses_id'=>'js:this.value'),
+			  )));  ?>
+		<?php echo $form->error($model,'meses'); ?>
 	</div>
+	<div id="mesesSeleccionados"></div>
 
 	<?php if (UserModule::doCaptcha('registration')): ?>
-	<div class="row">
-		<?php echo $form->labelEx($model,'verifyCode'); ?>
-		
-		<?php $this->widget('CCaptcha'); ?>
-		<?php echo $form->textField($model,'verifyCode'); ?>
-		<?php echo $form->error($model,'verifyCode'); ?>
-		
-		<p class="hint"><?php echo UserModule::t("Please enter the letters as they are shown in the image above."); ?>
-		<br/><?php echo UserModule::t("Letters are not case-sensitive."); ?></p>
-	</div>
+		<div class="row">
+			<?php echo $form->labelEx($model,'verifyCode'); ?>
+			
+			<?php $this->widget('CCaptcha'); ?>
+			<?php echo $form->textField($model,'verifyCode'); ?>
+			<?php echo $form->error($model,'verifyCode'); ?>
+			
+			<p class="hint"><?php echo UserModule::t("Please enter the letters as they are shown in the image above."); ?>
+			<br/><?php echo UserModule::t("Letters are not case-sensitive."); ?></p>
+		</div>
 	<?php endif; ?>
 	
 	<div class="row submit">

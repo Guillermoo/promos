@@ -26,7 +26,7 @@ class AdminController extends Controller
 	{
 		return array(
 		array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete','create','updateAjax','update','view','ok'),
+				'actions'=>array('admin','delete','create','updateAjax','update','view','empresa'),
 				'users'=>UserModule::getAdmins(),
 		),
 		array('deny',  // deny all users
@@ -34,6 +34,7 @@ class AdminController extends Controller
 		),
 		);
 	}
+
 	/**
 	 * Manages all models.
 	 */
@@ -46,6 +47,22 @@ class AdminController extends Controller
 		$model->attributes=$_GET['User'];
 
 		$this->render('index',array(
+            'model'=>$model,
+		));
+	}
+	
+/**
+	 * Manages all models.
+	 */
+	public function actionEmpresa()
+	{
+		$model=new Empresa();
+		$model->unsetAttributes();  // clear any default values
+
+		if(isset($_GET['Empresa']))
+		$model->attributes=$_GET['Empresa'];
+
+		$this->render('empresa',array(
             'model'=>$model,
 		));
 	}
@@ -119,7 +136,6 @@ class AdminController extends Controller
 			$this->_model->attributes=$_POST['User'];
 				
 			if ($esEmpresa){
-				
 				$profile=$this->_model->profile;
 				$empresa=$this->_model->empresa;
 				$this->performAjaxValidation(array($this->_model,$profile,$empresa));
@@ -146,6 +162,8 @@ class AdminController extends Controller
 			} else {
 				$profile->validate();
 			}
+		}elseif(isset($_POST['Empresa']) ){
+				
 		}
 
 		$this->renderParaUsuario($esEmpresa);
@@ -160,7 +178,6 @@ class AdminController extends Controller
 	}
 
 	private function renderParaEmpresa(){
-
 		$cat_model = Category::getCategorias();
 		$categorias = CHtml::listData($cat_model,'id', 'name');
 
@@ -178,6 +195,7 @@ class AdminController extends Controller
 			'cuentas'=>$cuentas_list,
 			'image'=>$image,
 		));
+		
 	}
 
 	private function renderParaComprador(){

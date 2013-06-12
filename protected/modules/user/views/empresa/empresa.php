@@ -18,6 +18,7 @@
 		'htmlOptions' => array('enctype'=>'multipart/form-data'),
 	    'type'=>'horizontal'
 	));*/?>
+	
 	<?php if(UserModule::isCompany()):?>
 		<?php $this->renderPartial('_form', array('model'=>$model,'image'=>$image));?>
 		<?php /*$this->widget('bootstrap.widgets.TbTabs', array(

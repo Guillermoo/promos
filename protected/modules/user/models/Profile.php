@@ -20,6 +20,12 @@
  */
 class Profile extends CActiveRecord
 {
+	
+	const CUENTA_TRIAL=0;
+	const CUENTA_LITE=1;
+	const CUENTA_BASIC=2;
+	const CUENTA_DELUXE=3;	
+	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -50,6 +56,7 @@ class Profile extends CActiveRecord
 			//array('contacto_id', 'numerical', 'integerOnly'=>true),
 			array('username, lastname', 'length', 'max'=>50),
 			array('paypal_id', 'length', 'max'=>40),
+			//array('direccion','telefono','on'=>'update'),
 			array('barrio, poblacion_id,telefono,fax,cp', 'numerical', 'integerOnly'=>true),
 			array('telefono, fax', 'length', 'max'=>50),
 			array('tipocuenta', 'length', 'max'=>11),
@@ -172,5 +179,6 @@ class Profile extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
 	
 }

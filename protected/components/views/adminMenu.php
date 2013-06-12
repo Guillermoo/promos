@@ -13,6 +13,7 @@
     'items'=>array(
 		array('label'=>UserModule::t('Create User'), 'icon'=>'home', 'url'=>array('/user/admin/create')),
 		array('label'=>UserModule::t('Manage Users'), 'url'=>Yii::app()->getModule('user')->adminUrl),
+		array('label'=>UserModule::t('Manage Companys'), 'url'=>Yii::app()->getModule('user')->adminEmpresaUrl),
     	array('label'=>UserModule::t('Rols'), 'url'=>array('/rights'), 'visible'=>UserModule::isSuperAdmin()),
 		//array('label'=>UserModule::t('List User'), 'url'=>array('/user')),
     	//array('url'=>Yii::app()->getModule('user')->profileUrl, 'label'=>Yii::app()->getModule('user')->t("Profile"), 'visible'=>!Yii::app()->user->isGuest),
