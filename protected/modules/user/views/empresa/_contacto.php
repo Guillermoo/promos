@@ -56,11 +56,14 @@
 	<?php echo $form->textField($model->profile,'telefono'); ?>
 	<?php echo $form->error($model->profile,'telefono'); ?>
 	</div>
-	<?php $this->endWidget(); ?>
-
+	
 	<div class="row submit">
 		<?php echo CHtml::submitButton(UserModule::t("Next")); ?>
 	</div>
+	
+	<?php $this->endWidget(); ?>
+
+	
 
 
 </div><!-- form -->

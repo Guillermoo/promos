@@ -2,12 +2,12 @@
 
 class User extends CActiveRecord
 {
+	const STATUS_BANNED=-1;
 	const STATUS_NOACTIVE=0;
 	const STATUS_ACTIVE=1;
-	const STATUS_BANNED=-1;
 	const STATUS_PAGAR=2;//Si es = a 2 es que tiene que pagar
-	const STATUS_TRIAL=3;
-	const ID_SUPERADMIN=1;
+	const STATUS_OK=3;
+	const ID_SUPERADMIN=-1;
 	const ID_COMPRADOR=0;
 	const ID_ADMIN=1;
 	const ID_EMPRESA=2;

@@ -9,6 +9,7 @@ class EmpresaController extends Controller
 	//hugo--------------
 		//$this->layout = '_contacto';
 	//------------------
+	public $layout='column2';
 	public $defaultAction = 'empresa';
 	
 	/**
@@ -33,46 +34,14 @@ class EmpresaController extends Controller
 	 * Dejo el código comentado por si hace falta.
 	 * */
 	public function actionHome(){
+		$model = $this->loadUser();
 		
-		/*$cuentas = Cuenta::getCuentas();
-		$cuentas_list = CHtml::listData($cuentas,'id', 'nombre');
 		
-		//Obtenemos todas las categorías con nivel 2(suponiendo que no hay subcategorías
-		$cat_model = Category::getCategorias();
-		$categorias = CHtml::listData($cat_model,'id', 'name');*/
-
-		/*$myImg = $this->setImage();
-		
-		Yii::import("xupload.models.XUploadForm");
-        $image = new XUploadForm;*/
-		//$image = new Item;
-		$_model = $this->loadUser();
-		
-		if(isset($_POST['EmpresaForm']) && ($_POST['ProfileForm']) ){
-			
-			$_model->empresa->attributes=$_POST['EmpresaForm'];
-			$_model->profile->attributes=$_POST['ProfileForm'];
-			//$contacto->attributes=$_POST['Contacto'];
-			
-			if($_model->empresa->validate()) {
-				if($_model->profile->validate()) {
-
-					$_model->empresa->save();
-					$_model->profile->save();
-					
-	                Yii::app()->user->updateSession();
-					Yii::app()->user->setFlash('empresaMessage',UserModule::t("Changes is saved."));
-					//$this->redirect(array('/user/profile'));
-				}//else $_model->profile->validate();
-			}// else $_model->empresa->validate();
-		}
+		$model->status;
+		$model->profile->tipocuenta;
 		
 		$this->render('home',array(
-	    	'model'=>$this->_model,
-			/*'categorias'=>$categorias,
-			'cuentas'=>$cuentas,
-			'image'=>$image,*/
-			//'myImg'=>$myImg,
+	    	'model'=>$model,
 	    ));
 	}
 	
@@ -307,7 +276,6 @@ class EmpresaController extends Controller
 			$this->render('empresa',array(
 				'model'=>$model,
 				'empresa'=>$empresa,
-				//'contacto'=>$contacto,
 				'cuentas'=>$cuentas,
 				'logo'=>$logo,
 			));
@@ -318,32 +286,34 @@ class EmpresaController extends Controller
 		$model = $this->loadUser();
 		$empresa=$model->empresa;
 		$profile = $model->profile;
-		
+		//Habría que crear unas reglas especiales para esta validación
 		$empresa->scenario = 'paraValidar';
-		
-		if(Yii::app()->request->isAjaxRequest){
-			if(isset($_POST['Empresa']) && ($_POST['Profile']) )
-			{
-				$empresa->attributes=$_POST['Empresa'];
-				$profile->attributes=$_POST['Profile'];
-				if( ($empresa->validate()))  {
-						if ($profile->validate()){
-							
-						}else{
-							echo 'Erro validate2';
-						}
-					//$model->save();
-					//$empresa->modificado = NOW();
-					//$empresa->save();
-					//$contacto->save();
-	                Yii::app()->user->updateSession();
-					Yii::app()->user->setFlash('empresaMessage',UserModule::t("Changes is saved."));
-					//$this->redirect(array('/user/profile'));
-					echo "ksdghsjk";
-				} echo $empresa->getErrors();
+		$profile->scenario = 'paraValidar';
+			
+		if(isset($_POST['ajax']) && $_POST['ajax']==='empresa-form'){
+			echo UActiveForm::validate(array($empresa,$profile));
+			Yii::app()->end();
+		}
+		//Si es dándole al botoncico de next
+		if(isset($_POST['Empresa']))
+		{
+			$empresa->attributes=$_POST['Empresa'];
+			$profile->attributes=$_POST['Profile'];
+				
+			$empresa->save();
+			$profile->save();
+			Yii::app()->user->updateSession();
+			Yii::app()->user->setFlash('empresaMessage',UserModule::t("Changes is saved."));
+			//Aquí habría que mirar si es trial y mandarlo al dashboard, o al resto a paypal.
+			if ($model->profile->tipocuenta=0){
+				$this->redirect(array('home'));
+			}else{
+				//(G)El siguiente paso tendría que ser que pagara. Se podría poner un botón que pusiese pagar ya y otro que ponga pagar mas adelante. Se piensa
+				$this->redirect(array('paypalasd'));
 			}
 		}
-		
+		//$model->save();
+		//$empresa->modificado = NOW();
 
 		/*$this->render('empresa',array(
 			'model'=>$model,

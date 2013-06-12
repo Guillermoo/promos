@@ -195,5 +195,6 @@ return array(
 		'img_default'=>'/img/noprofile.jpg',
 		'url_paypal'=>'wwww.sadfsdf.com',
 		'path_imgs'=> realpath( Yii::app( )->getBasePath( )."/../" ),
+		'cuenta_paypal' => 'grillermo@gmail.com',
 	),
 );

@@ -1,6 +1,6 @@
 <?php
 
-class CategoryController extends Controller
+class CategoriaController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -26,6 +26,8 @@ class CategoryController extends Controller
             Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js_plugins/json2/json2.js');
             Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/client_val_form.css','screen');
     }
+
+
 
 	/**
 	 * @return array action filters
@@ -72,7 +74,7 @@ class CategoryController extends Controller
 
      //create an array open_nodes with the ids of the nodes that we want to be initially open
      //when the tree is loaded.Modify this to suit your needs.Here,we open all nodes on load.
-                 $categories= Category::model()->findAll(array('order'=>'lft'));
+                 $categories= Categoria::model()->findAll(array('order'=>'lft'));
                  $identifiers=array();
                foreach($categories as $n=>$category)
                {
@@ -82,7 +84,7 @@ class CategoryController extends Controller
 
                 $baseUrl=Yii::app()->baseUrl;
 
-		$dataProvider=new CActiveDataProvider('Category');
+		$dataProvider=new CActiveDataProvider('Categoria');
 		$this->render('index',array(
 			             'dataProvider'=>$dataProvider,
                                      'baseUrl'=> $baseUrl,
@@ -97,14 +99,14 @@ class CategoryController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=Category::model()->findByPk($id);
+		$model=Categoria::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
 	}
 
       public function actionFetchTree(){
-          Category::printULTree();
+          Categoria::printULTree();
       }
 
 
@@ -136,29 +138,34 @@ class CategoryController extends Controller
                 }
       }
 
-	public function actionReturnForm(){
+      public function actionReturnForm(){
 
-		//don't reload these scripts or they will mess up the page
-        //yiiactiveform.js still needs to be loaded that's why we don't use
-		// Yii::app()->clientScript->scriptMap['*.js'] = false;
-		$cs=Yii::app()->clientScript;
-		$cs->scriptMap=array(
-			'jquery.min.js'=>false,
-			'jquery.js'=>false,
-			'jquery.fancybox-1.3.4.js'=>false,
-			'jquery.jstree.js'=>false,
-			'jquery-ui-1.8.12.custom.min.js'=>false,
-			'json2.js'=>false,
+
+               //don't reload these scripts or they will mess up the page
+                //yiiactiveform.js still needs to be loaded that's why we don't use
+                // Yii::app()->clientScript->scriptMap['*.js'] = false;
+                $cs=Yii::app()->clientScript;
+                $cs->scriptMap=array(
+                                                 'jquery.min.js'=>false,
+                                                 'jquery.js'=>false,
+                                                 'jquery.fancybox-1.3.4.js'=>false,
+                                                 'jquery.jstree.js'=>false,
+                                                 'jquery-ui-1.8.12.custom.min.js'=>false,
+                                                 'json2.js'=>false,
+
         );
 
-	   //Figure out if we are updating a Model or creating a new one.
-  		if(isset($_POST['update_id']))$model= $this->loadModel($_POST['update_id']);
-  		else $model=new Category;
-        	$this->renderPartial('_form', array('model'=>$model,
-				'parent_id'=>!empty($_POST['parent_id'])?$_POST['parent_id']:''
-			),
-			false, true);
-  		}
+
+   //Figure out if we are updating a Model or creating a new one.
+  if(isset($_POST['update_id']))$model= $this->loadModel($_POST['update_id']);else $model=new Categoria;
+
+
+        $this->renderPartial('_form', array('model'=>$model,
+                                                             'parent_id'=>!empty($_POST['parent_id'])?$_POST['parent_id']:''
+                                                                   ),
+                                                                  false, true);
+
+      }
 
  public function actionReturnView(){
 
@@ -188,11 +195,11 @@ class CategoryController extends Controller
       public function actionCreateRoot()
 	{
 
-               if(isset($_POST['Category']))
+               if(isset($_POST['Categoria']))
 		{
 
-                       $new_root=new Category;
-                       $new_root->attributes=$_POST['Category'];
+                       $new_root=new Categoria;
+                       $new_root->attributes=$_POST['Categoria'];
 		       if($new_root->saveNode(false)){
                                 echo json_encode(array('success'=>true,
                                                               'id'=>$new_root->primaryKey)
@@ -201,7 +208,7 @@ class CategoryController extends Controller
                         } else
                         {
                             echo json_encode(array('success'=>false,
-                                                                  'message'=>'Error.Root Category was not created.'
+                                                                  'message'=>'Error.Root Categoria was not created.'
                                                                   )
                                                         );
                             exit;
@@ -213,42 +220,45 @@ class CategoryController extends Controller
 
   public function actionCreate(){
 
-		if(isset($_POST['Category']))
+               if(isset($_POST['Categoria']))
 		{
-			$model=new Category;
-			//set the submitted values
-			$model->attributes=$_POST['Category'];
-			$parent=$this->loadModel($_POST['parent_id']);
-			//return the JSON result to provide feedback.
+                       $model=new Categoria;
+                      //set the submitted values
+                        $model->attributes=$_POST['Categoria'];
+                       $parent=$this->loadModel($_POST['parent_id']);
+                       //return the JSON result to provide feedback.
 			if($model->appendTo($parent)){
-            	echo json_encode(array('success'=>true,
-                	'id'=>$model->primaryKey)
-					);
-				exit;
-			} else
-			{
-				echo json_encode(array('success'=>false,
-						'message'=>'Error.Category was not created.'
-					)
-				);
-			exit;
-			}
+                                echo json_encode(array('success'=>true,
+                                                              'id'=>$model->primaryKey)
+                                                              );
+                                exit;
+                        } else
+                        {
+                            echo json_encode(array('success'=>false,
+                                                                  'message'=>'Error.Categoria was not created.'
+                                                                  )
+                                                        );
+                            exit;
+                        }
 		}
-	}
+
+}
 
 
-	public function actionUpdate(){
-	
-		if(isset($_POST['Category']))
+public function actionUpdate(){
+
+		if(isset($_POST['Categoria']))
 		{
-			$model=$this->loadModel($_POST['update_id']);
-			$model->attributes=$_POST['Category'];
+
+                        $model=$this->loadModel($_POST['update_id']);
+			$model->attributes=$_POST['Categoria'];
 
 			if( $model->saveNode(false)){
-				echo json_encode(array('success'=>true));
-			}else echo json_encode(array('success'=>false));
-		}
-	}
+                                      echo json_encode(array('success'=>true));
+		             }else echo json_encode(array('success'=>false));
+                }
+
+}
 
 
 public function actionMoveCopy(){
@@ -326,8 +336,8 @@ if ($copy == 'false'){
     }//end of it's a move
     //else if it is a copy
     else{
-        //create the copied Category model
-        $copied_node=new Category;
+        //create the copied Categoria model
+        $copied_node=new Categoria;
         //copy the attributes (only safe attributes will be copied).
         $copied_node->attributes=$moved_node->attributes;
         //remove the primary key

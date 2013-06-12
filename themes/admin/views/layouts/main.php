@@ -48,7 +48,8 @@
     		),
 			)); 
 		}elseif(UserModule::isCompany()){
-			$this->widget('bootstrap.widgets.TbNavbar', array(
+			if(!Yii::app()->user->isGuest) $this->widget('UserMenu'); //Esto realmente sustituiría a todo el bloque, UserMenu gestiona que menú se mostrará en función del usuario
+			/*$this->widget('bootstrap.widgets.TbNavbar', array(
     			'type'=>'', // null or 'inverse'
     			'brand'=>'Pro(e)moción!',
    				'brandUrl'=>'#',
@@ -66,7 +67,7 @@
             			),
         			),              
     			),
-			));
+			));*/
 		}elseif(UserModule::isSuperAdmin() || UserModule::isAdmin()){
 
 		}
@@ -74,23 +75,15 @@
 		<!-- ------------------- -->
 	</div><!-- mainmenu -->
 	<!-- --------------- -->
-	<?php //if(isset($this->breadcrumbs)):?>
-		<?php /*$this->widget('bootstrap.widgets.TbBreadcrumbs', array(
-			'links'=>$this->breadcrumbs,
-		));*/ ?><!-- breadcrumbs -->
-	<?php //endif?>
-
 	<?php echo __FILE__; ?>
-	<!-- Para debugear como en cake -->
+	<!-- Para debugear como en cake, notcar -->
 	<?php if(!empty(Yii::app()->params['debugContent'])):?>
                 <?php echo Yii::app()->params['debugContent'];?>
 	<?php endif;?>
+	<!-- End debug -->
 	<?php if(Yii::app()->user->hasFlash('success')):?>
 		<div class="flash-notice">
 			<?php $this->widget('bootstrap.widgets.TbAlert', array(
-		        /*'block'=>true, // display a larger alert block?
-		        'fade'=>true, // use transitions?
-		        'closeText'=>true,*/ // close link text - if set to false, no close link is displayed
 		        'alerts'=>array( // configurations per alert type
 		            'success'=>array('block'=>true, 'fade'=>true, 'closeText'=>true), // success, info, warning, error or danger
 		            'error'=>array('block'=>true, 'fade'=>true, 'closeText'=>true), // success, info, warning, error or danger
@@ -98,11 +91,7 @@
 		    )); ?>
 		</div>
 	<?php endif?>
-	<?php /*if(Yii::app()->user->hasFlash('error')):?>
-		<div class="flash-error">
-	<?php echo Yii::app()->user->getFlash('error')?>
-	</div>
-	<?php endif */?>
+
 	<?php echo $content; ?>
 
 	<div class="clearfix">&nbsp;</div>

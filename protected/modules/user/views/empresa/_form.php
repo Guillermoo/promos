@@ -1,6 +1,4 @@
 <?php echo __FILE__; ?>
-<?php $this->pageTitle=Yii::app()->name . ' - '.UserModule::t("Company");?>
-<h1><?php echo UserModule::t('Your company'); ?></h1>
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'empresa-form',
 	'enableAjaxValidation'=>true,

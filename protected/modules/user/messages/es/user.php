@@ -130,5 +130,8 @@ return array(
 	'Logout' => 'Salir',
 	'Belonged categories: ' => 'Categorías a las que pertenece: ',
 	'Email is invalid, please insert a valid email.' => 'El email es inválido, por inserte uno correcto.',
-	'These information is necessary to be able to sell promotions' => 'Esta información es necesaria para poder vender las promociones.'
+	'These information is necessary to be able to sell promotions' => 'Esta información es necesaria para poder vender las promociones.',
+	'My Promotions' => 'Mis Promociones',
+	'Subscription' => 'Subscripción',
+	'Contact' => 'Contacto',
 );

@@ -3,7 +3,9 @@
 <h2>Esta es la página de bievenida para los usuarios-empresa al logearse</h2>
 
 <?php //(G)Si el usuario no ha rellenado los campos mínimos para poder vender, le apareceŕa?>
-<?php if ($model->status == 2):?>
+<?php //Hay que mirar que si es ?>
+<?php $status = $model->status;?>
+<?php if ($status == 1):?>
 	<div id="btn_oculto" >
 	Ocultar por css el botón!!!
 	<?php //$this->renderPartial('_contacto', array('model'=>$model));?>
@@ -17,11 +19,18 @@
 	    ),
 	)); ?>
 	</div>
-<?php else:?>
+<?php elseif($status == 2) :?>
 	<!-- Lo que tenga que salir de normal -->
+	<?php echo "Tiene que pagar!!";?>
 <?php endif;?>
 
-<?php $this->beginWidget('bootstrap.widgets.TbModal', array('id'=>'myModal')); ?>
+<?php $this->beginWidget('bootstrap.widgets.TbModal', 
+	array(
+		'id'=>'myModal',
+		'htmlOptions'=>array(
+			'style'=>'width:600px',	
+		),
+	)); ?>
  
 <div class="modal-header">
     <a class="close" data-dismiss="modal">&times;</a>

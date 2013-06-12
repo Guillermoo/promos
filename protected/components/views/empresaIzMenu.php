@@ -1,5 +1,3 @@
-<?php /* @var $this Controller */ ?>
-<?php $this->beginContent('//layouts/main'); ?>
 <div class="span-5 last">
 	<div id="sidebar">
 		<div class="categoriasizda">
@@ -25,11 +23,3 @@
 		</div><!-- categoriasizda -->
 	</div><!-- sidebar -->
 </div>
-<div class="span-19">
-	<div id="content">
-		<p>Layout column2, carpeta views del módulo user</p>
-		<?php 		
-		echo $content; ?>
-	</div><!-- content -->
-</div>
-<?php $this->endContent(); ?>
