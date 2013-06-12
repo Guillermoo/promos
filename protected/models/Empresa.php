@@ -50,10 +50,8 @@ class Empresa extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_id', 'required'),
-			array('user_id,', 'numerical', 'integerOnly'=>true),
-			array('cif', 'length', 'max'=>9),
-			array('nombre','required','message' => UserModule::t("The company name is required.")),
+			array('cif', 'length', 'max'=>9,'message' => UserModule::t("9 size.")),
+			array('nombre,cif','required','message' => UserModule::t("The company name is required."),'on'=>'paraValidar'),
 			array('cif', 'match', 'pattern' => '(X(-|\.)?0?\d{7}(-|\.)?[A-Z]|[A-Z](-|\.)?\d{7}(-|\.)?[0-9A-Z]|\d{8}(-|\.)?[A-Z])','message' => UserModule::t("The cif must be valid.")),
 			array('nombre,nombre_slug,web, twitter, facebook, urlTienda', 'length', 'max'=>100),
 			array('modificado', 'safe'),

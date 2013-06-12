@@ -313,37 +313,43 @@ class EmpresaController extends Controller
 
 	public function actionActualizacontacto(){
 		
-			$model = $this->loadUser();
-			$empresa=$model->empresa;
-			$profile = $model->profile;
-			if(Yii::app()->request->isAjaxRequest){
-				if(isset($_POST['Empresa']) && ($_POST['Profile']) )
-				{
-					$empresa->attributes=$_POST['Empresa'];
-					$profile->attributes=$_POST['Profile'];
-					if($empresa->validate()) {
-						if($profile->validate()) {
+		$model = $this->loadUser();
+		$empresa=$model->empresa;
+		$profile = $model->profile;
+		
+		$empresa->scenario = 'paraValidar';
+		
+		if(Yii::app()->request->isAjaxRequest){
+			if(isset($_POST['Empresa']) && ($_POST['Profile']) )
+			{
+				$empresa->attributes=$_POST['Empresa'];
+				$profile->attributes=$_POST['Profile'];
+				if( ($empresa->validate()))  {
+						if ($profile->validate()){
 							
-						//$model->save();
-						//$empresa->modificado = NOW();
-						//$empresa->save();
-						//$contacto->save();
-		                Yii::app()->user->updateSession();
-						Yii::app()->user->setFlash('empresaMessage',UserModule::t("Changes is saved."));
-						$this->redirect(array('/user/profile'));
+						}else{
+							echo 'Erro validate2';
 						}
-					} else $empresa->validate();
-				}
+					//$model->save();
+					//$empresa->modificado = NOW();
+					//$empresa->save();
+					//$contacto->save();
+	                Yii::app()->user->updateSession();
+					Yii::app()->user->setFlash('empresaMessage',UserModule::t("Changes is saved."));
+					//$this->redirect(array('/user/profile'));
+					echo "ksdghsjk";
+				} echo $empresa->getErrors();
 			}
-			
-	
-			/*$this->render('empresa',array(
-				'model'=>$model,
-				'empresa'=>$empresa,
-				//'contacto'=>$contacto,
-				'cuentas'=>$cuentas,
-				'logo'=>$logo,
-			));*/
+		}
+		
+
+		/*$this->render('empresa',array(
+			'model'=>$model,
+			'empresa'=>$empresa,
+			//'contacto'=>$contacto,
+			'cuentas'=>$cuentas,
+			'logo'=>$logo,
+		));*/
 		
 	}
 		
