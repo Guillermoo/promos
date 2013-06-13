@@ -140,19 +140,22 @@ class ProfileController extends Controller
 			
 			if(isset($_POST['Profile']))
 			{
-				//$model->attributes=$_POST['User'];
 				$profile ->attributes=$_POST['Profile'];
+				
 				if($profile ->validate()) {
 					$profile ->save();
 	                Yii::app()->user->updateSession();
-					Yii::app()->user->setFlash('profileMessage',UserModule::t("Changes is saved."));
+					Yii::app()->user->setFlash('success',UserModule::t("Changes is saved."));
+					
 					$this->redirect(array('/user/profile'));
-				} else $profile ->validate();
+				} else {
+					
+					$profile->validate();
+					//Yii::app()->end();
+				}
 			}
-	
 			$this->render('profile',array(
 				'model'=>$_model,
-				'profile'=>$profile ,
 			));
 		}
 		

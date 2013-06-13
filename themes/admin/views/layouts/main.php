@@ -13,9 +13,9 @@
 	<link media="screen" rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/main.css"  />
     <link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/_bootstrap.css">
     <link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/_bootstrap-responsive.min.css">
+	<?php Yii::app()->bootstrap->register(); ?>
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 
-	<?php Yii::app()->bootstrap->register(); ?>
 	
 </head>
 
@@ -23,7 +23,7 @@
 
 
 <div class="container" id="page">
-	<p>Layout main, carpeta views del tema ADMIN</p>
+	<?php if(YII_RUTAS == true) echo __FILE__; ?>
 	<!-- menu horizontal -->
 	<div id="mainmenu">		
 		<!-- navbar de bootstrap -->
@@ -76,22 +76,23 @@
 		<!-- ------------------- -->
 	</div><!-- mainmenu -->
 	<!-- --------------- -->
-	<?php echo __FILE__; ?>
+	<?php if(YII_RUTAS == true) echo __FILE__; ?>
 	<!-- Para debugear como en cake, notcar -->
 	<?php if(!empty(Yii::app()->params['debugContent'])):?>
                 <?php echo Yii::app()->params['debugContent'];?>
 	<?php endif;?>
 	<!-- End debug -->
-	<?php if(Yii::app()->user->hasFlash('success')):?>
-		<div class="flash-notice">
-			<?php $this->widget('bootstrap.widgets.TbAlert', array(
-		        'alerts'=>array( // configurations per alert type
-		            'success'=>array('block'=>true, 'fade'=>true, 'closeText'=>true), // success, info, warning, error or danger
-		            'error'=>array('block'=>true, 'fade'=>true, 'closeText'=>true), // success, info, warning, error or danger
-		        ),
-		    )); ?>
-		</div>
-	<?php endif?>
+	
+	<?php //FLASH MSG?>
+	<div class="flash-notice">
+		<?php $this->widget('bootstrap.widgets.TbAlert', array(
+	        'alerts'=>array( // configurations per alert type
+	            'success'=>array('block'=>true, 'fade'=>true, 'closeText'=>'x'), // success, info, warning, error or danger
+	            'error'=>array('block'=>true, 'fade'=>true, 'closeText'=>'x'), // success, info, warning, error or danger
+	        ),
+	    )); ?>
+	</div>
+	<?php //END FLASH MSG?>
 
 	<?php echo $content; ?>
 

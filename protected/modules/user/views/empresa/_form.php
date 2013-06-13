@@ -1,9 +1,12 @@
-<?php echo __FILE__; ?>
+<?php if(YII_RUTAS == true) echo __FILE__; ?>
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'empresa-form',
 	'enableAjaxValidation'=>true,
 	//'type'=>'horizontal',
 	'action'=>'empresa/edit',
+	'clientOptions'=>array(
+		'validateOnSubmit'=>true,
+	),
 	'htmlOptions' => array('enctype'=>'multipart/form-data')
 ));
 ?>
@@ -11,7 +14,7 @@
 <fieldset>
 
 	<?php if (Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id) ):?>
-		<?php echo $form->errorSummary(array($model->empresa)); ?>
+	<?php echo $form->errorSummary(array($model->empresa)); ?>
 	<?php endif;?>
 	<?php $this->widget('bootstrap.widgets.TbLabel', array(
 	    'type'=>'info', // 'success', 'warning', 'important', 'info' or 'inverse'

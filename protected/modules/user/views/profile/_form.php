@@ -1,7 +1,4 @@
 <?php echo __FILE__; ?>
-<?php $this->pageTitle=Yii::app()->name . ' - '.UserModule::t("Profile");?>
-
-<h1><?php echo UserModule::t('Your profile'); ?></h1>
 
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'profile-form',

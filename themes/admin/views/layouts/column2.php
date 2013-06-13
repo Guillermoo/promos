@@ -4,7 +4,7 @@
 <?php echo __FILE__; ?>
     <div class="span9">
         <div id="content">
-            <p>Layout column2, carpeta views del tema ADMIN</p>
+        	<?php if(YII_RUTAS == true) echo __FILE__; ?>
             <?php echo $content; ?>
         </div><!-- content -->
     </div>

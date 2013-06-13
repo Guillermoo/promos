@@ -12,7 +12,6 @@ class User extends CActiveRecord
 	const ID_ADMIN=1;
 	const ID_EMPRESA=2;
 	
-	
 	//TODO: Delete for next version (backward compatibility)
 	const STATUS_BANED=-1;
 	
@@ -20,6 +19,7 @@ class User extends CActiveRecord
 	
 	private $_modelReg;
 	private $_model;
+	private $passwordHash;
 	
 	/**
 	 * The followings are the available columns in table 'users':

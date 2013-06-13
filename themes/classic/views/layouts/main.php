@@ -58,6 +58,13 @@
 	<?php endif?>
 	<?php echo __FILE__; ?>
 	<?php //echo Yii::app()->user->get ?>
+	
+	<?php if(Yii::app()->user->hasFlash('registration')): ?>
+		<div class="success">
+		<?php echo Yii::app()->user->getFlash('registration'); ?>
+		</div>
+	<?php endif; ?>
+
 	<?php echo $content; ?>
 
 	<div class="clear"></div>

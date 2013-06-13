@@ -1,12 +1,12 @@
-<?php echo __FILE__; ?>
+<?php if(YII_RUTAS == true) echo __FILE__; ?>
 <?php $this->pageTitle=Yii::app()->name . ' - '.UserModule::t("Company");?>
 <h1><?php //echo UserModule::t('Your profile'); ?></h1>
 
 <h1><?php echo UserModule::t('Your company'); ?></h1>
 
-<?php if(Yii::app()->user->hasFlash('companyMessage')): ?>
+<?php if(Yii::app()->user->hasFlash('successMessage')): ?>
 <div class="success">
-	<?php echo Yii::app()->user->getFlash('companyMessage'); ?>
+	<?php echo Yii::app()->user->getFlash('successMessage'); ?>
 </div>
 <?php endif; ?>
 

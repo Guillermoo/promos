@@ -78,11 +78,14 @@ class Profile extends CActiveRecord
 	  
 	protected function afterSave()
         {
-		 	$model = User::model()->findByPk(Yii::app()->user->id);
-		 	if(UserModule::compruebaStatus($model) === true){
-				$model->status=2;
-				$model->save();
-			}
+        	if (!$this->isNewRecord){
+	        	$model = User::model()->findByPk(Yii::app()->user->id);
+			 	if(UserModule::compruebaStatus($model) === true){
+					$model->status=2;
+					$model->save();
+				}	
+        	}
+		 	
 			parent::afterSave();
         }
 	  

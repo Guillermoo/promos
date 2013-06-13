@@ -116,6 +116,7 @@ return array(
 				'empresa/<alias:[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]+>' => 'empresa/view',
 				'empresa/edit' => 'empresa',
 				'admin/home' => 'user/empresa/home',
+				'user' => 'user/empresa/home',
 				'user/promociones'=>'user/promocion/promocion',
 				'page/<view>'=>array('site/page'),
                                 'index'=>array('site/index'),

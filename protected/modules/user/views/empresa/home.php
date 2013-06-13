@@ -1,4 +1,4 @@
-<?php echo __FILE__; ?>
+<?php if(YII_RUTAS == true) echo __FILE__; ?>
 <br>
 <h2>Esta es la página de bievenida para los usuarios-empresa al logearse</h2>
 
@@ -41,7 +41,7 @@
 </div>
  
 <div class="modal-body">
-    <?php $this->renderPartial('_contacto', array('model'=>$model));?>
+    <?php $this->renderPartial('../layouts/contacto', array('model'=>$model));?>
 </div>
  
 <div class="modal-footer">

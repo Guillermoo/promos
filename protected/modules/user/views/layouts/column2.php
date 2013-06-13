@@ -16,10 +16,10 @@
         array('label'=>'Darse de baja', 'url'=>array('site/login')),
     ),
 	));
-			$this->widget('zii.widgets.CMenu', array(
-				'items'=>$this->menu,
-				'htmlOptions'=>array('class'=>'operations'),
-			));
+	$this->widget('zii.widgets.CMenu', array(
+		'items'=>$this->menu,
+		'htmlOptions'=>array('class'=>'operations'),
+	));
 		
 	?>
 		</div><!-- categoriasizda -->
@@ -27,7 +27,7 @@
 </div>
 <div class="span-19">
 	<div id="content">
-		<p>Layout column2, carpeta views del módulo user</p>
+		<?php if(YII_RUTAS == true) echo __FILE__; ?>
 		<?php 		
 		echo $content; ?>
 	</div><!-- content -->

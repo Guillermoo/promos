@@ -353,8 +353,8 @@ class UserModule extends CWebModule
 	public static function compruebaStatus($model){
 		
 		if (($model->profile->direccion == null) || ($model->profile->direccion == 0) )
-			return "Falta el cmapo dirección";
-			
+		return "Falta el cmapo dirección";
+		
 		elseif (($model->profile->telefono == null) || (!isset($model->profile->telefono) || ($model->profile->telefono === '') ) 	)
 			return "Falta el cmapo telefono";
 			
@@ -366,6 +366,7 @@ class UserModule extends CWebModule
 			
 		else
 			return true;
+		
 	}
 	
 	/**

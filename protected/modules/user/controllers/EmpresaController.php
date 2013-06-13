@@ -269,10 +269,11 @@ class EmpresaController extends Controller
 					//(G)Se supone que si ha poddio guardar es porque ha rellenado los campos mínimos.
 					//$contacto->save();
 	                Yii::app()->user->updateSession();
-					Yii::app()->user->setFlash('empresaMessage',UserModule::t("Changes is saved."));
+					Yii::app()->user->setFlash('success',UserModule::t("Changes is saved."));
 					$this->redirect(array('/user/empresa'));
 				} else {
 					$empresa->validate();
+					$this->refresh();
 				}
 			}
 			$this->render('empresa',array(
@@ -305,7 +306,7 @@ class EmpresaController extends Controller
 			$empresa->save();
 			$profile->save();
 			Yii::app()->user->updateSession();
-			Yii::app()->user->setFlash('empresaMessage',UserModule::t("Changes is saved."));
+			Yii::app()->user->setFlash('adminMessage',UserModule::t("Changes is saved."));
 			//Aquí habría que mirar si es trial y mandarlo al dashboard, o al resto a paypal.
 			if ($model->profile->tipocuenta=0){
 				$this->redirect(array('home'));
