@@ -36,12 +36,16 @@ class EmpresaController extends Controller
 	public function actionHome(){
 		$model = $this->loadUser();
 		
+		/*$respuesta = UserModule::compruebaStatus($model);
 		
-		$model->status;
-		$model->profile->tipocuenta;
+		if ($respuesta != true){
+			$model->status = User::STATUS_ACTIVE;//Si por alguna posibilidad le falta algún campo.
+			$model->save(false);
+		};
+		$this->debug($respuesta);*/
 		
 		$this->render('home',array(
-	    	'model'=>$model,
+	    	'model'=>$model
 	    ));
 	}
 	
@@ -71,7 +75,6 @@ class EmpresaController extends Controller
 			'cuentas'=>$cuentas_list,
 			'logo'=>$logo,
 	    ));*/
-	    
 	    $this->render('empresa',array(
 	    	'model'=>$_model,
 			/*'empresa'=>$_model->empresa,
@@ -242,7 +245,8 @@ class EmpresaController extends Controller
 		{
 			$model = $this->loadUser();
 			$empresa=$model->empresa;
-			//$contacto=$model->contacto;
+			
+			$empresa->scenario ="paraValidar";
 			
 			$cuentas = Cuenta::getCuentas();
 			$cuentas_list = CHtml::listData($cuentas,'id', 'nombre');
@@ -253,31 +257,29 @@ class EmpresaController extends Controller
 			// ajax validator
 			if(isset($_POST['ajax']) && $_POST['ajax']==='empresa-form')
 			{
-				echo UActiveForm::validate(array($model,$empresa,$contacto));
+				echo UActiveForm::validate(array($model,$empresa));
 				Yii::app()->end();
 			}
 			
 			if(isset($_POST['Empresa']))
 			{
 				$empresa->attributes=$_POST['Empresa'];
-				//$contacto->attributes=$_POST['Contacto'];
-				
 				if($empresa->validate()) {
-					//$model->save();
-					//$empresa->modificado = NOW();
 					$empresa->save();
+					//(G)Se supone que si ha poddio guardar es porque ha rellenado los campos mínimos.
 					//$contacto->save();
 	                Yii::app()->user->updateSession();
 					Yii::app()->user->setFlash('empresaMessage',UserModule::t("Changes is saved."));
-					$this->redirect(array('/user/profile'));
-				} else $empresa->validate();
+					$this->redirect(array('/user/empresa'));
+				} else {
+					$empresa->validate();
+				}
 			}
-	
 			$this->render('empresa',array(
 				'model'=>$model,
 				'empresa'=>$empresa,
 				'cuentas'=>$cuentas,
-				'logo'=>$logo,
+				'image'=>$logo,
 			));
 		}
 

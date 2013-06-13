@@ -59,7 +59,7 @@ class UserModule extends CWebModule
 	public $logoutUrl = array("/user/logout");
 	public $adminUrl = array("/user/admin");
 	public $adminEmpresaUrl = array("/user/admin/empresa");
-	public $homeUrl = array("/user/home");//'user/home' => 'user/empresa/home',
+	public $homeUrl = array("/admin/home");//'user/home' => 'user/empresa/home',
 	public $profileUrl = array("/user/profile");
 	public $cuentaUrl = array("/user/cuenta");
 	public $promocionesUrl = array("/user/promociones");
@@ -347,6 +347,25 @@ class UserModule extends CWebModule
 			$_userByName[$username] = User::model()->findByAttributes(array('username'=>$username));
 		}
 		return $_userByName[$username];
+	}
+	
+	/* Estos campos no puede ser nunca inválidos */
+	public static function compruebaStatus($model){
+		
+		if (($model->profile->direccion == null) || ($model->profile->direccion == 0) )
+			return "Falta el cmapo dirección";
+			
+		elseif (($model->profile->telefono == null) || (!isset($model->profile->telefono) || ($model->profile->telefono === '') ) 	)
+			return "Falta el cmapo telefono";
+			
+		elseif (($model->empresa->nombre == null) || (!isset($model->empresa->nombre)) )
+			return "Falta el cmapo nombre";
+			
+		elseif (($model->empresa->cif == null) || (!isset($model->empresa->cif) )	)
+			return "Falta el cmapo cif";
+			
+		else
+			return true;
 	}
 	
 	/**

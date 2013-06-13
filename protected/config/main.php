@@ -114,7 +114,8 @@ return array(
 			'showScriptName'=>false,
 			'rules'=>array(
 				'empresa/<alias:[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]+>' => 'empresa/view',
-				'user/home' => 'user/empresa/home',
+				'empresa/edit' => 'empresa',
+				'admin/home' => 'user/empresa/home',
 				'user/promociones'=>'user/promocion/promocion',
 				'page/<view>'=>array('site/page'),
                                 'index'=>array('site/index'),

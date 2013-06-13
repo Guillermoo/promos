@@ -5,9 +5,9 @@
 );*/
 
 ?><h1><?php echo UserModule::t('Your profile'); ?></h1>
-<?php if(Yii::app()->user->hasFlash('profileMessage')): ?>
+<?php if(Yii::app()->user->hasFlash('companyMessage')): ?>
 <div class="success">
-	<?php echo Yii::app()->user->getFlash('profileMessage'); ?>
+	<?php echo Yii::app()->user->getFlash('companyMessage'); ?>
 </div>
 <?php endif; ?>
 

@@ -129,6 +129,7 @@ class ProfileController extends Controller
 		{
 			$_model = $this->loadUser();
 			$profile=$_model->profile;
+			$profile->scenario = "paraValidar";
 			
 			// ajax validator
 			if(isset($_POST['ajax']) && $_POST['ajax']==='profile-form')

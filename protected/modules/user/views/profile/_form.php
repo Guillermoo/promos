@@ -17,7 +17,9 @@
 	
 	<?php if (UserModule::isSuperAdmin() || UserModule::isAdmin() ):?>
 	<?php //Estos campos sólo se muestran al admin ya que son de uso interno. ?>
-	<?php echo $form->errorSummary(array($model)); ?>
+	<?php if (Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id) ):?>
+		<?php echo $form->errorSummary(array($model->profile)); ?>
+	<?php endif;?>
 
 		<div class="row">
 			<?php echo $form->labelEx($model,'username'); ?>

@@ -89,6 +89,8 @@
 	
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Save'); ?>
+		<?php //Se poddría desabilitar el botón por ajax si las validaciones no se cumplen
+		//poniendo algo como ,array('disabled'=>true) en el submitButton?>
 	</div>
 </fieldset>
 

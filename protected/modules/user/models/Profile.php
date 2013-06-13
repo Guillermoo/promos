@@ -76,6 +76,16 @@ class Profile extends CActiveRecord
 	  		return false;
 	  }
 	  
+	protected function afterSave()
+        {
+		 	$model = User::model()->findByPk(Yii::app()->user->id);
+		 	if(UserModule::compruebaStatus($model) === true){
+				$model->status=2;
+				$model->save();
+			}
+			parent::afterSave();
+        }
+	  
 	/*Esta función tiene que comprobar que las fechas sean correctas. Fecha pago < Fecha activacion < Fecha Fin*/
 	private function checkeaFechas(){
 		return true;

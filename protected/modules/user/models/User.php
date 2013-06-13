@@ -68,7 +68,7 @@ class User extends CActiveRecord
 			array('username', 'unique', 'message' => UserModule::t("This user's name already exists.")),
 			array('email', 'unique', 'message' => UserModule::t("This user's email address already exists.")),
 			array('username', 'match', 'pattern' => '/^[A-Za-z0-9_]+$/u','message' => UserModule::t("Incorrect symbols (A-z0-9).")),
-			array('status', 'in', 'range'=>array(self::STATUS_NOACTIVE,self::STATUS_ACTIVE,self::STATUS_BANNED)),
+			array('status', 'in', 'range'=>array(self::STATUS_NOACTIVE,self::STATUS_ACTIVE,self::STATUS_BANNED,self::STATUS_PAGAR,self::STATUS_OK)),
 			array('superuser', 'in', 'range'=>array(self::ID_COMPRADOR,self::ID_ADMIN,self::ID_EMPRESA)),
             array('create_at', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true, 'on' => 'insert'),
             array('lastvisit_at', 'default', 'value' => '0000-00-00 00:00:00', 'setOnEmpty' => true, 'on' => 'insert'),
@@ -163,9 +163,11 @@ class User extends CActiveRecord
 	public static function itemAlias($type,$code=NULL) {
 		$_items = array(
 			'UserStatus' => array(
-				self::STATUS_NOACTIVE => UserModule::t('Not active'),
-				self::STATUS_ACTIVE => UserModule::t('Active'),
 				self::STATUS_BANNED => UserModule::t('Banned'),
+				self::STATUS_NOACTIVE => UserModule::t('Not active'),
+				self::STATUS_ACTIVE => UserModule::t('Faltan campos'),
+				self::STATUS_PAGAR => UserModule::t('Pendiente pago'),
+				self::STATUS_OK => UserModule::t('Activo'),
 			),
 			'AdminStatus' => array(/*Se cargará el combo tipos de usuarios a la hora de crear usuarios desde
 									desde el menú admin*/
@@ -264,25 +266,22 @@ class User extends CActiveRecord
 	}
 	
 	/*Función que asigna el rol según el tipo de usuario, se ejecuta nada mas crear el usuario*/
-	public function crearModelosRelacionados($tipocuenta,$meses){
+	public function crearModelosRelacionados(){
 
 		if ($this->superuser == 2){//Es un usuario-empresa
-			$this->crearNuevoProfileParaElUsuario($tipocuenta,$meses);
+			$this->crearNuevoProfileParaElUsuario();
 			$this->crearNuevaEmpresaParaElUsuario();
 			//$this->crearNuevoContactoParaElUsuario();
 		}
 	}
 	
-	private function crearNuevoProfileParaElUsuario($tipocuenta,$meses){
+	private function crearNuevoProfileParaElUsuario(){
 		
 		$profile=new Profile;
 		/*(G)Creamos el perfil con el id del nuevo usuario. Al ser creado desde el admin sólo hay
 		que crear el usuario, no los datos del perfil o contacto, eso ya lo hará el usuario(o el admin desde update.*/
 		$profile->user_id=$this->id;
-		$profile->tipocuenta = $tipocuenta;
-		$profile->meses = $meses;
 		$profile->save();
-		$this->debug($profile->getErrors());
 	}
 	
 	private function crearNuevaEmpresaParaElUsuario(){

@@ -48,7 +48,8 @@
     		),
 			)); 
 		}elseif(UserModule::isCompany()){
-			if(!Yii::app()->user->isGuest) $this->widget('UserMenu'); //Esto realmente sustituiría a todo el bloque, UserMenu gestiona que menú se mostrará en función del usuario
+			$this->widget('UserMenu');
+			/*if(!Yii::app()->user->isGuest) $this->widget('UserMenu'); //Esto realmente sustituiría a todo el bloque, UserMenu gestiona que menú se mostrará en función del usuario
 			/*$this->widget('bootstrap.widgets.TbNavbar', array(
     			'type'=>'', // null or 'inverse'
     			'brand'=>'Pro(e)moción!',

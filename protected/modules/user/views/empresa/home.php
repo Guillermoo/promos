@@ -4,8 +4,8 @@
 
 <?php //(G)Si el usuario no ha rellenado los campos mínimos para poder vender, le apareceŕa?>
 <?php //Hay que mirar que si es ?>
-<?php $status = $model->status;?>
-<?php if ($status == 1):?>
+<?php if ($model->status == 1):?>
+	<?php echo "LE FALTAN CAMPOS!!!"?>
 	<div id="btn_oculto" >
 	Ocultar por css el botón!!!
 	<?php //$this->renderPartial('_contacto', array('model'=>$model));?>
@@ -19,9 +19,12 @@
 	    ),
 	)); ?>
 	</div>
-<?php elseif($status == 2) :?>
+<?php elseif($model->status == 2) :?>
+	<?php //$this->debug($model->profile->attributes);?>
+	<?php if($model->profile->tipocuenta != 3):?>
+		<?php echo "Tiene que pagar!!";?>
+	<?php endif;?>
 	<!-- Lo que tenga que salir de normal -->
-	<?php echo "Tiene que pagar!!";?>
 <?php endif;?>
 
 <?php $this->beginWidget('bootstrap.widgets.TbModal', 
