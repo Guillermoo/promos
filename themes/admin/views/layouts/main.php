@@ -26,7 +26,7 @@
 	<div id="mainmenu">		
 		<!-- navbar de bootstrap -->
 		<?php $this->widget('bootstrap.widgets.TbNavbar', array(
-    'type'=>'inverse', // null or 'inverse'
+    'type'=>'', // null or 'inverse'
     'brand'=>'Pro(e)moción!',
     'brandUrl'=>'#',
     'collapse'=>true, // requires bootstrap-responsive.css
