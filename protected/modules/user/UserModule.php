@@ -113,6 +113,7 @@ class UserModule extends CWebModule
 	static private $_userByName=array();
 	static private $_admin;
 	static private $_company;
+	static private $_trial;
 	static private $_buyer;
 	static private $_admins;
 	
@@ -237,6 +238,25 @@ class UserModule extends CWebModule
 	}
 	
 /**
+	 * (G)Return company status.
+	 * @return boolean
+	 */
+	public static function isTrial() {
+		if(Yii::app()->user->isGuest)
+			return false;
+		else {
+			if (!isset(self::$_trial)) {
+				//if(self::user()->superuser)
+				if(Yii::app()->authManager->checkAccess('trial', Yii::app()->user->id))
+					self::$_trial = true;
+				else
+					self::$_trial = false;	
+			}
+			return self::$_trial;
+		}
+	}
+	
+/**
 	 * (G)Return buyer status.
 	 * @return boolean
 	 */
@@ -347,26 +367,6 @@ class UserModule extends CWebModule
 			$_userByName[$username] = User::model()->findByAttributes(array('username'=>$username));
 		}
 		return $_userByName[$username];
-	}
-	
-	/* Estos campos no puede ser nunca inválidos */
-	public static function compruebaStatus($model){
-		
-		if (($model->profile->direccion == null) || ($model->profile->direccion == 0) )
-		return "Falta el cmapo dirección";
-		
-		elseif (($model->profile->telefono == null) || (!isset($model->profile->telefono) || ($model->profile->telefono === '') ) 	)
-			return "Falta el cmapo telefono";
-			
-		elseif (($model->empresa->nombre == null) || (!isset($model->empresa->nombre)) )
-			return "Falta el cmapo nombre";
-			
-		elseif (($model->empresa->cif == null) || (!isset($model->empresa->cif) )	)
-			return "Falta el cmapo cif";
-			
-		else
-			return true;
-		
 	}
 	
 	/**

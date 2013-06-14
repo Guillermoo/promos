@@ -50,9 +50,9 @@ class Empresa extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('cif', 'length', 'max'=>9,'message' => UserModule::t("9 size."),'on'=>'paraValidar'),
-			array('nombre,cif','required','message' => UserModule::t("{attribute} name is required."),'on'=>'paraValidar'),
-			array('cif', 'match', 'pattern' => '(X(-|\.)?0?\d{7}(-|\.)?[A-Z]|[A-Z](-|\.)?\d{7}(-|\.)?[0-9A-Z]|\d{8}(-|\.)?[A-Z])','message' => UserModule::t("The cif must be valid."),'on'=>'paraValidar'),
+			array('cif', 'length', 'max'=>9,'message' => UserModule::t("9 size."), 'except' => 'admin'),
+			array('nombre,cif','required','message' => UserModule::t("{attribute} name is required."), 'except' => 'admin'),
+			array('cif', 'match', 'pattern' => '(X(-|\.)?0?\d{7}(-|\.)?[A-Z]|[A-Z](-|\.)?\d{7}(-|\.)?[0-9A-Z]|\d{8}(-|\.)?[A-Z])','message' => UserModule::t("The cif must be valid."), 'except' => 'admin'),
 			array('nombre,nombre_slug,web, twitter, facebook, urlTienda', 'length', 'max'=>100),
 			array('modificado', 'safe'),
 			// The following rule is used by search().
@@ -138,15 +138,21 @@ class Empresa extends CActiveRecord
 		));
 	}
 	
+	//Comprobamos que siendo un usuario válido no haga cambios raros.
+	/*
+	 * Por ejemplo: Que haya dejado nulos los campos mínimos para cobrarle.
+	 * */
 	protected function afterSave()
         {
-        	if (!$this->isNewRecord){
-	        	$model = User::model()->findByPk(Yii::app()->user->id);
-			 	if(UserModule::compruebaStatus($model) === true){
-					$model->status=2;
-					$model->save();
-				}	
-        	}
+        	/*if (!$this->isNewRecord){
+	        	$model = User::model()->findByPk($this->user_id);
+	        	if ($model->status=3){
+	        		if(User::tieneCamposMinimosRellenos($model) != true){
+						$model->status=2;
+						$model->save();
+					}	
+	        	}
+        	}*/
 			parent::afterSave();
         }
 	

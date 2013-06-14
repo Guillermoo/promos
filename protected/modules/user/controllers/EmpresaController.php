@@ -34,15 +34,8 @@ class EmpresaController extends Controller
 	 * Dejo el código comentado por si hace falta.
 	 * */
 	public function actionHome(){
+		
 		$model = $this->loadUser();
-		
-		/*$respuesta = UserModule::compruebaStatus($model);
-		
-		if ($respuesta != true){
-			$model->status = User::STATUS_ACTIVE;//Si por alguna posibilidad le falta algún campo.
-			$model->save(false);
-		};
-		$this->debug($respuesta);*/
 		
 		$this->render('home',array(
 	    	'model'=>$model

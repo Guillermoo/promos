@@ -14,6 +14,9 @@
  */
 class Cuenta extends CActiveRecord
 {
+	//Duración en semanas
+	const DURACION_CUENTA_TEST=2;
+	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.

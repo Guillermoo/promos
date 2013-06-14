@@ -128,24 +128,32 @@ class AdminController extends Controller
 	public function actionUpdate()
 	{
 		$this->_model=$this->loadModel();
-
+		$this->_model->scenario = 'admin';
+		
 		$esEmpresa = Yii::app()->authManager->checkAccess('empresa', $this->_model->id);
+		
+		if ($esEmpresa){
+			$this->_model->profile->scenario = 'admin';
+			$this->_model->empresa->scenario = 'admin';
+		}
 
-		if(isset($_POST['User'])){
-
-			$this->_model->attributes=$_POST['User'];
-				
+		// ajax validator
+		if(isset($_POST['ajax']) && $_POST['ajax']==='user-form')
+		{
 			if ($esEmpresa){
-				$profile=$this->_model->profile;
-				$empresa=$this->_model->empresa;
-				$this->performAjaxValidation(array($this->_model,$profile,$empresa));
-
-				$profile->attributes=$_POST['Profile'];
-				$empresa->attributes=$_POST['Empresa'];
+				//$this->performAjaxValidation(array($this->_model,$profile,$empresa));
+				echo UActiveForm::validate(array($this->_model,$this->_model->profile,$this->_model->empresa));
+				Yii::app()->end();
 			}else{
-				$this->performAjaxValidation(array($this->_model));
+				echo UActiveForm::validate(array($this->_model));
+				Yii::app()->end();
 			}
-				
+		}
+		
+		if(isset($_POST['User']))
+		{
+			$this->_model->attributes=$_POST['User'];
+			
 			if($this->_model->validate()) {
 				$old_password = User::model()->notsafe()->findByPk($this->_model->id);
 				if ($old_password->password!=$this->_model->password) {
@@ -153,18 +161,21 @@ class AdminController extends Controller
 					$this->_model->activkey=Yii::app()->controller->module->encrypting(microtime().$this->_model->password);
 				}
 				$this->_model->save();
+				
 				if ($esEmpresa){
-					$profile->save();
-					$empresa->save();
+					
+					$this->_model->profile->attributes=$_POST['Profile'];
+					$this->_model->empresa->attributes=$_POST['Empresa'];
+					
+					$this->_model->profile->save(false);
+					$this->_model->empresa->save(false);
 				}
 				Yii::app()->user->setFlash('success', '<strong>Well done!</strong> You successfully read this important alert message.');
 				$this->redirect(array('update', 'id'=>$this->_model->id));
 			} else {
-				$profile->validate();
+				$this->_model->validate();
 			}
-		}elseif(isset($_POST['Empresa']) ){
-				
-		}
+		}	
 
 		$this->renderParaUsuario($esEmpresa);
 	}

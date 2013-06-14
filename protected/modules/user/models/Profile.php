@@ -56,7 +56,7 @@ class Profile extends CActiveRecord
 			//array('contacto_id', 'numerical', 'integerOnly'=>true),
 			array('username, lastname', 'length', 'max'=>50),
 			array('paypal_id', 'length', 'max'=>40),
-			array('direccion,telefono,cp,poblacion_id','required','on'=>'paraValidar'),
+			array('direccion,telefono,cp,poblacion_id,paypal_id','required', 'except' => 'admin'),
 			array('barrio,poblacion_id,telefono,fax,cp', 'numerical', 'integerOnly'=>true),
 			array('telefono, fax', 'length', 'max'=>50),
 			array('tipocuenta', 'length', 'max'=>11),
@@ -78,13 +78,16 @@ class Profile extends CActiveRecord
 	  
 	protected function afterSave()
         {
-        	if (!$this->isNewRecord){
-	        	$model = User::model()->findByPk(Yii::app()->user->id);
-			 	if(UserModule::compruebaStatus($model) === true){
-					$model->status=2;
-					$model->save();
-				}	
-        	}
+        	/*if (!$this->isNewRecord){
+				//Si es admin elq ue está actualizando el id es otro.
+        		$model = User::model()->findByPk($this->user_id);
+        		if ($model->status=3){
+        			if(User::tieneCamposMinimosRellenos($model) != true){
+						$model->status=2;
+						$model->save();
+					}	
+        		}
+        	}*/
 		 	
 			parent::afterSave();
         }
