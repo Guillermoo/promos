@@ -103,4 +103,16 @@ class Cuenta extends CActiveRecord
 
 		return $cuentas;
 	}
+
+	public static function editCuentas(){
+
+	}
+
+	public static function getCuentaUsuario($idUsuario){
+		//me devuelve los datos de la cuenta que tiene asociada el usuario: tipo, fecha_inicio, fecha_fin, activa....
+	}
+
+	public static function changeCuentaUsuario($idUsuario,$idCuenta){
+		//cambiar el tipo de cuenta asociada al usuario. Tendré que setear la fecha de inicio de la nueva cuenta y la fecha de fin.
+	}
 }
