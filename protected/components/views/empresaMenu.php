@@ -9,6 +9,7 @@
         // 'Products' menu item will be selected no matter which tag parameter value is since it's not specified.         
         array('label'=>'Mis proemociones', 'url'=>array('site/login')),
         array('label'=>'Nueva proemoción', 'url'=>array('site/login')),
+        array('label'=>'Suscripción', 'url'=>array('site/login')),
         /*
     	array('url'=>Yii::app()->getModule('user')->profileUrl, 'label'=>Yii::app()->getModule('user')->t("Profile"), 'visible'=>!Yii::app()->user->isGuest),
     	array('url'=>Yii::app()->getModule('user')->logoutUrl, 'label'=>Yii::app()->getModule('user')->t("Logout").' ('.Yii::app()->user->name.')', 'visible'=>!Yii::app()->user->isGuest),

@@ -6,14 +6,12 @@ class ProfileController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/user_column2';
 	public $defaultAction = 'profile';
 	
 	/**
 	 * @var CActiveRecord the currently loaded data model instance.
 	 */
-	private $_model;
-	
+	private $_model;	
 	
 	/**
 	 * @return array action filters
@@ -31,6 +29,8 @@ class ProfileController extends Controller
 	 */
 	public function actionProfile()
 	{
+		$layout = 'column2';
+
 		$_model = $this->loadUser();
 		if (UserModule::isAdmin())
 			$this->renderParaAdmin($_model);

@@ -1,8 +1,12 @@
 <?php echo __FILE__; ?>
-<?php $this->pageTitle=Yii::app()->name . ' - '.UserModule::t("Profile");
-/*$this->breadcrumbs=array(
+<?php $this->pageTitle=Yii::app()->name . ' - '.
+UserModule::t("Profile");
+
+$this->layout = 'main';
+
+$this->breadcrumbs=array(
 	UserModule::t("Profile"),
-);*/
+);
 
 ?><h1><?php echo UserModule::t('Your profile'); ?></h1>
 
@@ -22,8 +26,7 @@
 
 <!--  <table class="dataGrid"> -->
 
-	<p class="note"><?php echo UserModule::t('Fields with <span class="required">*</span> are required.'); ?></p>
-	
+	<p class="note"><?php echo UserModule::t('Fields with <span class="required">*</span> are required.'); ?></p>	
 	<?php if (!Yii::app()->authManager->checkAccess('admin', Yii::app()->user->id) ):?>
 		<?php echo $form->errorSummary(array($model,$profile,$contacto)); ?>
 	<?php endif;?>
