@@ -56,7 +56,10 @@ class SiteController extends Controller
 	 */
 	public function actionContact()
 	{
+		$this->debug( Yii::app()->user->returnUrl);
+		
 		$model=new ContactForm;
+		
 		if(isset($_POST['ContactForm']))
 		{
 			$model->attributes=$_POST['ContactForm'];
@@ -113,7 +116,7 @@ class SiteController extends Controller
 	}
 	
 	/* Used to debug variables*/
-    /*protected function Debug($var){
+    protected function Debug($var){
         $bt = debug_backtrace();
         $dump = new CVarDumper();
         $debug = '<div style="display:block;background-color:gold;border-radius:10px;border:solid 1px brown;padding:10px;z-index:10000;"><pre>';
@@ -121,7 +124,7 @@ class SiteController extends Controller
         $debug .=  $dump->dumpAsString($var);
         $debug .= "</pre></div>\n";
         Yii::app()->params['debugContent'] .=$debug;
-    }*/
+    }
 	
 	
 }

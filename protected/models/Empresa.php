@@ -24,6 +24,7 @@
  */
 class Empresa extends CActiveRecord
 {
+	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -57,7 +58,7 @@ class Empresa extends CActiveRecord
 			array('modificado', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('nombre,nombre_slug,emp_cat,empresa_id, user_id, cif, web, twitter, facebook, urlTienda, modificado', 'safe', 'on'=>'search'),
+			array('nombre,nombre_slug, user_id, cif, web, twitter, facebook, urlTienda, modificado', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -74,6 +75,7 @@ class Empresa extends CActiveRecord
 			'categoria' => array(self::MANY_MANY, 'Category', 'tbl_emp_cat(empresa_id,categoria_id)'),
 			//(G)O la de arriba o la de abajo, no las dos
 			'empCat' => array(self::HAS_MANY, 'EmpCat', 'empresa_id'),
+			//'promociones' => array(self::HAS_MANY,'Promocion','empresa_id'),
 		);
 	}
 	
@@ -81,7 +83,7 @@ class Empresa extends CActiveRecord
     {
         return CMap::mergeArray(Yii::app()->getModule('user')->defaultScope,array(
             'alias'=>'empresa',
-            'select' => 'empresa.empresa_id,empresa.user_id, empresa.nombre, empresa.cif',
+            'select' => 'empresa.empresa_id,empresa.user_id, empresa.nombre, empresa.nombre_slug, empresa.cif, empresa.modificado',
         ));
     }*/
 
@@ -91,9 +93,8 @@ class Empresa extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'empresa_id' => 'Empresa',
-			'user_id' => 'Usuario',
-			'categoria_id' => 'Category',
+			'id' => 'Empresa',
+			'user_id' => 'User name',
 			'nombre' => 'Name',
 			'nombre_slug' => 'Friendly name',
 			'cif' => 'Cif',
@@ -102,12 +103,6 @@ class Empresa extends CActiveRecord
 			'facebook' => 'Facebook',
 			'urlTienda' => 'Url Tienda',
 			'modificado' => 'Modificado',
-			'telefono' => 'Telefono',
-			'fax' => 'Fax',
-			'cp' => 'Cp',
-			'barrio' => 'Barrio',
-			'direccion' => 'Direccion',
-			'poblacion_id' => 'Poblacion',
 		);
 	}
 
@@ -122,7 +117,7 @@ class Empresa extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('empresa_id',$this->empresa_id);
+		$criteria->compare('id',$this->id);
 		$criteria->compare('user_id',$this->user_id);
 		$criteria->compare('nombre',$this->nombre,true);
 		$criteria->compare('nombre_slug',$this->nombre_slug,true);
@@ -142,20 +137,36 @@ class Empresa extends CActiveRecord
 	/*
 	 * Por ejemplo: Que haya dejado nulos los campos mínimos para cobrarle.
 	 * */
-	protected function afterSave()
-        {
-        	/*if (!$this->isNewRecord){
-	        	$model = User::model()->findByPk($this->user_id);
+	protected function afterSave(){
+        	if (!$this->isNewRecord){
+	        	/*$model = User::model()->findByPk($this->user_id);
 	        	if ($model->status=3){
+	        		//Hay que descomentar esta parte!!!!!
 	        		if(User::tieneCamposMinimosRellenos($model) != true){
 						$model->status=2;
 						$model->save();
-					}	
-	        	}
-        	}*/
+					}
+					$model->save();
+	        	}*/
+        	}
 			parent::afterSave();
-        }
-	
+	}
+        
+	/*
+	 * Comprobamos si es una cuenta con todo correcto pero por si lo que fuera
+	 * hay que cambiar el estado
+	 * También se guarda el nombre de la empresa con su slug
+	 * */
+	/*protected function beforeSave(){
+		/*if (!$this->isNewRecord){
+			$model = User::model()->findByPk($this->user_id);
+        	if ($this->nombre != "")
+				$this->nombre_slug = UserModule::getSlug($this->nombre);
+			
+			//$this->modificado = time();
+		}
+		parent::beforeSave();
+	}*/
 	
 	public static function getEmpCategories()
 	{

@@ -26,11 +26,11 @@ $this->breadcrumbs=array(
 	<p class="note"><?php echo UserModule::t('Fields with <span class="required">*</span> are required.'); ?></p>
 	
 	<?php echo $form->errorSummary(array($model)); ?>
-	
+
 	<div class="row">
-	<?php echo $form->labelEx($model,'username'); ?>
-	<?php echo $form->textField($model,'username'); ?>
-	<?php echo $form->error($model,'username'); ?>
+	<?php echo $form->labelEx($model,'email'); ?>
+	<?php echo $form->textField($model,'email'); ?>
+	<?php echo $form->error($model,'email'); ?>
 	</div>
 	
 	<div class="row">
@@ -48,11 +48,6 @@ $this->breadcrumbs=array(
 	<?php echo $form->error($model,'verifyPassword'); ?>
 	</div>
 	
-	<div class="row">
-	<?php echo $form->labelEx($model,'email'); ?>
-	<?php echo $form->textField($model,'email'); ?>
-	<?php echo $form->error($model,'email'); ?>
-	</div>
 	
 	<?php if (UserModule::doCaptcha('registration')): ?>
 	<div class="row">

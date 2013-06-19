@@ -1,11 +1,5 @@
 <?php echo __FILE__; ?> 
-<?php
-$this->breadcrumbs=array(
-	UserModule::t('Users')=>array('admin'),
-	$model->username,
-);
 
-?>
 <h1><?php echo UserModule::t('View User').' "'.$model->username.'"'; ?></h1>
 
 <?php

@@ -8581,7 +8581,7 @@ CREATE TABLE IF NOT EXISTS `tbl_promociones` (
   `fecha_fin` date NOT NULL,
   `fechaCreacion` date NOT NULL,
   `destacado` tinyint(1) NOT NULL,
-  `precioActual` varchar(45) NOT NULL,
+  `precio` varchar(45) NOT NULL,
   `rebaja` varchar(45) NOT NULL,
   `condiciones` varchar(1000) NOT NULL,
   `agotado` tinyint(1) NOT NULL,

@@ -19,10 +19,9 @@ class ActivationController extends Controller
 				$find->activkey = UserModule::encrypting(microtime());
 				$find->status = User::STATUS_ACTIVE;
 				$find->save();
-				$find->profile->fecha_activacion = time();
-				$find->profile->fecha_fin = time() + Cuenta::DURACION_CUENTA_TEST;
-				//Igual da fallo de validación!!!!
-				$find->profile->save(false);
+				if (isset($find->profile))//No tiene porque ser una empresa.
+					Profile::actualizaFechaTrasActivacion($find->profile);
+				
 			    $this->render('/user/message',array('title'=>UserModule::t("User activation"),'content'=>UserModule::t("You account is activated.")));
 			} else {
 			    $this->render('/user/message',array('title'=>UserModule::t("User activation"),'content'=>UserModule::t("Incorrect activation URL.")));

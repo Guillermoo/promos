@@ -153,6 +153,9 @@
 						<?php echo $form->textField($profile,'poblacion_id'); ?>
 						<?php echo $form->error($profile,'poblacion_id'); ?>
 					</div>
+					<?php 
+						echo $this->renderPartial('/empresa/_form', array('form'=>$form,'model'=>$model,'image'=>$image,'categorias'=>$categorias,'cuentas'=>$cuentas));
+					?>
 				</div>
 			<?php endif;?>
 		</td>
@@ -161,17 +164,16 @@
 	<?php if ($esEmpresa):?>
 		<tr>
 			<td>
-				<?php 
-					echo $this->renderPartial('/empresa/_form', array('form'=>$form,'model'=>$model,'image'=>$image,'categorias'=>$categorias,'cuentas'=>$cuentas));
-				?>
+				
 			</td>
 		</tr>
+	</table>
+	<?php else:?>
+	</table>
+	<div class="row buttons">
+				<?php echo CHtml::submitButton($model->isNewRecord ? UserModule::t('Create') : UserModule::t('Save')); ?>
+			</div>
 	<?php endif;?>
-</table>
-<div class="row buttons">
-	<?php //echo CHtml::submitButton($model->isNewRecord ? UserModule::t('Create') : UserModule::t('Save')); ?>
-</div>
-
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->

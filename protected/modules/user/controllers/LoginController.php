@@ -3,6 +3,7 @@
 class LoginController extends Controller
 {
 	public $defaultAction = 'login';
+	
 
 	/**
 	 * Displays the login page
@@ -18,9 +19,9 @@ class LoginController extends Controller
 				// validate user input and redirect to previous page if valid
 				if($model->validate()) {
 					$this->lastViset();//Para que se actualize la última vez visitado
-					if(UserModule::isCompany() || UserModule::isTrial()){
+					/*if(UserModule::isCompany() || UserModule::isTrial()){
 						$this->realizaComprobacionesMantenimiento();
-					}
+					}*/
 					
 					$this->redirigeSegunTipoUsuario();
 				}

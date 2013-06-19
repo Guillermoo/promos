@@ -26,12 +26,13 @@ class RWebUser extends CWebUser
 	 * user(/components/WebUser.php)*/
 	public function updateSession() 
 	{
-		$user = Yii::app()->getModule('user')->user($this->id);
+		$id = Yii::app()->user->id;
+		$user = Yii::app()->getModule('user')->user($id);
 		$userAttributes = CMap::mergeArray(array(                                                                                               'email'=>$user->email,
             'username'=>$user->username,
             'create_at'=>$user->create_at,
             'lastvisit_at'=>$user->lastvisit_at,
-		),$user->profile->getAttributes());
+		),$user->profile->getAttributes(),$user->empresa->getAttributes());
 
 		foreach ($userAttributes as $attrName=>$attrValue) 
 		{

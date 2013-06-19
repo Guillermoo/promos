@@ -52,13 +52,15 @@ class UserModule extends CWebModule
 	 */
 	public $autoLogin=true;
 	
-	public $registrationUrl = array("/user/registration");
+	public $registrationUrl = array("/user/registrarcomprador");
 	public $registrationCompanyUrl = array("/user/registrationcompany");
 	public $recoveryUrl = array("/user/recovery/recovery");
 	public $loginUrl = array("/user/login");
 	public $logoutUrl = array("/user/logout");
 	public $adminUrl = array("/user/admin");
 	public $adminEmpresaUrl = array("/user/admin/empresa");
+	public $crearPromocionUrl = array("/user/promocion/create");
+	public $contactoUrl = array("/site/contact");
 	public $homeUrl = array("/admin/home");//'user/home' => 'user/empresa/home',
 	public $profileUrl = array("/user/profile");
 	public $cuentaUrl = array("/user/cuenta");
@@ -138,8 +140,6 @@ class UserModule extends CWebModule
 		Yii::app()->theme = 'admin';
 		
 	}
-	
-
 	
 	public function getBehaviorsFor($componentName){
         if (isset($this->componentBehaviors[$componentName])) {
@@ -228,8 +228,9 @@ class UserModule extends CWebModule
 		else {
 			if (!isset(self::$_company)) {
 				//if(self::user()->superuser)
-				if(Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id))
+				if(Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id)){
 					self::$_company = true;
+				}
 				else
 					self::$_company = false;	
 			}
@@ -307,6 +308,12 @@ class UserModule extends CWebModule
 			self::$_admins = ($return_name)?$return_name:array('');
 		}
 		return self::$_admins;
+	}
+	
+	public static function getSlug($name){
+		
+		//Aquí va la lógica para obtener el slug del nombre
+		return $name;
 	}
 	
 	/**

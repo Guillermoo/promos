@@ -78,7 +78,7 @@ class Profile extends CActiveRecord
 	  
 	protected function afterSave()
         {
-        	/*if (!$this->isNewRecord){
+        	if (!$this->isNewRecord){
 				//Si es admin elq ue está actualizando el id es otro.
         		$model = User::model()->findByPk($this->user_id);
         		if ($model->status=3){
@@ -87,7 +87,10 @@ class Profile extends CActiveRecord
 						$model->save();
 					}	
         		}
-        	}*/
+        	}else{//Si es nueva profile
+        		$this->tipocuenta = Cuenta::CUENTA_TRIAL;
+        		$this->setFechasCreacion();
+        	}
 		 	
 			parent::afterSave();
         }
@@ -105,7 +108,7 @@ class Profile extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			//'user' => array(self::BELONGS_TO, 'User', 'id'),
+			'user' => array(self::BELONGS_TO, 'User', 'id'),
             'cuenta' => array(self::BELONGS_TO, 'Cuenta', 'tipocuenta'),
 		);
 	}
@@ -134,6 +137,29 @@ class Profile extends CActiveRecord
 	            ),
 	        );
 	    }
+	    
+	/*
+	 * Cuando se crea una cuenta desde la parte pública o desde admin se asignarán las fechas
+	 * para la cuenta trial(La cuenta que todo el mundo tiene cuando se registra).
+	 */
+    private function setFechasCreacion(){
+    	$today = "";
+    	$this->setFechaActivacion($today);
+    	$this->setFechaFin($today + Cuenta::DURACION_CUENTA_TRIAL);
+    	$this->setFechaPago($today);//La cuentra trial es como no tiene que pagar, realmente no importa que día pagó
+    }
+    
+    /*
+     * Esta función es la encargada de asignar los valores de las fechas en
+     * función del tipo de cuenta, duración... $this->tipocuenta, $this->meses
+     * */
+    private function setFechasTrasPagar(){
+    	//Los valores que hagan falta.
+    	/*$today = "";
+    	setFechaActivacion($today);
+    	setFechaFin($today + Cuenta::DURACION_CUENTA_TRIAL);
+    	setFechaPago($today);*/
+    }
 
     /*(G) De momento no hay nada programado.*/
     public function setFechaActivacion($value) {
@@ -194,6 +220,15 @@ class Profile extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	public static function actualizaFechaTrasActivacion($profile=null){
+		if (isset($profile)){
+			$find->profile->fecha_activacion = time();
+			$find->profile->fecha_fin = time() + Cuenta::DURACION_CUENTA_TRIAL;
+			//Igual da fallo de validación!!!!
+			$find->profile->save(false);
+		}
 	}
 	
 	

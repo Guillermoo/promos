@@ -88,7 +88,7 @@ $('.search-form form').submit(function(){
 							'dateFormat' => 'yy-mm-dd',
 							'showAnim'=>'fold','changeMonth'=>'true', 
 	    					'changeYear'=>'true',)), true)
-	    ),
+	    ),	
 		array(
 			'name'=>'superuser',
 			'value'=>'User::itemAlias("AdminStatus",$data->superuser)',
@@ -101,7 +101,7 @@ $('.search-form form').submit(function(){
 		),
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
-			'template'=>'{update} {delete}',
+			'template'=>'{view} {update} {delete}',
 			'htmlOptions'=>array('style'=>'width: 50px'),
 		),
 	),

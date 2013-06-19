@@ -15,7 +15,9 @@
 class Cuenta extends CActiveRecord
 {
 	//Duración en semanas
-	const DURACION_CUENTA_TEST=2;
+	const DURACION_CUENTA_TRIAL=2;
+	
+	const CUENTA_TRIAL = 1;
 	
 	/**
 	 * Returns the static model of the specified AR class.

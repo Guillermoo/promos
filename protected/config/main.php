@@ -54,7 +54,6 @@ return array(
            'displayDescription'=>true,  // Whether to use item description instead of name. 
            'flashSuccessKey'=>'RightsSuccess', // Key to use for setting success flash messages. 
            'flashErrorKey'=>'RightsError', // Key to use for setting error flash messages. 
-
            'baseUrl'=>'/rights', // Base URL for Rights. Change if module is nested. 
            'layout'=>'rights.views.layouts.main',  // Layout to use for displaying Rights. 
            'appLayout'=>'application.views.layouts.main', // Application layout. 
@@ -93,7 +92,7 @@ return array(
             'loginUrl' => array('/user/login'),
  
             # page after login
-            'returnUrl' => array('/user/profile'),
+            'returnUrl' => array('/admin/home'),
  
             # page after logout
             'returnLogoutUrl' => array('/user/login'),
@@ -115,9 +114,12 @@ return array(
 			'rules'=>array(
 				'empresa/<alias:[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]+>' => 'empresa/view',
 				'empresa/edit' => 'empresa',
-				'admin/home' => 'user/empresa/home',
-				'user' => 'user/empresa/home',
-				'user/promociones'=>'user/promocion/promocion',
+				'admin/home' => 'user/admin/home',
+				'profile/edit' => 'profile',
+				'user/registrarcomprador' => 'user/registrationcomprador',
+				'user/registrarempresa' => 'user/registrationcompany',
+				'user/user/contact' => 'user/user/contact',
+				'user/promociones'=>'user/promocion/admin',
 				'page/<view>'=>array('site/page'),
                                 'index'=>array('site/index'),
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',

@@ -29,18 +29,7 @@ class EmpresaController extends Controller
 		);
 	}
 	
-	/*  	
-	 * (G)De momento abrimos home que no hay nada pensado en que se mostrará.
-	 * Dejo el código comentado por si hace falta.
-	 * */
-	public function actionHome(){
-		
-		$model = $this->loadUser();
-		
-		$this->render('home',array(
-	    	'model'=>$model
-	    ));
-	}
+	
 	
 	/*  
 	 * (G)De momento abrimos home que no hay nada pensado en que se mostrará.
@@ -92,10 +81,7 @@ class EmpresaController extends Controller
 				echo $this->renderPartial('../layouts/_itemupload', array(
 					'image' => $image,'idform'=>'empresa-form'));
 	        }
-		 
-         	
 		}
-        
 	}
 
 	/**
@@ -103,7 +89,7 @@ class EmpresaController extends Controller
 	 * This method is used by the 'accessControl' filter.
 	 * @return array access control rules
 	 */
-	/*public function accessRules()
+	public function accessRules()
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
@@ -111,7 +97,7 @@ class EmpresaController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','empresa','edit'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -122,7 +108,7 @@ class EmpresaController extends Controller
 				'users'=>array('*'),
 			),
 		);
-	}*/
+	}
 	
 	public function actionForm( ) {
 	    $model = new Item;
@@ -206,7 +192,7 @@ class EmpresaController extends Controller
 	    $this->debug($col);	
 	    
 	 	$misCat2=EmpCat::model()->findAll(array(
-		    'condition'=>'empresa_id='.$model->empresa->empresa_id,
+		    'condition'=>'empresa_id='.$model->empresa->id,
 		));
 		
 		foreach($categorias as $cat){
@@ -214,17 +200,6 @@ class EmpresaController extends Controller
 			array_push($listCat, $cat);
 		}
 		
-	 	/*$ids=array();
-        foreach($misCat2 as $c)
-                $ids[]=$c->categoria->id;*/
-                //$ids[]=$c->id;
-        //return $ids;
-        
-	 	//$this->debug($misCat);
-	 	//$this->debug($model);
-	 	$this->debug($misCat);
-	 	//$this->debug($misCat[1]->attributes);
-	 	
 		$this->render( 'misdebugs', array(
 	        'model' => $model,
 			'misCat' => $misCat[0],
@@ -258,16 +233,30 @@ class EmpresaController extends Controller
 			{
 				$empresa->attributes=$_POST['Empresa'];
 				if($empresa->validate()) {
-					$empresa->save();
-					//(G)Se supone que si ha poddio guardar es porque ha rellenado los campos mínimos.
-					//$contacto->save();
-	                Yii::app()->user->updateSession();
-					Yii::app()->user->setFlash('success',UserModule::t("Changes is saved."));
-					$this->redirect(array('/user/empresa'));
-				} else {
-					$empresa->validate();
-					$this->refresh();
-				}
+					try {
+						if ($empresa->save()){
+							Yii::app()->user->setFlash('success',UserModule::t("Changes is saved."));
+							$this->redirect(array('/user/empresa'));
+						}else{
+							Yii::app()->user->setFlash('error',UserModule::t("Error saving the changes."));
+							$this->debug(UserModule::getSlug($empresa->nombre));
+							$this->debug($empresa);
+							//$this->redirect(array('/user/empresa'));
+							
+						};
+					}
+					// we are looking for specific exception here
+					catch (CException $e)
+					{
+						echo $e;
+					}
+					/*if ($empresa->save(false)){
+						//(G)Se supone que si ha podido guardar es porque ha rellenado los campos mínimos.
+		               // Yii::app()->user->updateSession();
+						Yii::app()->user->setFlash('success',UserModule::t("Changes is saved."));
+						$this->redirect(array('/user/empresa'));
+					}else $this->debug($empresa->getErrors());*/
+				} else $empresa->validate();
 			}
 			$this->render('empresa',array(
 				'model'=>$model,
@@ -359,7 +348,7 @@ class EmpresaController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=Profile::model()->findByPk($id);
+		$model=Empresa::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -370,14 +359,14 @@ class EmpresaController extends Controller
 	 * @param Profile $model the model to be validated
 	 */
 	/*(G) Debería validar contacto y profile*/
-	protected function performAjaxValidation($model)
+	/*protected function performAjaxValidation($model)
 	{
 		if(isset($_POST['ajax']) && $_POST['ajax']==='empresa-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
-	}
+	}*/
 	
 	/* Used to debug variables*/
     protected function Debug($var){

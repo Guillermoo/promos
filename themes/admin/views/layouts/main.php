@@ -89,6 +89,7 @@
 	        'alerts'=>array( // configurations per alert type
 	            'success'=>array('block'=>true, 'fade'=>true, 'closeText'=>'x'), // success, info, warning, error or danger
 	            'error'=>array('block'=>true, 'fade'=>true, 'closeText'=>'x'), // success, info, warning, error or danger
+				'info'=>array('block'=>true, 'fade'=>true, 'closeText'=>'x'), // success, info, warning, error or danger
 	        ),
 	    )); ?>
 	</div>

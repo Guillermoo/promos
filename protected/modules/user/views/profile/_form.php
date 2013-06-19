@@ -1,23 +1,25 @@
-<?php echo __FILE__; ?>
-
+<?php if(YII_RUTAS == true) echo __FILE__; ?>
+<h1>sdgsg111</h1>
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'profile-form',
 	'enableAjaxValidation'=>true,
 	//'type'=>'horizontal',
-	'action'=>'profile/edit',
+	'action'=>'profile/update',
+	'clientOptions'=>array(
+		'validateOnSubmit'=>true,
+	),
 	'htmlOptions' => array('enctype'=>'multipart/form-data')
 ));
 ?>
-
+<h1>sdgsg</h1>
 <fieldset>
 	<p class="note"><?php echo UserModule::t('Fields with <span class="required">*</span> are required.'); ?></p>
 	
+	<?php echo $form->errorSummary(array($model,$model->profile)); ?>
+	
 	<?php if (UserModule::isSuperAdmin() || UserModule::isAdmin() ):?>
-	<?php //Estos campos sólo se muestran al admin ya que son de uso interno. ?>
-	<?php if (Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id) ):?>
-		<?php echo $form->errorSummary(array($model->profile)); ?>
-	<?php endif;?>
-
+		<?php //Estos campos sólo se muestran al admin ya que son de uso interno. ?>
+		swgsg;
 		<div class="row">
 			<?php echo $form->labelEx($model,'username'); ?>
 			<?php echo $form->textField($model,'username',array('size'=>20,'maxlength'=>20)); ?>
@@ -42,7 +44,6 @@
 			<?php echo $form->error($model,'status'); ?>
 		</div>
 	<?php endif; ?>
-	
 	<?php if (UserModule::isCompany() ):?>
 		<?php $profile = $model->profile;?>
 		<div class="fields">

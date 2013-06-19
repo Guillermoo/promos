@@ -1,9 +1,9 @@
 <?php
 /* @var $this SiteController */
- $this->layout = 'column2';
+$this->layout = 'column2';
 $this->pageTitle=Yii::app()->name;
 ?>
-
+<?php //$this->debug()?>
 <h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
 
 <p>P�gina principal del theme donde acceden los NO logeados.</p>

@@ -22,23 +22,11 @@ class ProfileController extends Controller
 	 */
 	public function filters()
 	{
-		return array(
+		return CMap::mergeArray(parent::filters(),array(
 			'accessControl', // perform access control for CRUD operations
 			'postOnly + delete', // we only allow deletion via POST request
-		);
+		));
 	}
-	
-	/**
-	 * Shows a particular model.
-	 */
-	public function actionProfile()
-	{
-		$this->_model = $this->loadUser();
-		$this->render('profile', array('model'=>$this->_model));
-		
-	}
-	
-	
 	
 	public function actionError()
 	{
@@ -60,11 +48,11 @@ class ProfileController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','updateAjax','profile'),
+				'actions'=>array('index','view'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','edit'),
+				'actions'=>array('create','update','edit','profile','updateAjax'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -77,6 +65,18 @@ class ProfileController extends Controller
 		);
 	}
 
+	/**
+	 * Shows a particular model.
+	 */
+	public function actionProfile()
+	{
+		$model = $this->loadUser();
+		//$this->debug(Yii::app()->controller->module->user());
+		/*$this->debug($model->attributes);
+		$this->debug(Yii::app()->controller->module->user()->id);*/
+		$this->render('profile', array('model'=>$model));
+	}
+	
 	/**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
@@ -94,20 +94,20 @@ class ProfileController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Profile;
+		$this->_model=new Profile;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['Profile']))
 		{
-			$model->attributes=$_POST['Profile'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->user_id));
+			$this->_model->attributes=$_POST['Profile'];
+			if($this->_model->save())
+				$this->redirect(array('view','id'=>$this->_model->user_id));
 		}
 
 		$this->render('create',array(
-			'model'=>$model,
+			'model'=>$this->_model,
 		));
 	}
     
@@ -125,41 +125,51 @@ class ProfileController extends Controller
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
 	
-	public function actionEdit()
+	public function actionUpdate(){
+		
+		$model = $this->loadUser();
+		
+		$profile=$model->profile;
+		$profile->scenario = "paraValidar";
+		
+		// ajax validator
+		if(isset($_POST['ajax']) && $_POST['ajax']==='profile-form')
 		{
-			$_model = $this->loadUser();
-			$profile=$_model->profile;
-			$profile->scenario = "paraValidar";
-			
-			// ajax validator
-			if(isset($_POST['ajax']) && $_POST['ajax']==='profile-form')
-			{
-				echo UActiveForm::validate(array($profile));
-				Yii::app()->end();
-			}
-			
-			if(isset($_POST['Profile']))
-			{
-				$profile ->attributes=$_POST['Profile'];
-				
-				if($profile ->validate()) {
-					$profile ->save();
-	                Yii::app()->user->updateSession();
-					Yii::app()->user->setFlash('success',UserModule::t("Changes is saved."));
-					
-					$this->redirect(array('/user/profile'));
-				} else {
-					
-					$profile->validate();
-					//Yii::app()->end();
-				}
-			}
-			$this->render('profile',array(
-				'model'=>$_model,
-			));
+			echo UActiveForm::validate(array($profile));
+			Yii::app()->end();
 		}
 		
-
+		if(isset($_POST['Profile'])){
+			$profile->attributes=$_POST['Profile'];
+			
+			if($profile->validate()) {
+				if ($profile->save()){
+					//Yii::app()->user->updateSession();
+					Yii::app()->user->setFlash('success',UserModule::t("Changes is saved."));
+					$this->redirect(array('/user/profile'));	
+				};
+			} else $profile->validate();
+		}
+		$this->render('edit',array(
+			'model'=>$model,
+		));
+	}
+	
+	public function loadUser()
+	{
+		if($this->_model===null)
+		{
+			if(Yii::app()->user->id)
+				$this->_model=Yii::app()->controller->module->user();
+				//$this->_model=User::model()->findbyPk(Yii::app()->user->id);
+			if($this->_model===null)
+				$this->redirect(Yii::app()->controller->module->loginUrl);
+				
+		}else{
+			$this->debug( "Model Nonulll");
+		}
+		return $this->_model;
+	}
 	
 	private function getImage($img,$logo){
 			
@@ -187,52 +197,28 @@ class ProfileController extends Controller
 	        
 		}
 	
-	
-	
-	/**
-	 * Lists all models.
-	 */
-	/*public function actionIndex()
-	{
-		$dataProvider=new CActiveDataProvider('Profile');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
-	}*/
-
-	/**
-	 * Manages all models.
-	 */
-	/*public function actionAdmin()
-	{
-		$model=new Profile('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Profile']))
-			$model->attributes=$_GET['Profile'];
-
-		$this->render('admin',array(
-			'model'=>$model,
-		));
-	}*/
-	
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer the primary key value. Defaults to null, meaning using the 'id' GET variable
 	 */
-	public function loadUser()
+	/*public function loadUser()
 	{
 		if($this->_model===null)
 		{
 			if(Yii::app()->user->id){
-				$this->_model=Yii::app()->controller->module->user();
+				asddh;
+				$this->_model = User::model()->findbyPk(Yii::app()->user->id);
 			}
+			
 			if($this->_model===null){
 				$this->redirect(Yii::app()->controller->module->loginUrl);
 			}
 		}
 		return $this->_model;
-	}
+	}*/
+	
+
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.

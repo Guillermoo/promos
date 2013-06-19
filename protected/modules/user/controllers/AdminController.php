@@ -29,12 +29,28 @@ class AdminController extends Controller
 				'actions'=>array('admin','delete','create','updateAjax','update','view','empresa'),
 				'users'=>UserModule::getAdmins(),
 		),
+		array('allow',
+			'actions'=>array('home'),
+			'users'=>array('@'),
+		),
 		array('deny',  // deny all users
 				'users'=>array('*'),
 		),
 		);
 	}
 
+	/*  	
+	 * (G)De momento abrimos home que no hay nada pensado en que se mostrará.
+	 * Dejo el código comentado por si hace falta.
+	 * */
+	public function actionHome(){
+		
+		$model = $this->loadUser();
+
+		$this->render('home',array(
+	    	'model'=>$model
+	    ));
+	}
 	/**
 	 * Manages all models.
 	 */
@@ -44,8 +60,9 @@ class AdminController extends Controller
 		$model->unsetAttributes();  // clear any default values
 
 		if(isset($_GET['User']))
-		$model->attributes=$_GET['User'];
+			$model->attributes=$_GET['User'];
 
+		//$this->debug(Yii::app()->controller->module->user()->id);
 		$this->render('index',array(
             'model'=>$model,
 		));
@@ -60,7 +77,7 @@ class AdminController extends Controller
 		$model->unsetAttributes();  // clear any default values
 
 		if(isset($_GET['Empresa']))
-		$model->attributes=$_GET['Empresa'];
+			$model->attributes=$_GET['Empresa'];
 
 		$this->render('empresa',array(
             'model'=>$model,
@@ -71,14 +88,14 @@ class AdminController extends Controller
 	 * Displays a particular model.
 	 * De momento no lo dejamos accesible
 	 */
-	/*public function actionView()
+	public function actionView()
 	{
 		$model = $this->loadModel();
 
 		$this->render('view',array(
 			'model'=>$model,
 		));
-	}*/
+	}
 
 	/**
 	 * Crea un nuevo usuario desde el menú administrador. Puede crear compradores, empresas y admins.
@@ -88,6 +105,7 @@ class AdminController extends Controller
 		$model=new User;
 
 		$this->performAjaxValidation(array($model));
+		
 
 		if(isset($_POST['User']))
 		{
@@ -99,13 +117,9 @@ class AdminController extends Controller
 			if($model->validate()) {
 				$model->password=Yii::app()->controller->module->encrypting($model->password);
 				if($model->save()) {
-					//Asignamos el rol dinámicamente
-					$model->setRole();
-					
-					$esEmpresa = UserModule::isCompany();
-						
-					if($esEmpresa)//(G)Creamos profile, empresa(si es usuario empresa)
-						$model->crearModelosRelacionados();
+					Yii::app()->user->setFlash('success', UserModule::t('<strong>Well done!</strong> You successfully read this important alert message.'));
+				}else{
+					Yii::app()->user->setFlash('error', UserModule::t('<strong>Error!</strong> There was an error creating the user.'));
 				}
 				$this->redirect(array('admin'));
 			} else {
@@ -160,17 +174,21 @@ class AdminController extends Controller
 					$this->_model->password=Yii::app()->controller->module->encrypting($this->_model->password);
 					$this->_model->activkey=Yii::app()->controller->module->encrypting(microtime().$this->_model->password);
 				}
-				$this->_model->save();
-				
-				if ($esEmpresa){
+				if ($this->_model->save()){
+					if ($esEmpresa){
 					
-					$this->_model->profile->attributes=$_POST['Profile'];
-					$this->_model->empresa->attributes=$_POST['Empresa'];
-					
-					$this->_model->profile->save(false);
-					$this->_model->empresa->save(false);
+						$this->_model->profile->attributes=$_POST['Profile'];
+						$this->_model->empresa->attributes=$_POST['Empresa'];
+						
+						$this->_model->profile->save(false);
+						$this->_model->empresa->save(false);
+					}
+					Yii::app()->user->setFlash('success', UserModule::t('<strong>Well done!</strong> You successfully read this important alert message.'));	
+				}else{
+					Yii::app()->user->setFlash('error', UserModule::t('<strong>Error!</strong> There were a error saving the user information.'));
 				}
-				Yii::app()->user->setFlash('success', '<strong>Well done!</strong> You successfully read this important alert message.');
+				
+				
 				$this->redirect(array('update', 'id'=>$this->_model->id));
 			} else {
 				$this->_model->validate();
@@ -178,6 +196,50 @@ class AdminController extends Controller
 		}	
 
 		$this->renderParaUsuario($esEmpresa);
+	}
+	
+/**
+	 * Deletes a particular model.
+	 * If deletion is successful, the browser will be redirected to the 'index' page.
+	 */
+	public function actionDelete()
+	{
+		if(Yii::app()->request->isPostRequest)
+		{
+			// we only allow deletion via POST request
+			$model = $this->loadModel();
+				
+			if (Yii::app()->authManager->checkAccess('admin', $model->id) || Yii::app()->authManager->checkAccess('superadmin', $model->id)){
+				 Yii::app()->user->setFlash('error',"It's not allowed to delete admin users");
+			}else{
+				try{
+					$model->delete();
+				    if(!isset($_GET['ajax']))
+				        Yii::app()->user->setFlash('success','Normal - Deleted Successfully');
+				    else
+				        echo "<div class='flash-success'>Ajax - Deleted Successfully</div>";
+					}catch(CDbException $e){
+					    if(!isset($_GET['ajax']))
+					        Yii::app()->user->setFlash('error','Normal - error message');
+					    else
+					        echo "<div class='flash-error'>Ajax - error message</div>"; //for ajax
+					}
+					
+					// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+					if(!isset($_POST['ajax']))
+						$this->redirect(array('/user/admin'));
+			}
+		}
+		else
+		throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+	}
+
+	public function actionUpdateAjax()
+	{
+		/*$data = array();
+		$data["myValue"] = "Content updated in AJAX";
+
+		$this->renderPartial('_ajaxAdminContent', $data, false, true);*/
 	}
 
 	private function renderParaUsuario($esEmpresa){
@@ -225,49 +287,7 @@ class AdminController extends Controller
 	}
 
 
-	/**
-	 * Deletes a particular model.
-	 * If deletion is successful, the browser will be redirected to the 'index' page.
-	 */
-	public function actionDelete()
-	{
-		if(Yii::app()->request->isPostRequest)
-		{
-			// we only allow deletion via POST request
-			$model = $this->loadModel();
-				
-			if (Yii::app()->authManager->checkAccess('admin', $model->id) || Yii::app()->authManager->checkAccess('superadmin', $model->id)){
-				 Yii::app()->user->setFlash('error',"It's not allowed to delete admin users");
-			}else{
-				try{
-					$model->delete();
-				    if(!isset($_GET['ajax']))
-				        Yii::app()->user->setFlash('success','Normal - Deleted Successfully');
-				    else
-				        echo "<div class='flash-success'>Ajax - Deleted Successfully</div>";
-					}catch(CDbException $e){
-					    if(!isset($_GET['ajax']))
-					        Yii::app()->user->setFlash('error','Normal - error message');
-					    else
-					        echo "<div class='flash-error'>Ajax - error message</div>"; //for ajax
-					}
-					
-					// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-					if(!isset($_POST['ajax']))
-						$this->redirect(array('/user/admin'));
-			}
-		}
-		else
-		throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
-	}
-
-	public function actionUpdateAjax()
-	{
-		/*$data = array();
-		$data["myValue"] = "Content updated in AJAX";
-
-		$this->renderPartial('_ajaxAdminContent', $data, false, true);*/
-	}
+	
 	
 	/**
 	 * Performs the AJAX validation.
@@ -275,9 +295,15 @@ class AdminController extends Controller
 	 */
 	protected function performAjaxValidation($validate)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='user-form')
+		/*if(isset($_POST['ajax']) && $_POST['ajax']==='user-form')
 		{
 			echo CActiveForm::validate($validate);
+			Yii::app()->end();
+		}*/
+		// ajax validator
+		if(isset($_POST['ajax']) && $_POST['ajax']==='user-form')
+		{
+			echo UActiveForm::validate($validate);
 			Yii::app()->end();
 		}
 	}
@@ -295,6 +321,26 @@ class AdminController extends Controller
 			$this->_model=User::model()->notsafe()->findbyPk($_GET['id']);
 			if($this->_model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
+		}
+		return $this->_model;
+	}
+	
+/**
+	 * Returns the data model based on the primary key given in the user session.
+	 * If the data model is not found, an HTTP exception will be raised.
+	 * @param integer the primary key value. Defaults to null, meaning using the 'id' GET variable
+	 */
+	public function loadUser()
+	{
+		if($this->_model===null)
+		{
+			if(Yii::app()->user->id){
+				$this->_model=User::model()->notsafe()->findbyPk(Yii::app()->user->id);
+				//$this->_model=Yii::app()->controller->module->user();
+			}
+			if($this->_model===null){
+				$this->redirect(Yii::app()->controller->module->loginUrl);
+			}
 		}
 		return $this->_model;
 	}

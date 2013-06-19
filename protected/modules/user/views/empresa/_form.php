@@ -10,7 +10,7 @@
 	'htmlOptions' => array('enctype'=>'multipart/form-data')
 ));
 ?>
-	
+
 <fieldset>
 
 	<?php if (Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id) ):?>
@@ -38,13 +38,14 @@
 			<?php if (isset($model->item)):?>
 				<?php $imghtml=CHtml::image(Yii::app( )->getBaseUrl( ).$model->item->path);?>
 				<?php $this->renderPartial('../layouts/_viewitem', array(
-					'imghtml' => $imghtml,'idimage'=>$model->item->id,'muestraBorrar'=>UserModule::isCompany()));?>
+					'imghtml' => $imghtml,'idimage'=>$model->item->id,'muestraBorrar'=>UserModule::isCompany()));?><?php //El admin no puede borrar la imagen, o si??>
 			<?php else:?>
 				<?php $this->renderPartial('../layouts/_itemupload', array(
 					'image' => $image,'idform'=>'empresa-form'));?>
 				<?php endif;?>
 		</div>
 	</div>
+	
 	<?php $empresa = $model->empresa;?>
 	
 	<div class="row">

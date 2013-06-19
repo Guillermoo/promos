@@ -21,7 +21,7 @@ $('.search-form form').submit(function(){
 
 <?php echo CHtml::link(UserModule::t('Advanced Search'),'#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
-<?php $this->renderPartial('_searchadmin',array(
+<?php $this->renderPartial('_searchcompany',array(
     'model'=>$model,
 )); ?>
 </div><!-- search-form -->
@@ -30,7 +30,7 @@ $('.search-form form').submit(function(){
     'keys'=>array('success','error'), 
     'htmlOptions'=>array('id'=>'flash'),
 )); ?><!-- flashes -->
-    
+
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
 	'id'=>'empresa-grid',
 	'ajaxUpdate' => 'flash',
@@ -40,15 +40,16 @@ $('.search-form form').submit(function(){
 	'enableSorting' => true,
 	'columns'=>array(
 		array(
-			'name' => 'empresa_id',
+			'name' => 'id',
 			'type'=>'raw',
 			'visible'=> YII_DEBUG,
 		),
-		array(
-			'name' => 'user_id',
+		/*array(
+			'name' => 'username',
+			'value' => Empresa::getNombreUsuario(),
 			'type'=>'raw',
 			'visible'=> YII_DEBUG,
-		),
+		),*/
 		array(
 			'name' => 'nombre',
 			'type'=>'raw',
@@ -101,11 +102,11 @@ $('.search-form form').submit(function(){
 			'name'=>'status',
 			'value'=>'User::itemAlias("UserStatus",$data->status)',
 			'filter' => User::itemAlias("UserStatus"),
-		),
+		),*/
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
-			'template'=>'{update} {delete}',
+			'template'=>'{view} {update}',
 			'htmlOptions'=>array('style'=>'width: 50px'),
-		),*/
+		),
 	),
 )); ?>
