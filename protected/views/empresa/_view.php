@@ -5,14 +5,6 @@
 
 <div class="view">
 
-	<!-- <b><?php /*echo CHtml::encode($data->getAttributeLabel('empresa_id')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->empresa_id), array('view', 'id'=>$data->empresa_id));*/ ?>
-	<br /> -->
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('user_id')); ?>:</b>
-	<?php echo CHtml::encode($data->user_id); ?>
-	<br />
-	
 	<b><?php echo CHtml::encode($data->getAttributeLabel('nombre')); ?>:</b>
 	<?php echo CHtml::link(CHtml::encode($data->nombre), array('view', 'id'=>$data->nombre_slug)); ?>
 	<br />

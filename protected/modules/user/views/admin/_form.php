@@ -1,11 +1,5 @@
 <div class="form">
 
-<?php if(Yii::app()->user->hasFlash('profileMessage')): ?>
-<div class="success">
-	<?php echo Yii::app()->user->getFlash('profileMessage'); ?>
-</div>
-<?php endif; ?>
-
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'user-form',
 	'enableAjaxValidation'=>true,
@@ -84,7 +78,9 @@
 					scenario!!!
 					<div class="row">
 						<?php echo $form->labelEx($profile,'tipocuenta'); ?>
-						<?php echo $form->textField($profile,'tipocuenta',array('size'=>60,'maxlength'=>128)); ?>
+						<?php //echo $form->textField($profile,'tipocuenta',array('size'=>60,'maxlength'=>128)); ?>
+						<?php echo $form->dropDownList($profile,
+							'tipocuenta', Cuenta::model()->getCuentas()); ?>
 						<?php echo $form->error($profile,'tipocuenta'); ?>
 					</div>
 					

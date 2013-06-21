@@ -37,19 +37,6 @@ class UserController extends Controller
 		);
 	}	
 	
-	/*  	
-	 * (G)De momento abrimos home que no hay nada pensado en que se mostrará.
-	 * Dejo el código comentado por si hace falta.
-	 * */
-	public function actionHome(){
-		
-		$this->_model = $this->loadUser(Yii::app()->user->id);
-		
-		$this->render('home',array(
-	    	'model'=>$this->_model
-	    ));
-	}
-
 	/**
 	 * Displays a particular model.
 	 */

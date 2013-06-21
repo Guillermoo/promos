@@ -114,7 +114,7 @@ return array(
 			'rules'=>array(
 				'empresa/<alias:[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]+>' => 'empresa/view',
 				'empresa/edit' => 'empresa',
-				'admin/home' => 'user/admin/home',
+				//'admin/home' => 'user/admin',
 				'profile/edit' => 'profile',
 				'user/registrarcomprador' => 'user/registrationcomprador',
 				'user/registrarempresa' => 'user/registrationcompany',
@@ -125,6 +125,7 @@ return array(
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+				'promociones' => 'promocion/index',
 				'empresas'=>'empresa/index',
 			),
 		),

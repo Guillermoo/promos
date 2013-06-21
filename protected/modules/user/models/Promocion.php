@@ -27,11 +27,13 @@
 class Promocion extends CActiveRecord
 {
 	
-	const STATUS_ACTIVA=0;
-	const STATUS_NOACTIVA=1;
+	const STATUS_ACTIVA=1;
+	const STATUS_NOACTIVA=0;
 	const STATUS_BORRADOR=2;
 	const STATUS_BLOQUEADA=3;//Si es = a 2 es que ti
 	const STATUS_VALIDACION=4;//Si es = a 2 es que ti
+	
+	const STATUS_DESTACADA=1;
 	
 	/**
 	 * Returns the static model of the specified AR class.
@@ -112,14 +114,15 @@ class Promocion extends CActiveRecord
 	public function scopes()
     {
         return array(
-            'propias'=>array(
+            /*'propias'=>array(
         		'select' => 'user_id, estado, titulo, titulo_slug, resumen, descripcion, descripcion_html',
                 'condition'=>'user_id='.Yii::app()->getModule('user')->user()->empresa->user_id,
+            ),*/
+            'public'=>array(
+            	'select' => 'user_id, titulo, resumen',
+                'condition'=>'estado='.self::STATUS_ACTIVA,
             ),
-            /*'MuestraEnIndex'=>array(
-                'condition'=>'id!='.self::ID_SUPERADMIN,
-            ),
-            'notactive'=>array(
+            /*'notactive'=>array(
                 'condition'=>'status='.self::STATUS_NOACTIVE,
             ),*/
 		);
@@ -147,6 +150,32 @@ class Promocion extends CActiveRecord
 		$criteria->compare('rebaja',$this->rebaja,true);
 		$criteria->compare('stock',$this->stock);
 		$criteria->condition='user_id='.Yii::app()->getModule('user')->user()->empresa->user_id;
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+		));
+	}
+	
+/**
+	 * Retrieves a list of models based on the current search/filter conditions.
+	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+	 */
+	public function searchPublic()
+	{
+		// Warning: Please modify the following code to remove attributes that
+		// should not be searched.
+		$criteria=new CDbCriteria;
+
+		$criteria->compare('user_id',$this->user_id);
+		$criteria->compare('estado',$this->estado);
+		$criteria->compare('titulo',$this->titulo,true);
+		$criteria->compare('fecha_inicio',$this->fecha_inicio,true);
+		$criteria->compare('fecha_fin',$this->fecha_fin,true);
+		$criteria->compare('fechaCreacion',$this->fechaCreacion,true);
+		$criteria->compare('destacado',$this->destacado);
+		$criteria->compare('precio',$this->precio,true);
+		$criteria->compare('rebaja',$this->rebaja,true);
+		$criteria->compare('stock',$this->stock);
+		$criteria->condition='status='.Promocion::STATUS_ACTIVA;
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));

@@ -96,7 +96,7 @@
 	
 	<div class="row">
 		<?php echo $form->labelEx($model,'destacado'); ?>
-		<?php echo $form->textField($model,'destacado',array('value'=>1)); ?>
+		<?php echo $form->checkbox($model, 'destacado',array('checked'=>1)); ?>
 		<?php echo $form->error($model,'destacado'); ?>
 	</div>
 

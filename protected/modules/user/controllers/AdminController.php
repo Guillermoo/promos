@@ -25,17 +25,17 @@ class AdminController extends Controller
 	public function accessRules()
 	{
 		return array(
-		array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete','create','updateAjax','update','view','empresa'),
-				'users'=>UserModule::getAdmins(),
-		),
-		array('allow',
-			'actions'=>array('home'),
-			'users'=>array('@'),
-		),
-		array('deny',  // deny all users
-				'users'=>array('*'),
-		),
+			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+					'actions'=>array('admin','delete','create','updateAjax','update','view','empresa','home'),
+					'users'=>UserModule::getAdmins(),
+			),
+			/*array('allow',
+				'actions'=>array('home'),
+				'users'=>array('@'),
+			),*/
+			array('deny',  // deny all users
+					'users'=>array('*'),
+			),
 		);
 	}
 
@@ -106,9 +106,7 @@ class AdminController extends Controller
 
 		$this->performAjaxValidation(array($model));
 		
-
-		if(isset($_POST['User']))
-		{
+		if(isset($_POST['User'])){
 			/*Desde el menú de admin el admin sólo podrá crear usuarios
 			 con la información mínima(tabla tbl_user)*/
 			$model->attributes=$_POST['User'];
@@ -117,14 +115,14 @@ class AdminController extends Controller
 			if($model->validate()) {
 				$model->password=Yii::app()->controller->module->encrypting($model->password);
 				if($model->save()) {
-					Yii::app()->user->setFlash('success', UserModule::t('<strong>Well done!</strong> You successfully read this important alert message.'));
+					Yii::app()->user->setFlash('success', UserModule::t('User created.'));
 				}else{
 					Yii::app()->user->setFlash('error', UserModule::t('<strong>Error!</strong> There was an error creating the user.'));
 				}
 				$this->redirect(array('admin'));
-			} else {
-				//	$model->profile->validate();
-			}
+			} 
+			else
+				$model->validate();
 		}
 
 		$this->render('create',array(
@@ -155,17 +153,17 @@ class AdminController extends Controller
 		if(isset($_POST['ajax']) && $_POST['ajax']==='user-form')
 		{
 			if ($esEmpresa){
-				//$this->performAjaxValidation(array($this->_model,$profile,$empresa));
-				echo UActiveForm::validate(array($this->_model,$this->_model->profile,$this->_model->empresa));
-				Yii::app()->end();
+				$this->performAjaxValidation(array($this->_model,$profile,$this->_model->profile,$this->_model->empresa));
 			}else{
-				echo UActiveForm::validate(array($this->_model));
-				Yii::app()->end();
+				$this->performAjaxValidation(array($this->_model));
 			}
 		}
 		
 		if(isset($_POST['User']))
 		{
+			//Lo comprobamos antes de que asigne las variables al modelo
+			$haCambiadoRol = $this->compruebaCambioRole($this->_model->attributes['superuser'],$_POST['User']['superuser']);
+			
 			$this->_model->attributes=$_POST['User'];
 			
 			if($this->_model->validate()) {
@@ -174,7 +172,11 @@ class AdminController extends Controller
 					$this->_model->password=Yii::app()->controller->module->encrypting($this->_model->password);
 					$this->_model->activkey=Yii::app()->controller->module->encrypting(microtime().$this->_model->password);
 				}
+				if ($haCambiadoRol){//Al hacer afterSave se comprueba esta variable y cambiamos role
+					$this->_model->cambiaRole = true;
+				}
 				if ($this->_model->save()){
+					
 					if ($esEmpresa){
 					
 						$this->_model->profile->attributes=$_POST['Profile'];
@@ -184,18 +186,29 @@ class AdminController extends Controller
 						$this->_model->empresa->save(false);
 					}
 					Yii::app()->user->setFlash('success', UserModule::t('<strong>Well done!</strong> You successfully read this important alert message.'));	
+					
 				}else{
 					Yii::app()->user->setFlash('error', UserModule::t('<strong>Error!</strong> There were a error saving the user information.'));
 				}
 				
-				
-				$this->redirect(array('update', 'id'=>$this->_model->id));
+				//$this->redirect(array('update', 'id'=>$this->_model->id));
 			} else {
 				$this->_model->validate();
 			}
 		}	
 
 		$this->renderParaUsuario($esEmpresa);
+	}
+	
+	private function compruebaCambioRole($estadoAnterior,$estadoNuevo){
+		
+		$haCambiado = false;
+		
+		if ($estadoAnterior != $estadoNuevo)
+			$haCambiado = true;
+			
+		return $haCambiado;
+		
 	}
 	
 /**
@@ -207,39 +220,45 @@ class AdminController extends Controller
 		if(Yii::app()->request->isPostRequest)
 		{
 			// we only allow deletion via POST request
-			$model = $this->loadModel();
+			//$model = $this->loadModel();
+			$model = User::model()->basic()->findbyPk($_GET['id']);
+			
+			if (UserModule::isAdmin($model->id) || UserModule::isSuperAdmin($model->id))
+				Yii::app()->user->setFlash('error',"It's not allowed to delete admin users");
 				
-			if (Yii::app()->authManager->checkAccess('admin', $model->id) || Yii::app()->authManager->checkAccess('superadmin', $model->id)){
-				 Yii::app()->user->setFlash('error',"It's not allowed to delete admin users");
-			}else{
+			Yii::app()->user->setFlash('error',"Id a borrar!!!!!!".$_GET['id'])	;
+			/*else{
+				$this->guardaRegistroUsuarioBorrado($model);
 				try{
-					$model->delete();
-				    if(!isset($_GET['ajax']))
-				        Yii::app()->user->setFlash('success','Normal - Deleted Successfully');
-				    else
-				        echo "<div class='flash-success'>Ajax - Deleted Successfully</div>";
-					}catch(CDbException $e){
-					    if(!isset($_GET['ajax']))
-					        Yii::app()->user->setFlash('error','Normal - error message');
+					if ($model->delete()){
+						if(!isset($_GET['ajax']))
+					        Yii::app()->user->setFlash('success','Deleted Successfully');
 					    else
-					        echo "<div class='flash-error'>Ajax - error message</div>"; //for ajax
+					        echo "<div class='flash-success'>Ajax - Deleted Successfully</div>";
 					}
+				}catch(CDbException $e){
+				    if(!isset($_GET['ajax'])){
+						hhhhh;				    	
+				        Yii::app()->user->setFlash('error','Error deleting user');
+				    }
+				    else{
+				    	Yii::app()->user->setFlash('success',$e);
+				    	Yii::app()->end();
+				       // echo "<div class='flash-error'>Ajax - error message</div>"; //for ajax
+				    }
+				}
 					
-					// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-					if(!isset($_POST['ajax']))
-						$this->redirect(array('/user/admin'));
-			}
+				// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+				if(!isset($_POST['ajax']))
+					$this->redirect(array('/user/admin'));
+			}*/
 		}
 		else
-		throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
-
-	public function actionUpdateAjax()
-	{
-		/*$data = array();
-		$data["myValue"] = "Content updated in AJAX";
-
-		$this->renderPartial('_ajaxAdminContent', $data, false, true);*/
+	
+	private function guardaRegistroUsuarioBorrado($model){
+		
 	}
 
 	private function renderParaUsuario($esEmpresa){
@@ -268,7 +287,6 @@ class AdminController extends Controller
 			'cuentas'=>$cuentas_list,
 			'image'=>$image,
 		));
-		
 	}
 
 	private function renderParaComprador(){
@@ -286,20 +304,12 @@ class AdminController extends Controller
 		));
 	}
 
-
-	
-	
 	/**
 	 * Performs the AJAX validation.
 	 * @param CModel the model to be validated
 	 */
 	protected function performAjaxValidation($validate)
 	{
-		/*if(isset($_POST['ajax']) && $_POST['ajax']==='user-form')
-		{
-			echo CActiveForm::validate($validate);
-			Yii::app()->end();
-		}*/
 		// ajax validator
 		if(isset($_POST['ajax']) && $_POST['ajax']==='user-form')
 		{
@@ -307,7 +317,6 @@ class AdminController extends Controller
 			Yii::app()->end();
 		}
 	}
-
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
@@ -318,14 +327,14 @@ class AdminController extends Controller
 		if($this->_model===null)
 		{
 			if(isset($_GET['id']))
-			$this->_model=User::model()->notsafe()->findbyPk($_GET['id']);
+				$this->_model=User::model()->notsafe()->findbyPk($_GET['id']);
 			if($this->_model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
+				throw new CHttpException(404,'The requested page does not exist.');
 		}
 		return $this->_model;
 	}
 	
-/**
+	/**
 	 * Returns the data model based on the primary key given in the user session.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer the primary key value. Defaults to null, meaning using the 'id' GET variable

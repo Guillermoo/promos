@@ -73,6 +73,7 @@ class Cuenta extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'nombre' => 'Nombre',
+			'titulo' => 'Tipo de cuenta',//Cuando se muestra desde el profile
 			'precio' => 'Precio',
 			'duracion' => 'Duracion',
 		);
@@ -99,10 +100,8 @@ class Cuenta extends CActiveRecord
 		));
 	}
 	
-	public static function getCuentas() {
-		
-		$cuentas=Cuenta::model()->findAll();
-
-		return $cuentas;
+	public static function getCuentas()
+	{
+		return CHtml::listData(Cuenta::model()->findAll(),'id','titulo');
 	}
 }

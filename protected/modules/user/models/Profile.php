@@ -41,7 +41,7 @@ class Profile extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return '{{profiles}}';
+		return Yii::app()->getModule('user')->tableProfiles;
 	}
 
 	/**
@@ -68,8 +68,44 @@ class Profile extends CActiveRecord
 		);
 	}
 	
+
+	/**
+	 * @return array relational rules.
+	 */
+	public function relations()
+	{
+		// NOTE: you may need to adjust the relation name and the related
+		// class name for the relations automatically generated below.
+		return array(
+			'user' => array(self::HAS_ONE, 'User', 'user_id'),
+            'cuenta' => array(self::BELONGS_TO, 'Cuenta', 'tipocuenta'),
+		);
+	}
+	
+	/**
+	 * @return array customized attribute labels (name=>label)
+	 */
+	public function attributeLabels()
+	{
+		return array(
+			'user_id' => 'User',
+			'username' => 'Nombre',
+			'lastname' => 'Apellido',
+			//'contacto_id' => 'Contacto',
+			'paypal_id' => 'Cuenta de Paypal',
+			'tipocuenta' => 'Tipo de cuenta',
+			'fecha_activacion' => 'Fecha Activación',
+			'fecha_fin' => 'Fecha Fin',
+			'fecha_pago' => 'Fecha Pago',
+		);
+	}
+	
+	
 	protected function beforeSave()
 	  {
+	  	if ($this->isNewRecord){
+	  		$this->tipocuenta = Cuenta::CUENTA_TRIAL;
+	  	}
 	  	if ($this->checkeaFechas()==true)
 	  		return true;
   		else
@@ -80,8 +116,9 @@ class Profile extends CActiveRecord
         {
         	if (!$this->isNewRecord){
 				//Si es admin elq ue está actualizando el id es otro.
-        		$model = User::model()->findByPk($this->user_id);
-        		if ($model->status=3){
+        		//$model = User::model()->findByPk($this->user_id);
+        		$model = UserModule::user($this->user_id);
+        		if ($model->status==3){
         			if(User::tieneCamposMinimosRellenos($model) != true){
 						$model->status=2;
 						$model->save();
@@ -98,19 +135,6 @@ class Profile extends CActiveRecord
 	/*Esta función tiene que comprobar que las fechas sean correctas. Fecha pago < Fecha activacion < Fecha Fin*/
 	private function checkeaFechas(){
 		return true;
-	}
-
-	/**
-	 * @return array relational rules.
-	 */
-	public function relations()
-	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
-		return array(
-			'user' => array(self::BELONGS_TO, 'User', 'id'),
-            'cuenta' => array(self::BELONGS_TO, 'Cuenta', 'tipocuenta'),
-		);
 	}
 	
 	/*Función que determina los campos que va a devolver según nos convenga, desde
@@ -163,39 +187,22 @@ class Profile extends CActiveRecord
 
     /*(G) De momento no hay nada programado.*/
     public function setFechaActivacion($value) {
-        $this->fecha_activacion=date('Y-m-d H:i:s',$value);
+        //$this->fecha_activacion=date('Y-m-d H:i:s',$value);
     }
     
     public function setFechaFin($value) {
     	/*Código necesario para calcular la fecha en la que se le acaba al usuario
     	 el periodo activo*/
-        $this->fecha_fin=date('Y-m-d H:i:s',$value);
+        //$this->fecha_fin=date('Y-m-d H:i:s',$value);
     }
     
     
     /*Código necesario para calcular la fecha en la que realizó el pago*/
 	public function setFechaPago($value) {
-        $this->fecha_pago=date('Y-m-d H:i:s',$value);
+        //$this->fecha_pago=date('Y-m-d H:i:s',$value);
     }
 	    
-	/**
-	 * @return array customized attribute labels (name=>label)
-	 */
-	public function attributeLabels()
-	{
-		return array(
-			'user_id' => 'User',
-			'username' => 'Nombre',
-			'lastname' => 'Apellido',
-			//'contacto_id' => 'Contacto',
-			'paypal_id' => 'Cuenta de Paypal',
-			'tipocuenta' => 'Tipo de cuenta',
-			'fecha_activacion' => 'Fecha Activación',
-			'fecha_fin' => 'Fecha Fin',
-			'fecha_pago' => 'Fecha Pago',
-		);
-	}
-
+	
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.

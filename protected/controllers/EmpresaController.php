@@ -71,7 +71,7 @@ class EmpresaController extends Controller
 		{
 			$model->attributes=$_POST['Empresa'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->empresa_id));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
@@ -95,7 +95,7 @@ class EmpresaController extends Controller
 		{
 			$model->attributes=$_POST['Empresa'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->empresa_id));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('update',array(

@@ -15,12 +15,9 @@
     <link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/_bootstrap-responsive.min.css">
 	<?php Yii::app()->bootstrap->register(); ?>
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
-
-	
 </head>
 
 <body>
-
 
 <div class="container" id="page">
 	<?php if(YII_RUTAS == true) echo __FILE__; ?>
@@ -70,7 +67,7 @@
     			),
 			));*/
 		}elseif(UserModule::isSuperAdmin() || UserModule::isAdmin()){
-
+			//$this->widget('UserMenu');
 		}
 ?>
 		<!-- ------------------- -->

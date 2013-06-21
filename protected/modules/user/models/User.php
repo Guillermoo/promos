@@ -17,6 +17,7 @@ class User extends CActiveRecord
 	const STATUS_BANED=-1;
 	
 	public $regMode = false;
+	public $cambiaRole = false;
 	
 	private $_modelReg;
 	private $_model;
@@ -102,7 +103,6 @@ class User extends CActiveRecord
             $relations['profile'] = array(self::HAS_ONE, 'Profile', 'user_id');
             $relations['item'] = array(self::HAS_ONE, 'Item', 'foreign_id');
             $relations['promocion'] = array(self::HAS_MANY, 'Promocion', 'user_id');
-            //$relations['contacto'] = array(self::HAS_ONE, 'Contacto', 'user_id');
         return $relations;
 	}
 
@@ -133,8 +133,8 @@ class User extends CActiveRecord
             'active'=>array(
                 'condition'=>'status='.self::STATUS_ACTIVE,
             ),
-            'MuestraEnIndex'=>array(
-                'condition'=>'id!='.self::ID_SUPERADMIN,
+            'basic'=>array(
+                'select' => 'id,username',
             ),
             'notactive'=>array(
                 'condition'=>'status='.self::STATUS_NOACTIVE,
@@ -167,7 +167,8 @@ class User extends CActiveRecord
     }
 	
     /*
-     * Función que devuelve lo items de los desplegables. En el futuro habría que hacerlo dinámico.
+     * Función que devuelve lo items de los desplegables. 
+     * Estas listas son estáticas, las dinámicas se hacen de otra forma.
      * */
 	public static function itemAlias($type,$code=NULL) {
 		$_items = array(
@@ -203,20 +204,34 @@ class User extends CActiveRecord
         
         $criteria->compare('id',$this->id);
         $criteria->compare('username',$this->username,true);
-        $criteria->compare('password',$this->password);
         $criteria->compare('email',$this->email,true);
-        $criteria->compare('activkey',$this->activkey);
         $criteria->compare('create_at',$this->create_at);
         $criteria->compare('lastvisit_at',$this->lastvisit_at);
         $criteria->compare('superuser',$this->superuser);
         $criteria->compare('status',$this->status);
+       // $criteria->condition='superuser !='.User::ID_SUPERADMIN;
+        //$criteria->with = array('empresa');
         //$criteria->condition = array('condition'=>'id > '. User::ID_SUPERADMIN . ''); /*Para que no se muestre el superuser!!!!*/
+
+        /*$sort = new CSort;
+		$sort->attributes = array(
+			'person_fname' => array(
+			'asc' => 'person.fname',
+			'desc' => 'person.fname DESC',
+		),
+		'person_lname' => array(
+			'asc' => 'person.lname',
+			'desc' => 'person.lname DESC',
+		),
+		'*',
+		);*/
 
         return new CActiveDataProvider(get_class($this), array(
             'criteria'=>$criteria,
         	'pagination'=>array(
 				'pageSize'=>Yii::app()->getModule('user')->user_page_size,
 			),
+			//'sort'=>$sort,
         ));
     }
     
@@ -230,16 +245,17 @@ class User extends CActiveRecord
 	
 	protected function afterSave()
 	{
-		if ($this->isNewRecord){
-		//Asignamos el rol dinámicamente
+		if (($this->cambiaRole) || ($this->isNewRecord) ){
+			//Asignamos el rol dinámicamente consultando el campo user.status;
 			$this->setRole();
-			$esEmpresa = Yii::app()->authManager->checkAccess('empresa', $this->id);
+			
+			$esEmpresa = UserModule::isCompany($this->id);
 			if($esEmpresa)//(G)Creamos profile, empresa(si es usuario empresa)
 				$this->crearModelosRelacionados();
 		}
 		parent::afterSave();
 	}
-
+	
     public function getCreatetime() {
         return strtotime($this->create_at);
     }
@@ -256,34 +272,26 @@ class User extends CActiveRecord
         $this->lastvisit_at=date('Y-m-d H:i:s',$value);
     }
     
-    /*(G) Función para obtener los campos. 
-     * Si queremos que se muestren unos campos u otros en función de quien los llama,
-     * este es el momento. */
-	/*public static function getFields() {
-		$this->_model=Profile::model()->paraTodos()->findAll();
-		
-		return $this->_model;
-		/*if ($this->regMode) {
-			if (!$this->_modelReg)
-				$this->_modelReg=Profile::model()->paraTodos()->findAll();
-			return $this->_modelReg;
-		} else {
-			if (!$this->_model)
-				$this->_model=Profile::model()->paraCommprador()->findAll();
-			return $this->_model;
-		}
-	}*/
-    
 	/*Función que asigna el rol según el tipo de usuario, se ejecuta nada mas crear el usuario*/
-	public function setRole(){
+	private function setRole(){
+		
 			$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
 			
-			if ($this->superuser == 0)
+			if ($this->superuser == 0){
+				$authorizer->authManager->revoke('empresa', $this->id);
+				$authorizer->authManager->revoke('admin', $this->id);				
 				$authorizer->authManager->assign('comprador', $this->id);			
-			elseif($this->superuser == 1)
+			}
+			elseif($this->superuser == 1){
+				$authorizer->authManager->revoke('comprador', $this->id);
+				$authorizer->authManager->revoke('empresa', $this->id);
 				$authorizer->authManager->assign('admin', $this->id);
-			elseif($this->superuser == 2)
+			}
+			elseif($this->superuser == 2){
+				$authorizer->authManager->revoke('comprador', $this->id);
+				$authorizer->authManager->revoke('admin', $this->id);
 				$authorizer->authManager->assign('empresa', $this->id);
+			}
 			else
 				throw new CHttpException(404,'Error setting roles.');
 	}
@@ -314,33 +322,39 @@ class User extends CActiveRecord
 		
 	}
 	
-/* Estos campos no puede ser nunca inválidos */
+	/* Estos campos no puede ser nunca inválidos */
 	public static function tieneCamposMinimosRellenos($model){
 		
 		$return = true;
 		
-		if (isset($model->profile)){
-			if (($model->profile->direccion == null) || ($model->profile->direccion == 0) )
-				$return =  "Falta el cmapo dirección";
-			
-			elseif (($model->profile->telefono == null) || (!isset($model->profile->telefono) || ($model->profile->telefono === '') ) 	)
-				$return = "Falta el cmapo telefono";
-			
-			elseif (($model->profile->paypal_id == null) || (!isset($model->profile->paypal_id) || ($model->profile->paypal_id === '') ) 	){
-				$return = false;
-			}
-		}
+		if (isset($model->profile))
+			$return = $this->compruebaCamposMinimosProfile($model->profile);
 		
-		if (isset($model->empresa)){
-			if (($model->empresa->nombre == null) || (!isset($model->empresa->nombre)) )
-				$return =  "Falta el cmapo nombre";
-			
-			elseif (($model->empresa->cif == null) || (!isset($model->empresa->cif) )	)
-				$return =  "Falta el cmapo cif";	
-		}
+		if (isset($model->empresa))
+			$return = $this->compruebaCamposMinimosEmpresa($model->empresa);
 		
 		return $return;
 		
+	}
+	
+	protected static function compruebaCamposMinimosProfile($profile){
+		if (($profile->direccion == null) || ($profile->direccion == 0) )
+			$return =  "Falta el cmapo dirección";
+		
+		elseif (($profile->telefono == null) || (!isset($profile->telefono) || ($profile->telefono === '') ) 	)
+			$return = "Falta el cmapo telefono";
+		
+		elseif (($profile->paypal_id == null) || (!isset($profile->paypal_id) || ($profile->paypal_id === '') ) 	){
+			$return = false;
+		}
+	}
+	
+	private function compruebaCamposMinimosEmpresa($empresa){
+		if (($empresa->nombre == null) || (!isset($empresa->nombre)) )
+			$return =  "Falta el cmapo nombre";
+		
+		elseif (($empresa->cif == null) || (!isset($empresa->cif) )	)
+			$return =  "Falta el cmapo cif";	
 	}
 	
 	public static function cuentaCaducada($model){
@@ -351,23 +365,6 @@ class User extends CActiveRecord
 	public static function compruebaSiTieneQuePagar($model){
 		//Comprobar si tiene que pagar
 	}
-	
-	public static function getNombreUsuarioLogeado(){
-		
-		
-		
-	}
-	
-	/*private function crearNuevoContactoParaElUsuario(){
-		
-		$contacto = new Contacto;
-		$contacto->user_id = $this->id;
-		$contacto->save();
-		
-		/*$profile->tipocuenta=; (G)FALTA ASIGNAR VALORES AUTOMÁTICOS
-		$profile->fecha_creacion=;
-			
-	}*/
 	
 	/* Used to debug variables*/
     protected function Debug($var){

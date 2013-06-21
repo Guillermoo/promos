@@ -7,6 +7,7 @@ class PromocionController extends Controller
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
 	public $layout='//layouts/column2';
+	public $defaultAction = 'index'; 
 	
 	private $_model;
 
@@ -65,16 +66,23 @@ class PromocionController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Promocion');
-		
-		//$model = new Empresa();
-		$model = $this->loadUser();
-
+		$dataProvider = new CActiveDataProvider('Promocion', array(
+				'pagination'=>array(
+				'pageSize'=>10,
+			),
+			'criteria'=>array(
+				'condition'=>'estado='.Promocion::STATUS_ACTIVA,
+				//'params'=>array('estado'=>Promocion::STATUS_ACTIVA),
+			),
+			'sort'=>array(
+				//Hay que poner que sea aleatorio como segunda opcion y que sean de distintas categorias
+				'defaultOrder'=> array('destacado'=>Promocion::STATUS_DESTACADA),
+			)
+		));
 		$this->render('index',array(
-			'model'=>$model,
+			'dataProvider'=>$dataProvider,
 		));
 	}
-	
 	
 	/* Used to debug variables*/
 	protected function Debug($var){

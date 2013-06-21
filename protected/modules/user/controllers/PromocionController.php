@@ -35,7 +35,8 @@ class PromocionController extends Controller
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update','admin','delete'),
-				'users'=>array(Yii::app()->getModule('user')->user()->username),
+				//'users'=>array(Yii::app()->getModule('user')->user()->username),
+				'users'=>array('@'),
 			),
 			/*array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array(),

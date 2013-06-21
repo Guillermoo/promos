@@ -61,7 +61,8 @@ class UserModule extends CWebModule
 	public $adminEmpresaUrl = array("/user/admin/empresa");
 	public $crearPromocionUrl = array("/user/promocion/create");
 	public $contactoUrl = array("/site/contact");
-	public $homeUrl = array("/admin/home");//'user/home' => 'user/empresa/home',
+	public $homeUrl = array("/user/profile/home");//'user/home' => 'user/empresa/home',
+	public $homeAdminUrl = array("/user/admin/home");//'user/home' => 'user/empresa/home',
 	public $profileUrl = array("/user/profile");
 	public $cuentaUrl = array("/user/cuenta");
 	public $promocionesUrl = array("/user/promociones");
@@ -138,7 +139,6 @@ class UserModule extends CWebModule
 		
 		//En cualquiera de las vistas del módulo user se cargará el theme 'admin'.
 		Yii::app()->theme = 'admin';
-		
 	}
 	
 	public function getBehaviorsFor($componentName){
@@ -203,13 +203,16 @@ class UserModule extends CWebModule
 	 * Return admin status.
 	 * @return boolean
 	 */
-	public static function isAdmin() {
+	public static function isAdmin($id=null) {
 		if(Yii::app()->user->isGuest)
 			return false;
 		else {
 			if (!isset(self::$_admin)) {
 				//if(self::user()->superuser)
-				if(Yii::app()->authManager->checkAccess('admin', Yii::app()->user->id))
+				if ($id==null)
+					$id = Yii::app()->user->id;
+					
+				if(Yii::app()->authManager->checkAccess('admin', $id))
 					self::$_admin = true;
 				else
 					self::$_admin = false;	
@@ -222,13 +225,16 @@ class UserModule extends CWebModule
 	 * (G)Return company status.
 	 * @return boolean
 	 */
-	public static function isCompany() {
+	public static function isCompany($id=null) {
 		if(Yii::app()->user->isGuest)
 			return false;
 		else {
+			
 			if (!isset(self::$_company)) {
-				//if(self::user()->superuser)
-				if(Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id)){
+				if ($id==null)
+					$id = Yii::app()->user->id;
+					
+				if(Yii::app()->authManager->checkAccess('empresa', $id)){
 					self::$_company = true;
 				}
 				else
@@ -242,13 +248,15 @@ class UserModule extends CWebModule
 	 * (G)Return company status.
 	 * @return boolean
 	 */
-	public static function isTrial() {
+	public static function isTrial($id=null) {
 		if(Yii::app()->user->isGuest)
 			return false;
 		else {
 			if (!isset(self::$_trial)) {
 				//if(self::user()->superuser)
-				if(Yii::app()->authManager->checkAccess('trial', Yii::app()->user->id))
+				if ($id==null)
+					$id = Yii::app()->user->id;
+				if(Yii::app()->authManager->checkAccess('trial', $id))
 					self::$_trial = true;
 				else
 					self::$_trial = false;	
@@ -261,13 +269,16 @@ class UserModule extends CWebModule
 	 * (G)Return buyer status.
 	 * @return boolean
 	 */
-	public static function isBuyer() {
+	public static function isBuyer($id=null) {
 		if(Yii::app()->user->isGuest)
 			return false;
 		else {
 			if (!isset(self::$_buyer)) {
 				//if(self::user()->superuser)
-				if(Yii::app()->authManager->checkAccess('comprador', Yii::app()->user->id))
+				if ($id==null)
+					$id = Yii::app()->user->id;
+					
+				if(Yii::app()->authManager->checkAccess('comprador', $id))
 					self::$_buyer = true;
 				else
 					self::$_buyer = false;	
@@ -280,13 +291,16 @@ class UserModule extends CWebModule
 	 * (G)Return superadmin status.
 	 * @return boolean
 	 */
-	public static function isSuperAdmin() {
+	public static function isSuperAdmin($id=null) {
 		if(Yii::app()->user->isGuest)
 			return false;
 		else {
 			if (!isset(self::$_admin)) {
 				//if(self::user()->superuser)
-				if(Yii::app()->authManager->checkAccess('superadmin', Yii::app()->user->id))
+				if ($id==null)
+					$id = Yii::app()->user->id;
+					
+				if(Yii::app()->authManager->checkAccess('superadmin', $id))
 					self::$_admin = true;
 				else
 					self::$_admin = false;	

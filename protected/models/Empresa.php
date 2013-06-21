@@ -4,7 +4,7 @@
  * This is the model class for table "{{empresas}}".
  *
  * The followings are the available columns in table '{{empresas}}':
- * @property integer $empresa_id
+ * @property integer $id
  * @property integer $user_id
  
  * @property integer $categoria_id
@@ -83,7 +83,7 @@ class Empresa extends CActiveRecord
     {
         return CMap::mergeArray(Yii::app()->getModule('user')->defaultScope,array(
             'alias'=>'empresa',
-            'select' => 'empresa.empresa_id,empresa.user_id, empresa.nombre, empresa.nombre_slug, empresa.cif, empresa.modificado',
+            'select' => 'empresa.id,empresa.user_id, empresa.nombre, empresa.nombre_slug, empresa.cif, empresa.modificado',
         ));
     }*/
 

@@ -22,7 +22,6 @@ class LoginController extends Controller
 					/*if(UserModule::isCompany() || UserModule::isTrial()){
 						$this->realizaComprobacionesMantenimiento();
 					}*/
-					
 					$this->redirigeSegunTipoUsuario();
 				}
 			}

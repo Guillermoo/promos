@@ -1,5 +1,4 @@
 <?php if(YII_RUTAS == true) echo __FILE__; ?>
-<h1>sdgsg111</h1>
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'profile-form',
 	'enableAjaxValidation'=>true,
@@ -19,7 +18,6 @@
 	
 	<?php if (UserModule::isSuperAdmin() || UserModule::isAdmin() ):?>
 		<?php //Estos campos sólo se muestran al admin ya que son de uso interno. ?>
-		swgsg;
 		<div class="row">
 			<?php echo $form->labelEx($model,'username'); ?>
 			<?php echo $form->textField($model,'username',array('size'=>20,'maxlength'=>20)); ?>
@@ -55,7 +53,16 @@
 			<!-- Inicio profile -->
 			<div class="row"><!-- Tipo de cuenta -->
 				<?php echo $form->labelEx($profile,'tipocuenta'); ?>
-				<?php echo $form->textField($profile->cuenta,'titulo'); ?>
+				<?php //echo $form->textField($profile->cuenta,'titulo'); ?>
+				<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
+			        'type'=>'primary', // '', 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
+			        'buttons'=>array(
+			            array('label'=>$profile->cuenta->titulo, 'url'=>'#'),
+			            array('items'=>array(
+			                array('label'=>'Actualizar cuenta', 'url'=>'#'),
+			            )),
+			        ),
+			    )); ?>
 			</div>
 				
 			<div class="row">
@@ -77,24 +84,20 @@
 			</div>
 			
 			<div class="row">
-				<?php echo $form->labelEx($profile,'tipocuenta'); ?>
-				<?php echo $form->textField($profile,'tipocuenta'); ?>
-				<?php echo $form->error($profile,'tipocuenta'); ?>
-			</div>
-			
-			<div class="row">
 				<?php echo $form->labelEx($profile,'fecha_activacion'); ?>
 				<?php $this->widget('zii.widgets.jui.CJuiDatePicker',array(
+					'name' => 'fecha_activacion',
 				    'attribute'=>'fecha_activacion',
 					'model'=>$profile,
 					'value'=>$profile->fecha_activacion,
 				    // additional javascript options for the date picker plugin
 				    'options'=>array(
 						'dateFormat'=>'yy-mm-dd',
+						'altFormat' =>'yy-mm-dd',
 				        'showAnim'=>'fold',
 						'changeMonth'=>'true', 
     					'changeYear'=>'true',
-				    	'debug'=>true,
+				    	'debug'=>YII_DEBUG,
 				    ),
 				));?>
 				<?php echo $form->error($profile,'fecha_activacion'); ?>
@@ -102,16 +105,18 @@
 			<div class="row">
 				<?php echo $form->labelEx($profile,'fecha_fin'); ?>
 				<?php $this->widget('zii.widgets.jui.CJuiDatePicker',array(
+					'name' => 'fecha_fin',
 				    'attribute'=>'fecha_fin',
 					'model'=>$profile,
 					'value'=>$profile->fecha_fin,
 				    // additional javascript options for the date picker plugin
 				    'options'=>array(
 						'dateFormat'=>'yy-mm-dd',
+						'altFormat' =>'yy-mm-dd',
 				        'showAnim'=>'fold',
 						'changeMonth'=>'true', 
     					'changeYear'=>'true',
-					    'debug'=>true,
+				    	'debug'=>YII_DEBUG,
 				    ),
 				));?>
 				<?php echo $form->error($profile,'fecha_fin'); ?>
@@ -121,15 +126,18 @@
 				<?php echo $form->labelEx($profile,'fecha_pago'); ?>
 				<?php //echo $form->textField($model->profile,'fecha_pago'); ?>
 				<?php $this->widget('zii.widgets.jui.CJuiDatePicker',array(
-				    'attribute'=>'fecha_pago',
+				    'name' => 'fecha_pago',
+					'attribute'=>'fecha_pago',
 					'model'=>$profile,
 					'value'=>$profile->fecha_pago,
 				    // additional javascript options for the date picker plugin
 				    'options'=>array(
 						'dateFormat'=>'yy-mm-dd',
+						'altFormat' =>'yy-mm-dd',
 				        'showAnim'=>'fold',
 						'changeMonth'=>'true', 
     					'changeYear'=>'true',
+				    	'debug'=>YII_DEBUG,
 				    ),
 				));?>
 				<?php echo $form->error($profile,'fecha_pago'); ?>
