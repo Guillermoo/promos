@@ -1,5 +1,4 @@
-<!-- menu horizontal -->
-	<div id="mainmenu">		
+<div id="mainmenu">		
 		<!-- navbar de bootstrap -->
 		<?php $this->widget('bootstrap.widgets.TbNavbar', array(
     'type'=>'', // null or 'inverse'
@@ -28,5 +27,4 @@
         ),              
     ),
 )); ?>
-		<!-- ------------------- -->
-	</div><!-- mainmenu -->		
+</div><!-- mainmenu -->		

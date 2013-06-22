@@ -10,9 +10,10 @@
     </div>
     <div class="span3">
         <div id="sidebar">           
-        <?php
-            if(!Yii::app()->user->isGuest) $this->widget('UserMenu');
-        ?>
+        	<?php if(YII_RUTAS == true) echo __FILE__; ?>
+            <?php
+            	if(!Yii::app()->user->isGuest) $this->widget('UserMenu');
+        	?>
         </div><!-- sidebar -->
     </div>
 </div>

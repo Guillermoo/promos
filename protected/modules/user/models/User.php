@@ -64,19 +64,19 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.CConsoleApplication
 		return ((get_class(Yii::app())=='CConsoleApplication' || (get_class(Yii::app())!='CConsoleApplication' && Yii::app()->getModule('user')->isAdmin()))?array(
-			array('username', 'length', 'max'=>20, 'min' => 3,'message' => UserModule::t("Incorrect username (length between 3 and 20 characters).")),
+			//array('username', 'length', 'max'=>20, 'min' => 3,'message' => UserModule::t("Incorrect username (length between 3 and 20 characters).")),
 			array('password', 'length', 'max'=>128, 'min' => 4,'message' => UserModule::t("Incorrect password (minimal length 4 symbols).")),
 			array('email', 'email'),
-			array('username', 'unique', 'message' => UserModule::t("This user's name already exists.")),
+			//array('username', 'unique', 'message' => UserModule::t("This user's name already exists.")),
 			array('email', 'unique', 'message' => UserModule::t("This user's email address already exists.")),
 			//array('username', 'match', 'pattern' => '/^[A-Za-z0-9_]+$/u','message' => UserModule::t("Incorrect symbols (A-z0-9).")),
 			array('status', 'in', 'range'=>array(self::STATUS_NOACTIVE,self::STATUS_ACTIVE,self::STATUS_BANNED,self::STATUS_PAGAR,self::STATUS_OK), 'except' => 'admin'),
 			array('superuser', 'in', 'range'=>array(self::ID_COMPRADOR,self::ID_ADMIN,self::ID_EMPRESA,self::ID_TRIAL)),
             array('create_at', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true, 'on' => 'insert'),
             array('lastvisit_at', 'default', 'value' => '0000-00-00 00:00:00', 'setOnEmpty' => true, 'on' => 'insert'),
-			array('username, email, superuser, status', 'required'),
+			array('email,password, superuser, status', 'required'),
 			array('superuser, status', 'numerical', 'integerOnly'=>true),
-			array('id, username, password, email, activkey, create_at, lastvisit_at, superuser, status', 'safe', 'on'=>'search'),
+			array('id, password, email, activkey, create_at, lastvisit_at, superuser, status', 'safe', 'on'=>'search'),
 				):((Yii::app()->user->id==$this->id)?array(
 			array('username, email', 'required', 'except' => 'admin'),
 			array('username', 'length', 'max'=>20, 'min' => 3,'message' => UserModule::t("Incorrect username (length between 3 and 20 characters).")),
@@ -238,6 +238,7 @@ class User extends CActiveRecord
 	protected function beforeSave()
 	{
 	  if ($this->isNewRecord) {
+	  		$this->username = $this->email;//(PILLA USERNAME!!!)
 	        $this->passwordHash = sha1($this->password);
 	  }
 	  return parent::beforeSave(); // don't forget this line!
@@ -246,15 +247,71 @@ class User extends CActiveRecord
 	protected function afterSave()
 	{
 		if (($this->cambiaRole) || ($this->isNewRecord) ){
-			//Asignamos el rol dinámicamente consultando el campo user.status;
+			//(G)Asignamos el rol dinámicamente consultando el campo user.status;
 			$this->setRole();
 			
-			$esEmpresa = UserModule::isCompany($this->id);
-			if($esEmpresa)//(G)Creamos profile, empresa(si es usuario empresa)
-				$this->crearModelosRelacionados();
+			//$esEmpresa = UserModule::isCompany($this->id);
+			$esEmpresa = Yii::app()->authManager->checkAccess('empresa', $this->id);
+			if (isset($this->profile)){
+				if($esEmpresa){
+					//(G)Creamos profile, empresa(si es usuario empresa)
+					$this->crearModelosRelacionados();
+				}
+			}
+			
 		}
-		parent::afterSave();
+		return parent::afterSave();
 	}
+	
+	protected function beforeDelete(){
+		
+		if (parent::beforeDelete()){
+			if ($this->guardaRegistroUsuarioBorrado($this->id) )
+				return true;
+		}
+		return false;
+		
+	}
+	
+    
+	/*Función que asigna el rol según el tipo de usuario, se ejecuta nada mas crear el usuario*/
+	private function setRole(){
+		
+			$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
+			
+			if ($this->superuser == 0){
+				$authorizer->authManager->revoke('empresa', $this->id);
+				$authorizer->authManager->revoke('admin', $this->id);				
+				$authorizer->authManager->assign('comprador', $this->id);		
+			}
+			elseif($this->superuser == 1){
+				$authorizer->authManager->revoke('comprador', $this->id);
+				$authorizer->authManager->revoke('empresa', $this->id);
+				$authorizer->authManager->assign('admin', $this->id);
+			}
+			elseif($this->superuser == 2){
+				$authorizer->authManager->revoke('comprador', $this->id);
+				$authorizer->authManager->revoke('admin', $this->id);
+				$authorizer->authManager->assign('empresa', $this->id);
+			}
+			else
+				throw new CHttpException(404,'Error setting roles.');
+	}
+	
+	/** (G)Se crean en la bd los registros profile y empresa para este usuario
+	 * Al modelo profile le cargamos el tipo de cuenta que se ha selecionado.*/
+	public function crearModelosRelacionados(){
+		Profile::crearNuevoProfileParaElUsuario($this->id);
+		Empresa::crearNuevaEmpresaParaElUsuario($this->id);
+	}
+	
+	/*
+	 * Deberíamos guardar la información del usuario borrado. 
+	 * */
+	private function guardaRegistroUsuarioBorrado($id){
+		return true;
+	}
+	
 	
     public function getCreatetime() {
         return strtotime($this->create_at);
@@ -271,56 +328,6 @@ class User extends CActiveRecord
     public function setLastvisit($value) {
         $this->lastvisit_at=date('Y-m-d H:i:s',$value);
     }
-    
-	/*Función que asigna el rol según el tipo de usuario, se ejecuta nada mas crear el usuario*/
-	private function setRole(){
-		
-			$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
-			
-			if ($this->superuser == 0){
-				$authorizer->authManager->revoke('empresa', $this->id);
-				$authorizer->authManager->revoke('admin', $this->id);				
-				$authorizer->authManager->assign('comprador', $this->id);			
-			}
-			elseif($this->superuser == 1){
-				$authorizer->authManager->revoke('comprador', $this->id);
-				$authorizer->authManager->revoke('empresa', $this->id);
-				$authorizer->authManager->assign('admin', $this->id);
-			}
-			elseif($this->superuser == 2){
-				$authorizer->authManager->revoke('comprador', $this->id);
-				$authorizer->authManager->revoke('admin', $this->id);
-				$authorizer->authManager->assign('empresa', $this->id);
-			}
-			else
-				throw new CHttpException(404,'Error setting roles.');
-	}
-	
-	/*Función que asigna el rol según el tipo de usuario, se ejecuta nada mas crear el usuario*/
-	public function crearModelosRelacionados(){
-		//if ($this->superuser == 2){//Es un usuario-empresa
-		$this->crearNuevoProfileParaElUsuario();
-		$this->crearNuevaEmpresaParaElUsuario();
-			//$this->crearNuevoContactoParaElUsuario();
-		//}
-	}
-	
-	private function crearNuevoProfileParaElUsuario(){
-		
-		$profile=new Profile;
-		/*(G)Creamos el perfil con el id del nuevo usuario. Al ser creado desde el admin sólo hay
-		que crear el usuario, no los datos del perfil o contacto, eso ya lo hará el usuario(o el admin desde update.*/
-		$profile->user_id=$this->id;
-		$profile->save(false);
-	}
-	
-	private function crearNuevaEmpresaParaElUsuario(){
-		
-		$empresa= new Empresa;
-		$empresa->user_id = $this->id;
-		$empresa->save(false);
-		
-	}
 	
 	/* Estos campos no puede ser nunca inválidos */
 	public static function tieneCamposMinimosRellenos($model){
@@ -337,7 +344,7 @@ class User extends CActiveRecord
 		
 	}
 	
-	protected static function compruebaCamposMinimosProfile($profile){
+	private static function compruebaCamposMinimosProfile($profile){
 		if (($profile->direccion == null) || ($profile->direccion == 0) )
 			$return =  "Falta el cmapo dirección";
 		

@@ -14,27 +14,23 @@
 	<table>
 		<tr>
 			<td>	
-				<?php $this->widget('bootstrap.widgets.TbLabel', array(
-				    'type'=>'info', // 'success', 'warning', 'important', 'info' or 'inverse'
-					    'label'=>'User',
-					)); 
-				?>
 				<div class="row">
-					<?php echo $form->labelEx($model,'username'); ?>
-					<?php echo $form->textField($model,'username',array('size'=>20,'maxlength'=>20)); ?>
-					<?php echo $form->error($model,'username'); ?>
+					<?php $this->widget('bootstrap.widgets.TbLabel', array(
+					    'type'=>'info', // 'success', 'warning', 'important', 'info' or 'inverse'
+						    'label'=>'User',
+						)); 
+					?>
+				</div>
+				<div class="row">
+					<?php echo $form->labelEx($model,'email'); ?>
+					<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>128)); ?>
+					<?php echo $form->error($model,'email'); ?>
 				</div>
 			
 				<div class="row">
 					<?php echo $form->labelEx($model,'password'); ?>
 					<?php echo $form->passwordField($model,'password',array('size'=>60,'maxlength'=>128)); ?>
 					<?php echo $form->error($model,'password'); ?>
-				</div>
-			
-				<div class="row">
-					<?php echo $form->labelEx($model,'email'); ?>
-					<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>128)); ?>
-					<?php echo $form->error($model,'email'); ?>
 				</div>
 			
 				<div class="row">
@@ -49,6 +45,7 @@
 					<?php echo $form->error($model,'status'); ?>
 				</div>
 			<!-- Si es un NOadmin logeado, queremos ver el perfil de un NOadmin --> 
+			<?php $esEmpresa = UserModule::isCompany($model->id);?>
 			<?php if ($esEmpresa):?> 
 				<?php 
 					$profile = $model->profile;
@@ -85,18 +82,27 @@
 					</div>
 					
 					<div class="row">
+						<?php echo $form->labelEx($profile,'meses'); ?>
+						<?php //echo $form->textField($profile,'tipocuenta',array('size'=>60,'maxlength'=>128)); ?>
+						<?php echo $form->textField($profile,'meses',array('size'=>60,'maxlength'=>128)); ?>
+						<?php echo $form->error($profile,'meses'); ?>
+					</div>
+					
+					<div class="row">
 						<?php echo $form->labelEx($profile,'fecha_activacion'); ?>
 						<?php $this->widget('zii.widgets.jui.CJuiDatePicker',array(
-						    'attribute'=>'fecha_activacion',
+							'attribute'=>'fecha_activacion',
 							'model'=>$profile,
 							'value'=>'fecha_activacion',
 		  					'name' => $profile->fecha_activacion,
 						    // additional javascript options for the date picker plugin
 						    'options'=>array(
 								'dateFormat'=>'yy-mm-dd',
+								'altFormat' =>'yy-mm-dd',
 						        'showAnim'=>'fold',
 								'changeMonth'=>'true', 
 		    					'changeYear'=>'true',
+						    	'debug'=>YII_DEBUG,
 						    ),
 						));?>
 						<?php echo $form->error($profile,'fecha_activacion'); ?>
@@ -104,13 +110,41 @@
 					
 					<div class="row">
 						<?php echo $form->labelEx($profile,'fecha_fin'); ?>
-						<?php echo $form->textField($profile,'fecha_fin',array('size'=>60,'maxlength'=>128)); ?>
+						<?php $this->widget('zii.widgets.jui.CJuiDatePicker',array(
+							'attribute'=>'fecha_fin',
+							'model'=>$profile,
+							'value'=>'fecha_fin',
+		  					'name' => $profile->fecha_fin,
+						    // additional javascript options for the date picker plugin
+						    'options'=>array(
+								'dateFormat'=>'yy-mm-dd',
+								'altFormat' =>'yy-mm-dd',
+						        'showAnim'=>'fold',
+								'changeMonth'=>'true', 
+		    					'changeYear'=>'true',
+						    	'debug'=>YII_DEBUG,
+						    ),
+						));?>
 						<?php echo $form->error($profile,'fecha_fin'); ?>
 					</div>
 					
 					<div class="row">
 						<?php echo $form->labelEx($profile,'fecha_pago'); ?>
-						<?php echo $form->textField($profile,'fecha_pago',array('size'=>60,'maxlength'=>128)); ?>
+						<?php $this->widget('zii.widgets.jui.CJuiDatePicker',array(
+							'attribute'=>'fecha_pago',
+							'model'=>$profile,
+							'value'=>'fecha_pago',
+		  					'name' => $profile->fecha_pago,
+						    // additional javascript options for the date picker plugin
+						    'options'=>array(
+								'dateFormat'=>'yy-mm-dd',
+								'altFormat' =>'yy-mm-dd',
+						        'showAnim'=>'fold',
+								'changeMonth'=>'true', 
+		    					'changeYear'=>'true',
+						    	'debug'=>YII_DEBUG,
+						    ),
+						));?>
 						<?php echo $form->error($profile,'fecha_pago'); ?>
 					</div>
 					
@@ -150,7 +184,7 @@
 						<?php echo $form->error($profile,'poblacion_id'); ?>
 					</div>
 					<?php 
-						echo $this->renderPartial('/empresa/_form', array('form'=>$form,'model'=>$model,'image'=>$image,'categorias'=>$categorias,'cuentas'=>$cuentas));
+						echo $this->renderPartial('../empresa/_form', array('form'=>$form,'model'=>$model,'image'=>$image));
 					?>
 				</div>
 			<?php endif;?>

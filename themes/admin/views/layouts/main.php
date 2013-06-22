@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="<?php //echo Yii::app()->theme->baseUrl; ?>/css/bootstrap-responsive.min.css"> -->
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/styles.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/cierzodevs.css" />
-	<link media="screen" rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/main.css"  />
+	<!-- <link media="screen" rel="stylesheet" type="text/css" href="<?php //echo Yii::app()->theme->baseUrl; ?>/css/main.css"  /> -->
     <link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/_bootstrap.css">
     <link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/_bootstrap-responsive.min.css">
 	<?php Yii::app()->bootstrap->register(); ?>
@@ -25,7 +25,8 @@
 	<div id="mainmenu">		
 		<!-- navbar de bootstrap -->
 		<?php 
-		if(UserModule::isBuyer()){
+			$this->widget('UserNav');
+		/*if(UserModule::isBuyer()){
 			$this->widget('bootstrap.widgets.TbNavbar', array(
     		'type'=>'inverse', // null or 'inverse'
     		'brand'=>'Pro(e)moción!',
@@ -45,7 +46,6 @@
     		),
 			)); 
 		}elseif(UserModule::isCompany()){
-			$this->widget('UserMenu');
 			/*if(!Yii::app()->user->isGuest) $this->widget('UserMenu'); //Esto realmente sustituiría a todo el bloque, UserMenu gestiona que menú se mostrará en función del usuario
 			/*$this->widget('bootstrap.widgets.TbNavbar', array(
     			'type'=>'', // null or 'inverse'
@@ -65,10 +65,10 @@
             			),
         			),              
     			),
-			));*/
+			));
 		}elseif(UserModule::isSuperAdmin() || UserModule::isAdmin()){
 			//$this->widget('UserMenu');
-		}
+		}*/
 ?>
 		<!-- ------------------- -->
 	</div><!-- mainmenu -->

@@ -2,5 +2,4 @@
 <br>
 <h2>Esta es la página de bievenida para los admins al logearse</h2>
 
-	<?php echo "HOME PARA EL ADMIN!!!"?>
- 
+<?php echo "HOME PARA EL ADMIN!!!"?>

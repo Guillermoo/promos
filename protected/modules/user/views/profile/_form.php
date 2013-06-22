@@ -86,7 +86,7 @@
 			<div class="row">
 				<?php echo $form->labelEx($profile,'fecha_activacion'); ?>
 				<?php $this->widget('zii.widgets.jui.CJuiDatePicker',array(
-					'name' => 'fecha_activacion',
+					'name' => $profile->fecha_activacion,
 				    'attribute'=>'fecha_activacion',
 					'model'=>$profile,
 					'value'=>$profile->fecha_activacion,

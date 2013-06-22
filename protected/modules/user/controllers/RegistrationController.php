@@ -42,16 +42,11 @@ class RegistrationController extends Controller
 		if (Yii::app()->controller->module->sendActivationMail) {
 			$activation_url = $this->createAbsoluteUrl('/user/activation/activation',array("activkey" => $activkey, "email" => $email));
 			UserModule::sendMail($email,UserModule::t("You registered from {site_name}",array('{site_name}'=>Yii::app()->name)),UserModule::t("Please activate you account go to {activation_url}",array('{activation_url}'=>$activation_url)));
-			
-			//UserModule::enviarEmail($model->email,UserModule::t("You registered from {site_name}"),UserModule::t("Uohhh! gracias por registrarte!!<b>ko!</b>, {activation_url}"),UserModule::t('Uohhh! gracias por registrarte!!, {activation_url}'));
-			//$this->enviarEmail($model->email);
 		}
 	}
 	
 	protected function completaCampos($model,$tipoUser,$status){
-		
 		$soucePassword = $model->password;
-		$model->username = $model->email;//(PILLA USERNAME!!!)
 		$model->activkey=UserModule::encrypting(microtime().$model->password);
 		$model->password=UserModule::encrypting($model->password);
 		$model->verifyPassword=UserModule::encrypting($model->verifyPassword);

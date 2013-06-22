@@ -1,13 +1,4 @@
-<!-- <ul>
-	<li><?php //echo CHtml::link('Create New Post',array('post/create')); ?></li>
-	<li><?php //echo CHtml::link('Manage Posts',array('post/admin')); ?></li>
-	<li><?php //echo CHtml::link('Logout',array('site/logout')); ?></li>
-</ul> -->
-
-<?php $this->beginWidget('zii.widgets.CPortlet', array(
-                'title'=>'Admin Operations',
-            ));
-?>
+<?php if(YII_RUTAS == true) echo __FILE__; ?>
 <?php $this->widget('bootstrap.widgets.TbMenu', array(
     'type'=>'list',
     'items'=>array(
@@ -37,65 +28,3 @@
     ),
 )); ?>
 
-<?php /*$this->widget('bootstrap.widgets.TbNavbar', array(
-    'type'=>'inverse', // null or 'inverse'
-    'brand'=>'Project name',
-    'brandUrl'=>'#',
-    'collapse'=>true, // requires bootstrap-responsive.css
-    'items'=>array(
-        array(
-            'class'=>'bootstrap.widgets.TbMenu',
-            'items'=>array(
-                array('label'=>'Home', 'url'=>'#', 'active'=>true),
-                array('label'=>'Link', 'url'=>'#'),
-                array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
-                    array('label'=>'Action', 'url'=>'#'),
-                    array('label'=>'Another action', 'url'=>'#'),
-                    array('label'=>'Something else here', 'url'=>'#'),
-                    '---',
-                    array('label'=>'NAV HEADER'),
-                    array('label'=>'Separated link', 'url'=>'#'),
-                    array('label'=>'One more separated link', 'url'=>'#'),
-                )),
-            ),
-        ),
-        '<form class="navbar-search pull-left" action=""><input type="text" class="search-query span2" placeholder="Search"></form>',
-        array(
-            'class'=>'bootstrap.widgets.TbMenu',
-            'htmlOptions'=>array('class'=>'pull-right'),
-            'items'=>array(
-                array('label'=>'Link', 'url'=>'#'),
-                array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
-                    array('label'=>'Action', 'url'=>'#'),
-                    array('label'=>'Another action', 'url'=>'#'),
-                    array('label'=>'Something else here', 'url'=>'#'),
-                    '---',
-                    array('label'=>'Separated link', 'url'=>'#'),
-                )),
-            ),
-        ),
-    ),
-));*/ ?>
-
-<?php $this->endWidget(); ?>
-
-<div id="mainmenu">		
-		<!-- navbar de bootstrap -->
-		<?php $this->widget('bootstrap.widgets.TbNavbar', array(
-    'type'=>'', // null or 'inverse'
-    'brand'=>'Pro(e)moción!',
-    'brandUrl'=>Yii::app()->baseUrl,
-    'collapse'=>true, // requires bootstrap-responsive.css
-    'items'=>array(
-        array(
-            'class'=>'bootstrap.widgets.TbMenu',
-            'items'=>array(
-                array('url'=>Yii::app()->getModule('user')->homeAdminUrl, 'label'=>Yii::app()->getModule('user')->t("Home"), 'visible'=>!Yii::app()->user->isGuest),
-		        //array('label'=>'Promociones', 'icon'=>'home', 'url'=>'#', 'active'=>true),
-                array('url'=>Yii::app()->getModule('user')->logoutUrl,'icon' => 'off', 'label'=>Yii::app()->getModule('user')->t("Logout").' ('.Yii::app()->user->name.')', 'visible'=>!Yii::app()->user->isGuest),               
-            ),
-        ),              
-    ),
-)); ?>
-		<!-- ------------------- -->
-	</div><!-- mainmenu -->		

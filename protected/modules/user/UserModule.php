@@ -212,8 +212,10 @@ class UserModule extends CWebModule
 				if ($id==null)
 					$id = Yii::app()->user->id;
 					
-				if(Yii::app()->authManager->checkAccess('admin', $id))
+				if(Yii::app()->authManager->checkAccess('admin', $id)){
+					//swdgsg;
 					self::$_admin = true;
+				}
 				else
 					self::$_admin = false;	
 			}
@@ -229,14 +231,13 @@ class UserModule extends CWebModule
 		if(Yii::app()->user->isGuest)
 			return false;
 		else {
-			
 			if (!isset(self::$_company)) {
-				if ($id==null)
+				if ( ($id==null) || (!isset($id)) ){
 					$id = Yii::app()->user->id;
-					
-				if(Yii::app()->authManager->checkAccess('empresa', $id)){
-					self::$_company = true;
 				}
+					
+				if(Yii::app()->authManager->checkAccess('empresa', $id))
+					self::$_company = true;
 				else
 					self::$_company = false;	
 			}

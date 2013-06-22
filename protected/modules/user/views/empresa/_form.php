@@ -12,10 +12,11 @@
 ?>
 
 <fieldset>
-
-	<?php if (Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id) ):?>
-	<?php echo $form->errorSummary(array($model->empresa)); ?>
+	<?php //Sólo la compañía tiene reglas de validación ?>
+	<?php if (!UserModule::isCompany(Yii::app()->user->id) ):?>
+		<?php echo $form->errorSummary(array($model->empresa)); ?>
 	<?php endif;?>
+	
 	<?php $this->widget('bootstrap.widgets.TbLabel', array(
 	    'type'=>'info', // 'success', 'warning', 'important', 'info' or 'inverse'
 	    'label'=>'Empresa',
@@ -32,6 +33,7 @@
 		<?php //echo $form->checkBoxListRow($listCat, 'id', array($categorias), array('hint'=>'<strong>Note:</strong> Labels surround all the options for much larger click areas.')); ?>
 		<?php //echo $form->error($empresa,'contacto_id'); ?>
 	</div> -->
+	
 	<div class="row">
 		<div id="logo_form">
 			<?php echo $form->labelEx($model,'logo'); ?>

@@ -26,6 +26,8 @@ class Profile extends CActiveRecord
 	const CUENTA_BASIC=2;
 	const CUENTA_DELUXE=3;	
 	
+	private $_user_id;
+	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -57,7 +59,7 @@ class Profile extends CActiveRecord
 			array('username, lastname', 'length', 'max'=>50),
 			array('paypal_id', 'length', 'max'=>40),
 			array('direccion,telefono,cp,poblacion_id,paypal_id','required', 'except' => 'admin'),
-			array('barrio,poblacion_id,telefono,fax,cp', 'numerical', 'integerOnly'=>true),
+			array('barrio,poblacion_id,telefono,fax,cp,meses', 'numerical', 'integerOnly'=>true),
 			array('telefono, fax', 'length', 'max'=>50),
 			array('tipocuenta', 'length', 'max'=>11),
 			array('fecha_activacion, fecha_fin,fecha_pago', 'length', 'max'=>51),
@@ -68,7 +70,6 @@ class Profile extends CActiveRecord
 		);
 	}
 	
-
 	/**
 	 * @return array relational rules.
 	 */
@@ -104,33 +105,31 @@ class Profile extends CActiveRecord
 	protected function beforeSave()
 	  {
 	  	if ($this->isNewRecord){
-	  		$this->tipocuenta = Cuenta::CUENTA_TRIAL;
-	  	}
+	  		$this->setFechasCreacion();
+	  		return true;
+	  	}else{
 	  	if ($this->checkeaFechas()==true)
 	  		return true;
   		else
 	  		return false;
+	  	}
+	  	parent::beforeSave();
 	  }
 	  
-	protected function afterSave()
-        {
-        	if (!$this->isNewRecord){
+	protected function afterSave(){
+		if ( (!$this->isNewRecord) && (!UserModule::isAdmin()) ){
 				//Si es admin elq ue está actualizando el id es otro.
-        		//$model = User::model()->findByPk($this->user_id);
-        		$model = UserModule::user($this->user_id);
-        		if ($model->status==3){
-        			if(User::tieneCamposMinimosRellenos($model) != true){
-						$model->status=2;
-						$model->save();
-					}	
-        		}
-        	}else{//Si es nueva profile
-        		$this->tipocuenta = Cuenta::CUENTA_TRIAL;
-        		$this->setFechasCreacion();
-        	}
+			$model = UserModule::user($this->user_id);//Otra manera de obtener el user
+			if ($model->status==3 && UserModule::isCompany()){
+				if(User::tieneCamposMinimosRellenos($model) != true){
+					$model->status=2;
+					$model->save();
+				}	
+			}
+		}
 		 	
-			parent::afterSave();
-        }
+		return parent::afterSave();
+	}
 	  
 	/*Esta función tiene que comprobar que las fechas sean correctas. Fecha pago < Fecha activacion < Fecha Fin*/
 	private function checkeaFechas(){
@@ -161,6 +160,22 @@ class Profile extends CActiveRecord
 	            ),
 	        );
 	    }
+	    
+    //Los nuevos usuarios siempre son tipo trial(al menos de momento)
+	public static function crearNuevoProfileParaElUsuario($user_id=null){
+		
+		if (isset($user_id) ){
+			
+			$profile = new Profile;
+			/*(G)Creamos el perfil con el id del nuevo usuario. Al ser creado desde el admin sólo hay
+			que crear el usuario, no los datos del perfil o contacto, eso ya lo hará el usuario(o el admin desde update.*/
+			$profile->user_id=$user_id;
+			$profile->tipocuenta = Cuenta::CUENTA_TRIAL;
+			$profile->meses = Cuenta::DURACION_CUENTA_TRIAL;
+			
+			$profile->save(false);//Nos saltamos todo tipo de regla de validación. Si queremos se pueden crear reglas espeficicas
+		}
+	}
 	    
 	/*
 	 * Cuando se crea una cuenta desde la parte pública o desde admin se asignarán las fechas

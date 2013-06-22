@@ -153,7 +153,6 @@ class Category extends CActiveRecord
 
 	foreach($categories as $n=>$category)
 	{
-	
 	    if($category->level==$level)
 	        echo CHtml::closeTag('li')."\n";
 	    else if($category->level>$level)

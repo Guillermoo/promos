@@ -2,7 +2,7 @@
 
 Yii::import('zii.widgets.CPortlet');
 
-class UserMenu extends CPortlet
+class UserNav extends CPortlet
 {
 	public function init()
 	{
@@ -13,10 +13,10 @@ class UserMenu extends CPortlet
 	protected function renderContent()
 	{
 		if (UserModule::isAdmin() || UserModule::isSuperAdmin())
-			$this->render('adminMenu');
+			$this->render('adminNavMenu');
 		elseif(UserModule::isCompany())
-			$this->render('empresaMenu');//He creado un menú como el que tenías(está en components/views/empresaNavMenu
-		else
-			$this->render('usuarioMenu');
+			$this->render('empresaNavMenu');//He creado un menú como el que tenías(está en components/views/empresaNavMenu
+		//else
+			//$this->render('usuarioNavMenu');
 	}
 }

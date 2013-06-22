@@ -28,8 +28,7 @@ class ProfileController extends Controller
 		));
 	}
 	
-	public function actionError()
-	{
+	public function actionError(){
 	 if($error=Yii::app()->errorHandler->error)
 	 {
 	        if(Yii::app()->request->isAjaxRequest)
@@ -105,11 +104,7 @@ class ProfileController extends Controller
 	{
 		$this->_model=new Profile;
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['Profile']))
-		{
+		if(isset($_POST['Profile'])){
 			$this->_model->attributes=$_POST['Profile'];
 			if($this->_model->save())
 				$this->redirect(array('view','id'=>$this->_model->user_id));
@@ -125,14 +120,14 @@ class ProfileController extends Controller
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
 	 * @param integer $id the ID of the model to be deleted
 	 */
-	public function actionDelete($id)
+	/*public function actionDelete($id)
 	{
 		$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
-	}
+	}*/
 	
 	public function actionUpdate(){
 		

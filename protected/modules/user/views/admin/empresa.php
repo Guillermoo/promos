@@ -44,6 +44,11 @@ $('.search-form form').submit(function(){
 			'type'=>'raw',
 			'visible'=> YII_DEBUG,
 		),
+		array(
+			'name' => 'user_id',
+			'type'=>'raw',
+			'visible'=> YII_DEBUG,
+		),
 		/*array(
 			'name' => 'username',
 			'value' => Empresa::getNombreUsuario(),

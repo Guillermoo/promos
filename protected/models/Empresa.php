@@ -138,7 +138,7 @@ class Empresa extends CActiveRecord
 	 * Por ejemplo: Que haya dejado nulos los campos mínimos para cobrarle.
 	 * */
 	protected function afterSave(){
-        	if (!$this->isNewRecord){
+        	if (!$this->isNewRecord){//Esta comprobación se hace en profile asíq eu no haría falta.
 	        	/*$model = User::model()->findByPk($this->user_id);
 	        	if ($model->status=3){
 	        		//Hay que descomentar esta parte!!!!!
@@ -167,6 +167,16 @@ class Empresa extends CActiveRecord
 		}
 		parent::beforeSave();
 	}*/
+	
+	public static function crearNuevaEmpresaParaElUsuario($user_id=null){
+		
+		if (isset($user_id) ){
+			$empresa= new Empresa;
+			$empresa->user_id = $user_id;
+			$empresa->save(false);
+		}
+		
+	}
 	
 	public static function getEmpCategories()
 	{

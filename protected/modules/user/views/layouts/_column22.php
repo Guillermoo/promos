@@ -1,6 +1,6 @@
 <?php /* @var $this Controller */ ?>
-<?php if(YII_RUTAS == true) echo __FILE__; ?>
 <?php $this->beginContent('//layouts/main'); ?>
+<?php if(YII_RUTAS == true) echo __FILE__; ?>
 <div class="span-19">
 	<div id="content">
 		<p>Layout column2, carpeta views de PROTECTED</p>
@@ -10,7 +10,7 @@
 <div class="span-5 last">
 	<div id="sidebar">
 	<?php
-		$this->widget('UserNavMenu');
+		$this->widget('UserNsdfavMenu');
 		/*$this->beginWidget('zii.widgets.CPortlet', array(
 			'title'=>'Operations',
 		));

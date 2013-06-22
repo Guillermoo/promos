@@ -17,6 +17,15 @@ class AdminController extends Controller
 		));
 	}
 	
+	public function actionError(){
+		if($error=Yii::app()->errorHandler->error){
+			if(Yii::app()->request->isAjaxRequest)
+	        	echo $error['message'];
+	        else
+	        	$this->render('error', $error);
+		}
+	} 
+	
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
@@ -29,10 +38,6 @@ class AdminController extends Controller
 					'actions'=>array('admin','delete','create','updateAjax','update','view','empresa','home'),
 					'users'=>UserModule::getAdmins(),
 			),
-			/*array('allow',
-				'actions'=>array('home'),
-				'users'=>array('@'),
-			),*/
 			array('deny',  // deny all users
 					'users'=>array('*'),
 			),
@@ -45,10 +50,10 @@ class AdminController extends Controller
 	 * */
 	public function actionHome(){
 		
-		$model = $this->loadUser();
+		//$model = $this->loadUser();
 
 		$this->render('home',array(
-	    	'model'=>$model
+	    	//'model'=>$model
 	    ));
 	}
 	/**
@@ -62,7 +67,6 @@ class AdminController extends Controller
 		if(isset($_GET['User']))
 			$model->attributes=$_GET['User'];
 
-		//$this->debug(Yii::app()->controller->module->user()->id);
 		$this->render('index',array(
             'model'=>$model,
 		));
@@ -73,7 +77,7 @@ class AdminController extends Controller
 	 */
 	public function actionEmpresa()
 	{
-		$model=new Empresa();
+		$model=new Empresa('search');
 		$model->unsetAttributes();  // clear any default values
 
 		if(isset($_GET['Empresa']))
@@ -132,83 +136,102 @@ class AdminController extends Controller
 			'cuentas'=>null,
 		));
 	}
+	
+	/*
+	 * Chequea si es empresa para poner el escenario a los modelos
+	 * */
+	private function setScenario($model,$esEmpresa){
+		
+		if ( isset($model)){
+			
+			$model->scenario = 'admin';
+			
+			if ( $esEmpresa ){
+				if ( isset($model->profile) && isset($model->empresa) ){
+					$model->profile->scenario = 'admin';
+					$model->empresa->scenario = 'admin';
+				}else{
+					//Si es empresa y no tiene creado estos modelos, mal vamos.
+					throw new CHttpException(400,'<strong>Error!</strong> There is an error with profile and company information.');
+					Yii::app()->end();			
+				}
+			}
+		
+		}
+		
+	}
 
 	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionUpdate()
-	{
-		$this->_model=$this->loadModel();
-		$this->_model->scenario = 'admin';
+	public function actionUpdate(){
 		
-		$esEmpresa = Yii::app()->authManager->checkAccess('empresa', $this->_model->id);
-		
-		if ($esEmpresa){
-			$this->_model->profile->scenario = 'admin';
-			$this->_model->empresa->scenario = 'admin';
-		}
+		$model=$this->loadModel();
+		$esEmpresa = UserModule::isCompany($model->id);
 
+		$this->setScenario($model,$esEmpresa);
+		
 		// ajax validator
-		if(isset($_POST['ajax']) && $_POST['ajax']==='user-form')
-		{
-			if ($esEmpresa){
-				$this->performAjaxValidation(array($this->_model,$profile,$this->_model->profile,$this->_model->empresa));
-			}else{
-				$this->performAjaxValidation(array($this->_model));
-			}
+		if ($esEmpresa){
+			$this->performAjaxValidation(array($model,$model->profile,$model->empresa));
+		}else{
+			$this->performAjaxValidation(array($model));
 		}
-		
-		if(isset($_POST['User']))
-		{
-			//Lo comprobamos antes de que asigne las variables al modelo
-			$haCambiadoRol = $this->compruebaCambioRole($this->_model->attributes['superuser'],$_POST['User']['superuser']);
-			
-			$this->_model->attributes=$_POST['User'];
-			
-			if($this->_model->validate()) {
-				$old_password = User::model()->notsafe()->findByPk($this->_model->id);
-				if ($old_password->password!=$this->_model->password) {
-					$this->_model->password=Yii::app()->controller->module->encrypting($this->_model->password);
-					$this->_model->activkey=Yii::app()->controller->module->encrypting(microtime().$this->_model->password);
-				}
-				if ($haCambiadoRol){//Al hacer afterSave se comprueba esta variable y cambiamos role
-					$this->_model->cambiaRole = true;
-				}
-				if ($this->_model->save()){
-					
-					if ($esEmpresa){
-					
-						$this->_model->profile->attributes=$_POST['Profile'];
-						$this->_model->empresa->attributes=$_POST['Empresa'];
-						
-						$this->_model->profile->save(false);
-						$this->_model->empresa->save(false);
-					}
-					Yii::app()->user->setFlash('success', UserModule::t('<strong>Well done!</strong> You successfully read this important alert message.'));	
-					
-				}else{
-					Yii::app()->user->setFlash('error', UserModule::t('<strong>Error!</strong> There were a error saving the user information.'));
-				}
-				
-				//$this->redirect(array('update', 'id'=>$this->_model->id));
-			} else {
-				$this->_model->validate();
-			}
-		}	
 
+		if(isset($_POST['User'])){
+			
+			$model->attributes=$_POST['User'];
+			
+			if($model->validate()) {
+				
+				//Lo comprobamos antes de que asigne las variables al modelos
+				$this->compruebaCambios($model);
+			
+				if ($model->save()){
+					
+					if ($esEmpresa)
+						$this->actualizaModelosRelacionados($model);
+						
+					Yii::app()->user->setFlash('success', UserModule::t('<strong>Well done!</strong> You successfully read this important alert message.'));	
+				}else
+					Yii::app()->user->setFlash('error', UserModule::t('<strong>Error!</strong> There were a error saving the user information.'));
+				
+				$this->redirect(array('update', 'id'=>$model->id));
+			} else 
+				$model->validate();
+		}	
+		
 		$this->renderParaUsuario($esEmpresa);
 	}
 	
-	private function compruebaCambioRole($estadoAnterior,$estadoNuevo){
+	private function actualizaModelosRelacionados($model){
 		
-		$haCambiado = false;
+		$model->profile->attributes=$_POST['Profile'];
+		$model->empresa->attributes=$_POST['Empresa'];
 		
-		if ($estadoAnterior != $estadoNuevo)
-			$haCambiado = true;
+		$model->profile->save(false);
+		$model->empresa->save(false);
+
+	}
+	
+	/**
+	 * Comprueba cambios en el password y tipo de usuario
+	 * */
+	private function compruebaCambios($model){
+		
+		$old_model = User::model()->notsafe()->findByPk($model->id);
+		if ($old_model->password!=$model->password) {
+			$model->password=Yii::app()->controller->module->encrypting($model->password);
+			$model->activkey=Yii::app()->controller->module->encrypting(microtime().$model->password);
+		}
+		//Al hacer afterSave se comprueba esta variable y cambiamos role
+		if ($old_model->superuser!=$model->superuser) {
+			$model->cambiaRole = true;
+		}
+		
+		//return $model;
 			
-		return $haCambiado;
-		
 	}
 	
 /**
@@ -221,20 +244,19 @@ class AdminController extends Controller
 		{
 			// we only allow deletion via POST request
 			//$model = $this->loadModel();
-			$model = User::model()->basic()->findbyPk($_GET['id']);
+			$model = User::model()->findbyPk($_GET['id']);
 			
 			if (UserModule::isAdmin($model->id) || UserModule::isSuperAdmin($model->id))
 				Yii::app()->user->setFlash('error',"It's not allowed to delete admin users");
-				
-			Yii::app()->user->setFlash('error',"Id a borrar!!!!!!".$_GET['id'])	;
-			/*else{
-				$this->guardaRegistroUsuarioBorrado($model);
+			else{
 				try{
-					if ($model->delete()){
+					if ($model->delete()){//Hay un beforeDelete
 						if(!isset($_GET['ajax']))
 					        Yii::app()->user->setFlash('success','Deleted Successfully');
 					    else
 					        echo "<div class='flash-success'>Ajax - Deleted Successfully</div>";
+					}else{
+						 Yii::app()->user->setFlash('error','Error deleting user');
 					}
 				}catch(CDbException $e){
 				    if(!isset($_GET['ajax'])){
@@ -242,6 +264,7 @@ class AdminController extends Controller
 				        Yii::app()->user->setFlash('error','Error deleting user');
 				    }
 				    else{
+				    	sdsgh;
 				    	Yii::app()->user->setFlash('success',$e);
 				    	Yii::app()->end();
 				       // echo "<div class='flash-error'>Ajax - error message</div>"; //for ajax
@@ -251,18 +274,14 @@ class AdminController extends Controller
 				// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 				if(!isset($_POST['ajax']))
 					$this->redirect(array('/user/admin'));
-			}*/
+			}
 		}
 		else
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
 	
-	private function guardaRegistroUsuarioBorrado($model){
-		
-	}
-
 	private function renderParaUsuario($esEmpresa){
-
+		
 		if($esEmpresa)
 			$this->renderParaEmpresa();
 		else
@@ -270,11 +289,6 @@ class AdminController extends Controller
 	}
 
 	private function renderParaEmpresa(){
-		$cat_model = Category::getCategorias();
-		$categorias = CHtml::listData($cat_model,'id', 'name');
-
-		$cuentas = Cuenta::getCuentas();
-		$cuentas_list = CHtml::listData($cuentas,'id', 'nombre');
 
 		//Para cargar/gestionar el logo
 		Yii::import("xupload.models.XUploadForm");
@@ -282,9 +296,6 @@ class AdminController extends Controller
 
 		$this->render('update',array(
 	    	'model'=>$this->_model,
-			'categorias'=>$categorias,
-			'esEmpresa'=>true,
-			'cuentas'=>$cuentas_list,
 			'image'=>$image,
 		));
 	}
@@ -297,9 +308,6 @@ class AdminController extends Controller
 		
 		$this->render('update',array(
 	    	'model'=>$this->_model,
-			'categorias'=>null,
-			'esEmpresa'=>false,
-			'cuentas'=>null,
 			'image'=>$image,
 		));
 	}

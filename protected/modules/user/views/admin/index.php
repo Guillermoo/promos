@@ -26,10 +26,10 @@ $('.search-form form').submit(function(){
 )); ?>
 </div><!-- search-form -->
 
-<?php $this->widget('application.extensions.flash.Flash', array(
+<?php /*$this->widget('application.extensions.flash.Flash', array(
     'keys'=>array('success','error'), 
     'htmlOptions'=>array('id'=>'flash'),
-)); ?><!-- flashes -->
+));*/ ?><!-- flashes -->
     
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
 	'id'=>'user-grid',
