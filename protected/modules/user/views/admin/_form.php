@@ -184,7 +184,7 @@
 						<?php echo $form->error($profile,'poblacion_id'); ?>
 					</div>
 					<?php 
-						echo $this->renderPartial('../empresa/_form', array('form'=>$form,'model'=>$model,'image'=>$image));
+						echo $this->renderPartial('../empresa/_form', array('form'=>$form,'empresa'=>$model->empresa,'image'=>$image));
 					?>
 				</div>
 			<?php endif;?>

@@ -11,7 +11,7 @@ echo "\$this->breadcrumbs=array(
 	'$label',
 );\n";
 ?>
-
+<?
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
     $('.search-form').slideToggle('fast');
@@ -31,7 +31,7 @@ $('.search-form form').submit(function(){
 <hr />
 
 <?php echo "<?php"; ?> 
-$this->beginWidget('zii.widgets.CPortlet', array(
+<? $this->beginWidget('zii.widgets.CPortlet', array(
 	'htmlOptions'=>array(
 		'class'=>''
 	)
@@ -59,7 +59,7 @@ $this->endWidget();
 
 
 <?php echo "<?php"; ?> $this->widget('bootstrap.widgets.TbGridView',array(
-	'id'=>'<?php echo $this->class2id($this->modelClass); ?>-grid',
+	'id'=>"<?php echo $this->class2id($this->modelClass); ?>-grid",
 	'dataProvider'=>$model->search(),
         'type'=>'striped bordered condensed',
         'template'=>'{summary}{pager}{items}{pager}',
@@ -74,7 +74,7 @@ foreach($this->tableSchema->columns as $column)
 }
 if($count>=7)
 	echo "\t\t*/\n";
-?>
+?><?
                array(
 		     
 		      'type'=>'raw',
@@ -85,7 +85,7 @@ if($count>=7)
 		     "',
 		      'htmlOptions'=>array('style'=>'width:150px;')  
 		     ),
-        
+            
 	),
 )); 
 

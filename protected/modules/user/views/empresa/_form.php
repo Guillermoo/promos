@@ -3,7 +3,7 @@
 	'id'=>'empresa-form',
 	'enableAjaxValidation'=>true,
 	//'type'=>'horizontal',
-	'action'=>'empresa/edit',
+	'action'=>'empresa/edit/'.$empresa->id,
 	'clientOptions'=>array(
 		'validateOnSubmit'=>true,
 	),
@@ -14,7 +14,7 @@
 <fieldset>
 	<?php //Sólo la compañía tiene reglas de validación ?>
 	<?php if (!UserModule::isCompany(Yii::app()->user->id) ):?>
-		<?php echo $form->errorSummary(array($model->empresa)); ?>
+		<?php echo $form->errorSummary(array($empresa)); ?>
 	<?php endif;?>
 	
 	<?php $this->widget('bootstrap.widgets.TbLabel', array(
@@ -36,11 +36,11 @@
 	
 	<div class="row">
 		<div id="logo_form">
-			<?php echo $form->labelEx($model,'logo'); ?>
-			<?php if (isset($model->item)):?>
-				<?php $imghtml=CHtml::image(Yii::app( )->getBaseUrl( ).$model->item->path);?>
+			<?php echo $form->labelEx($empresa,'logo'); ?>
+			<?php if (isset($empresa->item)):?>
+				<?php $imghtml=CHtml::image(Yii::app( )->getBaseUrl( ).$empresa->item->path);?>
 				<?php $this->renderPartial('../layouts/_viewitem', array(
-					'imghtml' => $imghtml,'idimage'=>$model->item->id,'muestraBorrar'=>UserModule::isCompany()));?><?php //El admin no puede borrar la imagen, o si??>
+					'imghtml' => $imghtml,'idimage'=>$empresa->item->id,'muestraBorrar'=>UserModule::isCompany()));?><?php //El admin no puede borrar la imagen, o si??>
 			<?php else:?>
 				<?php $this->renderPartial('../layouts/_itemupload', array(
 					'image' => $image,'idform'=>'empresa-form'));?>
@@ -48,7 +48,7 @@
 		</div>
 	</div>
 	
-	<?php $empresa = $model->empresa;?>
+	<?php //$empresa = $model->empresa;?>
 	
 	<div class="row">
 		<?php echo $form->labelEx($empresa,'nombre'); ?>

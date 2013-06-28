@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 class PromocionController extends Controller
 {
@@ -34,14 +34,14 @@ class PromocionController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','admin','delete'),
+				'actions'=>array('create','update','delete'),
 				//'users'=>array(Yii::app()->getModule('user')->user()->username),
 				'users'=>array('@'),
 			),
-			/*array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array(),
-				'users'=>array(Yii::app()->getModule('user')->user()->username),
-			),*/
+			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+				'actions'=>array('admin'),
+				'users'=>UserModule::getAdmins(),
+			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
@@ -59,7 +59,7 @@ class PromocionController extends Controller
 		if(isset($_GET['Promocion']))
 			$this->_model->attributes=$_GET['Promocion'];
 		
-		$this->render('index',array(
+		$this->render('admin',array(
 			'model'=>$this->_model,
 		));
 	}
@@ -82,33 +82,31 @@ class PromocionController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Promocion;
-		$model->scenario = "insert";
-		if(isset($_POST['ajax']) && $_POST['ajax']==='promociones-form')
-		{
-			echo UActiveForm::validate(array($model));
-			Yii::app()->end();
-		}
-			
-		if(isset($_POST['Promocion']))
-		{
-			$model->attributes=$_POST['Promocion'];
-			
-			$this->setCamposSecundarios();
-			
-			if($model->save()){
-				Yii::app()->user->setFlash('success',UserModule::t("Promotion created."));
-				$this->redirect(array('view','id'=>$model->id));
-			}
-			else{
-				Yii::app()->user->setFlash('error',UserModule::t("Error creating the promotion."));
-			}
-		}
-		$this->render('create',array(
-			'model'=>$model,
-			'user_id'=>Yii::app()->user->id,
-		));
-	}
+            $model=new Promocion;
+            $model->scenario = "insert";
+            
+            if(isset($_POST['ajax']) && $_POST['ajax']==='promociones-form')
+            {
+                    echo UActiveForm::validate(array($model));
+                    Yii::app()->end();
+            }
+
+            if(isset($_POST['Promocion'])){
+                $model->attributes=$_POST['Promocion'];
+
+                $this->setCamposSecundarios($model);
+
+                if($model->save()){
+                        Yii::app()->user->setFlash('success',UserModule::t("Promotion created."));
+                        $this->redirect(array('update','id'=>$model->id));
+                }
+                else{
+                        Yii::app()->user->setFlash('error',UserModule::t("Error creating the promotion."));
+                }
+            }
+            $this->render('create',array(
+                    'model'=>$model,
+            ));	}
 	
 /**
 	 * Updates a particular model.
@@ -126,7 +124,7 @@ class PromocionController extends Controller
 		{
 			$this->_model->attributes=$_POST['Promocion'];
 			if($this->_model->save())
-				$this->redirect(array('view','id'=>$this->_model->id));
+				$this->redirect(array('update','id'=>$this->_model->id));
 			else
 				Yii::app()->user->setFlash('error',UserModule::t("Error updating the promotion."));
 		}
@@ -141,19 +139,34 @@ class PromocionController extends Controller
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
 	 * @param integer $id the ID of the model to be deleted
 	 */
-	public function actionDelete($id)
-	{
+	public function actionDelete($id){
 		$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
+        
+    /**
+     * Manages all models.
+     */
+    public function actionIndex()
+    {
+        $this->_model=new Promocion('search');
+
+        $this->_model->unsetAttributes();  // clear any default values
+        if(isset($_GET['Promocion']))
+            $this->_model->attributes=$_GET['Promocion'];
+
+        $this->render('admin',array(
+            'model'=>$this->_model,
+        ));
+    }
 
 	/**
 	 * Lists all models.
 	 */
-	public function actionIndex()
+	public function actionIndex1()
 	{
 		$dataProvider=new CActiveDataProvider('Promocion');
 		
@@ -165,14 +178,13 @@ class PromocionController extends Controller
 		));
 	}
 	
-	private function setCamposSecundarios(){
-		
-		//$this->_model->user_id = Yii::app()->user->id;
-		$this->_model->estado = 1;
-		$this->_model->titulo_slug = UserModule::getSlug($this->_model->titulo) ;
+	private function setCamposSecundarios($model=null){
+            if(isset($model)){
+                //$this->_model->user_id = Yii::app()->user->id;
+                $model->estado = 1;
+                $model->titulo_slug = UserModule::getSlug($model->titulo) ;
+            }
 	}
-
-	
 	
 	/* Used to debug variables*/
 	protected function Debug($var){
@@ -194,7 +206,9 @@ class PromocionController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$this->_model=Promocion::model()->findByPk($id);
+                $user_id = Yii::app()->user->id;
+		//$this->_model=Promocion::model()->findByPk(array($id,$user_id));
+                $this->_model=Promocion::model()->findByPk($id);
 		if($this->_model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $this->_model;

@@ -48,7 +48,7 @@ $('.search-form form').submit(function(){
 		array(
 			'name' => 'username',
 			'type'=>'raw',
-		'value' => 'CHtml::link(CHtml::encode($data->username),array("update","id"=>$data->id))',
+                        'value' => 'CHtml::link(CHtml::encode($data->username),array("update","id"=>$data->id))',
 			//'value' => 'CHtml::link(CHtml::encode($data,"username"),array("admin/update","id"=>$data->id))',
 		),
 		/*

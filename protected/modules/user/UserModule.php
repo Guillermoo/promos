@@ -58,8 +58,9 @@ class UserModule extends CWebModule
 	public $loginUrl = array("/user/login");
 	public $logoutUrl = array("/user/logout");
 	public $adminUrl = array("/user/admin");
-	public $adminEmpresaUrl = array("/user/admin/empresa");
+	public $adminEmpresaUrl = array("/user/empresa/admin");
 	public $crearPromocionUrl = array("/user/promocion/create");
+        public $adminPromocionesUrl = array("/user/promocion/admin");
 	public $contactoUrl = array("/site/contact");
 	public $homeUrl = array("/user/profile/home");//'user/home' => 'user/empresa/home',
 	public $homeAdminUrl = array("/user/admin/home");//'user/home' => 'user/empresa/home',
@@ -114,7 +115,8 @@ class UserModule extends CWebModule
 	static private $_user;
 	static private $_users=array();
 	static private $_userByName=array();
-	static private $_admin;
+	static private $_sadmin;
+        static private $_admin;
 	static private $_company;
 	static private $_trial;
 	static private $_buyer;
@@ -296,17 +298,17 @@ class UserModule extends CWebModule
 		if(Yii::app()->user->isGuest)
 			return false;
 		else {
-			if (!isset(self::$_admin)) {
+			if (!isset(self::$_sadmin)) {
 				//if(self::user()->superuser)
 				if ($id==null)
 					$id = Yii::app()->user->id;
 					
 				if(Yii::app()->authManager->checkAccess('superadmin', $id))
-					self::$_admin = true;
+					self::$_sadmin = true;
 				else
-					self::$_admin = false;	
+					self::$_sadmin = false;	
 			}
-			return self::$_admin;
+			return self::$_sadmin;
 		}
 	}
 

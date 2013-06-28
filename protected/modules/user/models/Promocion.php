@@ -6,6 +6,7 @@
  * The followings are the available columns in table '{{promociones}}':
  * @property integer $id
  * @property integer $user_id
+ * * @property integer $nbempresa
  * @property integer $estado
  * @property string $titulo
  * @property string $slug
@@ -34,6 +35,9 @@ class Promocion extends CActiveRecord
 	const STATUS_VALIDACION=4;//Si es = a 2 es que ti
 	
 	const STATUS_DESTACADA=1;
+        const STATUS_NODESTACADA=0;
+        
+        public $nbempresa;
 	
 	/**
 	 * Returns the static model of the specified AR class.
@@ -61,16 +65,16 @@ class Promocion extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_id, titulo, titulo_slug, resumen, descripcion, descripcion_html, fecha_inicio, fecha_fin, fechaCreacion, destacado, precio, condiciones, stock', 'required'),
+			array('titulo, titulo_slug, resumen, descripcion, descripcion_html, fecha_inicio, fecha_fin, fechaCreacion, destacado, precio, condiciones, stock', 'required'),
 			array('id,user_id, estado, destacado, stock,precio', 'numerical', 'integerOnly'=>true),
 			array('titulo, titulo_slug, resumen', 'length', 'max'=>100),
-			array('fecha_inicio,fecha_fin', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true, 'on' => 'insert'),
+			array('fecha_inicio,fecha_fin', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true, 'on' => 'insert'),//fechaCreación es un timestamp
 			array('fecha_inicio,fecha_fin', 'default', 'value' => '0000-00-00 00:00:00', 'setOnEmpty' => true, 'on' => 'insert'),
 			array('descripcion, descripcion_html, condiciones', 'length', 'max'=>1000),
 			array('precio, rebaja', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, user_id, estado, titulo, titulo_slug, resumen, descripcion, descripcion_html, fecha_inicio, fecha_fin, fechaCreacion, destacado, precio, rebaja, condiciones, stock', 'safe', 'on'=>'search'),
+			array('id, user_id,nbempresa, estado, titulo, titulo_slug, resumen, descripcion, descripcion_html, fecha_inicio, fecha_fin, fechaCreacion, destacado, precio, rebaja, condiciones, stock', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -82,7 +86,7 @@ class Promocion extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'empresa' => array(self::BELONGS_TO, 'Empresas', 'user_id'),
+			'usuario' => array(self::BELONGS_TO, 'User', 'user_id'),
 		);
 	}
 
@@ -94,6 +98,7 @@ class Promocion extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'user_id' => 'Empresa',
+                        'nbempresa' => 'Empresa',
 			'estado' => 'Estado',
 			'titulo' => 'Titulo',
 			'titulo_slug' => 'titulo_slug',
@@ -127,34 +132,56 @@ class Promocion extends CActiveRecord
             ),*/
 		);
     }
+            
+    protected function beforeSave(){
+        if ( ($this->isNewRecord) && (!UserModule::isAdmin()) ){//Comprobamos que no sea un admin el que está editando o creando
+            $this->user_id = Yii::app()->user->id;
+        }
+        
+        if ($this->destacado == 1)//Primero ponemos todas a 0, y luego al hacer el save se quedará este como destacado
+                return $this->reseteaDestacados();
+        
+        return parent::beforeSave();
+    }
+    
+    /*Función que pone todas las promociones con destacado=0
+     */
+    private function reseteaDestacados(){
+        
+        return true;
+        
+    }
 
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('id',$this->id);
-		$criteria->compare('user_id',$this->user_id);
-		$criteria->compare('estado',$this->estado);
-		$criteria->compare('titulo',$this->titulo,true);
-		$criteria->compare('fecha_inicio',$this->fecha_inicio,true);
-		$criteria->compare('fecha_fin',$this->fecha_fin,true);
-		$criteria->compare('fechaCreacion',$this->fechaCreacion,true);
-		$criteria->compare('destacado',$this->destacado);
-		$criteria->compare('precio',$this->precio,true);
-		$criteria->compare('rebaja',$this->rebaja,true);
-		$criteria->compare('stock',$this->stock);
-		$criteria->condition='user_id='.Yii::app()->getModule('user')->user()->empresa->user_id;
-		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
-		));
-	}
-	
+    /**
+     * Retrieves a list of models based on the current search/filter conditions.
+     * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+     */
+    public function search()
+    {
+            // Warning: Please modify the following code to remove attributes that
+            // should not be searched.
+            $criteria=new CDbCriteria;
+            $criteria->with = array( 'usuario' );
+            $criteria->compare('id',$this->id);
+            //$criteria->compare('user_id',$this->user_id);
+            $criteria->compare('estado',$this->estado);
+            $criteria->compare('titulo',$this->titulo,true);
+            $criteria->compare('fecha_inicio',$this->fecha_inicio,true);
+            $criteria->compare('fecha_fin',$this->fecha_fin,true);
+            $criteria->compare('fechaCreacion',$this->fechaCreacion,true);
+            $criteria->compare('destacado',$this->destacado);
+            $criteria->compare('precio',$this->precio,true);
+            $criteria->compare('rebaja',$this->rebaja,true);
+            $criteria->compare('stock',$this->stock);
+            //$criteria->compare( 'usuario.username', $this->nbempresa, true );
+            $criteria->compare( 'usuario.empresa.nombre', $this->nbempresa, true );
+            if (UserModule::isCompany())
+                $criteria->condition='user_id='.$this->user_id;
+            return new CAct veDataProvider($this, array(
+                    'criteria'=>$criteria,
+            ));
+    }
+    
 /**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
@@ -180,5 +207,38 @@ class Promocion extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
+        /*
+     * Función que devuelve lo items de los desplegables. 
+     * Estas listas son estáticas, las dinámicas se hacen de otra forma.
+     * */
+	public static function itemAlias($type,$code=NULL) {
+		$_items = array(
+                        /*'PromoStatus' => array(
+                            array('label'=>UserModule::t('Active')),
+                            array('label'=>UserModule::t('Not active')),
+                            array('label'=>UserModule::t('Draft'),'id'=>self::STATUS_BORRADOR),
+                            array('label'=>UserModule::t('Bloqued'),'id'=>self::STATUS_BLOQUEADA),
+                            array('label'=>UserModule::t('Validation'),'id'=>self::STATUS_VALIDACION),
+                        ),*/
+			'PromoStatus' => array(
+                                
+				self::STATUS_ACTIVA => UserModule::t('Active'),
+				self::STATUS_NOACTIVA => UserModule::t('Not active'),
+				self::STATUS_BORRADOR => UserModule::t('Draft'),
+				self::STATUS_BLOQUEADA => UserModule::t('Bloqued'),
+				self::STATUS_VALIDACION => UserModule::t('Valiadation'),
+			),
+			'Destacado' => array(/*Se cargará el combo tipos de usuarios a la hora de crear usuarios desde*/
+				self::STATUS_DESTACADA => UserModule::t('Highlight'),
+                                self::STATUS_NODESTACADA => UserModule::t('No Highlight'),
+			),
+		);
+		if (isset($code))
+			return isset($_items[$type][$code]) ? $_items[$type][$code] : false;
+		else
+			return isset($_items[$type]) ? $_items[$type] : false;
+	}
+
 	
 }

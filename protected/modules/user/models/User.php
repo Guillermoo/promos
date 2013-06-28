@@ -94,15 +94,17 @@ class User extends CActiveRecord
 	{
         $relations = Yii::app()->getModule('user')->relations;
         if(isset($_GET['id']))
-			$id=$_GET['id'];
-		else
-			$id=Yii::app()->user->id;
-
-        if (Yii::app()->authManager->checkAccess('empresa', $id))
+                $id=$_GET['id'];
+        else
+                $id=Yii::app()->user->id;
+        
+        //if (Yii::app()->authManager->checkAccess('empresa', $id)){
             $relations['empresa'] = array(self::HAS_ONE, 'Empresa', 'user_id');
             $relations['profile'] = array(self::HAS_ONE, 'Profile', 'user_id');
             $relations['item'] = array(self::HAS_ONE, 'Item', 'foreign_id');
             $relations['promocion'] = array(self::HAS_MANY, 'Promocion', 'user_id');
+       // }
+        
         return $relations;
 	}
 
