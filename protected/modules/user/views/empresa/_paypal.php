@@ -12,8 +12,8 @@
 	<input type="hidden" name="item_name" value="<?=$profile->cuenta->titulo ?>">  
 	<input type="hidden" name="item_number" value="<?=$profile->poblacion->id ?>">
 	<input type="hidden" name="amount" value="<?=$profile->meses?>">
-	<!-- <input type="hidden" name="quantity_<?=//$i+1;?>" value="<?=//$pedido['Venta'][$i]['cantidad']?>"> 
-	<input type="hidden" name="amount" value="<?=//$precio?>">
+	<!-- <input type="hidden" name="quantity_<?//=$i+1;?>" value="<?//=$pedido['Venta'][$i]['cantidad']?>"> 
+	<input type="hidden" name="amount" value="<?//=$precio?>">
 	<input type="hidden" name="shipping" value=0>-->
 	
 	<INPUT TYPE="hidden" NAME="return" value="http://<?=$_SERVER['SERVER_NAME'] ?>/pedidos/gracias">

@@ -120,7 +120,7 @@ class Empresa extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('user_id',$this->user_id);
 		$criteria->compare('nombre',$this->nombre,true);
-		$criteria->compare('nombre_slug',$this->nombre_slug,true);
+		//$criteria->compare('nombre_slug',$this->nombre_slug,true);
 		$criteria->compare('cif',$this->cif,true);
 		/*$criteria->compare('web',$this->web,true);
 		$criteria->compare('twitter',$this->twitter,true);
@@ -168,39 +168,46 @@ class Empresa extends CActiveRecord
 		parent::beforeSave();
 	}*/
 	
-	public static function crearNuevaEmpresaParaElUsuario($user_id=null){
-		
-		if (isset($user_id) ){
-			$empresa= new Empresa;
-			$empresa->user_id = $user_id;
-			$empresa->save(false);
-		}
-		
-	}
+    public static function crearNuevaEmpresaParaElUsuario($user_id=null){
+
+            if (isset($user_id) ){
+                    $empresa= new Empresa;
+                    $empresa->user_id = $user_id;
+                    $empresa->save(false);
+            }
+
+    }
+
+
+    public static function getEmpresas(){
+        return CHtml::listdata(Empresa::model()->findAll(),'id','nombre');
+    }
+    
+    
 	
-	public static function getEmpCategories()
-	{
-	    //$ids=array();
-	    $list = new CList();
-	    foreach($this->categoria as $c)
-	        //$ids[]=$c->id;
-	        $list.add($c->id);
-	    $this->debug($list);
-	    return $list;
-	}
+    public static function getEmpCategories()
+    {
+        //$ids=array();
+        $list = new CList();
+        foreach($this->categoria as $c)
+            //$ids[]=$c->id;
+            $list.add($c->id);
+        $this->debug($list);
+        return $list;
+    }
 	
-	public static function setEmpCategories($values)
-	{
-	    // 1. delete all related rows in item_category (use a AR for this table)
-	
-	    // 2. create new links:
-	    foreach($values as $id)
-	    {
-	        $r=new ItemCategory;
-	        $r->category_id=$id;
-	        $r->item_id=$this->id;
-	    }
-	}
+    public static function setEmpCategories($values)
+    {
+        // 1. delete all related rows in item_category (use a AR for this table)
+
+        // 2. create new links:
+        foreach($values as $id)
+        {
+            $r=new ItemCategory;
+            $r->category_id=$id;
+            $r->item_id=$this->id;
+        }
+    }
 	
 /* Used to debug variables*/
     protected function Debug($var){

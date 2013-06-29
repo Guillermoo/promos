@@ -35,11 +35,11 @@ class AdminController extends Controller
 	{
 		return array(
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-					'actions'=>array('admin','delete','create','updateAjax','update','view','empresa','home'),
-					'users'=>UserModule::getAdmins(),
+                            'actions'=>array('admin','delete','create','updateAjax','update','view','home'),
+                            'users'=>UserModule::getAdmins(),
 			),
 			array('deny',  // deny all users
-					'users'=>array('*'),
+                            'users'=>array('*'),
 			),
 		);
 	}
@@ -72,22 +72,6 @@ class AdminController extends Controller
 		));
 	}
 	
-/**
-	 * Manages all models.
-	 */
-	public function actionEmpresa()
-	{
-		$model=new Empresa('search');
-		$model->unsetAttributes();  // clear any default values
-
-		if(isset($_GET['Empresa']))
-			$model->attributes=$_GET['Empresa'];
-
-		$this->render('empresa',array(
-            'model'=>$model,
-		));
-	}
-
 	/**
 	 * Displays a particular model.
 	 * De momento no lo dejamos accesible
@@ -307,8 +291,8 @@ class AdminController extends Controller
 		$image = new XUploadForm;
 		
 		$this->render('update',array(
-	    	'model'=>$this->_model,
-			'image'=>$image,
+                    'model'=>$this->_model,
+                    'image'=>$image,
 		));
 	}
 

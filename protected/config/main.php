@@ -15,15 +15,15 @@ return array(
  
 	// autoloading model and component classes
 	'import'=>array(
-		'application.models.*',
-		'application.components.*',
-		'application.modules.user.models.*',
-        'application.modules.user.components.*',
-        'application.modules.rights.*',
-        'application.modules.rights.components.*',
+            'application.models.*',
+            'application.components.*',
+            'application.modules.user.models.*',
+            'application.modules.user.components.*',
+            'application.modules.rights.*',
+            'application.modules.rights.components.*',
 		//'ext.giix-components.*', // giix components
-		'ext.mailer.*',
-		'ext.flash',
+            'ext.mailer.*',
+            'ext.flash',
 	),
 	'aliases' => array(
 	    //If you manually installed it
@@ -113,13 +113,13 @@ return array(
 			'showScriptName'=>false,
 			'rules'=>array(
 				'empresa/<alias:[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]+>' => 'empresa/view',
-				'empresa/edit' => 'empresa',
+				//'empresa/edit' => 'empresa',
 				//'admin/home' => 'user/admin',
 				'profile/edit' => 'profile',
 				'user/registrarcomprador' => 'user/registrationcomprador',
 				'user/registrarempresa' => 'user/registrationcompany',
 				'user/user/contact' => 'user/user/contact',
-				'user/promociones'=>'user/promocion/admin',
+				'user/promociones'=>'user/promocion/index',
 				'page/<view>'=>array('site/page'),
                                 'index'=>array('site/index'),
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',

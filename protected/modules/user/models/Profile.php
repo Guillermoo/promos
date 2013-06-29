@@ -63,11 +63,24 @@ class Profile extends CActiveRecord
 			array('telefono, fax', 'length', 'max'=>50),
 			array('tipocuenta', 'length', 'max'=>11),
 			array('fecha_activacion, fecha_fin,fecha_pago', 'length', 'max'=>51),
+			array('fecha_activacion, fecha_fin,fecha_pago', 'validaFechas', 'message'=>'Error with dates','except'=>'admin'),
+			
 			//array('fecha_activacion, fecha_fin,fecha_pago', 'type', 'type' => 'date', 'message' => '{attribute}: is not a date!', 'dateFormat' => 'yyyy-MM-dd'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('user_id, username, lastname, paypal_id, tipocuenta, fecha_activacion, fecha_fin, fecha_pago,telefono, fax, cp, barrio, direccion, poblacion_id', 'safe', 'on'=>'search'),
 		);
+	}
+	
+	public function validaFechas($attribute,$params){
+                //EJEMPLO
+		/*if ($params['strength'] === self::WEAK)
+                    $pattern = '/^(?=.*[a-zA-Z0-9]).{5,}$/';  
+                elseif ($params['strength'] === self::STRONG)
+                    $pattern = '/^(?=.*\d(?=.*\d))(?=.*[a-zA-Z](?=.*[a-zA-Z])).{5,}$/';  
+
+                if(!preg_match($pattern, $this->$attribute))
+                  $this->addError($attribute, 'your password is not strong enough!');*/
 	}
 	
 	/**
