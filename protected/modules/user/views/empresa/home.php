@@ -1,6 +1,10 @@
 <?php if(YII_RUTAS == true) echo __FILE__; ?>
 <br>
-<h2>Esta es la página de bievenida para los usuarios-empresa al logearse</h2>
+<h2>Esta es la página de bievenida para los usuarios-empresa al logearsee</h2>z
+<?php
+	//probando la cuenta trial
+	echo CHtml::link('Prueba la cuenta trial!',array('user/puedeTrial'));
+?>
 
 <?php //(G)Si el usuario no ha rellenado los campos mínimos para poder vender, le apareceŕa?>
 <?php //Hay que mirar que si es ?>

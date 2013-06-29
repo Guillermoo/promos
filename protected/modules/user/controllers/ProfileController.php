@@ -156,6 +156,21 @@ class ProfileController extends Controller
 		));
 	}
 	
+	/**
+	* Comprobar que la cuenta anterior no era la gratuita para que no la pueda coger otra vez
+	*/
+	public function actionPuedeTrial($id){
+		//si el status del usuario es 1 es que está utilizando la cuenta trial (gratuita)
+
+		$model=Empresa::model()->findByPk($id);
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		if($model->status == 1)
+				$this->render('trial');
+		else
+				$this->render('notrial');
+	}
+	
 		/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
