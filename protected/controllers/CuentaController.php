@@ -142,6 +142,7 @@ class CuentaController extends Controller
 			'model'=>$model,
 		));
 	}
+	
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
@@ -169,5 +170,5 @@ class CuentaController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
-	}
+	}	
 }
