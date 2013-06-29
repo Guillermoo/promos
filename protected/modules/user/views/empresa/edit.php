@@ -9,5 +9,5 @@
 <?php endif;?>
 
 <?php
-    echo $this->renderPartial('_form', array('action'=>'_form','empresa'=>$model->empresa,'image'=>$image));
+    echo $this->renderPartial('_form', array('action'=>'_form','empresa'=>$empresa,'image'=>$image));
 ?>

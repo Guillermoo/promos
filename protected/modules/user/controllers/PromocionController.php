@@ -85,11 +85,13 @@ class PromocionController extends Controller
             $model=new Promocion;
             $model->scenario = "insert";
             
-            if(isset($_POST['ajax']) && $_POST['ajax']==='promociones-form')
+            /*if(isset($_POST['ajax']) && $_POST['ajax']==='promociones-form')
             {
                     echo UActiveForm::validate(array($model));
                     Yii::app()->end();
-            }
+            }*/
+            
+            $this->performAjaxValidation($model);
 
             if(isset($_POST['Promocion'])){
                 $model->attributes=$_POST['Promocion'];
@@ -98,7 +100,7 @@ class PromocionController extends Controller
 
                 if($model->save()){
                         Yii::app()->user->setFlash('success',UserModule::t("Promotion created."));
-                        $this->redirect(array('update','id'=>$model->id));
+                        $this->redirect(array('promociones'));
                 }
                 else{
                         Yii::app()->user->setFlash('error',UserModule::t("Error creating the promotion."));
@@ -206,7 +208,7 @@ class PromocionController extends Controller
 	 */
 	public function loadModel($id)
 	{
-                $user_id = Yii::app()->user->id;
+                //$user_id = Yii::app()->user->id;
 		//$this->_model=Promocion::model()->findByPk(array($id,$user_id));
                 $this->_model=Promocion::model()->findByPk($id);
 		if($this->_model===null)
@@ -227,14 +229,15 @@ class PromocionController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Promocion $model the model to be validated
+	 * @param CModel the model to be validated
 	 */
-	/*protected function performAjaxValidation($model)
+	protected function performAjaxValidation($validate)
 	{
+		// ajax validator
 		if(isset($_POST['ajax']) && $_POST['ajax']==='promociones-form')
 		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
+                    echo UActiveForm::validate($validate);
+                    Yii::app()->end();
 		}
 	}
 	

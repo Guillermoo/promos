@@ -21,7 +21,7 @@ return array(
             'application.modules.user.components.*',
             'application.modules.rights.*',
             'application.modules.rights.components.*',
-		//'ext.giix-components.*', // giix components
+            //'ext.giix-components.*', // giix components
             'ext.mailer.*',
             'ext.flash',
 	),
@@ -33,19 +33,19 @@ return array(
 		// uncomment the following to enable the Gii tool
 		
 		'gii'=>array(
-			'class'=>'system.gii.GiiModule',
-			'password'=>'asdf',
-			// If removed, Gii defaults to localhost only. Edit carefully to taste.
-			'ipFilters'=>array('127.0.0.1','::1'),
-			'generatorPaths' => array(
-                        'application.gii',  //nested set  Model and Crud templates
-						'ext.ajaxgii', 
-						'ext.giix-core', // giix generators
+                    'class'=>'system.gii.GiiModule',
+                    'password'=>'asdf',
+                    // If removed, Gii defaults to localhost only. Edit carefully to taste.
+                    'ipFilters'=>array('127.0.0.1','::1'),
+                    'generatorPaths' => array(
+                    'application.gii',  //nested set  Model and Crud templates
+                    'ext.ajaxgii', 
+                    'ext.giix-core', // giix generators
              ),
-		),
+        ),
 		
-		'rights'=>array(
-			'superuserName'=>'Admin', // Name of the role with super user privileges. 
+        'rights'=>array(
+            'superuserName'=>'Admin', // Name of the role with super user privileges. 
            'authenticatedName'=>'Authenticated',  // Name of the authenticated user role. 
            'userIdColumn'=>'id', // Name of the user id column in the database. 
            'userNameColumn'=>'username',  // Name of the user name column in the database. 
@@ -102,38 +102,39 @@ return array(
 
 	// application components
 	'components'=>array(
-		'bootstrap'=>array(
-				//'class'=>'bootstrap.components.Bootstrap',
-				'class' => 'ext.bootstrap.components.Bootstrap',
-				//'coreCss' => false, //use css themes
-		),
-		// uncomment the following to enable URLs in path-format
-		'urlManager'=>array(
-			'urlFormat'=>'path',
-			'showScriptName'=>false,
-			'rules'=>array(
-				'empresa/<alias:[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]+>' => 'empresa/view',
-				//'empresa/edit' => 'empresa',
-				//'admin/home' => 'user/admin',
-				'profile/edit' => 'profile',
-				'user/registrarcomprador' => 'user/registrationcomprador',
-				'user/registrarempresa' => 'user/registrationcompany',
-				'user/user/contact' => 'user/user/contact',
-				'user/promociones'=>'user/promocion/index',
-				'page/<view>'=>array('site/page'),
-                                'index'=>array('site/index'),
-				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
-				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
-				'promociones' => 'promocion/index',
-				'empresas'=>'empresa/index',
-			),
-		),
-		'user'=>array(
-                'class'=>'RWebUser',
-                // enable cookie-based authentication
-                'allowAutoLogin'=>true,
-                'loginUrl'=>array('/user/login'),
+            'bootstrap'=>array(
+                            //'class'=>'bootstrap.components.Bootstrap',
+                            'class' => 'ext.bootstrap.components.Bootstrap',
+                            //'coreCss' => false, //use css themes
+            ),
+            // uncomment the following to enable URLs in path-format
+            'urlManager'=>array(
+                'urlFormat'=>'path',
+                'showScriptName'=>false,
+                'rules'=>array(
+                    'empresa/<alias:[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]+>' => 'empresa/view',
+                    'user/empresa/<id>' => 'user/empresa/edit',
+                    //'admin/home' => 'user/admin',
+                    'profile/edit' => 'profile',
+                    'user/home' => 'user/profile/home',
+                    'user/registrarcomprador' => 'user/registrationcomprador',
+                    'user/registrarempresa' => 'user/registrationcompany',
+                    'user/user/contact' => 'user/user/contact',
+                    'user/promociones'=>'user/promocion/index',
+                    'page/<view>'=>array('site/page'),
+                    'index'=>array('site/index'),
+                    '<controller:\w+>/<id:\d+>'=>'<controller>/view',
+                    '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+                    '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+                    'promociones' => 'promocion/index',
+                    'empresas'=>'empresa/index',
+                ),
+            ),
+            'user'=>array(
+            'class'=>'RWebUser',
+            // enable cookie-based authentication
+            'allowAutoLogin'=>true,
+            'loginUrl'=>array('/user/login'),
         ),
         'authManager'=>array(
                 'class'=>'RDbAuthManager',
@@ -145,14 +146,14 @@ return array(
 		),*/
 		// uncomment the following to use a MySQL database
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=promos',
-			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '',
-			'charset' => 'utf8',
-			'tablePrefix' => 'tbl_',
-        	'enableProfiling' => true,
-        	'enableParamLogging' => true,
+                    'connectionString' => 'mysql:host=localhost;dbname=promos',
+                    'emulatePrepare' => true,
+                    'username' => 'root',
+                    'password' => '',
+                    'charset' => 'utf8',
+                    'tablePrefix' => 'tbl_',
+                    'enableProfiling' => true,
+                    'enableParamLogging' => true,
 		),
 		
 		/*'widgetFactory'=>array(
@@ -169,24 +170,24 @@ return array(
 			'errorAction'=>'site/error',
 		),
 		'log'=>array(
-			'class'=>'CLogRouter',
-			'routes'=>array(
-				// uncomment the following to show log messages on web pages
-				array(
-                    'class' => 'CFileLogRoute',
-					'logFile'=>'trace.log',
-                    'levels' => 'error, trace,warning, info',
-                    'categories'=>'system.*',
-                ),
-				array(
-					'class'=>'CWebLogRoute',
-					'enabled' => YII_DEBUG,
-					'levels'=>'trace',
-					//'filter'=>'CLogFilter',
-					'categories'=>'vardump',
-					'showInFireBug'=>true
-				),				
-			),
+                    'class'=>'CLogRouter',
+                    'routes'=>array(
+                        // uncomment the following to show log messages on web pages
+                        array(
+                            'class' => 'CFileLogRoute',
+                            //'logFile'=>'trace.log',
+                            'levels' => 'error, trace,warning, info'
+                            // 'categories'=>'system.*',
+                        ),
+                        array(
+                                'class'=>'CWebLogRoute'
+                                /*'enabled' => YII_DEBUG,
+                                'levels'=>'trace',
+                                'filter'=>'CLogFilter',
+                                'categories'=>'vardump',
+                                'showInFireBug'=>true*/
+                        ),				
+                    ),
 		),
 	),
 

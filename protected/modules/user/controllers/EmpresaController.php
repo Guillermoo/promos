@@ -17,8 +17,7 @@ class EmpresaController extends Controller
 	 * @var CActiveRecord the currently loaded data model instance.
 	 */
 	private $_model;
-	
-	
+        
 	/**
 	 * @return array action filters
 	 */
@@ -78,8 +77,10 @@ class EmpresaController extends Controller
 	 * (G)De momento abrimos home que no hay nada pensado en que se mostrará.
 	 * Dejo el código comentado por si hace falta.
 	 * */
-	public function actionEmpresa()
+	/*public function actionEmpresa()
 	{
+            $this->debug("Empresa");
+            
             $_model = $this->loadUser();
             //Obtenemos todas las categorías con nivel 2(suponiendo que no hay subcategorías
             /*$cat_model = Category::getCategorias();
@@ -89,27 +90,52 @@ class EmpresaController extends Controller
             $cuentfas_list = CHtml::listData($cuentas,'id', 'nombre');
             */
             //Para cargar/gestionar el logo
-            Yii::import("xupload.models.XUploadForm");
+           /* Yii::import("xupload.models.XUploadForm");
             $image = new XUploadForm;
 
-            /*$this->render('empresa',array(
-            'model'=>$_model,
-                    'empresa'=>$_model->empresa,
-            'contacto'=>$_model->empresa->contacto,
-                    'categorias'=>$categorias,
-                    'cuentas'=>$cuentas_list,
-                    'logo'=>$logo,
-	    ));*/
-	    $this->render('edit',array(
-	    	'model'=>$_model,
-			/*'empresa'=>$_model->empresa,
-	    	'contacto'=>$_model->empresa->contacto,
-			'categorias'=>$categorias,
-			'cuentas'=>$cuentas_list,*/
+            $this->performAjaxValidation(array($_model->empresa));
+            
+            /*if(isset($_POST['Empresa'])){
+                
+                if (UserModule::isCompany()){
+                    $model = $this->loadUser();
+                    $empresa = $model->empresa;
+                    $redirect = "/user/empresa";
+                }  else 
+                    $redirect = "/user/empresa/view/".$empresa->id;
+                
+                $empresa->attributes=$_POST['Empresa'];
+                if($empresa->validate()) {
+                    try {
+                        if ($empresa->save()){
+                                Yii::app()->user->setFlash('success',UserModule::t("Changes is saved."));
+                                $this->redirect(array($redirect));
+                        }else{
+                                Yii::app()->user->setFlash('error',UserModule::t("Error saving the changes."));
+                                //$this->redirect(array('/user/empresa'));
+
+                        };
+                    }
+                    // we are looking for specific exception here
+                    catch (CException $e)
+                    {
+                        echo $e;
+                    }
+                    /*if ($empresa->save(false)){
+                            //(G)Se supone que si ha podido guardar es porque ha rellenado los campos mínimos.
+           // Yii::app()->user->updateSession();
+                            Yii::app()->user->setFlash('success',UserModule::t("Changes is saved."));
+                            $this->redirect(array('/user/empresa'));
+                    }else $this->debug($empresa->getErrors());*/
+                /*} else $empresa->validate();
+            }*/
+            
+	    /*$this->render('edit',array(
+	    	'empresa'=>$_model->empresa,
                 'image'=>$image,
 	    ));
 	    
-	}
+	}*/
         
         /**
 	 * Manages all models.
@@ -144,8 +170,6 @@ class EmpresaController extends Controller
 		}
 	}
 
-
-	
 	public function actionForm( ) {
 	    $model = new Item;
 	    Yii::import( "xupload.models.XUploadForm" );
@@ -246,46 +270,31 @@ class EmpresaController extends Controller
 	}
         
         public function actionEdit($id=null){
-
-            if (isset($id)){
-                $empresa = $this->loadModel($id);
-                //$empresa=$model->empresa; 
-                $this->performAjaxValidation(array($empresa));
-                //$empresa->scenario ="paraValidar";
-
-                $cuentas = Cuenta::getCuentas();
-                $cuentas_list = CHtml::listData($cuentas,'id', 'nombre');
-
-                //Para cargar/gestionar el logo
-                Yii::import("xupload.models.XUploadForm");
-                $logo = new XUploadForm;
-                // ajax validator
-                if(isset($_POST['ajax']) && $_POST['ajax']==='empresa-form')
-                {
-                        echo UActiveForm::validate(array($empresa));
-                        Yii::app()->end();
-                }
+            
+            $empresa = $this->devuelveEmpresa($id);
+            $this->debug($id);
+                
+            if (!isset($empresa)){
+                //afdsgfb;
             }
+                //throw new CHttpException(404,'The requested page does not exist.');
+            // ajax validator
+            $this->performAjaxValidation(array($empresa));
 
+            //Para cargar/gestionar el logo
+            Yii::import("xupload.models.XUploadForm");
+            $imageForm = new XUploadForm;
+            
             if(isset($_POST['Empresa'])){
-                
-                if (UserModule::isCompany()){
-                    $model = $this->loadUser();
-                    $empresa = $model->empresa;
-                    $redirect = "/user/empresa";
-                }  else 
-                    $redirect = "/user/empresa/view/".$empresa->id;
-                
                 $empresa->attributes=$_POST['Empresa'];
                 if($empresa->validate()) {
                     try {
                         if ($empresa->save()){
                                 Yii::app()->user->setFlash('success',UserModule::t("Changes is saved."));
-                                $this->redirect(array($redirect));
+                                $this->redirect(array('edit'));
                         }else{
                                 Yii::app()->user->setFlash('error',UserModule::t("Error saving the changes."));
-                                //$this->redirect(array('/user/empresa'));
-
+                                $this->redirect(array('/user/empresa'));
                         };
                     }
                     // we are looking for specific exception here
@@ -293,19 +302,11 @@ class EmpresaController extends Controller
                     {
                         echo $e;
                     }
-                    /*if ($empresa->save(false)){
-                            //(G)Se supone que si ha podido guardar es porque ha rellenado los campos mínimos.
-           // Yii::app()->user->updateSession();
-                            Yii::app()->user->setFlash('success',UserModule::t("Changes is saved."));
-                            $this->redirect(array('/user/empresa'));
-                    }else $this->debug($empresa->getErrors());*/
                 } else $empresa->validate();
             }
-
             $this->render('edit',array(
                     'empresa'=>$empresa,
-                    'cuentas'=>$cuentas,
-                    'image'=>$logo,
+                    'image'=>$imageForm,
             ));
         }
 
@@ -365,49 +366,27 @@ class EmpresaController extends Controller
             ));
         }
 
-	public function actionActualizacontacto(){
-		
-		$model = $this->loadUser();
-		$empresa=$model->empresa;
-		$profile = $model->profile;
-		//Habría que crear unas reglas especiales para esta validación
-		$empresa->scenario = 'paraValidar';
-		$profile->scenario = 'paraValidar';
-			
-		if(isset($_POST['ajax']) && $_POST['ajax']==='empresa-form'){
-			echo UActiveForm::validate(array($empresa,$profile));
-			Yii::app()->end();
-		}
-		//Si es dándole al botoncico de next
-		if(isset($_POST['Empresa']))
-		{
-			$empresa->attributes=$_POST['Empresa'];
-			$profile->attributes=$_POST['Profile'];
-				
-			$empresa->save();
-			$profile->save();
-			Yii::app()->user->updateSession();
-			Yii::app()->user->setFlash('adminMessage',UserModule::t("Changes is saved."));
-			//Aquí habría que mirar si es trial y mandarlo al dashboard, o al resto a paypal.
-			if ($model->profile->tipocuenta=0){
-				$this->redirect(array('home'));
-			}else{
-				//(G)El siguiente paso tendría que ser que pagara. Se podría poner un botón que pusiese pagar ya y otro que ponga pagar mas adelante. Se piensa
-				$this->redirect(array('paypalasd'));
-			}
-		}
-		//$model->save();
-		//$empresa->modificado = NOW();
-
-		/*$this->render('empresa',array(
-			'model'=>$model,
-			'empresa'=>$empresa,
-			//'contacto'=>$contacto,
-			'cuentas'=>$cuentas,
-			'logo'=>$logo,
-		));*/
-		
-	}
+        /* Le pasamos el id y nos devuelve la empresa para admin o empresa*/
+        private function devuelveEmpresa($id=null){
+            $id = Yii::app()->getRequest()->getQuery('id');
+            if ($this->_model === null){
+                if (isset($id) && ($id!=null) ){//Si es admin el que quiere editar una empresa
+                    $this->_model = $this->loadModel($id);
+                    $this->debug("Es para admin");
+                    //$cuentas = Cuenta::getCuentas();
+                   // $cuentas_list = CHtml::listData($cuentas,'id', 'nombre');
+                }else{
+                    asdgn;
+                    $this->debug("Es para empresa");
+                    $this->_model = $this->loadUser()->empresa;
+                    $this->_model->scenario ="paraValidar";
+                }
+            }else
+                asfdgf;
+            
+            return $this->_model;
+            
+        }
 	
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
@@ -418,10 +397,10 @@ class EmpresaController extends Controller
 	{
 		if($this->_model===null)
 		{
-			if(Yii::app()->user->id)
-				$this->_model=Yii::app()->controller->module->user();
-			if($this->_model===null)
-				$this->redirect(Yii::app()->controller->module->loginUrl);
+                    if(Yii::app()->user->id)
+                            $this->_model=Yii::app()->controller->module->user();
+                    if($this->_model===null)
+                            $this->redirect(Yii::app()->controller->module->loginUrl);
 		}
 		return $this->_model;
 	}

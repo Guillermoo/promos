@@ -59,7 +59,7 @@ $('.search-form form').submit(function(){
 		array(
 			'name' => 'nombre',
 			'type'=>'raw',
-			'value' => 'CHtml::link(UHtml::markSearch($data,"nombre"),array("empresa/edit","id"=>$data->id))',
+			'value' => 'CHtml::link(UHtml::markSearch($data,"nombre"),array("empresa/edit/id/".$data->id))',
 		),
 		array(
 			'name'=>'cif',

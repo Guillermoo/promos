@@ -18,7 +18,7 @@ $this->menu=array(
 
 <h1>View Promociones #<?php echo $model->id; ?></h1>
 
-<?php $this->widget('zii.widgets.CDetailView', array(
+<?php $this->widget('bootstrap.widgets.TbDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
@@ -27,8 +27,11 @@ $this->menu=array(
 		'titulo',
 		'titulo_slug',
 		'resumen',
-		'descripcion',
-		'descripcion_html',
+                array(
+                    'name'=>'descripcion_html',                 
+                    'type'=>'raw',                 
+                    'label'=>'Descripción',
+                ),
 		'fecha_inicio',
 		'fecha_fin',
 		'fechaCreacion',

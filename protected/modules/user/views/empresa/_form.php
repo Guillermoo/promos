@@ -33,19 +33,19 @@
 		<?php //echo $form->checkBoxListRow($listCat, 'id', array($categorias), array('hint'=>'<strong>Note:</strong> Labels surround all the options for much larger click areas.')); ?>
 		<?php //echo $form->error($empresa,'contacto_id'); ?>
 	</div> -->
-	
 	<div class="row">
-		<div id="logo_form">
-			<?php echo $form->labelEx($empresa,'logo'); ?>
-			<?php if (isset($empresa->item)):?>
-				<?php $imghtml=CHtml::image(Yii::app( )->getBaseUrl( ).$empresa->item->path);?>
-				<?php $this->renderPartial('../layouts/_viewitem', array(
-					'imghtml' => $imghtml,'idimage'=>$empresa->item->id,'muestraBorrar'=>UserModule::isCompany()));?><?php //El admin no puede borrar la imagen, o si??>
-			<?php else:?>
-				<?php $this->renderPartial('../layouts/_itemupload', array(
-					'image' => $image,'idform'=>'empresa-form'));?>
-				<?php endif;?>
-		</div>
+            <div id="logo_form">
+                    <?php echo $form->labelEx($empresa,'logo'); ?>
+                    <? $item = $empresa->usuario->item  ?>
+                    <?php if (isset($item)):?>
+                        <?php $imghtml=CHtml::image(Yii::app( )->getBaseUrl( ).$item->path);?>
+                        <?php $this->renderPartial('../layouts/_viewitem', array(
+                                'imghtml' => $imghtml,'idimage'=>$empresa->usuario->item->id,'muestraBorrar'=>UserModule::isCompany()));?><?php //El admin no puede borrar la imagen, o si??>
+                    <?php else:?>
+                        <?php $this->renderPartial('../layouts/_itemupload', array(
+                                'image' => $image,'idform'=>'empresa-form'));?>
+                        <?php endif;?>
+            </div>
 	</div>
 	
 	<?php //$empresa = $model->empresa;?>

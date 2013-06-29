@@ -10,7 +10,7 @@
 	'id'=>'promociones-form',
 	'enableAjaxValidation'=>true,
 	'clientOptions'=>array(
-			'validateOnSubmit'=>true,
+            'validateOnSubmit'=>true,
 	),
 	'htmlOptions' => array('enctype'=>'multipart/form-data')
 )); ?>
@@ -39,11 +39,11 @@
 		<?php echo $form->error($model,'resumen'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'descripcion'); ?>
+	<!--<div class="row">
+		<?php /*echo $form->labelEx($model,'descripcion'); ?>
 		<?php echo $form->textField($model,'descripcion',array('size'=>60,'maxlength'=>1000)); ?>
-		<?php echo $form->error($model,'descripcion'); ?>
-	</div>
+		<?php echo $form->error($model,'descripcion');*/ ?>
+	</div>-->
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'descripcion_html'); ?>

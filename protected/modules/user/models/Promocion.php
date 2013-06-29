@@ -52,8 +52,7 @@ class Promocion extends CActiveRecord
 	/**
 	 * @return string the associated database table name
 	 */
-	public function tableName()
-	{
+	public function tableName(){
 		return '{{promociones}}';
 	}
 
@@ -65,7 +64,7 @@ class Promocion extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('titulo, titulo_slug, resumen, descripcion, descripcion_html, fecha_inicio, fecha_fin, fechaCreacion, destacado, precio, condiciones, stock', 'required'),
+			array('titulo, titulo_slug, resumen, descripcion_html, fecha_inicio, fecha_fin, destacado, precio, condiciones, stock', 'required'),
 			array('id,user_id, estado, destacado, stock,precio', 'numerical', 'integerOnly'=>true),
 			array('titulo, titulo_slug, resumen', 'length', 'max'=>100),
 			array('fecha_inicio,fecha_fin', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true, 'on' => 'insert'),//fechaCreación es un timestamp
@@ -175,9 +174,11 @@ class Promocion extends CActiveRecord
             $criteria->compare('stock',$this->stock);
             //$criteria->compare( 'usuario.username', $this->nbempresa, true );
             $criteria->compare( 'usuario.empresa.nombre', $this->nbempresa, true );
-            if (UserModule::isCompany())
-                $criteria->condition='user_id='.$this->user_id;
-            return new CAct veDataProvider($this, array(
+            if (UserModule::isCompany()){
+                $criteria->params = array(':userid' => Yii::app()->user->id);
+                $criteria->addCondition('t.user_id = :userid');
+            }
+            return new CActiveDataProvider($this, array(
                     'criteria'=>$criteria,
             ));
     }

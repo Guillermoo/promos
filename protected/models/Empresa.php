@@ -70,7 +70,7 @@ class Empresa extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'usuario' => array(self::BELONGS_TO, 'Usuarios', 'user_id'),
+			'usuario' => array(self::BELONGS_TO, 'User', 'user_id'),
 			//'cuenta' => array(self::HAS_ONE, 'Cuenta', 'id'),
 			'categoria' => array(self::MANY_MANY, 'Category', 'tbl_emp_cat(empresa_id,categoria_id)'),
 			//(G)O la de arriba o la de abajo, no las dos
