@@ -1,9 +1,14 @@
 <?php if(YII_RUTAS == true) echo __FILE__; ?>
+<?php if (UserModule::isAdmin()): ?>
+    <?php $action = 'edit/'+$empresa->id; ?>
+<?php else:?>
+    <?php $action = 'empresa'; ?>
+<?php endif;?>
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'empresa-form',
 	'enableAjaxValidation'=>true,
 	//'type'=>'horizontal',
-	'action'=>'empresa/edit/'.$empresa->id,
+        'action'=>$action,
 	'clientOptions'=>array(
 		'validateOnSubmit'=>true,
 	),
@@ -12,6 +17,9 @@
 ?>
 
 <fieldset>
+    
+        <p class="note">Fields with <span class="required">*</span> are required.</p>
+        
 	<?php //Sólo la compañía tiene reglas de validación ?>
 	<?php if (!UserModule::isCompany(Yii::app()->user->id) ):?>
 		<?php echo $form->errorSummary(array($empresa)); ?>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 21, 2013 at 03:42 AM
+-- Generation Time: Jul 01, 2013 at 06:45 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -55,6 +55,9 @@ INSERT INTO `AuthAssignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES
 ('comprador', '114', NULL, 'N;'),
 ('comprador', '115', NULL, 'N;'),
 ('comprador', '127', NULL, 'N;'),
+('comprador', '133', NULL, 'N;'),
+('comprador', '134', NULL, 'N;'),
+('comprador', '136', NULL, 'N;'),
 ('comprador', '20', NULL, 'N;'),
 ('comprador', '24', NULL, 'N;'),
 ('comprador', '25', NULL, 'N;'),
@@ -81,6 +84,17 @@ INSERT INTO `AuthAssignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES
 ('comprador', '95', NULL, 'N;'),
 ('comprador', '97', NULL, 'N;'),
 ('comprador', '98', NULL, 'N;'),
+('empresa', '12', NULL, 'N;'),
+('empresa', '128', NULL, 'N;'),
+('empresa', '129', NULL, 'N;'),
+('empresa', '130', NULL, 'N;'),
+('empresa', '131', NULL, 'N;'),
+('empresa', '132', NULL, 'N;'),
+('empresa', '135', NULL, 'N;'),
+('empresa', '137', NULL, 'N;'),
+('empresa', '139', NULL, 'N;'),
+('empresa', '140', NULL, 'N;'),
+('empresa', '141', NULL, 'N;'),
 ('empresa', '27', NULL, 'N;'),
 ('empresa', '36', NULL, 'N;'),
 ('empresa', '38', NULL, 'N;'),
@@ -272,27 +286,32 @@ CREATE TABLE IF NOT EXISTS `tbl_empresas` (
   `modificado` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `usuario_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=48 ;
 
 --
 -- Dumping data for table `tbl_empresas`
 --
 
 INSERT INTO `tbl_empresas` (`id`, `user_id`, `nombre`, `nombre_slug`, `cif`, `web`, `twitter`, `facebook`, `urlTienda`, `modificado`) VALUES
-(1, 7, 'NbEmpresa1', 'nbempresa1', '12345678A', 'few3eaaaaa', '3r23fs43asd2q', 'wqrf3wgraaa', 'ewger11rrra', '0000-00-00 00:00:00'),
-(12, 59, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
-(15, 9, 'NbEmpresa2', 'nbempresa2', '12345678A', 'ewdgsg', '', '', '', NULL),
+(1, 7, 'NbEmpresa11', 'nbempresa1', '12345678A', 'few3ea11sf', '3r23fs43asd2q', 'wqrf3wgraaa12', 'ew1111', '0000-00-00 00:00:00'),
+(12, 59, 'Nombre_Empresa59', '', '12345678A', 'asf', 'twitttt1111', 'qq123w11aa', 'qasf123z11qz', NULL),
+(15, 9, 'NbEmpresa2', 'nbempresa2', '12345678A', 'ewdgsg213', 'asdsasda', '', '', NULL),
 (17, 68, '', '', '', 'asdfsd', '', '', '', NULL),
 (18, 70, '', '', '', 'saefwew3', '', '', '', NULL),
 (22, 72, '', '', '', '', '', '', '', NULL),
-(23, 36, 'Lallala', 'lallala', NULL, NULL, NULL, NULL, NULL, NULL),
+(23, 36, 'Lallala', 'lallala', '12345678A', 'refgr4', 'qwaredsff', 'asdfdsf123', 'fwegrwqq', NULL),
 (24, 75, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
 (25, 76, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
 (26, 77, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
 (28, 93, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
-(38, 127, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
 (39, 58, 'NombreNuevo', '', '01234567A', '', '', '', 'effrer4', NULL),
-(40, 42, '', '', NULL, '', '', '', '', NULL);
+(40, 42, '', '', NULL, '', '', '', '', NULL),
+(41, 129, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
+(43, 137, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
+(44, 139, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
+(45, 140, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
+(46, 141, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
+(47, 12, 'NbEmpresaFantasma', '', NULL, '', '', '', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -330,13 +349,13 @@ CREATE TABLE IF NOT EXISTS `tbl_items` (
   `attribute` varchar(45) NOT NULL,
   `size` varchar(100) NOT NULL,
   `path` varchar(255) NOT NULL,
-  `foreign_id` int(11) NOT NULL,
+  `foreign_id` int(11) NOT NULL COMMENT 'Corresponde con el id de la empresa',
   `model` varchar(50) NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `foreign_id` (`foreign_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `tbl_items`
@@ -346,7 +365,8 @@ INSERT INTO `tbl_items` (`id`, `name`, `tipo`, `thumb`, `filename`, `attribute`,
 (5, 'artistic_wallpaper_1366x768.jpeg', 'image/jpeg', 1, 'f69d6677dd6f6d761d32de7b27179800.jpeg', 'file', '79316', '/uploads/images/f69d6677dd6f6d761d32de7b27179800.jpeg', 9, 'empresa', '2013-06-08 14:00:00', NULL),
 (7, 'artistic_wallpaper_1366x768.jpeg', 'image/jpeg', 1, 'b0ab54512bedc1a5ad9626e2f78f0c64.jpeg', 'file', '79316', '/uploads/images/b0ab54512bedc1a5ad9626e2f78f0c64.jpeg', 72, 'empresa', '2013-06-24 14:00:00', NULL),
 (9, 'artistic_wallpaper_1366x768.jpeg', 'image/jpeg', 1, '63c84a5d2fe628e408746250e632b30b.jpeg', 'file', '79316', '/uploads/images/63c84a5d2fe628e408746250e632b30b.jpeg', 7, 'empresa', '2013-06-20 07:38:43', NULL),
-(10, 'widescreen-wallpaper.jpg', 'image/jpeg', 1, '84852f533408909318d4176845f7bb06.jpg', 'file', '247200', '/uploads/images/84852f533408909318d4176845f7bb06.jpg', 58, 'empresa', '2013-06-21 01:36:36', NULL);
+(10, 'widescreen-wallpaper.jpg', 'image/jpeg', 1, '84852f533408909318d4176845f7bb06.jpg', 'file', '247200', '/uploads/images/84852f533408909318d4176845f7bb06.jpg', 58, 'empresa', '2013-06-21 01:36:36', NULL),
+(11, 'widescreen-wallpaper.jpg', 'image/jpeg', 1, '7dbaa434280acc6367744b248e257a23.jpg', 'file', '247200', '/uploads/images/7dbaa434280acc6367744b248e257a23.jpg', 36, 'empresa', '2013-06-29 05:28:07', NULL);
 
 -- --------------------------------------------------------
 
@@ -8499,7 +8519,7 @@ CREATE TABLE IF NOT EXISTS `tbl_profiles` (
   UNIQUE KEY `user_id` (`user_id`),
   KEY `empresa_id` (`id`),
   KEY `tipocuenta` (`tipocuenta`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=44 ;
 
 --
 -- Dumping data for table `tbl_profiles`
@@ -8507,8 +8527,8 @@ CREATE TABLE IF NOT EXISTS `tbl_profiles` (
 
 INSERT INTO `tbl_profiles` (`id`, `user_id`, `username`, `lastname`, `paypal_id`, `tipocuenta`, `meses`, `fecha_activacion`, `fecha_fin`, `fecha_pago`, `telefono`, `fax`, `cp`, `barrio`, `direccion`, `poblacion_id`) VALUES
 (1, 2, 'Perio palotes', '', NULL, 1, NULL, '0000-00-00', '0000-00-00', '0000-00-00', '', '', '', 0, '0', 0),
-(3, 7, 'Empresa1', 'Apppp111111', 'wefsssss', 1, NULL, '2013-06-26', '2013-06-11', '2013-06-21', '2352', '3199', '3424', 214, '12111', 32115999),
-(4, 9, 'NbEmpresa2', 'asdada', 'e3res', 1, NULL, '2013-06-19', '0000-00-00', '0000-00-00', '34252', '', '321', 0, '1', 2),
+(3, 7, 'Empresa1', 'Apppp111111', 'wefsssssaaqazzzz', 1, '', '2013-06-26', '2013-06-11', '2013-06-21', '2352', '3199', '3424', 214, '12111', 32115999),
+(4, 9, 'NbEmpresa2', 'asdada', 'e3res', 1, '2', '2013-06-19', '0000-00-00', '0000-00-00', '34252', '', '321', 0, '1', 2),
 (6, 68, 'NbNuevaEmpresa1', '', '', 1, NULL, '2013-06-12', '2013-06-22', '2013-06-25', '', '', '', 0, '0', 0),
 (7, 70, 'NbNuevaEmpresa2', '', '', 1, NULL, '0000-00-00', '0000-00-00', '0000-00-00', '', '', '', 0, '0', 0),
 (8, 72, 'Nb', 'Ap', '', 1, NULL, '2013-06-27', '0000-00-00', '0000-00-00', '', '', '', 0, '0', 0),
@@ -8519,10 +8539,15 @@ INSERT INTO `tbl_profiles` (`id`, `user_id`, `username`, `lastname`, `paypal_id`
 (17, 93, NULL, NULL, NULL, 1, NULL, '0000-00-00', '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL),
 (18, 94, NULL, NULL, NULL, 1, NULL, '0000-00-00', '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL),
 (19, 95, NULL, NULL, NULL, 1, NULL, '0000-00-00', '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL),
-(20, 97, NULL, NULL, NULL, 1, NULL, '0000-00-00', '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL),
-(32, 127, NULL, NULL, NULL, 1, NULL, '0000-00-00', '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL),
 (33, 58, '', '', 'wesdfg', 1, NULL, '2013-06-24', '2013-06-29', '0000-00-00', '454423254', '', '4224', NULL, '2fvrety4', 32),
-(34, 42, '', '', '', 2, NULL, '0000-00-00', '0000-00-00', '0000-00-00', '', '', '', NULL, NULL, NULL);
+(34, 42, '', '', '', 2, NULL, '0000-00-00', '0000-00-00', '0000-00-00', '', '', '', NULL, NULL, NULL),
+(35, 129, NULL, NULL, NULL, 1, NULL, '0000-00-00', '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL),
+(38, 137, NULL, NULL, NULL, 1, '2', '0000-00-00', '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL),
+(39, 139, NULL, NULL, NULL, 1, '2', '0000-00-00', '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL),
+(40, 140, NULL, NULL, NULL, 1, '2', '0000-00-00', '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL),
+(41, 141, NULL, NULL, NULL, 1, '2', '0000-00-00', '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL),
+(42, 12, 'useerr12', '', '', 1, '', '0000-00-00', '0000-00-00', '0000-00-00', '', '', '', NULL, NULL, NULL),
+(43, 59, 'usernameee', '', '', 1, '', '0000-00-00', '0000-00-00', '0000-00-00', '', '', '', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -8583,19 +8608,21 @@ CREATE TABLE IF NOT EXISTS `tbl_promociones` (
   `rebaja` varchar(45) NOT NULL,
   `condiciones` varchar(1000) NOT NULL,
   `stock` varchar(11) NOT NULL,
-  PRIMARY KEY (`id`,`user_id`),
+  PRIMARY KEY (`id`),
   KEY `empresa_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `tbl_promociones`
 --
 
 INSERT INTO `tbl_promociones` (`id`, `user_id`, `estado`, `titulo`, `titulo_slug`, `resumen`, `descripcion`, `descripcion_html`, `fecha_inicio`, `fecha_fin`, `fechaCreacion`, `destacado`, `precio`, `rebaja`, `condiciones`, `stock`) VALUES
-(3, 9, 1, 'asd', 'asd', 'sddgg', 'sg', 'sg', '2013-06-18', '2013-06-19', '2013-06-19 14:00:00', 1, '12', '13', 'dsgfgd', 'assr'),
+(3, 9, 0, 'asd', 'asd', 'sddgg', 'sg', '<p>sg</p>', '2013-06-18', '2013-06-19', '2013-06-19 14:00:00', 1, '12', '13', 'dsgfgd', '123'),
 (13, 7, 1, 'Promoción titulo', 'Promoción titulo', 'Promoción resume', 'Promoción descripcion', 'Promoción descripcion <b>html</b>', '2013-06-25', '2013-06-27', '2013-06-28 14:00:00', 1, '100', '10', 'Promoción condiciones', '10'),
 (15, 12, 1, 'Promocion no destacada', 'sdf', 'sdg', 'sdg', 'asdf', '2013-06-10', '2013-06-12', '2013-06-20 14:00:00', 0, '1w', 'as', 'dsf', 'sdf'),
-(16, 7, 1, 'Promoción titulo', 'Promoción titulo', 'Promoción resume', 'Promoción descripcion', 'Promoción descripcion <b>html</b>', '2013-06-14', '2013-06-24', '2013-06-27 14:00:00', 1, '100', '10', 'Promoción condiciones', '10');
+(16, 7, 1, 'Promoción titulo2', 'Promoción titulo', 'Promoción resumefsdsdf. Fin', 'Promoción descripcion', '<p>Promoci&oacute;n descripcion <strong>html</strong></p>', '2013-06-14', '2013-06-24', '2013-06-27 14:00:00', 1, '100', '10', 'Promoción condiciones', '10'),
+(17, 36, 1, 'Mi promoción', 'Mi promoción', 'Resumen de la promoción', '', '<p>Esta de<span style="color: #888888;">scipci&oacute;nas</span>dhskdn,g</p>\r\n<p>&nbsp;</p>\r\n<p>sdg<span style="text-decoration: underline;">dsg</span></p>', '2013-06-03', '2013-06-04', '2013-06-29 04:50:12', 1, '13', '', 'fbb', '11'),
+(18, 7, 0, 'Nueva promoción', 'Nueva promoción', 'Resumen nueva promo', '', '<p>ks&ntilde;<strong>ghk</strong>3333</p>', '2013-06-03', '2013-06-26', '2013-06-30 02:36:18', 0, '12', '', 'sdgddn', '123');
 
 -- --------------------------------------------------------
 
@@ -8691,7 +8718,7 @@ CREATE TABLE IF NOT EXISTS `tbl_users` (
   UNIQUE KEY `email` (`email`),
   KEY `status` (`status`),
   KEY `superuser` (`superuser`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=128 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=142 ;
 
 --
 -- Dumping data for table `tbl_users`
@@ -8700,15 +8727,15 @@ CREATE TABLE IF NOT EXISTS `tbl_users` (
 INSERT INTO `tbl_users` (`id`, `username`, `password`, `email`, `activkey`, `create_at`, `lastvisit_at`, `superuser`, `status`) VALUES
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'webmaster@example.com', '9a24eff8c15a6a141ece27eb6947da0f', '2013-05-07 06:39:24', '2013-05-20 04:41:17', -1, 1),
 (2, 'demo', 'fe01ce2a7fbac8fafaed7c982a04e229', 'demo@examplewe.com', '099f825543f7850cc038b90aaff39fac', '2013-05-07 06:39:24', '2013-05-31 22:18:39', 0, 0),
-(3, 'admin1', 'e00cf25ad42683b3df678c61f42c6bda', 'admin1@admin1.com', '9ffe8215d86586c1d55b4e0174f87a89', '2013-05-07 00:19:52', '2013-06-20 15:23:38', 1, 1),
-(7, 'empresa1', 'a24df02d86e0f2c0c70c1423a90837a8', 'empresa111@empreeq.com', 'fa2a955301a997db335d5d9e1bf09d79', '2013-05-09 21:21:40', '2013-06-20 15:23:17', 2, 2),
-(9, 'empresa2', 'e8790a92abdfc3d10e7dea6091bafc35', 'empresa2@empresa.com', '4f407aad1347d3afc0df57a2cf4166a0', '2013-05-09 21:36:20', '2013-06-18 17:38:44', 2, 3),
+(3, 'admin1', 'e00cf25ad42683b3df678c61f42c6bda', 'admin1@admin1.com', '9ffe8215d86586c1d55b4e0174f87a89', '2013-05-07 00:19:52', '2013-06-29 14:44:21', 1, 1),
+(7, 'empresa1', 'a24df02d86e0f2c0c70c1423a90837a8', 'empresa111@empreeq.com', 'fa2a955301a997db335d5d9e1bf09d79', '2013-05-09 21:21:40', '2013-06-30 15:45:50', 2, 2),
+(9, 'empresa2', 'e8790a92abdfc3d10e7dea6091bafc35', 'empresa2@empresa.com', '4f407aad1347d3afc0df57a2cf4166a0', '2013-05-09 21:36:20', '2013-06-28 20:45:35', 2, 3),
 (12, 'empresa7', '590fb77fd6a5e286f0cb8b18ac2c08fa', 'empresa7@empresa7.com', '57bb126336aacd070f191c6f7ce7f9d3', '2013-05-09 21:51:36', '0000-00-00 00:00:00', 2, 2),
 (13, 'admin3', '32cacb2f994f6b42183a1300d9a3e8d6', 'admin3@admin.com', 'fe03aebe57b96a901c56a0aec557f637', '2013-05-09 21:56:05', '2013-06-19 00:24:27', 1, 1),
 (26, 'admin4', 'fc1ebc848e31e0a68e868432225e3c82', 'admin4@admin.com', '79cff1850cbac31f2e5ad83a0d95910f', '2013-05-13 20:50:25', '0000-00-00 00:00:00', 1, 1),
 (29, 'admin9', 'eed57216df3731106517ccaf5da2122d', 'admin9@admin9.com', '3574d098e93a74fe2a84a62f65e97e25', '2013-05-13 21:25:11', '2013-05-13 21:25:21', 1, 1),
 (30, 'guillermo', 'd7ed8e65834e0f58fa7c43f332e64cfe', 'grillermo@gmail.com', '00d4be409561a5f09899c7985e0f083e', '2013-05-15 00:11:06', '2013-05-16 22:39:39', 0, 1),
-(36, 'empresa4', 'ee1dd733f329cec8289a5697cd26f80c', 'empresa4@empresa4.com', '30c18e59d06152324d438207678dc012', '2013-05-16 23:13:05', '2013-06-10 13:24:57', 2, 1),
+(36, 'empresa4', 'ee1dd733f329cec8289a5697cd26f80c', 'empresa4@empresa4.com', '30c18e59d06152324d438207678dc012', '2013-05-16 23:13:05', '2013-06-28 23:32:25', 2, 1),
 (38, 'empresa5', 'ca16303d94eff24d56dc0097a2a2343d', 'empresa5@empresa5.com', '5df3352a3b20d95fbffd60223c3bee4d', '2013-05-19 00:08:55', '2013-05-19 00:09:05', 2, 1),
 (41, 'empresa6', '1981f3d899ee22e64b991ffc4818026d', 'empresa6@empresa6.com', '20f6d019d3fb66e9b72abe077c6ec349', '2013-05-19 17:50:44', '2013-05-19 17:51:13', 2, 3),
 (42, 'Hugomierdas', '8c9977d9170c82f412cb92179706be81', 'hugomierdas@hugomierdas.com', 'b9a53a18b80864f19c581e85c3704295', '2013-05-20 12:27:05', '2013-05-20 04:43:36', 2, 1),
@@ -8727,12 +8754,17 @@ INSERT INTO `tbl_users` (`id`, `username`, `password`, `email`, `activkey`, `cre
 (75, 'asdf@asdf.com', '5259ee4a034fdeddd1b65be92debe731', 'asdf@asdf.com', '19ee513cf1b760ebbbc9dab48a858085', '2013-06-13 05:56:04', '0000-00-00 00:00:00', 2, 0),
 (76, 'asdf@asdf11.com', '912ec803b2ce49e4a541068d495ab570', 'asdf@asdf11.com', '64b4fe9bf34501eb2ac294bf676ea4af', '2013-06-13 05:58:55', '0000-00-00 00:00:00', 2, 0),
 (77, 'asdf@asdf111.com', '912ec803b2ce49e4a541068d495ab570', 'asdf@asdf111.com', 'd2135a0dee8bcefdb576ac5e4f4d9c64', '2013-06-13 22:57:32', '0000-00-00 00:00:00', 2, 1),
-(93, 'empresatest', '912ec803b2ce49e4a541068d495ab570', 'empresa1@empresa11.com', 'ed561258d0b2c6b2f655c2d931303f85', '2013-06-14 17:33:14', '0000-00-00 00:00:00', 2, 0),
+(93, 'empresatest', '912ec803b2ce49e4a541068d495ab570', 'empresa1@empresa11.com', 'ed561258d0b2c6b2f655c2d931303f85', '2013-06-14 17:33:14', '2013-06-21 14:00:00', 2, 0),
 (94, 'compradortest', '912ec803b2ce49e4a541068d495ab570', 'compradortest@comprad2o2.com', '94619d361e10bb1cc8963786af780582', '2013-06-14 17:45:26', '0000-00-00 00:00:00', 0, 0),
 (95, 'comprador', '912ec803b2ce49e4a541068d495ab570', 'comprador@comprador.com', '7da436ad34779f6eb9dc2c857362b185', '2013-06-15 05:15:01', '2013-06-14 21:51:39', 0, 1),
-(97, 'comprador1', '5259ee4a034fdeddd1b65be92debe731', 'comprador1@comprador.com', '327c82651246f4f1b651c22a0ffbd2dc', '2013-06-15 05:21:16', '0000-00-00 00:00:00', 0, 1),
-(115, 'wegw@gsgs1.com', '912ec803b2ce49e4a541068d495ab570', 'wegw@gsgs1.com', '6478e7b6fd7b28798e984c78f9d2a11e', '2013-06-20 00:14:39', '0000-00-00 00:00:00', 0, 0),
-(127, 'zxcv@zxcv.com', '912ec803b2ce49e4a541068d495ab570', 'zxcv@zxcv.com', '103913c4d7d959bdb1859b693fba218f', '2013-06-20 00:32:27', '0000-00-00 00:00:00', 0, 0);
+(129, 'NuevaEmpresa', '912ec803b2ce49e4a541068d495ab570', 'nuevaempresa@nueva.com', '972af4cc33e2525e0c1701d058a81511', '2013-06-20 21:34:37', '0000-00-00 00:00:00', 2, 0),
+(130, 'meprme@wsmfpm.com', '912ec803b2ce49e4a541068d495ab570', 'meprme@wsmfpm.com', 'e69dbb40d4ec90dd6b3c9a71d6c4d057', '2013-06-20 21:52:37', '0000-00-00 00:00:00', 2, 0),
+(136, 'comp@sdg.com', '912ec803b2ce49e4a541068d495ab570', 'comp@sdg.com', 'd4001d2fb17c29124292296f79472c9b', '2013-06-21 22:59:46', '0000-00-00 00:00:00', 0, 0),
+(137, 'empr@emrpe.com', '912ec803b2ce49e4a541068d495ab570', 'empr@emrpe.com', '29918208cb4f283a07b4d3a3534674cf', '2013-06-21 23:01:18', '0000-00-00 00:00:00', 2, 0),
+(138, 'emperm@sdgs.com', '912ec803b2ce49e4a541068d495ab570', 'emperm@sdgs.com', '9047eba7b096f6ce63adcad2cf987c28', '2013-06-21 23:02:31', '0000-00-00 00:00:00', 2, 0),
+(139, 'mepe@msd.com', '912ec803b2ce49e4a541068d495ab570', 'mepe@msd.com', 'ff67b83dba9774133c3b909f96e83138', '2013-06-21 23:08:20', '0000-00-00 00:00:00', 2, 0),
+(140, 'empemp@sdsg.com', '912ec803b2ce49e4a541068d495ab570', 'empemp@sdsg.com', 'ab4f79a9bf7126a1a47a6c92aede8023', '2013-06-21 23:10:09', '0000-00-00 00:00:00', 2, 0),
+(141, 'asfghdj@sfhd.com', '912ec803b2ce49e4a541068d495ab570', 'asfghdj@sfhd.com', '0291491d0f462250c3f7b857dc4a9cba', '2013-06-21 23:10:54', '0000-00-00 00:00:00', 2, 0);
 
 -- --------------------------------------------------------
 

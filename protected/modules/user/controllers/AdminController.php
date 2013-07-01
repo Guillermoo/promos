@@ -56,20 +56,21 @@ class AdminController extends Controller
 	    	//'model'=>$model
 	    ));
 	}
+        
 	/**
 	 * Manages all models.
 	 */
 	public function actionAdmin()
 	{
-		$model=new User('search');
-		$model->unsetAttributes();  // clear any default values
+            $model=new User('search');
+            $model->unsetAttributes();  // clear any default values
 
-		if(isset($_GET['User']))
-			$model->attributes=$_GET['User'];
+            if(isset($_GET['User']))
+                    $model->attributes=$_GET['User'];
 
-		$this->render('index',array(
-            'model'=>$model,
-		));
+            $this->render('index',array(
+                'model'=>$model,
+            ));
 	}
 	
 	/**

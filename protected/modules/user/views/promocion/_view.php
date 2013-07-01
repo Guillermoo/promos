@@ -13,8 +13,8 @@
 	<?php echo CHtml::encode($data->user_id); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('estado')); ?>:</b>
-	<?php echo CHtml::encode($data->estado); ?>
+	<b><?php //echo CHtml::encode($data->getAttributeLabel('estado')); ?>:</b>
+	<?php //echo CHtml::encode($data->estado); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('titulo')); ?>:</b>

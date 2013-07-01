@@ -51,18 +51,34 @@ class PromocionController extends Controller
 	/**
 	 * Manages all models.
 	 */
-	public function actionAdmin()
-	{
-		$this->_model=new Promocion('search');
+    /**
+     * Manages all models.
+     */
+    public function actionIndex()
+    {
+        $this->_model=new Promocion('search');
 
-		$this->_model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Promocion']))
-			$this->_model->attributes=$_GET['Promocion'];
-		
-		$this->render('admin',array(
-			'model'=>$this->_model,
-		));
-	}
+        $this->_model->unsetAttributes();  // clear any default values
+        if(isset($_GET['Promocion']))
+            $this->_model->attributes=$_GET['Promocion'];
+
+        $this->render('admin',array(
+            'model'=>$this->_model,
+        ));
+    }
+    
+    public function actionAdmin()
+    {
+            $this->_model=new Promocion('search');
+
+            $this->_model->unsetAttributes();  // clear any default values
+            if(isset($_GET['Promocion']))
+                    $this->_model->attributes=$_GET['Promocion'];
+
+            $this->render('admin',array(
+                    'model'=>$this->_model,
+            ));
+    }
 	
 	/**
 	 * Displays a particular model.
@@ -80,17 +96,10 @@ class PromocionController extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate()
-	{
+	public function actionCreate(){
             $model=new Promocion;
             $model->scenario = "insert";
-            
-            /*if(isset($_POST['ajax']) && $_POST['ajax']==='promociones-form')
-            {
-                    echo UActiveForm::validate(array($model));
-                    Yii::app()->end();
-            }*/
-            
+
             $this->performAjaxValidation($model);
 
             if(isset($_POST['Promocion'])){
@@ -99,11 +108,11 @@ class PromocionController extends Controller
                 $this->setCamposSecundarios($model);
 
                 if($model->save()){
-                        Yii::app()->user->setFlash('success',UserModule::t("Promotion created."));
-                        $this->redirect(array('promociones'));
+                    Yii::app()->user->setFlash('success',UserModule::t("Promotion created."));
+                    $this->redirect(array('promociones'));
                 }
                 else{
-                        Yii::app()->user->setFlash('error',UserModule::t("Error creating the promotion."));
+                    Yii::app()->user->setFlash('error',UserModule::t("Error creating the promotion."));
                 }
             }
             $this->render('create',array(
@@ -115,25 +124,30 @@ class PromocionController extends Controller
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
 	 */
-	public function actionUpdate($id)
+	public function actionUpdate($id=null)
 	{
-		$this->_model=$this->loadModel($id);
+            
+            //adsgh;
+            $this->_model=$this->loadModel($id);
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+            $this->performAjaxValidation(array($this->_model));
+            // Uncomment the following line if AJAX validation is needed
+            // $this->performAjaxValidation($model);
 
-		if(isset($_POST['Promocion']))
-		{
-			$this->_model->attributes=$_POST['Promocion'];
-			if($this->_model->save())
-				$this->redirect(array('update','id'=>$this->_model->id));
-			else
-				Yii::app()->user->setFlash('error',UserModule::t("Error updating the promotion."));
-		}
+            if(isset($_POST['Promocion']))
+            {
+                $this->_model->attributes=$_POST['Promocion'];
+                if($this->_model->save())
+                        Yii::app()->user->setFlash('success',UserModule::t("Promotion updated."));
+                else
+                        Yii::app()->user->setFlash('error',UserModule::t("Error updating the promotion."));
+                
+                $this->redirect(array('update','id'=>$this->_model->id));
+            }
 
-		$this->render('update',array(
-			'model'=>$this->_model,
-		));
+            $this->render('update',array(
+                    'model'=>$this->_model,
+            ));
 	}
 
 	/**
@@ -149,130 +163,100 @@ class PromocionController extends Controller
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
         
-    /**
-     * Manages all models.
-     */
-    public function actionIndex()
-    {
-        $this->_model=new Promocion('search');
 
-        $this->_model->unsetAttributes();  // clear any default values
-        if(isset($_GET['Promocion']))
-            $this->_model->attributes=$_GET['Promocion'];
-
-        $this->render('admin',array(
-            'model'=>$this->_model,
-        ));
+    private function setCamposSecundarios($model=null){
+        if(isset($model)){
+            //$this->_model->user_id = Yii::app()->user->id;
+            $model->estado = 1;
+            $model->titulo_slug = UserModule::getSlug($model->titulo) ;
+        }
     }
 
-	/**
-	 * Lists all models.
-	 */
-	public function actionIndex1()
-	{
-		$dataProvider=new CActiveDataProvider('Promocion');
-		
-		//$model = new Empresa();
-		$model = $this->loadUser();
+    /* Used to debug variables*/
+    protected function Debug($var){
+            $bt = debug_backtrace();
+            $dump = new CVarDumper();
+            $debug = '<div style="display:block;background-color:gold;border-radius:10px;border:solid 1px brown;padding:10px;z-index:10000;"><pre>';
+            $debug .= '<h4>function: '.$bt[1]['function'].'() line('.$bt[0]['line'].')'.'</h4>';
+            $debug .=  $dump->dumpAsString($var);
+            $debug .= "</pre></div>\n";
+            Yii::app()->params['debugContent'] .=$debug;
+    }
 
-		$this->render('index',array(
-			'model'=>$model,
-		));
-	}
-	
-	private function setCamposSecundarios($model=null){
-            if(isset($model)){
-                //$this->_model->user_id = Yii::app()->user->id;
-                $model->estado = 1;
-                $model->titulo_slug = UserModule::getSlug($model->titulo) ;
+    /**
+     * Returns the data model based on the primary key given in the GET variable.
+     * If the data model is not found, an HTTP exception will be raised.
+     * @param integer $id the ID of the model to be loaded
+     * @return Promocion the loaded model
+     * @throws CHttpException
+     */
+    public function loadModel($id)
+    {
+            //$user_id = Yii::app()->user->id;
+            //$this->_model=Promocion::model()->findByPk(array($id,$user_id));
+            $this->_model=Promocion::model()->findByPk($id);
+            if($this->_model===null)
+                    throw new CHttpException(404,'The requested page does not exist.');
+            return $this->_model;
+    }
+
+    public function loadUser()
+    {
+            if(Yii::app()->user->id)
+                    $user=Yii::app()->controller->module->user();
+            else
+                    throw new CHttpException(404,'Sorry, we cannot process your request. Try again
+                            later.');
+
+            return $user;
+    }
+
+    /**
+     * Performs the AJAX validation.
+     * @param CModel the model to be validated
+     */
+    protected function performAjaxValidation($validate)
+    {
+            // ajax validator
+            if(isset($_POST['ajax']) && $_POST['ajax']==='promociones-form')
+            {
+                echo UActiveForm::validate($validate);
+                Yii::app()->end();
             }
-	}
-	
-	/* Used to debug variables*/
-	protected function Debug($var){
-		$bt = debug_backtrace();
-		$dump = new CVarDumper();
-		$debug = '<div style="display:block;background-color:gold;border-radius:10px;border:solid 1px brown;padding:10px;z-index:10000;"><pre>';
-		$debug .= '<h4>function: '.$bt[1]['function'].'() line('.$bt[0]['line'].')'.'</h4>';
-		$debug .=  $dump->dumpAsString($var);
-		$debug .= "</pre></div>\n";
-		Yii::app()->params['debugContent'] .=$debug;
-	}
+    }
 
-	/**
-	 * Returns the data model based on the primary key given in the GET variable.
-	 * If the data model is not found, an HTTP exception will be raised.
-	 * @param integer $id the ID of the model to be loaded
-	 * @return Promocion the loaded model
-	 * @throws CHttpException
-	 */
-	public function loadModel($id)
-	{
-                //$user_id = Yii::app()->user->id;
-		//$this->_model=Promocion::model()->findByPk(array($id,$user_id));
-                $this->_model=Promocion::model()->findByPk($id);
-		if($this->_model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
-		return $this->_model;
-	}
-	
-	public function loadUser()
-	{
-		if(Yii::app()->user->id)
-			$user=Yii::app()->controller->module->user();
-		else
-			throw new CHttpException(404,'Sorry, we cannot process your request. Try again
-				later.');
-			
-		return $user;
-	}
+    /**
+     * Register Script
+     * Esta función es para gestionar el jquery de las vistas para que se muestren los cmapos según
+     * el valor seleccionado en el combo SuperUser(tipo de usuario). Está copiado y pegado de profileFields.
+     */
+    public function registerScript() {
+            $basePath=Yii::getPathOfAlias('application.modules.user.views.asset');
+            $baseUrl=Yii::app()->getAssetManager()->publish($basePath);
+            $cs = Yii::app()->getClientScript();
+            $cs->registerCoreScript('jquery');
+            $cs->registerCssFile($baseUrl.'/css/redmond/jquery-ui.css');
+            $cs->registerCssFile($baseUrl.'/css/style.css');
+            $cs->registerScriptFile($baseUrl.'/js/jquery-ui.min.js');
+            $cs->registerScriptFile($baseUrl.'/js/form.js');
+            $cs->registerScriptFile($baseUrl.'/js/jquery.json.js');
 
-	/**
-	 * Performs the AJAX validation.
-	 * @param CModel the model to be validated
-	 */
-	protected function performAjaxValidation($validate)
-	{
-		// ajax validator
-		if(isset($_POST['ajax']) && $_POST['ajax']==='promociones-form')
-		{
-                    echo UActiveForm::validate($validate);
-                    Yii::app()->end();
-		}
-	}
-	
-	/**
-	 * Register Script
-	 * Esta función es para gestionar el jquery de las vistas para que se muestren los cmapos según
-	 * el valor seleccionado en el combo SuperUser(tipo de usuario). Está copiado y pegado de profileFields.
-	 */
-	public function registerScript() {
-		$basePath=Yii::getPathOfAlias('application.modules.user.views.asset');
-		$baseUrl=Yii::app()->getAssetManager()->publish($basePath);
-		$cs = Yii::app()->getClientScript();
-		$cs->registerCoreScript('jquery');
-		$cs->registerCssFile($baseUrl.'/css/redmond/jquery-ui.css');
-		$cs->registerCssFile($baseUrl.'/css/style.css');
-		$cs->registerScriptFile($baseUrl.'/js/jquery-ui.min.js');
-		$cs->registerScriptFile($baseUrl.'/js/form.js');
-		$cs->registerScriptFile($baseUrl.'/js/jquery.json.js');
+            $widgets = self::getWidgets();
 
-		$widgets = self::getWidgets();
-		
-		$js = "
-			$('#buttonStateful').click(function() {
-			    var btn = $(this);
-			    btn.button('loading'); // call the loading function
-			    setTimeout(function() {
-			        btn.button('reset'); // call the reset function
-		    }, 3000);
-		    
-		    function loading() {
-			}
-			
-			"
-	    ;
-	}
+            $js = "
+                    $('#buttonStateful').click(function() {
+                        var btn = $(this);
+                        btn.button('loading'); // call the loading function
+                        setTimeout(function() {
+                            btn.button('reset'); // call the reset function
+                }, 3000);
+
+                function loading() {
+                    }
+
+                    "
+        ;
+    }
 
 	
 	

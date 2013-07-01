@@ -47,7 +47,8 @@ $('.search-form form').submit(function(){
 		array(
 			'name' => 'user_id',
 			'type'=>'raw',
-                        'value' => 'CHtml::link(UHtml::markSearch($data,"user_id"),array("admin/update","id"=>$data->user_id))',
+                        'value' => 'CHtml::link(UHtml::encode($data->usuario->username,"user_id"),array("admin/update","id"=>$data->user_id))',
+                        //'value' => 'CHtml::link(CHtml::encode($data->usuario->empresa->nombre),array("admin/update","id"=>$data->user_id))',
 			'visible'=> YII_DEBUG,
 		),
 		/*array(

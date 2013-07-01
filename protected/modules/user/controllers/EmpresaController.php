@@ -11,7 +11,7 @@ class EmpresaController extends Controller
 	//------------------
 	//public $layout='column2';
         public $layout='//layouts/column2';
-	public $defaultAction = 'empresa';
+	//public $defaultAction = 'view';
 	
 	/**
 	 * @var CActiveRecord the currently loaded data model instance.
@@ -140,19 +140,17 @@ class EmpresaController extends Controller
         /**
 	 * Manages all models.
 	 */
-	public function actionAdmin()
-	{
-		$model=new Empresa('search');
-		$model->unsetAttributes();  // clear any default values
+	public function actionAdmin(){
+            $model=new Empresa('search');
+            $model->unsetAttributes();  // clear any default values
 
-		if(isset($_GET['Empresa']))
-			$model->attributes=$_GET['Empresa'];
+            if(isset($_GET['Empresa']))
+                    $model->attributes=$_GET['Empresa'];
 
-		$this->render('admin',array(
-                    'model'=>$model,
-		));
+            $this->render('admin',array(
+                'model'=>$model,
+            ));
 	}
-
 	
 	public function actionDeleteItem($id){
 		//Here we check if we are deleting and uploaded file
@@ -269,33 +267,32 @@ class EmpresaController extends Controller
 	    
 	}
         
-        public function actionEdit($id=null){
+        private function actualizaEmpresa($id=null){
             
-            $empresa = $this->devuelveEmpresa($id);
-            $this->debug($id);
-                
-            if (!isset($empresa)){
-                //afdsgfb;
+            if (UserModule::isAdmin()){
+                $empresa = $this->loadModel($id);
+                $redirectOkEmpresa = 'empresa/edit/id/'.$empresa->id;
+            }else{
+                $empresa = $this->loadUser()->empresa;
+                $redirectOkEmpresa = '/user/empresa';
             }
-                //throw new CHttpException(404,'The requested page does not exist.');
-            // ajax validator
+            
+            // ajax validator   
             $this->performAjaxValidation(array($empresa));
-
+            
             //Para cargar/gestionar el logo
             Yii::import("xupload.models.XUploadForm");
             $imageForm = new XUploadForm;
-            
             if(isset($_POST['Empresa'])){
                 $empresa->attributes=$_POST['Empresa'];
                 if($empresa->validate()) {
                     try {
-                        if ($empresa->save()){
-                                Yii::app()->user->setFlash('success',UserModule::t("Changes is saved."));
-                                $this->redirect(array('edit'));
-                        }else{
-                                Yii::app()->user->setFlash('error',UserModule::t("Error saving the changes."));
-                                $this->redirect(array('/user/empresa'));
-                        };
+                        if ($empresa->save())
+                            Yii::app()->user->setFlash('success',UserModule::t("Changes is saved."));
+                        else
+                            Yii::app()->user->setFlash('error',UserModule::t("Error saving the changes."));
+                        
+                        $this->redirect(array($redirectOkEmpresa));
                     }
                     // we are looking for specific exception here
                     catch (CException $e)
@@ -309,85 +306,17 @@ class EmpresaController extends Controller
                     'image'=>$imageForm,
             ));
         }
-
-	public function actionEdit2(){
-            $model = $this->loadUser();
-            $empresa=$model->empresa;
-
-            //$empresa->scenario ="paraValidar";
-
-            $cuentas = Cuenta::getCuentas();
-            $cuentas_list = CHtml::listData($cuentas,'id', 'nombre');
-
-            //Para cargar/gestionar el logo
-            Yii::import("xupload.models.XUploadForm");
-            $logo = new XUploadForm;
-            // ajax validator
-            if(isset($_POST['ajax']) && $_POST['ajax']==='empresa-form')
-            {
-                    echo UActiveForm::validate(array($model,$empresa));
-                    Yii::app()->end();
-            }
-
-            if(isset($_POST['Empresa']))
-            {
-                    $empresa->attributes=$_POST['Empresa'];
-                    if($empresa->validate()) {
-                            try {
-                                    if ($empresa->save()){
-                                            Yii::app()->user->setFlash('success',UserModule::t("Changes is saved."));
-                                            $this->redirect(array('/user/empresa'));
-                                    }else{
-                                            Yii::app()->user->setFlash('error',UserModule::t("Error saving the changes."));
-                                            $this->debug(UserModule::getSlug($empresa->nombre));
-                                            $this->debug($empresa);
-                                            //$this->redirect(array('/user/empresa'));
-
-                                    };
-                            }
-                            // we are looking for specific exception here
-                            catch (CException $e)
-                            {
-                                    echo $e;
-                            }
-                            /*if ($empresa->save(false)){
-                                    //(G)Se supone que si ha podido guardar es porque ha rellenado los campos mínimos.
-                   // Yii::app()->user->updateSession();
-                                    Yii::app()->user->setFlash('success',UserModule::t("Changes is saved."));
-                                    $this->redirect(array('/user/empresa'));
-                            }else $this->debug($empresa->getErrors());*/
-                    } else $empresa->validate();
-            }
-            $this->render('empresa',array(
-                    'model'=>$model,
-                    'empresa'=>$empresa,
-                    'cuentas'=>$cuentas,
-                    'image'=>$logo,
-            ));
+        
+        //Cuando es empresa
+        public function actionEmpresa(){
+            $this->actualizaEmpresa();
+        }
+        
+        //Cuando es admin
+        public function actionEdit($id=null){
+            $this->actualizaEmpresa($id);
         }
 
-        /* Le pasamos el id y nos devuelve la empresa para admin o empresa*/
-        private function devuelveEmpresa($id=null){
-            $id = Yii::app()->getRequest()->getQuery('id');
-            if ($this->_model === null){
-                if (isset($id) && ($id!=null) ){//Si es admin el que quiere editar una empresa
-                    $this->_model = $this->loadModel($id);
-                    $this->debug("Es para admin");
-                    //$cuentas = Cuenta::getCuentas();
-                   // $cuentas_list = CHtml::listData($cuentas,'id', 'nombre');
-                }else{
-                    asdgn;
-                    $this->debug("Es para empresa");
-                    $this->_model = $this->loadUser()->empresa;
-                    $this->_model->scenario ="paraValidar";
-                }
-            }else
-                asfdgf;
-            
-            return $this->_model;
-            
-        }
-	
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.

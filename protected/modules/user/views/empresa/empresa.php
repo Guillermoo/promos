@@ -2,14 +2,6 @@
 <?php $this->pageTitle=Yii::app()->name . ' - '.UserModule::t("Company");?>
 <h1><?php //echo UserModule::t('Your profile'); ?></h1>
 
-
-
-<?php if(Yii::app()->user->hasFlash('successMessage')): ?>
-<div class="success">
-	<?php echo Yii::app()->user->getFlash('successMessage'); ?>
-</div>
-<?php endif; ?>
-
 <?php if(UserModule::isCompany()):?>
     <h1><?php echo UserModule::t('Your company'); ?></h1>
 	<?php $this->renderPartial('_form', array('empresa'=>$model->empresa,'image'=>$image));?>

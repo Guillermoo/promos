@@ -32,11 +32,12 @@ $('.search-form form').submit(function(){
     'htmlOptions'=>array('id'=>'flash'),
 )); ?><!-- flashes -->
 <? //$this->debug($model)?>
+<? //$this->debug(Promocion::itemAlias("PromoStatus"))?>
 <?php $this->widget('bootstrap.widgets.TbGridView', array(
 	'id'=>'user-grid',
 	'ajaxUpdate' => 'flash',
 	'dataProvider'=>$model->search(),
-	'filter'=>$model,
+	//'filter'=>$model,
 	'type'=>'striped',
 	'enableSorting' => true,
 	'columns'=>array(
@@ -44,8 +45,7 @@ $('.search-form form').submit(function(){
 		//'user_id',
                 array( 
                     'name'=>'nbempresa', 
-                    //'value'=>'$data->usuario->username',
-                    'value' => 'CHtml::link(CHtml::encode($data->usuario->empresa->nombre),array("admin/update","id"=>$data->user_id))',
+                    'value'=>'CHtml::link(CHtml::encode($data->usuario->empresa->nombre),Yii::app()->createUrl("user/empresa/edit",array("id"=>$data->usuario->empresa->id)))',
                     'filter' => Empresa::getEmpresas(),
                     'type'=>'raw',
                     'visible'=>!UserModule::isCompany(),
@@ -53,7 +53,7 @@ $('.search-form form').submit(function(){
                 array(
                     'name'=>'estado',
                     'value'=>'Promocion::itemAlias("PromoStatus",$data->estado)',
-                    'filter'=>Promocion::itemAlias("PromoStatus"),
+                    'filter'=>'',
 		),
 		'titulo',
 		//'titulo_slug',

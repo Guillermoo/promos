@@ -73,7 +73,7 @@ class Promocion extends CActiveRecord
 			array('precio, rebaja', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, user_id,nbempresa, estado, titulo, titulo_slug, resumen, descripcion, descripcion_html, fecha_inicio, fecha_fin, fechaCreacion, destacado, precio, rebaja, condiciones, stock', 'safe', 'on'=>'search'),
+			array('id, user_id,nbempresa, titulo, titulo_slug, resumen, descripcion, descripcion_html, fecha_inicio, fecha_fin, fechaCreacion, destacado, precio, rebaja, condiciones, stock', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -96,7 +96,7 @@ class Promocion extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'user_id' => 'Empresa',
+			'user_id' => 'Empresa ID',
                         'nbempresa' => 'Empresa',
 			'estado' => 'Estado',
 			'titulo' => 'Titulo',
@@ -160,10 +160,11 @@ class Promocion extends CActiveRecord
             // Warning: Please modify the following code to remove attributes that
             // should not be searched.
             $criteria=new CDbCriteria;
-            $criteria->with = array( 'usuario' );
+            
+            $criteria->with = array( 'usuario.empresa' );
             $criteria->compare('id',$this->id);
             //$criteria->compare('user_id',$this->user_id);
-            $criteria->compare('estado',$this->estado);
+            //$criteria->compare('estado',$this->estado);
             $criteria->compare('titulo',$this->titulo,true);
             $criteria->compare('fecha_inicio',$this->fecha_inicio,true);
             $criteria->compare('fecha_fin',$this->fecha_fin,true);
@@ -172,14 +173,24 @@ class Promocion extends CActiveRecord
             $criteria->compare('precio',$this->precio,true);
             $criteria->compare('rebaja',$this->rebaja,true);
             $criteria->compare('stock',$this->stock);
-            //$criteria->compare( 'usuario.username', $this->nbempresa, true );
-            $criteria->compare( 'usuario.empresa.nombre', $this->nbempresa, true );
+            //$criteria->compare( 'usuario.empresa.nombre', $this->nbempresa,true );
+            
             if (UserModule::isCompany()){
                 $criteria->params = array(':userid' => Yii::app()->user->id);
                 $criteria->addCondition('t.user_id = :userid');
             }
+            
+            $sort = new CSort();
+            $sort->attributes = array(
+                    'nbempresa'=>array(
+                        'asc'=>'empresa.nombre',
+                        'desc'=>'empresa.nombre desc',
+                    ),
+                    '*',
+            );
             return new CActiveDataProvider($this, array(
                     'criteria'=>$criteria,
+                    'sort'=>$sort,
             ));
     }
     
