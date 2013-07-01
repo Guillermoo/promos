@@ -25,6 +25,7 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `AuthAssignment`
 --
+USE promos;
 
 CREATE TABLE IF NOT EXISTS `AuthAssignment` (
   `itemname` varchar(64) NOT NULL,
