@@ -29,6 +29,12 @@ class CuentaController extends Controller{
 		$this->render('home',array('model'=>$model));
 	}
 
+	public function actionVercuentas(){
+		$model = $this->loadUser();
+
+		$this->render('cuentas',array('model'=>$model));
+	}
+
 	public function loadUser()
 	{
 		if($this->model===null)
