@@ -6,7 +6,8 @@ class UserController extends Controller
 	 * @var CActiveRecord the currently loaded data model instance.
 	 */
 	private $_model;
-
+	public $layout = 'user_column2';
+	
 	/**
 	 * @return array action filters
 	 */
@@ -27,23 +28,23 @@ class UserController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
+				'actions'=>array('index','view','contact'),
+				'users'=>UserModule::getAdmins(),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
 		);
 	}	
-
+	
 	/**
 	 * Displays a particular model.
 	 */
 	public function actionView()
 	{
-		$model = $this->loadModel();
+		$this->_model = $this->loadModel();
 		$this->render('view',array(
-			'model'=>$model,
+			'model'=>$this->_model,
 		));
 	}
 
@@ -67,8 +68,33 @@ class UserController extends Controller
 		));
 	}
 	
+/**
+	 * Displays the contact page
+	 */
+	public function actionContact()
+	{
+		$model=new ContactForm;
+		
+		if(isset($_POST['ContactForm']))
+		{
+			$model->attributes=$_POST['ContactForm'];
+			if($model->validate())
+			{
+				$name='=?UTF-8?B?'.base64_encode($model->name).'?=';
+				$subject='=?UTF-8?B?'.base64_encode($model->subject).'?=';
+				$headers="From: $name <{$model->email}>\r\n".
+					"Reply-To: {$model->email}\r\n".
+					"MIME-Version: 1.0\r\n".
+					"Content-type: text/plain; charset=UTF-8";
 
-
+				mail(Yii::app()->params['adminEmail'],$subject,$model->body,$headers);
+				Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
+				$this->refresh();
+			}
+		}
+		$this->render('contact',array('model'=>$model));
+	}
+	
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
@@ -84,7 +110,7 @@ class UserController extends Controller
 		}
 		return $this->_model;
 	}
-
+	
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.

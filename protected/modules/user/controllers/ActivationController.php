@@ -17,8 +17,11 @@ class ActivationController extends Controller
 			    $this->render('/user/message',array('title'=>UserModule::t("User activation"),'content'=>UserModule::t("You account is active.")));
 			} elseif(isset($find->activkey) && ($find->activkey==$activkey)) {
 				$find->activkey = UserModule::encrypting(microtime());
-				$find->status = 1;
+				$find->status = User::STATUS_ACTIVE;
 				$find->save();
+				if (isset($find->profile))//No tiene porque ser una empresa.
+					Profile::actualizaFechaTrasActivacion($find->profile);
+				
 			    $this->render('/user/message',array('title'=>UserModule::t("User activation"),'content'=>UserModule::t("You account is activated.")));
 			} else {
 			    $this->render('/user/message',array('title'=>UserModule::t("User activation"),'content'=>UserModule::t("Incorrect activation URL.")));

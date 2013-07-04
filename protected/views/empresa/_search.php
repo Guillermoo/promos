@@ -12,28 +12,13 @@
 )); ?>
 
 	<div class="row">
-		<?php echo $form->label($model,'empresa_id'); ?>
-		<?php echo $form->textField($model,'empresa_id'); ?>
+		<?php echo $form->label($model,'id'); ?>
+		<?php echo $form->textField($model,'id'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'usuario_id'); ?>
-		<?php echo $form->textField($model,'usuario_id'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'contacto_id'); ?>
-		<?php echo $form->textField($model,'contacto_id'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'categoria_id'); ?>
-		<?php echo $form->textField($model,'categoria_id'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'logo_id'); ?>
-		<?php echo $form->textField($model,'logo_id'); ?>
+		<?php echo $form->label($model,'user_id'); ?>
+		<?php echo $form->textField($model,'user_id'); ?>
 	</div>
 
 	<div class="row">
@@ -59,11 +44,6 @@
 	<div class="row">
 		<?php echo $form->label($model,'urlTienda'); ?>
 		<?php echo $form->textField($model,'urlTienda',array('size'=>60,'maxlength'=>100)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'creado'); ?>
-		<?php echo $form->textField($model,'creado'); ?>
 	</div>
 
 	<div class="row">

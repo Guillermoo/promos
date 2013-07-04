@@ -25,7 +25,7 @@
  * @property Items $logo
  * @property Profiles $usuario
  * @property Contactos $contacto
- * @property Category $categoria
+ * @property Category $category
  */
 abstract class BaseEmpresa extends GxActiveRecord {
 

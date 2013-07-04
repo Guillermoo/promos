@@ -1,73 +1,75 @@
-<?php echo __FILE__; ?>
-<?php $this->pageTitle=Yii::app()->name . ' - '.UserModule::t("Profile");?>
-<h1><?php echo UserModule::t('Your company'); ?></h1>
+<?php if(YII_RUTAS == true) echo __FILE__; ?>
+<?php if (UserModule::isAdmin()): ?>
+    <?php $action = 'edit/'+$empresa->id; ?>
+<?php else:?>
+    <?php $action = 'empresa'; ?>
+<?php endif;?>
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'empresa-form',
 	'enableAjaxValidation'=>true,
 	//'type'=>'horizontal',
-	'action'=>'empresa/edit',
+        'action'=>$action,
+	'clientOptions'=>array(
+		'validateOnSubmit'=>true,
+	),
 	'htmlOptions' => array('enctype'=>'multipart/form-data')
 ));
 ?>
-		
-<fieldset>
 
-	<div class="row"><!-- Tipo de cuenta -->
-		<?php //echo $form->labelEx($empresa,'logo_id'); ?>
-	</div>
-	<?php //echo $form->dropDownListRow($empresa->cuenta, 'id', $cuentas); ?>
-	
-	<?php if (Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id) ):?>
-		<?php echo $form->errorSummary(array($model->empresa)); ?>
+<fieldset>
+    
+        <p class="note">Fields with <span class="required">*</span> are required.</p>
+        
+	<?php //Sólo la compañía tiene reglas de validación ?>
+	<?php if (!UserModule::isCompany(Yii::app()->user->id) ):?>
+		<?php echo $form->errorSummary(array($empresa)); ?>
 	<?php endif;?>
+	
 	<?php $this->widget('bootstrap.widgets.TbLabel', array(
 	    'type'=>'info', // 'success', 'warning', 'important', 'info' or 'inverse'
 	    'label'=>'Empresa',
 	)); ?>
 	
-	<div class="row"><!-- HAy que mostrar las categorías a las que pertenece pero no dejar editar -->
-		<!-- (G)De moment lo dejo así, ya se me ocurrirá algo mejor -->
-		<?php echo $form->labelEx($model->empresa,'categoria_id'); ?>
-		<?php echo "Categorías a las que pertenece: "?><br>
+	<!-- <div class="row"><!-- HAy que mostrar las categorías a las que pertenece pero no dejar editar -->
+		<!-- (G)De moment lo dejo así, ya se me ocurrirá algo mejor 
+		<?php /*echo $form->labelEx($model->empresa->categoria,'categoria_id'); ?>
+		<?php echo "Belonged categories: "?><br>
 		<?php foreach ($model->empresa->categoria as $miCat):?>
 			<b><?php echo $miCat->name;?></b><br>
-		<?php endforeach;?>
+		<?php endforeach;*/?>
 		<?php //echo $form->dropDownListRow($empresa, 'contacto_id', $categorias, array('multiple'=>true)); ?>
 		<?php //echo $form->checkBoxListRow($listCat, 'id', array($categorias), array('hint'=>'<strong>Note:</strong> Labels surround all the options for much larger click areas.')); ?>
 		<?php //echo $form->error($empresa,'contacto_id'); ?>
-	</div>
-	<?php //$this->debug($model); ?>
+	</div> -->
 	<div class="row">
-		<?php if (isset($model->item)):?>
-			<?php 
-				$imghtml=CHtml::image(Yii::app( )->getBaseUrl( ).$model->item->path);
-				echo CHtml::link($imghtml);?>
-		<?php else:?>
-            <?php
-				$this->widget('xupload.XUpload', array(
-                    'url' => Yii::app()->createUrl("/item/upload"),
-                    'model' => $image,
-                    'attribute' => 'file',
-                    'htmlOptions' => array('id'=>'empresa-form'),
-                    'multiple' => false,
-					/*'url' => Yii::app( )->createUrl( "/item/upload"),
-	                //our XUploadForm
-	                'model' => $image,
-	                //We set this for the widget to be able to target our own form
-	                'htmlOptions' => array('id'=>'empresa-form'),
-	                'attribute' => 'file',
-	                'multiple' => false,*/
-	                //Note that we are using a custom view for our widget
-	                //Thats becase the default widget includes the 'form' 
-	                //which we don't want here
-	                //'formView' => 'application.views.somemodel._form',
-				));
-			?>
-			<?php endif;?>
-		<?php //echo $form->error($empresa,'logo_id'); ?>
+            <div id="logo_form">
+                    <?php echo $form->labelEx($empresa,'logo'); ?>
+                    <? $item = $empresa->usuario->item  ?>
+                    <?php if (isset($item)):?>
+                        <?php $imghtml=CHtml::image(Yii::app( )->getBaseUrl( ).$item->path);?>
+                        <?php $this->renderPartial('../layouts/_viewitem', array(
+                                'imghtml' => $imghtml,'idimage'=>$empresa->usuario->item->id,'muestraBorrar'=>UserModule::isCompany()));?><?php //El admin no puede borrar la imagen, o si??>
+                    <?php else:?>
+                        <?php $this->renderPartial('../layouts/_itemupload', array(
+                                'image' => $image,'idform'=>'empresa-form'));?>
+                        <?php endif;?>
+            </div>
 	</div>
-
-	<?php $empresa = $model->empresa;?>
+	
+	<?php //$empresa = $model->empresa;?>
+	
+	<div class="row">
+		<?php echo $form->labelEx($empresa,'nombre'); ?>
+		<?php echo $form->textField($empresa,'nombre',array('size'=>128,'maxlength'=>128)); ?>
+		<?php echo $form->error($empresa,'nombre'); ?>
+	</div>
+	
+	<!-- (G)El slug se hará automático o lo podrá elegir la empresa? -->
+	<!-- <div class="row">
+		<?php /*echo $form->labelEx($empresa,'nombre_slug'); ?>
+		<?php echo $form->textField($empresa,'nombre_slug',array('size'=>128,'maxlength'=>128)); ?>
+		<?php echo $form->error($empresa,'nombre_slug');*/ ?>
+	</div> -->
 	
 	<div class="row">
 		<?php echo $form->labelEx($empresa,'cif'); ?>
@@ -98,12 +100,11 @@
 		<?php echo $form->textField($empresa,'urlTienda',array('size'=>60,'maxlength'=>100)); ?>
 		<?php echo $form->error($empresa,'urlTienda'); ?>
 	</div>
-	<div class="row">
-    	<?php $this->renderPartial('/layouts/_contacto',array('form'=>$form,'contacto'=>$model->contacto) );?>
-	</div>
-
+	
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Save'); ?>
+		<?php //Se poddría desabilitar el botón por ajax si las validaciones no se cumplen
+		//poniendo algo como ,array('disabled'=>true) en el submitButton?>
 	</div>
 </fieldset>
 

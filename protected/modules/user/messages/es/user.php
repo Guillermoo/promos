@@ -126,5 +126,12 @@ return array(
     'The value of the default field (database).' => 'El valor por defecto del campo (base de datos)',
     'Display order of fields.' => 'Mostrar orden de los campos',
 	'Not visited' => 'No visitó',
-
+	'Company' => 'Empresa',
+	'Logout' => 'Salir',
+	'Belonged categories: ' => 'Categorías a las que pertenece: ',
+	'Email is invalid, please insert a valid email.' => 'El email es inválido, por inserte uno correcto.',
+	'These information is necessary to be able to sell promotions' => 'Esta información es necesaria para poder vender las promociones.',
+	'My Promotions' => 'Mis Promociones',
+	'Subscription' => 'Subscripción',
+	'Contact' => 'Contacto',
 );

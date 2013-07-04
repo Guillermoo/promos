@@ -1,11 +1,5 @@
 <?php echo __FILE__; ?> 
-<?php
-$this->breadcrumbs=array(
-	UserModule::t('Users')=>array('admin'),
-	$model->username,
-);
 
-?>
 <h1><?php echo UserModule::t('View User').' "'.$model->username.'"'; ?></h1>
 
 <?php
@@ -34,39 +28,20 @@ $this->breadcrumbs=array(
 			'profile.username',
 			'profile.lastname',
 			'profile.paypal_id',
-			'profile.tipocuenta',
+			'profile.cuenta.titulo',
 			'profile.fecha_activacion',
 			'profile.fecha_fin',
 			'profile.fecha_pago',
-			'empresa.contacto.telefono',
-			'empresa.contacto.fax',
-			'empresa.contacto.cp',
-			'empresa.contacto.barrio',
-			'empresa.contacto.direccion',
-			'empresa.contacto.poblacion'
+			'profile.telefono',
+			'profile.fax',
+			'profile.cp',
+			'profile.barrio',
+			'profile.direccion',
+			'profile.poblacion'
 		);
 	}
 	
-	/*array(
-			'name' => 'user',
-			'type' => 'raw',
-			'value' => $model->user !== null ? GxHtml::link(GxHtml::encode(GxHtml::valueEx($model->user)), array('users/view', 'id' => GxActiveRecord::extractPkValue($model->user, true))) : null,
-			),*/
-			
-	
-	/*$profileFields=Profile::model()->paraAdmin()->sort()->findAll();
-	if ($profileFields) {
-		foreach($profileFields as $field) {
-			array_push($attributes,array(
-					'label' => UserModule::t($field->title),
-					'name' => $field->varname,
-					'type'=>'raw',
-					'value' => (($field->widgetView($model->profile))?$field->widgetView($model->profile):(($field->range)?Profile::range($field->range,$model->profile->getAttribute($field->varname)):$model->profile->getAttribute($field->varname))),
-				));
-		}
-	}*/
-	
-	$this->widget('zii.widgets.CDetailView', array(
+	$this->widget('bootstrap.widgets.TbDetailView', array(
 		'data'=>$model,
 		'attributes'=>$attributes,
 	));

@@ -20,6 +20,14 @@
  */
 class Profile extends CActiveRecord
 {
+	
+	const CUENTA_TRIAL=0;
+	const CUENTA_LITE=1;
+	const CUENTA_BASIC=2;
+	const CUENTA_DELUXE=3;	
+	
+	private $_user_id;
+	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -35,7 +43,7 @@ class Profile extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return '{{profiles}}';
+		return Yii::app()->getModule('user')->tableProfiles;
 	}
 
 	/**
@@ -50,28 +58,31 @@ class Profile extends CActiveRecord
 			//array('contacto_id', 'numerical', 'integerOnly'=>true),
 			array('username, lastname', 'length', 'max'=>50),
 			array('paypal_id', 'length', 'max'=>40),
+			array('direccion,telefono,cp,poblacion_id,paypal_id','required', 'except' => 'admin'),
+			array('barrio,poblacion_id,telefono,fax,cp,meses', 'numerical', 'integerOnly'=>true),
+			array('telefono, fax', 'length', 'max'=>50),
 			array('tipocuenta', 'length', 'max'=>11),
 			array('fecha_activacion, fecha_fin,fecha_pago', 'length', 'max'=>51),
+			array('fecha_activacion, fecha_fin,fecha_pago', 'validaFechas', 'message'=>'Error with dates','except'=>'admin'),
+			
 			//array('fecha_activacion, fecha_fin,fecha_pago', 'type', 'type' => 'date', 'message' => '{attribute}: is not a date!', 'dateFormat' => 'yyyy-MM-dd'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('user_id, username, lastname, paypal_id, tipocuenta, fecha_activacion, fecha_fin, fecha_pago', 'safe', 'on'=>'search'),
+			array('user_id, username, lastname, paypal_id, tipocuenta, fecha_activacion, fecha_fin, fecha_pago,telefono, fax, cp, barrio, direccion, poblacion_id', 'safe', 'on'=>'search'),
 		);
 	}
 	
-	protected function beforeSave()
-	  {
-	  	if ($this->checkeaFechas()==true)
-	  		return true;
-  		else
-	  		return false;
-	  }
-	  
-	/*Esta función tiene que comprobar que las fechas sean correctas. Fecha pago < Fecha activacion < Fecha Fin*/
-	private function checkeaFechas(){
-		return true;
-	}
+	public function validaFechas($attribute,$params){
+                //EJEMPLO
+		/*if ($params['strength'] === self::WEAK)
+                    $pattern = '/^(?=.*[a-zA-Z0-9]).{5,}$/';  
+                elseif ($params['strength'] === self::STRONG)
+                    $pattern = '/^(?=.*\d(?=.*\d))(?=.*[a-zA-Z](?=.*[a-zA-Z])).{5,}$/';  
 
+                if(!preg_match($pattern, $this->$attribute))
+                  $this->addError($attribute, 'your password is not strong enough!');*/
+	}
+	
 	/**
 	 * @return array relational rules.
 	 */
@@ -80,9 +91,62 @@ class Profile extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'user' => array(self::BELONGS_TO, 'User', 'id'),
-            //'contacto' => array(self::HAS_ONE, 'Contacto', 'id'),
+			'user' => array(self::HAS_ONE, 'User', 'user_id'),
+            'cuenta' => array(self::BELONGS_TO, 'Cuenta', 'tipocuenta'),
 		);
+	}
+	
+	/**
+	 * @return array customized attribute labels (name=>label)
+	 */
+	public function attributeLabels()
+	{
+		return array(
+			'user_id' => 'User',
+			'username' => 'Nombre',
+			'lastname' => 'Apellido',
+			//'contacto_id' => 'Contacto',
+			'paypal_id' => 'Cuenta de Paypal',
+			'tipocuenta' => 'Tipo de cuenta',
+			'fecha_activacion' => 'Fecha Activación',
+			'fecha_fin' => 'Fecha Fin',
+			'fecha_pago' => 'Fecha Pago',
+		);
+	}
+	
+	
+	protected function beforeSave()
+	  {
+	  	if ($this->isNewRecord){
+	  		$this->setFechasCreacion();
+	  		return true;
+	  	}else{
+	  	if ($this->checkeaFechas()==true)
+	  		return true;
+  		else
+	  		return false;
+	  	}
+	  	parent::beforeSave();
+	  }
+	  
+	protected function afterSave(){
+		if ( (!$this->isNewRecord) && (!UserModule::isAdmin()) ){
+				//Si es admin elq ue está actualizando el id es otro.
+			$model = UserModule::user($this->user_id);//Otra manera de obtener el user
+			if ($model->status==3 && UserModule::isCompany()){
+				if(User::tieneCamposMinimosRellenos($model) != true){
+					$model->status=2;
+					$model->save();
+				}	
+			}
+		}
+		 	
+		return parent::afterSave();
+	}
+	  
+	/*Esta función tiene que comprobar que las fechas sean correctas. Fecha pago < Fecha activacion < Fecha Fin*/
+	private function checkeaFechas(){
+		return true;
 	}
 	
 	/*Función que determina los campos que va a devolver según nos convenga, desde
@@ -109,42 +173,64 @@ class Profile extends CActiveRecord
 	            ),
 	        );
 	    }
+	    
+    //Los nuevos usuarios siempre son tipo trial(al menos de momento)
+	public static function crearNuevoProfileParaElUsuario($user_id=null){
+		
+		if (isset($user_id) ){
+			
+			$profile = new Profile;
+			/*(G)Creamos el perfil con el id del nuevo usuario. Al ser creado desde el admin sólo hay
+			que crear el usuario, no los datos del perfil o contacto, eso ya lo hará el usuario(o el admin desde update.*/
+			$profile->user_id=$user_id;
+			$profile->tipocuenta = Cuenta::CUENTA_TRIAL;
+			$profile->meses = Cuenta::DURACION_CUENTA_TRIAL;
+			
+			$profile->save(false);//Nos saltamos todo tipo de regla de validación. Si queremos se pueden crear reglas espeficicas
+		}
+	}
+	    
+	/*
+	 * Cuando se crea una cuenta desde la parte pública o desde admin se asignarán las fechas
+	 * para la cuenta trial(La cuenta que todo el mundo tiene cuando se registra).
+	 */
+    private function setFechasCreacion(){
+    	$today = "";
+    	$this->setFechaActivacion($today);
+    	$this->setFechaFin($today + Cuenta::DURACION_CUENTA_TRIAL);
+    	$this->setFechaPago($today);//La cuentra trial es como no tiene que pagar, realmente no importa que día pagó
+    }
+    
+    /*
+     * Esta función es la encargada de asignar los valores de las fechas en
+     * función del tipo de cuenta, duración... $this->tipocuenta, $this->meses
+     * */
+    private function setFechasTrasPagar(){
+    	//Los valores que hagan falta.
+    	/*$today = "";
+    	setFechaActivacion($today);
+    	setFechaFin($today + Cuenta::DURACION_CUENTA_TRIAL);
+    	setFechaPago($today);*/
+    }
 
     /*(G) De momento no hay nada programado.*/
     public function setFechaActivacion($value) {
-        $this->fecha_activacion=date('Y-m-d H:i:s',$value);
+        //$this->fecha_activacion=date('Y-m-d H:i:s',$value);
     }
     
     public function setFechaFin($value) {
     	/*Código necesario para calcular la fecha en la que se le acaba al usuario
     	 el periodo activo*/
-        $this->fecha_fin=date('Y-m-d H:i:s',$value);
+        //$this->fecha_fin=date('Y-m-d H:i:s',$value);
     }
     
     
     /*Código necesario para calcular la fecha en la que realizó el pago*/
 	public function setFechaPago($value) {
-        $this->fecha_pago=date('Y-m-d H:i:s',$value);
+        //$this->fecha_pago=date('Y-m-d H:i:s',$value);
     }
 	    
-	/**
-	 * @return array customized attribute labels (name=>label)
-	 */
-	public function attributeLabels()
-	{
-		return array(
-			'user_id' => 'User',
-			'username' => 'Nombre',
-			'lastname' => 'Apellido',
-			//'contacto_id' => 'Contacto',
-			'paypal_id' => 'Cuenta de Paypal',
-			'tipocuenta' => 'Tipo de cuenta',
-			'fecha_activacion' => 'Fecha Activación',
-			'fecha_fin' => 'Fecha Fin',
-			'fecha_pago' => 'Fecha Pago',
-		);
-	}
-
+	
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
@@ -170,5 +256,15 @@ class Profile extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	public static function actualizaFechaTrasActivacion($profile=null){
+		if (isset($profile)){
+			$find->profile->fecha_activacion = time();
+			$find->profile->fecha_fin = time() + Cuenta::DURACION_CUENTA_TRIAL;
+			//Igual da fallo de validación!!!!
+			$find->profile->save(false);
+		}
+	}
+	
 	
 }

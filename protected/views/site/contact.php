@@ -35,7 +35,6 @@ If you have business inquiries or other questions, please fill out the following
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
-
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">

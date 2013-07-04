@@ -26,10 +26,10 @@ $('.search-form form').submit(function(){
 )); ?>
 </div><!-- search-form -->
 
-<?php $this->widget('application.extensions.flash.Flash', array(
+<?php /*$this->widget('application.extensions.flash.Flash', array(
     'keys'=>array('success','error'), 
     'htmlOptions'=>array('id'=>'flash'),
-)); ?><!-- flashes -->
+));*/ ?><!-- flashes -->
     
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
 	'id'=>'user-grid',
@@ -48,7 +48,18 @@ $('.search-form form').submit(function(){
 		array(
 			'name' => 'username',
 			'type'=>'raw',
-			'value' => 'CHtml::link(UHtml::markSearch($data,"username"),array("admin/update","id"=>$data->id))',
+                        'value' => 'CHtml::link(CHtml::encode($data->username),array("update","id"=>$data->id))',
+			//'value' => 'CHtml::link(CHtml::encode($data,"username"),array("admin/update","id"=>$data->id))',
+		),
+		/*
+		 * Para visualizar la empresa hay que añadir la relación en el CDbCriteria de User(search())
+		 * */
+		array(
+			'name' => 'empresa',
+			'type'=>'raw',
+			'value' => 'CHtml::link(UHtml::markSearch($data->empresa,"nombre"),array("empresa/update","id"=>$data->empresa->id))',
+			//'visible'=> UserModule::isCompany($model->id),
+			'visible'=> false,	
 		),
 		array(
 			'name'=>'email',
@@ -76,7 +87,7 @@ $('.search-form form').submit(function(){
 	    ),
 
 		//'lastvisit_at',
-		array(
+		/*array(
 			'name'=>'lastvisit_at',
 			'type'=>'raw',
 			'filter'=>$this->widget('zii.widgets.jui.CJuiDatepicker', 
@@ -88,7 +99,7 @@ $('.search-form form').submit(function(){
 							'dateFormat' => 'yy-mm-dd',
 							'showAnim'=>'fold','changeMonth'=>'true', 
 	    					'changeYear'=>'true',)), true)
-	    ),
+	    ),	*/
 		array(
 			'name'=>'superuser',
 			'value'=>'User::itemAlias("AdminStatus",$data->superuser)',
@@ -101,7 +112,7 @@ $('.search-form form').submit(function(){
 		),
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
-			'template'=>'{update} {delete}',
+			'template'=>'{view} {update} {delete}',
 			'htmlOptions'=>array('style'=>'width: 50px'),
 		),
 	),

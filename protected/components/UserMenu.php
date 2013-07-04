@@ -12,10 +12,10 @@ class UserMenu extends CPortlet
 
 	protected function renderContent()
 	{
-		if (Yii::app()->authManager->checkAccess('admin', Yii::app()->user->id) || Yii::app()->authManager->checkAccess('superadmin', Yii::app()->user->id))
+		if (UserModule::isAdmin() || UserModule::isSuperAdmin())
 			$this->render('adminMenu');
-		elseif(Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id))
-			$this->render('empresaMenu');
+		elseif(UserModule::isCompany())
+			$this->render('empresaMenu');//He creado un menú como el que tenías(está en components/views/empresaNavMenu
 		else
 			$this->render('usuarioMenu');
 	}

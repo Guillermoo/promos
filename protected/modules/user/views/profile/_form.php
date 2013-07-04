@@ -1,24 +1,23 @@
-<?php echo __FILE__; ?>
-<?php $this->pageTitle=Yii::app()->name . ' - '.UserModule::t("Profile");?>
-
-<h1><?php echo UserModule::t('Your profile'); ?></h1>
-
+<?php if(YII_RUTAS == true) echo __FILE__; ?>
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'profile-form',
 	'enableAjaxValidation'=>true,
 	//'type'=>'horizontal',
-	'action'=>'profile/edit',
+	'action'=>'profile/update',
+	'clientOptions'=>array(
+		'validateOnSubmit'=>true,
+	),
 	'htmlOptions' => array('enctype'=>'multipart/form-data')
 ));
 ?>
-
+<h1>sdgsg</h1>
 <fieldset>
 	<p class="note"><?php echo UserModule::t('Fields with <span class="required">*</span> are required.'); ?></p>
 	
-	<?php if (Yii::app()->authManager->checkAccess('admin', Yii::app()->user->id) ):?>
-
-	<?php echo $form->errorSummary(array($model)); ?>
-
+	<?php echo $form->errorSummary(array($model,$model->profile)); ?>
+	
+	<?php if (UserModule::isSuperAdmin() || UserModule::isAdmin() ):?>
+		<?php //Estos campos sólo se muestran al admin ya que son de uso interno. ?>
 		<div class="row">
 			<?php echo $form->labelEx($model,'username'); ?>
 			<?php echo $form->textField($model,'username',array('size'=>20,'maxlength'=>20)); ?>
@@ -43,9 +42,8 @@
 			<?php echo $form->error($model,'status'); ?>
 		</div>
 	<?php endif; ?>
-	
-	<?php if (Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id) ):?>
-		
+	<?php if (UserModule::isCompany() ):?>
+		<?php $profile = $model->profile;?>
 		<div class="fields">
 		
 			<?php $this->widget('bootstrap.widgets.TbLabel', array(
@@ -53,6 +51,20 @@
 			    'label'=>'Profile',
 			)); ?>
 			<!-- Inicio profile -->
+			<div class="row"><!-- Tipo de cuenta -->
+				<?php echo $form->labelEx($profile,'tipocuenta'); ?>
+				<?php //echo $form->textField($profile->cuenta,'titulo'); ?>
+				<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
+			        'type'=>'primary', // '', 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
+			        'buttons'=>array(
+			            array('label'=>$profile->cuenta->titulo, 'url'=>'#'),
+			            array('items'=>array(
+			                array('label'=>'Actualizar cuenta', 'url'=>'#'),
+			            )),
+			        ),
+			    )); ?>
+			</div>
+				
 			<div class="row">
 				<?php echo $form->labelEx($profile,'username'); ?>
 				<?php echo $form->textField($profile,'username',array('size'=>60,'maxlength'=>128)); ?>
@@ -72,24 +84,20 @@
 			</div>
 			
 			<div class="row">
-				<?php echo $form->labelEx($profile,'tipocuenta'); ?>
-				<?php echo $form->textField($profile,'tipocuenta'); ?>
-				<?php echo $form->error($profile,'tipocuenta'); ?>
-			</div>
-			
-			<div class="row">
 				<?php echo $form->labelEx($profile,'fecha_activacion'); ?>
 				<?php $this->widget('zii.widgets.jui.CJuiDatePicker',array(
+					'name' => $profile->fecha_activacion,
 				    'attribute'=>'fecha_activacion',
 					'model'=>$profile,
 					'value'=>$profile->fecha_activacion,
 				    // additional javascript options for the date picker plugin
 				    'options'=>array(
 						'dateFormat'=>'yy-mm-dd',
+						'altFormat' =>'yy-mm-dd',
 				        'showAnim'=>'fold',
 						'changeMonth'=>'true', 
     					'changeYear'=>'true',
-				    	'debug'=>true,
+				    	'debug'=>YII_DEBUG,
 				    ),
 				));?>
 				<?php echo $form->error($profile,'fecha_activacion'); ?>
@@ -97,16 +105,18 @@
 			<div class="row">
 				<?php echo $form->labelEx($profile,'fecha_fin'); ?>
 				<?php $this->widget('zii.widgets.jui.CJuiDatePicker',array(
+					'name' => 'fecha_fin',
 				    'attribute'=>'fecha_fin',
 					'model'=>$profile,
 					'value'=>$profile->fecha_fin,
 				    // additional javascript options for the date picker plugin
 				    'options'=>array(
 						'dateFormat'=>'yy-mm-dd',
+						'altFormat' =>'yy-mm-dd',
 				        'showAnim'=>'fold',
 						'changeMonth'=>'true', 
     					'changeYear'=>'true',
-					    'debug'=>true,
+				    	'debug'=>YII_DEBUG,
 				    ),
 				));?>
 				<?php echo $form->error($profile,'fecha_fin'); ?>
@@ -116,18 +126,56 @@
 				<?php echo $form->labelEx($profile,'fecha_pago'); ?>
 				<?php //echo $form->textField($model->profile,'fecha_pago'); ?>
 				<?php $this->widget('zii.widgets.jui.CJuiDatePicker',array(
-				    'attribute'=>'fecha_pago',
+				    'name' => 'fecha_pago',
+					'attribute'=>'fecha_pago',
 					'model'=>$profile,
 					'value'=>$profile->fecha_pago,
 				    // additional javascript options for the date picker plugin
 				    'options'=>array(
 						'dateFormat'=>'yy-mm-dd',
+						'altFormat' =>'yy-mm-dd',
 				        'showAnim'=>'fold',
 						'changeMonth'=>'true', 
     					'changeYear'=>'true',
+				    	'debug'=>YII_DEBUG,
 				    ),
 				));?>
 				<?php echo $form->error($profile,'fecha_pago'); ?>
+			</div>
+			<div class="row">
+				<?php echo $form->labelEx($profile,'telefono'); ?>
+				<?php echo $form->textField($profile,'telefono',array('size'=>50,'maxlength'=>50)); ?>
+				<?php echo $form->error($profile,'telefono'); ?>
+			</div>
+			
+			<div class="row">
+				<?php echo $form->labelEx($profile,'fax'); ?>
+				<?php echo $form->textField($profile,'fax',array('size'=>50,'maxlength'=>50)); ?>
+				<?php echo $form->error($profile,'fax'); ?>
+			</div>
+			
+			<div class="row">
+				<?php echo $form->labelEx($profile,'cp'); ?>
+				<?php echo $form->textField($profile,'cp',array('size'=>11,'maxlength'=>11)); ?>
+				<?php echo $form->error($profile,'cp'); ?>
+			</div>
+			
+			<div class="row">
+				<?php echo $form->labelEx($profile,'barrio'); ?>
+				<?php echo $form->textField($profile,'barrio'); ?>
+				<?php echo $form->error($profile,'barrio'); ?>
+			</div>
+			
+			<div class="row">
+				<?php echo $form->labelEx($profile,'direccion'); ?>
+				<?php echo $form->textField($profile,'direccion',array('size'=>60,'maxlength'=>120)); ?>
+				<?php echo $form->error($profile,'direccion'); ?>
+			</div>
+			
+			<div class="row">
+				<?php echo $form->labelEx($profile,'poblacion_id'); ?>
+				<?php echo $form->textField($profile,'poblacion_id'); ?>
+				<?php echo $form->error($profile,'poblacion_id'); ?>
 			</div>
 		</div> 
 	<?php endif;?>

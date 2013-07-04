@@ -1,11 +1,5 @@
 <div class="form">
 
-<?php if(Yii::app()->user->hasFlash('profileMessage')): ?>
-<div class="success">
-	<?php echo Yii::app()->user->getFlash('profileMessage'); ?>
-</div>
-<?php endif; ?>
-
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'user-form',
 	'enableAjaxValidation'=>true,
@@ -20,27 +14,23 @@
 	<table>
 		<tr>
 			<td>	
-				<?php $this->widget('bootstrap.widgets.TbLabel', array(
-				    'type'=>'info', // 'success', 'warning', 'important', 'info' or 'inverse'
-					    'label'=>'User',
-					)); 
-				?>
 				<div class="row">
-					<?php echo $form->labelEx($model,'username'); ?>
-					<?php echo $form->textField($model,'username',array('size'=>20,'maxlength'=>20)); ?>
-					<?php echo $form->error($model,'username'); ?>
+					<?php $this->widget('bootstrap.widgets.TbLabel', array(
+					    'type'=>'info', // 'success', 'warning', 'important', 'info' or 'inverse'
+						    'label'=>'User',
+						)); 
+					?>
+				</div>
+				<div class="row">
+					<?php echo $form->labelEx($model,'email'); ?>
+					<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>128)); ?>
+					<?php echo $form->error($model,'email'); ?>
 				</div>
 			
 				<div class="row">
 					<?php echo $form->labelEx($model,'password'); ?>
 					<?php echo $form->passwordField($model,'password',array('size'=>60,'maxlength'=>128)); ?>
 					<?php echo $form->error($model,'password'); ?>
-				</div>
-			
-				<div class="row">
-					<?php echo $form->labelEx($model,'email'); ?>
-					<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>128)); ?>
-					<?php echo $form->error($model,'email'); ?>
 				</div>
 			
 				<div class="row">
@@ -54,15 +44,8 @@
 					<?php echo $form->dropDownList($model,'status',User::itemAlias('UserStatus')); ?>
 					<?php echo $form->error($model,'status'); ?>
 				</div>
-				<div class="row">
-					<div class="row"><!-- HAy que mostrar las categorías a las que pertenece pero no dejar editar -->
-						<?php /*echo $form->labelEx($empresa,'categoria_id'); ?>
-						<?php echo $form->dropDownListRow($empresa, 'contacto_id', $categorias, array('multiple'=>true)); ?>
-						<?php echo $form->checkBoxListRow($empresa, 'contacto_id', $categorias, array('hint'=>'<strong>Note:</strong> Choose only two categories.')); ?>
-						<?php echo $form->error($empresa,'contacto_id');*/ ?>
-					</div>
-				</div>
 			<!-- Si es un NOadmin logeado, queremos ver el perfil de un NOadmin --> 
+			<?php $esEmpresa = UserModule::isCompany($model->id);?>
 			<?php if ($esEmpresa):?> 
 				<?php 
 					$profile = $model->profile;
@@ -89,26 +72,37 @@
 						<?php echo $form->textField($profile,'paypal_id',array('size'=>60,'maxlength'=>128)); ?>
 						<?php echo $form->error($profile,'paypal_id'); ?>
 					</div>
-					
+					scenario!!!
 					<div class="row">
 						<?php echo $form->labelEx($profile,'tipocuenta'); ?>
-						<?php echo $form->textField($profile,'tipocuenta',array('size'=>60,'maxlength'=>128)); ?>
+						<?php //echo $form->textField($profile,'tipocuenta',array('size'=>60,'maxlength'=>128)); ?>
+						<?php echo $form->dropDownList($profile,
+							'tipocuenta', Cuenta::model()->getCuentas()); ?>
 						<?php echo $form->error($profile,'tipocuenta'); ?>
+					</div>
+					
+					<div class="row">
+						<?php echo $form->labelEx($profile,'meses'); ?>
+						<?php //echo $form->textField($profile,'tipocuenta',array('size'=>60,'maxlength'=>128)); ?>
+						<?php echo $form->textField($profile,'meses',array('size'=>60,'maxlength'=>128)); ?>
+						<?php echo $form->error($profile,'meses'); ?>
 					</div>
 					
 					<div class="row">
 						<?php echo $form->labelEx($profile,'fecha_activacion'); ?>
 						<?php $this->widget('zii.widgets.jui.CJuiDatePicker',array(
-						    'attribute'=>'fecha_activacion',
+							'attribute'=>'fecha_activacion',
 							'model'=>$profile,
 							'value'=>'fecha_activacion',
 		  					'name' => $profile->fecha_activacion,
 						    // additional javascript options for the date picker plugin
 						    'options'=>array(
 								'dateFormat'=>'yy-mm-dd',
+								'altFormat' =>'yy-mm-dd',
 						        'showAnim'=>'fold',
 								'changeMonth'=>'true', 
 		    					'changeYear'=>'true',
+						    	'debug'=>YII_DEBUG,
 						    ),
 						));?>
 						<?php echo $form->error($profile,'fecha_activacion'); ?>
@@ -116,15 +110,82 @@
 					
 					<div class="row">
 						<?php echo $form->labelEx($profile,'fecha_fin'); ?>
-						<?php echo $form->textField($profile,'fecha_fin',array('size'=>60,'maxlength'=>128)); ?>
+						<?php $this->widget('zii.widgets.jui.CJuiDatePicker',array(
+							'attribute'=>'fecha_fin',
+							'model'=>$profile,
+							'value'=>'fecha_fin',
+		  					'name' => $profile->fecha_fin,
+						    // additional javascript options for the date picker plugin
+						    'options'=>array(
+								'dateFormat'=>'yy-mm-dd',
+								'altFormat' =>'yy-mm-dd',
+						        'showAnim'=>'fold',
+								'changeMonth'=>'true', 
+		    					'changeYear'=>'true',
+						    	'debug'=>YII_DEBUG,
+						    ),
+						));?>
 						<?php echo $form->error($profile,'fecha_fin'); ?>
 					</div>
 					
 					<div class="row">
 						<?php echo $form->labelEx($profile,'fecha_pago'); ?>
-						<?php echo $form->textField($profile,'fecha_pago',array('size'=>60,'maxlength'=>128)); ?>
+						<?php $this->widget('zii.widgets.jui.CJuiDatePicker',array(
+							'attribute'=>'fecha_pago',
+							'model'=>$profile,
+							'value'=>'fecha_pago',
+		  					'name' => $profile->fecha_pago,
+						    // additional javascript options for the date picker plugin
+						    'options'=>array(
+								'dateFormat'=>'yy-mm-dd',
+								'altFormat' =>'yy-mm-dd',
+						        'showAnim'=>'fold',
+								'changeMonth'=>'true', 
+		    					'changeYear'=>'true',
+						    	'debug'=>YII_DEBUG,
+						    ),
+						));?>
 						<?php echo $form->error($profile,'fecha_pago'); ?>
 					</div>
+					
+					<div class="row">
+						<?php echo $form->labelEx($profile,'telefono'); ?>
+						<?php echo $form->textField($profile,'telefono',array('size'=>50,'maxlength'=>50)); ?>
+						<?php echo $form->error($profile,'telefono'); ?>
+					</div>
+					
+					<div class="row">
+						<?php echo $form->labelEx($profile,'fax'); ?>
+						<?php echo $form->textField($profile,'fax',array('size'=>50,'maxlength'=>50)); ?>
+						<?php echo $form->error($profile,'fax'); ?>
+					</div>
+					
+					<div class="row">
+						<?php echo $form->labelEx($profile,'cp'); ?>
+						<?php echo $form->textField($profile,'cp',array('size'=>11,'maxlength'=>11)); ?>
+						<?php echo $form->error($profile,'cp'); ?>
+					</div>
+					
+					<div class="row">
+						<?php echo $form->labelEx($profile,'barrio'); ?>
+						<?php echo $form->textField($profile,'barrio'); ?>
+						<?php echo $form->error($profile,'barrio'); ?>
+					</div>
+					
+					<div class="row">
+						<?php echo $form->labelEx($profile,'direccion'); ?>
+						<?php echo $form->textField($profile,'direccion',array('size'=>60,'maxlength'=>120)); ?>
+						<?php echo $form->error($profile,'direccion'); ?>
+					</div>
+					
+					<div class="row">
+						<?php echo $form->labelEx($profile,'poblacion_id'); ?>
+						<?php echo $form->textField($profile,'poblacion_id'); ?>
+						<?php echo $form->error($profile,'poblacion_id'); ?>
+					</div>
+					<?php 
+						echo $this->renderPartial('../empresa/_form', array('form'=>$form,'empresa'=>$model->empresa,'image'=>$image));
+					?>
 				</div>
 			<?php endif;?>
 		</td>
@@ -133,17 +194,16 @@
 	<?php if ($esEmpresa):?>
 		<tr>
 			<td>
-				<?php 
-					echo $this->renderPartial('/empresa/_form', array('form'=>$form,'model'=>$model,'image'=>$image,'categorias'=>$categorias,'cuentas'=>$cuentas));
-				?>
+				
 			</td>
 		</tr>
+	</table>
+	<?php else:?>
+	</table>
+	<div class="row buttons">
+				<?php echo CHtml::submitButton($model->isNewRecord ? UserModule::t('Create') : UserModule::t('Save')); ?>
+			</div>
 	<?php endif;?>
-</table>
-<div class="row buttons">
-	<?php echo CHtml::submitButton($model->isNewRecord ? UserModule::t('Create') : UserModule::t('Save')); ?>
-</div>
-
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->

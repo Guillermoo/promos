@@ -9,21 +9,21 @@ return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'My Web Application',
 	'theme'=>'classic',	
-	'language'=>'es',
+	'language'=>'en',
 	// preloading 'log' component
 	'preload'=>array('log'),
  
 	// autoloading model and component classes
 	'import'=>array(
-		'application.models.*',
-		'application.components.*',
-		'application.modules.user.models.*',
-        'application.modules.user.components.*',
-        'application.modules.rights.*',
-        'application.modules.rights.components.*',
-		'ext.giix-components.*', // giix components
-		'ext.mailer.*',
-		'ext.flash',
+            'application.models.*',
+            'application.components.*',
+            'application.modules.user.models.*',
+            'application.modules.user.components.*',
+            'application.modules.rights.*',
+            'application.modules.rights.components.*',
+            //'ext.giix-components.*', // giix components
+            'ext.mailer.*',
+            'ext.flash',
 	),
 	'aliases' => array(
 	    //If you manually installed it
@@ -33,19 +33,19 @@ return array(
 		// uncomment the following to enable the Gii tool
 		
 		'gii'=>array(
-			'class'=>'system.gii.GiiModule',
-			'password'=>'asdf',
-			// If removed, Gii defaults to localhost only. Edit carefully to taste.
-			'ipFilters'=>array('127.0.0.1','::1'),
-			'generatorPaths' => array(
-                        'application.gii',  //nested set  Model and Crud templates
-						'ext.ajaxgii', 
-						'ext.giix-core', // giix generators
+                    'class'=>'system.gii.GiiModule',
+                    'password'=>'asdf',
+                    // If removed, Gii defaults to localhost only. Edit carefully to taste.
+                    'ipFilters'=>array('127.0.0.1','::1'),
+                    'generatorPaths' => array(
+                    'application.gii',  //nested set  Model and Crud templates
+                    'ext.ajaxgii', 
+                    'ext.giix-core', // giix generators
              ),
-		),
+        ),
 		
-		'rights'=>array(
-			'superuserName'=>'Admin', // Name of the role with super user privileges. 
+        'rights'=>array(
+            'superuserName'=>'Admin', // Name of the role with super user privileges. 
            'authenticatedName'=>'Authenticated',  // Name of the authenticated user role. 
            'userIdColumn'=>'id', // Name of the user id column in the database. 
            'userNameColumn'=>'username',  // Name of the user name column in the database. 
@@ -54,7 +54,6 @@ return array(
            'displayDescription'=>true,  // Whether to use item description instead of name. 
            'flashSuccessKey'=>'RightsSuccess', // Key to use for setting success flash messages. 
            'flashErrorKey'=>'RightsError', // Key to use for setting error flash messages. 
-
            'baseUrl'=>'/rights', // Base URL for Rights. Change if module is nested. 
            'layout'=>'rights.views.layouts.main',  // Layout to use for displaying Rights. 
            'appLayout'=>'application.views.layouts.main', // Application layout. 
@@ -93,7 +92,7 @@ return array(
             'loginUrl' => array('/user/login'),
  
             # page after login
-            'returnUrl' => array('/user/profile'),
+            'returnUrl' => array('/admin/home'),
  
             # page after logout
             'returnLogoutUrl' => array('/user/login'),
@@ -103,27 +102,43 @@ return array(
 
 	// application components
 	'components'=>array(
-		'bootstrap'=>array(
-				//'class'=>'bootstrap.components.Bootstrap',
-				'class' => 'ext.bootstrap.components.Bootstrap',
-				//'coreCss' => false, //use css themes
-		),
-		// uncomment the following to enable URLs in path-format
-		'urlManager'=>array(
-			'urlFormat'=>'path',
-			'showScriptName'=>false,
-			'rules'=>array(
-				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
-				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
-				'promociones'=>'promociones/index',
-			),
-		),
-		'user'=>array(
-                'class'=>'RWebUser',
-                // enable cookie-based authentication
-                'allowAutoLogin'=>true,
-                'loginUrl'=>array('/user/login'),
+            'bootstrap'=>array(
+                            //'class'=>'bootstrap.components.Bootstrap',
+                            'class' => 'ext.bootstrap.components.Bootstrap',
+                            //'coreCss' => false, //use css themes
+            ),
+            // uncomment the following to enable URLs in path-format
+            'urlManager'=>array(
+                'urlFormat'=>'path',
+                'showScriptName'=>false,
+                'rules'=>array(
+                    'user/empresa'=>'user/empresa/empresa',
+                    'user/empresas'=>'user/empresa/admin',
+                    'user/promociones'=>'user/promocion/admin',
+                    'user/mispromociones'=>'user/promocion/index',
+                    //'user/empresa/<id:\d+>' => 'user/empresa/edit',//Para dígitos
+                    //'glossar/<item:\d+>'=>'glossar/anzeigen',
+                    //'user/empresa' => 'user/empresa/edit',
+                    //'admin/home' => 'user/admin',
+                    'profile/edit' => 'profile',
+                    'user/home' => 'user/profile/home',
+                    'user/registrarcomprador' => 'user/registrationcomprador',
+                    'user/registrarempresa' => 'user/registrationcompany',
+                    'user/user/contact' => 'user/user/contact',
+                    'page/<view>'=>array('site/page'),
+                    'index'=>array('site/index'),
+                    '<controller:\w+>/<id:\d+>'=>'<controller>/view',
+                    '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+                    '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+                    'promociones' => 'promocion/index',
+                    //'empresa/<alias:[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]+>' => 'empresa/view',
+                ),
+            ),
+            'user'=>array(
+            'class'=>'RWebUser',
+            // enable cookie-based authentication
+            'allowAutoLogin'=>true,
+            'loginUrl'=>array('/user/login'),
         ),
         'authManager'=>array(
                 'class'=>'RDbAuthManager',
@@ -135,14 +150,14 @@ return array(
 		),*/
 		// uncomment the following to use a MySQL database
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=promos',
-			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '',
-			'charset' => 'utf8',
-			'tablePrefix' => 'tbl_',
-        	'enableProfiling' => true,
-        	'enableParamLogging' => true,
+                    'connectionString' => 'mysql:host=localhost;dbname=promos',
+                    'emulatePrepare' => true,
+                    'username' => 'root',
+                    'password' => '',
+                    'charset' => 'utf8',
+                    'tablePrefix' => 'tbl_',
+                    'enableProfiling' => true,
+                    'enableParamLogging' => true,
 		),
 		
 		/*'widgetFactory'=>array(
@@ -159,24 +174,24 @@ return array(
 			'errorAction'=>'site/error',
 		),
 		'log'=>array(
-			'class'=>'CLogRouter',
-			'routes'=>array(
-				// uncomment the following to show log messages on web pages
-				array(
-                    'class' => 'CFileLogRoute',
-					'logFile'=>'trace.log',
-                    'levels' => 'error, trace,warning, info',
-                    'categories'=>'system.*',
-                ),
-				array(
-					'class'=>'CWebLogRoute',
-					'enabled' => YII_DEBUG,
-					'levels'=>'trace',
-					//'filter'=>'CLogFilter',
-					'categories'=>'vardump',
-					'showInFireBug'=>true
-				),				
-			),
+                    'class'=>'CLogRouter',
+                    'routes'=>array(
+                        // uncomment the following to show log messages on web pages
+                        array(
+                            'class' => 'CFileLogRoute',
+                            //'logFile'=>'trace.log',
+                            'levels' => 'error, trace,warning, info'
+                            // 'categories'=>'system.*',
+                        ),
+                        array(
+                                'class'=>'CWebLogRoute'
+                                /*'enabled' => YII_DEBUG,
+                                'levels'=>'trace',
+                                'filter'=>'CLogFilter',
+                                'categories'=>'vardump',
+                                'showInFireBug'=>true*/
+                        ),				
+                    ),
 		),
 	),
 
@@ -186,6 +201,10 @@ return array(
 		// this is used in contact page
 		'debugContent'=>'',
 		'adminEmail'=>'grillermo@gmail.com',
+		'websiteEmail'=>'promos@promos.com',
 		'img_default'=>'/img/noprofile.jpg',
+		'url_paypal'=>'wwww.sadfsdf.com',
+		'path_imgs'=> realpath( Yii::app( )->getBasePath( )."/../" ),
+		'cuenta_paypal' => 'grillermo@gmail.com',
 	),
 );

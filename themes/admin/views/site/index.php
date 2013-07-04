@@ -8,7 +8,7 @@ $this->pageTitle=Yii::app()->name;
     'heading'=>'Welcome to '.CHtml::encode(Yii::app()->name),
 )); ?>
 
-<p>Congratulations! You have successfully created your Yii application with BootStrap.</p>
+<p>Hola. esta es la página principal de tema "admin", vista-> site/index.php</p>
 
 <?php $this->endWidget(); ?>
 

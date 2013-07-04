@@ -3,7 +3,7 @@
 class CompanyController extends Controller
 {
 	public $defaultAction = 'admin';
-	public $layout='//layouts/column2';
+	public $layout='//layouts/empresa_column2';
 	
 	private $_model;
 

@@ -14,6 +14,11 @@
  */
 class Cuenta extends CActiveRecord
 {
+	//Duración en semanas
+	const DURACION_CUENTA_TRIAL=2;
+	
+	const CUENTA_TRIAL = 1;
+	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -56,7 +61,7 @@ class Cuenta extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'empresas' => array(self::HAS_MANY, 'Empresa', 'id'),
+			//'profile' => array(self::HAS_MANY, 'Profile', 'tipocuenta'),
 		);
 	}
 
@@ -68,6 +73,7 @@ class Cuenta extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'nombre' => 'Nombre',
+			'titulo' => 'Tipo de cuenta',//Cuando se muestra desde el profile
 			'precio' => 'Precio',
 			'duracion' => 'Duracion',
 		);
@@ -94,10 +100,8 @@ class Cuenta extends CActiveRecord
 		));
 	}
 	
-	public static function getCuentas() {
-		
-		$cuentas=Cuenta::model()->findAll();
-
-		return $cuentas;
+	public static function getCuentas()
+	{
+		return CHtml::listData(Cuenta::model()->findAll(),'id','titulo');
 	}
 }

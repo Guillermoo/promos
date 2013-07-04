@@ -7,12 +7,17 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     'type'=>'horizontal',
 )); ?>
  
- <?php //$this->debug($listCat)?>
- <?php //$this->debug($categorias)?>
- <?php $this->debug($misCat[0]->attributes)?>
-<?php //echo $form->checkBoxListInlineRow($misCat, 'id', $categorias); ?>
-<?php //echo $form->checkBoxListRow($misCat, 'id', $categorias, array('hint'=>'<strong>Note:</strong> Labels surround all the options for much larger click areas.')); ?>
-<?php foreach ($misCat as $miCat):?>
+ <?php //$this->debug($model->empresa->empCat[0]->categoria->attributes)?>
+<?php //echo $form->radioButtonList($misCat, 'id', CHtml::listData(Category::model()->findAll(), 'id', 'name')); ?>
+<?php echo $form->checkBoxList($misCat,'categoria_id',$categorias) ?>
+<?php 
+  // Calls getOrderDisclaimers in Order Model
+  /*echo $form->checkBoxList($misCat,'orderDisclaimers',     
+    CHtml::listData(Categoria::model()->findAll(), 'id', 'name'), 
+    array('separator'=>'','template'=>'<tr><td>{input}</td><td>{label}</td></tr>'
+  ) );*/
+  ?>
+    <?php /*foreach ($misCat as $miCat):?>
 	<b><?php echo $miCat->name;?></b><br>
-<?php endforeach;?>
+<?php endforeach;*/?>
 <?php $this->endWidget(); ?>

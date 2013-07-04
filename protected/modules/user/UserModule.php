@@ -52,12 +52,23 @@ class UserModule extends CWebModule
 	 */
 	public $autoLogin=true;
 	
-	public $registrationUrl = array("/user/registration");
+	public $registrationUrl = array("/user/registrarcomprador");
 	public $registrationCompanyUrl = array("/user/registrationcompany");
 	public $recoveryUrl = array("/user/recovery/recovery");
 	public $loginUrl = array("/user/login");
 	public $logoutUrl = array("/user/logout");
+	public $adminUrl = array("/user/admin");
+	public $adminEmpresaUrl = array("/user/empresas");
+	public $crearPromocionUrl = array("/user/promocion/create");
+        public $adminPromocionesUrl = array("/user/promociones");
+	public $promocionesUrl = array("/user/mispromociones");
+	public $contactoUrl = array("/site/contact");
+	public $homeUrl = array("/user/home");//'user/home' => 'user/empresa/home',
+	public $homeAdminUrl = array("/user/admin/home");//'user/home' => 'user/empresa/home',
 	public $profileUrl = array("/user/profile");
+	public $cuentaUrl = array("/user/cuenta");
+	public $empresaUrl = array("/user/empresa");
+	public $bajaUrl = array("/user/baja");
 	public $returnUrl = array("/user/profile");
 	public $returnLogoutUrl = array("/user/login");
 	
@@ -104,7 +115,11 @@ class UserModule extends CWebModule
 	static private $_user;
 	static private $_users=array();
 	static private $_userByName=array();
-	static private $_admin;
+	static private $_sadmin;
+        static private $_admin;
+	static private $_company;
+	static private $_trial;
+	static private $_buyer;
 	static private $_admins;
 	
 	/**
@@ -126,10 +141,7 @@ class UserModule extends CWebModule
 		
 		//En cualquiera de las vistas del módulo user se cargará el theme 'admin'.
 		Yii::app()->theme = 'admin';
-		
 	}
-	
-
 	
 	public function getBehaviorsFor($componentName){
         if (isset($this->componentBehaviors[$componentName])) {
@@ -193,18 +205,110 @@ class UserModule extends CWebModule
 	 * Return admin status.
 	 * @return boolean
 	 */
-	public static function isAdmin() {
+	public static function isAdmin($id=null) {
 		if(Yii::app()->user->isGuest)
 			return false;
 		else {
 			if (!isset(self::$_admin)) {
 				//if(self::user()->superuser)
-				if(Yii::app()->authManager->checkAccess('admin', Yii::app()->user->id))
+				if ($id==null)
+					$id = Yii::app()->user->id;
+					
+				if(Yii::app()->authManager->checkAccess('admin', $id)){
+					//swdgsg;
 					self::$_admin = true;
+				}
 				else
 					self::$_admin = false;	
 			}
 			return self::$_admin;
+		}
+	}
+	
+	/**
+	 * (G)Return company status.
+	 * @return boolean
+	 */
+	public static function isCompany($id=null) {
+		if(Yii::app()->user->isGuest)
+			return false;
+		else {
+			if (!isset(self::$_company)) {
+				if ( ($id==null) || (!isset($id)) ){
+					$id = Yii::app()->user->id;
+				}
+					
+				if(Yii::app()->authManager->checkAccess('empresa', $id))
+					self::$_company = true;
+				else
+					self::$_company = false;	
+			}
+			return self::$_company;
+		}
+	}
+	
+/**
+	 * (G)Return company status.
+	 * @return boolean
+	 */
+	public static function isTrial($id=null) {
+		if(Yii::app()->user->isGuest)
+			return false;
+		else {
+			if (!isset(self::$_trial)) {
+				//if(self::user()->superuser)
+				if ($id==null)
+					$id = Yii::app()->user->id;
+				if(Yii::app()->authManager->checkAccess('trial', $id))
+					self::$_trial = true;
+				else
+					self::$_trial = false;	
+			}
+			return self::$_trial;
+		}
+	}
+	
+/**
+	 * (G)Return buyer status.
+	 * @return boolean
+	 */
+	public static function isBuyer($id=null) {
+		if(Yii::app()->user->isGuest)
+			return false;
+		else {
+			if (!isset(self::$_buyer)) {
+				//if(self::user()->superuser)
+				if ($id==null)
+					$id = Yii::app()->user->id;
+					
+				if(Yii::app()->authManager->checkAccess('comprador', $id))
+					self::$_buyer = true;
+				else
+					self::$_buyer = false;	
+			}
+			return self::$_buyer;
+		}
+	}
+	
+/**
+	 * (G)Return superadmin status.
+	 * @return boolean
+	 */
+	public static function isSuperAdmin($id=null) {
+		if(Yii::app()->user->isGuest)
+			return false;
+		else {
+			if (!isset(self::$_sadmin)) {
+				//if(self::user()->superuser)
+				if ($id==null)
+					$id = Yii::app()->user->id;
+					
+				if(Yii::app()->authManager->checkAccess('superadmin', $id))
+					self::$_sadmin = true;
+				else
+					self::$_sadmin = false;	
+			}
+			return self::$_sadmin;
 		}
 	}
 
@@ -223,6 +327,12 @@ class UserModule extends CWebModule
 		return self::$_admins;
 	}
 	
+	public static function getSlug($name){
+		
+		//Aquí va la lógica para obtener el slug del nombre
+		return $name;
+	}
+	
 	/**
 	 * Send mail method
 	 */
@@ -234,6 +344,7 @@ class UserModule extends CWebModule
 	    return mail($email,'=?UTF-8?B?'.base64_encode($subject).'?=',$message,$headers);
 	}
 	
+	//(H)
 	public static function enviarEmail($email,$subject,$message, $altBody){
 			
 			/* hugo */

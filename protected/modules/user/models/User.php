@@ -2,22 +2,26 @@
 
 class User extends CActiveRecord
 {
+	const STATUS_BANNED=-1;
 	const STATUS_NOACTIVE=0;
 	const STATUS_ACTIVE=1;
-	const STATUS_BANNED=-1;
-	const ID_SUPERADMIN=1;
+	const STATUS_PAGAR=2;//Si es = a 2 es que tiene que pagar
+	const STATUS_OK=3;
+	const ID_SUPERADMIN=-1;
 	const ID_COMPRADOR=0;
 	const ID_ADMIN=1;
 	const ID_EMPRESA=2;
-	
+	const ID_TRIAL=2;
 	
 	//TODO: Delete for next version (backward compatibility)
 	const STATUS_BANED=-1;
 	
 	public $regMode = false;
+	public $cambiaRole = false;
 	
 	private $_modelReg;
 	private $_model;
+	private $passwordHash;
 	
 	/**
 	 * The followings are the available columns in table 'users':
@@ -60,21 +64,21 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.CConsoleApplication
 		return ((get_class(Yii::app())=='CConsoleApplication' || (get_class(Yii::app())!='CConsoleApplication' && Yii::app()->getModule('user')->isAdmin()))?array(
-			array('username', 'length', 'max'=>20, 'min' => 3,'message' => UserModule::t("Incorrect username (length between 3 and 20 characters).")),
+			//array('username', 'length', 'max'=>20, 'min' => 3,'message' => UserModule::t("Incorrect username (length between 3 and 20 characters).")),
 			array('password', 'length', 'max'=>128, 'min' => 4,'message' => UserModule::t("Incorrect password (minimal length 4 symbols).")),
 			array('email', 'email'),
-			array('username', 'unique', 'message' => UserModule::t("This user's name already exists.")),
+			//array('username', 'unique', 'message' => UserModule::t("This user's name already exists.")),
 			array('email', 'unique', 'message' => UserModule::t("This user's email address already exists.")),
-			array('username', 'match', 'pattern' => '/^[A-Za-z0-9_]+$/u','message' => UserModule::t("Incorrect symbols (A-z0-9).")),
-			array('status', 'in', 'range'=>array(self::STATUS_NOACTIVE,self::STATUS_ACTIVE,self::STATUS_BANNED)),
-			array('superuser', 'in', 'range'=>array(self::ID_COMPRADOR,self::ID_ADMIN,self::ID_EMPRESA)),
+			//array('username', 'match', 'pattern' => '/^[A-Za-z0-9_]+$/u','message' => UserModule::t("Incorrect symbols (A-z0-9).")),
+			array('status', 'in', 'range'=>array(self::STATUS_NOACTIVE,self::STATUS_ACTIVE,self::STATUS_BANNED,self::STATUS_PAGAR,self::STATUS_OK), 'except' => 'admin'),
+			array('superuser', 'in', 'range'=>array(self::ID_COMPRADOR,self::ID_ADMIN,self::ID_EMPRESA,self::ID_TRIAL)),
             array('create_at', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true, 'on' => 'insert'),
             array('lastvisit_at', 'default', 'value' => '0000-00-00 00:00:00', 'setOnEmpty' => true, 'on' => 'insert'),
-			array('username, email, superuser, status', 'required'),
+			array('email,password, superuser, status', 'required'),
 			array('superuser, status', 'numerical', 'integerOnly'=>true),
-			array('id, username, password, email, activkey, create_at, lastvisit_at, superuser, status', 'safe', 'on'=>'search'),
-		):((Yii::app()->user->id==$this->id)?array(
-			array('username, email', 'required'),
+			array('id, password, email, activkey, create_at, lastvisit_at, superuser, status', 'safe', 'on'=>'search'),
+				):((Yii::app()->user->id==$this->id)?array(
+			array('username, email', 'required', 'except' => 'admin'),
 			array('username', 'length', 'max'=>20, 'min' => 3,'message' => UserModule::t("Incorrect username (length between 3 and 20 characters).")),
 			array('email', 'email'),
 			array('username', 'unique', 'message' => UserModule::t("This user's name already exists.")),
@@ -90,15 +94,17 @@ class User extends CActiveRecord
 	{
         $relations = Yii::app()->getModule('user')->relations;
         if(isset($_GET['id']))
-			$id=$_GET['id'];
-		else
-			$id=Yii::app()->user->id;
-				
-        if (Yii::app()->authManager->checkAccess('empresa', $id))
+                $id=$_GET['id'];
+        else
+                $id=Yii::app()->user->id;
+        
+        //if (Yii::app()->authManager->checkAccess('empresa', $id)){
             $relations['empresa'] = array(self::HAS_ONE, 'Empresa', 'user_id');
             $relations['profile'] = array(self::HAS_ONE, 'Profile', 'user_id');
             $relations['item'] = array(self::HAS_ONE, 'Item', 'foreign_id');
-            $relations['contacto'] = array(self::HAS_ONE, 'Contacto', 'user_id');
+            $relations['promocion'] = array(self::HAS_MANY, 'Promocion', 'user_id');
+       // }
+        
         return $relations;
 	}
 
@@ -129,8 +135,8 @@ class User extends CActiveRecord
             'active'=>array(
                 'condition'=>'status='.self::STATUS_ACTIVE,
             ),
-            'MuestraEnIndex'=>array(
-                'condition'=>'id!='.self::ID_SUPERADMIN,
+            'basic'=>array(
+                'select' => 'id,username',
             ),
             'notactive'=>array(
                 'condition'=>'status='.self::STATUS_NOACTIVE,
@@ -141,9 +147,16 @@ class User extends CActiveRecord
             'superuser'=>array(
                 'condition'=>'superuser=1 || superuser=-1',
             ),
+            'status'=>array(
+                'select' => 'id,status',
+            ),
             'notsafe'=>array(
             	'select' => 'id, username, password, email, activkey, create_at, lastvisit_at, superuser, status',
             ),
+            'nombre'=>array(
+            	'select' => 'nombre',
+            	'condition' => 'id='.Yii::app()->user->id,
+             )
         );
     }
 	
@@ -156,14 +169,17 @@ class User extends CActiveRecord
     }
 	
     /*
-     * Función que devuelve lo items de los desplegables.
+     * Función que devuelve lo items de los desplegables. 
+     * Estas listas son estáticas, las dinámicas se hacen de otra forma.
      * */
 	public static function itemAlias($type,$code=NULL) {
 		$_items = array(
 			'UserStatus' => array(
-				self::STATUS_NOACTIVE => UserModule::t('Not active'),
-				self::STATUS_ACTIVE => UserModule::t('Active'),
 				self::STATUS_BANNED => UserModule::t('Banned'),
+				self::STATUS_NOACTIVE => UserModule::t('Not active'),
+				self::STATUS_ACTIVE => UserModule::t('Faltan campos'),
+				self::STATUS_PAGAR => UserModule::t('Pendiente pago'),
+				self::STATUS_OK => UserModule::t('Activo'),
 			),
 			'AdminStatus' => array(/*Se cargará el combo tipos de usuarios a la hora de crear usuarios desde
 									desde el menú admin*/
@@ -190,23 +206,115 @@ class User extends CActiveRecord
         
         $criteria->compare('id',$this->id);
         $criteria->compare('username',$this->username,true);
-        $criteria->compare('password',$this->password);
         $criteria->compare('email',$this->email,true);
-        $criteria->compare('activkey',$this->activkey);
         $criteria->compare('create_at',$this->create_at);
         $criteria->compare('lastvisit_at',$this->lastvisit_at);
         $criteria->compare('superuser',$this->superuser);
         $criteria->compare('status',$this->status);
+       // $criteria->condition='superuser !='.User::ID_SUPERADMIN;
+        //$criteria->with = array('empresa');
         //$criteria->condition = array('condition'=>'id > '. User::ID_SUPERADMIN . ''); /*Para que no se muestre el superuser!!!!*/
+
+        /*$sort = new CSort;
+		$sort->attributes = array(
+			'person_fname' => array(
+			'asc' => 'person.fname',
+			'desc' => 'person.fname DESC',
+		),
+		'person_lname' => array(
+			'asc' => 'person.lname',
+			'desc' => 'person.lname DESC',
+		),
+		'*',
+		);*/
 
         return new CActiveDataProvider(get_class($this), array(
             'criteria'=>$criteria,
         	'pagination'=>array(
 				'pageSize'=>Yii::app()->getModule('user')->user_page_size,
 			),
+			//'sort'=>$sort,
         ));
     }
-
+    
+	protected function beforeSave()
+	{
+	  if ($this->isNewRecord) {
+	  		$this->username = $this->email;//(PILLA USERNAME!!!)
+	        $this->passwordHash = sha1($this->password);
+	  }
+	  return parent::beforeSave(); // don't forget this line!
+	}
+	
+	protected function afterSave()
+	{
+		if (($this->cambiaRole) || ($this->isNewRecord) ){
+			//(G)Asignamos el rol dinámicamente consultando el campo user.status;
+			$this->setRole();
+			
+			//$esEmpresa = UserModule::isCompany($this->id);
+			$esEmpresa = Yii::app()->authManager->checkAccess('empresa', $this->id);
+			if (isset($this->profile)){
+				if($esEmpresa){
+					//(G)Creamos profile, empresa(si es usuario empresa)
+					$this->crearModelosRelacionados();
+				}
+			}
+			
+		}
+		return parent::afterSave();
+	}
+	
+	protected function beforeDelete(){
+		
+		if (parent::beforeDelete()){
+			if ($this->guardaRegistroUsuarioBorrado($this->id) )
+				return true;
+		}
+		return false;
+		
+	}
+	
+    
+	/*Función que asigna el rol según el tipo de usuario, se ejecuta nada mas crear el usuario*/
+	private function setRole(){
+		
+			$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
+			
+			if ($this->superuser == 0){
+				$authorizer->authManager->revoke('empresa', $this->id);
+				$authorizer->authManager->revoke('admin', $this->id);				
+				$authorizer->authManager->assign('comprador', $this->id);		
+			}
+			elseif($this->superuser == 1){
+				$authorizer->authManager->revoke('comprador', $this->id);
+				$authorizer->authManager->revoke('empresa', $this->id);
+				$authorizer->authManager->assign('admin', $this->id);
+			}
+			elseif($this->superuser == 2){
+				$authorizer->authManager->revoke('comprador', $this->id);
+				$authorizer->authManager->revoke('admin', $this->id);
+				$authorizer->authManager->assign('empresa', $this->id);
+			}
+			else
+				throw new CHttpException(404,'Error setting roles.');
+	}
+	
+	/** (G)Se crean en la bd los registros profile y empresa para este usuario
+	 * Al modelo profile le cargamos el tipo de cuenta que se ha selecionado.*/
+	public function crearModelosRelacionados(){
+		Profile::crearNuevoProfileParaElUsuario($this->id);
+		Empresa::crearNuevaEmpresaParaElUsuario($this->id);
+	}
+	
+	/*
+	 * Deberíamos guardar la información del usuario borrado. 
+	 * */
+	private function guardaRegistroUsuarioBorrado($id){
+		return true;
+	}
+	
+	
     public function getCreatetime() {
         return strtotime($this->create_at);
     }
@@ -222,76 +330,49 @@ class User extends CActiveRecord
     public function setLastvisit($value) {
         $this->lastvisit_at=date('Y-m-d H:i:s',$value);
     }
-    
-    /*(G) Función para obtener los campos. 
-     * Si queremos que se muestren unos campos u otros en función de quien los llama,
-     * este es el momento. */
-	public static function getFields() {
-		$this->_model=Profile::model()->paraTodos()->findAll();
+	
+	/* Estos campos no puede ser nunca inválidos */
+	public static function tieneCamposMinimosRellenos($model){
 		
-		return $this->_model;
-		/*if ($this->regMode) {
-			if (!$this->_modelReg)
-				$this->_modelReg=Profile::model()->paraTodos()->findAll();
-			return $this->_modelReg;
-		} else {
-			if (!$this->_model)
-				$this->_model=Profile::model()->paraCommprador()->findAll();
-			return $this->_model;
-		}*/
-	}
-    
-	/*Función que asigna el rol según el tipo de usuario, se ejecuta nada mas crear el usuario*/
-	public function setRole(){
-			$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
-			
-			if ($this->superuser == 0)
-				$authorizer->authManager->assign('comprador', $this->id);			
-			elseif($this->superuser == 1)
-				$authorizer->authManager->assign('admin', $this->id);
-			else //=2
-				$authorizer->authManager->assign('empresa', $this->id);
+		$return = true;
+		
+		if (isset($model->profile))
+			$return = $this->compruebaCamposMinimosProfile($model->profile);
+		
+		if (isset($model->empresa))
+			$return = $this->compruebaCamposMinimosEmpresa($model->empresa);
+		
+		return $return;
+		
 	}
 	
-	/*Función que asigna el rol según el tipo de usuario, se ejecuta nada mas crear el usuario*/
-	public function crearModelosRelacionados(){
-
-		if ($this->superuser == 2){//Es un usuario-empresa
-			$this->crearNuevoProfileParaElUsuario();
-			$this->crearNuevaEmpresaParaElUsuario();
-			$this->crearNuevoContactoParaElUsuario();
+	private static function compruebaCamposMinimosProfile($profile){
+		if (($profile->direccion == null) || ($profile->direccion == 0) )
+			$return =  "Falta el cmapo dirección";
+		
+		elseif (($profile->telefono == null) || (!isset($profile->telefono) || ($profile->telefono === '') ) 	)
+			$return = "Falta el cmapo telefono";
+		
+		elseif (($profile->paypal_id == null) || (!isset($profile->paypal_id) || ($profile->paypal_id === '') ) 	){
+			$return = false;
 		}
 	}
 	
-	private function crearNuevoProfileParaElUsuario(){
+	private function compruebaCamposMinimosEmpresa($empresa){
+		if (($empresa->nombre == null) || (!isset($empresa->nombre)) )
+			$return =  "Falta el cmapo nombre";
 		
-		$profile=new Profile;
-		/*(G)Creamos el perfil con el id del nuevo usuario. Al ser creado desde el admin sólo hay
-		que crear el usuario, no los datos del perfil o contacto, eso ya lo hará el usuario(o el admin desde update.*/
-		$profile->user_id=$this->id;
-		//$profile->contacto_id = $contacto_id;
-		$profile->save();
-		$this->debug($profile->getErrors());
+		elseif (($empresa->cif == null) || (!isset($empresa->cif) )	)
+			$return =  "Falta el cmapo cif";	
 	}
 	
-	private function crearNuevaEmpresaParaElUsuario(){
-		
-		$empresa= new Empresa;
-		$empresa->user_id = $this->id;
-		$empresa->cuenta_id = 1;//Habría que pasarle la variable con el valor que ha elegido el admin
-		$empresa->save();
-		
+	public static function cuentaCaducada($model){
+		//Comprobar si se ha acabado el plazo.
+		return false;
 	}
 	
-	private function crearNuevoContactoParaElUsuario(){
-		
-		$contacto = new Contacto;
-		$contacto->user_id = $this->id;
-		$contacto->save();
-		
-		/*$profile->tipocuenta=; (G)FALTA ASIGNAR VALORES AUTOMÁTICOS
-		$profile->fecha_creacion=;*/
-			
+	public static function compruebaSiTieneQuePagar($model){
+		//Comprobar si tiene que pagar
 	}
 	
 	/* Used to debug variables*/

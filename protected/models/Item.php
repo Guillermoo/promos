@@ -175,5 +175,35 @@ class Item extends CActiveRecord
 		}else{
 			throw new CHttpException( 500, "Could not save the file" );
 		}
+	}
+	
+	public static function deleteItemFromDisk($id){
+		
+		if (isset($id)){
+			
+			$model=Item::model()->findByPk($id);
+			//Yii::app()->params['path_imgs'];
+			//realpath( Yii::app( )->getBasePath( ))
+			$file = realpath( Yii::app( )->getBasePath( )."/.." ).$model->path ;
+            if( is_file( $file ) ) {
+				unlink( $file );
+			}
 		}
+	}
+	
+	public static function deteleItemFromDB($id){
+
+		if (isset($id)){
+			
+			$model=Item::model()->findByPk($id);
+
+			/*$model=Item::model()->findByAttributes(array(
+				'filename'=>$filename
+			));*/
+			
+			$model->delete();
+			
+		}
+		
+	}
 }

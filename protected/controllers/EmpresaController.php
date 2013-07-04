@@ -6,7 +6,7 @@ class EmpresaController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	//public $layout='//layouts/empresa_column2';
 
 	/**
 	 * @return array action filters
@@ -17,11 +17,6 @@ class EmpresaController extends Controller
 			'accessControl', // perform access control for CRUD operations
 			'postOnly + delete', // we only allow deletion via POST request
 		);
-	}
-	
-	private function setTheme()
-	{
-		return Yii::app()->theme='admin';
 	}
 
 	/**
@@ -54,10 +49,33 @@ class EmpresaController extends Controller
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
-	public function actionView($id)
+	public function actionView($alias)
 	{
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'=>$this->loadModelByName($alias),
+		));
+	}
+
+	/**
+	 * Creates a new model.
+	 * If creation is successful, the browser will be redirected to the 'view' page.
+	 */
+	public function actionCreate()
+	{
+		$model=new Empresa;
+
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+
+		if(isset($_POST['Empresa']))
+		{
+			$model->attributes=$_POST['Empresa'];
+			if($model->save())
+				$this->redirect(array('view','id'=>$model->id));
+		}
+
+		$this->render('create',array(
+			'model'=>$model,
 		));
 	}
 
@@ -75,14 +93,28 @@ class EmpresaController extends Controller
 
 		if(isset($_POST['Empresa']))
 		{
-			$model->attributes=$_POST['Empresa'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->empresa_id));
+                    $model->attributes=$_POST['Empresa'];
+                    if($model->save())
+                        $this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('update',array(
 			'model'=>$model,
 		));
+	}
+
+	/**
+	 * Deletes a particular model.
+	 * If deletion is successful, the browser will be redirected to the 'admin' page.
+	 * @param integer $id the ID of the model to be deleted
+	 */
+	public function actionDelete($id)
+	{
+		$this->loadModel($id)->delete();
+
+		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+		if(!isset($_GET['ajax']))
+			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
 
 	/**
@@ -110,6 +142,21 @@ class EmpresaController extends Controller
 			'model'=>$model,
 		));
 	}
+	
+	public function actionPaypal()
+	{
+		$model=new PaypalForm;
+		if(isset($_POST['PaypalForm']))
+		{
+			$model->attributes=$_POST['PaypalForm'];
+			if($model->validate())
+			{
+				Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
+				$this->refresh();
+			}
+		}
+		$this->render('paypal',array('model'=>$model));
+	}
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
@@ -125,6 +172,15 @@ class EmpresaController extends Controller
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
 	}
+	
+	public function loadModelByName($name)
+	{
+		$attributes = array('nombre_slug'=>$name);
+		$model=Empresa::model()->findByAttributes($attributes);
+		if($model===null)
+			throw new CHttpException(404,'The company does not exist.');
+		return $model;
+	}
 
 	/**
 	 * Performs the AJAX validation.
@@ -138,4 +194,15 @@ class EmpresaController extends Controller
 			Yii::app()->end();
 		}
 	}
+	
+	/* Used to debug variables*/
+    protected function Debug($var){
+        $bt = debug_backtrace();
+        $dump = new CVarDumper();
+        $debug = '<div style="display:block;background-color:gold;border-radius:10px;border:solid 1px brown;padding:10px;z-index:10000;"><pre>';
+        $debug .= '<h4>function: '.$bt[1]['function'].'() line('.$bt[0]['line'].')'.'</h4>';
+        $debug .=  $dump->dumpAsString($var);
+        $debug .= "</pre></div>\n";
+        Yii::app()->params['debugContent'] .=$debug;
+    }
 }
