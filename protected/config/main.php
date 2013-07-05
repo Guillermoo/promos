@@ -116,6 +116,7 @@ return array(
                     'user/empresas'=>'user/empresa/admin',
                     'user/promociones'=>'user/promocion/admin',
                     'user/mispromociones'=>'user/promocion/index',
+                    'user/contacto'=>'user/user/contacto',
                     //'user/empresa/<id:\d+>' => 'user/empresa/edit',//Para dígitos
                     //'glossar/<item:\d+>'=>'glossar/anzeigen',
                     //'user/empresa' => 'user/empresa/edit',
@@ -184,9 +185,9 @@ return array(
                             // 'categories'=>'system.*',
                         ),
                         array(
-                                'class'=>'CWebLogRoute'
-                                /*'enabled' => YII_DEBUG,
-                                'levels'=>'trace',
+                                'class'=>'CWebLogRoute',
+                                'enabled' => YII_DEBUG,
+                                /*'levels'=>'trace',
                                 'filter'=>'CLogFilter',
                                 'categories'=>'vardump',
                                 'showInFireBug'=>true*/

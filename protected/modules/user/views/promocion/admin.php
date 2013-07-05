@@ -41,7 +41,10 @@ $('.search-form form').submit(function(){
 	'type'=>'striped',
 	'enableSorting' => true,
 	'columns'=>array(
-		'id',
+                array( 
+                    'name'=>'id', 
+                    'visible'=>YII_DEBUG,
+                ),
 		//'user_id',
                 array( 
                     'name'=>'nbempresa', 

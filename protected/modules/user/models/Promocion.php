@@ -34,8 +34,8 @@ class Promocion extends CActiveRecord
 	const STATUS_BLOQUEADA=3;//Si es = a 2 es que ti
 	const STATUS_VALIDACION=4;//Si es = a 2 es que ti
 	
-	const STATUS_DESTACADA=1;
-        const STATUS_NODESTACADA=0;
+	const IS_DESTACADA=1;
+        const IS_NODESTACADA=0;
         
         public $nbempresa;
 	
@@ -64,18 +64,32 @@ class Promocion extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('titulo, titulo_slug, resumen, descripcion_html, fecha_inicio, fecha_fin, destacado, precio, condiciones, stock', 'required'),
+			array('titulo, titulo_slug, resumen,  fecha_inicio, fecha_fin, destacado, precio, condiciones, stock', 'required'),
 			array('id,user_id, estado, destacado, stock,precio', 'numerical', 'integerOnly'=>true),
 			array('titulo, titulo_slug, resumen', 'length', 'max'=>100),
 			array('fecha_inicio,fecha_fin', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true, 'on' => 'insert'),//fechaCreación es un timestamp
 			array('fecha_inicio,fecha_fin', 'default', 'value' => '0000-00-00 00:00:00', 'setOnEmpty' => true, 'on' => 'insert'),
 			array('descripcion, descripcion_html, condiciones', 'length', 'max'=>1000),
 			array('precio, rebaja', 'length', 'max'=>45),
+                        array('fecha_inicio,fecha_fin', 'checkFechas'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, user_id,nbempresa, titulo, titulo_slug, resumen, descripcion, descripcion_html, fecha_inicio, fecha_fin, fechaCreacion, destacado, precio, rebaja, condiciones, stock', 'safe', 'on'=>'search'),
 		);
 	}
+        
+        /**
+     * Valida que las fechas sean correctas tipo fechaInicio > fechaFin.
+     */
+    public function checkFechas($attribute, $params) {
+        //Aquí hay que hacer un foreach para sacar los valores.
+        $this->debug($this->$attribute);
+        /*$fechaInicio = $params['fecha_inicio'];
+        $fecha_fin = $params['fecha_fin'];
+
+        if ($fechaInicio == $fecha_fin)
+            $this->addError($attribute, UserModule::t("Error 1 with dates!."));*/
+    }
 
 	/**
 	 * @return array relational rules.
@@ -238,12 +252,12 @@ class Promocion extends CActiveRecord
 				self::STATUS_ACTIVA => UserModule::t('Active'),
 				self::STATUS_NOACTIVA => UserModule::t('Not active'),
 				self::STATUS_BORRADOR => UserModule::t('Draft'),
-				self::STATUS_BLOQUEADA => UserModule::t('Bloqued'),
-				self::STATUS_VALIDACION => UserModule::t('Valiadation'),
+				//self::STATUS_BLOQUEADA => UserModule::t('Bloqued'),
+				//self::STATUS_VALIDACION => UserModule::t('Valiadation'),
 			),
 			'Destacado' => array(/*Se cargará el combo tipos de usuarios a la hora de crear usuarios desde*/
-				self::STATUS_DESTACADA => UserModule::t('Highlight'),
-                                self::STATUS_NODESTACADA => UserModule::t('No Highlight'),
+				self::IS_DESTACADA => UserModule::t('Highlight'),
+                                self::IS_NODESTACADA => UserModule::t('No Highlight'),
 			),
 		);
 		if (isset($code))
@@ -251,6 +265,17 @@ class Promocion extends CActiveRecord
 		else
 			return isset($_items[$type]) ? $_items[$type] : false;
 	}
+        
+            /* Used to debug variables*/
+    protected function Debug($var){
+            $bt = debug_backtrace();
+            $dump = new CVarDumper();
+            $debug = '<div style="display:block;background-color:gold;border-radius:10px;border:solid 1px brown;padding:10px;z-index:10000;"><pre>';
+            $debug .= '<h4>function: '.$bt[1]['function'].'() line('.$bt[0]['line'].')'.'</h4>';
+            $debug .=  $dump->dumpAsString($var);
+            $debug .= "</pre></div>\n";
+            Yii::app()->params['debugContent'] .=$debug;
+    }
 
 	
 }

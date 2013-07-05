@@ -18,24 +18,27 @@
     <div class="row">
         <?php echo $form->label($model,'create_at'); ?>
         <?php //echo $form->textField($model,'create_at'); ?>
-        <?php $this->widget('zii.widgets.jui.CJuiDatePicker',array(
+        <?php /*$this->widget('zii.widgets.jui.CJuiDatePicker',array(
 						    'attribute'=>'create_at',
 							'model'=>$model,
 							/*'value'=>'create_at',
 		  					'name' => $model->create_at,*/
 						    // additional javascript options for the date picker plugin
-						));?>
+						//));?>
+         <?php echo $form->datepickerRow($model, 'create_at',
+            array('prepend'=>'<i class="icon-calendar"></i>')); ?>
     </div>
     <div class="row">
         <?php echo $form->label($model,'lastvisit_at'); ?>
         <?php //echo $form->textField($model,'lastvisit_at'); ?>
-        <?php $this->widget('zii.widgets.jui.CJuiDatepicker', 
+        <?php /*$this->widget('zii.widgets.jui.CJuiDatepicker', 
 				array(
 					'model'=>$model, 
 					'attribute'=>'lastvisit_at', 
 					//'htmlOptions' => array('id' => 'create_at_search'), 
-					));
-		?>
+					));*/?>
+        <?php echo $form->datepickerRow($model, 'lastvisit_at',
+            array('prepend'=>'<i class="icon-calendar"></i>')); ?>
     </div>
 
     <div class="row">

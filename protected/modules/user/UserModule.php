@@ -62,7 +62,9 @@ class UserModule extends CWebModule
 	public $crearPromocionUrl = array("/user/promocion/create");
         public $adminPromocionesUrl = array("/user/promociones");
 	public $promocionesUrl = array("/user/mispromociones");
-	public $contactoUrl = array("/site/contact");
+        public $contactoUrl = array("/site/contact");
+	public $contactoEmpresaUrl = array("/user/site/contactempresa");
+        public $contactoAdminUrl = array("/site/contactadmin");
 	public $homeUrl = array("/user/home");//'user/home' => 'user/empresa/home',
 	public $homeAdminUrl = array("/user/admin/home");//'user/home' => 'user/empresa/home',
 	public $profileUrl = array("/user/profile");

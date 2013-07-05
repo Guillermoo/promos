@@ -85,7 +85,7 @@
 			
 			<div class="row">
 				<?php echo $form->labelEx($profile,'fecha_activacion'); ?>
-				<?php $this->widget('zii.widgets.jui.CJuiDatePicker',array(
+				<?php /*$this->widget('zii.widgets.jui.CJuiDatePicker',array(
 					'name' => $profile->fecha_activacion,
 				    'attribute'=>'fecha_activacion',
 					'model'=>$profile,
@@ -99,11 +99,14 @@
     					'changeYear'=>'true',
 				    	'debug'=>YII_DEBUG,
 				    ),
-				));?>
+				));*/?>
+                             <?php echo $form->datepickerRow($profile, 'fecha_activacion',
+                                                    array('hint'=>'Click inside! This is a super cool date field.',
+                                                    'prepend'=>'<i class="icon-calendar"></i>')); ?>
 				<?php echo $form->error($profile,'fecha_activacion'); ?>
 			</div>
 			<div class="row">
-				<?php echo $form->labelEx($profile,'fecha_fin'); ?>
+				<?php /*echo $form->labelEx($profile,'fecha_fin'); ?>
 				<?php $this->widget('zii.widgets.jui.CJuiDatePicker',array(
 					'name' => 'fecha_fin',
 				    'attribute'=>'fecha_fin',
@@ -118,14 +121,17 @@
     					'changeYear'=>'true',
 				    	'debug'=>YII_DEBUG,
 				    ),
-				));?>
+				));*/?>
+                                <?php echo $form->datepickerRow($profile, 'fecha_fin',
+                                    array('hint'=>'Click inside! This is a super cool date field.',
+                                    'prepend'=>'<i class="icon-calendar"></i>')); ?>
 				<?php echo $form->error($profile,'fecha_fin'); ?>
 			</div>
 			
 			<div class="row">
 				<?php echo $form->labelEx($profile,'fecha_pago'); ?>
 				<?php //echo $form->textField($model->profile,'fecha_pago'); ?>
-				<?php $this->widget('zii.widgets.jui.CJuiDatePicker',array(
+				<?php /*$this->widget('zii.widgets.jui.CJuiDatePicker',array(
 				    'name' => 'fecha_pago',
 					'attribute'=>'fecha_pago',
 					'model'=>$profile,
@@ -139,7 +145,10 @@
     					'changeYear'=>'true',
 				    	'debug'=>YII_DEBUG,
 				    ),
-				));?>
+				));*/?>
+                                <?php echo $form->datepickerRow($profile, 'fecha_pago',
+                                    array('hint'=>'Click inside! This is a super cool date field.',
+                                    'prepend'=>'<i class="icon-calendar"></i>')); ?>
 				<?php echo $form->error($profile,'fecha_pago'); ?>
 			</div>
 			<div class="row">

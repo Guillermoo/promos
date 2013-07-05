@@ -100,7 +100,7 @@ class PromocionController extends Controller
             $model=new Promocion;
             $model->scenario = "insert";
 
-            $this->performAjaxValidation($model);
+            $this->performAjaxValidation(array($model));
 
             if(isset($_POST['Promocion'])){
                 $model->attributes=$_POST['Promocion'];
@@ -109,7 +109,8 @@ class PromocionController extends Controller
 
                 if($model->save()){
                     Yii::app()->user->setFlash('success',UserModule::t("Promotion created."));
-                    $this->redirect(array('promociones'));
+                    //$this->redirect(array('mispromociones'));
+                    $this->redirect(Yii::app()->getModule('user')->promocionesUrl);
                 }
                 else{
                     Yii::app()->user->setFlash('error',UserModule::t("Error creating the promotion."));
@@ -130,9 +131,8 @@ class PromocionController extends Controller
             //adsgh;
             $this->_model=$this->loadModel($id);
 
-            $this->performAjaxValidation(array($this->_model));
             // Uncomment the following line if AJAX validation is needed
-            // $this->performAjaxValidation($model);
+            $this->performAjaxValidation(array($this->_model));
 
             if(isset($_POST['Promocion']))
             {
