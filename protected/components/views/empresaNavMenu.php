@@ -2,7 +2,7 @@
 		<!-- navbar de bootstrap -->
 		<?php $this->widget('bootstrap.widgets.TbNavbar', array(
     'type'=>'', // null or 'inverse'
-    'brand'=>'Pro(e)moción!!',
+    'brand'=>'',
     'brandUrl'=>Yii::app()->baseUrl,
     'collapse'=>true, // requires bootstrap-responsive.css
     'items'=>array(
@@ -11,7 +11,7 @@
             'items'=>array(
                 array('url'=>Yii::app()->getModule('user')->homeUrl, 'label'=>Yii::app()->getModule('user')->t("Home"), 'visible'=>!Yii::app()->user->isGuest),
                 array('url'=>Yii::app()->getModule('user')->profileUrl, 'label'=>Yii::app()->getModule('user')->t("Profile"), 'visible'=>!Yii::app()->user->isGuest, 'icon'=>'user', 'active'=>Yii::app()->controller->id=='profile'),
-		    	array('url'=>Yii::app()->getModule('user')->empresaUrl, 'label'=>Yii::app()->getModule('user')->t("Company"), 'visible'=>!Yii::app()->user->isGuest, 'icon'=>'briefcase','active'=>Yii::app()->controller->id=='company'),
+		    	array('url'=>Yii::app()->getModule('user')->empresaUrl, 'label'=>Yii::app()->getModule('user')->t("Company"), 'visible'=>!Yii::app()->user->isGuest, 'icon'=>'briefcase','active'=>Yii::app()->controller->id=='empresa'),
 		    	array('label'=>Yii::app()->getModule('user')->t("My promotions"), 'url'=>Yii::app()->getModule('user')->promocionesUrl, 'icon'=>'gift','active'=>Yii::app()->controller->id=='promocion' , 'items'=>array(
                     array('label'=>Yii::app()->getModule('user')->t("Create"), 'url'=>Yii::app()->getModule('user')->crearPromocionUrl),
                     array('label'=>Yii::app()->getModule('user')->t("Administrate"), 'url'=>Yii::app()->getModule('user')->promocionesUrl),
