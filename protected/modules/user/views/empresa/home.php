@@ -1,6 +1,6 @@
 <?php if(YII_RUTAS == true) echo __FILE__; ?>
 <br>
-<h2>Esta es la página de bievenida para los usuarios-empresa al logearsee</h2>z
+<h2>Esta es la página de bienvenida para los usuarios-empresa al logearsee</h2>z
 <?php
 	//probando la cuenta trial
 	echo CHtml::link('Prueba la cuenta trial!',array('user/puedeTrial'));
