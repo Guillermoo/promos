@@ -72,7 +72,7 @@ $('.search-form form').submit(function(){
 			//'value' => Yii::app()->format->date(strtotime($model->create_at)),
 			//'value' => Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse($model->create_at, 'yyyy-MM-dd'),'medium',null),
 			//'value' => date("yy/mm/dd",strtotime($model->create_at)),
-			'filter'=>$this->widget('zii.widgets.jui.CJuiDatepicker', 
+            /*'filter'=>$this->widget('zii.widgets.jui.CJuiDatepicker', 
 				array(
 					'model'=>$model, 
 					'attribute'=>'create_at', 
@@ -83,7 +83,7 @@ $('.search-form form').submit(function(){
 							//'showButtonPanel' => 'true',
 							'duration'=>'fast',
 							'showAnim'=>'fold','changeMonth'=>'true', 
-	    					'changeYear'=>'true',)), true)
+	    					'changeYear'=>'true',)), true)*/
 	    ),
 
 		//'lastvisit_at',
