@@ -5,6 +5,7 @@ class CuentaController extends Controller{
 	public $defaultAction = 'home';
 
 	private $model;
+	private $cuentas;
 
 		public function accessRules()
 	{
@@ -25,8 +26,8 @@ class CuentaController extends Controller{
 
 	public function actionHome(){
 		$model = $this->loadUser();
-
-		$this->render('home',array('model'=>$model));
+		
+		$this->render('home',array('model'=>$model,));
 	}
 
 	public function actionVercuentas(){

@@ -101,3 +101,6 @@
   padding: 8px 25px;
   font-size: 18px;
 }
+#btn_show{
+  display: none;
+}
