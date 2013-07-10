@@ -26,7 +26,7 @@
   border-radius: 5px 5px 0 0;
 }
   
-.plan-name-bronze {
+.plan-name-Trial {
   padding: 20px;
   color: #fff;
   background-color: #665D1E;
@@ -35,19 +35,28 @@
   border-radius: 5px 5px 0 0;
  }
   
-.plan-name-silver {
+.plan-name-Basic {
   padding: 20px;
   color: #fff;
-  background-color: #C0C0C0;
+  background-color: #DF0101;
   -moz-border-radius: 5px 5px 0 0;
   -webkit-border-radius: 5px 5px 0 0;
   border-radius: 5px 5px 0 0;
  }
   
-.plan-name-gold {
+.plan-name-Advanced {
   padding: 20px;
   color: #fff;
   background-color: #FFD700;
+  -moz-border-radius: 5px 5px 0 0;
+  -webkit-border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
+  } 
+
+  .plan-name-Lite {
+  padding: 20px;
+  color: #fff;
+  background-color: #01DF3A;
   -moz-border-radius: 5px 5px 0 0;
   -webkit-border-radius: 5px 5px 0 0;
   border-radius: 5px 5px 0 0;

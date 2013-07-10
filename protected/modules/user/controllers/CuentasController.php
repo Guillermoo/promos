@@ -6,7 +6,11 @@ class CuentasController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout = 'column2';
+	public $defaultAction = 'home';
+
+	private $model;
+	private $cuentas;
 
 	/**
 	 * @return array action filters
@@ -28,9 +32,9 @@ class CuentasController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','home'),
 				'users'=>array('*'),
-			),
+			),		
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update'),
 				'users'=>array('@'),
@@ -43,6 +47,33 @@ class CuentasController extends Controller
 				'users'=>array('*'),
 			),
 		);
+	}
+
+	public function actionHome(){
+		$model = $this->loadUser();
+
+		$dataProvider=new CActiveDataProvider('Cuentas');
+		$this->render('home',array(
+			'dataProvider'=>$dataProvider,'model'=>$model,
+		));
+	}
+
+	public function actionVercuentas(){
+		$model = $this->loadUser();
+
+		$this->render('cuentas',array('model'=>$model));
+	}
+
+	public function loadUser()
+	{
+		if($this->model===null)
+		{
+			if(Yii::app()->user->id)
+				$this->model=Yii::app()->controller->module->user();
+			if($this->model===null)
+				$this->redirect(Yii::app()->controller->module->loginUrl);
+		}
+		return $this->model;
 	}
 
 	/**
@@ -170,4 +201,6 @@ class CuentasController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+	
 }
