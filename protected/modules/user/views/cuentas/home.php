@@ -21,21 +21,16 @@
 		<?php echo "Ko, paga!!, que no has pagao aún";?>
 	<?php endif;?>
 	<!-- Lo que tenga que salir de normal -->
-<?php endif;?>
-<div class="clearfix">&nbsp;</div>
-<?php $this->widget('bootstrap.widgets.TbButton', array(
+	<?php $this->widget('bootstrap.widgets.TbButton', array(
     'buttonType'=>'button',
     'type'=>'primary',
     'label'=>'Ver tipos de cuenta',
     'loadingText'=>'cargando...',
-    'url'=>array('cuenta/cuentas'),
+    'url'=>array('cuentas/cuentas'),
     'htmlOptions'=>array('id'=>'buttonStateful'),
 )); ?>
-
-
-<?php
-	echo CHtml::link('Ver tipos de cuenta',array('cuenta/vercuentas'));
-?>
+<?php endif;?>
+<div class="clearfix">&nbsp;</div>
 
 <?php $this->beginWidget('bootstrap.widgets.TbModal', 
 	array(

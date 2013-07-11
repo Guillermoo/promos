@@ -14,9 +14,12 @@ class UserNav extends CPortlet
 	{
 		if (UserModule::isAdmin() || UserModule::isSuperAdmin())
 			$this->render('adminNavMenu');
-		elseif(UserModule::isCompany())
-			$this->render('empresaNavMenu');//He creado un menú como el que tenías(está en components/views/empresaNavMenu
-		//else
-			//$this->render('usuarioNavMenu');
+		else{
+			if(UserModule::isCompany()){
+				$this->render('empresaNavMenu');
+			}else{
+				$this->render('usuarioNavMenu');
+			}
 	}
+}
 }

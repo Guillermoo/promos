@@ -23,30 +23,6 @@
 	<!-- END DEBUG -->
 
 <div class="container" id="page">
-	<!-- menu horizontal -->
-	<div id="mainmenu">		
-		<!-- navbar de bootstrap -->
-		<?php $this->widget('bootstrap.widgets.TbNavbar', array(
-    'type'=>'', // null or 'inverse'
-    'brand'=>'Pro(e)moción!',
-    'brandUrl'=>'#',
-    'collapse'=>true, // requires bootstrap-responsive.css
-    'items'=>array(
-        array(
-            'class'=>'bootstrap.widgets.TbMenu',
-            'items'=>array(
-                array('label'=>'Principal', 'url'=>'#', 'active'=>true, 'icon'=>'home'),
-                array('label'=>'Suscripción', 'url'=>'#','icon'=>'shopping-cart'),
-                array('label'=>'Contacto', 'url'=>array('/site/contact'),'icon'=>'envelope'),
-                array('url'=>Yii::app()->getModule('user')->profileUrl, 'label'=>Yii::app()->getModule('user')->t("Profile"), 'visible'=>!Yii::app()->user->isGuest, 'icon'=>'user'),
-                array('label'=>'Baja', 'url'=>'#','icon' => 'remove-circle'),
-                array('url'=>Yii::app()->getModule('user')->logoutUrl,'icon' => 'off', 'label'=>Yii::app()->getModule('user')->t("Logout").' ('.Yii::app()->user->name.')', 'visible'=>!Yii::app()->user->isGuest),               
-            ),
-        ),              
-    ),
-)); ?>
-		<!-- ------------------- -->
-	</div><!-- mainmenu -->		
 	<?php echo __FILE__; ?>
 
 	<?php echo $content; ?>

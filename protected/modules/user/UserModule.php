@@ -240,6 +240,7 @@ class UserModule extends CWebModule
 					$id = Yii::app()->user->id;
 				}
 					
+				//if(Yii::app()->authManager->checkAccess('empresa', $id))
 				if(Yii::app()->authManager->checkAccess('empresa', $id))
 					self::$_company = true;
 				else

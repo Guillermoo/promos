@@ -1,31 +1,16 @@
 <?php /* @var $this Controller */ ?>
 <?php $this->beginContent('//layouts/main'); ?>
-<div class="span-5 last">
+<div class="span3 last">
 	<div id="sidebar">
 		<div class="categoriasizda">
-	<?php
-	//Aquí lo mismo, te creas un menú y lo cargas
-	echo "<h4>Menú de usuario</h4>";
-	$this->widget('zii.widgets.CMenu', array(
-    'items'=>array(
-        // Important: you need to specify url as 'controller/action',
-        // not just as 'controller' even if default acion is used.
-        array('label'=>'Datos personales', 'url'=>array('site/index')),
-        // 'Products' menu item will be selected no matter which tag parameter value is since it's not specified.
-        array('label'=>'Historial de compras', 'url'=>array('product/index')),        
-        array('label'=>'Darse de baja', 'url'=>array('site/login')),
-    ),
-	));
-	$this->widget('zii.widgets.CMenu', array(
-		'items'=>$this->menu,
-		'htmlOptions'=>array('class'=>'operations'),
-	));
-		
-	?>
+			<?php
+			//ejecuto el componente que me muestra un menú lateral u otro según el tipo de usuario que sea 
+			$this->widget('UserMenu');
+			?>
 		</div><!-- categoriasizda -->
 	</div><!-- sidebar -->
 </div>
-<div class="span-19">
+<div class="span8">
 	<div id="content">
 		<?php if(YII_RUTAS == true) echo __FILE__; ?>
 		<?php 		

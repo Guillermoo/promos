@@ -9,8 +9,8 @@ class EmpresaController extends Controller
 	//hugo--------------
 		//$this->layout = '_contacto';
 	//------------------
-	//public $layout='column2';
-        public $layout='//layouts/column2';
+	public $layout='column1';
+        //public $layout='//layouts/column2';
 	//public $defaultAction = 'view';
 	
 	/**

@@ -10,7 +10,6 @@
 	'htmlOptions' => array('enctype'=>'multipart/form-data')
 ));
 ?>
-<h1>sdgsg</h1>
 <fieldset>
 	<p class="note"><?php echo UserModule::t('Fields with <span class="required">*</span> are required.'); ?></p>
 	

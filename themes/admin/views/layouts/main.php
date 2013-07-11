@@ -21,7 +21,7 @@
 
 <div class="container" id="page">
 	<?php if(YII_RUTAS == true) echo __FILE__; ?>
-	<!-- menu horizontal -->
+	<!-- menu horizontal -->	
 	<div id="mainmenu">		
 		<!-- navbar de bootstrap -->
 		<?php 
