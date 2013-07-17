@@ -96,7 +96,47 @@ class PromocionController extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate(){
+	public function actionCreate($idUsuario){
+        //(H)comprobar que el usuario puede crear una nueva promoción
+        //(H)si el status == 3 es que ya ha pagado y, por tanto, habrá que comprobar qué tipo de cuenta tiene y cuántas promos en stock, activas y destacadas tiene, luego comprobar qué tipo de promoción es esta que quiere insertar y ver si puede hacerlo
+        //(H)si el status == 2 es que ha seleccionado un tipo de cuenta de pago pero todavía no ha pagado, por lo que no debe poder crear una nueva promoción
+
+        //(H)la movida es cómo cojo aquí el id del usuario para saber qué tipo de suscripción tiene en este momento
+            
+            /*$usuario = Yii::app()->user->load($idUsuario);
+
+            switch ($usuario->status) {
+                case 1:
+                    Yii::app()->user->setFlash('error',UserModule::t("No puede crear una nueva promoción hasta que no finalice el pago."));
+
+                    $this->render('create',array(
+                    'model'=>$model,
+                    ));
+                    break;
+                case 2:
+                    Yii::app()->user->setFlash('error',UserModule::t("No puede crear una nueva promoción hasta que no finalice el pago."));
+
+                    $this->render('create',array(
+                    'model'=>$model,
+                    ));
+                    break;
+                case 3:
+                    //tiene cuenta de pago
+                    # code...
+                    break;                
+                default:
+                    # code...
+                    break;
+            }*/
+
+            $numPromos = Yii::app()->user->cuantasPromos();
+
+            $tipoCuenta = Yii::app()->profile->tipoCuenta();
+
+
+
+
+
             $model=new Promocion;
             $model->scenario = "insert";
 
@@ -167,7 +207,7 @@ class PromocionController extends Controller
     private function setCamposSecundarios($model=null){
         if(isset($model)){
             //$this->_model->user_id = Yii::app()->user->id;
-            $model->estado = 1;
+            $model->estado = 1; //(H) esto por qué??
             $model->titulo_slug = UserModule::getSlug($model->titulo) ;
         }
     }
