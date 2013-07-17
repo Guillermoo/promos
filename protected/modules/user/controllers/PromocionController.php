@@ -129,12 +129,21 @@ class PromocionController extends Controller
                     break;
             }*/
 
-            $numPromos = Yii::app()->user->cuantasPromos();
+            $numPromos = User::cuantasPromos();
 
             $tipoCuenta = Yii::app()->profile->tipoCuenta();
 
+            $maxPromos = Cuentas::promosStock($tipoCuenta) + Cuentas::promosActivas($tipoCuenta) + Cuentas::promosDestacadas($tipoCuenta);
 
+            if($numPromos >= $maxPromos){
+                //tiene todas las promos creadas que puede tener
+                Yii::app()->user->setFlash('error',UserModule::t("No puede crear una nueva promoción hasta que no finalice el pago."));
 
+                    $this->render('create',array(
+                    'model'=>$model,
+                    ));
+
+            }
 
 
             $model=new Promocion;
