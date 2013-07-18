@@ -125,6 +125,7 @@ class UserController extends Controller
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer the primary key value. Defaults to null, meaning using the 'id' GET variable
 	 */
+
 	public function loadUser($id=null)
 	{
 		if($this->_model===null)

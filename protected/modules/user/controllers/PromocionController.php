@@ -96,7 +96,7 @@ class PromocionController extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate($idUsuario){
+	public function actionCreate(){
         //(H)comprobar que el usuario puede crear una nueva promoción
         //(H)si el status == 3 es que ya ha pagado y, por tanto, habrá que comprobar qué tipo de cuenta tiene y cuántas promos en stock, activas y destacadas tiene, luego comprobar qué tipo de promoción es esta que quiere insertar y ver si puede hacerlo
         //(H)si el status == 2 es que ha seleccionado un tipo de cuenta de pago pero todavía no ha pagado, por lo que no debe poder crear una nueva promoción
@@ -129,13 +129,15 @@ class PromocionController extends Controller
                     break;
             }*/
 
-            $numPromos = User::cuantasPromos();
+            //$numPromos = User::cuantasPromos();
+            $user = User::model()->findByPk(7);
+            echo $user->profile->tipocuenta; 
+// recuperar el autor del post: una co
+            $tipoCuenta = $user->profile->tipocuenta;
 
-            $tipoCuenta = Yii::app()->profile->tipoCuenta();
+            //$maxPromos = Cuentas::promosStock($tipoCuenta) + Cuentas::promosActivas($tipoCuenta) + Cuentas::promosDestacadas($tipoCuenta);
 
-            $maxPromos = Cuentas::promosStock($tipoCuenta) + Cuentas::promosActivas($tipoCuenta) + Cuentas::promosDestacadas($tipoCuenta);
-
-            if($numPromos >= $maxPromos){
+            /*if($numPromos >= $maxPromos){
                 //tiene todas las promos creadas que puede tener
                 Yii::app()->user->setFlash('error',UserModule::t("No puede crear una nueva promoción hasta que no finalice el pago."));
 
@@ -143,7 +145,7 @@ class PromocionController extends Controller
                     'model'=>$model,
                     ));
 
-            }
+            }*/
 
 
             $model=new Promocion;
@@ -166,7 +168,7 @@ class PromocionController extends Controller
                 }
             }
             $this->render('create',array(
-                    'model'=>$model,
+                    'model'=>$model,'cuenta'=>$tipoCuenta
             ));	}
 	
 /**
