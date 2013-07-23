@@ -7,8 +7,8 @@
  * @property integer $id
  * @property integer $user_id
  
- * @property integer $categoria_id
- * @property integer $logo_id
+ * @property string $nombre
+ * @property string $nombre_slug
  * @property string $cif
  * @property string $web
  * @property string $twitter
@@ -49,18 +49,18 @@ class Empresa extends CActiveRecord
      */
     public function rules()
     {
-            // NOTE: you should only define rules for those attributes that
-            // will receive user inputs.
-            return array(
-                    array('cif', 'length', 'max'=>9,'message' => UserModule::t("9 size."), 'except' => 'admin'),
-                    array('nombre,cif','required','message' => UserModule::t("{attribute} name is required."), 'except' => 'admin'),
-                    array('cif', 'match', 'pattern' => '(X(-|\.)?0?\d{7}(-|\.)?[A-Z]|[A-Z](-|\.)?\d{7}(-|\.)?[0-9A-Z]|\d{8}(-|\.)?[A-Z])','message' => UserModule::t("The cif must be valid."), 'except' => 'admin'),
-                    array('nombre,nombre_slug,web, twitter, facebook, urlTienda', 'length', 'max'=>100),
-                    array('modificado', 'safe'),
-                    // The following rule is used by search().
-                    // Please remove those attributes that should not be searched.
-                    array('nombre,nombre_slug, user_id, cif, web, twitter, facebook, urlTienda, modificado', 'safe', 'on'=>'search'),
-            );
+        // NOTE: you should only define rules for those attributes that
+        // will receive user inputs.
+        return array(
+            array('cif', 'length', 'max'=>9,'message' => UserModule::t("9 size."), 'except' => 'admin'),
+            array('nombre,cif','required','message' => UserModule::t("{attribute} name is required."), 'except' => 'admin'),
+            array('cif', 'match', 'pattern' => '(X(-|\.)?0?\d{7}(-|\.)?[A-Z]|[A-Z](-|\.)?\d{7}(-|\.)?[0-9A-Z]|\d{8}(-|\.)?[A-Z])','message' => UserModule::t("The cif must be valid."), 'except' => 'admin'),
+            array('nombre,nombre_slug,web, twitter, facebook, urlTienda', 'length', 'max'=>100),
+            array('modificado', 'safe'),
+            // The following rule is used by search().
+            // Please remove those attributes that should not be searched.
+            array('nombre,nombre_slug, user_id, cif, web, twitter, facebook, urlTienda, modificado', 'safe', 'on'=>'search'),
+        );
     }
 
     /**
@@ -93,19 +93,19 @@ class Empresa extends CActiveRecord
      */
     public function attributeLabels()
     {
-            return array(
-                    'id' => 'Empresa',
-                    'user_id' => 'User name',
-                    'nombre' => 'Name',
-                    'nombre_slug' => 'Friendly name',
-                    'cif' => 'Cif',
-                    'web' => 'Web',
-                    'twitter' => 'Twitter',
-                    'facebook' => 'Facebook',
-                    'urlTienda' => 'Url Tienda',
-                    'modificado' => 'Modificado',
-                    'nbusuario' => 'Nombre de usuario',
-            );
+        return array(
+            'id' => 'Empresa',
+            'user_id' => 'User name',
+            'nombre' => 'Name',
+            'nombre_slug' => 'Friendly name',
+            'cif' => 'Cif',
+            'web' => 'Web',
+            'twitter' => 'Twitter',
+            'facebook' => 'Facebook',
+            'urlTienda' => 'Url Tienda',
+            'modificado' => 'Modificado',
+            'nbusuario' => 'Nombre de usuario',
+        );
     }
 
     /**
@@ -114,26 +114,26 @@ class Empresa extends CActiveRecord
      */
     public function search()
     {
-            // Warning: Please modify the following code to remove attributes that
-            // should not be searched.
-            
-                
-            $criteria=new CDbCriteria;
-            $criteria->with = array( 'usuario' );
-            $criteria->compare('id',$this->id);
-            $criteria->compare('user_id',$this->user_id);
-            $criteria->compare('nombre',$this->nombre,true);
-            //$criteria->compare('nombre_slug',$this->nombre_slug,true);
-            $criteria->compare('cif',$this->cif,true);
-            /*$criteria->compare('web',$this->web,true);
-            $criteria->compare('twitter',$this->twitter,true);
-            $criteria->compare('facebook',$this->facebook,true);
-            $criteria->compare('urlTienda',$this->urlTienda,true);*/
-            $criteria->compare('modificado',$this->modificado,true);
-            $criteria->compare( 'usuario.username', $this->nbusuario, true );
-            return new CActiveDataProvider($this, array(
-                    'criteria'=>$criteria,
-            ));
+        // Warning: Please modify the following code to remove attributes that
+        // should not be searched.
+
+
+        $criteria=new CDbCriteria;
+        $criteria->with = array( 'usuario' );
+        $criteria->compare('id',$this->id);
+        $criteria->compare('user_id',$this->user_id);
+        $criteria->compare('nombre',$this->nombre,true);
+        //$criteria->compare('nombre_slug',$this->nombre_slug,true);
+        $criteria->compare('cif',$this->cif,true);
+        /*$criteria->compare('web',$this->web,true);
+        $criteria->compare('twitter',$this->twitter,true);
+        $criteria->compare('facebook',$this->facebook,true);
+        $criteria->compare('urlTienda',$this->urlTienda,true);*/
+        $criteria->compare('modificado',$this->modificado,true);
+        $criteria->compare( 'usuario.username', $this->nbusuario, true );
+        return new CActiveDataProvider($this, array(
+                'criteria'=>$criteria,
+        ));
     }
 
     //Comprobamos que siendo un usuario válido no haga cambios raros.
@@ -141,43 +141,36 @@ class Empresa extends CActiveRecord
      * Por ejemplo: Que haya dejado nulos los campos mínimos para cobrarle.
      * */
     protected function afterSave(){
-            if (!$this->isNewRecord){//Esta comprobación se hace en profile asíq eu no haría falta.
-                    /*$model = User::model()->findByPk($this->user_id);
-                    if ($model->status=3){
-                            //Hay que descomentar esta parte!!!!!
-                            if(User::tieneCamposMinimosRellenos($model) != true){
-                                            $model->status=2;
-                                            $model->save();
-                                    }
+        if (!$this->isNewRecord){//Esta comprobación se hace en profile asíq eu no haría falta.
+            /*$model = User::model()->findByPk($this->user_id);
+            if ($model->status=3){
+                    //Hay que descomentar esta parte!!!!!
+                    if(User::tieneCamposMinimosRellenos($model) != true){
+                                    $model->status=2;
                                     $model->save();
-                    }*/
-            }
-                    parent::afterSave();
+                            }
+                            $model->save();
+            }*/
+        }
+        parent::afterSave();
     }
 
     /*
-     * Comprobamos si es una cuenta con todo correcto pero por si lo que fuera
-     * hay que cambiar el estado
-     * También se guarda el nombre de la empresa con su slug
+    * Guardamos el nombre de la empresa pero con el slug
      * */
-    /*protected function beforeSave(){
-            /*if (!$this->isNewRecord){
-                    $model = User::model()->findByPk($this->user_id);
-            if ($this->nombre != "")
-                            $this->nombre_slug = UserModule::getSlug($this->nombre);
-
-                    //$this->modificado = time();
-            }
-            parent::beforeSave();
-    }*/
-	
+    protected function beforeSave(){
+        //if ( ($this->isNewRecord) && ( $this->nombre != "") )
+        $this->nombre_slug = UserModule::to_slug($this->nombre);
+        return parent::beforeSave();
+    }
+    
     public static function crearNuevaEmpresaParaElUsuario($user_id=null){
 
-            if (isset($user_id) ){
-                    $empresa= new Empresa;
-                    $empresa->user_id = $user_id;
-                    $empresa->save(false);
-            }
+        if (isset($user_id) ){
+                $empresa= new Empresa;
+                $empresa->user_id = $user_id;
+                $empresa->save(false);
+        }
 
     }
 

@@ -330,11 +330,9 @@ class UserModule extends CWebModule
 		return self::$_admins;
 	}
 	
-	public static function getSlug($name){
-		
-		//Aquí va la lógica para obtener el slug del nombre
-		return $name;
-	}
+    public static function to_slug($string){
+        return strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $string)));
+    }
 	
 	/**
 	 * Send mail method

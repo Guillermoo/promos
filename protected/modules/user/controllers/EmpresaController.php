@@ -267,31 +267,46 @@ class EmpresaController extends Controller
 	    
 	}
         
-        private function actualizaEmpresa($id=null){
-            
-            if (UserModule::isAdmin()){
-                $empresa = $this->loadModel($id);
-                $redirectOkEmpresa = 'empresa/edit/id/'.$empresa->id;
-            }else{
-                $empresa = $this->loadUser()->empresa;
-                $redirectOkEmpresa = '/user/empresa';
-            }
-            
-            // ajax validator   
-            $this->performAjaxValidation(array($empresa));
-            
-            //Para cargar/gestionar el logo
-            Yii::import("xupload.models.XUploadForm");
-            $imageForm = new XUploadForm;
+    private function actualizaEmpresa($id=null){
+
+        Yii::import("xupload.models.XUploadForm");
+        
+        if ($id==null){
+            $empresa = $this->loadUser()->empresa;
+            $redirectOkEmpresa = '/user/empresa';
+        }else{
+            $empresa = $this->loadModel($id);
+            $redirectOkEmpresa = 'empresa/edit/id/'.$empresa->id;
+        }
+
+        // ajax validator   
+        $this->performAjaxValidation(array($empresa));
+
+        $this->guardaDatosForm($empresa,$redirectOkEmpresa);
+        
+        //Para cargar/gestionar el logo
+        $imageForm = new XUploadForm;
+        
+        $this->render('edit',array(
+                'empresa'=>$empresa,
+                'image'=>$imageForm,
+        ));
+    }
+    
+    private function guardaDatosForm($empresa,$redirectOkEmpresa=null){
+        
+        if ($empresa!=null){
             if(isset($_POST['Empresa'])){
                 $empresa->attributes=$_POST['Empresa'];
                 if($empresa->validate()) {
                     try {
                         if ($empresa->save())
                             Yii::app()->user->setFlash('success',UserModule::t("Changes is saved."));
-                        else
+                        else{
+                            print_r( $empresa->getErrors());
                             Yii::app()->user->setFlash('error',UserModule::t("Error saving the changes."));
-                        
+                        }
+
                         $this->redirect(array($redirectOkEmpresa));
                     }
                     // we are looking for specific exception here
@@ -301,11 +316,8 @@ class EmpresaController extends Controller
                     }
                 } else $empresa->validate();
             }
-            $this->render('edit',array(
-                    'empresa'=>$empresa,
-                    'image'=>$imageForm,
-            ));
         }
+    }
         
         //Cuando es empresa
         public function actionEmpresa(){

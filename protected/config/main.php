@@ -9,7 +9,7 @@ return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'My Web Application',
 	'theme'=>'classic',	
-	'language'=>'en',
+	'language'=>'es',
 	// preloading 'log' component
 	'preload'=>array('log'),
  
@@ -112,11 +112,13 @@ return array(
                 'urlFormat'=>'path',
                 'showScriptName'=>false,
                 'rules'=>array(
+                    'empresas'=>'empresa',
                     'user/empresa'=>'user/empresa/empresa',
                     'user/empresas'=>'user/empresa/admin',
                     'user/promociones'=>'user/promocion/admin',
                     'user/mispromociones'=>'user/promocion/index',
                     'user/contacto'=>'user/user/contacto',
+                    'empresa/<alias:[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]+>' => 'empresa/view',
                     //'user/empresa/<id:\d+>' => 'user/empresa/edit',//Para dígitos
                     //'glossar/<item:\d+>'=>'glossar/anzeigen',
                     //'user/empresa' => 'user/empresa/edit',
@@ -132,7 +134,6 @@ return array(
                     '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
                     '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
                     'promociones' => 'promocion/index',
-                    //'empresa/<alias:[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]+>' => 'empresa/view',
                 ),
             ),
             'user'=>array(

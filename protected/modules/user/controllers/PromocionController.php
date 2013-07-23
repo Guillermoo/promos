@@ -57,7 +57,7 @@ class PromocionController extends Controller
     public function actionIndex()
     {
         $this->_model=new Promocion('search');
-
+        
         $this->_model->unsetAttributes();  // clear any default values
         if(isset($_GET['Promocion']))
             $this->_model->attributes=$_GET['Promocion'];
@@ -70,7 +70,7 @@ class PromocionController extends Controller
     public function actionAdmin()
     {
             $this->_model=new Promocion('search');
-
+            
             $this->_model->unsetAttributes();  // clear any default values
             if(isset($_GET['Promocion']))
                     $this->_model->attributes=$_GET['Promocion'];
