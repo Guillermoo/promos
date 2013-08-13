@@ -266,9 +266,4 @@ class Profile extends CActiveRecord
 		}
 	}
 	
-	public static function tipoCuenta(){
-		//devuelve el tipo de cuenta (suscripción) que tiene el usuario
-		
-	}
-	
 }

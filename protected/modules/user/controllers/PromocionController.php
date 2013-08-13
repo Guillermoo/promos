@@ -100,62 +100,60 @@ class PromocionController extends Controller
         //(H)comprobar que el usuario puede crear una nueva promoción
         //(H)si el status == 3 es que ya ha pagado y, por tanto, habrá que comprobar qué tipo de cuenta tiene y cuántas promos en stock, activas y destacadas tiene, luego comprobar qué tipo de promoción es esta que quiere insertar y ver si puede hacerlo
         //(H)si el status == 2 es que ha seleccionado un tipo de cuenta de pago pero todavía no ha pagado, por lo que no debe poder crear una nueva promoción
-
-        //(H)la movida es cómo cojo aquí el id del usuario para saber qué tipo de suscripción tiene en este momento
+     
+        $usuario = User::model()->findByPk(Yii::app()->user->id);
             
-            /*$usuario = Yii::app()->user->load($idUsuario);
+            if($usuario->status == 2){                
+                $this->render('_hadtopay');
+                return;
+            }
 
-            switch ($usuario->status) {
-                case 1:
-                    Yii::app()->user->setFlash('error',UserModule::t("No puede crear una nueva promoción hasta que no finalice el pago."));
+         
 
-                    $this->render('create',array(
-                    'model'=>$model,
-                    ));
-                    break;
-                case 2:
-                    Yii::app()->user->setFlash('error',UserModule::t("No puede crear una nueva promoción hasta que no finalice el pago."));
+        //compruebo que puede crear una nueva promo de el tipo seleccionado
+            $datosCuenta = Cuenta::model()->find('id=:id',
+                array(
+                ':id'=>$usuario->profile->tipocuenta
+                ));
+        $maxPromos = $datosCuenta->prom_activ + $datosCuenta->prom_stock;
+        $numPromos = Promocion::model()->countByAttributes(array(
+            'user_id'=> Yii::app()->user->id
+        ));
 
-                    $this->render('create',array(
-                    'model'=>$model,
-                    ));
-                    break;
-                case 3:
-                    //tiene cuenta de pago
-                    # code...
-                    break;                
-                default:
-                    # code...
-                    break;
-            }*/
+        if($numPromos == $maxPromos){
+            echo $this->renderPartial('_denied');
+        }
 
-            //$numPromos = User::cuantasPromos();
-            $user = User::model()->findByPk(7);
-            echo $user->profile->tipocuenta; 
-// recuperar el autor del post: una co
-            $tipoCuenta = $user->profile->tipocuenta;
-
-            //$maxPromos = Cuentas::promosStock($tipoCuenta) + Cuentas::promosActivas($tipoCuenta) + Cuentas::promosDestacadas($tipoCuenta);
-
-            /*if($numPromos >= $maxPromos){
-                //tiene todas las promos creadas que puede tener
-                Yii::app()->user->setFlash('error',UserModule::t("No puede crear una nueva promoción hasta que no finalice el pago."));
-
-                    $this->render('create',array(
-                    'model'=>$model,
-                    ));
-
-            }*/
-
+        $numPromosActivas = Promocion::model()->countByAttributes(array(
+            'user_id'=> Yii::app()->user->id, 'estado'=>1
+        ));
+        $numPromosStock = Promocion::model()->countByAttributes(array(
+            'user_id'=> Yii::app()->user->id, 'estado'=>0
+        ));             
+               
 
             $model=new Promocion;
             $model->scenario = "insert";
 
             $this->performAjaxValidation(array($model));
 
+            /***  COMPROBACIÓN DE QUE SE PUEDE ****/        
             if(isset($_POST['Promocion'])){
                 $model->attributes=$_POST['Promocion'];
 
+                if($datosCuenta->prom_activ <= $numPromosActivas && $model->estado == '1'){
+                    Yii::app()->user->setFlash('error',UserModule::t("No puedes crear más promociones <b>ACTIVAS</b>"));
+                    $this->redirect('create',array(
+                    'model'=>$model,
+                    ));
+            }
+            if($datosCuenta->prom_stock <= $numPromosStock && $model->estado == '0'){
+                Yii::app()->user->setFlash('error',UserModule::t("No puedes crear más promociones en <b>STOCK</b>"));
+                $this->redirect('create',array(
+                    'model'=>$model,
+                    ));
+        }
+        /**********************************/
                 $this->setCamposSecundarios($model);
 
                 if($model->save()){
@@ -168,7 +166,7 @@ class PromocionController extends Controller
                 }
             }
             $this->render('create',array(
-                    'model'=>$model,'cuenta'=>$tipoCuenta
+                    'model'=>$model,'cuenta'=>$usuario->profile->tipocuenta
             ));	}
 	
 /**
@@ -218,7 +216,7 @@ class PromocionController extends Controller
     private function setCamposSecundarios($model=null){
         if(isset($model)){
             //$this->_model->user_id = Yii::app()->user->id;
-            $model->estado = 1; //(H) esto por qué??
+            //$model->estado = 1; //(H) esto por qué??
             $model->titulo_slug = UserModule::getSlug($model->titulo) ;
         }
     }

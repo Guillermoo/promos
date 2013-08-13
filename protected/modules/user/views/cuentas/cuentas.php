@@ -9,7 +9,7 @@
         <div class="span4 plan">
           <div class="plan-name-bronze">
             <h2>Lite</h2>
-            <span>8.99 € / Mes</span>
+            <span>8.91 € / Mes</span>
           </div>
           <ul>
             <li class="plan-feature">1 Promo activa</li>

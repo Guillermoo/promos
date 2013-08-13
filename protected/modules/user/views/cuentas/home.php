@@ -15,10 +15,10 @@
 </div>
 
 <?php elseif($model->status == 2) :?>
-	<?php echo "Ud. ha elegido un tipo de cuenta de pago. ";?>
+	<?php echo "Ud. ha elegido un tipo de cuenta de pago. "; ?>
 
 	<?php if($model->profile->tipocuenta != 3):?>
-		<?php echo "Ko, paga!!, que no has pagao aún";?>
+		<?php echo "Todavía no se ha realizado el pago";?>
 	<?php endif;?>
 	<!-- Lo que tenga que salir de normal -->
 	<?php $this->widget('bootstrap.widgets.TbButton', array(
