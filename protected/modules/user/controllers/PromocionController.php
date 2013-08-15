@@ -129,7 +129,10 @@ class PromocionController extends Controller
         ));
         $numPromosStock = Promocion::model()->countByAttributes(array(
             'user_id'=> Yii::app()->user->id, 'estado'=>0
-        ));             
+        ));          
+        $numPromosDest = Promocion::model()->countByAttributes(array(
+            'user_id'=> Yii::app()->user->id, 'destacado'=>1
+        ));                
                
 
             $model=new Promocion;
@@ -152,7 +155,12 @@ class PromocionController extends Controller
                 $this->redirect('create',array(
                     'model'=>$model,
                     ));
-        }
+            }
+
+            if($datosCuenta->prom_dest <= $numPromosDest){
+                $model->destacado = 0;
+                Yii::app()->user->setFlash('error',UserModule::t("No se ha marcado como destacada porque ha alcanzado el límite de destacadas."));
+            }
         /**********************************/
                 $this->setCamposSecundarios($model);
 

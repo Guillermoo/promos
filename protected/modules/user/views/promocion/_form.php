@@ -33,6 +33,8 @@
     $promoStock: número de promociones en stock que tiene el usuario
 
     $promoActivas: número de promociones activas que tiene el usuario
+
+    Que desaparezca la opción de destacado si la promoción se marca como no-activa
      -->
 
 
