@@ -35,9 +35,9 @@ class Promocion extends CActiveRecord
 	const STATUS_VALIDACION=4;//Si es = a 2 es que ti
 	
 	const IS_DESTACADA=1;
-        const IS_NODESTACADA=0;
-        
-        public $nbempresa;
+    const IS_NODESTACADA=0;
+
+    public $nbempresa;
 	
 	/**
 	 * Returns the static model of the specified AR class.

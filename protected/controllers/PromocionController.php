@@ -76,7 +76,7 @@ class PromocionController extends Controller
 			),
 			'sort'=>array(
 				//Hay que poner que sea aleatorio como segunda opcion y que sean de distintas categorias
-				'defaultOrder'=> array('destacado'=>Promocion::STATUS_DESTACADA),
+				'defaultOrder'=> array('destacado'=>Promocion::IS_DESTACADA),
 			)
 		));
 		$this->render('index',array(
