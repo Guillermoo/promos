@@ -1,0 +1,1 @@
+<div class="alert alert-error">No puede crear nuevas promociones hasta que no se complete el pago. Disculpe las molestias</div>

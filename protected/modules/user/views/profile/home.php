@@ -9,7 +9,7 @@
 <?php //(G)Si el usuario no ha rellenado los campos mínimos para poder vender, le apareceŕa?>
 <?php //Hay que mirar que si es ?>
 <?php if ($model->status == 1):?>
-	<?php echo "Está usando la cuenta trial. No sea rancio y pague. Cabrón."?>
+	<?php echo "<p>Está usando la cuenta trial. No sea rancio y pague. Cabrón.</p>"?>
 	<div id="btn_oculto" >
 	Ocultar por css el botón!!!
 	<?php //$this->renderPartial('_contacto', array('model'=>$model));?>

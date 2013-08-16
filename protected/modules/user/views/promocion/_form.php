@@ -21,6 +21,23 @@
     <p class="note">Fields with <span class="required">*</span> are required.</p>
 
     <?php echo $form->errorSummary($model); ?>
+
+    <!-- Deberíamos controlar el SELECT para que no deje marcar el estado de la promoción si ya hemos llegado al límite. Es decir, si ya no podemos crear más promos activas, que la opción activa aparezca deshabilitada. 
+    He pasado los siguientes parámetros a esta vista para poder controlar esto y otras cosas:
+    $maxPromos: número máximo de promociones que permite el tipo de cuenta que tiene el usuario 
+
+    $maxActivas: máximas promos activas que permite la cuenta
+
+    $maxStock: máximas promos en stock que permite la cuenta
+    
+    $promoStock: número de promociones en stock que tiene el usuario
+
+    $promoActivas: número de promociones activas que tiene el usuario
+
+    Que desaparezca la opción de destacado si la promoción se marca como no-activa
+     -->
+
+
     <? //if (!$model->isNewRecord):?>
         <div class="row">
                 <?php //echo $form->labelEx($model,'estado'); ?>
@@ -149,8 +166,7 @@
             <?php echo $form->labelEx($model,'stock'); ?>
             <?php echo $form->textField($model,'stock'); ?>
             <?php echo $form->error($model,'stock'); ?>
-    </div>
-
+    </div>    
     <div class="row buttons">
             <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
     </div>

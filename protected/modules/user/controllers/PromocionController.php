@@ -97,14 +97,71 @@ class PromocionController extends Controller
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
 	public function actionCreate(){
+        //(H)comprobar que el usuario puede crear una nueva promoción
+        //(H)si el status == 3 es que ya ha pagado y, por tanto, habrá que comprobar qué tipo de cuenta tiene y cuántas promos en stock, activas y destacadas tiene, luego comprobar qué tipo de promoción es esta que quiere insertar y ver si puede hacerlo
+        //(H)si el status == 2 es que ha seleccionado un tipo de cuenta de pago pero todavía no ha pagado, por lo que no debe poder crear una nueva promoción
+     
+        $usuario = User::model()->findByPk(Yii::app()->user->id);
+            
+            if($usuario->status == 2){                
+                $this->render('_hadtopay');
+                return;
+            }
+
+         
+
+        //compruebo que puede crear una nueva promo de el tipo seleccionado
+            $datosCuenta = Cuenta::model()->find('id=:id',
+                array(
+                ':id'=>$usuario->profile->tipocuenta
+                ));
+        $maxPromos = $datosCuenta->prom_activ + $datosCuenta->prom_stock;
+        $numPromos = Promocion::model()->countByAttributes(array(
+            'user_id'=> Yii::app()->user->id
+        ));
+
+        if($numPromos == $maxPromos){
+            echo $this->renderPartial('_denied');
+        }
+
+        $numPromosActivas = Promocion::model()->countByAttributes(array(
+            'user_id'=> Yii::app()->user->id, 'estado'=>1
+        ));
+        $numPromosStock = Promocion::model()->countByAttributes(array(
+            'user_id'=> Yii::app()->user->id, 'estado'=>0
+        ));          
+        $numPromosDest = Promocion::model()->countByAttributes(array(
+            'user_id'=> Yii::app()->user->id, 'destacado'=>1
+        ));                
+               
+
             $model=new Promocion;
             $model->scenario = "insert";
 
             $this->performAjaxValidation(array($model));
 
+            /***  COMPROBACIÓN DE QUE SE PUEDE ****/        
             if(isset($_POST['Promocion'])){
                 $model->attributes=$_POST['Promocion'];
 
+                if($datosCuenta->prom_activ <= $numPromosActivas && $model->estado == '1'){
+                    Yii::app()->user->setFlash('error',UserModule::t("No puedes crear más promociones <b>ACTIVAS</b>"));
+                    $this->redirect('create',array(
+                    'model'=>$model,
+                    ));
+            }
+            if($datosCuenta->prom_stock <= $numPromosStock && $model->estado == '0'){
+                Yii::app()->user->setFlash('error',UserModule::t("No puedes crear más promociones en <b>STOCK</b>"));
+                $this->redirect('create',array(
+                    'model'=>$model,
+                    ));
+            }
+
+            if($datosCuenta->prom_dest <= $numPromosDest){
+                $model->destacado = 0;
+                Yii::app()->user->setFlash('error',UserModule::t("No se ha marcado como destacada porque ha alcanzado el límite de destacadas."));
+            }
+        /**********************************/
                 $this->setCamposSecundarios($model);
 
                 if($model->save()){
@@ -117,7 +174,7 @@ class PromocionController extends Controller
                 }
             }
             $this->render('create',array(
-                    'model'=>$model,
+                    'model'=>$model,'cuenta'=>$usuario->profile->tipocuenta
             ));	}
 	
 /**
@@ -167,7 +224,7 @@ class PromocionController extends Controller
     private function setCamposSecundarios($model=null){
         if(isset($model)){
             //$this->_model->user_id = Yii::app()->user->id;
-            $model->estado = 1;
+            //$model->estado = 1; //(H) esto por qué??
             $model->titulo_slug = UserModule::getSlug($model->titulo) ;
         }
     }

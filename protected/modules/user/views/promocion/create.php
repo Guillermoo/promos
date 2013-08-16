@@ -1,4 +1,45 @@
 
 <h1>Create Promociones</h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+
+<?php
+
+	//Tengo que comprobar si puede crear una nueva promoción.
+	//Únicamente NO podrá crear una nueva si ya tiene todas las posibles en stock y activas.
+	//Habría que avisar de cuántas promos le quedan por crear de cada tipo
+ 	$user = User::model()->findByPk(Yii::app()->user->id);
+ 	//$this->debug($user);
+	//echo "<br/>Tipo cuenta: ".$user->profile->tipocuenta; 
+	//número de promociones que tiene el usuario:
+	$numPromos = Promocion::model()->countByAttributes(array(
+            'user_id'=> Yii::app()->user->id
+        ));
+	$numPromosActivas = Promocion::model()->countByAttributes(array(
+            'user_id'=> Yii::app()->user->id, 'estado'=>1
+        ));
+	$numPromosStock = Promocion::model()->countByAttributes(array(
+            'user_id'=> Yii::app()->user->id, 'estado'=>0
+        ));	
+	//número máximo de promos que permite el tipo de cuenta del usuario:
+	$datosCuenta = Cuenta::model()->find('id=:id',
+array(
+  ':id'=>$user->profile->tipocuenta
+));
+	$maxPromos = $datosCuenta->prom_activ + $datosCuenta->prom_stock;
+	?>
+	<div class="alert alert-info">Número de promociones que tiene creadas: <?php echo "<b>".$numPromos." </b> de <b>".$maxPromos."</b>"; ?>. </div>	
+	<?php 
+	if($datosCuenta->prom_activ == $numPromosActivas)
+		echo "<div class=\"alert alert-warning\">No puedes crear más promociones <b>ACTIVAS</b></div>";
+	?>
+	<?php 
+	if($datosCuenta->prom_stock == $numPromosStock)
+		echo "<div class=\"alert alert-warning\">No puedes crear más promociones en <b>STOCK</b></div>";
+	?>
+	<?php
+	if($numPromos < $maxPromos){
+		echo $this->renderPartial('_form', array('model'=>$model, 'maxPromos'=>$maxPromos, 'maxActivas'=>$datosCuenta->prom_activ, 'maxStock'=>$datosCuenta->prom_stock,'promoActivas'=>$numPromosActivas,'promoStock'=>$numPromosStock));
+	}else{
+		echo $this->renderPartial('_denied');
+	}
+	?>

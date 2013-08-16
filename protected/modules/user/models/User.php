@@ -374,6 +374,12 @@ class User extends CActiveRecord
 	public static function compruebaSiTieneQuePagar($model){
 		//Comprobar si tiene que pagar
 	}
+
+	public static function cuantasPromos(){
+		//consultar todas las promociones, tanto activas como en stock, que tiene el cliente
+		$this->id; //puedo coger el id del usuario en cuestión así simplemente?
+
+	}
 	
 	/* Used to debug variables*/
     protected function Debug($var){
