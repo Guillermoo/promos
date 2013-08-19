@@ -73,6 +73,9 @@ class UserModule extends CWebModule
 	public $bajaUrl = array("/user/baja");
 	public $returnUrl = array("/user/profile");
 	public $returnLogoutUrl = array("/user/login");
+	public $promosStock = array("/user/promocion/promosStock");
+	public $promosActivas = array("/user/promocion/promosActivas");
+	public $promosDestacadas = array("/user/promocion/promosDestacadas");
 	
 	
 	/**
