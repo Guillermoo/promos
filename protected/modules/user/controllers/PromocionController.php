@@ -34,7 +34,7 @@ class PromocionController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','delete'),
+				'actions'=>array('create','update','delete','promosActivas','promosStock','promosDestacadas'),
 				//'users'=>array(Yii::app()->getModule('user')->user()->username),
 				'users'=>array('@'),
 			),
@@ -227,6 +227,81 @@ class PromocionController extends Controller
             //$model->estado = 1; //(H) esto por qué??
             $model->titulo_slug = UserModule::getSlug($model->titulo) ;
         }
+    }
+
+    public function actionPromosActivas(){
+        if(Yii::app()->user->id){            
+
+            //Una forma de recoger los datos
+            /*$this->_model = Promocion::model()->findAllByAttributes(array(
+                    'user_id'=> Yii::app()->user->id), 'estado =:estado',
+                    array(':estado'=>1)
+                );*/
+
+            //Otra forma de recoger los datos
+            $dataProvider=new CActiveDataProvider('Promocion', array(
+                    'criteria'=>array(
+                    'condition'=>'estado=1 AND user_id ='.Yii::app()->user->id
+
+                    )
+            ));
+        }else{
+            throw new CHttpException(404,'Sorry, we cannot process your request. Try again
+                            later.');
+        }
+
+        $this->render('activas',array('dataProvider'=>$dataProvider));
+
+    }
+
+    public function actionPromosStock(){
+        if(Yii::app()->user->id){            
+
+            //Una forma de recoger los datos
+            /*$this->_model = Promocion::model()->findAllByAttributes(array(
+                    'user_id'=> Yii::app()->user->id), 'estado =:estado',
+                    array(':estado'=>1)
+                );*/
+
+            //Otra forma de recoger los datos
+            $dataProvider=new CActiveDataProvider('Promocion', array(
+                    'criteria'=>array(
+                    'condition'=>'estado=0 AND user_id ='.Yii::app()->user->id
+
+                    )
+            ));
+        }else{
+            throw new CHttpException(404,'Sorry, we cannot process your request. Try again
+                            later.');
+        }
+
+        $this->render('stock',array('dataProvider'=>$dataProvider));
+
+    }
+
+     public function actionPromosDestacadas(){
+        if(Yii::app()->user->id){            
+
+            //Una forma de recoger los datos
+            /*$this->_model = Promocion::model()->findAllByAttributes(array(
+                    'user_id'=> Yii::app()->user->id), 'estado =:estado',
+                    array(':estado'=>1)
+                );*/
+
+            //Otra forma de recoger los datos
+            $dataProvider=new CActiveDataProvider('Promocion', array(
+                    'criteria'=>array(
+                    'condition'=>'destacado=1 AND user_id ='.Yii::app()->user->id
+
+                    )
+            ));
+        }else{
+            throw new CHttpException(404,'Sorry, we cannot process your request. Try again
+                            later.');
+        }
+
+        $this->render('destacadas',array('dataProvider'=>$dataProvider));
+
     }
 
     /* Used to debug variables*/
