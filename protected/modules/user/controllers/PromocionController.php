@@ -6,7 +6,7 @@ class PromocionController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='column1';
+	public $layout='column2';
 	
 	private $_model;
 
@@ -241,7 +241,7 @@ class PromocionController extends Controller
             //Otra forma de recoger los datos
             $dataProvider=new CActiveDataProvider('Promocion', array(
                     'criteria'=>array(
-                    'condition'=>'estado=1 AND user_id ='.Yii::app()->user->id
+                    'condition'=>'(estado=1 OR estado=2) AND user_id ='.Yii::app()->user->id
 
                     )
             ));
