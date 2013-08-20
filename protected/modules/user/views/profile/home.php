@@ -3,13 +3,13 @@
 <h2>Esta es la página de bievenida para los usuarios-empresa al logearse</h2>
 <?php
 	//probando la cuenta trial
-	echo CHtml::link('Prueba la cuenta trial!',array('puedeTrial'));
+	//echo CHtml::link('Prueba la cuenta trial!',array('puedeTrial'));
 ?>
 
 <?php //(G)Si el usuario no ha rellenado los campos mínimos para poder vender, le apareceŕa?>
 <?php //Hay que mirar que si es ?>
-<?php if ($model->status == 1):?>
-	<?php echo "<p>Está usando la cuenta trial. No sea rancio y pague. Cabrón.</p>"?>
+<?php if (UserModule::isCompany() && $model->status == 1):?>
+	<div class="alert alert-info" align="center"><?php echo "¡Está usando la cuenta trial!"?></div>
 	<div id="btn_oculto" >
 	Ocultar por css el botón!!!
 	<?php //$this->renderPartial('_contacto', array('model'=>$model));?>
