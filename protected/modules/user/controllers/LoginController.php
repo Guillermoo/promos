@@ -55,15 +55,13 @@ class LoginController extends Controller
 			//En función del estado en el que está se mostrará en el menú
 			//algún tipo de advertencia.
 			$this->redirect(Yii::app()->getModule('user')->homeUrl);
-		}
-		
-		elseif(UserModule::isBuyer())//Por si estabamirando una promoción
+		}elseif(UserModule::isBuyer()){//Por si estaba mirando una promoción
 			$this->redirect(Yii::app()->user->returnUrl);
-			
-		elseif(UserModule::isSuperAdmin() || UserModule::isAdmin())
+		}elseif(UserModule::isSuperAdmin() || UserModule::isAdmin()){
 			$this->redirect('admin');
-		else
+		}else{
 			$this->redirect(Yii::app()->homeUrl);//A la home pero de la parte pública
+		}
 	}
 	
 	private function lastViset() {

@@ -187,6 +187,60 @@
 			</div>
 		</div> 
 	<?php endif;?>
+
+	<?php if (UserModule::isBuyer() ):?>
+		<?php $profile = $model->profile;?>
+		<div class="fields">
+		
+			<?php $this->widget('bootstrap.widgets.TbLabel', array(
+			    'type'=>'info', // 'success', 'warning', 'important', 'info' or 'inverse'
+			    'label'=>'Profile',
+			)); ?>
+			<!-- Inicio profile -->		
+				
+			<div class="row">
+				<?php echo $form->labelEx($profile,'username'); ?>
+				<?php echo $form->textField($profile,'username',array('size'=>60,'maxlength'=>128)); ?>
+				<?php echo $form->error($profile,'username'); ?>
+			</div>
+			
+			<div class="row">
+				<?php echo $form->labelEx($profile,'lastname'); ?>
+				<?php echo $form->textField($profile,'lastname',array('size'=>60,'maxlength'=>128)); ?>
+				<?php echo $form->error($profile,'lastname'); ?>
+			</div>				
+			
+			<div class="row">
+				<?php echo $form->labelEx($profile,'telefono'); ?>
+				<?php echo $form->textField($profile,'telefono',array('size'=>50,'maxlength'=>50)); ?>
+				<?php echo $form->error($profile,'telefono'); ?>
+			</div>
+			
+			<div class="row">
+				<?php echo $form->labelEx($profile,'cp'); ?>
+				<?php echo $form->textField($profile,'cp',array('size'=>11,'maxlength'=>11)); ?>
+				<?php echo $form->error($profile,'cp'); ?>
+			</div>
+			
+			<div class="row">
+				<?php echo $form->labelEx($profile,'barrio'); ?>
+				<?php echo $form->textField($profile,'barrio'); ?>
+				<?php echo $form->error($profile,'barrio'); ?>
+			</div>
+			
+			<div class="row">
+				<?php echo $form->labelEx($profile,'direccion'); ?>
+				<?php echo $form->textField($profile,'direccion',array('size'=>60,'maxlength'=>120)); ?>
+				<?php echo $form->error($profile,'direccion'); ?>
+			</div>
+			
+			<div class="row">
+				<?php echo $form->labelEx($profile,'poblacion_id'); ?>
+				<?php echo $form->textField($profile,'poblacion_id'); ?>
+				<?php echo $form->error($profile,'poblacion_id'); ?>
+			</div>
+		</div> 
+	<?php endif;?>
 	
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? UserModule::t('Create') : UserModule::t('Save')); ?>
