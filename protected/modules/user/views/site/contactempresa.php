@@ -46,11 +46,11 @@ If you have business inquiries or other questions, please fill out the following
 
     <?php echo $form->textAreaRow($model,'body',array('rows'=>6, 'class'=>'span8')); ?>
 
-	<?php if(CCaptcha::checkRequirements()): ?>
-		<?php echo $form->captchaRow($model,'verifyCode',array(
+	<?php /*if(CCaptcha::checkRequirements()):
+		echo $form->captchaRow($model,'verifyCode',array(
             'hint'=>'Please enter the letters as they are shown in the image above.<br/>Letters are not case-sensitive.',
-        )); ?>
-	<?php endif; ?>
+        ));
+		endif;*/ ?>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton',array(

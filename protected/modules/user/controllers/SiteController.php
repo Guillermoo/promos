@@ -30,11 +30,11 @@ class SiteController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','contact'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('contact'),
+				'actions'=>array('contact','index'),
 				//'users'=>array(Yii::app()->getModule('user')->user()->username),
 				'users'=>array('@'),
 			),
@@ -44,6 +44,7 @@ class SiteController extends Controller
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
+			
 			),
 		);
 	}
