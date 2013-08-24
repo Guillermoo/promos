@@ -31,6 +31,13 @@
 	<!-- Lo que tenga que salir de normal -->
 <?php endif;?>
 
+<?php 
+	if(UserModule::isBuyer() && $model->profile==null){
+		echo "<div class=\"alert alert-warning\" align=\"center\"><strong><a href=\"#\">¡Tiene que rellenar los datos de su perfil</a></strong><!/div> ";
+		echo CHtml::link('Crear Perfil',array('profile/create'));
+	}
+?>
+
 <?php $this->beginWidget('bootstrap.widgets.TbModal', 
 	array(
 		'id'=>'myModal',

@@ -104,6 +104,19 @@ class UserController extends Controller
             $this->render('contact',array('model'=>$model));
 	}
 	
+	public function actionHistorialCompras(){
+
+		$dataProvider=new CActiveDataProvider('Promocion', array(
+                    'criteria'=>array(
+                    'condition'=>'(estado=1 OR estado=2) AND user_id ='.Yii::app()->user->id
+
+                    )
+            ));
+		$this->render('historialcompras',array(
+			'dataProvider'=>$dataProvider,
+		));		
+	}
+
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.

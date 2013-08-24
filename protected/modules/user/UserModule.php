@@ -63,7 +63,7 @@ class UserModule extends CWebModule
         public $adminPromocionesUrl = array("/user/promociones");
 	public $promocionesUrl = array("/user/mispromociones");
         public $contactoUrl = array("/site/contact");
-	public $contactoEmpresaUrl = array("/user/site/contactempresa");
+	public $contactoEmpresaUrl = array("/user/site/contact");
         public $contactoAdminUrl = array("/site/contactadmin");
 	public $homeUrl = array("/user/home");//'user/home' => 'user/empresa/home',
 	public $homeAdminUrl = array("/user/admin/home");//'user/home' => 'user/empresa/home',
@@ -76,7 +76,7 @@ class UserModule extends CWebModule
 	public $promosStock = array("/user/promocion/promosStock");
 	public $promosActivas = array("/user/promocion/promosActivas");
 	public $promosDestacadas = array("/user/promocion/promosDestacadas");
-	
+	public $historialcompras = array("/user/compras/historialCompras");
 	
 	/**
 	 * @var int
