@@ -100,7 +100,7 @@ class ComprasController extends Controller
 
 		$this->render('update',array(
 			'model'=>$model,
-		));
+			));
 	}
 
 	/**
