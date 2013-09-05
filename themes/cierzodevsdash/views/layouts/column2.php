@@ -84,6 +84,7 @@
     <?php echo $content; ?>
 
 	</div><!--/span-->
+  <!--(H)lo pongo yo para dar espacio entre el menú lateral y el contenido -->
   </div><!--/row-->
 
 

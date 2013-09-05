@@ -1,7 +1,7 @@
 <div id="mainmenu">		
 		<!-- navbar de bootstrap -->
 		<?php $this->widget('bootstrap.widgets.TbNavbar', array(
-    'type'=>'inverse', // null or 'inverse'
+    'type'=>'', // null or 'inverse'
     'brand'=>'',
     'brandUrl'=>Yii::app()->baseUrl,
     'collapse'=>true, // requires bootstrap-responsive.css

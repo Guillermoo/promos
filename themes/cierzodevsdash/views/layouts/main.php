@@ -3,9 +3,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>abound - Yii theme</title>
+    <title>Proemoción - Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free yii themes, free web application theme">
+    <meta name="description" content="Proemoción, tu web de promociones!">
     <meta name="author" content="Webapplicationthemes.com">
 	<link href='http://fonts.googleapis.com/css?family=Carrois+Gothic' rel='stylesheet' type='text/css'>
 
