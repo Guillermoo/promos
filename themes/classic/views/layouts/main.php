@@ -30,7 +30,7 @@
 
 	<div id="header">
 		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?>
-			<p>Yo soy el layout main de la carpeta views/layouts del tema classic</p></div>
+			</div>
 	</div><!-- header -->
 
 	<div id="mainmenu">

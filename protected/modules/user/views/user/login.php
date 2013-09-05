@@ -5,7 +5,8 @@ $this->breadcrumbs=array(
 	UserModule::t("Login"),
 );
 ?>
-
+<div class="clearfix" align="center"><p><?php echo CHtml::link(UserModule::t("Volver"),Yii::app()->request->baseUrl, array('class' => 'btn btn-primary')) ?></p></div>
+<div class="well" align="center">
 <h1><?php echo UserModule::t("Login"); ?></h1>
 
 <?php if(Yii::app()->user->hasFlash('loginMessage')): ?>
@@ -15,7 +16,7 @@ $this->breadcrumbs=array(
 
 <?php endif; ?>
 
-<p><?php echo UserModule::t("Please fill out the following form with your login credentials:"); ?>aaaaaa</p>
+<p><?php echo UserModule::t("Please fill out the following form with your login credentials:"); ?></p>
 
 <div class="form">
 <?php echo CHtml::beginForm(); ?>
@@ -77,3 +78,4 @@ $form = new CForm(array(
     ),
 ), $model);
 ?>
+</div>
