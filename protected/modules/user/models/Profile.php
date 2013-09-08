@@ -71,6 +71,7 @@ class Profile extends CActiveRecord
 			array('user_id, username, lastname, paypal_id, tipocuenta, fecha_activacion, fecha_fin, fecha_pago,telefono, fax, cp, barrio, direccion, poblacion_id', 'safe', 'on'=>'search'),
 		);
 	}
+    
 	
 	public function validaFechas($attribute,$params){
                 //EJEMPLO

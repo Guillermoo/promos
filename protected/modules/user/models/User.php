@@ -193,6 +193,15 @@ class User extends CActiveRecord
 		else
 			return isset($_items[$type]) ? $_items[$type] : false;
 	}
+    
+    public static function getListaCiudades(){
+        
+        return CHtml::listData(Ciudad::model()->findAll(array(
+            'select'=>'idpoblacion,poblacion',
+            'order'=>'poblacion',
+        )),'idpoblacion','poblacion');   
+        //return Ciudad::model()->findAll(array('select'=>'idpoblacion,poblacion'));
+    }
 	
 /**
      * Retrieves a list of models based on the current search/filter conditions.

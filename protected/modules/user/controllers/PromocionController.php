@@ -225,7 +225,7 @@ class PromocionController extends Controller
         if(isset($model)){
             //$this->_model->user_id = Yii::app()->user->id;
             //$model->estado = 1; //(H) esto por qué??
-            $model->titulo_slug = UserModule::getSlug($model->titulo) ;
+            $model->titulo_slug = UserModule::to_slug($model->titulo) ;
         }
     }
 

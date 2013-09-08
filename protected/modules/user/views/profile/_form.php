@@ -235,8 +235,10 @@
 			</div>
 			
 			<div class="row">
-				<?php echo $form->labelEx($profile,'poblacion_id'); ?>
-				<?php echo $form->textField($profile,'poblacion_id'); ?>
+				<?php //echo $form->labelEx($profile,'poblacion_id'); ?>
+				<?php //echo $form->textField($profile,'poblacion_id'); ?>
+                 <?php //echo $form->dropDownListRow($profile, 'poblacion_id', Promocion::itemAlias("PromoStatus"),array('options'=>array(Promocion::STATUS_BORRADOR=>array('selected'=>'selected')))); ?>
+                <?php echo $form->dropDownListRow($profile, 'poblacion_id', User::getListaCiudades()); ?>
 				<?php echo $form->error($profile,'poblacion_id'); ?>
 			</div>
 		</div> 
