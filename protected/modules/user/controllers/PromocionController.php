@@ -113,12 +113,12 @@ class PromocionController extends Controller
         //compruebo que puede crear una nueva promo de el tipo seleccionado
             $datosCuenta = Cuenta::model()->find('id=:id',
                 array(
-                ':id'=>$usuario->profile->tipocuenta
+                    ':id'=>$usuario->profile->tipocuenta
+                    ));
+            $maxPromos = $datosCuenta->prom_activ + $datosCuenta->prom_stock;
+            $numPromos = Promocion::model()->countByAttributes(array(
+                'user_id'=> Yii::app()->user->id
                 ));
-        $maxPromos = $datosCuenta->prom_activ + $datosCuenta->prom_stock;
-        $numPromos = Promocion::model()->countByAttributes(array(
-            'user_id'=> Yii::app()->user->id
-        ));
 
         if($numPromos == $maxPromos){
             echo $this->renderPartial('_denied');

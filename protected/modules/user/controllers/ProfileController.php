@@ -79,7 +79,7 @@ class ProfileController extends Controller
 	 */
 	public function actionProfile()
 	{
-		$this->layout = 'column1';
+		//$this->layout = 'column1';
 		$model = $this->loadUser();
 		//$this->debug(Yii::app()->controller->module->user());
 		/*$this->debug($model->attributes);
