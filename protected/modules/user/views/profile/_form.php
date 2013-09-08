@@ -233,12 +233,24 @@
 				<?php echo $form->textField($profile,'direccion',array('size'=>60,'maxlength'=>120)); ?>
 				<?php echo $form->error($profile,'direccion'); ?>
 			</div>
-			
+			<? $this->debug(User::getListaCiudades()); ?>
 			<div class="row">
 				<?php //echo $form->labelEx($profile,'poblacion_id'); ?>
 				<?php //echo $form->textField($profile,'poblacion_id'); ?>
                  <?php //echo $form->dropDownListRow($profile, 'poblacion_id', Promocion::itemAlias("PromoStatus"),array('options'=>array(Promocion::STATUS_BORRADOR=>array('selected'=>'selected')))); ?>
                 <?php echo $form->dropDownListRow($profile, 'poblacion_id', User::getListaCiudades()); ?>
+                <?$this->widget('bootstrap.widgets.TbSelect2', array(
+                    'asDropDownList' => true,
+                    'name' => 'poblacion_id',
+                    'data' =>  User::getListaCiudades(),
+                    'options' => array(
+                        
+                        //'tags' => array('clever','is', 'better', 'clevertech'),
+                        //'tags' => User::getListaCiudades(),
+                        'placeholder' => 'Zaragoza',
+                        'width' => '40%',
+                        'tokenSeparators' => array(',', ' ')
+                ))); ?>
 				<?php echo $form->error($profile,'poblacion_id'); ?>
 			</div>
 		</div> 
