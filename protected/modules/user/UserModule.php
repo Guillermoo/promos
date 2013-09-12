@@ -146,7 +146,7 @@ class UserModule extends CWebModule
 		
 		//En cualquiera de las vistas del módulo user se cargará el theme 'admin'.
 		//Yii::app()->theme = 'admin';
-		Yii::app()->theme = 'cierzodevsdash';
+		Yii::app()->theme = 'froggy';
 	}
 	
 	public function getBehaviorsFor($componentName){
