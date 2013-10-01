@@ -267,31 +267,30 @@ class EmpresaController extends Controller
 	    
 	}
         
-    private function actualizaEmpresa($id=null){
+private function actualizaEmpresa($id=null){
 
-        Yii::import("xupload.models.XUploadForm");
-        
-        if ($id==null){
-            $empresa = $this->loadUser()->empresa;
-            $redirectOkEmpresa = '/user/empresa';
-        }else{
-            $empresa = $this->loadModel($id);
-            $redirectOkEmpresa = 'empresa/edit/id/'.$empresa->id;
-        }
-
-        // ajax validator   
-        $this->performAjaxValidation(array($empresa));
-
-        $this->guardaDatosForm($empresa,$redirectOkEmpresa);
-        
-        //Para cargar/gestionar el logo
-        $imageForm = new XUploadForm;
-        
-        $this->render('edit',array(
-                'empresa'=>$empresa,
-                'image'=>$imageForm,
-        ));
+    Yii::import("xupload.models.XUploadForm");
+    if ($id==null){
+        $empresa = $this->loadUser()->empresa;
+        $redirectOkEmpresa = '/user/empresa';
+    }else{
+        $empresa = $this->loadModel($id);
+        $redirectOkEmpresa = 'empresa/edit/id/'.$empresa->id;
     }
+
+    // ajax validator   
+    $this->performAjaxValidation(array($empresa));
+
+    $this->guardaDatosForm($empresa,$redirectOkEmpresa);
+    
+    //Para cargar/gestionar el logo
+    $imageForm = new XUploadForm;
+    
+    $this->render('edit',array(
+            'empresa'=>$empresa,
+            'image'=>$imageForm,
+    ));
+}
     
     private function guardaDatosForm($empresa,$redirectOkEmpresa=null){
         

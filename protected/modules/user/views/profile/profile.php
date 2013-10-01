@@ -4,10 +4,10 @@
 <h1><?php echo UserModule::t('Tu perfil'); ?></h1>
 <?php if(UserModule::isCompany()){
 	$this->renderPartial('_form', array('model'=>$model));
-	}elseif(UserModule::isBuyer()){
-		 $this->renderPartial('_form', array('model'=>$model));
-	}else{
-		echo "No accesible";
-	}
+}elseif(UserModule::isBuyer()){
+     $this->renderPartial('_form', array('model'=>$model));
+}else{
+    echo "No accesible";
+}
 ?>
  	

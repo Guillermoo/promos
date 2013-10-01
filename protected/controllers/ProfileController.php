@@ -22,7 +22,7 @@ class ProfileController extends Controller
 	/**
 	 * Shows a particular model.
 	 */
-	public function actionProfile()
+	/*public function actionProfile()
 	{
 		$model = $this->loadUser();
 	    $this->render('profile',array(
@@ -30,7 +30,7 @@ class ProfileController extends Controller
 			'profile'=>$model->profile,
 	    ));
 	}
-
+*/
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.

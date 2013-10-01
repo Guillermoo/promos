@@ -103,9 +103,9 @@ return array(
 	// application components
 	'components'=>array(
             'bootstrap'=>array(
-                            //'class'=>'bootstrap.components.Bootstrap',
-                            'class' => 'ext.bootstrap.components.Bootstrap',
-                            //'coreCss' => false, //use css themes
+                            'class'=>'bootstrap.components.Bootstrap',
+                            //'class' => 'ext.bootstrap.components.Bootstrap',
+                            'coreCss' => true, //use css themes
             ),
             // uncomment the following to enable URLs in path-format
             'urlManager'=>array(
@@ -119,10 +119,6 @@ return array(
                     'user/mispromociones'=>'user/promocion/index',
                     'user/contacto'=>'user/user/contacto',
                     'empresa/<alias:[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]+>' => 'empresa/view',
-                    //'user/empresa/<id:\d+>' => 'user/empresa/edit',//Para dígitos
-                    //'glossar/<item:\d+>'=>'glossar/anzeigen',
-                    //'user/empresa' => 'user/empresa/edit',
-                    //'admin/home' => 'user/admin',
                     'profile/edit' => 'profile',
                     'user/home' => 'user/profile/home',
                     'user/registrarcomprador' => 'user/registrationcomprador',

@@ -7,10 +7,15 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
+<?php 
+    $baseUrl = Yii::app()->theme->baseUrl; 
+    $cs = Yii::app()->getClientScript(); ?>
+    Yii::app()->clientScript->registerCoreScript('jquery');
+    
 	<!-- Le styles -->
-	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/bootstrap.min.css" rel="stylesheet">
-	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/application.min.css" rel="stylesheet">
-	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="<?php echo $baseUrl; ?>/css/bootstrap.min.css" rel="stylesheet">
+	<link href="<?php echo $baseUrl; ?>/css/application.min.css" rel="stylesheet">
+	<link href="<?php echo $baseUrl; ?>/css/bootstrap-responsive.css" rel="stylesheet">
 
 	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 	<!--[if lt IE 9]>
@@ -18,10 +23,10 @@
 	<![endif]-->
 
 	<!-- Le fav and touch icons -->
-	<link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/images/favicon.ico">
-	<link rel="apple-touch-icon" href="<?php echo Yii::app()->request->baseUrl; ?>/images/apple-touch-icon.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="<?php echo Yii::app()->request->baseUrl; ?>/images/apple-touch-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="<?php echo Yii::app()->request->baseUrl; ?>/images/apple-touch-icon-114x114.png">
+	<link rel="shortcut icon" href="<?php echo $baseUrl; ?>/images/favicon.ico">
+	<link rel="apple-touch-icon" href="<?php echo $baseUrl; ?>/images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="<?php echo $baseUrl; ?>/images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="<?php echo $baseUrl; ?>/images/apple-touch-icon-114x114.png">
 </head>
 
 <body>
