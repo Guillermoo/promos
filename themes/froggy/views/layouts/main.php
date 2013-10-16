@@ -35,10 +35,9 @@
   </head>
 
 <body>
-<!--
-  <!--START NAVBAR -->
+  <!--START NAVBAR KO -->
 
-  <!--  <div class="navbar navbar-fixed-top">
+  <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -83,13 +82,11 @@
   </li>
 </ul>
           </div><!--/.nav-collapse -->
-    <!--    </div>
+        </div>
       </div>
-    </div>-->
+    </div>
 
       <!--START SUB-NAVBAR -->
-
-
 <div class="subnav subnav-fixed">               
   <ul class="nav nav-pills">
   <?php 
@@ -98,12 +95,11 @@
   </ul>
 </div>
 
-
  <!--END NAVBAR -->
 
  <!--START MAIN-CONTENT -->
 
- <div class="container" style="margin-top:30px;">
+ <div class="container" style="margin-top:80px;">
 
 <!-- Include content pages -->
 <?php echo $content; ?>
@@ -113,7 +109,7 @@
 <footer>
    <div class="footer_container">
    <div class="container">
-   <p style="margin-left:10px;">froggy - the awesome admin panel</p>
+   <p style="margin-left:10px;">Proemoción</p>
     </div>
       </div>
     </footer>

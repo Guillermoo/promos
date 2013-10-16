@@ -9,7 +9,8 @@
 <?php //(G)Si el usuario no ha rellenado los campos mínimos para poder vender, le apareceŕa?>
 <?php //Hay que mirar que si es ?>
 <?php if (UserModule::isCompany() && $model->status == 1):?>
-	<div class="alert alert-info" align="center"><?php echo "¡Está usando la cuenta trial!"?></div>
+			<div class="alert alert-info" align="center"><?php echo "¡Está usando la cuenta trial!"?></div>
+	
 	<div id="btn_oculto" >
 	Ocultar por css el botón!!!
 	<?php //$this->renderPartial('_contacto', array('model'=>$model));?>

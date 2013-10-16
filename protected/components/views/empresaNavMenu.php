@@ -1,4 +1,5 @@
- <div id="mainmenu">		
+<?php echo "IDeeeee: ".Yii::app()->controller->id; ?> 
+<div id="mainmenu">	
 		<!-- navbar de bootstrap -->
 		<?php $this->widget('bootstrap.widgets.TbNavbar', array(
     'type'=>'', // null or 'inverse'
@@ -20,7 +21,7 @@
 		        //array('label'=>'Promociones', 'icon'=>'home', 'url'=>'#', 'active'=>true),
 
                 array('label'=>Yii::app()->getModule('user')->t("Subscription"), 'url'=>Yii::app()->getModule('user')->cuentaUrl,'icon'=>'shopping-cart', 'active'=>Yii::app()->controller->id=='cuentas'),
-                array('label'=>Yii::app()->getModule('user')->t("Contact"), 'url'=>Yii::app()->getModule('user')->contactoEmpresaUrl,'icon'=>'envelope', 'active'=>Yii::app()->controller->id=='contactos'),
+                array('label'=>Yii::app()->getModule('user')->t("Contact"), 'url'=>Yii::app()->getModule('user')->contactoEmpresaUrl,'icon'=>'envelope', 'active'=>Yii::app()->controller->id=='site'),
                 //array('label'=>'Baja', 'url'=>Yii::app()->getModule('user')->bajaUrl,'icon' => 'remove-circle'),
                 //array('label'=>'Debug', 'url'=>'empresa/misdebugs','active'=>false),
                 array('url'=>Yii::app()->getModule('user')->logoutUrl,'icon' => 'off', 'label'=>Yii::app()->getModule('user')->t("Logout").' ('.Yii::app()->user->name.')', 'visible'=>!Yii::app()->user->isGuest),               
@@ -28,4 +29,5 @@
         ),              
     ),
 )); ?>
-</div><!-- mainmenu -->		
+	
+</div>
