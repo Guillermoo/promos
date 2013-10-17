@@ -9,4 +9,8 @@
             <?php echo CHtml::ajaxLink('Delete', array('empresa/deleteItem','id'=>$idimage),
 			array('update' => '#logo_form'))?>
         </td>
+    <?php else: ?>
+    <td>    
+        No debe mostrar el borrar
+    </td>
 	<?php endif;?>

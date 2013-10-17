@@ -66,6 +66,7 @@ class UserModule extends CWebModule
 	public $contactoEmpresaUrl = array("/user/site/contact");
         public $contactoAdminUrl = array("/site/contactadmin");
 	public $homeUrl = array("/user/home");//'user/home' => 'user/empresa/home',
+    public $homeCompradorUrl = array("/user/historial");//'user/home' => 'user/empresa/home',
 	public $homeAdminUrl = array("/user/admin/home");//'user/home' => 'user/empresa/home',
 	public $profileUrl = array("/user/profile");
 	public $cuentaUrl = array("/user/cuentas");
@@ -235,18 +236,20 @@ class UserModule extends CWebModule
 	 * (G)Return company status.
 	 * @return boolean
 	 */
-	public static function isCompany($id=null) {
+	public static function isCompany() {
 		if(Yii::app()->user->isGuest)
 			return false;
 		else {
 			if (!isset(self::$_company)) {
-				if ( ($id==null) || (!isset($id)) ){
+				/*if  (($id==null)|| (!isset($id)  )){ //|| (!isset($id)
 					$id = Yii::app()->user->id;
-				}
-					
-				//if(Yii::app()->authManager->checkAccess('empresa', $id))
+				}*/
+                
+				$id = Yii::app()->user->id;
+                
+				//if(Yii::app()->authManager->checkAccess('empresa',Yii::app()->user->id))
 				if(Yii::app()->authManager->checkAccess('empresa', $id))
-					self::$_company = true;
+                    self::$_company = true;				
 				else
 					self::$_company = false;	
 			}

@@ -133,11 +133,11 @@ return array(
                 ),
             ),
             'user'=>array(
-            'class'=>'RWebUser',
-            // enable cookie-based authentication
-            'allowAutoLogin'=>true,
-            'loginUrl'=>array('/user/login'),
-        ),
+                'class'=>'RWebUser',
+                // enable cookie-based authentication
+                'allowAutoLogin'=>true,
+                'loginUrl'=>array('/user/login'),
+            ),
         'authManager'=>array(
                 'class'=>'RDbAuthManager',
                 'connectionID'=>'db',

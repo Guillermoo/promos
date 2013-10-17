@@ -153,7 +153,7 @@ class AdminController extends Controller
 	public function actionUpdate(){
 		
 		$model=$this->loadModel();
-		$esEmpresa = UserModule::isCompany($model->id);
+		$esEmpresa = Yii::app()->authManager->checkAccess('empresa', $model->id);
 
 		$this->setScenario($model,$esEmpresa);
 		
@@ -228,10 +228,9 @@ class AdminController extends Controller
 		if(Yii::app()->request->isPostRequest)
 		{
 			// we only allow deletion via POST request
-			//$model = $this->loadModel();
 			$model = User::model()->findbyPk($_GET['id']);
 			
-			if (UserModule::isAdmin($model->id) || UserModule::isSuperAdmin($model->id))
+			if (Yii::app()->authManager->checkAccess('admin', $model->id) || Yii::app()->authManager->checkAccess('superadmin', $model->id))
 				Yii::app()->user->setFlash('error',"It's not allowed to delete admin users");
 			else{
 				try{

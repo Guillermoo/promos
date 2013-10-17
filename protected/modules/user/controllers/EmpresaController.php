@@ -240,8 +240,7 @@ class EmpresaController extends Controller
 	 	$list = new CList();
 	    foreach($misCat as $c)
 	        $list->add($c->categoria_id);
-	        //$ids[]=$c->id;
-	        
+
 	    $col = new CAttributeCollection();
 		// $col->add('name','Alexander');
 		foreach($misCat as $c)

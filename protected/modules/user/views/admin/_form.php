@@ -47,7 +47,7 @@
                 <?php echo $form->error($model, 'status'); ?>
                 </div>
                 <!-- Si es un NOadmin logeado, queremos ver el perfil de un NOadmin --> 
-                <?php $esEmpresa = UserModule::isCompany($model->id); ?>
+                <?php $esEmpresa = Yii::app()->authManager->checkAccess('empresa', $model->id);; ?>
                 <?php if ($esEmpresa): ?> 
                     <?php
                     $profile = $model->profile;

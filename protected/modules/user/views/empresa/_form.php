@@ -41,23 +41,23 @@
 		<?php //echo $form->checkBoxListRow($listCat, 'id', array($categorias), array('hint'=>'<strong>Note:</strong> Labels surround all the options for much larger click areas.')); ?>
 		<?php //echo $form->error($empresa,'contacto_id'); ?>
 	</div> -->
-	<div class="row">
-            <div id="logo_form">
+    <? if (UserModule::isCompany()):?>
+        <div class="row">
+                <div id="logo_form">
                     <?php echo $form->labelEx($empresa,'logo'); ?>
                     <? $item = $empresa->usuario->item  ?>
-                    <?php if (isset($item)):?>
+                    <?php if (isset($item)):?><?//Si tiene una imagen cargada ?>
                         <?php $imghtml=CHtml::image(Yii::app( )->getBaseUrl( ).$item->path);?>
                         <?php $this->renderPartial('../layouts/_viewitem', array(
-                                'imghtml' => $imghtml,'idimage'=>$empresa->usuario->item->id,'muestraBorrar'=>UserModule::isCompany()));?><?php //El admin no puede borrar la imagen, o si??>
+                                'imghtml' => $imghtml,'idimage'=>$empresa->usuario->item->id,'muestraBorrar'=>UserModule::isCompany(Yii::app()->user->id)));?><?php //El admin no puede borrar la imagen, o si??>
                     <?php else:?>
                         <?php $this->renderPartial('../layouts/_itemupload', array(
                                 'image' => $image,'idform'=>'empresa-form'));?>
                         <?php endif;?>
-            </div>
-	</div>
-	
-	<?php //$empresa = $model->empresa;?>
-	
+                </div>
+        </div>
+    <?php endif; ?>
+    
 	<div class="row">
 		<?php echo $form->labelEx($empresa,'nombre'); ?>
 		<?php echo $form->textField($empresa,'nombre',array('size'=>128,'maxlength'=>128)); ?>

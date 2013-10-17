@@ -69,7 +69,7 @@ class ProfileController extends Controller
 		
 		$model = $this->loadUser();
 
-		$this->render('home',array(
+		$this->render('profile',array(
 	    	'model'=>$model
 	    ));
 	}

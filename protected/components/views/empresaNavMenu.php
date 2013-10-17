@@ -1,4 +1,3 @@
-<?php echo "IDeeeee: ".Yii::app()->controller->id; ?> 
 <div id="mainmenu">	
 		<!-- navbar de bootstrap -->
 		<?php $this->widget('bootstrap.widgets.TbNavbar', array(

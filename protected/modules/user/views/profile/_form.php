@@ -13,7 +13,7 @@
 <fieldset>
 	<p class="note"><?php echo UserModule::t('Fields with <span class="required">*</span> are required.'); ?></p>
 	
-	<?php echo $form->errorSummary(array($model,$model->profile)); ?>
+	<?php //echo $form->errorSummary(array($model,$model->profile)); ?>
 	
 	<?php if (UserModule::isSuperAdmin() || UserModule::isAdmin() ):?>
 		<?php //Estos campos sólo se muestran al admin ya que son de uso interno. ?>
@@ -235,16 +235,12 @@
 			</div>
 			<? $this->debug(User::getListaCiudades()); ?>
 			<div class="row">
-				<?php //echo $form->labelEx($profile,'poblacion_id'); ?>
-				<?php //echo $form->textField($profile,'poblacion_id'); ?>
-                 <?php //echo $form->dropDownListRow($profile, 'poblacion_id', Promocion::itemAlias("PromoStatus"),array('options'=>array(Promocion::STATUS_BORRADOR=>array('selected'=>'selected')))); ?>
                 <?php echo $form->dropDownListRow($profile, 'poblacion_id', User::getListaCiudades()); ?>
                 <?$this->widget('bootstrap.widgets.TbSelect2', array(
                     'asDropDownList' => true,
                     'name' => 'poblacion_id',
                     'data' =>  User::getListaCiudades(),
                     'options' => array(
-                        
                         //'tags' => array('clever','is', 'better', 'clevertech'),
                         //'tags' => User::getListaCiudades(),
                         'placeholder' => 'Zaragoza',
