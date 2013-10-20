@@ -9,7 +9,8 @@
 	        array(
 	            'class'=>'bootstrap.widgets.TbMenu',
 	            'items'=>array(
-	                array('url'=>Yii::app()->getModule('user')->homeAdminUrl, 'label'=>Yii::app()->getModule('user')->t("Home"), 'visible'=>!Yii::app()->user->isGuest),
+	                array('url'=>Yii::app()->getModule('user')->listaUsuarios, 'label'=>Yii::app()->getModule('user')->t("Usuarios"), 'visible'=>!Yii::app()->user->isGuest, 'active'=>(Yii::app()->controller->action->id=='admin')),
+	                array('url'=>Yii::app()->getModule('user')->listaCategorias, 'label'=>Yii::app()->getModule('user')->t("Categorias"), 'visible'=>!Yii::app()->user->isGuest,'active'=>(Yii::app()->controller->id=='category')),
 			        //array('label'=>'Promociones', 'icon'=>'home', 'url'=>'#', 'active'=>true),
 	                array('url'=>Yii::app()->getModule('user')->logoutUrl,'icon' => 'off', 'label'=>Yii::app()->getModule('user')->t("Logout").' ('.Yii::app()->user->name.')', 'visible'=>!Yii::app()->user->isGuest),               
 	            ),

@@ -1,3 +1,4 @@
+<div class="menulatusuario">
 <?php $this->beginWidget('zii.widgets.CPortlet');
 ?>
             
@@ -12,3 +13,4 @@
 )); ?>
 
 <?php $this->endWidget(); ?>
+</div>
