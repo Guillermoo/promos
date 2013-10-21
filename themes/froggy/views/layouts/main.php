@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="<?php echo $baseUrl;?>/css/dashboard.css">
     <link href="<?php echo $baseUrl;?>/css/bootstrap.css" rel="stylesheet">
      <link href="<?php echo $baseUrl;?>/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="<?php echo $baseUrl;?>/css/cdestilos.css" rel="stylesheet">
 
     <!--LOAD GOOGLE WEBFONTS -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700' rel='stylesheet' type='text/css'>
