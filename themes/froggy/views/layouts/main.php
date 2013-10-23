@@ -36,57 +36,9 @@
   </head>
 
 <body>
-  <!--START NAVBAR KO -->
-
-  <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#"><img src="assets/img/logo.png" alt=""/></a>
-
-          <div class="nav-collapse">
-
-     <ul class="nav pull-right">
-     <li>
-     <div class="btn-group" style="margin-top:7px;">  <a class="medium twitter button radius" style="text-decoration:none;"><i style="font-size:14px; padding-top:3px; padding-right:5px;" class="icon-envelope-alt"></i>(5) Messages[Main]</a> <a href="login.htm" class="medium twitter button radius" style="text-decoration:none;"><i style="font-size:16px; padding-top:3px; padding-right:5px;" class="icon-off"></i>Leap out</a> </div>
-      </li>
-  <li class="dropdown">
-    <a href="pages.htm" class="dropdown-toggle" data-toggle="dropdown">
-      <span style="padding-right:10px; width:30px;"><img src="assets/img/user_thumb.jpg" style="width:30px;" alt=""/></span>Mr Froggy
-      <b class="caret"></b>
-    </a>
-    <ul class="dropdown-menu">
-      <li>
-        <a href="error.htm">Privacy Settings</a>
-      </li>
-      <li>
-        <a href="error.htm">My Account</a>
-      </li>
-      <li>
-        <a href="error.htm">System Settings</a>
-      </li>
-      <li class="divider"></li>
-      <li>
-        <a href="error.htm"><i style="font-size:14px; padding-top:3px; padding-right:5px;" class="icon-user"></i>My Account</a>
-      </li>
-      <li>
-        <a href="error.htm"><i style="font-size:14px; padding-top:3px; padding-right:5px;" class="icon-lock"></i>Privacy Settings</a>
-      </li>
-       <li>
-        <a href="error.htm"><i style="font-size:14px; padding-top:3px; padding-right:5px;" class="icon-cogs"></i>System Settings</a>
-      </li>
-    </ul>
-  </li>
-</ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-
+  <?php if(!Yii::app()->user->isGuest){ ?>
+  <div class="logout medium twitter button radius"><em class="icon icon-off"> </em> <?php echo cHtml::link('Salir ('.Yii::app()->user->name.')',Yii::app()->getModule('user')->logoutUrl);?></div>
+  <?php } ?>
       <!--START SUB-NAVBAR -->
 <div class="subnav subnav-fixed">               
   <ul class="nav nav-pills">
