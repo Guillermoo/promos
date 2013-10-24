@@ -17,7 +17,7 @@
 .plan-name-Trial {
   padding: 20px;
   color: #fff;
-  background-color: #E70A8F;
+  background-color: #0070FF;
   -moz-border-radius: 5px 5px 5px 5px;
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
@@ -71,6 +71,14 @@
   padding: 20px;
   color: #fff;
   background-color: #AF076C;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  } 
+  .plan-name-Trial-head {
+  padding: 20px;
+  color: #fff;
+  background-color: #0054BE;
   -moz-border-radius: 5px 5px 5px 5px;
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
