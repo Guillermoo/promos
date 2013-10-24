@@ -100,6 +100,7 @@ class Promocion extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'usuario' => array(self::BELONGS_TO, 'User', 'user_id'),
+			//'image' => array(self::HAS_MANY, 'Item', 'id'),
 		);
 	}
 
@@ -265,17 +266,6 @@ class Promocion extends CActiveRecord
 		else
 			return isset($_items[$type]) ? $_items[$type] : false;
 	}
-        
-            /* Used to debug variables*/
-    protected function Debug($var){
-            $bt = debug_backtrace();
-            $dump = new CVarDumper();
-            $debug = '<div style="display:block;background-color:gold;border-radius:10px;border:solid 1px brown;padding:10px;z-index:10000;"><pre>';
-            $debug .= '<h4>function: '.$bt[1]['function'].'() line('.$bt[0]['line'].')'.'</h4>';
-            $debug .=  $dump->dumpAsString($var);
-            $debug .= "</pre></div>\n";
-            Yii::app()->params['debugContent'] .=$debug;
-    }
 
 	
 }

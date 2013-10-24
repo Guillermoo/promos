@@ -12,14 +12,15 @@ class UserNav extends CPortlet
 
 	protected function renderContent()
 	{
-		if (UserModule::isAdmin() || UserModule::isSuperAdmin())
+		if (UserModule::isAdmin() || UserModule::isSuperAdmin()){
 			$this->render('adminNavMenu');
+		}
 		else{
 			if(UserModule::isCompany()){
 				$this->render('empresaNavMenu');
 			}else{
 				$this->render('usuarioNavMenu');
 			}
+		}
 	}
-}
 }

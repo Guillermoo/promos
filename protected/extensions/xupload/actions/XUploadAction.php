@@ -215,7 +215,6 @@ class XUploadAction extends CAction {
 
                 if ($this->fileExists($userFiles[$_GET["file"]])) {
                     $success = $this->deleteFile($userFiles[$_GET["file"]]);
-                    
                     if ($success) {
                         unset($userFiles[$_GET["file"]]); // remove it from our session and save that info
                         Yii::app()->user->setState($this->stateVariable, $userFiles);

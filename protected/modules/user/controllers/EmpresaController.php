@@ -1,5 +1,5 @@
 <?php
-
+Yii::import("xupload.models.XUploadForm");
 class EmpresaController extends Controller
 {
 	/**
@@ -28,7 +28,11 @@ class EmpresaController extends Controller
 			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
-        
+
+	public function actions() {
+		return array('upload' => array('class' => 'xupload.actions.XUploadAction', 'path' => Yii::app() -> getBasePath() . "/../images/uploads", "publicPath" => Yii::app()->getBaseUrl()."/images/uploads" ), );
+	}
+
         	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
@@ -156,14 +160,22 @@ class EmpresaController extends Controller
 		//Here we check if we are deleting and uploaded file
 		if(Yii::app()->request->isAjaxRequest)
 		{    
+			//sdhh;
 	        if( isset( $id )) {
 	        	Item::deleteItemFromDisk($id);
 				Item::deteleItemFromDB($id);
-				Yii::import( "xupload.models.XUploadForm" );
+				/*Yii::import( "xupload.models.XUploadForm" );
 				$image = new XUploadForm;
 				
-				echo $this->renderPartial('../layouts/_itemupload', array(
-					'image' => $image,'idform'=>'empresa-form'));
+				//echo $this->renderPartial('../layouts/_itemupload', array(
+				//	'image' => $image,'idform'=>'empresa-form'));*/
+				/*$this->render('actualizaempresa',array(
+	                'model'=>$model,
+	            ));*/
+	            $this->actualizaEmpresa();
+	            Yii::app()->end;
+	        }else{
+	        	sadggs;
 	        }
 		}
 	}
@@ -269,6 +281,7 @@ class EmpresaController extends Controller
 private function actualizaEmpresa($id=null){
 
     Yii::import("xupload.models.XUploadForm");
+
     if ($id==null){
         $empresa = $this->loadUser()->empresa;
         $redirectOkEmpresa = '/user/empresa';
@@ -280,7 +293,8 @@ private function actualizaEmpresa($id=null){
     // ajax validator   
     $this->performAjaxValidation(array($empresa));
 
-    $this->guardaDatosForm($empresa,$redirectOkEmpresa);
+    if(isset($_POST['Empresa']))    	
+    	$this->guardaDatosForm($empresa,$redirectOkEmpresa);
     
     //Para cargar/gestionar el logo
     $imageForm = new XUploadForm;

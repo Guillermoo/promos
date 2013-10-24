@@ -185,26 +185,34 @@ class PromocionController extends Controller
 	public function actionUpdate($id=null)
 	{
             
-            //adsgh;
-            $this->_model=$this->loadModel($id);
+        //adsgh;
+        $this->_model=$this->loadModel($id);
 
-            // Uncomment the following line if AJAX validation is needed
-            $this->performAjaxValidation(array($this->_model));
+        $image = new Item();
+        $image=Item::model()->find(
+              array(
+              'condition'=>'foreign_id='.$id.' AND model="promo"',
+         )); 
 
-            if(isset($_POST['Promocion']))
-            {
-                $this->_model->attributes=$_POST['Promocion'];
-                if($this->_model->save())
-                        Yii::app()->user->setFlash('success',UserModule::t("Promotion updated."));
-                else
-                        Yii::app()->user->setFlash('error',UserModule::t("Error updating the promotion."));
-                
-                $this->redirect(array('update','id'=>$this->_model->id));
-            }
+        // Uncomment the following line if AJAX validation is needed
+        $this->performAjaxValidation(array($this->_model));
 
-            $this->render('update',array(
-                    'model'=>$this->_model,
-            ));
+        if(isset($_POST['Promocion']))
+        {
+            $this->_model->attributes=$_POST['Promocion'];
+
+            if($this->_model->save())
+                    Yii::app()->user->setFlash('success',UserModule::t("Promotion updated."));
+            else
+                    Yii::app()->user->setFlash('error',UserModule::t("Error updating the promotion."));
+            
+            $this->redirect(array('update','id'=>$this->_model->id));
+        }
+
+        $this->render('update',array('model'=>$this->_model,
+            'image'=>$image,
+        ));
+
 	}
 
 	/**

@@ -38,7 +38,8 @@
 			'items'=>array(
 				array('label'=>'Home', 'url'=>array('/site/index')),
 				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Contact', 'url'=>array('/site/contact')),
+				//array('label'=>'Contact', 'url'=>array('/site/contact'), 'visible'=>Yii::app()->user->isGuest),
+				array('url'=>Yii::app()->getModule('user')->contactoEmpresaUrl, 'label'=>Yii::app()->getModule('user')->t("Contact"), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'Promociones', 'url'=>array('/promociones')),
 				array('label'=>'Empresas', 'url'=>array('/empresas')),
 				/*array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
@@ -74,6 +75,10 @@
 		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
 		All Rights Reserveddddd.<br/>
 		<?php echo Yii::powered(); ?>
+		<div id="email">
+			<?php echo CHtml::mailto($email=Yii::app()->params->websiteEmail) ?>
+		</div>
+		
 	</div><!-- footer -->
 
 </div><!-- page -->

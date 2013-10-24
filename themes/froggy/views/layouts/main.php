@@ -101,7 +101,9 @@
  <!--START MAIN-CONTENT -->
 
  <div class="container" style="margin-top:80px;">
-
+<?php if(!empty(Yii::app()->params['debugContent'])):?>
+                <?php echo Yii::app()->params['debugContent'];?>
+  <?php endif;?>
 <!-- Include content pages -->
 <?php echo $content; ?>
 

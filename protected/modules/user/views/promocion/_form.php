@@ -10,7 +10,7 @@
 	'id'=>'promociones-form',
 	'enableAjaxValidation'=>true,
         //'action'=>'update/id/'.$model->id,
-        'action'=>$model->isNewRecord ? 'create' : 'update/id/'.$model->id,
+    'action'=>$model->isNewRecord ? 'create' : 'update/id/'.$model->id,
 	'clientOptions'=>array(
             'validateOnSubmit'=>true,
 	),
@@ -52,6 +52,30 @@
             <?php echo $form->textField($model,'titulo',array('size'=>60,'maxlength'=>100)); ?>
             <?php echo $form->error($model,'titulo'); ?>
     </div>
+
+    <? if (UserModule::isCompany()):?>
+        <div class="row">
+                <div id="logo_form">
+                    <?php echo $form->labelEx($model,'logo'); ?>
+
+                    <?php if (isset($item)):?><?//Si tiene una imagen cargada ?>
+                        <?php $imghtml=CHtml::image(Yii::app( )->getBaseUrl( ).$item->path);?>
+                        <?php echo CHtml::link($imghtml);?>
+                        <?php //$this->renderPartial('../layouts/_viewitem', array(
+                                //'imghtml' => $imghtml,'idimage'=>$model->usuario->item->id,'muestraBorrar'=>UserModule::isCompany(Yii::app()->user->id)));?><?php //El admin no puede borrar la imagen, o si??>
+                        <button class="btn btn-danger" data-type="POST" data-url=promocion/deleteItem?id=<?=$item->id ?> >
+                            <i class="icon-trash icon-white"></i>
+                            <span>Delete</span>
+                        </button>
+                    <?php else:?><?//Si no la tiene se muestra el form para cargar imágenes?>
+                        <?php $item = new Item();?>
+                        <?php echo $form->fileFieldRow($item, 'filename'); ?>
+                    <?php endif;?>
+                    <?php //$this->debug($item->filename)?>
+                     
+                </div>
+        </div>
+    <?php endif; ?>
 
     <div class="row">
             <?php echo $form->textAreaRow($model, 'resumen', array('class'=>'span8', 'rows'=>5)); ?>

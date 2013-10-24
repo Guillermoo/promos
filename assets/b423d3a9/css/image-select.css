@@ -1,0 +1,22 @@
+@CHARSET "UTF-8";
+.image-select-edit{
+	background-image: url("../images/edit.png");
+	background-color: white;
+	background-repeat: no-repeat;
+	padding-left: 20px;
+	display: inline-block;
+	height: 20px;
+}
+.image-select-loading {
+	background-image: url(../images/ajax-loader.gif);
+	background-repeat: no-repeat;
+	background-position: center; 
+	z-index: 999;
+	opacity: 0.5;
+	background-color: #000000;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+}
