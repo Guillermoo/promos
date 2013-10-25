@@ -107,6 +107,10 @@ return array(
                             //'class' => 'ext.bootstrap.components.Bootstrap',
                             'coreCss' => true, //use css themes
             ),
+            'phpThumb'=>array(
+                'class'=>'ext.EPhpThumb.EPhpThumb',
+                //'options'=>array(optional phpThumb specific options are added here)
+            ),
             // uncomment the following to enable URLs in path-format
             'urlManager'=>array(
                 'urlFormat'=>'path',

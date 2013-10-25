@@ -37,9 +37,9 @@
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
 				array('label'=>'Home', 'url'=>array('/site/index')),
-				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 				//array('label'=>'Contact', 'url'=>array('/site/contact'), 'visible'=>Yii::app()->user->isGuest),
 				array('url'=>Yii::app()->getModule('user')->contactoEmpresaUrl, 'label'=>Yii::app()->getModule('user')->t("Contact"), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),				
 				array('label'=>'Promociones', 'url'=>array('/promociones')),
 				array('label'=>'Empresas', 'url'=>array('/empresas')),
 				/*array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
@@ -73,7 +73,8 @@
 
 	<div id="footer">
 		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-		All Rights Reserveddddd.<br/>
+		All Rights Reserved.<br/>
+		<?php echo cHtml::link('Contacto',array("site/contact")); ?><br />
 		<?php echo Yii::powered(); ?>
 		<div id="email">
 			<?php echo CHtml::mailto($email=Yii::app()->params->websiteEmail) ?>

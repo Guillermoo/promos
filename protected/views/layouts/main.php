@@ -41,6 +41,7 @@
 	<div id="footer">
 		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
 		All Rights Reservedados.<br/>
+		<p>Contacto</p>
 		<?php echo Yii::powered(); ?>
 	</div><!-- footer -->
 

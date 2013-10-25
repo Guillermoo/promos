@@ -1,5 +1,5 @@
 <?php
-Yii::import("xupload.models.XUploadForm");
+//Yii::import("xupload.models.XUploadForm");
 class EmpresaController extends Controller
 {
 	/**
@@ -29,9 +29,9 @@ class EmpresaController extends Controller
 		);
 	}
 
-	public function actions() {
+	/*public function actions() {
 		return array('upload' => array('class' => 'xupload.actions.XUploadAction', 'path' => Yii::app() -> getBasePath() . "/../images/uploads", "publicPath" => Yii::app()->getBaseUrl()."/images/uploads" ), );
-	}
+	}*/
 
         	/**
 	 * Specifies the access control rules.
@@ -280,8 +280,6 @@ class EmpresaController extends Controller
         
 private function actualizaEmpresa($id=null){
 
-    Yii::import("xupload.models.XUploadForm");
-
     if ($id==null){
         $empresa = $this->loadUser()->empresa;
         $redirectOkEmpresa = '/user/empresa';
@@ -296,13 +294,46 @@ private function actualizaEmpresa($id=null){
     if(isset($_POST['Empresa']))    	
     	$this->guardaDatosForm($empresa,$redirectOkEmpresa);
     
-    //Para cargar/gestionar el logo
-    $imageForm = new XUploadForm;
-    
+    //if (isset($empresa->item) )
+    $imageForm = $this->obtenImageForm($empresa->usuario->item);	
+
+	//$this->debug($empresa->usuario->item->attributes);
     $this->render('edit',array(
             'empresa'=>$empresa,
             'image'=>$imageForm,
     ));
+}
+
+private function obtenImageForm($item=null){
+	Yii::import("xupload.models.XUploadForm");
+	$imageForm = new XUploadForm;
+
+	if (isset($item)){
+		$imageForm->name = $item->filename;
+		//$imageForm->file = $item->path;
+		$imageForm->file = CUploadedFile::getInstance( $item, 'file' );
+		$imageForm->mime_type = $item->tipo;
+		$imageForm->size = $item->size;
+		$imageForm->filename = $item->filename;
+		$path =  Yii::app( )->getBaseUrl( );
+
+		echo json_encode( array( array(
+            "name" => $imageForm->name,
+            "type" => $imageForm->mime_type,
+            "size" => $imageForm->size,
+            "url" =>  $path.$item->path,
+            "thumbnail_url" => $path."thumbs/".$item->filename,
+            "delete_url" => $this->createUrl( "upload", array(
+                "_method" => "delete",
+                "file" => $item->filename
+            ) ),
+            "delete_type" => "POST"
+        ) ) );
+	}
+	
+	//Para cargar/gestionar el logo
+    return $imageForm ;
+
 }
     
     private function guardaDatosForm($empresa,$redirectOkEmpresa=null){

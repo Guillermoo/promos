@@ -4,3 +4,13 @@
 .categoriasizda{
 	margin-right: 20px;
 }
+.logout{
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	z-index: 99999;
+	color: #4DB848;
+}
+.logout a{
+	color: #4DB848;
+}
