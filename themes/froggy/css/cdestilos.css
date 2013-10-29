@@ -14,3 +14,72 @@
 .logout a{
 	color: #4DB848;
 }
+.plan-name-Trial {
+  padding: 20px;
+  color: #fff;
+  background-color: #0070FF;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+ }
+  
+.plan-name-Basic {
+  padding: 20px;
+  color: #fff;
+  background-color: #90C900;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+ }
+  
+.plan-name-Advanced {
+  padding: 20px;
+  color: #fff;
+  background-color: #0070FF;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  } 
+
+  .plan-name-Lite {
+  padding: 20px;
+  color: #fff;
+  background-color: #E70A8F;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  } 
+  .plan-name-Basic-head {
+  padding: 20px;
+  color: #fff;
+  background-color: #4A8500;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+ }
+  
+.plan-name-Advanced-head {
+  padding: 20px;
+  color: #fff;
+  background-color: #0054BE;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  } 
+
+  .plan-name-Lite-head {
+  padding: 20px;
+  color: #fff;
+  background-color: #AF076C;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  } 
+  .plan-name-Trial-head {
+  padding: 20px;
+  color: #fff;
+  background-color: #0054BE;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  } 

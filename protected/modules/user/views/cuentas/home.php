@@ -25,8 +25,7 @@
     'buttonType'=>'button',
     'type'=>'primary',
     'label'=>'Ver tipos de cuenta',
-    'loadingText'=>'cargando...',
-    'url'=>array('cuentas/cuentas'),
+    'loadingText'=>'cargando...',    
     'htmlOptions'=>array('id'=>'buttonStateful'),
 )); ?>
 <?php endif;?>

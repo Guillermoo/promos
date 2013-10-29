@@ -32,7 +32,7 @@ class CuentasController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','home'),
+				'actions'=>array('index','view','home','verCuenta'),
 				'users'=>array('*'),
 			),		
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -174,6 +174,13 @@ class CuentasController extends Controller
 		));
 	}
 
+	public function actionVerCuenta($id){		
+		$this->render('_viewCuenta',array(
+			'data'=>$this->loadModel($id),
+		));
+	}
+	
+
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
@@ -202,5 +209,4 @@ class CuentasController extends Controller
 		}
 	}
 
-	
 }
