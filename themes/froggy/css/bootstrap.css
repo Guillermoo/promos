@@ -1837,7 +1837,7 @@ table .span24 {
   padding: 4px 0;
   margin: 1px 0 0;
   list-style: none;
-  background-color: #363636;
+  background-color: #EBEBEB;
   border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, 0.2);
   *border-right-width: 2px;
@@ -1882,7 +1882,7 @@ table .span24 {
 .dropdown-menu li > a:hover,
 .dropdown-menu .active > a,
 .dropdown-menu .active > a:hover {
-  color: #ffffff;
+  color: #cccccc;
   text-decoration: none;
   background-color: #4DB848;
 }

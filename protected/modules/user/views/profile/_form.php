@@ -44,16 +44,11 @@
 	<?php if (UserModule::isCompany() ):?>
 		<?php $profile = $model->profile;?>
 		<div class="fields">
-		
-			<?php $this->widget('bootstrap.widgets.TbLabel', array(
-			    'type'=>'info', // 'success', 'warning', 'important', 'info' or 'inverse'
-			    'label'=>'Profile',
-			)); ?>
 			<!-- Inicio profile -->
 			<div class="row"><!-- Tipo de cuenta -->
-				<?php echo $form->labelEx($profile,'tipocuenta'); ?>
+				<?php //echo $form->labelEx($profile,'tipocuenta'); ?>
 				<?php //echo $form->textField($profile->cuenta,'titulo'); ?>
-				<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
+				<?php /*$this->widget('bootstrap.widgets.TbButtonGroup', array(
 			        'type'=>'primary', // '', 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
 			        'buttons'=>array(
 			            array('label'=>$profile->cuenta->titulo, 'url'=>'#'),
@@ -61,7 +56,7 @@
 			                array('label'=>'Actualizar cuenta', 'url'=>'#'),
 			            )),
 			        ),
-			    )); ?>
+			    )); */?>
 			</div>
 				
 			<div class="row">

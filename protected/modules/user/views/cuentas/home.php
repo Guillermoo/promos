@@ -3,7 +3,7 @@
 <?php //(G)Si el usuario no ha rellenado los campos mínimos para poder vender, le apareceŕa?>
 <?php //Hay que mirar que si es ?>
 <?php if ($model->status == 1):?>
-<div class="alert">
+<div class="alert alert-success">
   <strong>Atención!</strong> Está usando la suscripción gratuita.
 </div>
 	

@@ -9,7 +9,7 @@
         array(
             'class'=>'bootstrap.widgets.TbMenu',
             'items'=>array(
-                array('url'=>Yii::app()->getModule('user')->homeUrl, 'label'=>Yii::app()->getModule('user')->t("Home"), 'visible'=>!Yii::app()->user->isGuest, 'active'=>(Yii::app()->controller->action->id=='home' && Yii::app()->controller->id=='profile'), 'icon'=>'home'),
+                /*array('url'=>Yii::app()->getModule('user')->homeUrl, 'label'=>Yii::app()->getModule('user')->t("Home"), 'visible'=>!Yii::app()->user->isGuest, 'active'=>(Yii::app()->controller->action->id=='home' && Yii::app()->controller->id=='profile'), 'icon'=>'home'),*/
                 array('url'=>Yii::app()->getModule('user')->profileUrl, 'label'=>Yii::app()->getModule('user')->t("Profile"), 'visible'=>!Yii::app()->user->isGuest, 'icon'=>'user', 'active'=>(Yii::app()->controller->id=='profile' && Yii::app()->controller->action->id!='home') ),
 		    	array('url'=>Yii::app()->getModule('user')->empresaUrl, 'label'=>Yii::app()->getModule('user')->t("Company"), 'visible'=>!Yii::app()->user->isGuest, 'icon'=>'briefcase','active'=>Yii::app()->controller->id=='empresa'),
 		    	array('label'=>Yii::app()->getModule('user')->t("My promotions"), 'url'=>Yii::app()->getModule('user')->promocionesUrl, 'icon'=>'gift','active'=>Yii::app()->controller->id=='promocion' , 'items'=>array(
