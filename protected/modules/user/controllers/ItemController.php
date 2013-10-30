@@ -9,7 +9,8 @@ class ItemController extends CController
         $model = new XUploadForm;
         $this -> render('index', array('model' => $model ));
     }*/
-    
+        
+
 	public function actionUpload( ) {
 	    Yii::import( "xupload.models.XUploadForm" );
 	    
@@ -81,6 +82,8 @@ class ItemController extends CController
 	                    'name' => $model->name,
 	                );
 	                Yii::app( )->user->setState( 'images', $userImages );
+
+	                $this->addImages();
 	 
 	                //Now we need to tell our widget that the upload was succesfull
 	                //We do so, using the json structure defined in
@@ -138,8 +141,8 @@ class ItemController extends CController
 	                    $img->size = $image["size"];
 	                    $img->path = "/uploads/images/".$image["filename"];
 	                    //$img->path = "/uploads/images/{$this->id}/".$image["filename"];
-	                    $img->foreign_id = Yii::app()->user->id;
-	                    $img->model = 'empresa';
+	                   // $img->foreign_id = $image["foreign_id"];
+	                    $img->model = $image["model"];
 	                    $img->attribute = 'file';
 	                    //$objDateTime = new DateTime('NOW');
 	                    //$img->created = $objDateTime;
@@ -167,17 +170,24 @@ class ItemController extends CController
 	    }
 	}
 	
-	public function actionDelete(){
+	public function actionDelete($id){
 		//Here we check if we are deleting and uploaded file
-    	sdhg;
-		$id = $_POST["id"];
-	        
+		//$id = $_POST["id"];
+	    //$this->debug($id);
+	    aaegh;
         if( isset( $id )) {
-        	Item::deleteItemFromDisk($id);
-			//Item::deteleItemFromDB($id);
-			echo json_encode( array( 
-                    array( "error" => "Borradooo",
-                ) ) );
+        	//if (Item::puedeBorrar($id) ){
+        		Item::deleteItemFromDisk($id);
+				Item::deteleItemFromDB($id);
+				/*echo json_encode( array( 
+	                    array( "error" => "Borradooo",
+	                ) ) );*/
+				//$this->render
+        	/*}else{
+        		echo json_encode( array( 
+	                    array( "error" => "No está permitido borrar!!!!",
+                )) );
+        	}*/
         }
 	}
 	

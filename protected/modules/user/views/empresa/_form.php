@@ -57,36 +57,42 @@
 	<?php //$this->debug($image);?>
 	<div class="row">
         <?php echo $form->labelEx($image,'photos'); ?>
+        <div id="logo_form">
         <?php if (!isset($image) || (!isset($empresa->usuario->item))): ?>
         	<?php
+        		$image['model'] = 'empresa';
+        		//$image['foreign_id'] = Yii::app()->user->id;
 		        $this->widget( 'xupload.XUpload', array(
 		            'url' => Yii::app( )->createUrl( "user/item/upload"),
 		            //our XUploadForm
 		            'model' => $image,
 		            //We set this for the widget to be able to target our own form
-		            'htmlOptions' => array('id'=>'empresa-form'),
+		            'htmlOptions' => array('id'=>'logo_form'),
 		            'attribute' => 'file',
 		            'multiple' => false,
 		            //Note that we are using a custom view for our widget
 		            //Thats becase the default widget includes the 'form' 
 		            //which we don't want here
-		            'formView' => 'application.views.item._form',
+		            //'formView' => 'application.views.item._form',
+		            'formView' => 'user.views.item._form',
 		            )    
 		        );
 		        ?>
     	<?php else: ?>
-    	<?php $this->debug($empresa->usuario->item); ?>
-    		<?php //echo CHtml::image(Yii::app()->request->baseUrl.$empresa->usuario->item->path,"image",array("width"=>300)); ?>
-    		<button class="btn btn-danger">
+    		<?php echo CHtml::image(Yii::app()->request->baseUrl.$empresa->usuario->item->path,"image",array("width"=>350)); ?>
+            <button class="btn btn-danger">
                     <i class="icon-trash icon-white"></i>
-                    <?php //echo CHtml::ajaxLink('Delete', array('empresa/deleteItem','id'=>$empresa->usuario->item->id),
-                    //array('update' => '#logo_form'))?>
+                    <?php echo CHtml::ajaxLink('Delete', array(Yii::app()->request->baseUrl.'/user/item/delete','id'=>$empresa->usuario->item->id),
+                    array('update' => '#logo_form'))?>
             </button>
-            <?php //echo CHtml::ajaxLink('Delete', array('empresa/deleteItem','id'=>$empresa->usuario->item->id),array('update' => '#logo_form'))?>
-    	<?php  endif;?>
-        
+            <?php echo CHtml::ajaxLink('Delete', array(
+            	'empresa/deleteItem',
+            	'id'=>$empresa->usuario->item->id),
+            	array('update' => '#logo_form'))?>
+            
+	    	<?php  endif;?>
+        </div>
     </div>
-    
     
 	<div class="row">
 		<?php echo $form->labelEx($empresa,'nombre'); ?>

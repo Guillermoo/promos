@@ -79,7 +79,7 @@ class Item extends CActiveRecord
 		return array(
 			//'empresas' => array(self::HAS_MANY, 'Empresas', 'logo_id'),
 			'usuario' => array(self::BELONGS_TO, 'Usuarios', 'foreign_id'),
-			'promocion' => array(self::BELONGS_TO, 'Promociones', 'foreign_id'),
+			//'promocion' => array(self::BELONGS_TO, 'Promociones', 'foreign_id', 'condition'=>'model=promo'),
 		);
 	}
 
@@ -210,7 +210,7 @@ class Item extends CActiveRecord
 	public static function puedeBorrar($id){
 
 		if (isset($id)){
-			asfdg;
+			
 			$model=Item::model()->findByPk($id);
 			if ($model->foreign_id == Yii::app()->user->getId() )
 				return true;

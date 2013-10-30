@@ -187,12 +187,12 @@ class PromocionController extends Controller
             
         //adsgh;
         $this->_model=$this->loadModel($id);
-
-        $image = new Item();
-        $image=Item::model()->find(
+        
+        //$image = new Item();
+       /* $image=Item::model()->find(
               array(
               'condition'=>'foreign_id='.$id.' AND model="promo"',
-         )); 
+         )); */
 
         // Uncomment the following line if AJAX validation is needed
         $this->performAjaxValidation(array($this->_model));
@@ -202,18 +202,52 @@ class PromocionController extends Controller
             $this->_model->attributes=$_POST['Promocion'];
 
             if($this->_model->save())
-                    Yii::app()->user->setFlash('success',UserModule::t("Promotion updated."));
+                Yii::app()->user->setFlash('success',UserModule::t("Promotion updated."));
             else
-                    Yii::app()->user->setFlash('error',UserModule::t("Error updating the promotion."));
+                Yii::app()->user->setFlash('error',UserModule::t("Error updating the promotion."));
             
             $this->redirect(array('update','id'=>$this->_model->id));
         }
-
+        //$this->debug($this->_model->item);
+        $imageForm = $this->obtenImageForm($this->_model->item);    
+        $this->debug($imageForm);
         $this->render('update',array('model'=>$this->_model,
-            'image'=>$image,
+            'image'=>$imageForm,
         ));
 
 	}
+
+    private function obtenImageForm($item=null){
+    Yii::import("xupload.models.XUploadForm");
+    $imageForm = new XUploadForm;
+
+    if (isset($item)){
+        $imageForm->name = $item->filename;
+        //$imageForm->file = $item->path;
+        $imageForm->file = CUploadedFile::getInstance( $item, 'file' );
+        $imageForm->mime_type = $item->tipo;
+        $imageForm->size = $item->size;
+        $imageForm->filename = $item->filename;
+        $path =  Yii::app( )->getBaseUrl( );
+
+        echo json_encode( array( array(
+            "name" => $imageForm->name,
+            "type" => $imageForm->mime_type,
+            "size" => $imageForm->size,
+            "url" =>  $path.$item->path,
+            "thumbnail_url" => $path."thumbs/".$item->filename,
+            "delete_url" => $this->createUrl( "upload", array(
+                "_method" => "delete",
+                "file" => $item->filename
+            ) ),
+            "delete_type" => "POST"
+        ) ) );
+    }
+    
+    //Para cargar/gestionar el logo
+    return $imageForm ;
+
+}
 
 	/**
 	 * Deletes a particular model.

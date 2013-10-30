@@ -160,22 +160,19 @@ class EmpresaController extends Controller
 		//Here we check if we are deleting and uploaded file
 		if(Yii::app()->request->isAjaxRequest)
 		{    
-			//sdhh;
 	        if( isset( $id )) {
 	        	Item::deleteItemFromDisk($id);
 				Item::deteleItemFromDB($id);
-				/*Yii::import( "xupload.models.XUploadForm" );
+
+				Yii::import("xupload.models.XUploadForm");
 				$image = new XUploadForm;
-				
-				//echo $this->renderPartial('../layouts/_itemupload', array(
-				//	'image' => $image,'idform'=>'empresa-form'));*/
-				/*$this->render('actualizaempresa',array(
-	                'model'=>$model,
-	            ));*/
-	            $this->actualizaEmpresa();
-	            Yii::app()->end;
+
+				echo $this->renderPartial('../layouts/_itemupload', array(
+					'image' => $image,'id'=>'logo_form'));
+
+			   Yii::app()->end();
 	        }else{
-	        	sadggs;
+	        	echo "Error borrando la imagen.";
 	        }
 		}
 	}
@@ -294,6 +291,8 @@ private function actualizaEmpresa($id=null){
     if(isset($_POST['Empresa']))    	
     	$this->guardaDatosForm($empresa,$redirectOkEmpresa);
     
+	$this->debug($empresa->usuario->item);	
+
     //if (isset($empresa->item) )
     $imageForm = $this->obtenImageForm($empresa->usuario->item);	
 

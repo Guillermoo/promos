@@ -54,9 +54,9 @@
     </div>
 
     <? if (UserModule::isCompany()):?>
-        <div class="row">
+       <!-- <div class="row">
                 <div id="logo_form">
-                    <?php echo $form->labelEx($model,'logo'); ?>
+                    <?php /*echo $form->labelEx($model,'logo'); ?>
 
                     <?php if (isset($item)):?><?//Si tiene una imagen cargada ?>
                         <?php $imghtml=CHtml::image(Yii::app( )->getBaseUrl( ).$item->path);?>
@@ -70,10 +70,49 @@
                     <?php else:?><?//Si no la tiene se muestra el form para cargar imágenes?>
                         <?php $item = new Item();?>
                         <?php echo $form->fileFieldRow($item, 'filename'); ?>
-                    <?php endif;?>
+                    <?php endif;*/?>
                     <?php //$this->debug($item->filename)?>
                      
                 </div>
+        </div>-->
+
+        <div class="row">
+            <?php echo $form->labelEx($image,'photos'); ?>
+            <div id="logo_form">
+            <?php if (!isset($image) || (!isset($model->item))): ?>
+                <?php
+                    $image['model'] = 'promo';
+                    $image['foreign_id'] = $model->id;
+                    $this->widget( 'xupload.XUpload', array(
+                        'url' => Yii::app( )->createUrl( "user/item/upload"),
+                        //our XUploadForm
+                        'model' => $image,
+                        //We set this for the widget to be able to target our own form
+                        'htmlOptions' => array('id'=>'logo_form'),
+                        'attribute' => 'file',
+                        'multiple' => false,
+                        //Note that we are using a custom view for our widget
+                        //Thats becase the default widget includes the 'form' 
+                        //which we don't want here
+                        //'formView' => 'application.views.item._form',
+                        'formView' => 'user.views.item._form',
+                        )    
+                    );
+                    ?>
+            <?php else: ?>
+                <?php echo CHtml::image(Yii::app()->request->baseUrl.$model->item->path,"image",array("width"=>350)); ?>
+                <button class="btn btn-danger">
+                        <i class="icon-trash icon-white"></i>
+                        <?php echo CHtml::ajaxLink('Delete', array(Yii::app()->request->baseUrl.'/user/item/delete','id'=>$model->item->id),
+                        array('update' => '#logo_form'))?>
+                </button>
+                <?php echo CHtml::ajaxLink('Delete', array(
+                    'empresa/deleteItem',
+                    'id'=>$model->item->id),
+                    array('update' => '#logo_form'))?>
+                
+                <?php  endif;?>
+            </div>
         </div>
     <?php endif; ?>
 

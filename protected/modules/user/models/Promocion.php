@@ -100,6 +100,7 @@ class Promocion extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'usuario' => array(self::BELONGS_TO, 'User', 'user_id'),
+			'item' => array(self::HAS_ONE, 'Item', 'foreign_id'),
 			//'image' => array(self::HAS_MANY, 'Item', 'id'),
 		);
 	}

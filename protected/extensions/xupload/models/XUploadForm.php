@@ -6,6 +6,8 @@ class XUploadForm extends CFormModel
         public $size;
         public $name;
         public $filename;
+        public $model;
+        public $foreign_id;
 
         /**
          * @var boolean dictates whether to use sha1 to hash the file names
