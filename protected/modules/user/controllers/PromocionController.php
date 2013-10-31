@@ -210,7 +210,7 @@ class PromocionController extends Controller
         }
         //$this->debug($this->_model->item);
         $imageForm = $this->obtenImageForm($this->_model->item);    
-        $this->debug($imageForm);
+        //$this->debug($imageForm);
         $this->render('update',array('model'=>$this->_model,
             'image'=>$imageForm,
         ));

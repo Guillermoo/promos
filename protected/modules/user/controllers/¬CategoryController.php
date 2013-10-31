@@ -6,7 +6,7 @@ class CategoryController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/column1';
 
             public function   init() {
                 $this->registerAssets();
@@ -26,8 +26,6 @@ class CategoryController extends Controller
             Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js_plugins/json2/json2.js');
             Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/client_val_form.css','screen');
     }
-
-
 
 	/**
 	 * @return array action filters
@@ -74,22 +72,22 @@ class CategoryController extends Controller
 
      //create an array open_nodes with the ids of the nodes that we want to be initially open
      //when the tree is loaded.Modify this to suit your needs.Here,we open all nodes on load.
-         $categories= Category::model()->findAll(array('order'=>'lft'));
-         $identifiers=array();
-       foreach($categories as $n=>$category)
-       {
-         $identifiers[]="'".'node_'.$category->id."'";
-         }
-        $open_nodes=implode(',', $identifiers);
+                 $categories= Category::model()->findAll(array('order'=>'lft'));
+                 $identifiers=array();
+               foreach($categories as $n=>$category)
+               {
+                 $identifiers[]="'".'node_'.$category->id."'";
+                 }
+                $open_nodes=implode(',', $identifiers);
 
-        $baseUrl=Yii::app()->baseUrl.'/user';
-      
-        $dataProvider=new CActiveDataProvider('Category');
-        $this->render('index',array(
-           'dataProvider'=>$dataProvider,
-           'baseUrl'=> $baseUrl,
-           'open_nodes'=> $open_nodes
-        ));
+                $baseUrl=Yii::app()->baseUrl;
+
+		$dataProvider=new CActiveDataProvider('Category');
+		$this->render('index',array(
+			             'dataProvider'=>$dataProvider,
+                                     'baseUrl'=> $baseUrl,
+                                    'open_nodes'=> $open_nodes
+		                      ));
 	}
 
 /**
@@ -126,17 +124,10 @@ class CategoryController extends Controller
       }
 
        public function actionRemove(){
-                    $id=$_POST['id'];
+                  $id=$_POST['id'];
                  $deleted_cat=$this->loadModel($id);
-         //attention if there is no related product,you must remove the associated code!.
-                 $products=$deleted_cat->products;
-                 $products_deleted=true;
-                 foreach ( $products as $product) {
-                     $product_deleted= $product->delete();
-                     $products_deleted=  $products_deleted && $product_deleted;
-                 }
-
-                if ($deleted_cat->deleteNode() &&  $products_deleted  ){
+        
+                if ($deleted_cat->deleteNode() ){
                echo json_encode (array('success'=>true));
                exit;
                 }else{
@@ -145,34 +136,29 @@ class CategoryController extends Controller
                 }
       }
 
-      public function actionReturnForm(){
+	public function actionReturnForm(){
 
-
-               //don't reload these scripts or they will mess up the page
-                //yiiactiveform.js still needs to be loaded that's why we don't use
-                // Yii::app()->clientScript->scriptMap['*.js'] = false;
-                $cs=Yii::app()->clientScript;
-                $cs->scriptMap=array(
-                                                 'jquery.min.js'=>false,
-                                                 'jquery.js'=>false,
-                                                 'jquery.fancybox-1.3.4.js'=>false,
-                                                 'jquery.jstree.js'=>false,
-                                                 'jquery-ui-1.8.12.custom.min.js'=>false,
-                                                 'json2.js'=>false,
-
+		//don't reload these scripts or they will mess up the page
+        //yiiactiveform.js still needs to be loaded that's why we don't use
+		// Yii::app()->clientScript->scriptMap['*.js'] = false;
+		$cs=Yii::app()->clientScript;
+		$cs->scriptMap=array(
+			'jquery.min.js'=>false,
+			'jquery.js'=>false,
+			'jquery.fancybox-1.3.4.js'=>false,
+			'jquery.jstree.js'=>false,
+			'jquery-ui-1.8.12.custom.min.js'=>false,
+			'json2.js'=>false,
         );
 
-
-   //Figure out if we are updating a Model or creating a new one.
-  if(isset($_POST['update_id']))$model= $this->loadModel($_POST['update_id']);else $model=new Category;
-
-
-        $this->renderPartial('_form', array('model'=>$model,
-                                                             'parent_id'=>!empty($_POST['parent_id'])?$_POST['parent_id']:''
-                                                                   ),
-                                                                  false, true);
-
-      }
+	   //Figure out if we are updating a Model or creating a new one.
+  		if(isset($_POST['update_id']))$model= $this->loadModel($_POST['update_id']);
+  		else $model=new Category;
+        	$this->renderPartial('_form', array('model'=>$model,
+				'parent_id'=>!empty($_POST['parent_id'])?$_POST['parent_id']:''
+			),
+			false, true);
+  		}
 
  public function actionReturnView(){
 
@@ -202,11 +188,11 @@ class CategoryController extends Controller
       public function actionCreateRoot()
 	{
 
-               if(isset($_POST['Categorydemo']))
+               if(isset($_POST['Category']))
 		{
 
                        $new_root=new Category;
-                       $new_root->attributes=$_POST['Categorydemo'];
+                       $new_root->attributes=$_POST['Category'];
 		       if($new_root->saveNode(false)){
                                 echo json_encode(array('success'=>true,
                                                               'id'=>$new_root->primaryKey)
@@ -215,7 +201,7 @@ class CategoryController extends Controller
                         } else
                         {
                             echo json_encode(array('success'=>false,
-                                                                  'message'=>'Error.Root Categorydemo was not created.'
+                                                                  'message'=>'Error.Root Category was not created.'
                                                                   )
                                                         );
                             exit;
@@ -227,45 +213,42 @@ class CategoryController extends Controller
 
   public function actionCreate(){
 
-               if(isset($_POST['Categorydemo']))
+		if(isset($_POST['Category']))
 		{
-                       $model=new Category;
-                      //set the submitted values
-                        $model->attributes=$_POST['Categorydemo'];
-                       $parent=$this->loadModel($_POST['parent_id']);
-                       //return the JSON result to provide feedback.
+			$model=new Category;
+			//set the submitted values
+			$model->attributes=$_POST['Category'];
+			$parent=$this->loadModel($_POST['parent_id']);
+			//return the JSON result to provide feedback.
 			if($model->appendTo($parent)){
-                                echo json_encode(array('success'=>true,
-                                                              'id'=>$model->primaryKey)
-                                                              );
-                                exit;
-                        } else
-                        {
-                            echo json_encode(array('success'=>false,
-                                                                  'message'=>'Error.Categorydemo was not created.'
-                                                                  )
-                                                        );
-                            exit;
-                        }
+            	echo json_encode(array('success'=>true,
+                	'id'=>$model->primaryKey)
+					);
+				exit;
+			} else
+			{
+				echo json_encode(array('success'=>false,
+						'message'=>'Error.Category was not created.'
+					)
+				);
+			exit;
+			}
 		}
+	}
 
-}
 
-
-public function actionUpdate(){
-
-		if(isset($_POST['Categorydemo']))
+	public function actionUpdate(){
+	
+		if(isset($_POST['Category']))
 		{
-
-                        $model=$this->loadModel($_POST['update_id']);
-			$model->attributes=$_POST['Categorydemo'];
+			$model=$this->loadModel($_POST['update_id']);
+			$model->attributes=$_POST['Category'];
 
 			if( $model->saveNode(false)){
-                                      echo json_encode(array('success'=>true));
-		             }else echo json_encode(array('success'=>false));
-                }
-
-}
+				echo json_encode(array('success'=>true));
+			}else echo json_encode(array('success'=>false));
+		}
+	}
 
 
 public function actionMoveCopy(){
@@ -343,7 +326,7 @@ if ($copy == 'false'){
     }//end of it's a move
     //else if it is a copy
     else{
-        //create the copied Categorydemo model
+        //create the copied Category model
         $copied_node=new Category;
         //copy the attributes (only safe attributes will be copied).
         $copied_node->attributes=$moved_node->attributes;
@@ -412,22 +395,10 @@ if($moved_node->moveAsRoot()){
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='categorydemo-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='category-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
 	}
-
-
-  /* Used to debug variables*/
-    protected function Debug($var){
-        $bt = debug_backtrace();
-        $dump = new CVarDumper();
-        $debug = '<div style="display:block;background-color:gold;border-radius:10px;border:solid 1px brown;padding:10px;z-index:10000;"><pre>';
-        $debug .= '<h4>function: '.$bt[1]['function'].'() line('.$bt[0]['line'].')'.'</h4>';
-        $debug .=  $dump->dumpAsString($var);
-        $debug .= "</pre></div>\n";
-        Yii::app()->params['debugContent'] .=$debug;
-    }
 }

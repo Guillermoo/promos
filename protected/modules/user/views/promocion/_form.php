@@ -75,14 +75,14 @@
                      
                 </div>
         </div>-->
-
+<?php $this->debug($model->id) ?>
         <div class="row">
             <?php echo $form->labelEx($image,'photos'); ?>
             <div id="logo_form">
             <?php if (!isset($image) || (!isset($model->item))): ?>
                 <?php
-                    $image['model'] = 'promo';
-                    $image['foreign_id'] = $model->id;
+                    Yii::app()->user->setState('model', 'promo');
+                    Yii::app()->user->setState('foreign_id',$model->id );
                     $this->widget( 'xupload.XUpload', array(
                         'url' => Yii::app( )->createUrl( "user/item/upload"),
                         //our XUploadForm

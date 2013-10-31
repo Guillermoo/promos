@@ -291,7 +291,7 @@ private function actualizaEmpresa($id=null){
     if(isset($_POST['Empresa']))    	
     	$this->guardaDatosForm($empresa,$redirectOkEmpresa);
     
-	$this->debug($empresa->usuario->item);	
+	//$this->debug($empresa->usuario->item);	
 
     //if (isset($empresa->item) )
     $imageForm = $this->obtenImageForm($empresa->usuario->item);	

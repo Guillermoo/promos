@@ -119,6 +119,8 @@ class ItemController extends CController
 	    //If we have pending images
 	    if( Yii::app( )->user->hasState( 'images' ) ) {
 	        $userImages = Yii::app( )->user->getState( 'images' );
+	        $model = Yii::app( )->user->getState( 'model' );
+	        $foreign_id = Yii::app( )->user->getState( 'foreign_id' );
 	        //Resolve the final path for our images
 	        $path = Yii::app( )->getBasePath( )."/../uploads/images/";
 	        //Create the folder and give permissions if it doesnt exists
@@ -141,12 +143,12 @@ class ItemController extends CController
 	                    $img->size = $image["size"];
 	                    $img->path = "/uploads/images/".$image["filename"];
 	                    //$img->path = "/uploads/images/{$this->id}/".$image["filename"];
-	                   // $img->foreign_id = $image["foreign_id"];
-	                    $img->model = $image["model"];
+	                    $img->foreign_id = $foreign_id;
+	                    $img->model = $model;
 	                    $img->attribute = 'file';
-	                    //$objDateTime = new DateTime('NOW');
-	                    //$img->created = $objDateTime;
-	                    //$img->modified = $objDateTime;
+	                    /*$objDateTime = new DateTime('NOW');
+	                    $img->created = $objDateTime;
+	                    $img->modified = $objDateTime;*/
 	                    
 	                    if( !$img->save( false) ) {
 	                        //Its always good to log something

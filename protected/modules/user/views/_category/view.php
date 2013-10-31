@@ -1,7 +1,7 @@
 <?php
 ?>
 
-<h1>Categorydemo <?php echo $model->name; ?></h1>
+<h1>Category <?php echo $model->name; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -12,6 +12,5 @@
 		'rgt',
 		'level',
 		'name',
-		'description',
 	),
 )); ?>

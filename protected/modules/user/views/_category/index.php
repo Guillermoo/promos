@@ -7,7 +7,7 @@
  @since 1.0
  @license The MIT License-->
 
-<h1> Categorydemo</h1><br>
+<h1> Category</h1><br>
 <h2>Administration</h2><br>
 <ul>
      <li>If tree is empty,start by creating one or more root nodes.</li>
@@ -38,7 +38,7 @@ $("#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>")
                            "html_data" : {
 	            "ajax" : {
                                  "type":"POST",
- 	                          "url" : "<?php echo $baseUrl;?>/category/fetchTree",
+ 	                          "url" : "<?php echo $baseUrl;?>/user/category/fetchTree",
 	                         "data" : function (n) {
 	                          return {
                                                   id : n.attr ? n.attr("id") : 0,
@@ -60,7 +60,7 @@ $("#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>")
                                                 id=obj.attr("id").replace("node_","");
                      $.ajax({
                                  type: "POST",
-                                 url: "<?php echo $baseUrl;?>/category/returnForm",
+                                 url: "<?php echo $baseUrl;?>/user/category/returnForm",
                                 data:{
                                           'update_id':  id,
                                            "YII_CSRF_TOKEN":"<?php echo Yii::app()->request->csrfToken;?>"
@@ -97,7 +97,7 @@ $("#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>")
                                    id=obj.attr("id").replace("node_","")
                              $.ajax({
                                    type:"POST",
-			           url:"<?php echo $baseUrl;?>/category/returnView",
+			           url:"<?php echo $baseUrl;?>/user/category/returnView",
 		                   data:   {
                                              "id" :id,
                                             "YII_CSRF_TOKEN":"<?php echo Yii::app()->request->csrfToken;?>"
@@ -138,7 +138,7 @@ $("#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>")
 	              "action" : function (obj) {
 		       $('<div title="Delete Confirmation">\n\
                      <span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>\n\
-                    Categorydemo <span style="color:#FF73B4;font-weight:bold;">'+(obj).attr('rel')+'</span> and all it\'s subcategories will be deleted.Are you sure?</div>')
+                    Category <span style="color:#FF73B4;font-weight:bold;">'+(obj).attr('rel')+'</span> and all it\'s subcategories will be deleted.Are you sure?</div>')
                        .dialog({
 			resizable: false,
 			height:170,
@@ -160,127 +160,88 @@ $("#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>")
 	"label"	: "Create",
 	"action" : function (obj) { this.create(obj); },
         "separator_after": false
-	},
+	}
 
 //The next two context menu items,add_product and list_products are commented out because they are meaningful only if you have
-// a related Product Model (Nested Model HAS MANY Product).
+// a related Product Model (Nested Model HAS MANY Product).See Demo included in extension.
 
 
-"add_product" : {
-	"label"	: "Add Product",
-	"action" : function (obj) {
-                                   id=obj.attr("id").replace("node_","")
-                             $.ajax({
-                                    type:"POST",
-			            url:"<?php echo $baseUrl; ?>/product/returnProductForm",
-			           data:  {
-				         "id" :id,
-                                         "YII_CSRF_TOKEN":"<?php echo Yii::app()->request->csrfToken; ?>"
-			            },
-                                       beforeSend : function(){
-                                           $("#<?php Category::ADMIN_TREE_CONTAINER_ID ?>").addClass("ajax-sending");
-                                                               },
-                                        complete : function(){
-                                              $("#<?php Category::ADMIN_TREE_CONTAINER_ID ?>").removeClass("ajax-sending");
-                                                             },
-
-                      success: function(data){
-
-                        $.fancybox(data,
-                        {    "transitionIn"	:	"elastic",
-                            "transitionOut"    :      "elastic",
-                             "speedIn"		:	600,
-                            "speedOut"		:	200,
-                            "overlayShow"	:	false,
-                            "hideOnContentClick": false,
-                             "onClosed":    function(){
-                                                                       } //onclosed function
-                       })//fancybox
-
-                    } //function
-
-		});//ajax
-
-
-                                                }
+//"add_product" : {
+//	"label"	: "Add Product",
+//	"action" : function (obj) {
+//                                   id=obj.attr("id").replace("node_","")
+//                             $.ajax({
+//                                    type:"POST",
+//			            url:"$baseUrl;'; ?>/product/returnProductForm",
+//			           data:  {
+//				         "id" :id,
+//                                         "YII_CSRF_TOKEN":"Yii::app()->request->csrfToken;'; ?>"
+//			            },
+//                                       beforeSend : function(){
+//                                               $("#::ADMIN_TREE_CONTAINER_ID'; ?>").addClass("ajax-sending");
+//                                                               },
+//                                        complete : function(){
+//                                              $("#::ADMIN_TREE_CONTAINER_ID'; ?>").removeClass("ajax-sending");
+//                                                             },
+//
+//                      success: function(data){
+//
+//                        $.fancybox(data,
+//                        {    "transitionIn"	:	"elastic",
+//                            "transitionOut"    :      "elastic",
+//                             "speedIn"		:	600,
+//                            "speedOut"		:	200,
+//                            "overlayShow"	:	false,
+//                            "hideOnContentClick": false,
+//                             "onClosed":    function(){
+//                                                                       } //onclosed function
+//                        })//fancybox
+//
+//                    } //function
+//
+//		});//ajax
+//
+//
+//
+//                                                },
 //	"separator_before"	: false,	// Insert a separator before the item
 //	"separator_after"	: false	// Insert a separator after the item
-	},//add product
+//	},//add product
 
-   "list_products" : {
-	"label"	: "List Products",
-	"action" : function (obj) {
-                                   id=obj.attr("id").replace("node_","")
-                             $.ajax({
-                                         type:"POST",
-			                 url:"<?php echo $baseUrl; ?>/product/productList",
-			                 data:{
-				                   "id" :id,
-			                           "YII_CSRF_TOKEN":"<?php echo Yii::app()->request->csrfToken; ?>"
-                                              },
-			                beforeSend : function(){
-                                               $("#<?php echo Category::ADMIN_TREE_CONTAINER_ID ;?>").addClass("ajax-sending");
-                                                               },
-                                        complete : function(){
-                                              $("#<?php echo  Category::ADMIN_TREE_CONTAINER_ID ; ?>").removeClass("ajax-sending");
-                                                             },
-                                       success: function(data){
-                                        $.fancybox(data,
-                            {  "transitionIn"	:	"elastic",
-                            "transitionOut"    :      "elastic",
-                             "speedIn"		:	600,
-                            "speedOut"		:	200,
-                            "overlayShow"	:	false,
-                            "hideOnContentClick": false,
-                             "onClosed":    function(){
-                                                                       } //onclosed function
-                      })//fancybox
-
-                      } //function
-
-  		});//post
-
-                                                }
-
-                                           }
-//	"separator_before"	: false,	// Insert a separator before the item
-//	"separator_after"	: false	// Insert a separator after the item
- 	},//add product
-
-   "list_products" : {
-	"label"	: "List Products",
-	"action" : function (obj) {
-                                   id=obj.attr("id").replace("node_","")
-                             $.ajax({
-                                         type:"POST",
-			                 url:"<?php echo $baseUrl; ?>/product/productList",
-			                 data:{
-				                   "id" :id,
-			                          "YII_CSRF_TOKEN":"<?php echo Yii::app()->request->csrfToken; ?>"
-                                              },
-			                beforeSend : function(){
-                                               $("#<?php echo Category::ADMIN_TREE_CONTAINER_ID ;?>").addClass("ajax-sending");
-                                                               },
-                                        complete : function(){
-                                              $("#<?php echo Category::ADMIN_TREE_CONTAINER_ID ;?>").removeClass("ajax-sending");
-                                                             },
-                                       success: function(data){
-                                        $.fancybox(data,
-                            {  "transitionIn"	:	"elastic",
-                            "transitionOut"    :      "elastic",
-                             "speedIn"		:	600,
-                            "speedOut"		:	200,
-                            "overlayShow"	:	false,
-                            "hideOnContentClick": false,
-                             "onClosed":    function(){
-                                                                       } //onclosed function
-                        })//fancybox
-
-                    } //function
-
-		});//post
-
-                                                }
+//   "list_products" : {
+//	"label"	: "List Products",
+//	"action" : function (obj) {
+//                                   id=obj.attr("id").replace("node_","")
+//                             $.ajax({
+//                                         type:"POST",
+//			                 url:"$baseUrl;'; ?>/product/productList",
+//			                 data:{
+//				                   "id" :id,
+//			                           "YII_CSRF_TOKEN":"Yii::app()->request->csrfToken;'; ?>"
+//                                              },
+//			                beforeSend : function(){
+//                                               $("#::ADMIN_TREE_CONTAINER_ID'; ?>").addClass("ajax-sending");
+//                                                               },
+//                                        complete : function(){
+//                                              $("#::ADMIN_TREE_CONTAINER_ID'; ?>").removeClass("ajax-sending");
+//                                                             },
+//                                       success: function(data){
+//                                        $.fancybox(data,
+//                            {  "transitionIn"	:	"elastic",
+//                            "transitionOut"    :      "elastic",
+//                             "speedIn"		:	600,
+//                            "speedOut"		:	200,
+//                            "overlayShow"	:	false,
+//                            "hideOnContentClick": false,
+//                             "onClosed":    function(){
+//                                                                       } //onclosed function
+//                        })//fancybox
+//
+//                    } //function
+//
+//		});//post
+//
+//                                                },
 //	"separator_before"	: false,	// Insert a separator before the item
 //	"separator_after"	: true	// Insert a separator after the item
 //	}//list products
@@ -300,7 +261,7 @@ $("#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>")
                .bind("rename.jstree", function (e, data) {
 		$.ajax({
                            type:"POST",
-			   url:"<?php echo $baseUrl;?>/category/rename",
+			   url:"<?php echo $baseUrl;?>/user/category/rename",
 			   data:  {
 				        "id" : data.rslt.obj.attr("id").replace("node_",""),
                                          "new_name" : data.rslt.new_name,
@@ -325,7 +286,7 @@ $("#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>")
          .bind("remove.jstree", function (e, data) {
 		$.ajax({
                            type:"POST",
-			    url:"<?php echo $baseUrl;?>/category/remove",
+			    url:"<?php echo $baseUrl;?>/user/category/remove",
 			    data:{
 				        "id" : data.rslt.obj.attr("id").replace("node_",""),
 			                "YII_CSRF_TOKEN":"<?php echo Yii::app()->request->csrfToken;?>"
@@ -349,7 +310,7 @@ $("#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>")
                            parent_id=data.rslt.parent.attr("id").replace("node_","");
             $.ajax({
                     type: "POST",
-                    url: "<?php echo $baseUrl;?>/category/returnForm",
+                    url: "<?php echo $baseUrl;?>/user/category/returnForm",
                       data:{   'name': newname,
                                  'parent_id':   parent_id,
                                  "YII_CSRF_TOKEN":"<?php echo Yii::app()->request->csrfToken;?>"
@@ -421,7 +382,7 @@ $("#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>")
 			$.ajax({
 				async : false,
 				type: 'POST',
-				url: "<?php echo $baseUrl;?>/category/moveCopy",
+				url: "<?php echo $baseUrl;?>/user/category/moveCopy",
 
 				data : {
 					"moved_node" : moved_node,
@@ -473,7 +434,7 @@ $("#<?php echo Category::ADMIN_TREE_CONTAINER_ID;?>")
    $("#add_root").click(function () {
 	$.ajax({
                       type: 'POST',
-	              url:"<?php echo $baseUrl;?>/category/returnForm",
+	              url:"<?php echo $baseUrl;?>/user/category/returnForm",
 		     data:	{
 				    "create_root" : true,
 			             "YII_CSRF_TOKEN":"<?php echo Yii::app()->request->csrfToken;?>"

@@ -60,7 +60,7 @@
         <div id="logo_form">
         <?php if (!isset($image) || (!isset($empresa->usuario->item))): ?>
         	<?php
-        		$image['model'] = 'empresa';
+        		 Yii::app()->user->setState('model', 'empresa');
         		//$image['foreign_id'] = Yii::app()->user->id;
 		        $this->widget( 'xupload.XUpload', array(
 		            'url' => Yii::app( )->createUrl( "user/item/upload"),

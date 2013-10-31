@@ -155,7 +155,7 @@ class Item extends CActiveRecord
         }
 	
 	
-	private function saveItem($item,$path,$filename){
+	/*private function saveItem($item,$path,$filename){
 			
 		if (isset($item) && isset($path) && isset($filename)){
 			
@@ -171,12 +171,11 @@ class Item extends CActiveRecord
             $model->name = $item->name;
             
             $model->save();
-            $this->debug($model->attributes);
 			
 		}else{
 			throw new CHttpException( 500, "Could not save the file" );
 		}
-	}
+	}*/
 	
 	public static function deleteItemFromDisk($id){
 		
