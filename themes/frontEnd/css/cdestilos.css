@@ -1,0 +1,16 @@
+.header-shadow{
+	background-color: #90C900;
+}
+#superior li>a{
+	color: #fff;
+}
+
+.footer{
+	padding: 10px;
+	background-color: #90C900;
+	color: #fff;
+	position: absolute;
+	width: 100%;
+	overflow: hidden;
+	height: 40px;
+}
