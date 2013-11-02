@@ -60,7 +60,7 @@
 					<div class="navbar pull-right header-nav" id="superior">
 						<ul class="nav">
 							<li class="dropdown">
-								<a class="dropdown-toggle" data-toggle="dropdown" href="#">Login</a>
+								<?php echo cHtml::link('Login',Yii::app()->getModule('user')->loginUrl);?>								
 								<ul class="dropdown-menu">
 									<li>
 										<div class="dropdown-content">
@@ -76,15 +76,19 @@
 									</li>
 								</ul>
 							</li>
-							<li><a href="#">Nuevo comprador</a></li>
-							<li><a href="#">Nuevo vendedor</a></li>
+							<li>
+								<?php echo cHtml::link('Nuevo Comprador',Yii::app()->getModule('user')->registrationCompanyUrl);?>	
+							</li>
+							<li>
+								<?php echo cHtml::link('Nuevo Comprador',Yii::app()->getModule('user')->registrationUrl);?>	
+							</li>
 						</ul>
 					</div>
 				</div>
 			</div>
 
 			<div class="row-fluid print-hide">
-				<div class="span3">
+				<div class="span3 logo">
 					<img src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/img/logo.png" alt="Logo">
 				</div>
 				<div class="span4">
