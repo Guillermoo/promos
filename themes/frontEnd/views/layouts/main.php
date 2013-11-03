@@ -77,7 +77,7 @@
 								</ul>
 							</li>
 							<li>
-								<?php echo cHtml::link('Nuevo Comprador',Yii::app()->getModule('user')->registrationCompanyUrl);?>	
+								<?php echo cHtml::link('Nueva Empresa',Yii::app()->getModule('user')->registrationCompanyUrl);?>	
 							</li>
 							<li>
 								<?php echo cHtml::link('Nuevo Comprador',Yii::app()->getModule('user')->registrationUrl);?>	
