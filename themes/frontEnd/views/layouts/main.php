@@ -9,6 +9,7 @@
 
 		<meta charset="utf-8">
 		<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+		<link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/img/favicon.ico">
 		<meta name="description" content="Promociones Zaragoza">
 		<meta name="author" content="BigBase - D. Tiems">
 		<meta name="viewport" content="width=device-width">
