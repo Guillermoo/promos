@@ -89,11 +89,11 @@
 			</div>
 
 			<div class="row-fluid print-hide">
-				<!--<div class="span3 logo">
-					<img src="<?php //echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/img/logo.png" alt="Logo">
-				</div>-->
-				<!--<div class="span4">
-					<div class="row-fluid print-hide">
+				<div class="span3 logo">
+					<img src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/img/logo.png" alt="Logo">
+				</div>
+				<div class="span4">
+					<!--<div class="row-fluid print-hide">
 						<div class="span12">
 							<div class="navbar header-search-nav">
 								<ul class="nav">
@@ -103,23 +103,24 @@
 								</ul>
 							</div>
 						</div>
-					</div>					
-				</div> -->				
-				<div class="span12 cabecera">
-					<div class="span10">
-					<center><img src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/img/banner_02.png" alt="No shipping"></center>
-					</div>
-					<div class="span2">
-							<div class="social-icons pull-right">
-								<a href="#"><img src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/img/icon-facebook.png" alt="facebook"></a>
-								<a href="#"><img src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/img/icon-twitter.png" alt="twitter"></a>
-								<a href="#"><img src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/img/icon-linkedin.png" alt="linkedin"></a>
-								<a href="#"><img src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/img/icon-rss.png" alt="rss"></a>
-							</div>
+					</div> -->
+					<div class="row-fluid print-hide">
+						<div class="span12">
+							<form class="form-search header-search">
+								<div class="input-append">
+									<input class="input-large search-query" type="text"placeholder="Buscar productos...">
+									<button class="btn" type="submit">buscar</button>
+								</div>
+							</form>
 						</div>
+					</div>
+					<br>
+				</div>
+				<div class="span5">
+					<img src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/img/banner_top.jpg" alt="No shipping">
 				</div>
 			</div>
-			<br/>
+
 			<div class="row-fluid print-hide">
 				<div class="span12">
 					<div class="navbar main-nav">
@@ -152,25 +153,22 @@
 					</div>
 				</div>
 			</div>
-			<br/>
-			<div class="row-fluid print-hide">
-						<div class="span12">
-							<form class="form-search header-search">
-								<div class="input-append">
-									<input class="input-large search-query" type="text"placeholder="Buscar productos...">
-									<button class="btn" type="submit">buscar</button>
-								</div>
-							</form>
-						</div>
-					</div>
-					<br>
+
 			<div class="row-fluid">
 				<div class="span12">
 
 					<div class="row-fluid">
-						<div class="span12">
+						<div class="span9">
 							<h2>Destacados</h2>
-						</div>						
+						</div>
+						<div class="span3">
+							<div class="social-icons pull-right">
+								<a href="#"><img src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/img/icon-facebook.png" alt="facebook"></a>
+								<a href="#"><img src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/img/icon-twitter.png" alt="twitter"></a>
+								<a href="#"><img src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/img/icon-linkedin.png" alt="linkedin"></a>
+								<a href="#"><img src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/img/icon-rss.png" alt="rss"></a>
+							</div>
+						</div>
 					</div>					
 
 					<div class="row-fluid">
