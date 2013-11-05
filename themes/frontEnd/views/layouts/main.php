@@ -20,7 +20,7 @@
 		<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/css/nivo-slider.css">
 		<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/nivo-themes/bar/bar.css" type="text/css" media="screen" />
 		<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/nivo-themes/light/light.css" type="text/css" media="screen" />
-		<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/bootstrap/css/bootstrap-responsive.min.css">
+		<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/bootstrap/css/bootstrap-responsive.min.css">
 		<!-- Personalizacion CierzoDevs -->
 		<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/css/cdestilos.css">
 		<!-- --------------- -->
@@ -93,29 +93,15 @@
 					<img src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/img/logo.png" alt="Logo">
 				</div>
 				<div class="span4">
-					<!--<div class="row-fluid print-hide">
-						<div class="span12">
-							<div class="navbar header-search-nav">
-								<ul class="nav">
-									<li><a href="#">Gift certificates</a></li>
-									<li class="active"><a href="#">Monthly preview</a></li>
-									<li><a href="#">More</a></li>
-								</ul>
-							</div>
+					<form class="form-search header-search">
+						<div class="input-append">
+							<input class="input-large search-query" type="text"placeholder="Buscar productos...">
+							<button class="btn" type="submit">buscar</button>
 						</div>
-					</div> -->
-					<div class="row-fluid print-hide">
-						<div class="span12">
-							<form class="form-search header-search">
-								<div class="input-append">
-									<input class="input-large search-query" type="text"placeholder="Buscar productos...">
-									<button class="btn" type="submit">buscar</button>
-								</div>
-							</form>
-						</div>
-					</div>
-					<br>
+					</form>
 				</div>
+					
+				<br>
 				<div class="span5">
 					<img src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/img/banner_top.jpg" alt="No shipping">
 				</div>
@@ -156,7 +142,6 @@
 
 			<div class="row-fluid">
 				<div class="span12">
-
 					<div class="row-fluid">
 						<div class="span9">
 							<h2>Destacados</h2>
@@ -169,43 +154,44 @@
 								<a href="#"><img src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/img/icon-rss.png" alt="rss"></a>
 							</div>
 						</div>
-					</div>					
-
-					<div class="row-fluid">
-						<div class="span12">
-							<ul class="thumbnails product-list-inline-small">
-								<li class="span4">
-									<div class="thumbnail">
-										<a href="#"><img src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/img/product_01.jpg" alt=""></a>
-										<div class="caption">
-											<a href="#">Product A</a>
-											<p>Lorem ipsum dolor sit amet <span class="label label-info price pull-right">&euro; 123,-</span></p>
-										</div>
-									</div>
-								</li>
-								<li class="span4">
-									<div class="thumbnail">
-										<a href="#"><img src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/img/product_02.jpg" alt=""></a>
-										<div class="caption">
-											<a href="#">Product B</a>
-											<p>Lorem ipsum dolor sit amet <span class="label label-info price pull-right">&euro; 123,-</span></p>
-										</div>
-									</div>
-								</li>
-								<li class="span4">
-									<div class="thumbnail">
-										<a href="#"><img src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/img/product_03.jpg" alt=""></a>
-										<div class="caption">
-											<a href="#">Product C</a>
-											<p>Lorem ipsum dolor sit amet <span class="label label-important price pull-right">&euro; 123,-</span></p>
-										</div>
-									</div>
-								</li>
-							</ul>
-						</div>
-					</div>
-			<hr />
+					</div>	
 				</div>
+			</div>				
+
+			<div class="row-fluid">
+				<div class="span12">
+					<ul class="thumbnails product-list-inline-small">
+						<li class="span4">
+							<div class="thumbnail">
+								<a href="#"><img src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/img/product_01.jpg" alt=""></a>
+								<div class="caption">
+									<a href="#">Product A</a>
+										<p>Lorem ipsum dolor sit amet <span class="label label-info price pull-right">&euro; 123,-</span></p>
+								</div>
+							</div>
+						</li>
+						<li class="span4">
+							<div class="thumbnail">
+								<a href="#"><img src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/img/product_02.jpg" alt=""></a>
+								<div class="caption">
+									<a href="#">Product B</a>
+									<p>Lorem ipsum dolor sit amet <span class="label label-info price pull-right">&euro; 123,-</span></p>
+								</div>
+							</div>
+						</li>
+						<li class="span4">
+							<div class="thumbnail">
+								<a href="#"><img src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/img/product_03.jpg" alt=""></a>
+								<div class="caption">
+									<a href="#">Product C</a>
+									<p>Lorem ipsum dolor sit amet <span class="label label-important price pull-right">&euro; 123,-</span></p>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<hr />
 
 			<div class="row-fluid">
 				<div class="span12">
@@ -383,12 +369,9 @@
 			</div>
 
 		</div>
-	</div>
 		<div class="footer">
 				<p align="center"> ProEmoción - Tu web de promociones   |    contacto: 976 XXX XXX </p>
 		</div>
-		
-
 	</body>
 
 </html>
