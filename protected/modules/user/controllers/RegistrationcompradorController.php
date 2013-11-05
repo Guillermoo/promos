@@ -11,7 +11,7 @@ class RegistrationcompradorController extends RegistrationController
 		$model = new RegistrationForm;
             
         //La página de registro tiene que cargarse con el theme classic
-        Yii::app()->theme = 'classic';
+        Yii::app()->theme = 'frontEnd';
 
         // ajax validator
         if(isset($_POST['ajax']) && $_POST['ajax']==='registration-form')

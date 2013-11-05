@@ -34,7 +34,35 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+		$criteria=new CDbCriteria;
+        $criteria->with = array( 'item');
+
+        $criteria->limit = 4;
+        $criteria->compare('destacado',Promocion::IS_DESTACADA);
+        $criteria->compare('estado',Promocion::STATUS_ACTIVA);
+        $criteria->select = 'titulo,resumen,precio';
+        $criteria->order = 'RAND()';
+        //$criteria->addCondition('exp_d > "'.$now.'" ');
+
+		$destacados = Promocion::model()->findAll($criteria);
+
+		$criteria2=new CDbCriteria;
+        $criteria2->limit = 12;
+        $criteria2->compare('destacado',Promocion::IS_NODESTACADA);
+        $criteria2->compare('estado',Promocion::STATUS_ACTIVA);
+        $criteria2->select = 'titulo,resumen,precio';
+        $criteria2->order = 'RAND()';
+        //$criteria->addCondition('exp_d > "'.$now.'" ');
+
+		$promos = Promocion::model()->findAll($criteria2);
+
+		//$this->debug($promos);
+
+		$this->render('index',array(
+			'destacados'=>$destacados,
+			'promos'=>$promos,
+		));
+		//$this->render('index');
 	}
 
 	/**
