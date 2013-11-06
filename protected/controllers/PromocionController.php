@@ -53,12 +53,22 @@ class PromocionController extends Controller
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
-	public function actionView($id)
+	public function actionView($title_slug='')
 	{
 		//$dataProvider=new CActiveDataProvider('Promocion');
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
+		
+		if (isset($title_slug)){
+
+			$promocion=Promocion::model()->findByAttributes(array('titulo_slug'=>$title_slug));
+			//$this->debug($promocion->attributes);
+			$this->render('view',array(
+				'model'=>$promocion,
+			));
+		}else{
+
+		}
+		
+		
 	}
 
 	/**

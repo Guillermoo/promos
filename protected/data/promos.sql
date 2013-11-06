@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.10.1deb1
+-- version 3.5.2.2
 -- http://www.phpmyadmin.net
 --
--- Servidor: localhost
--- Tiempo de generación: 23-08-2013 a las 02:38:13
--- Versión del servidor: 5.5.32
--- Versión de PHP: 5.3.10-1ubuntu3.7
+-- Host: localhost
+-- Generation Time: Nov 06, 2013 at 09:50 AM
+-- Server version: 5.5.27
+-- PHP Version: 5.4.7
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,15 +17,14 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de datos: `promos`
+-- Database: `promos`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `AuthAssignment`
+-- Table structure for table `AuthAssignment`
 --
-USE promos;
 
 CREATE TABLE IF NOT EXISTS `AuthAssignment` (
   `itemname` varchar(64) NOT NULL,
@@ -36,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `AuthAssignment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `AuthAssignment`
+-- Dumping data for table `AuthAssignment`
 --
 
 INSERT INTO `AuthAssignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES
@@ -61,8 +60,6 @@ INSERT INTO `AuthAssignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES
 ('comprador', '136', NULL, 'N;'),
 ('comprador', '142', NULL, 'N;'),
 ('comprador', '143', NULL, 'N;'),
-('comprador', '144', NULL, 'N;'),
-('comprador', '145', NULL, 'N;'),
 ('comprador', '20', NULL, 'N;'),
 ('comprador', '24', NULL, 'N;'),
 ('comprador', '25', NULL, 'N;'),
@@ -156,7 +153,7 @@ INSERT INTO `AuthAssignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `AuthItem`
+-- Table structure for table `AuthItem`
 --
 
 CREATE TABLE IF NOT EXISTS `AuthItem` (
@@ -169,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `AuthItem` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `AuthItem`
+-- Dumping data for table `AuthItem`
 --
 
 INSERT INTO `AuthItem` (`name`, `type`, `description`, `bizrule`, `data`) VALUES
@@ -181,7 +178,7 @@ INSERT INTO `AuthItem` (`name`, `type`, `description`, `bizrule`, `data`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `AuthItemChild`
+-- Table structure for table `AuthItemChild`
 --
 
 CREATE TABLE IF NOT EXISTS `AuthItemChild` (
@@ -192,7 +189,7 @@ CREATE TABLE IF NOT EXISTS `AuthItemChild` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `AuthItemChild`
+-- Dumping data for table `AuthItemChild`
 --
 
 INSERT INTO `AuthItemChild` (`parent`, `child`) VALUES
@@ -201,7 +198,7 @@ INSERT INTO `AuthItemChild` (`parent`, `child`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `category`
+-- Table structure for table `category`
 --
 
 CREATE TABLE IF NOT EXISTS `category` (
@@ -222,7 +219,7 @@ CREATE TABLE IF NOT EXISTS `category` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=99 ;
 
 --
--- Volcado de datos para la tabla `category`
+-- Dumping data for table `category`
 --
 
 INSERT INTO `category` (`id`, `root`, `lft`, `rgt`, `level`, `name`, `name_slug`, `description`, `examples`) VALUES
@@ -233,7 +230,7 @@ INSERT INTO `category` (`id`, `root`, `lft`, `rgt`, `level`, `name`, `name_slug`
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Rights`
+-- Table structure for table `Rights`
 --
 
 CREATE TABLE IF NOT EXISTS `Rights` (
@@ -246,157 +243,10 @@ CREATE TABLE IF NOT EXISTS `Rights` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tbl_compras`
+-- Table structure for table `tbl_ciudades`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_compras` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_usuario` int(11) NOT NULL,
-  `id_promo` int(11) NOT NULL,
-  `fecha_compra` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `estado` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_usuario` (`id_usuario`,`id_promo`),
-  KEY `id_promo` (`id_promo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tbl_cuentas`
---
-
-CREATE TABLE IF NOT EXISTS `tbl_cuentas` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `titulo` varchar(45) NOT NULL,
-  `descripcion` varchar(255) NOT NULL,
-  `precio` varchar(45) NOT NULL,
-  `prom_activ` varchar(15) NOT NULL COMMENT 'Promociones activas que se puede tener',
-  `prom_stock` varchar(15) NOT NULL COMMENT 'Promociones creadas que se pueden tener, algunas activas, otras no.',
-  `prom_dest` varchar(15) NOT NULL COMMENT 'Número de promociones destacadas',
-  `desc_trim` varchar(11) NOT NULL COMMENT 'Descuento qeu se aplica si se quiere bono trimestral',
-  `desc_sem` varchar(11) NOT NULL COMMENT 'Descuento qeu se aplica si se quiere bono semestral',
-  `desc_ano` varchar(11) NOT NULL COMMENT 'Descuento qeu se aplica si se quiere bono anual',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
-
---
--- Volcado de datos para la tabla `tbl_cuentas`
---
-
-INSERT INTO `tbl_cuentas` (`id`, `titulo`, `descripcion`, `precio`, `prom_activ`, `prom_stock`, `prom_dest`, `desc_trim`, `desc_sem`, `desc_ano`) VALUES
-(1, 'Lite', '', '5', '1', '2', '0', '', '', ''),
-(2, 'Basic', '', '8', '5', '10', '1', '', '', ''),
-(3, 'Trial', '', '', '10', '30', '1', '', '', '');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tbl_empresas`
---
-
-CREATE TABLE IF NOT EXISTS `tbl_empresas` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `nombre` varchar(128) NOT NULL,
-  `nombre_slug` varchar(128) NOT NULL,
-  `cif` varchar(15) DEFAULT NULL,
-  `web` varchar(100) DEFAULT NULL,
-  `twitter` varchar(100) DEFAULT NULL,
-  `facebook` varchar(100) DEFAULT NULL,
-  `urlTienda` varchar(100) DEFAULT NULL,
-  `modificado` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `usuario_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=48 ;
-
---
--- Volcado de datos para la tabla `tbl_empresas`
---
-
-INSERT INTO `tbl_empresas` (`id`, `user_id`, `nombre`, `nombre_slug`, `cif`, `web`, `twitter`, `facebook`, `urlTienda`, `modificado`) VALUES
-(1, 7, 'NbEmpresa11', 'nbempresa1', '12345678A', 'few3ea11sf', '3r23fs43asd2q', 'wqrf3wgraaa12', 'ew1111', '0000-00-00 00:00:00'),
-(12, 59, 'Nombre_Empresa59', '', '12345678A', 'asf', 'twitttt1111', 'qq123w11aa', 'qasf123z11qz', NULL),
-(15, 9, 'NbEmpresa2', 'nbempresa2', '12345678A', 'ewdgsg213', 'asdsasda', '', '', NULL),
-(17, 68, '', '', '', 'asdfsd', '', '', '', NULL),
-(18, 70, '', '', '', 'saefwew3', '', '', '', NULL),
-(22, 72, '', '', '', '', '', '', '', NULL),
-(23, 36, 'Lallala', 'lallala', '12345678A', 'refgr4', 'qwaredsff', 'asdfdsf123', 'fwegrwqq', NULL),
-(24, 75, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
-(25, 76, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
-(26, 77, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
-(28, 93, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
-(39, 58, 'NombreNuevo', '', '01234567A', '', '', '', 'effrer4', NULL),
-(40, 42, '', '', NULL, '', '', '', '', NULL),
-(41, 129, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
-(43, 137, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
-(44, 139, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
-(45, 140, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
-(46, 141, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
-(47, 12, 'NbEmpresaFantasma', '', NULL, '', '', '', '', NULL);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tbl_emp_cat`
---
-
-CREATE TABLE IF NOT EXISTS `tbl_emp_cat` (
-  `empresa_id` int(11) NOT NULL,
-  `categoria_id` int(11) NOT NULL,
-  PRIMARY KEY (`empresa_id`,`categoria_id`),
-  KEY `categoria_id` (`categoria_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `tbl_emp_cat`
---
-
-INSERT INTO `tbl_emp_cat` (`empresa_id`, `categoria_id`) VALUES
-(1, 97),
-(1, 98);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tbl_items`
---
-
-CREATE TABLE IF NOT EXISTS `tbl_items` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  `tipo` varchar(100) NOT NULL,
-  `thumb` tinyint(1) NOT NULL,
-  `filename` varchar(255) NOT NULL,
-  `attribute` varchar(45) NOT NULL,
-  `size` varchar(100) NOT NULL,
-  `path` varchar(255) NOT NULL,
-  `foreign_id` int(11) NOT NULL COMMENT 'Corresponde con el id de la empresa',
-  `model` varchar(50) NOT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modified` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `foreign_id` (`foreign_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
-
---
--- Volcado de datos para la tabla `tbl_items`
---
-
-INSERT INTO `tbl_items` (`id`, `name`, `tipo`, `thumb`, `filename`, `attribute`, `size`, `path`, `foreign_id`, `model`, `created`, `modified`) VALUES
-(5, 'artistic_wallpaper_1366x768.jpeg', 'image/jpeg', 1, 'f69d6677dd6f6d761d32de7b27179800.jpeg', 'file', '79316', '/uploads/images/f69d6677dd6f6d761d32de7b27179800.jpeg', 9, 'empresa', '2013-06-08 14:00:00', NULL),
-(7, 'artistic_wallpaper_1366x768.jpeg', 'image/jpeg', 1, 'b0ab54512bedc1a5ad9626e2f78f0c64.jpeg', 'file', '79316', '/uploads/images/b0ab54512bedc1a5ad9626e2f78f0c64.jpeg', 72, 'empresa', '2013-06-24 14:00:00', NULL),
-(9, 'artistic_wallpaper_1366x768.jpeg', 'image/jpeg', 1, '63c84a5d2fe628e408746250e632b30b.jpeg', 'file', '79316', '/uploads/images/63c84a5d2fe628e408746250e632b30b.jpeg', 7, 'empresa', '2013-06-20 07:38:43', NULL),
-(10, 'widescreen-wallpaper.jpg', 'image/jpeg', 1, '84852f533408909318d4176845f7bb06.jpg', 'file', '247200', '/uploads/images/84852f533408909318d4176845f7bb06.jpg', 58, 'empresa', '2013-06-21 01:36:36', NULL),
-(11, 'widescreen-wallpaper.jpg', 'image/jpeg', 1, '7dbaa434280acc6367744b248e257a23.jpg', 'file', '247200', '/uploads/images/7dbaa434280acc6367744b248e257a23.jpg', 36, 'empresa', '2013-06-29 05:28:07', NULL);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tbl_poblaciones`
---
-
-CREATE TABLE IF NOT EXISTS `tbl_poblaciones` (
+CREATE TABLE IF NOT EXISTS `tbl_ciudades` (
   `idpoblacion` int(11) NOT NULL AUTO_INCREMENT,
   `idprovincia` int(11) unsigned NOT NULL,
   `poblacion` varchar(150) NOT NULL,
@@ -411,10 +261,10 @@ CREATE TABLE IF NOT EXISTS `tbl_poblaciones` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8175 ;
 
 --
--- Volcado de datos para la tabla `tbl_poblaciones`
+-- Dumping data for table `tbl_ciudades`
 --
 
-INSERT INTO `tbl_poblaciones` (`idpoblacion`, `idprovincia`, `poblacion`, `poblacionseo`, `postal`, `latitud`, `longitud`) VALUES
+INSERT INTO `tbl_ciudades` (`idpoblacion`, `idprovincia`, `poblacion`, `poblacionseo`, `postal`, `latitud`, `longitud`) VALUES
 (1, 1, 'Alegría-Dulantzi', 'alegria-dulantzi', 01240, 42.841171, -2.512608),
 (2, 1, 'Amurrio', 'amurrio', 01470, 43.051910, -3.001230),
 (3, 1, 'Añana', 'anana', 01426, 42.811440, -2.987600),
@@ -1146,7 +996,7 @@ INSERT INTO `tbl_poblaciones` (`idpoblacion`, `idprovincia`, `poblacion`, `pobla
 (745, 25, 'Peñalsordo', 'penalsordo', 06610, 38.819164, -5.113535),
 (746, 25, 'Peraleda del Zaucejo', 'peraleda-del-zaucejo', 06919, 38.473868, -5.565605),
 (747, 25, 'Puebla de Alcocer', 'puebla-de-alcocer', 06630, 38.986601, -5.257044);
-INSERT INTO `tbl_poblaciones` (`idpoblacion`, `idprovincia`, `poblacion`, `poblacionseo`, `postal`, `latitud`, `longitud`) VALUES
+INSERT INTO `tbl_ciudades` (`idpoblacion`, `idprovincia`, `poblacion`, `poblacionseo`, `postal`, `latitud`, `longitud`) VALUES
 (748, 25, 'Puebla de la Calzada', 'puebla-de-la-calzada', 06490, 38.893789, -6.622868),
 (749, 25, 'Puebla de la Reina', 'puebla-de-la-reina', 06477, 38.664586, -6.103420),
 (750, 25, 'Puebla de Obando', 'puebla-de-obando', 06191, 39.177732, -6.628103),
@@ -1824,7 +1674,7 @@ INSERT INTO `tbl_poblaciones` (`idpoblacion`, `idprovincia`, `poblacion`, `pobla
 (1429, 37, 'Reinoso', 'reinoso', 09248, 42.502652, -3.347225),
 (1430, 37, 'Retuerta', 'retuerta', 09347, 42.030185, -3.507128),
 (1431, 37, 'Revilla del Campo', 'revilla-del-campo', 09194, 42.212039, -3.537126);
-INSERT INTO `tbl_poblaciones` (`idpoblacion`, `idprovincia`, `poblacion`, `poblacionseo`, `postal`, `latitud`, `longitud`) VALUES
+INSERT INTO `tbl_ciudades` (`idpoblacion`, `idprovincia`, `poblacion`, `poblacionseo`, `postal`, `latitud`, `longitud`) VALUES
 (1432, 37, 'Revilla Vallejera', 'revilla-vallejera', 34260, 42.148037, -4.134121),
 (1433, 37, 'Revilla y Ahedo', 'revilla-y-ahedo', 09613, 42.012491, -3.330488),
 (1434, 37, 'Revillarruz', 'revillarruz', 09620, 42.230694, -3.652782),
@@ -2510,7 +2360,7 @@ INSERT INTO `tbl_poblaciones` (`idpoblacion`, `idprovincia`, `poblacion`, `pobla
 (2119, 14, 'Posadas', 'posadas', 14730, 37.802090, -5.108700),
 (2120, 14, 'Pozoblanco', 'pozoblanco', 14400, 38.381039, -4.849230),
 (2121, 14, 'Priego de Córdoba', 'priego-de-cordoba', 14800, 37.441368, -4.196300);
-INSERT INTO `tbl_poblaciones` (`idpoblacion`, `idprovincia`, `poblacion`, `poblacionseo`, `postal`, `latitud`, `longitud`) VALUES
+INSERT INTO `tbl_ciudades` (`idpoblacion`, `idprovincia`, `poblacion`, `poblacionseo`, `postal`, `latitud`, `longitud`) VALUES
 (2122, 14, 'Puente Genil', 'puente-genil', 14500, 37.390911, -4.777950),
 (2123, 14, 'Rambla', 'rambla', 14540, 37.608112, -4.739571),
 (2124, 14, 'Rute', 'rute', 14960, 37.327629, -4.364340),
@@ -3232,9 +3082,9 @@ INSERT INTO `tbl_poblaciones` (`idpoblacion`, `idprovincia`, `poblacion`, `pobla
 (2847, 30, 'Taha', 'taha', 04275, 37.228415, -2.284641),
 (2848, 30, 'Torre-Cardela', 'torre-cardela', 18563, 37.504653, -3.356066),
 (2849, 30, 'Torvizcón', 'torvizcon', 18430, 36.877595, -3.298430),
-(2850, 30, 'Trevélez', 'trevelez', 18417, 37.003512, -3.267403);
-INSERT INTO `tbl_poblaciones` (`idpoblacion`, `idprovincia`, `poblacion`, `poblacionseo`, `postal`, `latitud`, `longitud`) VALUES
-(2851, 30, 'Turón', 'turon', 18491, 36.863622, -3.171573),
+(2850, 30, 'Trevélez', 'trevelez', 18417, 37.003512, -3.267403),
+(2851, 30, 'Turón', 'turon', 18491, 36.863622, -3.171573);
+INSERT INTO `tbl_ciudades` (`idpoblacion`, `idprovincia`, `poblacion`, `poblacionseo`, `postal`, `latitud`, `longitud`) VALUES
 (2852, 30, 'Ugíjar', 'ugijar', 18480, 36.960900, -3.055015),
 (2853, 30, 'Valle', 'valle', 18658, 36.932604, -3.592143),
 (2854, 30, 'Valle del Zalabí', 'valle-del-zalabi', 18511, 37.286346, -3.008494),
@@ -3960,9 +3810,9 @@ INSERT INTO `tbl_poblaciones` (`idpoblacion`, `idprovincia`, `poblacion`, `pobla
 (3580, 50, 'Lahiguera', 'lahiguera', 23746, 37.969559, -3.987458),
 (3581, 50, 'Larva', 'larva', 23591, 37.760232, -3.199382),
 (3582, 50, 'Linares', 'linares', 39580, 43.256237, -4.579818),
-(3583, 50, 'Lopera', 'lopera', 23780, 37.944908, -4.214780);
-INSERT INTO `tbl_poblaciones` (`idpoblacion`, `idprovincia`, `poblacion`, `poblacionseo`, `postal`, `latitud`, `longitud`) VALUES
-(3584, 50, 'Lupión', 'lupion', 23528, 37.998919, -3.550708),
+(3583, 50, 'Lopera', 'lopera', 23780, 37.944908, -4.214780),
+(3584, 50, 'Lupión', 'lupion', 23528, 37.998919, -3.550708);
+INSERT INTO `tbl_ciudades` (`idpoblacion`, `idprovincia`, `poblacion`, `poblacionseo`, `postal`, `latitud`, `longitud`) VALUES
 (3585, 50, 'Mancha Real', 'mancha-real', 23100, 37.787878, -3.612421),
 (3586, 50, 'Marmolejo', 'marmolejo', 23770, 38.045354, -4.171393),
 (3587, 50, 'Martos', 'martos', 23600, 37.721527, -3.968296),
@@ -4671,9 +4521,9 @@ INSERT INTO `tbl_poblaciones` (`idpoblacion`, `idprovincia`, `poblacion`, `pobla
 (4296, 11, 'Ribadeo', 'ribadeo', 27700, 43.533628, -7.040385),
 (4297, 11, 'Ribas de Sil', 'ribas-de-sil', 27310, 42.465829, -7.287533),
 (4298, 11, 'Ribeira de Piquín', 'ribeira-de-piquin', 27242, 43.201640, -7.204734),
-(4299, 11, 'Riotorto', 'riotorto', 27744, 43.342780, -7.259971);
-INSERT INTO `tbl_poblaciones` (`idpoblacion`, `idprovincia`, `poblacion`, `poblacionseo`, `postal`, `latitud`, `longitud`) VALUES
-(4300, 11, 'Samos', 'samos', 27620, 42.730730, -7.326734),
+(4299, 11, 'Riotorto', 'riotorto', 27744, 43.342780, -7.259971),
+(4300, 11, 'Samos', 'samos', 27620, 42.730730, -7.326734);
+INSERT INTO `tbl_ciudades` (`idpoblacion`, `idprovincia`, `poblacion`, `poblacionseo`, `postal`, `latitud`, `longitud`) VALUES
 (4301, 11, 'Sarria', 'sarria', 27600, 42.780561, -7.413563),
 (4302, 11, 'Saviñao', 'savinao', 27540, 43.181800, -7.309919),
 (4303, 11, 'Sober', 'sober', 27460, 42.462163, -7.584446),
@@ -5406,9 +5256,9 @@ INSERT INTO `tbl_poblaciones` (`idpoblacion`, `idprovincia`, `poblacion`, `pobla
 (5040, 17, 'Llanera', 'llanera', 33426, 43.439625, -5.851319),
 (5041, 17, 'Llanes', 'llanes', 33500, 43.420720, -4.754994),
 (5042, 17, 'Mieres', 'mieres', 33616, 43.250390, -5.771939),
-(5043, 17, 'Morcín', 'morcin', 33161, 43.280914, -5.879929);
-INSERT INTO `tbl_poblaciones` (`idpoblacion`, `idprovincia`, `poblacion`, `poblacionseo`, `postal`, `latitud`, `longitud`) VALUES
-(5044, 17, 'Muros de Nalón', 'muros-de-nalon', 33138, 43.542032, -6.103448),
+(5043, 17, 'Morcín', 'morcin', 33161, 43.280914, -5.879929),
+(5044, 17, 'Muros de Nalón', 'muros-de-nalon', 33138, 43.542032, -6.103448);
+INSERT INTO `tbl_ciudades` (`idpoblacion`, `idprovincia`, `poblacion`, `poblacionseo`, `postal`, `latitud`, `longitud`) VALUES
 (5045, 17, 'Nava', 'nava', 33529, 43.359035, -5.508204),
 (5046, 17, 'Navia', 'navia', 33719, 43.540614, -6.724533),
 (5047, 17, 'Noreña', 'norena', 33180, 43.400110, -5.702029),
@@ -6085,9 +5935,9 @@ INSERT INTO `tbl_poblaciones` (`idpoblacion`, `idprovincia`, `poblacion`, `pobla
 (5722, 4, 'Villasdardo', 'villasdardo', 37468, 41.004115, -6.159944),
 (5723, 4, 'Villaseco de los Gamitos', 'villaseco-de-los-gamitos', 37114, 41.035365, -6.111859),
 (5724, 4, 'Villaseco de los Reyes', 'villaseco-de-los-reyes', 37150, 41.163428, -6.184113),
-(5725, 4, 'Villasrubias', 'villasrubias', 37522, 40.338175, -6.640859);
-INSERT INTO `tbl_poblaciones` (`idpoblacion`, `idprovincia`, `poblacion`, `poblacionseo`, `postal`, `latitud`, `longitud`) VALUES
-(5726, 4, 'Villaverde de Guareña', 'villaverde-de-guarena', 37428, 41.064191, -5.525159),
+(5725, 4, 'Villasrubias', 'villasrubias', 37522, 40.338175, -6.640859),
+(5726, 4, 'Villaverde de Guareña', 'villaverde-de-guarena', 37428, 41.064191, -5.525159);
+INSERT INTO `tbl_ciudades` (`idpoblacion`, `idprovincia`, `poblacion`, `poblacionseo`, `postal`, `latitud`, `longitud`) VALUES
 (5727, 4, 'Villavieja de Yeltes', 'villavieja-de-yeltes', 37260, 40.876601, -6.471697),
 (5728, 4, 'Villoria', 'villoria', 37339, 40.995287, -5.375704),
 (5729, 4, 'Villoruela', 'villoruela', 37338, 41.008295, -5.394194),
@@ -6777,9 +6627,9 @@ INSERT INTO `tbl_poblaciones` (`idpoblacion`, `idprovincia`, `poblacion`, `pobla
 (6423, 20, 'Benissanet', 'benissanet', 43747, 41.058490, 0.634535),
 (6424, 20, 'Bisbal de Falset', 'bisbal-de-falset', 43372, 41.279806, 0.722866),
 (6425, 20, 'Bisbal del Penedés', 'bisbal-del-penedes', 43717, 41.280064, 1.489334),
-(6426, 20, 'Blancafort', 'blancafort', 43411, 41.439950, 1.157570);
-INSERT INTO `tbl_poblaciones` (`idpoblacion`, `idprovincia`, `poblacion`, `poblacionseo`, `postal`, `latitud`, `longitud`) VALUES
-(6427, 20, 'Bonastre', 'bonastre', 43884, 41.220887, 1.439905),
+(6426, 20, 'Blancafort', 'blancafort', 43411, 41.439950, 1.157570),
+(6427, 20, 'Bonastre', 'bonastre', 43884, 41.220887, 1.439905);
+INSERT INTO `tbl_ciudades` (`idpoblacion`, `idprovincia`, `poblacion`, `poblacionseo`, `postal`, `latitud`, `longitud`) VALUES
 (6428, 20, 'Borges del Camp', 'borges-del-camp', 43350, 41.171830, 1.021170),
 (6429, 20, 'Bot', 'bot', 43785, 41.009090, 0.383425),
 (6430, 20, 'Botarell', 'botarell', 43772, 41.135509, 0.989281),
@@ -7497,9 +7347,9 @@ INSERT INTO `tbl_poblaciones` (`idpoblacion`, `idprovincia`, `poblacion`, `pobla
 (7148, 36, 'Gátova', 'gatova', 46169, 39.770811, -0.519962),
 (7149, 36, 'Gavarda', 'gavarda', 46267, 39.091733, -0.559702),
 (7150, 36, 'Genovés', 'genoves', 46894, 38.988735, -0.467606),
-(7151, 36, 'Gestalgar', 'gestalgar', 46166, 39.604366, -0.833673);
-INSERT INTO `tbl_poblaciones` (`idpoblacion`, `idprovincia`, `poblacion`, `poblacionseo`, `postal`, `latitud`, `longitud`) VALUES
-(7152, 36, 'Gilet', 'gilet', 46149, 39.676475, -0.324655),
+(7151, 36, 'Gestalgar', 'gestalgar', 46166, 39.604366, -0.833673),
+(7152, 36, 'Gilet', 'gilet', 46149, 39.676475, -0.324655);
+INSERT INTO `tbl_ciudades` (`idpoblacion`, `idprovincia`, `poblacion`, `poblacionseo`, `postal`, `latitud`, `longitud`) VALUES
 (7153, 36, 'Godella', 'godella', 46110, 39.522614, -0.417266),
 (7154, 36, 'Godelleta', 'godelleta', 46388, 39.425221, -0.687032),
 (7155, 36, 'Granja de la Costera', 'granja-de-la-costera', 46818, 38.995740, -0.556955),
@@ -8182,9 +8032,9 @@ INSERT INTO `tbl_poblaciones` (`idpoblacion`, `idprovincia`, `poblacion`, `pobla
 (7838, 48, 'Vezdemarbán', 'vezdemarban', 49840, 41.654445, -5.367336),
 (7839, 48, 'Vidayanes', 'vidayanes', 49135, 41.908633, -5.575476),
 (7840, 48, 'Videmala', 'videmala', 49164, 41.613132, -6.041708),
-(7841, 48, 'Villabrázaro', 'villabrazaro', 49770, 42.053850, -5.728469);
-INSERT INTO `tbl_poblaciones` (`idpoblacion`, `idprovincia`, `poblacion`, `poblacionseo`, `postal`, `latitud`, `longitud`) VALUES
-(7842, 48, 'Villabuena del Puente', 'villabuena-del-puente', 49820, 41.381574, -5.406432),
+(7841, 48, 'Villabrázaro', 'villabrazaro', 49770, 42.053850, -5.728469),
+(7842, 48, 'Villabuena del Puente', 'villabuena-del-puente', 49820, 41.381574, -5.406432);
+INSERT INTO `tbl_ciudades` (`idpoblacion`, `idprovincia`, `poblacion`, `poblacionseo`, `postal`, `latitud`, `longitud`) VALUES
 (7843, 48, 'Villadepera', 'villadepera', 49250, 41.548994, -6.133718),
 (7844, 48, 'Villaescusa', 'villaescusa', 49430, 41.206620, -5.464883),
 (7845, 48, 'Villafáfila', 'villafafila', 49136, 41.848593, -5.615129),
@@ -8517,7 +8367,158 @@ INSERT INTO `tbl_poblaciones` (`idpoblacion`, `idprovincia`, `poblacion`, `pobla
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tbl_profiles`
+-- Table structure for table `tbl_compras`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_compras` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int(11) NOT NULL,
+  `id_promo` int(11) NOT NULL,
+  `fecha_compra` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `estado` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_usuario` (`id_usuario`,`id_promo`),
+  KEY `id_promo` (`id_promo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_cuentas`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_cuentas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(45) NOT NULL,
+  `descripcion` varchar(255) NOT NULL,
+  `precio` varchar(45) NOT NULL,
+  `prom_activ` varchar(15) NOT NULL COMMENT 'Promociones activas que se puede tener',
+  `prom_stock` varchar(15) NOT NULL COMMENT 'Promociones creadas que se pueden tener, algunas activas, otras no.',
+  `prom_dest` varchar(15) NOT NULL COMMENT 'Número de promociones destacadas',
+  `desc_trim` varchar(11) NOT NULL COMMENT 'Descuento qeu se aplica si se quiere bono trimestral',
+  `desc_sem` varchar(11) NOT NULL COMMENT 'Descuento qeu se aplica si se quiere bono semestral',
+  `desc_ano` varchar(11) NOT NULL COMMENT 'Descuento qeu se aplica si se quiere bono anual',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `tbl_cuentas`
+--
+
+INSERT INTO `tbl_cuentas` (`id`, `titulo`, `descripcion`, `precio`, `prom_activ`, `prom_stock`, `prom_dest`, `desc_trim`, `desc_sem`, `desc_ano`) VALUES
+(1, 'Lite', '', '10', '3', '2', '1', '', '', ''),
+(2, 'Basic', '', '15', '4', '3', '1', '', '', ''),
+(3, 'Trial', '', '', '', '', '', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_empresas`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_empresas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `nombre` varchar(128) NOT NULL,
+  `nombre_slug` varchar(128) NOT NULL,
+  `cif` varchar(15) DEFAULT NULL,
+  `web` varchar(100) DEFAULT NULL,
+  `twitter` varchar(100) DEFAULT NULL,
+  `facebook` varchar(100) DEFAULT NULL,
+  `urlTienda` varchar(100) DEFAULT NULL,
+  `modificado` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `usuario_id` (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=48 ;
+
+--
+-- Dumping data for table `tbl_empresas`
+--
+
+INSERT INTO `tbl_empresas` (`id`, `user_id`, `nombre`, `nombre_slug`, `cif`, `web`, `twitter`, `facebook`, `urlTienda`, `modificado`) VALUES
+(1, 7, 'NbEmpresa11 asdf', 'nbempresa11-asdf', '12345678A', 'few3ea11sf', '3r23fs43asfg11d2q', 'wqrf3wgraaa12', 'ew1111tt1212', '0000-00-00 00:00:00'),
+(12, 59, 'Nombre_Empresa59', '', '12345678A', 'asf', 'twitttt1111', 'qq123w11aa', 'qasf123z11qz', NULL),
+(15, 9, 'NbEmpresa2', 'nbempresa2', '12345678A', 'ewdgsg213', 'asdsasda', '', '', NULL),
+(17, 68, '', '', '', 'asdfsd', '', '', '', NULL),
+(18, 70, '', '', '', 'saefwew3', '', '', '', NULL),
+(22, 72, '', '', '', '', '', '', '', NULL),
+(23, 36, 'Lallala', 'lallala', '12345678A', 'refgr4', 'qwaredsff', 'asdfdsf123', 'fwegrwqq', NULL),
+(24, 75, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
+(25, 76, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
+(26, 77, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
+(28, 93, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
+(39, 58, 'NombreNuevo', '', '01234567A', '', '', '', 'effrer4', NULL),
+(40, 42, '', '', NULL, '', '', '', '', NULL),
+(41, 129, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
+(43, 137, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
+(44, 139, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
+(45, 140, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
+(46, 141, '', '', NULL, NULL, NULL, NULL, NULL, NULL),
+(47, 12, 'NbEmpresaFantasma', '', NULL, '', '', '', '', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_emp_cat`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_emp_cat` (
+  `empresa_id` int(11) NOT NULL,
+  `categoria_id` int(11) NOT NULL,
+  PRIMARY KEY (`empresa_id`,`categoria_id`),
+  KEY `categoria_id` (`categoria_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_emp_cat`
+--
+
+INSERT INTO `tbl_emp_cat` (`empresa_id`, `categoria_id`) VALUES
+(1, 97),
+(1, 98);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_items`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `tipo` varchar(100) NOT NULL,
+  `thumb` tinyint(1) NOT NULL,
+  `filename` varchar(255) NOT NULL,
+  `attribute` varchar(45) NOT NULL,
+  `size` varchar(100) NOT NULL,
+  `path` varchar(255) NOT NULL,
+  `foreign_id` int(11) NOT NULL COMMENT 'Si el model es empresa es el id usuario, si es promo es el id promo',
+  `model` varchar(50) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `foreign_id` (`foreign_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
+
+--
+-- Dumping data for table `tbl_items`
+--
+
+INSERT INTO `tbl_items` (`id`, `name`, `tipo`, `thumb`, `filename`, `attribute`, `size`, `path`, `foreign_id`, `model`, `created`, `modified`) VALUES
+(7, 'artistic_wallpaper_1366x768.jpeg', 'image/jpeg', 1, 'b0ab54512bedc1a5ad9626e2f78f0c64.jpeg', 'file', '79316', '/uploads/images/b0ab54512bedc1a5ad9626e2f78f0c64.jpeg', 72, 'empresa', '2013-06-24 14:00:00', NULL),
+(10, 'widescreen-wallpaper.jpg', 'image/jpeg', 1, '84852f533408909318d4176845f7bb06.jpg', 'file', '247200', '/uploads/images/84852f533408909318d4176845f7bb06.jpg', 58, 'empresa', '2013-06-21 01:36:36', NULL),
+(11, 'widescreen-wallpaper.jpg', 'image/jpeg', 1, '7dbaa434280acc6367744b248e257a23.jpg', 'file', '247200', '/uploads/images/7dbaa434280acc6367744b248e257a23.jpg', 36, 'empresa', '2013-06-29 05:28:07', NULL),
+(20, 'bg52a_1366x768.jpg', 'image/jpeg', 1, '70183ada7cac946061e23ec75fd2b4c4.jpg', 'file', '177867', '/uploads/images/70183ada7cac946061e23ec75fd2b4c4.jpg', 13, 'promo', '2013-10-31 07:49:26', NULL),
+(21, 'Jimi_In_Type_by_icantreed.jpg', 'image/jpeg', 1, '10b46e663524a4cf22c2e3a33c7c35b5.jpg', 'file', '399162', '/uploads/images/10b46e663524a4cf22c2e3a33c7c35b5.jpg', 16, 'promo', '2013-10-31 07:52:24', NULL),
+(24, '1366x768_Dizorb_Colony_47_HD_Wallpaper.jpg', 'image/jpeg', 1, '4bf4a143012f61e6e8eb49b6d04bcba6.jpg', 'file', '541310', '/uploads/images/4bf4a143012f61e6e8eb49b6d04bcba6.jpg', 19, 'promo', '2013-10-31 08:07:52', NULL),
+(26, '2ikxh60.jpg', 'image/jpeg', 1, '7fa8a7e8a0f1febb4eb240d081f65a14.jpg', 'file', '190258', '/uploads/images/7fa8a7e8a0f1febb4eb240d081f65a14.jpg', 7, 'empresa', '2013-10-31 08:10:18', NULL),
+(27, 'Type_portrait_by_pgizzle618.jpg', 'image/jpeg', 1, 'e7c06a8c1c8d37e5c9ea5ec352a3d591.jpg', 'file', '76086', '/uploads/images/e7c06a8c1c8d37e5c9ea5ec352a3d591.jpg', 23, 'promo', '2013-11-05 09:46:39', NULL),
+(28, '1920x1080_HD_Wallpaper_124_zixpkcom.jpg', 'image/jpeg', 1, 'd6192e88893feff0300d3f20c5461328.jpg', 'file', '127936', '/uploads/images/d6192e88893feff0300d3f20c5461328.jpg', 3, 'promo', '2013-11-05 09:47:34', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_profiles`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_profiles` (
@@ -8544,15 +8545,15 @@ CREATE TABLE IF NOT EXISTS `tbl_profiles` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=45 ;
 
 --
--- Volcado de datos para la tabla `tbl_profiles`
+-- Dumping data for table `tbl_profiles`
 --
 
 INSERT INTO `tbl_profiles` (`id`, `user_id`, `username`, `lastname`, `paypal_id`, `tipocuenta`, `meses`, `fecha_activacion`, `fecha_fin`, `fecha_pago`, `telefono`, `fax`, `cp`, `barrio`, `direccion`, `poblacion_id`) VALUES
 (1, 2, 'Perio palotes', '', NULL, 1, NULL, '0000-00-00', '0000-00-00', '0000-00-00', '', '', '', 0, '0', 0),
-(3, 7, 'Empresa1', 'Mi Empresa', 'wefsssssaaqazzzz', 1, '', '2013-06-26', '2009-06-11', '2009-06-21', '976603352', '3199', '50290', 214, 'c/cautivico,3', 32115999),
+(3, 7, 'Empresa1', 'Apppp111111', 'wefsssssaaqazzzz', 1, '2', '2013-06-26', '2013-06-11', '2013-06-21', '2352', '3199', '3424', 214, '12111', 32115999),
 (4, 9, 'NbEmpresa2', 'asdada', 'e3res', 1, '2', '2013-06-19', '0000-00-00', '0000-00-00', '34252', '', '321', 0, '1', 2),
 (6, 68, 'NbNuevaEmpresa1', '', '', 1, NULL, '2013-06-12', '2013-06-22', '2013-06-25', '', '', '', 0, '0', 0),
-(7, 70, 'NbNuevaEmpresa2', '', '', 1, NULL, '0000-00-00', '0000-00-00', '0000-00-00', '', '', '', 0, '0', 0),
+(7, 70, 'NbNuevaEmpresa2', '', '', 1, NULL, '2013-07-24', '0000-00-00', '0000-00-00', '', '', '', 0, '0', 0),
 (8, 72, 'Nb', 'Ap', '', 1, NULL, '2013-06-27', '0000-00-00', '0000-00-00', '', '', '', 0, '0', 0),
 (9, 36, 'NbEmpresa4', 'ApEmpresa4', NULL, 2, NULL, '0000-00-00', '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL),
 (13, 75, NULL, NULL, NULL, 1, NULL, '0000-00-00', '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL),
@@ -8568,14 +8569,14 @@ INSERT INTO `tbl_profiles` (`id`, `user_id`, `username`, `lastname`, `paypal_id`
 (39, 139, NULL, NULL, NULL, 1, '2', '0000-00-00', '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL),
 (40, 140, NULL, NULL, NULL, 1, '2', '0000-00-00', '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL),
 (41, 141, NULL, NULL, NULL, 1, '2', '0000-00-00', '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL),
-(42, 12, 'useerr12', '', '', 1, '', '0000-00-00', '0000-00-00', '0000-00-00', '', '', '', NULL, NULL, NULL),
+(42, 12, 'useerr12', '', '', 1, '', '2013-07-24', '0000-00-00', '0000-00-00', '', '', '', NULL, NULL, NULL),
 (43, 59, 'usernameee', '', '', 1, '', '0000-00-00', '0000-00-00', '0000-00-00', '', '', '', NULL, NULL, NULL),
-(44, 145, 'hugo', 'langa', '123', 1, NULL, '2013-08-23', '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL);
+(44, 60, 'usernameee1', NULL, NULL, 1, NULL, '0000-00-00', '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tbl_profiles_fields`
+-- Table structure for table `tbl_profiles_fields`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_profiles_fields` (
@@ -8600,7 +8601,7 @@ CREATE TABLE IF NOT EXISTS `tbl_profiles_fields` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Volcado de datos para la tabla `tbl_profiles_fields`
+-- Dumping data for table `tbl_profiles_fields`
 --
 
 INSERT INTO `tbl_profiles_fields` (`id`, `varname`, `title`, `field_type`, `field_size`, `field_size_min`, `required`, `match`, `range`, `error_message`, `other_validator`, `default`, `widget`, `widgetparams`, `position`, `visible`) VALUES
@@ -8611,7 +8612,7 @@ INSERT INTO `tbl_profiles_fields` (`id`, `varname`, `title`, `field_type`, `fiel
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tbl_promociones`
+-- Table structure for table `tbl_promociones`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_promociones` (
@@ -8633,24 +8634,27 @@ CREATE TABLE IF NOT EXISTS `tbl_promociones` (
   `stock` varchar(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `empresa_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
 
 --
--- Volcado de datos para la tabla `tbl_promociones`
+-- Dumping data for table `tbl_promociones`
 --
 
 INSERT INTO `tbl_promociones` (`id`, `user_id`, `estado`, `titulo`, `titulo_slug`, `resumen`, `descripcion`, `descripcion_html`, `fecha_inicio`, `fecha_fin`, `fechaCreacion`, `destacado`, `precio`, `rebaja`, `condiciones`, `stock`) VALUES
-(3, 9, 0, 'asd', 'asd', 'sddgg', 'sg', '<p>sg</p>', '2013-06-18', '2013-06-19', '2013-06-19 14:00:00', 1, '12', '13', 'dsgfgd', '123'),
+(3, 9, 1, 'asd', 'asd', 'sddgg', 'sg', '<p>sg</p>', '2013-06-18', '2013-06-19', '2013-06-19 14:00:00', 1, '12', '13', 'dsgfgd', '123'),
+(13, 7, 1, 'Promoción titulo', 'promocion_titulo', 'Promoción resume', 'Promoción descripcion', 'Promoción descripcion <b>html</b>', '2013-06-25', '2013-06-27', '2013-06-28 14:00:00', 0, '100', '10', 'Promoción condiciones', '10'),
 (15, 12, 1, 'Promocion no destacada', 'sdf', 'sdg', 'sdg', 'asdf', '2013-06-10', '2013-06-12', '2013-06-20 14:00:00', 0, '1w', 'as', 'dsf', 'sdf'),
-(17, 36, 1, 'Mi promoción', 'Mi promoción', 'Resumen de la promoción', '', '<p>Esta de<span style="color: #888888;">scipci&oacute;nas</span>dhskdn,g</p>\r\n<p>&nbsp;</p>\r\n<p>sdg<span style="text-decoration: underline;">dsg</span></p>', '2013-06-03', '2013-06-04', '2013-06-29 04:50:12', 1, '13', '', 'fbb', '11'),
-(28, 7, 2, 'adadf', 'adadf', 'ads', '', 'ads', '0000-00-00', '0000-00-00', '2013-08-13 23:04:33', 1, '44', '23', 'fas', '7'),
-(29, 7, 0, 'hugo promo', 'hugo promo', 'adass', '', 'asdfadf', '0000-00-00', '0000-00-00', '2013-08-18 23:52:15', 0, '44', '23', 'asd', '3'),
-(30, 7, 0, 'JINGLES', 'JINGLES', 'jingles jingles', '', 'asdfs', '0000-00-00', '0000-00-00', '2013-08-19 00:04:35', 0, '55', '21', 'no hay', '4');
+(16, 7, 2, 'Promoción titulo2', 'promocion_tituloo', 'Promoción resumefsdsdf. Fin', 'Promoción descripcion', 'Promoción descripcion html', '2013-06-14', '2013-06-24', '2013-06-27 14:00:00', 1, '100', '10', 'Promoción condiciones', '10'),
+(17, 36, 1, 'Mi promoción', 'mi_promocion', 'Resumen de la promoción', '', '<p>Esta de<span style="color: #888888;">scipci&oacute;nas</span>dhskdn,g</p>\r\n<p>&nbsp;</p>\r\n<p>sdg<span style="text-decoration: underline;">dsg</span></p>', '2013-06-03', '2013-06-04', '2013-06-29 04:50:12', 1, '13', '', 'fbb', '11'),
+(19, 7, 1, 'Titulo prueba', 'titulo_prueba', 'Resumen lalblal', '', '<ul>\r\n<li>sdgbsdg</li>\r\n</ul>\r\n<p>sd</p>\r\n<p>gsgsgss</p>', '2013-06-03', '2013-06-27', '2013-07-01 23:36:47', 0, '213', '', 'Conciones blalbla', '11'),
+(21, 36, 1, 'Otra promoción', 'otra_promocion', 'okadjgñs', '', '<ul>\r\n<li>wqreg</li>\r\n</ul>\r\n<p>&nbsp;</p>\r\n<p>sdgsgsdgsg</p>', '2013-06-04', '2013-06-04', '2013-07-01 23:42:18', 0, '231', '', 'esdgfn', '3213'),
+(22, 36, 1, 'dasfgasf', 'dasfgasf', 'adgsg', '', '<ul>\r\n<li>asfadgg</li>\r\n</ul>', '2013-06-04', '2013-06-04', '2013-07-01 23:58:50', 0, '213', '', 'edsgb', '21'),
+(23, 7, 2, 'Promoción de prueba', 'promoci-n-de-prueba', 'Blablabla promoción.\r\n.', '', '', '0000-00-00', '0000-00-00', '2013-08-19 22:54:45', 0, '12', '', 'Las condición no me importan', '15');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tbl_provincias`
+-- Table structure for table `tbl_provincias`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_provincias` (
@@ -8663,7 +8667,7 @@ CREATE TABLE IF NOT EXISTS `tbl_provincias` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
 
 --
--- Volcado de datos para la tabla `tbl_provincias`
+-- Dumping data for table `tbl_provincias`
 --
 
 INSERT INTO `tbl_provincias` (`idprovincia`, `provincia`, `provinciaseo`, `provincia3`) VALUES
@@ -8723,7 +8727,7 @@ INSERT INTO `tbl_provincias` (`idprovincia`, `provincia`, `provinciaseo`, `provi
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tbl_users`
+-- Table structure for table `tbl_users`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_users` (
@@ -8741,32 +8745,32 @@ CREATE TABLE IF NOT EXISTS `tbl_users` (
   UNIQUE KEY `email` (`email`),
   KEY `status` (`status`),
   KEY `superuser` (`superuser`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=146 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=144 ;
 
 --
--- Volcado de datos para la tabla `tbl_users`
+-- Dumping data for table `tbl_users`
 --
 
 INSERT INTO `tbl_users` (`id`, `username`, `password`, `email`, `activkey`, `create_at`, `lastvisit_at`, `superuser`, `status`) VALUES
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'webmaster@example.com', '9a24eff8c15a6a141ece27eb6947da0f', '2013-05-07 06:39:24', '2013-05-20 04:41:17', -1, 1),
 (2, 'demo', 'fe01ce2a7fbac8fafaed7c982a04e229', 'demo@examplewe.com', '099f825543f7850cc038b90aaff39fac', '2013-05-07 06:39:24', '2013-05-31 22:18:39', 0, 0),
-(3, 'admin1', 'e00cf25ad42683b3df678c61f42c6bda', 'admin1@admin1.com', '9ffe8215d86586c1d55b4e0174f87a89', '2013-05-07 00:19:52', '2013-06-29 14:44:21', 1, 1),
-(7, 'empresa1', 'a24df02d86e0f2c0c70c1423a90837a8', 'empresa111@empreeq.com', 'fa2a955301a997db335d5d9e1bf09d79', '2013-05-09 21:21:40', '2013-08-20 01:49:22', 2, 1),
-(9, 'empresa2', 'e8790a92abdfc3d10e7dea6091bafc35', 'empresa2@empresa.com', '4f407aad1347d3afc0df57a2cf4166a0', '2013-05-09 21:36:20', '2013-06-28 20:45:35', 2, 3),
+(3, 'admin1', 'e00cf25ad42683b3df678c61f42c6bda', 'admin1@admin1.com', '9ffe8215d86586c1d55b4e0174f87a89', '2013-05-07 00:19:52', '2013-10-31 08:21:01', 1, 1),
+(7, 'empresa1', 'a24df02d86e0f2c0c70c1423a90837a8', 'empresa111@empreeq.com', 'fa2a955301a997db335d5d9e1bf09d79', '2013-05-09 21:21:40', '2013-11-05 09:46:08', 2, 3),
+(9, 'empresa2', 'e8790a92abdfc3d10e7dea6091bafc35', 'empresa2@empresa.com', '4f407aad1347d3afc0df57a2cf4166a0', '2013-05-09 21:36:20', '2013-11-05 09:47:18', 2, 3),
 (12, 'empresa7', '590fb77fd6a5e286f0cb8b18ac2c08fa', 'empresa7@empresa7.com', '57bb126336aacd070f191c6f7ce7f9d3', '2013-05-09 21:51:36', '0000-00-00 00:00:00', 2, 2),
 (13, 'admin3', '32cacb2f994f6b42183a1300d9a3e8d6', 'admin3@admin.com', 'fe03aebe57b96a901c56a0aec557f637', '2013-05-09 21:56:05', '2013-06-19 00:24:27', 1, 1),
 (26, 'admin4', 'fc1ebc848e31e0a68e868432225e3c82', 'admin4@admin.com', '79cff1850cbac31f2e5ad83a0d95910f', '2013-05-13 20:50:25', '0000-00-00 00:00:00', 1, 1),
 (29, 'admin9', 'eed57216df3731106517ccaf5da2122d', 'admin9@admin9.com', '3574d098e93a74fe2a84a62f65e97e25', '2013-05-13 21:25:11', '2013-05-13 21:25:21', 1, 1),
-(30, 'guillermo', 'd7ed8e65834e0f58fa7c43f332e64cfe', 'grillermo@gmail.com', '00d4be409561a5f09899c7985e0f083e', '2013-05-15 00:11:06', '2013-05-16 22:39:39', 0, 1),
-(36, 'empresa4', 'ee1dd733f329cec8289a5697cd26f80c', 'empresa4@empresa4.com', '30c18e59d06152324d438207678dc012', '2013-05-16 23:13:05', '2013-06-28 23:32:25', 2, 1),
+(30, 'guillermo', 'd7ed8e65834e0f58fa7c43f332e64cfe', 'grillermo@gmail.com', '00d4be409561a5f09899c7985e0f083e', '2013-05-15 00:11:06', '2013-08-19 23:23:59', 0, 3),
+(36, 'empresa4', 'ee1dd733f329cec8289a5697cd26f80c', 'empresa4@empresa4.com', '30c18e59d06152324d438207678dc012', '2013-05-16 23:13:05', '2013-07-01 15:28:37', 2, 1),
 (38, 'empresa5', 'ca16303d94eff24d56dc0097a2a2343d', 'empresa5@empresa5.com', '5df3352a3b20d95fbffd60223c3bee4d', '2013-05-19 00:08:55', '2013-05-19 00:09:05', 2, 1),
 (41, 'empresa6', '1981f3d899ee22e64b991ffc4818026d', 'empresa6@empresa6.com', '20f6d019d3fb66e9b72abe077c6ec349', '2013-05-19 17:50:44', '2013-05-19 17:51:13', 2, 3),
-(42, 'Hugomierdas', '8c9977d9170c82f412cb92179706be81', 'hugomierdas@hugomierdas.com', 'b9a53a18b80864f19c581e85c3704295', '2013-05-20 12:27:05', '2013-07-10 23:49:11', 2, 1),
+(42, 'Hugomierdas', '8c9977d9170c82f412cb92179706be81', 'hugomierdas@hugomierdas.com', 'b9a53a18b80864f19c581e85c3704295', '2013-05-20 12:27:05', '2013-05-20 04:43:36', 2, 1),
 (58, 'usuario_test', '912ec803b2ce49e4a541068d495ab570', 'test@test.com', '3886cca6ecdc3ae386bbfc4f2eb67a47', '2013-05-25 11:15:53', '2013-06-20 17:26:10', 2, 1),
 (59, 'empresa_test', '912ec803b2ce49e4a541068d495ab570', 'empresa@empresa.com', 'af7bb6bfdb2e906796c2d121154092a1', '2013-05-25 11:18:05', '2013-05-25 03:21:24', 2, 1),
-(60, 'usuario', '912ec803b2ce49e4a541068d495ab570', 'usuario@usuario.com', '2d68c4dec123e4a370579ef8c08b487a', '2013-05-28 22:24:14', '0000-00-00 00:00:00', 0, 0),
-(61, 'usuario1', '5259ee4a034fdeddd1b65be92debe731', 'usuario1@usuario1.com', '5518b1dfbc5aaa239bad5fc08f2d5b90', '2013-05-28 22:26:59', '0000-00-00 00:00:00', 0, 0),
-(62, 'usuario2', '912ec803b2ce49e4a541068d495ab570', 'usuario2@usuario2.com', '9452cd180c6688cd44be776ecdb6dc3c', '2013-05-28 22:28:24', '0000-00-00 00:00:00', 0, 0),
+(60, 'usuario', '912ec803b2ce49e4a541068d495ab570', 'usuario@usuario.com', '2d68c4dec123e4a370579ef8c08b487a', '2013-05-28 22:24:14', '2013-09-08 00:43:45', 0, 3),
+(61, 'usuario1', '5259ee4a034fdeddd1b65be92debe731', 'usuario1@usuario1.com', '5518b1dfbc5aaa239bad5fc08f2d5b90', '2013-05-28 22:26:59', '0000-00-00 00:00:00', 0, 3),
+(62, 'usuario2', '912ec803b2ce49e4a541068d495ab570', 'usuario2@usuario2.com', '9452cd180c6688cd44be776ecdb6dc3c', '2013-05-28 22:28:24', '2013-10-22 15:39:18', 0, 3),
 (63, 'usuario3', '912ec803b2ce49e4a541068d495ab570', 'usuario3@usuario3.com', 'dc3a534c176df022dea585fbb337ac50', '2013-05-28 22:30:00', '0000-00-00 00:00:00', 0, 0),
 (65, 'NuevoComprador1', '912ec803b2ce49e4a541068d495ab570', 'nuevocomprador1@nuevocomprador.com', '8c1c3f09d9179f5207972cfaa1b9d2ce', '2013-06-02 15:39:53', '2013-06-02 15:40:31', 0, 1),
 (68, 'NuevaEmpresa1', '912ec803b2ce49e4a541068d495ab570', 'NuevaEmpresa1@NuevaEmpresa1.com', 'd4772b3d952e90aa5cba37fe7a0fc09d', '2013-06-02 15:57:33', '2013-06-02 15:59:17', 2, 1),
@@ -8779,7 +8783,7 @@ INSERT INTO `tbl_users` (`id`, `username`, `password`, `email`, `activkey`, `cre
 (77, 'asdf@asdf111.com', '912ec803b2ce49e4a541068d495ab570', 'asdf@asdf111.com', 'd2135a0dee8bcefdb576ac5e4f4d9c64', '2013-06-13 22:57:32', '0000-00-00 00:00:00', 2, 1),
 (93, 'empresatest', '912ec803b2ce49e4a541068d495ab570', 'empresa1@empresa11.com', 'ed561258d0b2c6b2f655c2d931303f85', '2013-06-14 17:33:14', '2013-06-21 14:00:00', 2, 0),
 (94, 'compradortest', '912ec803b2ce49e4a541068d495ab570', 'compradortest@comprad2o2.com', '94619d361e10bb1cc8963786af780582', '2013-06-14 17:45:26', '0000-00-00 00:00:00', 0, 0),
-(95, 'comprador', '912ec803b2ce49e4a541068d495ab570', 'comprador@comprador.com', '7da436ad34779f6eb9dc2c857362b185', '2013-06-15 05:15:01', '2013-06-14 21:51:39', 0, 1),
+(95, 'comprador', '912ec803b2ce49e4a541068d495ab570', 'comprador@comprador.com', '7da436ad34779f6eb9dc2c857362b185', '2013-06-15 05:15:01', '2013-09-06 00:50:18', 0, 1),
 (129, 'NuevaEmpresa', '912ec803b2ce49e4a541068d495ab570', 'nuevaempresa@nueva.com', '972af4cc33e2525e0c1701d058a81511', '2013-06-20 21:34:37', '0000-00-00 00:00:00', 2, 0),
 (130, 'meprme@wsmfpm.com', '912ec803b2ce49e4a541068d495ab570', 'meprme@wsmfpm.com', 'e69dbb40d4ec90dd6b3c9a71d6c4d057', '2013-06-20 21:52:37', '0000-00-00 00:00:00', 2, 0),
 (136, 'comp@sdg.com', '912ec803b2ce49e4a541068d495ab570', 'comp@sdg.com', 'd4001d2fb17c29124292296f79472c9b', '2013-06-21 22:59:46', '0000-00-00 00:00:00', 0, 0),
@@ -8788,14 +8792,13 @@ INSERT INTO `tbl_users` (`id`, `username`, `password`, `email`, `activkey`, `cre
 (139, 'mepe@msd.com', '912ec803b2ce49e4a541068d495ab570', 'mepe@msd.com', 'ff67b83dba9774133c3b909f96e83138', '2013-06-21 23:08:20', '0000-00-00 00:00:00', 2, 0),
 (140, 'empemp@sdsg.com', '912ec803b2ce49e4a541068d495ab570', 'empemp@sdsg.com', 'ab4f79a9bf7126a1a47a6c92aede8023', '2013-06-21 23:10:09', '0000-00-00 00:00:00', 2, 0),
 (141, 'asfghdj@sfhd.com', '912ec803b2ce49e4a541068d495ab570', 'asfghdj@sfhd.com', '0291491d0f462250c3f7b857dc4a9cba', '2013-06-21 23:10:54', '0000-00-00 00:00:00', 2, 0),
-(142, 'comprador@locomproto', '5ed02a1a2533758ab19b62dd4baaed69', 'comprador@locomprotodo.com', 'd3db4f8a7b0f8609111dbace155e3f0a', '2013-07-10 23:51:44', '0000-00-00 00:00:00', 0, 1),
-(144, 'hugoepila@gmail.com', 'ae4d176ebaa6d584a7450f02e8415dd3', 'hugoepila@gmail.com', 'ff8ea5746060e348a8fe9bd04c5d87b3', '2013-08-19 23:43:25', '0000-00-00 00:00:00', 0, 0),
-(145, 'hlanga@hlanga.es', '202cb962ac59075b964b07152d234b70', 'hlanga@hlanga.es', '290bc24e3477fc2ea09962a862ea1f24', '2013-08-19 23:49:04', '0000-00-00 00:00:00', 0, 1);
+(142, 'prueba@prueba.com', '5259ee4a034fdeddd1b65be92debe731', 'prueba@prueba.com', 'bbedacbcbc95974408a04f39d22b05b4', '2013-08-20 07:29:11', '0000-00-00 00:00:00', 0, 0),
+(143, 'pruebas@prueba.com', '912ec803b2ce49e4a541068d495ab570', 'pruebas@prueba.com', 'a447b0d768364fc40dd2f9939aacc475', '2013-08-20 07:57:01', '0000-00-00 00:00:00', 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `_tbl_contactos`
+-- Table structure for table `_tbl_contactos`
 --
 
 CREATE TABLE IF NOT EXISTS `_tbl_contactos` (
@@ -8813,7 +8816,7 @@ CREATE TABLE IF NOT EXISTS `_tbl_contactos` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
 --
--- Volcado de datos para la tabla `_tbl_contactos`
+-- Dumping data for table `_tbl_contactos`
 --
 
 INSERT INTO `_tbl_contactos` (`id`, `user_id`, `telefono`, `fax`, `cp`, `barrio`, `direccion`, `poblacion_id`) VALUES
@@ -8829,69 +8832,56 @@ INSERT INTO `_tbl_contactos` (`id`, `user_id`, `telefono`, `fax`, `cp`, `barrio`
 (19, 72, '', '', '', NULL, '', NULL);
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `AuthAssignment`
+-- Constraints for table `AuthAssignment`
 --
 ALTER TABLE `AuthAssignment`
   ADD CONSTRAINT `AuthAssignment_ibfk_1` FOREIGN KEY (`itemname`) REFERENCES `AuthItem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `AuthItemChild`
+-- Constraints for table `AuthItemChild`
 --
 ALTER TABLE `AuthItemChild`
   ADD CONSTRAINT `AuthItemChild_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `AuthItem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `AuthItemChild_ibfk_2` FOREIGN KEY (`child`) REFERENCES `AuthItem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `Rights`
+-- Constraints for table `Rights`
 --
 ALTER TABLE `Rights`
   ADD CONSTRAINT `Rights_ibfk_1` FOREIGN KEY (`itemname`) REFERENCES `AuthItem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `tbl_compras`
+-- Constraints for table `tbl_ciudades`
 --
-ALTER TABLE `tbl_compras`
-  ADD CONSTRAINT `tbl_compras_ibfk_2` FOREIGN KEY (`id_promo`) REFERENCES `tbl_promociones` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tbl_compras_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `tbl_users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `tbl_ciudades`
+  ADD CONSTRAINT `tbl_ciudades_ibfk_1` FOREIGN KEY (`idprovincia`) REFERENCES `tbl_provincias` (`idprovincia`);
 
 --
--- Filtros para la tabla `tbl_empresas`
+-- Constraints for table `tbl_empresas`
 --
 ALTER TABLE `tbl_empresas`
   ADD CONSTRAINT `tbl_empresas_ibfk_14` FOREIGN KEY (`user_id`) REFERENCES `tbl_users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `tbl_emp_cat`
+-- Constraints for table `tbl_emp_cat`
 --
 ALTER TABLE `tbl_emp_cat`
   ADD CONSTRAINT `tbl_emp_cat_ibfk_2` FOREIGN KEY (`categoria_id`) REFERENCES `category` (`id`),
   ADD CONSTRAINT `tbl_emp_cat_ibfk_3` FOREIGN KEY (`empresa_id`) REFERENCES `tbl_empresas` (`id`);
 
 --
--- Filtros para la tabla `tbl_items`
---
-ALTER TABLE `tbl_items`
-  ADD CONSTRAINT `tbl_items_ibfk_2` FOREIGN KEY (`foreign_id`) REFERENCES `tbl_users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `tbl_poblaciones`
---
-ALTER TABLE `tbl_poblaciones`
-  ADD CONSTRAINT `tbl_poblaciones_ibfk_1` FOREIGN KEY (`idprovincia`) REFERENCES `tbl_provincias` (`idprovincia`);
-
---
--- Filtros para la tabla `tbl_profiles`
+-- Constraints for table `tbl_profiles`
 --
 ALTER TABLE `tbl_profiles`
   ADD CONSTRAINT `tbl_profiles_ibfk_10` FOREIGN KEY (`user_id`) REFERENCES `tbl_users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tbl_profiles_ibfk_5` FOREIGN KEY (`tipocuenta`) REFERENCES `tbl_cuentas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `tbl_promociones`
+-- Constraints for table `tbl_promociones`
 --
 ALTER TABLE `tbl_promociones`
   ADD CONSTRAINT `tbl_promociones_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `tbl_users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;

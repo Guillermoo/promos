@@ -92,7 +92,7 @@ return array(
             'loginUrl' => array('/user/login'),
  
             # page after login
-            'returnUrl' => array('/admin/home'),
+            'returnUrl' => array('/admin/ee'),
  
             # page after logout
             'returnLogoutUrl' => array('/user/login'),
@@ -130,6 +130,7 @@ return array(
                     'user/user/contact' => 'user/user/contact',
                     'page/<view>'=>array('site/page'),
                     //'index'=>array('site/index'),
+                    'promocion/<title_slug:[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]+>' => 'promocion/view/<title_slug:[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]+>',
                     'index'=>'promociones/index',
                     '<controller:\w+>/<id:\d+>'=>'<controller>/view',
                     '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',

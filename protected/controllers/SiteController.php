@@ -40,7 +40,7 @@ class SiteController extends Controller
         $criteria->limit = 4;
         $criteria->compare('destacado',Promocion::IS_DESTACADA);
         $criteria->compare('estado',Promocion::STATUS_ACTIVA);
-        $criteria->select = 'titulo,resumen,precio';
+        $criteria->select = 'titulo,titulo_slug,resumen,precio';
         $criteria->order = 'RAND()';
         //$criteria->addCondition('exp_d > "'.$now.'" ');
 
@@ -50,7 +50,7 @@ class SiteController extends Controller
         $criteria2->limit = 12;
         $criteria2->compare('destacado',Promocion::IS_NODESTACADA);
         $criteria2->compare('estado',Promocion::STATUS_ACTIVA);
-        $criteria2->select = 'titulo,resumen,precio';
+        $criteria2->select = 'titulo,titulo_slug,resumen,precio';
         $criteria2->order = 'RAND()';
         //$criteria->addCondition('exp_d > "'.$now.'" ');
 

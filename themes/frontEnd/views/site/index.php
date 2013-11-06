@@ -33,21 +33,21 @@
 				<ul class="thumbnails product-list-inline-small">
 					<?php foreach ($destacados as $key => $promo):	?>
 								
-								<li class="span3">
-									<div class="thumbnail">
-									<?php if (isset($promo->item)): ?>
-										<?php //$this->debug(Yii::app()->request->baseUrl.$promo->item->path) ?>
-										<a href="promo/<?=$promo->id ?>"><img src="<?php echo Yii::app()->request->baseUrl.$promo->item->path ?>" alt=""></a>
-									<?php else: ?>
-										<a href="promo/<?=$promo->id ?>"><img src="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>" alt=""></a>
-									<?php endif; ?>
-									
-									<div class="caption">
-										<a href="promo/<?=$promo->id ?>"><?=$promo->titulo ?></a>
-										<p><?=$promo->resumen ?> <span class="label label-info price pull-right">&euro; <?=$promo->precio ?>,-</span></p>
-									</div>
+						<li class="span3">
+							<div class="thumbnail">
+								<?php if (isset($promo->item)): ?>
+									<?php //$this->debug(Yii::app()->request->baseUrl.$promo->item->path) ?>
+									<a href="promocion/<?=$promo->titulo_slug ?>"><img src="<?php echo Yii::app()->request->baseUrl.$promo->item->path ?>" alt=""></a>
+								<?php else: ?>
+									<a href="promocion/<?=$promo->titulo_slug ?>"><img src="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>" alt=""></a>
+								<?php endif; ?>
+							
+								<div class="caption">
+									<a href="promo/<?=$promo->titulo_slug ?>"><?=$promo->titulo ?></a>
+									<p><?=$promo->resumen ?> <span class="label label-info price pull-right">&euro; <?=$promo->precio ?>,-</span></p>
 								</div>
-							</li>
+							</div>
+						</li>
 					<?php endforeach;?>
 				</ul>
 			</div>
@@ -61,7 +61,7 @@
 				<?php foreach ($promos as $key => $promo):	?>
 					<li class="span3">
 						<div class="thumbnail light">
-							<a href="promo/<?=$promo->id ?>">
+							<a href="promocion/<?=$promo->titulo_slug ?>">
 								<span class="label label-info price">&euro; <? echo $promo->precio ?>,-</span>
 								<!--<span class="label label-important price price-over">&euro; 1,<sup>99</sup></span>-->
 								<?php if (isset($promo->item)): ?>
@@ -71,13 +71,12 @@
 								<?php endif; ?>
 							</a>
 							<div class="caption">
-								<a href="promo/<?=$promo->id ?>"><?php $promo->titulo ?></a>
+								<a href="promocion/<?=$promo->titulo_slug ?>"><?php $promo->titulo ?></a>
 							</div>
 							<a href="#" class="btn btn-block">all products in category</a>
 						</div>
 					</li>
 				<?php endforeach; ?>
-				
 			</ul>
 		</div>
 	</div>
