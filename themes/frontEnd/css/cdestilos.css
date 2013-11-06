@@ -1,8 +1,8 @@
 .header-shadow{
-	background-color: #90C900;
+	background-color: #F0F0F0;
 }
 #superior li>a{
-	color: #fff;
+	color: #08c;
 }
 
 .footer{
@@ -21,4 +21,7 @@
 .cabecera{
 	background-color: #fe0060;
 	border-radius: 5px;
+}
+h1,h2,h3{
+	color: rgb(0, 128, 168);
 }

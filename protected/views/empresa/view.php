@@ -16,7 +16,8 @@
 );*/
 ?>
 
-<h1>View Empresa #<?php echo $model->nombre; ?></h1>
+<h1><?php echo $model->nombre; ?></h1>
+
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -29,4 +30,5 @@
 		'modificado',
 	),
 )); ?>
+<h3> Promociones de <?php echo $model->nombre; ?>:</h3>
 
