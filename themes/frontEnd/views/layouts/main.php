@@ -109,10 +109,11 @@
 								<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">menu</a>
 								<div class="nav-collapse">
 									<ul class="nav">
-										<li class="active"><a href="index.html"><i class="icon-home"></i></a></li>
+										<li class="active"><a href=<?=Yii::app()->homeUrl ?> ><i class="icon-home"></i></a></li>
 										<li class="divider-vertical"></li>
+										<li><?php echo Chtml::link('Promociones',array('/promociones'))?></li>
 										<li><?php echo Chtml::link('Categorias',array('categoria/index'))?></li>
-										<li><?php echo Chtml::link('Empresas',array('Empresa/index'))?></li>										
+										<li><?php echo Chtml::link('Empresas',array('/empresas'))?></li>										
 									</ul>										
 								</div>
 							</div>
@@ -122,13 +123,13 @@
 			</div>			
 
 			<?php echo $content; ?>
-			
+			<div class="footer">
+				<p align="center"> ProEmoción - Tu web de promociones   |    contacto: 976 XXX XXX </p>
+			</div>
 			
 	</div>
 
-		<div class="footer">
-				<p align="center"> ProEmoción - Tu web de promociones   |    contacto: 976 XXX XXX </p>
-		</div>
+	
 	</body>
 
 </html>

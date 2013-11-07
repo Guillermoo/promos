@@ -6,7 +6,7 @@ class PromocionController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	//public $layout='//layouts/column2';
 	public $defaultAction = 'index'; 
 	
 	private $_model;
@@ -58,15 +58,17 @@ class PromocionController extends Controller
 		//$dataProvider=new CActiveDataProvider('Promocion');
 		
 		if (isset($title_slug)){
-
 			$promocion=Promocion::model()->findByAttributes(array('titulo_slug'=>$title_slug));
-			//$this->debug($promocion->attributes);
-			$this->render('view',array(
-				'model'=>$promocion,
-			));
-		}else{
 
+			if (isset($promocion)){
+				$this->render('view',array(
+					'model'=>$promocion,
+				));
+				Yii::app()->end();
+			}
+			
 		}
+		$this->render('error');
 		
 		
 	}
@@ -76,21 +78,19 @@ class PromocionController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider = new CActiveDataProvider('Promocion', array(
-				'pagination'=>array(
-				'pageSize'=>10,
-			),
-			'criteria'=>array(
-				'condition'=>'estado='.Promocion::STATUS_ACTIVA,
-				//'params'=>array('estado'=>Promocion::STATUS_ACTIVA),
-			),
-			'sort'=>array(
-				//Hay que poner que sea aleatorio como segunda opcion y que sean de distintas categorias
-				'defaultOrder'=> array('destacado'=>Promocion::IS_DESTACADA),
-			)
-		));
+		$criteria=new CDbCriteria;
+        $criteria->with = array( 'item');
+
+        $criteria->limit = 4;
+        $criteria->compare('estado',Promocion::STATUS_ACTIVA);
+        $criteria->select = 'titulo,titulo_slug,resumen,precio';
+        $criteria->order = 'RAND()';
+        //$criteria->addCondition('exp_d > "'.$now.'" ');
+
+		$promociones = Promocion::model()->findAll($criteria);
+		
 		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
+			'model'=>$promociones,
 		));
 	}
 	

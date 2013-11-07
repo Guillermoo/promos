@@ -116,7 +116,8 @@ return array(
                 'urlFormat'=>'path',
                 'showScriptName'=>false,
                 'rules'=>array(
-                    'empresas'=>'empresa',
+                    'empresas'=>'empresa/index',
+                    'categorias'=>'categoria/index',
                     'user/empresa'=>'user/empresa/empresa',
                     'user/empresas'=>'user/empresa/admin',
                     'user/promociones'=>'user/promocion/admin',

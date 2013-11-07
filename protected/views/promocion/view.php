@@ -35,7 +35,8 @@
 						</div>
 						<div class="span3">
 							<div class="social-icons pull-right">
-								<a href="#"><img src="img/icon-facebook-like.jpg"></a>
+								<?php //echo Yii::app()->request->baseUrl.'/themes/frontEnd'?>
+								<a href="#"><img src="<?php echo Yii::app()->theme->baseUrl?>/img/icon-facebook-like.jpg"></a>
 								<!-- Replace with something like:
 								<div class="fb-like fb_edge_widget_with_comment fb_iframe_widget" data-send="false" data-layout="button_count" data-width="150" data-show-faces="false" data-font="arial">
 									<span style="height: 20px; width: 107px; ">
@@ -155,14 +156,14 @@
 
 					</div>
 
-					<!--<div class="row-fluid">
+					<div class="row-fluid">
 						<div class="span12">
 
 							<div class="tabbable">
 
 								<ul class="nav nav-tabs">
-									<li class="active"><a href="#tab1" data-toggle="tab">Parts</a></li>
-									<li><a href="#tab2" data-toggle="tab">Comparable products</a></li>
+									<li class="active"><a href="#tab1" data-toggle="tab">Promciones de la misma categoría</a></li>
+									<li><a href="#tab2" data-toggle="tab">Promociones de la misma empresa</a></li>
 								</ul>
 
 								<div class="tab-content">
@@ -174,89 +175,6 @@
 													<a href="#"><img src="img/product_01.jpg" alt=""></a>
 													<div class="caption">
 														<a href="#">Product A</a>
-														<p>Lorem ipsum dolor sit amet <span class="label label-info price pull-right">&euro; 123,-</span></p>
-													</div>
-												</div>
-											</li>
-											<li class="span2">
-												<div class="thumbnail">
-													<a href="#"><img src="img/product_02.jpg" alt=""></a>
-													<div class="caption">
-														<a href="#">Product B</a>
-														<p>Lorem ipsum dolor sit amet <span class="label label-info price pull-right">&euro; 123,-</span></p>
-													</div>
-												</div>
-											</li>
-											<li class="span2">
-												<div class="thumbnail">
-													<a href="#"><img src="img/product_03.jpg" alt=""></a>
-													<div class="caption">
-														<a href="#">Product C</a>
-														<p>Lorem ipsum dolor sit amet <span class="label label-important price pull-right">&euro; 123,-</span></p>
-													</div>
-												</div>
-											</li>
-											<li class="span2">
-												<div class="thumbnail">
-													<a href="#"><img src="img/product_04.jpg" alt=""></a>
-													<div class="caption">
-														<a href="#">Product D</a>
-														<p>Lorem ipsum dolor sit amet <span class="label label-info price pull-right">&euro; 123,-</span></p>
-													</div>
-												</div>
-											</li>
-											<li class="span2">
-												<div class="thumbnail">
-													<a href="#"><img src="img/product_05.jpg" alt=""></a>
-													<div class="caption">
-														<a href="#">Product E</a>
-														<p>Lorem ipsum dolor sit amet <span class="label label-info price pull-right">&euro; 123,-</span></p>
-													</div>
-												</div>
-											</li>
-											<li class="span2">
-												<div class="thumbnail">
-													<a href="#"><img src="img/product_06.jpg" alt=""></a>
-													<div class="caption">
-														<a href="#">Product F</a>
-														<p>Lorem ipsum dolor sit amet <span class="label label-important price pull-right">&euro; 123,-</span></p>
-													</div>
-												</div>
-											</li>
-										</ul>
-										<ul class="thumbnails product-list-inline-small">
-											<li class="span2">
-												<div class="thumbnail">
-													<a href="#"><img src="img/product_01.jpg" alt=""></a>
-													<div class="caption">
-														<a href="#">Product A</a>
-														<p>Lorem ipsum dolor sit amet <span class="label label-info price pull-right">&euro; 123,-</span></p>
-													</div>
-												</div>
-											</li>
-											<li class="span2">
-												<div class="thumbnail">
-													<a href="#"><img src="img/product_02.jpg" alt=""></a>
-													<div class="caption">
-														<a href="#">Product B</a>
-														<p>Lorem ipsum dolor sit amet <span class="label label-info price pull-right">&euro; 123,-</span></p>
-													</div>
-												</div>
-											</li>
-											<li class="span2">
-												<div class="thumbnail">
-													<a href="#"><img src="img/product_03.jpg" alt=""></a>
-													<div class="caption">
-														<a href="#">Product C</a>
-														<p>Lorem ipsum dolor sit amet <span class="label label-important price pull-right">&euro; 123,-</span></p>
-													</div>
-												</div>
-											</li>
-											<li class="span2">
-												<div class="thumbnail">
-													<a href="#"><img src="img/product_04.jpg" alt=""></a>
-													<div class="caption">
-														<a href="#">Product D</a>
 														<p>Lorem ipsum dolor sit amet <span class="label label-info price pull-right">&euro; 123,-</span></p>
 													</div>
 												</div>
@@ -275,33 +193,6 @@
 													</div>
 												</div>
 											</li>
-											<li class="span3">
-												<div class="thumbnail">
-													<a href="#"><img src="img/product_02.jpg" alt=""></a>
-													<div class="caption">
-														<a href="#">Product B</a>
-														<p>Lorem ipsum dolor sit amet <span class="label label-info price pull-right">&euro; 123,-</span></p>
-													</div>
-												</div>
-											</li>
-											<li class="span3">
-												<div class="thumbnail">
-													<a href="#"><img src="img/product_03.jpg" alt=""></a>
-													<div class="caption">
-														<a href="#">Product C</a>
-														<p>Lorem ipsum dolor sit amet <span class="label label-important price pull-right">&euro; 123,-</span></p>
-													</div>
-												</div>
-											</li>
-											<li class="span3">
-												<div class="thumbnail">
-													<a href="#"><img src="img/product_04.jpg" alt=""></a>
-													<div class="caption">
-														<a href="#">Product D</a>
-														<p>Lorem ipsum dolor sit amet <span class="label label-info price pull-right">&euro; 123,-</span></p>
-													</div>
-												</div>
-											</li>
 										</ul>
 									</div>
 
@@ -313,7 +204,7 @@
 
 
 				</div>
-			</div>-->
+			</div>
 
 			<div class="row-fluid">
 				<div class="span12 well well-small">
