@@ -28,7 +28,7 @@ class EmpresaController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','verpromos'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -51,9 +51,18 @@ class EmpresaController extends Controller
 	 */
 	public function actionView($alias)
 	{
+		$model = $this->loadModelByName($alias);
+		//$this->debug($model);
 		$this->render('view',array(
-			'model'=>$this->loadModelByName($alias),
+			'model'=>$model,
 		));
+	}
+
+	public function actionVerpromos($idEmpresa){
+		
+		$this->debug($promosEmpresa);
+		$this->render('portalempresa',array('model'=>$this->loadModel($idEmpresa),'promos'=>$this->loadPromos($idEmpresa)
+			));
 	}
 
 	/**
@@ -180,6 +189,22 @@ class EmpresaController extends Controller
 		if($model===null)
 			throw new CHttpException(404,'The company does not exist.');
 		return $model;
+	}
+
+	public function loadPromos($id)
+	{
+		$promos = new CActiveDataProvider('Promocion', array(
+				'pagination'=>array(
+				'pageSize'=>10,
+			),
+			'criteria'=>array(
+				'condition'=>'user_id='.$id,
+				//'params'=>array('estado'=>Promocion::STATUS_ACTIVA),
+			),
+		));
+		if($promos===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		return $promos;
 	}
 
 	/**

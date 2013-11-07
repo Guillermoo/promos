@@ -94,6 +94,25 @@ class PromocionController extends Controller
 		));
 	}
 	
+	public function actionPromosEmpresa($id){
+		$dataProvider = new CActiveDataProvider('Promocion', array(
+				'pagination'=>array(
+				'pageSize'=>10,
+			),
+			'criteria'=>array(
+				'condition'=>'estado='.Promocion::STATUS_ACTIVA,
+				//'params'=>array('estado'=>Promocion::STATUS_ACTIVA),
+			),
+			'sort'=>array(
+				//Hay que poner que sea aleatorio como segunda opcion y que sean de distintas categorias
+				'defaultOrder'=> array('destacado'=>Promocion::IS_DESTACADA),
+			)
+		));
+		$this->render('index',array(
+			'dataProvider'=>$dataProvider,
+		));
+	}
+
 	/* Used to debug variables*/
 	protected function Debug($var){
 		$bt = debug_backtrace();
