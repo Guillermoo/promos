@@ -25,3 +25,9 @@
 h1,h2,h3{
 	color: rgb(0, 128, 168);
 }
+.product-list-inline-small li{
+	padding-bottom: 10px;
+}
+.summary{
+	display: none;
+}

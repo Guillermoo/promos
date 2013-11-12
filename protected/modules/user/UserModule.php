@@ -148,7 +148,7 @@ class UserModule extends CWebModule
 		
 		//En cualquiera de las vistas del módulo user se cargará el theme 'admin'.
 		//Yii::app()->theme = 'admin';
-		Yii::app()->theme = 'froggy';
+		//Yii::app()->theme = 'froggy';
 
 	}
 	
@@ -162,6 +162,8 @@ class UserModule extends CWebModule
 
 	public function beforeControllerAction($controller, $action)
 	{
+		Yii::app()->theme = 'froggy'; //lo cargo aquí porque sino, si utlizas algún dato del módulo usuario en el frontend se carga el theme del backend
+
 		if(parent::beforeControllerAction($controller, $action))
 		{
 			// this method is called before any module controller action is performed

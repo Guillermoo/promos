@@ -30,5 +30,4 @@
 		'modificado',
 	),
 )); ?>
-<h3> Promociones de <?php echo $model->nombre; ?>:</h3>
 
