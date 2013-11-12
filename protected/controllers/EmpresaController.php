@@ -58,11 +58,23 @@ class EmpresaController extends Controller
 		));
 	}
 
-	public function actionVerpromos($idEmpresa){
-		
-		$this->debug($promosEmpresa);
-		$this->render('portalempresa',array('model'=>$this->loadModel($idEmpresa),'promos'=>$this->loadPromos($idEmpresa)
-			));
+	public function actionVerpromos($id){	
+		//Yii::app()->theme = "Frontend";
+
+		$model = $this->loadModel($id);
+		//$promos = $this->loadPromos($model->user_id);
+		$promos = new CActiveDataProvider('Promocion', array(
+				'pagination'=>array(
+				'pageSize'=>10,
+			),
+			'criteria'=>array(
+				'condition'=>'user_id='.$model->user_id.'AND estado=1'
+				//'params'=>array('estado'=>Promocion::STATUS_ACTIVA),
+			),
+		));
+		//$this->debug($model);
+		$this->render('portalempresa',array('model'=>$model,'promos' => $promos
+		));
 	}
 
 	/**
@@ -178,7 +190,7 @@ class EmpresaController extends Controller
 	{
 		$model=Empresa::model()->findByPk($id);
 		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
+			throw new CHttpException(404,'Empresa no encontrada');
 		return $model;
 	}
 	
@@ -187,7 +199,7 @@ class EmpresaController extends Controller
 		$attributes = array('nombre_slug'=>$name);
 		$model=Empresa::model()->findByAttributes($attributes);
 		if($model===null)
-			throw new CHttpException(404,'The company does not exist.');
+			throw new CHttpException(404,'No se encuentra esta empresa...');
 		return $model;
 	}
 
@@ -203,7 +215,7 @@ class EmpresaController extends Controller
 			),
 		));
 		if($promos===null)
-			throw new CHttpException(404,'The requested page does not exist.');
+			throw new CHttpException(404,'Esta empresa no tiene promociones.');
 		return $promos;
 	}
 

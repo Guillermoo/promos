@@ -2,7 +2,7 @@
 Yii::import('user.controllers.RegistrationController');
 class RegistrationcompradorController extends RegistrationController
 {
-
+    
 	/**
 	 * Registration user
 	 */

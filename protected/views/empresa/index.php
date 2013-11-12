@@ -11,19 +11,14 @@
 	array('label'=>'Manage Empresa', 'url'=>array('admin')),
 );*/
 ?>
-<h3> Puedes ver todas las promociones de una empresa.</h3>
 <div class="row-fluid">
-	<div class="span12">
-
-		<table class="table table-striped">
-		<tr>
-			<th>Empresa</th>
-		</tr>
+		<div class="span12">
+			<ul class="thumbnails product-list-inline-small">
 		<?php $this->widget('zii.widgets.CListView', array(
 			'dataProvider'=>$dataProvider,
 			'itemView'=>'_verresumen',
 		)); ?>
-		</table>
+		</ul>
 	</div>
 </div>
 
