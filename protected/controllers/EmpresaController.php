@@ -58,10 +58,9 @@ class EmpresaController extends Controller
 		));
 	}
 
-	public function actionVerpromos($idEmpresa){
-		
-		$this->debug($promosEmpresa);
-		$this->render('portalempresa',array('model'=>$this->loadModel($idEmpresa),'promos'=>$this->loadPromos($idEmpresa)
+	public function actionVerPromos($id){
+		//$this->debug($promosEmpresa);
+		$this->render('portalempresa',array('model'=>$this->loadModel($id),'promos'=>$this->loadPromos($id)
 			));
 	}
 
