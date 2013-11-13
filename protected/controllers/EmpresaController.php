@@ -52,14 +52,13 @@ class EmpresaController extends Controller
 	public function actionView($alias)
 	{
 		$model = $this->loadModelByName($alias);
-		//$this->debug($model);
+		
 		$this->render('view',array(
 			'model'=>$model,
 		));
 	}
 
 	public function actionVerpromos($id){	
-		//Yii::app()->theme = "Frontend";
 
 		$model = $this->loadModel($id);
 		//$promos = $this->loadPromos($model->user_id);
@@ -72,7 +71,7 @@ class EmpresaController extends Controller
 				//'params'=>array('estado'=>Promocion::STATUS_ACTIVA),
 			),
 		));
-		//$this->debug($model);
+		
 		$this->render('portalempresa',array('model'=>$model,'promos' => $promos
 		));
 	}

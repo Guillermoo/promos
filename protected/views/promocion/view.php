@@ -28,7 +28,8 @@
 
 			<div class="row-fluid">
 				<div class="span12">
-
+	
+				<? $this->debug($model->categoria);?>
 					<div class="row-fluid">
 						<div class="span9">
 							<h2><?=$model->titulo ?></h2>

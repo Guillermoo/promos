@@ -58,6 +58,7 @@ class PromocionController extends Controller
 		//$dataProvider=new CActiveDataProvider('Promocion');
 		
 		if (isset($title_slug)){
+			
 			$promocion=Promocion::model()->findByAttributes(array('titulo_slug'=>$title_slug));
 
 			if (isset($promocion)){
@@ -66,11 +67,9 @@ class PromocionController extends Controller
 				));
 				Yii::app()->end();
 			}
-			
 		}
+
 		$this->render('error');
-		
-		
 	}
 
 	/**

@@ -38,6 +38,7 @@ class Promocion extends CActiveRecord
     const IS_NODESTACADA=0;
 
     public $nbempresa;
+    public $categoria;
 	
 	/**
 	 * Returns the static model of the specified AR class.
@@ -65,7 +66,7 @@ class Promocion extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('titulo, titulo_slug, resumen,  fecha_inicio, fecha_fin, destacado, precio, condiciones, stock', 'required'),
-			array('id,user_id, estado, destacado, stock,precio', 'numerical', 'integerOnly'=>true),
+			array('id,user_id,cat_id,estado, destacado, stock,precio', 'numerical', 'integerOnly'=>true),
 			array('titulo, titulo_slug, resumen', 'length', 'max'=>100),
 			array('fecha_inicio,fecha_fin', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true, 'on' => 'insert'),//fechaCreación es un timestamp
 			array('fecha_inicio,fecha_fin', 'default', 'value' => '0000-00-00 00:00:00', 'setOnEmpty' => true, 'on' => 'insert'),
@@ -74,7 +75,7 @@ class Promocion extends CActiveRecord
                         array('fecha_inicio,fecha_fin', 'checkFechas'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, user_id,nbempresa, titulo, titulo_slug, resumen, descripcion, descripcion_html, fecha_inicio, fecha_fin, fechaCreacion, destacado, precio, rebaja, condiciones, stock', 'safe', 'on'=>'search'),
+			array('id,user_id,cat_id,nbempresa, titulo, titulo_slug, resumen, descripcion, descripcion_html, fecha_inicio, fecha_fin, fechaCreacion, destacado, precio, rebaja, condiciones, stock', 'safe', 'on'=>'search'),
 		);
 	}
         
@@ -100,6 +101,7 @@ class Promocion extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'usuario' => array(self::BELONGS_TO, 'User', 'user_id'),
+			'categoria' => array(self::BELONGS_TO, 'Category', 'cat_id'),
 			'item' => array(self::HAS_ONE, 'Item', 'foreign_id'),
 			//'image' => array(self::HAS_MANY, 'Item', 'id'),
 		);
@@ -114,6 +116,7 @@ class Promocion extends CActiveRecord
 			'id' => 'ID',
 			'user_id' => 'Empresa ID',
                         'nbempresa' => 'Empresa',
+        	'cat_id' => 'Categoria',
 			'estado' => 'Estado',
 			'titulo' => 'Titulo',
 			'titulo_slug' => 'titulo_slug',

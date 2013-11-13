@@ -73,9 +73,9 @@ class Empresa extends CActiveRecord
             return array(
                     'usuario' => array(self::BELONGS_TO, 'User', 'user_id'),
                     //'cuenta' => array(self::HAS_ONE, 'Cuenta', 'id'),
-                    'categoria' => array(self::MANY_MANY, 'Category', 'tbl_emp_cat(empresa_id,categoria_id)'),
+                    //'categoria' => array(self::MANY_MANY, 'Category', 'tbl_emp_cat(empresa_id,categoria_id)'),
                     //(G)O la de arriba o la de abajo, no las dos
-                    'empCat' => array(self::HAS_MANY, 'EmpCat', 'empresa_id'),
+                   // 'empCat' => array(self::HAS_MANY, 'EmpCat', 'empresa_id'),
                     //'promociones' => array(self::HAS_MANY,'Promocion','empresa_id'),
             );
     }
