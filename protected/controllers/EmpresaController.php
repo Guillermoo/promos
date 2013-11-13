@@ -143,6 +143,7 @@ class EmpresaController extends Controller
 	public function actionIndex()
 	{
 		$dataProvider=new CActiveDataProvider('Empresa');
+		//$this->debug($dataProvider);
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));

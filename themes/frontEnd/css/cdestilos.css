@@ -31,3 +31,6 @@ h1,h2,h3{
 .summary{
 	display: none;
 }
+.row-fluid [class*="span"]:first-child .empresas{
+	margin-left: 2.564102564102564%;
+}
