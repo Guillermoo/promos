@@ -13,21 +13,35 @@
 ?>
 <div class="row-fluid">
 	<div class="span12">
-		<h2> <?php echo $model->nombre; ?></h2>
-		<div class="thumbnail"> 
-			<img src=" 
-			<?php echo Yii::app()->baseUrl.$model->usuario->item->path; ?>"/>
-		</div>
+		<center><?php $this->widget('bootstrap.widgets.TbButton', array(
+    		'label'=>'Listado empresas',
+    		'type'=>'', // null, 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
+    		'size'=>'large', // null, 'large', 'small' or 'mini'
+    		'icon'=>' icon-arrow-left',
+    		'url'=>array('/empresas')
+			)); 
+		?></center>
+	</div>
+</div>
+<div class="row-fluid">
+	<div class="span10"><h2> <?php echo $model->nombre; ?></h2></div>
+	<div class="social span1"><?php echo CHtml::link(CHtml::image(Yii::app()->theme->baseurl.'/img/icon-facebook-big.png', $alt='facebook'),$model->facebook) ?></div>
+		<div class="social span1"><?php echo CHtml::link(CHtml::image(Yii::app()->theme->baseurl.'/img/icon-twitter-big.png', $alt='twitter'),$model->twitter) ?></div>
+		<div class="span12">			
+			<?php if(isset($model->usuario->item->path)){ ?>
+			<div class="thumbnail"> 
+				<?php
+						echo CHtml::image(Yii::app()->baseUrl.$model->usuario->item->path, $alt='logo');
+					?>
+			</div>
+			<?php } ?>
 		<span class="label label-info">Web:</span>
 		<div class="well clearfix"> <?php echo "<a href='".$model->web."' target='_blank'>".$model->web."</a>" ?>
-		</div>		
-
-		<span class="label label-info">Facebook:</span>
-		<div class="well well-small clearfix"> <?php echo CHtml::link(CHtml::encode($model->facebook), $model->web) ?>
 		</div>
+		<span class="label label-info">Dirección:</span>
+		<div class="well clearfix"> <?php echo $model->usuario->profile->direccion;
 
-		<span class="label label-info">Twitter:</span>
-		<div class="well well-small clearfix"> <?php echo CHtml::link(CHtml::encode($model->twitter), $model->web) ?>
+		//$this->debug($model) ?>
 		</div>
 	</div>
 </div>
@@ -46,7 +60,7 @@
 		<div class="span12">
 			<ul class="thumbnails product-list-inline-large">
 <?php
-if(empty($model->usuario->promocion)){
+if(!isset($model->usuario->promocion) || empty($model->usuario->promocion)){
 ?>
 	<div class="alert alert-info">Esta empresa no tiene ninguna promoción activada</div>
 <?php
