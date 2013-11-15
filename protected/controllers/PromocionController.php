@@ -80,11 +80,12 @@ class PromocionController extends Controller
 		$criteria=new CDbCriteria;
         $criteria->with = array( 'item');
 
-        $criteria->limit = 4;
+        //$criteria->limit = 6;
         $criteria->compare('estado',Promocion::STATUS_ACTIVA);
         $criteria->select = 'titulo,titulo_slug,resumen,precio';
         $criteria->order = 'RAND()';
-        //$criteria->addCondition('exp_d > "'.$now.'" ');
+        //$criteria->offset = 4;
+        //$criteria->pagination = 3;
 
 		$promociones = Promocion::model()->findAll($criteria);
 		

@@ -34,11 +34,14 @@
 
 	</head>
 
-	<body>		
+	<body>	
+	<?php if(!empty(Yii::app()->params['debugContent'])):?>
+            <?php echo Yii::app()->params['debugContent'];?>
+	  	<?php endif;?>	
 		<div class="navbar pull-right header-nav" id="superior">
 			<ul class="nav">
 				<li>
-					<?php echo CHtml::link('Login','user/login');?>							
+					<?php echo CHtml::link('Login',Yii::app()->baseUrl.'/user/login');?>							
 					<ul class="dropdown-menu">
 						<li>
 							<div class="dropdown-content">
@@ -55,21 +58,19 @@
 					</ul>
 				</li>
 				<li>
-					<?php echo CHtml::link('Nueva Empresa','user/registrationcompany');?>	
+					<?php echo CHtml::link('Nueva Empresa',Yii::app()->baseUrl.'/user/registrationcompany');?>	
 				</li>
 				<li>
-					<?php echo CHtml::link('Nuevo Comprador','user/registrarcomprador');?>	
+					<?php echo CHtml::link('Nuevo Comprador',Yii::app()->baseUrl.'/user/registrarcomprador');?>	
 				</li>
 			</ul>
 		</div>
-	<?php if(!empty(Yii::app()->params['debugContent'])):?>
-	                <?php echo Yii::app()->params['debugContent'];?>
-	  <?php endif;?>
+		
 		<!-- Facebook div for like button -->
 		<div id="fb-root"></div>
 
 		<!-- Div for shade line -->
-		<div class="header-shadow"></div>
+		<!--<div class="header-shadow"></div>--><!--He borrado esto poruqe no se veía el menú-->
 
 		<!-- Use class "container-fluid" on the following div for making complete website fluid -->
 		<div class="container">
@@ -121,13 +122,10 @@
 					</div>
 				</div>
 			</div>			
-
 			<?php echo $content; ?>			
-			
-	</div>
-	<div class="footer">
-				<p align="center"> ProEmoción - Tu web de promociones   |    contacto: 976 XXX XXX </p>
-	</div>
+		</div>
 	</body>
-
+	<div class="footer">
+			<p align="center"> ProEmoción - Tu web de promociones  |    contacto: 976 XXX XXX </p>
+		</div>
 </html>

@@ -9,9 +9,9 @@
 	<div class="slider-wrapper theme-bar">
 		<div class="ribbon"></div>
 		<div id="slider1" class="nivoslider">
-			<a href="#"><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/header_01.jpg" alt="ProEmocion"></a>
-			<a href="#"><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/header_02.jpg" alt="" title="Aprovéchate de las últimas ofertas"></a>
-			<img src="<?php echo Yii::app()->request->baseUrl; ?>/img/header_03.jpg" alt="" title="">
+			<a href="#"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/img/header_01.jpg" alt="ProEmocion"></a>
+			<a href="#"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/img/header_02.jpg" alt="" title="Aprovéchate de las últimas ofertas"></a>
+			<img src="<?php echo Yii::app()->theme->baseUrl; ?>/img/header_03.jpg" alt="" title="">
 		</div>
 	</div>
 </div>

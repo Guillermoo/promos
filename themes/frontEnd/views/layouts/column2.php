@@ -5,7 +5,7 @@
 	<div class="span3">
 		<div class="sidebar-nav">
         
-		  <?php $this->widget('zii.widgets.CMenu', array(
+		  <?php $this->widgsdet('zii.widgets.CMenu', array(
 			/*'type'=>'list',*/
 			'encodeLabel'=>false,
 			'items'=>array(

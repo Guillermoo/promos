@@ -72,7 +72,7 @@ class Category extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-            // 'promocion'=>array(self::HAS_ONE, 'Promocion', 'category_id'),
+             'promocion'=>array(self::HAS_MANY, 'Promocion', 'user_id'),
 		);
 	}
 
@@ -116,88 +116,86 @@ class Category extends CActiveRecord
 		));
 	}
 
-        public function behaviors()
-{
-    return array(
-        'NestedSetBehavior'=>array(
-            'class'=>'ext.nestedBehavior.NestedSetBehavior',
-            'leftAttribute'=>'lft',
-            'rightAttribute'=>'rgt',
-            'levelAttribute'=>'level',
-            'hasManyRoots'=>true
-            )
-    );
-}
+	public function behaviors()
+	{
+	    return array(
+	        'NestedSetBehavior'=>array(
+	            'class'=>'ext.nestedBehavior.NestedSetBehavior',
+	            'leftAttribute'=>'lft',
+	            'rightAttribute'=>'rgt',
+	            'levelAttribute'=>'level',
+	            'hasManyRoots'=>true
+	            )
+	    );
+	}
 
   public static  function printULTree(){
      $categories=Category::model()->findAll(array('order'=>'root,lft'));
      $level=0;
 
-foreach($categories as $n=>$category)
-{
+	foreach($categories as $n=>$category)
+	{
+	    if($category->level==$level)
+	        echo CHtml::closeTag('li')."\n";
+	    else if($category->level>$level)
+	        echo CHtml::openTag('ul')."\n";
+	    else
+	    {
+	        echo CHtml::closeTag('li')."\n";
 
-    if($category->level==$level)
-        echo CHtml::closeTag('li')."\n";
-    else if($category->level>$level)
-        echo CHtml::openTag('ul')."\n";
-    else
-    {
-        echo CHtml::closeTag('li')."\n";
+	        for($i=$level-$category->level;$i;$i--)
+	        {
+	            echo CHtml::closeTag('ul')."\n";
+	            echo CHtml::closeTag('li')."\n";
+	        }
+	    }
 
-        for($i=$level-$category->level;$i;$i--)
-        {
-            echo CHtml::closeTag('ul')."\n";
-            echo CHtml::closeTag('li')."\n";
-        }
-    }
+	    echo CHtml::openTag('li',array('id'=>'node_'.$category->id,'rel'=>$category->name));
+	      echo CHtml::openTag('a',array('href'=>'#'));
+	    echo CHtml::encode($category->name);
+	      echo CHtml::closeTag('a');
 
-    echo CHtml::openTag('li',array('id'=>'node_'.$category->id,'rel'=>$category->name));
-      echo CHtml::openTag('a',array('href'=>'#'));
-    echo CHtml::encode($category->name);
-      echo CHtml::closeTag('a');
+	    $level=$category->level;
+	}
 
-    $level=$category->level;
-}
-
-for($i=$level;$i;$i--)
-{
-    echo CHtml::closeTag('li')."\n";
-    echo CHtml::closeTag('ul')."\n";
-}
-
-}
-
-public static  function printULTree_noAnchors(){
-    $categories=Category::model()->findAll(array('order'=>'lft'));
-    $level=0;
-
-foreach($categories as $n=>$category)
-{
-    if($category->level == $level)
-        echo CHtml::closeTag('li')."\n";
-    else if ($category->level > $level)
-        echo CHtml::openTag('ul')."\n";
-    else         //if $category->level<$level
-    {
-        echo CHtml::closeTag('li')."\n";
-
-        for ($i = $level - $category->level; $i; $i--) {
-                    echo CHtml::closeTag('ul') . "\n";
-                    echo CHtml::closeTag('li') . "\n";
-                }
-    }
-
-    echo CHtml::openTag('li');
-    echo CHtml::encode($category->name);
-    $level=$category->level;
-}
-
-for ($i = $level; $i; $i--) {
-            echo CHtml::closeTag('li') . "\n";
-            echo CHtml::closeTag('ul') . "\n";
-        }
+	for($i=$level;$i;$i--)
+	{
+	    echo CHtml::closeTag('li')."\n";
+	    echo CHtml::closeTag('ul')."\n";
+	}
 
 }
+
+	public static  function printULTree_noAnchors(){
+	    $categories=Category::model()->findAll(array('order'=>'lft'));
+	    $level=0;
+
+		foreach($categories as $n=>$category){
+		    if($category->level == $level)
+		        echo CHtml::closeTag('li')."\n";
+		    else if ($category->level > $level)
+		        echo CHtml::openTag('ul')."\n";
+		    else         //if $category->level<$level
+		    {
+		        echo CHtml::closeTag('li')."\n";
+
+		        for ($i = $level - $category->level; $i; $i--) {
+		                    echo CHtml::closeTag('ul') . "\n";
+		                    echo CHtml::closeTag('li') . "\n";
+		                }
+		    }
+
+		    echo CHtml::openTag('li');
+		    echo CHtml::encode($category->name);
+		    $level=$category->level;
+		}
+
+		for ($i = $level; $i; $i--) {
+		            echo CHtml::closeTag('li') . "\n";
+		            echo CHtml::closeTag('ul') . "\n";
+	    }
+
+	}
 
 
 

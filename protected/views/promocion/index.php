@@ -39,143 +39,42 @@
 
 	</div>
 				
-		<div class="span9">
-
-			<div class="row-fluid">
-				<div class="span9">
-					<h2>Productos</h2>
-				</div>
-				<div class="span3">
-					<div class="social-icons pull-right">
-						<a href="#"><img src="<?php echo Yii::app()->theme->baseUrl?>/img/icon-facebook.png" alt="facebook"></a>
-						<a href="#"><img src="<?php echo Yii::app()->theme->baseUrl?>/img/icon-twitter.png" alt="twitter"></a>
-						<a href="#"><img src="<?php echo Yii::app()->theme->baseUrl?>/img/icon-linkedin.png" alt="linkedin"></a>
-						<a href="#"><img src="<?php echo Yii::app()->theme->baseUrl?>/img/icon-rss.png" alt="rss"></a>
-					</div>
+	<div class="span9">
+		<div class="row-fluid">
+			<div class="span9">
+				<h2>Productos</h2>
+			</div>
+			<div class="span3">
+				<div class="social-icons pull-right">
+					<a href="#"><img src="<?php echo Yii::app()->theme->baseUrl?>/img/icon-facebook.png" alt="facebook"></a>
+					<a href="#"><img src="<?php echo Yii::app()->theme->baseUrl?>/img/icon-twitter.png" alt="twitter"></a>
+					<a href="#"><img src="<?php echo Yii::app()->theme->baseUrl?>/img/icon-linkedin.png" alt="linkedin"></a>
+					<a href="#"><img src="<?php echo Yii::app()->theme->baseUrl?>/img/icon-rss.png" alt="rss"></a>
 				</div>
 			</div>
-			<div class="row-fluid">
-				<div class="span12">
-					<ul class="thumbnails product-list-inline-small">
-						<?php foreach ($model as $key => $promo):	?>
-							<li class="span3">
-									<div class="thumbnail">
-									<?php if (isset($promo->item)): ?>
-										<a href="promocion/<?=$promo->titulo_slug ?>"><img src="<?php echo Yii::app()->request->baseUrl.$promo->item->path ?>" alt=""></a>
-									<?php else: ?>
-										<a href="promocion/<?=$promo->titulo_slug ?>"><img src="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>" alt=""></a>
-									<?php endif; ?>
-									
-									<div class="caption">
-										<a href="promocion/<?=$promo->titulo_slug ?>"><?=$promo->titulo ?></a>
-										<p><?=$promo->resumen ?> <span class="label label-info price pull-right">&euro; <?=$promo->precio ?>,-</span></p>
-									</div>
-								</div>
-							</li>
-						<?php endforeach;?>
-						<!--<li class="span3">
-							<div class="thumbnail">
-								<a href="#"><img src="img/product_01.jpg" alt=""></a>
-								<div class="caption">
-									<a href="#"></a>
-									<p>Lorem ipsum dolor sit amet <span class="label label-info price pull-right">&euro; 123,-</span></p>
-								</div>
-							</div>
-						</li>
+		</div>
+		<div class="row-fluid">
+			<div class="span12">
+				<ul class="thumbnails product-list-inline-small">
+					<?php foreach ($model as $key => $promo):	?>
 						<li class="span3">
-							<div class="thumbnail">
-								<a href="#"><img src="img/product_02.jpg" alt=""></a>
+								<div class="thumbnail">
+								<?php if (isset($promo->item)): ?>
+									<a href="promocion/<?=$promo->titulo_slug ?>"><img src="<?php echo Yii::app()->request->baseUrl.$promo->item->path ?>" alt=""></a>
+								<?php else: ?>
+									<a href="promocion/<?=$promo->titulo_slug ?>"><img src="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>" alt=""></a>
+								<?php endif; ?>
+								
 								<div class="caption">
-									<a href="#">Product B</a>
-									<p>Lorem ipsum dolor sit amet <span class="label label-info price pull-right">&euro; 123,-</span></p>
+									<a href="promocion/<?=$promo->titulo_slug ?>"><?=$promo->titulo ?></a>
+									<p><?=$promo->resumen ?> <span class="label label-info price pull-right">&euro; <?=$promo->precio ?>,-</span></p>
 								</div>
 							</div>
 						</li>
-						<li class="span3">
-							<div class="thumbnail">
-								<a href="#"><img src="img/product_03.jpg" alt=""></a>
-								<div class="caption">
-									<a href="#">Product C</a>
-									<p>Lorem ipsum dolor sit amet <span class="label label-important price pull-right">&euro; 123,-</span></p>
-								</div>
-							</div>
-						</li>
-						<li class="span3">
-							<div class="thumbnail">
-								<a href="#"><img src="img/product_04.jpg" alt=""></a>
-								<div class="caption">
-									<a href="#">Product D</a>
-									<p>Lorem ipsum dolor sit amet <span class="label label-important price pull-right">&euro; 123,-</span></p>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
+					<?php endforeach;?>
+				</ul>
 			</div>
-
-			<!--<div class="row-fluid">
-				<div class="span12">
-					<ul class="thumbnails product-list-inline-small">
-						<li class="span2">
-							<div class="thumbnail">
-								<a href="#"><img src="img/product_01.jpg" alt=""></a>
-								<div class="caption">
-									<a href="#">Product A</a>
-									<p>Lorem ipsum dolor sit amet <span class="label label-info price pull-right">&euro; 123,-</span></p>
-								</div>
-							</div>
-						</li>
-						<li class="span2">
-							<div class="thumbnail">
-								<a href="#"><img src="img/product_02.jpg" alt=""></a>
-								<div class="caption">
-									<a href="#">Product B</a>
-									<p>Lorem ipsum dolor sit amet <span class="label label-info price pull-right">&euro; 123,-</span></p>
-								</div>
-							</div>
-						</li>
-						<li class="span2">
-							<div class="thumbnail">
-								<a href="#"><img src="img/product_03.jpg" alt=""></a>
-								<div class="caption">
-									<a href="#">Product C</a>
-									<p>Lorem ipsum dolor sit amet <span class="label label-important price pull-right">&euro; 123,-</span></p>
-								</div>
-							</div>
-						</li>
-						<li class="span2">
-							<div class="thumbnail">
-								<a href="#"><img src="img/product_04.jpg" alt=""></a>
-								<div class="caption">
-									<a href="#">Product D</a>
-									<p>Lorem ipsum dolor sit amet <span class="label label-info price pull-right">&euro; 123,-</span></p>
-								</div>
-							</div>
-						</li>
-						<li class="span2">
-							<div class="thumbnail">
-								<a href="#"><img src="img/product_05.jpg" alt=""></a>
-								<div class="caption">
-									<a href="#">Product E</a>
-									<p>Lorem ipsum dolor sit amet <span class="label label-info price pull-right">&euro; 123,-</span></p>
-								</div>
-							</div>
-						</li>
-						<li class="span2">
-							<div class="thumbnail">
-								<a href="#"><img src="img/product_06.jpg" alt=""></a>
-								<div class="caption">
-									<a href="#">Product F</a>
-									<p>Lorem ipsum dolor sit amet <span class="label label-important price pull-right">&euro; 123,-</span></p>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div>
-
-		</div>-->
-
+		</div>
 	</div>
 
 	<div class="row-fluid">
@@ -196,8 +95,9 @@
 		</div>
 	</div>
 
-	<div class="row-fluid">
+	<!--<div class="row-fluid">
 		<div class="span12 well well-small">
 				&copy; <script>document.write(new Date().getFullYear());</script> - All taxes are excluded - shipping costs depends on location - <a href="#">more info <i class="icon-chevron-right"></i></a>
 		</div>
-	</div>
+	</div>-->
+</div>
