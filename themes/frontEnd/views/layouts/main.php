@@ -122,14 +122,12 @@
 				</div>
 			</div>			
 
-			<?php echo $content; ?>
-			<div class="footer">
-				<p align="center"> ProEmoción - Tu web de promociones   |    contacto: 976 XXX XXX </p>
-			</div>
+			<?php echo $content; ?>			
 			
 	</div>
-
-	
+	<div class="footer">
+				<p align="center"> ProEmoción - Tu web de promociones   |    contacto: 976 XXX XXX </p>
+	</div>
 	</body>
 
 </html>
