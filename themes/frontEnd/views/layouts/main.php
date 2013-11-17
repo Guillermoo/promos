@@ -57,7 +57,7 @@
 						</li>
 					</ul>
 				</li>
-				<li>
+				<li>		
 					<?php echo CHtml::link('Nueva Empresa',Yii::app()->baseUrl.'/user/registrationcompany');?>	
 				</li>
 				<li>

@@ -4,14 +4,6 @@
 	</div>
 </div>
 
-<div class="row-fluid print-hide">
-	<div class="span4">
-		<div class="header-action">
-			<span class="label label-info">Free shipping on all orders over € 20,-</span>
-		</div>
-	</div>
-</div>
-
 			<!--<div class="row-fluid print-hide">
 				<div class="span3">
 					<img src="img/logo.png" alt="Logo">
@@ -30,7 +22,7 @@
 				<div class="span12">
 	
 				<? //$this->debug($model->attributes);?>
-				<? $this->debug($model->categoria);?>
+				<? $this->debug($model);?>
 					<div class="row-fluid">
 						<div class="span9">
 							<h2><?=$model->titulo ?></h2>
@@ -93,11 +85,7 @@
 							<div class="row-fluid">
 
 								<div class="span7">
-									<strong>Brand:</strong> <span>Squeezer</span><br>
-									<strong>Model:</strong> <span>Duck</span><br>
-									<strong>Size:</strong> <span>7</span><br>
-									<strong>Color</strong> <span>Yellow</span><br>
-									<strong>Quality:</strong> <span>new</span><br>
+									<h3><?=$model->titulo ?></h3>
 								</div>
 
 								<div class="span5">
@@ -109,7 +97,7 @@
 							<div class="row-fluid">
 								<div class="span12">
 									<br>
-									<h3>Description</h3>
+									<h4>Descripción</h4>
 									<p><?=$model->descripcion ?></p>
 									<hr>
 								</div>
@@ -120,7 +108,7 @@
 								<div class="span3">
 									<!--<button class="btn"><i class="icon-chevron-left"></i> <a href="/page2">Continue</a></button>-->
 									<?php $this->widget('bootstrap.widgets.TbButton', array(
-									    'label'=>'Back',
+									    'label'=>'Volver',
 									    'htmlOptions'   => array('class'=>'btn'),
 									    'icon'=>'chevron-left',
 									    'type'=>null, // null, 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
@@ -129,28 +117,15 @@
 									)); ?>
 								</div>
 
-								<div class="span6">
-									<form class="form-horizontal">
-										<fieldset>
-											<div class="control-group">
-												<label class="control-label">Count</label>
-												<div class="controls">
-													<select class="input-mini">
-														<option value="1">1</option>
-														<option value="2">2</option>
-														<option value="3">3</option>
-														<option value="4">4</option>
-														<option value="5">5</option>
-													</select>
-												</div>
-											</div>
-										</fieldset>
-									</form>
-								</div>
-
-								<div class="span3">
-									<div class="row-fluid">
-										<button class="btn btn-primary"><i class="icon-shopping-cart icon-white"></i> Order now</button>
+								<div class="span9" align="right">
+									<form name="_xclick" action="https://www.paypal.com/es/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_xclick">
+<input type="hidden" name="business" value="proemocion@proemocion.com">
+<input type="hidden" name="currency_code" value="EUR">
+<input type="hidden" name="item_name" value="<?=$model->titulo ?>">
+<input type="hidden" name="amount" value="<?=$model->precio ?>">
+<input type="image" src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="Realice pagos con PayPal: es rápido, gratis y seguro">
+									</form>											
 									</div>
 								</div>
 							</div>

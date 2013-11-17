@@ -60,7 +60,7 @@
 				<div class="span8">
 					<div class="navbar pull-right header-nav" id="superior">
 						<ul class="nav">
-							<li class="dropdown">
+							<li>
 								<?php echo cHtml::link('Login',Yii::app()->getModule('user')->loginUrl);?>								
 								<ul class="dropdown-menu">
 									<li>

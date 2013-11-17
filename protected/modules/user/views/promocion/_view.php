@@ -3,36 +3,20 @@
 /* @var $data Promociones */
 ?>
 
-<div class="view">
-
-	<!-- <b><?php /*echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id'=>$data->id));*/ ?>
-	<br /> -->
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('user_id')); ?>:</b>
-	<?php echo CHtml::encode($data->user_id); ?>
-	<br />
-
-	<b><?php //echo CHtml::encode($data->getAttributeLabel('estado')); ?>:</b>
-	<?php //echo CHtml::encode($data->estado); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('titulo')); ?>:</b>
-	<?php echo CHtml::encode($data->titulo); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('titulo_slug')); ?>:</b>
-	<?php echo CHtml::encode($data->titulo_slug); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('resumen')); ?>:</b>
-	<?php echo CHtml::encode($data->resumen); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('descripcion')); ?>:</b>
-	<?php echo CHtml::encode($data->descripcion); ?>
-	<br />
-
+<li class="span3">
+								<div class="thumbnail">
+								<?php if (isset($data->item)): ?>
+									<a href="promocion/<?=$data->titulo_slug ?>"><img src="<?php echo Yii::app()->request->baseUrl.$promo->item->path ?>" alt=""></a>
+								<?php else: ?>
+									<a href="promocion/<?=$data->titulo_slug ?>"><img src="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>" alt=""></a>
+								<?php endif; ?>
+								
+								<div class="caption">
+									<a href="promocion/<?=$data->titulo_slug ?>"><?=$data->titulo ?></a>
+									<p><?=$data->resumen ?> <span class="label label-info price pull-right">&euro; <?=$data->precio ?>,-</span></p>
+								</div>
+							</div>
+						</li>
 	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('descripcion_html')); ?>:</b>
 	<?php echo CHtml::encode($data->descripcion_html); ?>
@@ -71,5 +55,3 @@
 	<br />
 
 	*/ ?>
-
-</div>

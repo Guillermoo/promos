@@ -288,8 +288,7 @@ class PromocionController extends Controller
                     )
             ));
         }else{
-            throw new CHttpException(404,'Sorry, we cannot process your request. Try again
-                            later.');
+            throw new CHttpException(404,'Error al procesar la petición. Por favor, inténtelo de nuevo más tarde. Si el problema persiste contacte con el administrador.');
         }
 
         $this->render('activas',array('dataProvider'=>$dataProvider));

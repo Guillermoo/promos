@@ -1,6 +1,11 @@
 .header-shadow{
 	background-color: #F0F0F0;
 }
+
+#superior{
+	z-index: 999999999999999;
+}
+
 #superior li>a{
 	color: #08c;
 }
