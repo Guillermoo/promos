@@ -40,6 +40,7 @@
 	  	<?php endif;?>	
 		<div class="navbar pull-right header-nav" id="superior">
 			<ul class="nav">
+				<?php if(isset(Yii::app()->baseUrl)): ?>
 				<li>
 					<?php echo CHtml::link('Login',Yii::app()->baseUrl.'/user/login');?>							
 					<ul class="dropdown-menu">
@@ -63,6 +64,11 @@
 				<li>
 					<?php echo CHtml::link('Nuevo Comprador',Yii::app()->baseUrl.'/user/registrarcomprador');?>	
 				</li>
+		<?php else: ?>
+			<li>
+				<?php echo CHtml::link('Panel de usuario',Yii::app()->baseUrl.'/user/profile');?>
+			</li>
+		<?php endif; ?>
 			</ul>
 		</div>
 		

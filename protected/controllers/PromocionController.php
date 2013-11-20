@@ -60,10 +60,11 @@ class PromocionController extends Controller
 		if (isset($title_slug)){
 			
 			$promocion=Promocion::model()->findByAttributes(array('titulo_slug'=>$title_slug));
+			$datos = Profile::model()->				findByAttributes(array('user_id'=>$promocion->user_id));
 
-			if (isset($promocion)){
+			if (isset($promocion) && isset($datos)){				
 				$this->render('view',array(
-					'model'=>$promocion,
+					'model'=>$promocion, 'datos'=>$datos
 				));
 				Yii::app()->end();
 			}

@@ -22,7 +22,6 @@
 				<div class="span12">
 	
 				<? //$this->debug($model->attributes);?>
-				<? $this->debug($model);?>
 					<div class="row-fluid">
 						<div class="span9">
 							<h2><?=$model->titulo ?></h2>
@@ -119,13 +118,13 @@
 
 								<div class="span9" align="right">
 									<form name="_xclick" action="https://www.paypal.com/es/cgi-bin/webscr" method="post">
-<input type="hidden" name="cmd" value="_xclick">
-<input type="hidden" name="business" value="proemocion@proemocion.com">
-<input type="hidden" name="currency_code" value="EUR">
-<input type="hidden" name="item_name" value="<?=$model->titulo ?>">
-<input type="hidden" name="amount" value="<?=$model->precio ?>">
-<input type="image" src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="Realice pagos con PayPal: es rápido, gratis y seguro">
-									</form>											
+										<input type="hidden" name="cmd" value="_xclick">
+										<input type="hidden" name="business" value="<?php echo $datos->paypal_id; ?>">
+										<input type="hidden" name="currency_code" value="EUR">
+										<input type="hidden" name="item_name" value="<?=$model->titulo ?>">
+										<input type="hidden" name="amount" value="<?=$model->precio ?>">
+										<input type="image" src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="Realice pagos con PayPal: es rápido, gratis y seguro">
+									</form>				
 									</div>
 								</div>
 							</div>
@@ -182,13 +181,6 @@
 
 				</div>
 			</div>
-
-			<div class="row-fluid">
-				<div class="span12 well well-small">
-						&copy; <script>document.write(new Date().getFullYear());</script> - All taxes are excluded - shipping costs depends on location - <a href="#">more info <i class="icon-chevron-right"></i></a>
-				</div>
-			</div>
-
 			<!--<div class="footer">
 
 				<div class="row-fluid print-hide">

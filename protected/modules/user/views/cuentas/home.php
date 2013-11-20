@@ -20,6 +20,11 @@
 	<?php if($model->profile->tipocuenta != 3):?>
 		<?php echo "Todavía no se ha realizado el pago";?>
 	<?php endif;?>
+	<?php // cancelación de la suscripción ?>
+	<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_subscr-find&alias=CJRD44LCAZWBY">
+	<img src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_unsubscribe_SM.gif" border="0">
+	</a>
+
 	<!-- Lo que tenga que salir de normal -->
 	<?php $this->widget('bootstrap.widgets.TbButton', array(
     'buttonType'=>'button',
