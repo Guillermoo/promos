@@ -10,7 +10,7 @@
 	array('label'=>'Create Empresa', 'url'=>array('create')),
 	array('label'=>'Manage Empresa', 'url'=>array('admin')),
 );*/
-?>
+?><?php $this->debug($dataProvider); ?>
 <div class="row-fluid">
 		<div class="span12">
 			<ul class="thumbnails product-list-inline-small">
@@ -18,7 +18,7 @@
 			'dataProvider'=>$dataProvider,
 			'itemView'=>'_verresumen',
 		)); ?>
-		</ul>
-	</div>
+			</ul>
+		</div>
 </div>
 

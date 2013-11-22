@@ -144,8 +144,10 @@ class EmpresaController extends Controller
 	{
 		$dataProvider=new CActiveDataProvider('Empresa');
 		//$this->debug($dataProvider);
+		//$datos = Item::model()->findByAttributes(array('foreign_id'=>$dataProvider->user_id));
+		//$this->debug($datos);
 		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
+			'dataProvider'=>$dataProvider
 		));
 	}
 

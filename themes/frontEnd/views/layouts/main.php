@@ -35,12 +35,20 @@
 	</head>
 
 	<body>	
+		<?php //$this->debug(Yii::app()->getModule('user')); ?>
+			<!-- Facebook div for like button -->
+		<div id="fb-root"></div>
+
+		<!-- Div for shade line -->
+		<div class="header-shadow"></div>
+
+		<!-- Use class "container-fluid" on the following div for making complete website fluid -->
 	<?php if(!empty(Yii::app()->params['debugContent'])):?>
             <?php echo Yii::app()->params['debugContent'];?>
 	  	<?php endif;?>	
 		<div class="navbar pull-right header-nav" id="superior">
 			<ul class="nav">
-				<?php if(isset(Yii::app()->baseUrl)): ?>
+				<?php if(Yii::app()->user->isGuest): ?>
 				<li>
 					<?php echo CHtml::link('Login',Yii::app()->baseUrl.'/user/login');?>							
 					<ul class="dropdown-menu">
@@ -66,7 +74,10 @@
 				</li>
 		<?php else: ?>
 			<li>
-				<?php echo CHtml::link('Panel de usuario',Yii::app()->baseUrl.'/user/profile');?>
+				<?php echo CHtml::link('Panel de control de '.Yii::app()->user->name,Yii::app()->baseUrl.'/user/profile');?>
+			</li>
+			<li>
+				<?php echo cHtml::link('Cerrar sesión',Yii::app()->getModule('user')->logoutUrl);?>
 			</li>
 		<?php endif; ?>
 			</ul>
@@ -90,18 +101,9 @@
 			</div>
 
 			<div class="row-fluid print-hide">
-				<div class="span3 logo">
+				<div class="span7 logo">
 					<img src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/img/logo.png" alt="Logo">
-				</div>
-				<div class="span4">
-					<form class="form-search header-search">
-						<div class="input-append">
-							<input class="input-large search-query" type="text"placeholder="Buscar productos...">
-							<button class="btn" type="submit">buscar</button>
-						</div>
-					</form>
-				</div>
-					
+				</div>					
 				<br>
 				<div class="span5">
 					<img src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/img/banner_top.jpg" alt="No shipping">
@@ -118,7 +120,7 @@
 									<ul class="nav">
 										<li class="active"><a href=<?=Yii::app()->homeUrl ?> ><i class="icon-home"></i></a></li>
 										<li class="divider-vertical"></li>
-										<li><?php echo Chtml::link('Promociones',array('/promociones'))?></li>
+										<!--<li><?php //echo Chtml::link('Promociones',array('/promociones'))?></li>-->
 										<li><?php echo Chtml::link('Categorias',array('categoria/index'))?></li>
 										<li><?php echo Chtml::link('Empresas',array('/empresas'))?></li>										
 									</ul>										
