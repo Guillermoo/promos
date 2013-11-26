@@ -39,3 +39,6 @@ h1,h2,h3{
 .row-fluid [class*="span"]:first-child .empresas{
 	margin-left: 2.564102564102564%;
 }
+body{
+	/*background-image: url("../img/bg_main.png");*/
+}

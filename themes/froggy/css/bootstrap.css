@@ -3176,7 +3176,7 @@ button.btn.small, input[type="submit"].btn.small {
 .navbar .nav li.dropdown.open > .dropdown-toggle,
 .navbar .nav li.dropdown.active > .dropdown-toggle,
 .navbar .nav li.dropdown.open.active > .dropdown-toggle {
-  background-color: transparent;
+  background-color: #E70A8F;
 }
 
 .navbar .nav li.dropdown.active > .dropdown-toggle:hover {
@@ -4242,12 +4242,13 @@ padding: 0
 .subnav .nav > li > a {
   margin: 0;
   color:#4DB848;
+  margin-top: 10px;
   height:32px;
   padding-top:    11px;
   font-size:17px;
   padding-top: 17px;
-  border-left: 1px solid #f5f5f5;
-  border-right: 1px solid #e5e5e5;
+  /*border-left: 1px solid #f5f5f5;
+  border-right: 1px solid #e5e5e5;*/
   -webkit-border-radius: 0;
      -moz-border-radius: 0;
           border-radius: 0;
@@ -4258,7 +4259,8 @@ padding: 0
 .subnav .nav > .active > a,
 .subnav .nav > .active > a:hover {
   padding-left: 13px;
-  color: #FFFFFF;
+  margin-top: 10px;
+  color: #FFFFFF !important;
   background-color: #E70A8F;
   border-right-color: #ddd;
   border-left: 0;

@@ -8,7 +8,7 @@
 	'id'=>'empresa-form',
 	'enableAjaxValidation'=>false,
 	'type'=>'horizontal',
-    'action'=>$action,
+    'action'=>$action,    
 	'clientOptions'=>array(
 		'validateOnSubmit'=>true,
 	),
@@ -18,17 +18,12 @@
 
 <fieldset>
     
-        <p class="note">Fields with <span class="required">*</span> are required.</p>
+        <p class="note">Los campos con <span class="required">*</span> son obligatorios.</p>
         
 	<?php //Sólo la compañía tiene reglas de validación ?>
 	<?php if (!UserModule::isCompany(Yii::app()->user->id) ):?>
 		<?php echo $form->errorSummary(array($empresa)); ?>
 	<?php endif;?>
-	
-	<?php $this->widget('bootstrap.widgets.TbLabel', array(
-	    'type'=>'info', // 'success', 'warning', 'important', 'info' or 'inverse'
-	    'label'=>'Empresa',
-	)); ?>
 	
 	<!-- <div class="row"><!-- HAy que mostrar las categorías a las que pertenece pero no dejar editar -->
 		<!-- (G)De moment lo dejo así, ya se me ocurrirá algo mejor 
@@ -56,7 +51,7 @@
 	<?php endif;*/?>
 	<?php //$this->debug($image);?>
 	<div class="row">
-        <?php echo $form->labelEx($image,'photos'); ?>
+        <?php echo $form->labelEx($image,'Imagen corporativa'); ?>
         <div id="logo_form">
         <?php if (!isset($image) || (!isset($empresa->usuario->item))): ?>
         	<?php
@@ -82,10 +77,10 @@
     		<?php echo CHtml::image(Yii::app()->request->baseUrl.$empresa->usuario->item->path,"image",array("width"=>350)); ?>
             <button class="btn btn-danger">
                     <i class="icon-trash icon-white"></i>
-                    <?php echo CHtml::ajaxLink('Delete', array(Yii::app()->request->baseUrl.'/user/item/delete','id'=>$empresa->usuario->item->id),
+                    <?php echo CHtml::ajaxLink('Eliminar', array(Yii::app()->request->baseUrl.'/user/item/delete','id'=>$empresa->usuario->item->id),
                     array('update' => '#logo_form'))?>
             </button>
-            <?php echo CHtml::ajaxLink('Delete', array(
+            <?php echo CHtml::ajaxLink('Eliminar', array(
             	'empresa/deleteItem',
             	'id'=>$empresa->usuario->item->id),
             	array('update' => '#logo_form'))?>
@@ -114,31 +109,25 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($empresa,'web'); ?>
+		<?php echo $form->labelEx($empresa,'Página web'); ?>
 		<?php echo $form->textField($empresa,'web',array('size'=>60,'maxlength'=>100)); ?>
 		<?php echo $form->error($empresa,'web'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($empresa,'twitter'); ?>
+		<?php echo $form->labelEx($empresa,'Twitter'); ?>
 		<?php echo $form->textField($empresa,'twitter',array('size'=>60,'maxlength'=>100)); ?>
 		<?php echo $form->error($empresa,'twitter'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($empresa,'facebook'); ?>
+		<?php echo $form->labelEx($empresa,'Facebook'); ?>
 		<?php echo $form->textField($empresa,'facebook',array('size'=>60,'maxlength'=>100)); ?>
 		<?php echo $form->error($empresa,'facebook'); ?>
-	</div>
-
+	</div>	
+	<div class="clearfix">&nbsp;</div>
 	<div class="row">
-		<?php echo $form->labelEx($empresa,'urlTienda'); ?>
-		<?php echo $form->textField($empresa,'urlTienda',array('size'=>60,'maxlength'=>100)); ?>
-		<?php echo $form->error($empresa,'urlTienda'); ?>
-	</div>
-	
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Save'); ?>
+		<?php echo CHtml::submitButton('Guardar cambios'); ?>
 		<?php //Se poddría desabilitar el botón por ajax si las validaciones no se cumplen
 		//poniendo algo como ,array('disabled'=>true) en el submitButton?>
 	</div>

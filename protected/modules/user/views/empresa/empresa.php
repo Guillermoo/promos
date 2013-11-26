@@ -3,7 +3,7 @@
 <h1><?php //echo UserModule::t('Your profile'); ?></h1>
 
 <?php if(UserModule::isCompany()):?>
-    <h1><?php echo UserModule::t('Your company'); ?></h1>
+    <h1>Perfil de mi empresa</h1>
 	<?php $this->renderPartial('_form', array('empresa'=>$model->empresa,'image'=>$image));?>
 	<?php /*$this->widget('bootstrap.widgets.TbTabs', array(
 	    'tabs'=>$this->getTabularFormTabs($model,$categorias,$cuentas),
