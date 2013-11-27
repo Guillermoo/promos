@@ -144,11 +144,10 @@ class EmpresaController extends Controller
 	{
 		$dataProvider=new CActiveDataProvider('Empresa');
 		//$this->debug($dataProvider);
-		//$model = $this->loadModel($id);
-		$datos = Item::model()->findByAttributes(array('foreign_id'=>$dataProvider->id));
-		$this->debug($dataProvider->id);
+		//$empresa = $this->loadModel($dataProvider->id_usuario);
+		//$this->debug($dataProvider->id);
 		$this->render('index',array(
-			'dataProvider'=>$dataProvider,'datos'=>$datos
+			'dataProvider'=>$dataProvider
 		));
 	}
 
@@ -214,6 +213,22 @@ class EmpresaController extends Controller
 			),
 			'criteria'=>array(
 				'condition'=>'user_id='.$id,
+				//'params'=>array('estado'=>Promocion::STATUS_ACTIVA),
+			),
+		));
+		if($promos===null)
+			throw new CHttpException(404,'Esta empresa no tiene promociones.');
+		return $promos;
+	}
+
+	public function loadUser($id)
+	{
+		$promos = new CActiveDataProvider('User', array(
+				'pagination'=>array(
+				'pageSize'=>10,
+			),
+			'criteria'=>array(
+				'condition'=>'id='.$id,
 				//'params'=>array('estado'=>Promocion::STATUS_ACTIVA),
 			),
 		));

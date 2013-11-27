@@ -3,8 +3,10 @@
 		<?php 
 			//así lo pone en el formulario del perfil de la empresa:
 			//echo CHtml::image(Yii::app()->request->baseUrl.$empresa->usuario->item->path,"image",array("width"=>350));
-			if(isset($data->item)): ?>
-				<a href="#" ><img src="<?php echo Yii::app()->request->baseUrl.$data->item->path; ?>" /></a>
+			$usuario = $this->loadUser($data->user_id);
+			//$this->debug($usuario);
+			if(isset($usuario->item)): ?>
+				<a href="#" ><img src="<?php echo Yii::app()->request->baseUrl.$usuario->item->path; ?>" /></a>
 			<?php else: ?>
 				<a href="#" ><img src="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>" />
 				</a>
