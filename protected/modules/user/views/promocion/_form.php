@@ -77,7 +77,7 @@
         </div>-->
 <?php $this->debug($model->id) ?>
         <div class="row">
-            <?php echo $form->labelEx($image,'photos'); ?>
+            <?php echo $form->labelEx($item->path,'photos'); ?>
             <div id="logo_form">
             <?php if (!isset($image) || (!isset($model->item))): ?>
                 <?php

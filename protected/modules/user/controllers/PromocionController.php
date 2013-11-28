@@ -175,7 +175,8 @@ class PromocionController extends Controller
             }
             $this->render('create',array(
                     'model'=>$model,'cuenta'=>$usuario->profile->tipocuenta
-            ));	}
+            ));	
+    }
 	
 /**
 	 * Updates a particular model.
@@ -208,11 +209,11 @@ class PromocionController extends Controller
             
             $this->redirect(array('update','id'=>$this->_model->id));
         }
-        //$this->debug($this->_model->item);
-        $imageForm = $this->obtenImageForm($this->_model->item);    
+        
+        //$imageForm = $this->obtenImageForm($this->_model->item);    
         //$this->debug($imageForm);
         $this->render('update',array('model'=>$this->_model,
-            'image'=>$imageForm,
+            //'image'=>$imageForm,
         ));
 
 	}

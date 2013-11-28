@@ -2,8 +2,8 @@
 	<div class="thumbnail">
 		<?php 
 			//así lo pone en el formulario del perfil de la empresa:
-			//echo CHtml::image(Yii::app()->request->baseUrl.$empresa->usuario->item->path,"image",array("width"=>350));
-			$usuario = $this->loadUser($data->user_id);
+			//echo CHtml::image(Yii::app()->request->baseUrl.$empresa->usuario->item->path,"image",array("width"=>350));			
+			$usuario = User::model()->findByPk($data->user_id);
 			//$this->debug($usuario);
 			if(isset($usuario->item)): ?>
 				<a href="#" ><img src="<?php echo Yii::app()->request->baseUrl.$usuario->item->path; ?>" /></a>
@@ -13,18 +13,18 @@
 			<?php endif; ?>
 			<?php
 			if(empty($data->nombre)):
-				echo CHtml::link('Sin nombre', array('verpromos', 'id'=>$data->id));				
+				echo "<h4>".CHtml::link('Sin nombre', array('verpromos', 'id'=>$data->id))."</h4";				
 			else:
 				echo "<h4>".CHtml::link(CHtml::encode($data->nombre), array('verpromos', 'id'=>$data->id))."</h4>"; 
 			endif;
 			//$this->debug($datos);
 			?>
-			<?php if(isset($data->twitter) && !empty($data->twitter)){ ?>
+			<?php if(isset($data->twitter) && !empty($data->twitter)): ?>
 			<a href="<?php echo $data->twitter ?>" target="_blank"><img src="<?php echo Yii::app()->theme->baseUrl?>/img/icon-twitter.png"/></a>
-			<?php } ?>
+			<?php endif; ?>
 
-			<?php if(isset($data->facebook) && !empty($data->facebook)){ ?>
+			<?php if(isset($data->facebook) && !empty($data->facebook)): ?>
 			<a href="<?php echo $data->twitter ?>" target="_blank"><img src="<?php echo Yii::app()->theme->baseUrl?>/img/icon-facebook.png"/></a>
-			<?php } ?>
+			<?php endif; ?>
 	</div>
 </li>
