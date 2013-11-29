@@ -103,21 +103,19 @@ class PromocionController extends Controller
      
         $usuario = User::model()->findByPk(Yii::app()->user->id);
             
-            if($usuario->status == 2){                
-                $this->render('_hadtopay');
-                return;
-            }
-
+        if($usuario->status == 2){                
+            $this->render('_hadtopay');
+            return;
+        }
          
-
         //compruebo que puede crear una nueva promo de el tipo seleccionado
-            $datosCuenta = Cuenta::model()->find('id=:id',
-                array(
-                    ':id'=>$usuario->profile->tipocuenta
-                    ));
-            $maxPromos = $datosCuenta->prom_activ + $datosCuenta->prom_stock;
-            $numPromos = Promocion::model()->countByAttributes(array(
-                'user_id'=> Yii::app()->user->id
+        $datosCuenta = Cuenta::model()->find('id=:id',
+            array(
+                ':id'=>$usuario->profile->tipocuenta
+                ));
+        $maxPromos = $datosCuenta->prom_activ + $datosCuenta->prom_stock;
+        $numPromos = Promocion::model()->countByAttributes(array(
+            'user_id'=> Yii::app()->user->id
                 ));
 
         if($numPromos == $maxPromos){
@@ -135,47 +133,53 @@ class PromocionController extends Controller
         ));                
                
 
-            $model=new Promocion;
-            $model->scenario = "insert";
+        $model=new Promocion;
+        $model->scenario = "insert";
 
-            $this->performAjaxValidation(array($model));
+        $this->performAjaxValidation(array($model));
 
-            /***  COMPROBACIÓN DE QUE SE PUEDE ****/        
-            if(isset($_POST['Promocion'])){
-                $model->attributes=$_POST['Promocion'];
+        /***  COMPROBACIÓN DE QUE SE PUEDE ****/        
+        if(isset($_POST['Promocion'])){
+            $model->attributes=$_POST['Promocion'];
 
-                if($datosCuenta->prom_activ <= $numPromosActivas && $model->estado == '1'){
-                    Yii::app()->user->setFlash('error',UserModule::t("No puedes crear más promociones <b>ACTIVAS</b>"));
-                    $this->redirect('create',array(
-                    'model'=>$model,
-                    ));
-            }
-            if($datosCuenta->prom_stock <= $numPromosStock && $model->estado == '0'){
-                Yii::app()->user->setFlash('error',UserModule::t("No puedes crear más promociones en <b>STOCK</b>"));
+            if($datosCuenta->prom_activ <= $numPromosActivas && $model->estado == '1'){
+                Yii::app()->user->setFlash('error',UserModule::t("No puedes crear más promociones <b>ACTIVAS</b>"));
                 $this->redirect('create',array(
-                    'model'=>$model,
-                    ));
-            }
+                'model'=>$model,
+                ));
+        }
+        if($datosCuenta->prom_stock <= $numPromosStock && $model->estado == '0'){
+            Yii::app()->user->setFlash('error',UserModule::t("No puedes crear más promociones en <b>STOCK</b>"));
+            $this->redirect('create',array(
+                'model'=>$model,
+                ));
+        }
 
-            if($datosCuenta->prom_dest <= $numPromosDest){
-                $model->destacado = 0;
-                Yii::app()->user->setFlash('error',UserModule::t("No se ha marcado como destacada porque ha alcanzado el límite de destacadas."));
-            }
-        /**********************************/
-                $this->setCamposSecundarios($model);
+        if($datosCuenta->prom_dest <= $numPromosDest){
+            $model->destacado = 0;
+            Yii::app()->user->setFlash('error',UserModule::t("No se ha marcado como destacada porque ha alcanzado el límite de destacadas."));
+        }
+    /**********************************/
+            $this->setCamposSecundarios($model);
 
-                if($model->save()){
-                    Yii::app()->user->setFlash('success',UserModule::t("Promotion created."));
-                    //$this->redirect(array('mispromociones'));
-                    $this->redirect(Yii::app()->getModule('user')->promocionesUrl);
-                }
-                else{
-                    Yii::app()->user->setFlash('error',UserModule::t("Error creating the promotion."));
-                }
+            if($model->save()){
+                Yii::app()->user->setFlash('success',UserModule::t("Promotion created."));
+                //$this->redirect(array('mispromociones'));
+                $this->redirect(Yii::app()->getModule('user')->promocionesUrl);
             }
-            $this->render('create',array(
-                    'model'=>$model,'cuenta'=>$usuario->profile->tipocuenta
-            ));	
+            else{
+                Yii::app()->user->setFlash('error',UserModule::t("Error creating the promotion."));
+            }
+        }
+
+        Yii::import("xupload.models.XUploadForm");
+        $image = new XUploadForm;
+        
+        $item = new Item;
+        
+        $this->render('create',array(
+                'model'=>$model,'item'=>$item,'image'=>$image,'cuenta'=>$usuario->profile->tipocuenta
+        ));	
     }
 	
 /**

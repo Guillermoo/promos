@@ -40,10 +40,10 @@
 
     <? //if (!$model->isNewRecord):?>
         <div class="row">
-                <?php //echo $form->labelEx($model,'estado'); ?>
-                <?php //echo $form->textField($model,'estado'); ?>
-                <?php echo $form->dropDownListRow($model, 'estado', Promocion::itemAlias("PromoStatus"),array('options'=>array(Promocion::STATUS_BORRADOR=>array('selected'=>'selected')))); ?>
-                <?php echo $form->error($model,'estado'); ?>
+            <?php //echo $form->labelEx($model,'estado'); ?>
+            <?php //echo $form->textField($model,'estado'); ?>
+            <?php echo $form->dropDownListRow($model, 'estado', Promocion::itemAlias("PromoStatus"),array('options'=>array(Promocion::STATUS_BORRADOR=>array('selected'=>'selected')))); ?>
+            <?php echo $form->error($model,'estado'); ?>
         </div>
     <?//endif;?>
 
@@ -54,7 +54,7 @@
     </div>
 
     <? if (UserModule::isCompany()):?>
-       <!-- <div class="row">
+      <?/* <!-- <div class="row">
                 <div id="logo_form">
                     <?php /*echo $form->labelEx($model,'logo'); ?>
 
@@ -70,35 +70,35 @@
                     <?php else:?><?//Si no la tiene se muestra el form para cargar imágenes?>
                         <?php $item = new Item();?>
                         <?php echo $form->fileFieldRow($item, 'filename'); ?>
-                    <?php endif;*/?>
-                    <?php //$this->debug($item->filename)?>
+                    <?php endif;?>
                      
                 </div>
-        </div>-->
-<?php $this->debug($model->id) ?>
+        </div>*/?>
         <div class="row">
-            <?php echo $form->labelEx($item->path,'photos'); ?>
-            <div id="logo_form">
-            <?php if (!isset($image) || (!isset($model->item))): ?>
-                <?php
-                    Yii::app()->user->setState('model', 'promo');
-                    Yii::app()->user->setState('foreign_id',$model->id );
-                    $this->widget( 'xupload.XUpload', array(
-                        'url' => Yii::app( )->createUrl( "user/item/upload"),
-                        //our XUploadForm
-                        'model' => $image,
-                        //We set this for the widget to be able to target our own form
-                        'htmlOptions' => array('id'=>'logo_form'),
-                        'attribute' => 'file',
-                        'multiple' => false,
-                        //Note that we are using a custom view for our widget
-                        //Thats becase the default widget includes the 'form' 
-                        //which we don't want here
-                        //'formView' => 'application.views.item._form',
-                        'formView' => 'user.views.item._form',
-                        )    
-                    );
-                    ?>
+            <?php //(G)Cargamos el cargador de imágenes ?>
+            <?php if (!isset($image) || (!isset($model->item)) || (isset($item->path))): ?>
+                <?php //dsfh;?>
+                <?php echo $form->labelEx($item,'Fotos'); ?>
+                <div id="logo_form">
+                    <?php
+                        Yii::app()->user->setState('model', 'promo');
+                        Yii::app()->user->setState('foreign_id',$model->id );
+                        $this->widget( 'xupload.XUpload', array(
+                            'url' => Yii::app( )->createUrl( "user/item/upload"),
+                            //our XUploadForm
+                            'model' => $image,
+                            //We set this for the widget to be able to target our own form
+                            'htmlOptions' => array('id'=>'logo_form'),
+                            'attribute' => 'file',
+                            'multiple' => false,
+                            //Note that we are using a custom view for our widget
+                            //Thats becase the default widget includes the 'form' 
+                            //which we don't want here
+                            //'formView' => 'application.views.item._form',
+                            'formView' => 'user.views.item._form',
+                            )    
+                        );
+                        ?>
             <?php else: ?>
                 <?php echo CHtml::image(Yii::app()->request->baseUrl.$model->item->path,"image",array("width"=>350)); ?>
                 <button class="btn btn-danger">
@@ -111,7 +111,7 @@
                     'id'=>$model->item->id),
                     array('update' => '#logo_form'))?>
                 
-                <?php  endif;?>
+            <?php  endif;?>
             </div>
         </div>
     <?php endif; ?>
@@ -196,7 +196,7 @@
                         'showAnim'=>'fold',
                         'changeMonth'=>'true', 
                         'changeYear'=>'true',
-                        'debug'=>true,
+                        //'debug'=>true,
                     ),
                 ));?>
                 <?php echo $form->error($model,'fechaCreacion'); ?>

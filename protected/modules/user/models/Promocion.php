@@ -84,7 +84,7 @@ class Promocion extends CActiveRecord
      */
     public function checkFechas($attribute, $params) {
         //Aquí hay que hacer un foreach para sacar los valores.
-        $this->debug($this->$attribute);
+        //$this->debug($this->$attribute);
         /*$fechaInicio = $params['fecha_inicio'];
         $fecha_fin = $params['fecha_fin'];
 
