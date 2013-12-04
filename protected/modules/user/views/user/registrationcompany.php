@@ -4,7 +4,7 @@ $this->breadcrumbs=array(
 );
 ?>
 
-<h1><?php echo UserModule::t("Registration Company"); ?></h1>
+<h1>Registrar empresa</h1>
 
 <?php /*if(Yii::app()->user->hasFlash('registration')): ?>
 <div class="success">
@@ -43,7 +43,7 @@ $this->breadcrumbs=array(
 	</div>
 	
 	<div class="row">
-	<?php echo $form->labelEx($model,'verifyPassword'); ?>
+	Vuelva a escribir la contraseña:<br/>
 	<?php echo $form->passwordField($model,'verifyPassword'); ?>
 	<?php echo $form->error($model,'verifyPassword'); ?>
 	</div>

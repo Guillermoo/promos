@@ -70,7 +70,7 @@ else:
 	<li class="span3">
 		<div class="thumbnail light">
 								<span class="label label-info price">&euro; <? echo $promo->precio ?>,-</span>
-								<div class="caption titulopromo"><h4><?php echo CHtml::link($promo->titulo ,'promocion/'$promo->titulo ?></h4></div>
+								<div class="caption titulopromo"><h4><?php echo CHtml::link($promo->titulo ,'promocion/'.$promo->titulo) ?></h4></div>
 								<div class="descripcionpromo"><?php echo $promo->resumen ?></div>
 								<!--<span class="label label-important price price-over">&euro; 1,<sup>99</sup></span>-->
 								<?php if (isset($promo->item)): ?>

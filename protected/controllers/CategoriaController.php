@@ -141,17 +141,8 @@ class CategoriaController extends Controller
 
 		$model = $this->loadModel($id);
 		//$promos = $this->loadPromos($model->user_id);
-		$promos = new CActiveDataProvider('Promocion', array(
-				'pagination'=>array(
-				'pageSize'=>10,
-			),
-			'criteria'=>array(
-				'condition'=>'categorias_id='.$model->id.'AND estado=1'
-				//'params'=>array('estado'=>Promocion::STATUS_ACTIVA),
-			),
-		));
 		
-		$this->render('portalcategoria',array('model'=>$model,'promos' => $promos
+		$this->render('portalcategoria',array('model'=>$model
 		));
 	}
 
@@ -197,4 +188,15 @@ class CategoriaController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+	/* Used to debug variables*/
+    protected function Debug($var){
+        $bt = debug_backtrace();
+        $dump = new CVarDumper();
+        $debug = '<div style="display:block;background-color:gold;border-radius:10px;border:solid 1px brown;padding:10px;z-index:10000;"><pre>';
+        $debug .= '<h4>function: '.$bt[1]['function'].'() line('.$bt[0]['line'].')'.'</h4>';
+        $debug .=  $dump->dumpAsString($var);
+        $debug .= "</pre></div>\n";
+        Yii::app()->params['debugContent'] .=$debug;
+    }
 }

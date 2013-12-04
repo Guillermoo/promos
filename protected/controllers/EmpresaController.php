@@ -62,17 +62,8 @@ class EmpresaController extends Controller
 
 		$model = $this->loadModel($id);
 		//$promos = $this->loadPromos($model->user_id);
-		$promos = new CActiveDataProvider('Promocion', array(
-				'pagination'=>array(
-				'pageSize'=>10,
-			),
-			'criteria'=>array(
-				'condition'=>'user_id='.$model->user_id.'AND estado=1'
-				//'params'=>array('estado'=>Promocion::STATUS_ACTIVA),
-			),
-		));
 		
-		$this->render('portalempresa',array('model'=>$model,'promos' => $promos
+		$this->render('portalempresa',array('model'=>$model
 		));
 	}
 
