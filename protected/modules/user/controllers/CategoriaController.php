@@ -28,7 +28,7 @@ class CategoriaController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','verCategorias','verpromos'),
+				'actions'=>array('index','view','verCategorias'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -134,24 +134,6 @@ class CategoriaController extends Controller
 		$dataProvider=new CActiveDataProvider('Categoria');
 		$this->render('vercategorias',array(
 			'dataProvider'=>$dataProvider,
-		));
-	}
-
-	public function actionVerpromos($id){	
-
-		$model = $this->loadModel($id);
-		//$promos = $this->loadPromos($model->user_id);
-		$promos = new CActiveDataProvider('Promocion', array(
-				'pagination'=>array(
-				'pageSize'=>10,
-			),
-			'criteria'=>array(
-				'condition'=>'categorias_id='.$model->id.'AND estado=1'
-				//'params'=>array('estado'=>Promocion::STATUS_ACTIVA),
-			),
-		));
-		
-		$this->render('portalcategoria',array('model'=>$model,'promos' => $promos
 		));
 	}
 

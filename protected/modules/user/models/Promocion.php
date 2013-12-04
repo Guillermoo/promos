@@ -66,7 +66,7 @@ class Promocion extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('titulo, titulo_slug, resumen,  fecha_inicio, fecha_fin, destacado, precio, condiciones, stock', 'required'),
-			array('id,user_id,cat_id,estado, destacado, stock,precio', 'numerical', 'integerOnly'=>true),
+			array('id,user_id,cat_id,estado, destacado, stock,precio,categorias_id', 'numerical', 'integerOnly'=>true),
 			array('titulo, titulo_slug, resumen', 'length', 'max'=>100),
 			array('fecha_inicio,fecha_fin', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true, 'on' => 'insert'),//fechaCreación es un timestamp
 			array('fecha_inicio,fecha_fin', 'default', 'value' => '0000-00-00 00:00:00', 'setOnEmpty' => true, 'on' => 'insert'),
@@ -101,7 +101,7 @@ class Promocion extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'usuario' => array(self::BELONGS_TO, 'User', 'user_id'),
-			'categoria' => array(self::BELONGS_TO, 'Category', 'cat_id'),
+			'categoria' => array(self::BELONGS_TO, 'Categoria', 'categorias_id'),
 			'item' => array(self::HAS_ONE, 'Item', 'foreign_id'),
 			//'image' => array(self::HAS_MANY, 'Item', 'id'),
 		);
@@ -131,6 +131,7 @@ class Promocion extends CActiveRecord
 			'rebaja' => 'Rebaja',
 			'condiciones' => 'Condiciones',
 			'stock' => 'Stock',
+			'categorias_id' => 'Id de categoria',
 		);
 	}
 	

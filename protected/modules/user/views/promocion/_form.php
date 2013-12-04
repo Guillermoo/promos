@@ -157,7 +157,7 @@
                     ),
                 ));*/?>
             <?php echo $form->datepickerRow($model, 'fecha_inicio',
-                array('hint'=>'Click inside! This is a super cool date field.',
+                array('hint'=>'Pincha para seleccionar la fecha',
                 'prepend'=>'<i class="icon-calendar"></i>')); ?>
             <?php echo $form->error($model,'fecha_inicio'); ?>
     </div>
@@ -230,6 +230,13 @@
             <?php echo $form->textField($model,'stock'); ?>
             <?php echo $form->error($model,'stock'); ?>
     </div>    
+    <div class="row">
+        <?php echo $form->labelEx($model,'categorias_id'); ?>
+
+          <?php //echo $form->dropDownListRow($model, 'categorias_id', Categoria::itemAlias("PromoStatus"),array('options'=>array(Promocion::STATUS_BORRADOR=>array('selected'=>'selected')))); ?>
+
+         <?php echo $form->error($model,'categorias_id'); ?>
+    </div>
     <div class="row buttons">
             <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
     </div>

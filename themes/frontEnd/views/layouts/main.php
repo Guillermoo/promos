@@ -121,7 +121,7 @@
 										<li class="active"><a href=<?=Yii::app()->homeUrl ?> ><i class="icon-home"></i></a></li>
 										<li class="divider-vertical"></li>
 										<!--<li><?php //echo Chtml::link('Promociones',array('/promociones'))?></li>-->
-										<li><?php echo Chtml::link('Categorias',array('categoria/index'))?></li>
+										<li><?php echo Chtml::link('Categorias',array('/categorias'))?></li>
 										<li><?php echo Chtml::link('Empresas',array('/empresas'))?></li>										
 									</ul>										
 								</div>

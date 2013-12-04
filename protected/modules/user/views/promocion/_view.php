@@ -6,13 +6,13 @@
 <li class="span3">
 								<div class="thumbnail">
 								<?php if (isset($data->item)): ?>
-									<a href="promocion/<?=$data->titulo_slug ?>"><img src="<?php echo Yii::app()->request->baseUrl.$promo->item->path ?>" alt=""></a>
+									<a href="<?php echo Yii::app()->request->baseUrl ?>/promocion/<?=$data->titulo_slug ?>" target="_blank"><img src="<?php echo Yii::app()->request->baseUrl.$promo->item->path ?>" alt=""></a>
 								<?php else: ?>
-									<a href="promocion/<?=$data->titulo_slug ?>"><img src="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>" alt=""></a>
+									<a href="<?php echo Yii::app()->request->baseUrl ?>/promocion/<?=$data->titulo_slug ?>" target="_blank"><img src="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>" alt=""></a>
 								<?php endif; ?>
 								
 								<div class="caption">
-									<a href="promocion/<?=$data->titulo_slug ?>"><?=$data->titulo ?></a>
+									<a href="<?php echo Yii::app()->request->baseUrl ?>/promocion/<?=$data->titulo_slug ?>" target="_blank"><?=$data->titulo ?></a>
 									<p><?=$data->resumen ?> <span class="label label-info price pull-right">&euro; <?=$data->precio ?>,-</span></p>
 								</div>
 							</div>

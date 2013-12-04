@@ -117,7 +117,7 @@ return array(
                 'showScriptName'=>false,
                 'rules'=>array(
                     'empresas'=>'empresa/index',
-                    'categorias'=>'categoria/index',
+                    'categorias'=>'categoria/verCategorias',
                     'user/empresa'=>'user/empresa/empresa',
                     'user/empresas'=>'user/empresa/admin',
                     'user/promociones'=>'user/promocion/admin',
