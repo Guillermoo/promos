@@ -118,11 +118,29 @@
 								<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">menu</a>
 								<div class="nav-collapse">
 									<ul class="nav">
+										<?php 
+										if(Yii::app()->controller->id == 'site'):
+										?>
 										<li class="active"><a href=<?=Yii::app()->homeUrl ?> ><i class="icon-home"></i></a></li>
+									<?php else: ?>
+										<li ><a href=<?=Yii::app()->homeUrl ?> ><i class="icon-home"></i></a></li>
+									<?php endif; ?>
 										<li class="divider-vertical"></li>
 										<!--<li><?php //echo Chtml::link('Promociones',array('/promociones'))?></li>-->
-										<li><?php echo Chtml::link('Categorias',array('/categorias'))?></li>
-										<li><?php echo Chtml::link('Empresas',array('/empresas'))?></li>										
+										<li><?php 
+										if(Yii::app()->controller->id == 'categoria'):
+											echo Chtml::link('Categorias',array('/categorias'),array('class'=>'active')); 
+										else: 
+											echo Chtml::link('Categorias',array('/categorias')); 
+										endif;
+										?></li>
+										<li><?php 
+										if(Yii::app()->controller->id == 'empresa'):
+											echo Chtml::link('Empresas',array('/empresas'),array('class' => 'active'));
+										else:
+											echo Chtml::link('Empresas',array('/empresas'));
+										endif;
+										?></li>										
 									</ul>										
 								</div>
 							</div>

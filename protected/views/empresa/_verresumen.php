@@ -24,7 +24,7 @@
 			<?php endif; ?>
 
 			<?php if(isset($data->facebook) && !empty($data->facebook)): ?>
-			<a href="<?php echo $data->twitter ?>" target="_blank"><img src="<?php echo Yii::app()->theme->baseUrl?>/img/icon-facebook.png"/></a>
+			<a href="<?php echo $data->facebook ?>" target="_blank"><img src="<?php echo Yii::app()->theme->baseUrl?>/img/icon-facebook.png"/></a>
 			<?php endif; ?>
 	</div>
 </li>

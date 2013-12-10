@@ -27,9 +27,9 @@
 							<h2><?=$model->titulo ?></h2>
 						</div>
 						<div class="span3">
-							<div class="social-icons pull-right">
-								<?php //echo Yii::app()->request->baseUrl.'/themes/frontEnd'?>
-								<a href="#"><img src="<?php echo Yii::app()->theme->baseUrl?>/img/icon-facebook-like.jpg"></a>
+							<div class="social-icons pull-right">		
+								<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;width&amp;layout=standard&amp;action=like&amp;show_faces=true&amp;share=true&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:30px;" allowTransparency="true"></iframe>
+								<p><a href="http://twitter.com/home?status=<?php echo urlencode("¡No te pierdas esta promoción! http://www.proemocion.com/promocion/$model->titulo_slug");?>" target="_blank" class="twitter-share-button"><img src="<?php echo Yii::app()->theme->baseUrl?>/img/tweet-button.png" /></a><p/>
 								<!-- Replace with something like:
 								<div class="fb-like fb_edge_widget_with_comment fb_iframe_widget" data-send="false" data-layout="button_count" data-width="150" data-show-faces="false" data-font="arial">
 									<span style="height: 20px; width: 107px; ">
@@ -38,6 +38,24 @@
 								</div>
 								-->
 							</div>
+						</div>
+					</div>
+
+					<div class="row-fluid">
+						<div class="span12 rating">
+							Valoración: 
+							<?php
+							$this->widget('CStarRating',array(
+            					'name'=>$model->id,
+            					'value'=>'3',
+            					'minRating'=>1,
+            					'maxRating'=>5,
+            					'starCount'=>5,
+            					'cssFile'=>'cdestilos.css',
+            					'readOnly'=>true,
+            				));
+							?>
+
 						</div>
 					</div>
 

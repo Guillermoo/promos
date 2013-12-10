@@ -42,3 +42,22 @@ h1,h2,h3{
 body{
 	/*background-image: url("../img/bg_main.png");*/
 }
+.twitter-share-button{
+ margin-bottom: 10px;
+}
+.rating{
+	color: #777;
+}
+.uiIconText{
+	display: none;
+}
+.pager{
+	clear: both;
+}
+.active{
+	background-color: #3a87ad;
+	color: #fff !important;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
