@@ -122,6 +122,7 @@ return array(
                     'user/empresas'=>'user/empresa/admin',
                     'user/promociones'=>'user/promocion/admin',
                     'user/mispromociones'=>'user/promocion/index',
+                    'user/compra/comprado/<id:\d+>'=>'user/compra/comprado/<id:\d+>',
                     'user/contacto'=>'user/user/contacto',
                     'empresa/<alias:[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]+>' => 'empresa/view',
                     'profile/edit' => 'profile',

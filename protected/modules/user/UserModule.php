@@ -77,9 +77,10 @@ class UserModule extends CWebModule
 	public $promosStock = array("/user/promocion/promosStock");
 	public $promosActivas = array("/user/promocion/promosActivas");
 	public $promosDestacadas = array("/user/promocion/promosDestacadas");
-	public $historialcompras = array("/user/compras/historialCompras");
+	public $historialcompras = array("/user/compra/historialCompras");
 	public $listaUsuarios = array("/user/admin");
 	public $listaCategorias = array("/categoria");
+	public $comprado = array("/user/compra/comprado");
 	/**
 	 * @var int
 	 * @desc Remember Me Time (seconds), defalt = 2592000 (30 days)

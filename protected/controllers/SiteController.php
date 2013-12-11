@@ -142,6 +142,15 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
+
+	public function actionPagoCorrecto(){
+		//almacenar la información de la compra en la tabla de ventas
+		$this->render('pago_correcto');
+	}
+
+	public function actionPagoCancelado(){
+		$this->render('pago_cancelado');
+	}
 	
 	/* Used to debug variables*/
     protected function Debug($var){

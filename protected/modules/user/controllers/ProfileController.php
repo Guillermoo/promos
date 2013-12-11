@@ -191,7 +191,7 @@ class ProfileController extends Controller
 				$this->redirect(Yii::app()->controller->module->loginUrl);
 				
 		}else{
-			$this->debug( "Model Nonulll");
+			//$this->debug( "Model Nonulll");
 		}
 		return $this->_model;
 	}

@@ -135,6 +135,10 @@
 								</div>
 
 								<div class="span9" align="right">
+									<?php
+									//Comprobar que es usuario registrado. Sino, no se muestra el botón de comprar
+									if(UserModule::isBuyer()):
+									 ?>
 									<form name="_xclick" action="https://www.paypal.com/es/cgi-bin/webscr" method="post">
 										<input type="hidden" name="cmd" value="_xclick">
 										<input type="hidden" name="business" value="<?php echo $datos->paypal_id; ?>">
@@ -142,7 +146,12 @@
 										<input type="hidden" name="item_name" value="<?=$model->titulo ?>">
 										<input type="hidden" name="amount" value="<?=$model->precio ?>">
 										<input type="image" src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="Realice pagos con PayPal: es rápido, gratis y seguro">
-									</form>				
+									</form>	
+									<?php else: ?>
+									<div class="alert alert-info"><h4>Para poder comprar una promoción debes estar registrado como comprador.</h4></div>
+									<div>
+									<p><?php echo CHtml::link('Regístrate', Yii::app()->getModule('user')->registrationUrl); ?> si todavía no eres usuario o <?php echo CHtml::link('accede', Yii::app()->getModule('user')->profileUrl); ?> si ya eres usuario registrado</p></div>
+									<?php endif; ?>			
 									</div>
 								</div>
 							</div>
