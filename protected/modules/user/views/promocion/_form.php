@@ -18,7 +18,7 @@
 )); ?>
 
 <fieldset>
-    <p class="note">Fields with <span class="required">*</span> are required.</p>
+    <p class="note">Los campos con <span class="required">*</span> son obligatorios.</p>
 
     <?php echo $form->errorSummary($model); ?>
 
@@ -39,10 +39,8 @@
 
 
     <? //if (!$model->isNewRecord):?>
-        <div class="row">
-            <?php //echo $form->labelEx($model,'estado'); ?>
-            <?php //echo $form->textField($model,'estado'); ?>
-            <?php echo $form->dropDownListRow($model, 'estado', Promocion::itemAlias("PromoStatus"),array('options'=>array(Promocion::STATUS_BORRADOR=>array('selected'=>'selected')))); ?>
+        <div class="row">            
+            <?php echo $form->dropDownListRow($model, 'estado', Promocion::itemAlias("PromoStatus"),array('options'=>array(Promocion::STATUS_ACTIVA=>array('selected'=>'selected')))); ?>
             <?php echo $form->error($model,'estado'); ?>
         </div>
     <?//endif;?>
@@ -233,7 +231,9 @@
     <div class="row">
         <?php echo $form->labelEx($model,'categorias_id'); ?>
 
-          <?php //echo $form->dropDownListRow($model, 'categorias_id', Categoria::itemAlias("PromoStatus"),array('options'=>array(Promocion::STATUS_BORRADOR=>array('selected'=>'selected')))); ?>
+          <?php //echo $form->dropDownListRow($categorias, 'categorias_id', Categoria::itemAlias("PromoStatus"),array('options'=>array(Promocion::STATUS_BORRADOR=>array('selected'=>'selected')))); 
+         echo $form->dropDownList($model,'categorias_id',CHtml::listData(Categoria::model()->findAll(), 'id', 'nombre'));
+          ?>
 
          <?php echo $form->error($model,'categorias_id'); ?>
     </div>
