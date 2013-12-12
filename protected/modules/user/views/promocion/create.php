@@ -1,4 +1,4 @@
-<h1>Create Promociones</h1>
+<h1>Crear Promoción</h1>
 
 
 <?php

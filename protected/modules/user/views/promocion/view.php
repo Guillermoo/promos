@@ -8,21 +8,20 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Promociones', 'url'=>array('index')),
-	array('label'=>'Create Promociones', 'url'=>array('create')),
-	array('label'=>'Update Promociones', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete Promociones', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Listar Promociones', 'url'=>array('index')),
+	array('label'=>'Crear Promoción', 'url'=>array('create')),
+	array('label'=>'Actualizar Promoción', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Borrar Promoción', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'¿Estás seguro de que quieres borrar esta promoción?')),
 	array('label'=>'Manage Promociones', 'url'=>array('admin')),
 );
 ?>
 
-<h1>View Promociones #<?php echo $model->id; ?></h1>
+<h1>Ver promoción '<?php echo $model->titulo; ?>'</h1>
 
 <?php $this->widget('bootstrap.widgets.TbDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'user_id',
 		'estado',
 		'titulo',
 		'titulo_slug',

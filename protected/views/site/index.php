@@ -71,7 +71,7 @@
 							<div class="caption">
 								<a href="promo/<?=$promo->id ?>"><?php $promo->titulo ?></a>
 							</div>
-							<a href="#" class="btn btn-block">all products in category</a>
+							<a href="promo/<?=$promo->id ?>" class="btn btn-block">Más información</a>
 						</div>
 					</li>
 				<?php endforeach; ?>
