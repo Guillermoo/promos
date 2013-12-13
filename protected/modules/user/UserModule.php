@@ -66,7 +66,7 @@ class UserModule extends CWebModule
 	public $contactoEmpresaUrl = array("/user/site/contact");
     public $contactoAdminUrl = array("/site/contactadmin");
 	public $homeUrl = array("/user/home");//'user/home' => 'user/empresa/home',
-    public $homeCompradorUrl = array("/user/profile");//'user/home' => 'user/empresa/home',
+    public $homeCompradorUrl = array("/user/profile");//Yii::app()->user->returnUrl;//'user/home' => 'user/empresa/home',
 	public $homeAdminUrl = array("/user/admin/home");//'user/home' => 'user/empresa/home',
 	public $profileUrl = array("/user/profile");
 	public $cuentaUrl = array("/user/cuentas");

@@ -56,7 +56,7 @@ class LoginController extends Controller
 			//algún tipo de advertencia.
 			$this->redirect(Yii::app()->getModule('user')->homeUrl);
 		}elseif(UserModule::isBuyer()){//Por si estaba mirando una promoción, habría que pensar que hacemos mas concreatmente
-			$this->redirect(Yii::app()->getModule('user')->homeCompradorUrl);
+			$this->redirect(Yii::app()->user->returnUrl);
 		}elseif(UserModule::isSuperAdmin() || UserModule::isAdmin()){
 			$this->redirect('admin');
 		}else{

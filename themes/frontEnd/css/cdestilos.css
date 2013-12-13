@@ -54,10 +54,14 @@ body{
 .pager{
 	clear: both;
 }
-.active{
+#menupral .active{
 	background-color: #3a87ad;
 	color: #fff !important;
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;
+}
+
+.thumbnail .caption a{
+	font-size: 1.3em;
 }

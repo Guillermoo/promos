@@ -62,9 +62,20 @@ class PromocionController extends Controller
 			$promocion=Promocion::model()->findByAttributes(array('titulo_slug'=>$title_slug));
 			$datos = Profile::model()->				findByAttributes(array('user_id'=>$promocion->user_id));
 
-			if (isset($promocion) && isset($datos)){				
+			if (isset($promocion) && isset($datos)){			
+				//Cojo otras promociones para mostrarlas abajo
+				$criteria=new CDbCriteria;
+        		$criteria->limit = 8;
+        		//$criteria->compare('destacado',Promocion::IS_NODESTACADA);
+        		$criteria->compare('estado',Promocion::STATUS_ACTIVA);
+        		$criteria->select = 'id,titulo,titulo_slug,resumen,precio';
+        		$criteria->order = 'RAND()';
+        		//$criteria->addCondition('exp_d > "'.$now.'" ');
+
+				$otrasPromos = Promocion::model()->findAll($criteria);
+
 				$this->render('view',array(
-					'model'=>$promocion, 'datos'=>$datos
+					'model'=>$promocion, 'datos'=>$datos, 'promos'=>$otrasPromos
 				));
 				Yii::app()->end();
 			}
@@ -112,6 +123,36 @@ class PromocionController extends Controller
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
+	}
+
+	public function actionOtrasPromos(){		
+		$criteria=new CDbCriteria;
+        $criteria->limit = 8;
+        //$criteria->compare('destacado',Promocion::IS_NODESTACADA);
+        $criteria->compare('estado',Promocion::STATUS_ACTIVA);
+        $criteria->select = 'titulo,titulo_slug,resumen,precio';
+        $criteria->order = 'RAND()';
+        //$criteria->addCondition('exp_d > "'.$now.'" ');
+
+		$promos = Promocion::model()->findAll($criteria);
+
+		//Promociones de la misma empresa
+
+		/*$criteria2=new CDbCriteria;
+        $criteria2->limit = 12;
+        $criteria2->compare('destacado',Promocion::IS_NODESTACADA);
+        $criteria2->compare('estado',Promocion::STATUS_ACTIVA);
+        $criteria2->select = 'titulo,titulo_slug,resumen,precio';
+        $criteria2->order = 'RAND()';
+        //$criteria->addCondition('exp_d > "'.$now.'" ');
+
+		$promos = Promocion::model()->findAll($criteria2); */
+
+
+		$this->render('index',array(		
+			'promos'=>$promos,
+		));
+		//$this->render('index');
 	}
 
 	/* Used to debug variables*/

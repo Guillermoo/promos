@@ -177,8 +177,11 @@ class PromocionController extends Controller
         
         $item = new Item;
         
+        //Leer los tipos de categoría a los que puede pertenecer la promoción
+        $categorias=new CActiveDataProvider('Categoria');        
+
         $this->render('create',array(
-                'model'=>$model,'item'=>$item,'image'=>$image,'cuenta'=>$usuario->profile->tipocuenta
+                'model'=>$model,'item'=>$item,'image'=>$image,'cuenta'=>$usuario->profile->tipocuenta, 'categorias'=>$categorias
         ));	
     }
 	

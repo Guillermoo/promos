@@ -56,22 +56,29 @@
 	<div class="row-fluid">
 		<div class="span12">
 			<ul class="thumbnails product-list-inline-large">
-				<?php foreach ($promos as $key => $promo):	?>
+				<?php foreach ($promos as $key => $promo):
+
+						if (isset($promo->item)): 
+							$path=$promo->item->path; 
+						else:
+							$path=Yii::app()->params['no_image'];
+						endif;
+				?>
 					<li class="span3">
 						<div class="thumbnail light">
 							<a href="promo/<?=$promo->id ?>">
 								<span class="label label-info price">&euro; <? echo $promo->precio ?>,-</span>
 								<!--<span class="label label-important price price-over">&euro; 1,<sup>99</sup></span>-->
 								<?php if (isset($promo->item)): ?>
-									<img data-hover="<?php echo Yii::app()->request->baseUrl.$promo->item->path ?>" src="$promo->item->path" alt="">
+									<img data-hover="<?php echo Yii::app()->request->baseUrl.$promo->item->path ?>" src="$promo->item->path" alt="<?php echo $promo->titulo ?>" src="<?php echo Yii::app()->request->baseUrl.$path ?>">
 								<?php else: ?>
-									<img data-hover="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>"  alt="">
+									<img data-hover="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>"  alt="<?php echo $promo->titulo ?>" src="<?php echo Yii::app()->request->baseUrl.$path ?>">
 								<?php endif; ?>
 							</a>
 							<div class="caption">
-								<a href="promo/<?=$promo->id ?>"><?php $promo->titulo ?></a>
+								<a href="<?=$promo->titulo_slug ?>"><?php echo $promo->titulo ?></a>
 							</div>
-							<a href="#" class="btn btn-block">all products in category</a>
+							<a href="<?=$promo->titulo_slug ?>" class="btn btn-block"><?php echo $promo->titulo ?></a>
 						</div>
 					</li>
 				<?php endforeach; ?>

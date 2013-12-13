@@ -65,7 +65,7 @@ class Promocion extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('titulo, titulo_slug, resumen,  fecha_inicio, fecha_fin, destacado, precio, condiciones, stock', 'required'),
+			array('titulo, titulo_slug, resumen,  fecha_inicio, fecha_fin, destacado, precio, condiciones, stock, categorias_id', 'required'),
 			array('id,user_id,cat_id,estado, destacado, stock,precio,categorias_id', 'numerical', 'integerOnly'=>true),
 			array('titulo, titulo_slug, resumen', 'length', 'max'=>100),
 			array('fecha_inicio,fecha_fin', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true, 'on' => 'insert'),//fechaCreación es un timestamp
@@ -257,7 +257,7 @@ class Promocion extends CActiveRecord
                                 
 				self::STATUS_ACTIVA => UserModule::t('Active'),
 				self::STATUS_NOACTIVA => UserModule::t('Not active'),
-				self::STATUS_BORRADOR => UserModule::t('Draft'),
+				//self::STATUS_BORRADOR => UserModule::t('Draft'),
 				//self::STATUS_BLOQUEADA => UserModule::t('Bloqued'),
 				//self::STATUS_VALIDACION => UserModule::t('Valiadation'),
 			),
@@ -271,6 +271,5 @@ class Promocion extends CActiveRecord
 		else
 			return isset($_items[$type]) ? $_items[$type] : false;
 	}
-
 	
 }
