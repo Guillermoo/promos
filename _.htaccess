@@ -4,6 +4,7 @@ IndexIgnore */*
 
 RewriteEngine on
 
+<<<<<<< HEAD
 
 
 #Uncomment "RewriteBase /" when you upload this .htaccess to your web server, and comment it when on local web server
@@ -13,6 +14,9 @@ RewriteEngine on
 #If your application is in a folder, for example "application". Then, changing the "application" folder name, will require you to reset the RewriteBase /[your app folder]
 
 #RewriteBase /[your app folder - optional]
+=======
+RewriteBase /~hugo/promos
+>>>>>>> bd5ac3e256f1ade96ec8fd7f83799c292d68cf5e
 
 # if a directory or a file exists, use it directly
 RewriteCond %{REQUEST_FILENAME} !-f
