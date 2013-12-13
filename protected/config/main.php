@@ -159,7 +159,7 @@ return array(
                     'connectionString' => 'mysql:host=localhost;dbname=promos',
                     'emulatePrepare' => true,
                     'username' => 'root',
-                    'password' => '523360',
+                    'password' => '',
                     'charset' => 'utf8',
                     'tablePrefix' => 'tbl_',
                     'enableProfiling' => true,
