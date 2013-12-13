@@ -37,7 +37,7 @@ class SiteController extends Controller
 		$criteria=new CDbCriteria;
         $criteria->with = array( 'item');
 
-        $criteria->limit = 4;
+        $criteria->limit = 1;
         $criteria->compare('destacado',Promocion::IS_DESTACADA);
         $criteria->compare('estado',Promocion::STATUS_ACTIVA);
         $criteria->select = 'titulo,titulo_slug,resumen,precio';

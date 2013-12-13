@@ -159,7 +159,7 @@ return array(
                     'connectionString' => 'mysql:host=localhost;dbname=promos',
                     'emulatePrepare' => true,
                     'username' => 'root',
-                    'password' => '',
+                    'password' => '523360',
                     'charset' => 'utf8',
                     'tablePrefix' => 'tbl_',
                     'enableProfiling' => true,
@@ -206,11 +206,11 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'debugContent'=>'',
-		'adminEmail'=>'grillermo@gmail.com',
-		'websiteEmail'=>'promos@promos.com',
+		'adminEmail'=>'hugoepila@gmail.com',
+		'websiteEmail'=>'proemocion@proemocion.com',
 		'no_image'=>'/img/no_img.jpg',
 		'url_paypal'=>'wwww.sadfsdf.com',
 		'path_imgs'=> realpath( Yii::app( )->getBasePath( )."/../" ),
-		'cuenta_paypal' => 'grillermo@gmail.com',
+		'cuenta_paypal' => 'proemocion@proemocion.com',
 	),
 );
