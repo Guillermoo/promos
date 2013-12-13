@@ -73,44 +73,47 @@
                 </div>
         </div>*/?>
         <div class="row">
-            <?php //(G)Cargamos el cargador de imágenes ?>
-            <?php if (!isset($image) || (!isset($model->item)) || (isset($item->path))): ?>
-                <?php //dsfh;?>
-                <?php echo $form->labelEx($item,'Fotos'); ?>
-                <div id="logo_form">
-                    <?php
-                        Yii::app()->user->setState('model', 'promo');
-                        Yii::app()->user->setState('foreign_id',$model->id );
-                        $this->widget( 'xupload.XUpload', array(
-                            'url' => Yii::app( )->createUrl( "user/item/upload"),
-                            //our XUploadForm
-                            'model' => $image,
-                            //We set this for the widget to be able to target our own form
-                            'htmlOptions' => array('id'=>'logo_form'),
-                            'attribute' => 'file',
-                            'multiple' => false,
-                            //Note that we are using a custom view for our widget
-                            //Thats becase the default widget includes the 'form' 
-                            //which we don't want here
-                            //'formView' => 'application.views.item._form',
-                            'formView' => 'user.views.item._form',
-                            )    
-                        );
-                        ?>
-            <?php else: ?>
-                <?php echo CHtml::image(Yii::app()->request->baseUrl.$model->item->path,"image",array("width"=>350)); ?>
-                <button class="btn btn-danger">
-                        <i class="icon-trash icon-white"></i>
-                        <?php echo CHtml::ajaxLink('Delete', array(Yii::app()->request->baseUrl.'/user/item/delete','id'=>$model->item->id),
+            <?php if (!$model->isNewRecord): ?>
+                <?php //(G)Cargamos el cargador de imágenes ?>
+                <?php if (!isset($image) || (!isset($model->item)) || (isset($item->path))): ?>
+                    <?php //dsfh;?>
+                    <?php echo $form->labelEx($model,'Imagen'); ?>
+                    <div id="logo_form">
+                        <?php
+                            Yii::app()->user->setState('model', 'promo');
+                            Yii::app()->user->setState('foreign_id',$model->id );
+                            $this->widget( 'xupload.XUpload', array(
+                                'url' => Yii::app( )->createUrl( "user/item/upload"),
+                                //our XUploadForm
+                                'model' => $image,
+                                //We set this for the widget to be able to target our own form
+                                'htmlOptions' => array('id'=>'logo_form'),
+                                'attribute' => 'file',
+                                'multiple' => false,
+                                //Note that we are using a custom view for our widget
+                                //Thats becase the default widget includes the 'form' 
+                                //which we don't want here
+                                //'formView' => 'application.views.item._form',
+                                'formView' => 'user.views.item._form',
+                                )    
+                            );
+                            ?>
+                <?php else: ?>
+                    <?php echo CHtml::image(Yii::app()->request->baseUrl.$model->item->path,"image",array("width"=>350)); ?>
+                    <button class="btn btn-danger">
+                            <i class="icon-trash icon-white"></i>
+                            <?php echo CHtml::ajaxLink('Delete', array(Yii::app()->request->baseUrl.'/user/item/delete','id'=>$model->item->id),
+                            array('update' => '#logo_form'))?>
+                    </button>
+                    <?php echo CHtml::ajaxLink('Delete', array(
+                        'empresa/deleteItem',
+                        'id'=>$model->item->id),
                         array('update' => '#logo_form'))?>
-                </button>
-                <?php echo CHtml::ajaxLink('Delete', array(
-                    'empresa/deleteItem',
-                    'id'=>$model->item->id),
-                    array('update' => '#logo_form'))?>
-                
+                    
+                <?php  endif;?>
+                    </div>
+
             <?php  endif;?>
-            </div>
         </div>
     <?php endif; ?>
 
@@ -155,7 +158,7 @@
                     ),
                 ));*/?>
             <?php echo $form->datepickerRow($model, 'fecha_inicio',
-                array('hint'=>'Pincha para seleccionar la fecha',
+                array('hint'=>'Haz click para seleccionar la fecha.','options'=>array('dateFormat'=>'yy-mm-dd'),
                 'prepend'=>'<i class="icon-calendar"></i>')); ?>
             <?php echo $form->error($model,'fecha_inicio'); ?>
     </div>
@@ -176,7 +179,7 @@
                 ),
             ));*/?>
             <?php echo $form->datepickerRow($model, 'fecha_fin',
-                array('hint'=>'Click inside! This is a super cool date field.',
+                array('hint'=>'Haz click para seleccionar la fecha.','options'=>array('dateFormat'=>'yy-mm-dd'),
                 'prepend'=>'<i class="icon-calendar"></i>')); ?>
             <?php echo $form->error($model,'fecha_fin'); ?>
     </div>
@@ -184,19 +187,9 @@
     <? if (UserModule::isAdmin()): ?>
         <div class="row">
                 <?php echo $form->labelEx($model,'fechaCreacion'); ?>
-                <?php $this->widget('zii.widgets.jui.CJuiDatePicker',array(
-                    'attribute'=>'fechaCreacion',
-                        'model'=>$model,
-                        'value'=>$model->fechaCreacion,
-                    // additional javascript options for the date picker plugin
-                    'options'=>array(
-                        'dateFormat'=>'yy-mm-dd',
-                        'showAnim'=>'fold',
-                        'changeMonth'=>'true', 
-                        'changeYear'=>'true',
-                        //'debug'=>true,
-                    ),
-                ));?>
+                <?php echo $form->datepickerRow($model, 'fechaCreacion',
+                array('hint'=>'Haz click para seleccionar la fecha.','options'=>array('dateFormat'=>'yy-mm-dd'),
+                'prepend'=>'<i class="icon-calendar"></i>')); ?>
                 <?php echo $form->error($model,'fechaCreacion'); ?>
         </div>
     <?endif;?>
@@ -229,13 +222,13 @@
             <?php echo $form->error($model,'stock'); ?>
     </div>    
     <div class="row">
-        <?php echo $form->labelEx($model,'categorias_id'); ?>
+        <?php echo $form->labelEx($model,'cat_id'); ?>
 
           <?php //echo $form->dropDownListRow($categorias, 'categorias_id', Categoria::itemAlias("PromoStatus"),array('options'=>array(Promocion::STATUS_BORRADOR=>array('selected'=>'selected')))); 
-         echo $form->dropDownList($model,'categorias_id',CHtml::listData(Categoria::model()->findAll(), 'id', 'nombre'));
+         echo $form->dropDownList($model,'cat_id',CHtml::listData(Category::model()->findAll(), 'id', 'name'));
           ?>
 
-         <?php echo $form->error($model,'categorias_id'); ?>
+         <?php echo $form->error($model,'cat_id'); ?>
     </div>
     <div class="row buttons">
             <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

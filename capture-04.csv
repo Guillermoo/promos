@@ -1,0 +1,8 @@
+
+BSSID, First time seen, Last time seen, channel, Speed, Privacy, Cipher, Authentication, Power, # beacons, # IV, LAN IP, ID-length, ESSID, Key
+00:27:22:1A:BD:D7, 2013-12-13 17:38:32, 2013-12-13 17:39:03,  6,  54, WPA2, CCMP,PSK, -90,      298,      452,   0.  0.  0.  0,  16, www.yrless.co.nz, 
+
+Station MAC, First time seen, Last time seen, Power, # packets, BSSID, Probed ESSIDs
+00:15:6D:5E:A5:78, 2013-12-13 17:38:32, 2013-12-13 17:39:03,  -1,      686, 00:27:22:1A:BD:D7,
+
+
