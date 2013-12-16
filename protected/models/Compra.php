@@ -42,11 +42,11 @@ class Compra extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_usuario, id_promo, fecha_compra, estado', 'required'),
+			array('id_usuario, id_promo, fecha_compra, estado, referencia', 'required'),
 			array('id_usuario, id_promo, estado', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, id_usuario, id_promo, fecha_compra, estado', 'safe', 'on'=>'search'),
+			array('id, id_usuario, id_promo, fecha_compra, estado, referencia', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -74,6 +74,7 @@ class Compra extends CActiveRecord
 			'id_promo' => 'Id Promo',
 			'fecha_compra' => 'Fecha Compra',
 			'estado' => 'Estado',
+			'referencia' => 'Referencia',
 		);
 	}
 
@@ -93,6 +94,7 @@ class Compra extends CActiveRecord
 		$criteria->compare('id_promo',$this->id_promo);
 		$criteria->compare('fecha_compra',$this->fecha_compra,true);
 		$criteria->compare('estado',$this->estado);
+		$criteria->compare('referencia',$this->referencia);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

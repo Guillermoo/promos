@@ -2501,3 +2501,280 @@ REQUEST_URI=/~hugo/promos/
 HTTP_REFERER=http://localhost/~hugo/promos/index
 ---
 >>>>>>> bd5ac3e256f1ade96ec8fd7f83799c292d68cf5e
+2013/12/16 10:15:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "uploads/images/63c84a5d2fe628e408746250e632b30b.jpeg"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('uploads/images/...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/uploads/images/63c84a5d2fe628e408746250e632b30b.jpeg
+HTTP_REFERER=http://localhost/~hugo/promos/empresas
+---
+2013/12/16 10:15:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "uploads/images/f69d6677dd6f6d761d32de7b27179800.jpeg"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('uploads/images/...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/uploads/images/f69d6677dd6f6d761d32de7b27179800.jpeg
+HTTP_REFERER=http://localhost/~hugo/promos/empresas
+---
+2013/12/16 10:15:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "cdestilos.css" solicitada.' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(270): CController->missingAction('cdestilos.css')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CController->run('cdestilos.css')
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('promocion/cdest...')
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/~hugo/promos/promocion/cdestilos.css
+HTTP_REFERER=http://localhost/~hugo/promos/promocion/pack_3_cremas
+---
+2013/12/16 10:15:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "cdestilos.css" solicitada.' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(270): CController->missingAction('cdestilos.css')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CController->run('cdestilos.css')
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('promocion/cdest...')
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/~hugo/promos/promocion/cdestilos.css
+HTTP_REFERER=http://localhost/~hugo/promos/promocion/pack_3_cremas
+---
+2013/12/16 10:15:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "uploads/images/63c84a5d2fe628e408746250e632b30b.jpeg"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('uploads/images/...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/uploads/images/63c84a5d2fe628e408746250e632b30b.jpeg
+HTTP_REFERER=http://localhost/~hugo/promos/empresas
+---
+2013/12/16 10:15:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "uploads/images/f69d6677dd6f6d761d32de7b27179800.jpeg"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('uploads/images/...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/uploads/images/f69d6677dd6f6d761d32de7b27179800.jpeg
+HTTP_REFERER=http://localhost/~hugo/promos/empresas
+---
+2013/12/16 10:18:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/favicon.ico"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/themes/froggy/ico/favicon.ico
+---
+2013/12/16 10:18:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/home
+---
+2013/12/16 10:19:12 [error] [system.db.CDbCommand] CDbCommand::fetchAll() falló: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'promos.category' doesn't exist. La sentencia SQL ejecutada fue: SHOW FULL COLUMNS FROM `category`.
+2013/12/16 10:19:13 [error] [exception.CDbException] exception 'CDbException' with message 'La tabla "category" definida en la clase active record "Category" no se ha podido encontrar en la base de datos.' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\db\ar\CActiveRecord.php:2310
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\db\ar\CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(Category))
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CActiveDataProvider.php(74): CActiveRecord::model('Category')
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\PromocionController.php(181): CActiveDataProvider->__construct('Category')
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(49): PromocionController->actionCreate()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/promocion/...')
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/~hugo/promos/user/promocion/create
+HTTP_REFERER=http://localhost/~hugo/promos/user/home
+---
+2013/12/16 10:21:34 [error] [system.db.CDbCommand] CDbCommand::fetchAll() falló: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'promos.category' doesn't exist. La sentencia SQL ejecutada fue: SHOW FULL COLUMNS FROM `category`.
+2013/12/16 10:21:34 [error] [exception.CDbException] exception 'CDbException' with message 'La tabla "category" definida en la clase active record "Category" no se ha podido encontrar en la base de datos.' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\db\ar\CActiveRecord.php:2310
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\db\ar\CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(Category))
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\models\Category.php(30): CActiveRecord::model('Category')
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\_form.php(228): Category::model()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require('C:\Documents an...')
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Documents an...', Array, true)
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\Documents an...', Array, true)
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\create.php(40): CController->renderPartial('_form', Array)
+#7 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require('C:\Documents an...')
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Documents an...', Array, true)
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\Documents an...', Array, true)
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): CController->renderPartial('create', Array, true)
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\PromocionController.php(185): CController->render('create', Array)
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(49): PromocionController->actionCreate()
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#16 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#18 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#19 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#20 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#22 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/promocion/...')
+#23 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#24 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#25 {main}
+REQUEST_URI=/~hugo/promos/user/promocion/create
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2013/12/16 10:21:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2013/12/16 10:21:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2013/12/16 11:05:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/profile
+---
+2013/12/16 11:05:55 [error] [system.db.CDbCommand] CDbCommand::fetchAll() falló: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'promos.category' doesn't exist. La sentencia SQL ejecutada fue: SHOW FULL COLUMNS FROM `category`.
+2013/12/16 11:05:55 [error] [exception.CDbException] exception 'CDbException' with message 'La tabla "category" definida en la clase active record "Category" no se ha podido encontrar en la base de datos.' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\db\ar\CActiveRecord.php:2310
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\db\ar\CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(Category))
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\models\Category.php(30): CActiveRecord::model('Category')
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\_form.php(228): Category::model()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require('C:\Documents an...')
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Documents an...', Array, true)
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\Documents an...', Array, true)
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\create.php(40): CController->renderPartial('_form', Array)
+#7 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require('C:\Documents an...')
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Documents an...', Array, true)
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\Documents an...', Array, true)
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): CController->renderPartial('create', Array, true)
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\PromocionController.php(185): CController->render('create', Array)
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(49): PromocionController->actionCreate()
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#16 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#18 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#19 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#20 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#22 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/promocion/...')
+#23 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#24 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#25 {main}
+REQUEST_URI=/~hugo/promos/user/promocion/create
+HTTP_REFERER=http://localhost/~hugo/promos/user/profile
+---
+2013/12/16 11:05:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2013/12/16 11:05:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2013/12/16 11:09:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "uploads/images/63c84a5d2fe628e408746250e632b30b.jpeg"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('uploads/images/...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/uploads/images/63c84a5d2fe628e408746250e632b30b.jpeg
+HTTP_REFERER=http://localhost/~hugo/promos/user/empresa
+---
+2013/12/16 11:09:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "~hugo/promos/user/item/delete/id/9"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('~hugo/promos/us...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/~hugo/promos/user/item/delete/id/9?_=1387188588451
+HTTP_REFERER=http://localhost/~hugo/promos/user/empresa
+---
+2013/12/16 11:11:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/profile
+---
+2013/12/16 11:11:47 [error] [exception.CException] exception 'CException' with message 'Image file not found: //769101e0b4aa8e38745dc0f44958f2c4.jpg' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\extensions\EPhpThumb\EPhpThumb.php:59
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\extensions\EPhpThumb\EPhpThumb.php(44): EPhpThumb::thumbFactory('//769101e0b4aa8...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\ItemController.php(65): EPhpThumb->create('//769101e0b4aa8...')
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(49): ItemController->actionUpload()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CController->run('upload')
+#7 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/item/uploa...')
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#10 {main}
+REQUEST_URI=/~hugo/promos/user/item/upload
+HTTP_REFERER=http://localhost/~hugo/promos/user/empresa
+---
+2013/12/16 11:12:00 [error] [exception.CException] exception 'CException' with message 'Image file not found: //9daba6c6ae1cab80c91d2d0cbb233bf6.jpg' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\extensions\EPhpThumb\EPhpThumb.php:59
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\extensions\EPhpThumb\EPhpThumb.php(44): EPhpThumb::thumbFactory('//9daba6c6ae1ca...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\ItemController.php(65): EPhpThumb->create('//9daba6c6ae1ca...')
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(49): ItemController->actionUpload()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CController->run('upload')
+#7 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/item/uploa...')
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#10 {main}
+REQUEST_URI=/~hugo/promos/user/item/upload
+HTTP_REFERER=http://localhost/~hugo/promos/user/empresa
+---
+2013/12/16 12:51:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "cdestilos.css" solicitada.' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(270): CController->missingAction('cdestilos.css')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CController->run('cdestilos.css')
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('promocion/cdest...')
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/~hugo/promos/promocion/cdestilos.css
+HTTP_REFERER=http://localhost/~hugo/promos/promocion/pack_3_cremas
+---
