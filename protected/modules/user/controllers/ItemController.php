@@ -110,7 +110,7 @@ class ItemController extends CController
 	                );
 	            }
 	        } else {
-	            throw new CHttpException( 500, "Could not upload file" );
+	            throw new CHttpException( 500, "Could not upload fileeee" );
 	        }
 	    }
 	}

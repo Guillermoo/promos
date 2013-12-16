@@ -65,11 +65,11 @@ class Promocion extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('titulo, titulo_slug, resumen,  fecha_inicio, fecha_fin, destacado, precio, condiciones, stock, categorias_id', 'required'),
-			array('id,user_id,cat_id,estado, destacado, stock,precio,categorias_id', 'numerical', 'integerOnly'=>true),
+			array('titulo, titulo_slug, resumen,  fecha_inicio, fecha_fin, destacado, precio, condiciones, stock, cat_id', 'required'),
+			array('id,user_id,cat_id,estado, destacado, stock,precio,cat_id', 'numerical', 'integerOnly'=>true),
 			array('titulo, titulo_slug, resumen', 'length', 'max'=>100),
-			array('fecha_inicio,fecha_fin', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true, 'on' => 'insert'),//fechaCreación es un timestamp
-			array('fecha_inicio,fecha_fin', 'default', 'value' => '0000-00-00 00:00:00', 'setOnEmpty' => true, 'on' => 'insert'),
+			array('fecha_inicio,fecha_fin', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true),//fechaCreación es un timestamp.. //, 'on' => 'insert'
+			//array('fecha_inicio,fecha_fin', 'default', 'value' => '0000-00-00 00:00:00', 'setOnEmpty' => true, 'on' => 'insert'),
 			array('descripcion, descripcion_html, condiciones', 'length', 'max'=>1000),
 			array('precio, rebaja', 'length', 'max'=>45),
                         array('fecha_inicio,fecha_fin', 'checkFechas'),

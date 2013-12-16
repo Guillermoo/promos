@@ -178,7 +178,7 @@ class PromocionController extends Controller
         $item = new Item;
         
         //Leer los tipos de categoría a los que puede pertenecer la promoción
-        $categorias=new CActiveDataProvider('Categoria');        
+        $categorias=new CActiveDataProvider('Categoria');
 
         $this->render('create',array(
                 'model'=>$model,'item'=>$item,'image'=>$image,'cuenta'=>$usuario->profile->tipocuenta, 'categorias'=>$categorias
@@ -216,11 +216,15 @@ class PromocionController extends Controller
             
             $this->redirect(array('update','id'=>$this->_model->id));
         }
-        
-        //$imageForm = $this->obtenImageForm($this->_model->item);    
-        //$this->debug($imageForm);
+        if (isset($this->_model->item)){
+            $imageForm = $this->obtenImageForm($this->_model->item);    
+        }else{
+            Yii::import("xupload.models.XUploadForm");
+            $imageForm = new Item;
+        }
+        //$this->debug($this->_model->item);
         $this->render('update',array('model'=>$this->_model,
-            //'image'=>$imageForm,
+            'image'=>$imageForm,
         ));
 
 	}
