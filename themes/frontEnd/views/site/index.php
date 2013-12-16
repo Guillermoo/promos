@@ -43,7 +43,7 @@
 								<?php endif; ?>
 							
 								<div class="caption">
-									<a href="promo/<?=$promo->titulo_slug ?>"><?=$promo->titulo ?></a>
+									<a href="promocion/<?=$promo->titulo_slug ?>"><?=$promo->titulo ?></a>
 									<p><?=$promo->resumen ?> <span class="label label-info price pull-right">&euro; <?=$promo->precio ?>,-</span></p>
 								</div>
 							</div>

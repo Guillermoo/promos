@@ -6,7 +6,7 @@ class CompraController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/column1';
 
 	/**
 	 * @return array action filters
@@ -28,7 +28,7 @@ class CompraController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','checkoutCompra'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -60,7 +60,7 @@ class CompraController extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate()
+	function actionCreate()
 	{
 		$model=new Compra;
 
@@ -161,7 +161,7 @@ class CompraController extends Controller
 		}
 
 		// post back to PayPal system to validate
-		$header .= "POST /cgi-bin/webscr HTTP/1.0\r\n";
+		$header = "POST /cgi-bin/webscr HTTP/1.0\r\n"; //estaba así: $header .= "POST /cgi-bin/webscr HTTP/1.0\r\n";
 		$header .= "Content-Type: application/x-www-form-urlencoded\r\n";
 		$header .= "Content-Length: " . strlen($req) . "\r\n\r\n";
 		$fp = fsockopen ('ssl://www.paypal.com', 443, $errno, $errstr, 30);
@@ -175,10 +175,11 @@ class CompraController extends Controller
 		$txn_id = $_POST['txn_id'];
 		$receiver_email = $_POST['receiver_email'];
 		$payer_email = $_POST['payer_email'];
+		$custom = $_POST['custom'];
 
 		if (!$fp) {
 			// HTTP ERROR
-			return false;
+			Yii::app()->end();
 		}else{
 			fputs ($fp, $header . $req);
 			while (!feof($fp)) {
@@ -187,24 +188,71 @@ class CompraController extends Controller
 					$todook = true;
 					// check the payment_status is Completed										
 					if(!strcmp($payment_status, "Completed"))
-						return false;
-					// check that txn_id has not been previously processed
-					$compra = new Compra;
-
-					// check that receiver_email is your Primary PayPal email
-					if(!stcmp(Yii::app()->user->paypal, $receiver_email))
-						return false;
+						Yii::app()->end();
+					// Comprobar que el txn_id no se ha procesado todavía
+					$compra = Compra::model()->find('referencia='.$txn_id);
+					if($compra)
+						Yii::app()->end();
+					// Chequear que el receptor de la compra coincide con el email de paypal de la empresa
+					/*if(!stcmp($emailempresa, $receiver_email))
+						return false; */
 					// check that payment_amount/payment_currency are correct
 					
-					// process payment
+					// procesar pago
+					$model = new Compra;
+
+					//cojo el id_usuario y el id_promo del campo custom
+					$ids = explode('_',$custom);
+					$idUsuario = $ids[0];
+					$idPromocion = $ids[1];
+
+					$this->insertarCompra($idUsuario,$idPromocion,$referencia,$precio, $custom);
+					//$this->insertarCompraPrueba();
 
 				}else if (strcmp ($res, "INVALID") == 0) {
 					// log for manual investigation
-					return false;
+					$this->render('nocomprado');
+					//$this->render('nocomprado');
 				}
 			}
 			fclose ($fp);
 		}
+	}
+
+	function insertarCompra($idUsuario,$idPromocion,$referencia,$precio,$custom){			
+			$model=new Compra;
+
+			$model->id_usuario = $idUsuario;
+			$model->id_promo = $idPromocion;
+			$model->referencia = $referencia;
+			$model->precio = $precio;
+			$model->fecha_compra = date("Y-m-d H:i:s");
+			$model->estado = 1;
+
+			if($model->save()){
+				$this->render('comprado',array('compra'=>$model));
+			}else{
+				$this->render('nocomprado',array('compra'=>$model));
+			}
+	}
+
+	function insertarCompraPrueba(){
+			$model=new Compra;
+
+			$model->id_usuario = 7;
+			$model->id_promo = 1;
+			$model->referencia = "referenciaxxisu87sx";
+			$model->precio = "37.50";
+			$model->fecha_compra = date("Y-m-d H:i:s");
+			$model->estado = 1;
+
+			$guardado = $model->save();
+			print_r($model->getErrors());
+			if($guardado)
+				$this->render('comprado',array('compra'=>$model));
+			else
+				$this->render('nocomprado',array('compra'=>$model));
+
 	}
 
 	public function loadModel($id)
