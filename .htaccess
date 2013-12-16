@@ -1,6 +1,6 @@
 RewriteEngine on
 
-RewriteBase /~hugo/promos
+RewriteBase /~ko/promos
 
 # if a directory or a file exists, use it directly
 RewriteCond %{REQUEST_FILENAME} !-f
