@@ -2778,3 +2778,38 @@ Stack trace:
 REQUEST_URI=/~hugo/promos/promocion/cdestilos.css
 HTTP_REFERER=http://localhost/~hugo/promos/promocion/pack_3_cremas
 ---
+2013/12/17 11:09:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/favicon.ico"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/themes/froggy/ico/favicon.ico
+---
+2013/12/17 11:09:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/home
+---
+2013/12/17 11:10:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/profile
+---
+2013/12/17 13:56:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "uploads/images/f69d6677dd6f6d761d32de7b27179800.jpeg"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('uploads/images/...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/uploads/images/f69d6677dd6f6d761d32de7b27179800.jpeg
+HTTP_REFERER=http://localhost/~hugo/promos/empresas
+---

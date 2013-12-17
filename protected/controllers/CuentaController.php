@@ -198,7 +198,7 @@ class CuentaController extends Controller
 					$idUsuario = $ids[0];
 					$idCuenta = $ids[1];
 
-					$this->insertarCuenta($idUsuario,$idCuenta,$custom);
+					$this->insertarCuenta($idUsuario,$idCuenta,$txn_id,$payment_amount,$custom);
 					//$this->insertarCompraPrueba();
 
 				}else if (strcmp ($res, "INVALID") == 0) {
@@ -211,19 +211,24 @@ class CuentaController extends Controller
 		}
 	}
 
-	function insertarCuenta($idUsuario,$idPromocion,$referencia,$precio,$custom){			
+	function insertarCuenta($idUsuario,$idCuenta,$referencia,$precio,$custom){			
 			$model=new Compra;
 
 			$model->id_usuario = $idUsuario;
-			$model->id_promo = $idPromocion;
+			$model->id_promo = $idCuenta;
 			$model->referencia = $referencia;
 			$model->precio = $precio;
 			$model->fecha_compra = date("Y-m-d H:i:s");
 			$model->estado = 1;
 
-			if($model->save()){
+			//actualizar el tipo de cuenta en el profile del usuario:
+			$cuenta = Cuenta::model()->findByPk($idCuenta);
+			$condicion = 'user_id = '.$idUsuario;
+			if($model->save() && Profile::model()->updateAll(array('tipocuenta'=>$cuenta->id),$condicion)){
+				//solo para pruebas. Luego comentar la siguiente línea:
 				$this->render('comprado',array('compra'=>$model));
 			}else{
+				//solo para pruebas. Luego comentar la siguiente línea:
 				$this->render('nocomprado',array('compra'=>$model));
 			}
 	}

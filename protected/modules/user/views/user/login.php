@@ -5,7 +5,7 @@ $this->breadcrumbs=array(
 	UserModule::t("Login"),
 );
 ?>
-<div class="clearfix" align="center"><p><?php echo CHtml::link(UserModule::t("Volver"),Yii::app()->request->baseUrl, array('class' => 'btn btn-primary')) ?></p></div>
+<div class="clearfix" align="center"><p><?php echo CHtml::link(UserModule::t("Volver a las promociones"),Yii::app()->request->baseUrl, array('class' => 'btn')) ?></p></div>
 <div class="well" align="center">
 <h1><?php echo UserModule::t("Login"); ?></h1>
 
@@ -18,8 +18,6 @@ $this->breadcrumbs=array(
 
 <div class="form form-horizontal">
 <?php echo CHtml::beginForm(); ?>
-
-	<p class="note"><?php echo UserModule::t('Fields with <span class="required">*</span> are required.'); ?></p>
 	
 	<?php echo CHtml::errorSummary($model); ?>
 	
@@ -45,7 +43,7 @@ $this->breadcrumbs=array(
 	</div>
 
 	<div class="row submit">
-		<?php echo CHtml::submitButton(UserModule::t("Login")); ?>
+		<?php echo CHtml::submitButton(UserModule::t("LoginButton"),array('class' => 'btn btn-success btn-large')); ?>
 	</div>
 	
 <?php echo CHtml::endForm(); ?>
@@ -72,6 +70,7 @@ $form = new CForm(array(
         'login'=>array(
             'type'=>'submit',
             'label'=>'Login',
+            'class'=>'btn btn-success'
         ),
     ),
 ), $model);

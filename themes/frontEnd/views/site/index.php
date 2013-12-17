@@ -33,7 +33,7 @@
 				<ul class="thumbnails product-list-inline-small">
 					<?php foreach ($destacados as $key => $promo):	?>
 								
-						<li class="span3">
+						<li class="span6">
 							<div class="thumbnail">
 								<?php if (isset($promo->item)): ?>
 									<?php //$this->debug(Yii::app()->request->baseUrl.$promo->item->path) ?>
@@ -72,7 +72,7 @@
 								<?php if (isset($promo->item)): ?>
 									<img data-hover="<?php echo Yii::app()->request->baseUrl.$path ?>" src="$promo->item->path" alt="<?php echo $promo->titulo ?>" src="<?php echo Yii::app()->request->baseUrl.$path ?>">
 								<?php else: ?>
-									<img data-hover="<<?php echo Yii::app()->request->baseUrl.$path ?>"  alt="<?php echo $promo->titulo ?>" src="<?php echo Yii::app()->request->baseUrl.$path ?>">
+									<img data-hover="<?php echo Yii::app()->request->baseUrl.$path ?>"  alt="<?php echo $promo->titulo ?>" src="<?php echo Yii::app()->request->baseUrl.$path ?>">
 								<?php endif; ?>
 							</a>
 							<div class="caption">
