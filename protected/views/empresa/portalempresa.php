@@ -25,8 +25,8 @@
 </div>
 <div class="row-fluid">
 	<div class="span10"><h2> <?php echo $model->nombre; ?></h2></div>
-	<div class="social span1"><?php echo CHtml::link(CHtml::image(Yii::app()->theme->baseurl.'/img/icon-facebook-big.png', $alt='facebook'),$model->facebook) ?></div>
-		<div class="social span1"><?php echo CHtml::link(CHtml::image(Yii::app()->theme->baseurl.'/img/icon-twitter-big.png', $alt='twitter'),$model->twitter) ?></div>
+	<div class="social span1"><?php echo CHtml::link(CHtml::image(Yii::app()->theme->baseurl.'/img/icon-facebook-big.png', $alt='facebook'),'http://www.facebook.com/'.$model->facebook,array('target'=>'_blank')) ?></div>
+		<div class="social span1"><?php echo CHtml::link(CHtml::image(Yii::app()->theme->baseurl.'/img/icon-twitter-big.png', $alt='twitter'),'http://www.twitter.com/'.$model->twitter,array('target'=>'_blank')) ?></div>
 		<div class="span12">			
 			<?php if(isset($model->usuario->item->path)){ ?>
 			<div class="thumbnail"> 

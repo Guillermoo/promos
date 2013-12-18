@@ -41,23 +41,41 @@
 	</div>
 </div>
 
-<div class="row-fluid">
-	<div class="span12 rating">
-		Valoración: 
-		<?php
-		$this->widget('CStarRating',array(
-			'name'=>$model->id,
-			'value'=>'3',
-			'minRating'=>1,
-			'maxRating'=>5,
-			'starCount'=>5,
-			'cssFile'=>'cdestilos.css',
-			'readOnly'=>true,
-		));
+<!-- ########### Sistema de votación #####################3 -->
+	<div  id="valoracion">
+		<?php 
+        if ($rating = Voto::model()->findByPk($model->votos_id)){ //if the record has an votos_id we echo it       
+            echo "Valoración: <strong>" . $rating->votos_media ."</strong>";
+            echo " " . $rating->votos_cantidad . " votos";
+        }else{
+        	$rating = new Voto;
+        	$rating->votos_cantidad = 0;
+        	$rating->votos_media = 0;
+        	$rating->votos_suma = 0;
+        	echo "Valoración: <strong>Todavía ha sido valorada</strong>";           
+        }
 		?>
+    </div>
 
-	</div>
-</div>
+        
+<?php // rating
+     $this->widget('CStarRating',array(
+    'name'=>'valoracion',
+    'callback'=>'
+        function(){
+        $.ajax({
+        	alert("hola");
+            type: "GET",
+            url: "'.Yii::app()->createUrl('promocion/votar').'",
+            data: "id='.$model->id.'&val=" + $(this).val(),
+            success: function(msg){
+                alert( "Valoracion guardada: " + msg 
+            )
+        }})}'
+));
+?>      
+<div id="rating_success_<?=$model->id;?>" style="display:none"></div> <!-- the div in which the confirmation message is shown-->
+<!-- #################################3 -->
 
 <div class="row-fluid product-detail">
 
@@ -71,31 +89,6 @@
 				<img class="product-image" alt="Product A" src="<?php echo Yii::app()->request->baseUrl.$path ?>">
 		</a>
 	</div>
-
-	<!--<div class="span1">
-		<ul class="thumbnails main-product">
-			<li class="span12 visible-phone">
-				<a rel="colorbox1" href="img/product_01.jpg" class="colorbox thumbnail">
-					<img alt="Product A 2" src="img/product_01.jpg" />
-				</a>
-			</li>
-			<li class="span12">
-				<a rel="colorbox1" href="img/product_01b.jpg" class="colorbox thumbnail">
-					<img alt="Product A 2" src="img/product_01b.jpg" />
-				</a>
-			</li>
-			<li class="span12">
-				<a rel="colorbox1" href="img/product_02.jpg" class="colorbox thumbnail">
-					<img alt="Product B 1" src="img/product_02.jpg" />
-				</a>
-			</li>
-			<li class="span12">
-				<a rel="colorbox1" href="img/product_02b.jpg" class="colorbox thumbnail">
-					<img alt="Product B 2" src="img/product_02b.jpg" />
-				</a>
-			</li>
-		</ul>
-	</div>-->
 
 	<div class="span7 well">
 
@@ -210,115 +203,3 @@
 
 </div>
 </div>
-<!--<div class="footer">
-
-<div class="row-fluid print-hide">
-
-<div class="span2">
-	<ul class="unstyled">
-		<li class="footer-title"><a href="#">Category 1</a></li>
-		<li><a href="#">Product item A</a></li>
-		<li><a href="#">Product B</a></li>
-		<li><a href="#">Large product C</a></li>
-	</ul>
-	<ul class="unstyled">
-		<li class="footer-title"><a href="#">Category 2</a></li>
-		<li><a href="#">Product item A</a></li>
-		<li><a href="#">Product B</a></li>
-		<li><a href="#">Large product C</a></li>
-		<li><a href="#">Product D</a></li>
-		<li><a href="#">Short E</a></li>
-	</ul>
-</div>
-
-<div class="span2">
-	<ul class="unstyled">
-		<li class="footer-title"><a href="#">Category 3</a></li>
-		<li><a href="#">Product item A</a></li>
-		<li><a href="#">Product B</a></li>
-		<li><a href="#">Large product C</a></li>
-		<li><a href="#">Product D</a></li>
-	</ul>
-	<ul class="unstyled">
-		<li class="footer-title"><a href="#">Category 4</a></li>
-		<li><a href="#">Product item A</a></li>
-		<li><a href="#">Product B</a></li>
-	</ul>
-</div>
-
-<div class="span2">
-	<ul class="unstyled">
-		<li class="footer-title"><a href="#">Category 5</a></li>
-		<li><a href="#">Product item A</a></li>
-		<li><a href="#">Product B</a></li>
-		<li><a href="#">Large product C</a></li>
-	</ul>
-	<ul class="unstyled">
-		<li class="footer-title"><a href="#">Category 6</a></li>
-		<li><a href="#">Product item A</a></li>
-		<li><a href="#">Product B</a></li>
-		<li><a href="#">Large product C</a></li>
-		<li><a href="#">Product D</a></li>
-	</ul>
-</div>
-
-<div class="span2">
-	<ul class="unstyled">
-		<li class="footer-title"><a href="#">Category 7</a></li>
-		<li><a href="#">Product item A</a></li>
-		<li><a href="#">Product B</a></li>
-		<li><a href="#">Large product C</a></li>
-		<li><a href="#">Product D</a></li>
-		<li><a href="#">Short E</a></li>
-	</ul>
-	<ul class="unstyled">
-		<li class="footer-title"><a href="#">Category 8</a></li>
-		<li><a href="#">Product item A</a></li>
-		<li><a href="#">Product B</a></li>
-		<li><a href="#">Large product C</a></li>
-		<li><a href="#">Product D</a></li>
-		<li><a href="#">Short E</a></li>
-	</ul>
-</div>
-
-<div class="span2">
-	<ul class="unstyled">
-		<li class="footer-title"><a href="#">Category 9</a></li>
-		<li><a href="#">Product item A</a></li>
-		<li><a href="#">Product B</a></li>
-		<li><a href="#">Large product C</a></li>
-		<li><a href="#">Product D</a></li>
-		<li><a href="#">Short E</a></li>
-	</ul>
-	<ul class="unstyled">
-		<li class="footer-title"><a href="#">Category 10</a></li>
-		<li><a href="#">Product item A</a></li>
-		<li><a href="#">Product B</a></li>
-		<li><a href="#">Large product C</a></li>
-		<li><a href="#">Product D</a></li>
-	</ul>
-</div>
-
-<div class="span2">
-	<ul class="unstyled">
-		<li class="footer-title"><a href="#">Category 11</a></li>
-		<li><a href="#">Product item A</a></li>
-		<li><a href="#">Product B</a></li>
-	</ul>
-	<ul class="unstyled">
-		<li class="footer-title"><a href="#">Category 12</a></li>
-		<li><a href="#">Product item A</a></li>
-		<li><a href="#">Product B</a></li>
-		<li><a href="#">Large product C</a></li>
-	</ul>
-</div>
-
-</div>
-
-<div class="row-fluid print-show">
-<div class="span12">
-	Alternate footer for print version
-</div>
-</div>
-
-</div>-->
