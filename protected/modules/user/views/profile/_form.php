@@ -94,9 +94,9 @@
 				    	'debug'=>YII_DEBUG,
 				    ),
 				));*/?>
-                             <?php echo $form->datepickerRow($profile, 'fecha_activacion',
-                                                    array('hint'=>'Click inside! This is a super cool date field.',
-                                                    'prepend'=>'<i class="icon-calendar"></i>')); ?>
+                <?php echo $form->datepickerRow($profile, 'fecha_activacion',
+                        array('hint'=>'Click inside! This is a super cool date field.',
+                           'prepend'=>'<i class="icon-calendar"></i>')); ?>
 				<?php echo $form->error($profile,'fecha_activacion'); ?>
 			</div>
 			<div class="row">
@@ -163,11 +163,12 @@
 				<?php echo $form->error($profile,'cp'); ?>
 			</div>
 			
-			<div class="row">
-				<?php echo $form->labelEx($profile,'barrio'); ?>
-				<?php echo $form->textField($profile,'barrio'); ?>
-				<?php echo $form->error($profile,'barrio'); ?>
-			</div>
+			
+			<!-- <div class="row">
+				<?php /*echo $form->labelEx($profile,'barrio'); 
+				echo $form->textField($profile,'barrio');
+				echo $form->error($profile,'barrio'); */?>
+			</div> -->
 			
 			<div class="row">
 				<?php echo $form->labelEx($profile,'direccion'); ?>
@@ -186,15 +187,10 @@
 	<?php if (UserModule::isBuyer() ):?>
 		<?php $profile = $model->profile;?>
 		<div class="fields">
-		
-			<?php $this->widget('bootstrap.widgets.TbLabel', array(
-			    'type'=>'info', // 'success', 'warning', 'important', 'info' or 'inverse'
-			    'label'=>'Profile',
-			)); ?>
 			<!-- Inicio profile -->		
 				
 			<div class="row">
-				<?php echo $form->labelEx($profile,'username'); ?>
+				<?php echo $form->labelEx($profile,'username',array('class'=>'')); ?>
 				<?php echo $form->textField($profile,'username',array('size'=>60,'maxlength'=>128)); ?>
 				<?php echo $form->error($profile,'username'); ?>
 			</div>
@@ -217,38 +213,29 @@
 				<?php echo $form->error($profile,'cp'); ?>
 			</div>
 			
-			<div class="row">
-				<?php echo $form->labelEx($profile,'barrio'); ?>
-				<?php echo $form->textField($profile,'barrio'); ?>
-				<?php echo $form->error($profile,'barrio'); ?>
-			</div>
+			<!-- <div class="row">
+				<?php /*echo $form->labelEx($profile,'barrio'); 
+				echo $form->textField($profile,'barrio');
+				echo $form->error($profile,'barrio'); */?>
+			</div> -->
 			
 			<div class="row">
 				<?php echo $form->labelEx($profile,'direccion'); ?>
 				<?php echo $form->textField($profile,'direccion',array('size'=>60,'maxlength'=>120)); ?>
 				<?php echo $form->error($profile,'direccion'); ?>
 			</div>
-			<? $this->debug(User::getListaCiudades()); ?>
+			<? //$this->debug(User::getListaCiudades()); ?>
 			<div class="row">
-                <?php echo $form->dropDownListRow($profile, 'poblacion_id', User::getListaCiudades()); ?>
-                <?$this->widget('bootstrap.widgets.TbSelect2', array(
-                    'asDropDownList' => true,
-                    'name' => 'poblacion_id',
-                    'data' =>  User::getListaCiudades(),
-                    'options' => array(
-                        //'tags' => array('clever','is', 'better', 'clevertech'),
-                        //'tags' => User::getListaCiudades(),
-                        'placeholder' => 'Zaragoza',
-                        'width' => '40%',
-                        'tokenSeparators' => array(',', ' ')
-                ))); ?>
+                <?php //echo $form->dropDownListRow($profile, 'poblacion_id', User::getListaCiudades()); 
+               echo $form->labelEx($profile,'poblacion_id'); ?>
+				<?php echo $form->textField($profile,'poblacion_id'); ?>
 				<?php echo $form->error($profile,'poblacion_id'); ?>
 			</div>
 		</div> 
 	<?php endif;?>
 	
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? UserModule::t('Create') : UserModule::t('Save')); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? UserModule::t('Create') : UserModule::t('Save'), array('class'=>'btn btn-success btn-large')); ?>
 	</div>
  
 </fieldset>

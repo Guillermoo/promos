@@ -6,9 +6,9 @@
 			$usuario = User::model()->findByPk($data->user_id);
 			//$this->debug($usuario);
 			if(isset($usuario->item)): ?>
-				<a href="#" ><img src="<?php echo Yii::app()->request->baseUrl.$usuario->item->path; ?>" /></a>
+				<a href="empresa/verpromos/<?php echo $data->id ?>" ><img src="<?php echo Yii::app()->request->baseUrl.$usuario->item->path; ?>" /></a>
 			<?php else: ?>
-				<a href="#" ><img src="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>" />
+				<a href="empresa/verpromos/<?php echo $data->id ?>" ><img src="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>" />
 				</a>
 			<?php endif; ?>
 			<?php

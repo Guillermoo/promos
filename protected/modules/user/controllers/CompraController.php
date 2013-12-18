@@ -99,7 +99,7 @@ class CompraController extends Controller
 	}
 	public function actionHistorialCompras()
 	{
-		$dataProvider=new CActiveDataProvider('Compras',array(
+		$dataProvider=new CActiveDataProvider('Compra',array(
                     'criteria'=>array(
                     'condition'=>'id_usuario ='.Yii::app()->user->id
 		)));

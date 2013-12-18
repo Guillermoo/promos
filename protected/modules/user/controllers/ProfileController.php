@@ -112,7 +112,7 @@ class ProfileController extends Controller
 				$this->redirect(array('view','id'=>$this->_model->user_id));
 		}
 
-		$this->debug($this->_model);
+		//$this->debug($this->_model);
 
 		$this->render('create',array(
 			'model'=>$this->_model,

@@ -6,7 +6,7 @@ class CuentaController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/column1';
 
 	/**
 	 * @return array action filters
@@ -28,7 +28,7 @@ class CuentaController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','checkoutCompra'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -167,7 +167,7 @@ class CuentaController extends Controller
 		$txn_id = $_POST['txn_id'];
 		$receiver_email = $_POST['receiver_email'];
 		$payer_email = $_POST['payer_email'];
-		$custom = $_POST['custom'];
+		$custom = $_POST['custom']; 
 
 		if (!$fp) {
 			// HTTP ERROR
@@ -175,7 +175,7 @@ class CuentaController extends Controller
 		}else{
 			fputs ($fp, $header . $req);
 			while (!feof($fp)) {
-				$res = fgets ($fp, 1024);
+				$res = fgets ($fp, 1024);		
 				if (strcmp ($res, "VERIFIED") == 0) {
 					$todook = true;
 					// check the payment_status is Completed										
@@ -194,16 +194,16 @@ class CuentaController extends Controller
 					$model = new Cuenta;
 
 					//cojo el id_usuario y el id_promo del campo custom
-					$ids = explode('_',$custom);
+					$ids = explode('_', $custom);
 					$idUsuario = $ids[0];
 					$idCuenta = $ids[1];
 
-					$this->insertarCuenta($idUsuario,$idCuenta,$txn_id,$payment_amount,$custom);
+					$this->insertarCuenta($idUsuario,$idCuenta,$txn_id,$payment_amount);
 					//$this->insertarCompraPrueba();
 
 				}else if (strcmp ($res, "INVALID") == 0) {
 					// log for manual investigation
-					$this->render('nocomprado');
+					echo "Operación no permitida";
 					//$this->render('nocomprado');
 				}
 			}
@@ -211,7 +211,28 @@ class CuentaController extends Controller
 		}
 	}
 
-	function insertarCuenta($idUsuario,$idCuenta,$referencia,$precio,$custom){			
+
+	function insertarCuenta($idUsuario,$idCuenta,$referencia,$precio){			
+			$model=new Compra;
+
+			$model->id_usuario = $idUsuario;
+			$model->id_promo = $idCuenta;
+			$model->referencia = $referencia;
+			$model->precio = $precio;
+			$model->fecha_compra = date("Y-m-d H:i:s");
+			$model->estado = 1;
+
+			//actualizar el tipo de cuenta en el profile del usuario:
+			$cuenta = Cuenta::model()->findByPk($idCuenta);
+			$condicion = 'user_id = '.$idUsuario;
+			
+			//Guardo los resultados en la BD
+			$model->save();
+			Profile::model()->updateAll(array('tipocuenta'=>$cuenta->id),$condicion);
+				
+	}
+
+	function insertarCuentaPrueba($idUsuario,$idCuenta,$referencia,$precio){			
 			$model=new Compra;
 
 			$model->id_usuario = $idUsuario;

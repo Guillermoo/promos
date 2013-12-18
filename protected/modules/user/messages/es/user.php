@@ -4,7 +4,8 @@
  */
 return array(
     'Registration' => 'Registro',
-	'Register' => 'Registrar',
+	'Register' => '¡Regístrate!',
+    'Registrarion User' => 'Regístrate gratis',
     'Login' => 'Acceso a zona de usuario',
     'LoginButton' => 'Entrar',
     'Logout' => 'Cerrar sesión',

@@ -65,3 +65,7 @@ body{
 .thumbnail .caption a{
 	font-size: 1.3em;
 }
+
+.destacado{
+	background-color: #fff;
+}

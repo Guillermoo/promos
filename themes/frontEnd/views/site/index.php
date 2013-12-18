@@ -33,8 +33,8 @@
 				<ul class="thumbnails product-list-inline-small">
 					<?php foreach ($destacados as $key => $promo):	?>
 								
-						<li class="span6">
-							<div class="thumbnail">
+						<li class="span3">
+							<div class="thumbnail destacado">
 								<?php if (isset($promo->item)): ?>
 									<?php //$this->debug(Yii::app()->request->baseUrl.$promo->item->path) ?>
 									<a href="promocion/<?=$promo->titulo_slug ?>"><img src="<?php echo Yii::app()->request->baseUrl.$promo->item->path ?>" alt=""></a>

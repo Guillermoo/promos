@@ -4,8 +4,9 @@ $this->breadcrumbs=array(
 );
 ?>
 
-<h1><?php echo UserModule::t("Registration User"); ?></h1>
-
+<h1>¡Regístrate gratis!</h1>
+<div class="row-fluid">
+<div class="span12">
 <?php if(Yii::app()->user->hasFlash('registration')): ?>
 <div class="success">
 <?php echo Yii::app()->user->getFlash('registration'); ?>
@@ -63,9 +64,11 @@ $this->breadcrumbs=array(
 	<?php endif; ?>
 	
 	<div class="row submit">
-		<?php echo CHtml::submitButton(UserModule::t("Register")); ?>
+		<?php echo CHtml::submitButton(UserModule::t("Register"),array('class'=>'btn btn-primary btn-large')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
 </div><!-- form -->
 <?php endif; ?>
+</div>
+</div>
