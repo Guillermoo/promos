@@ -115,7 +115,7 @@ class Promocion extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'user_id' => 'Empresa ID',
-                        'nbempresa' => 'Empresa',
+            'nbempresa' => 'Empresa',
         	'cat_id' => 'Categoria',
 			'estado' => 'Estado',
 			'titulo' => 'Titulo',

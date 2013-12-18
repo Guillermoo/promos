@@ -42,7 +42,7 @@
 </div>
 
 <!-- ########### Sistema de votación #####################3 -->
-	<div  id="valoracion">
+	<div  id="valoracion<?=$model->id?>">
 		<?php 
         if ($rating = Voto::model()->findByPk($model->votos_id)){ //if the record has an votos_id we echo it       
             echo "Valoración: <strong>" . $rating->votos_media ."</strong>";
@@ -58,15 +58,21 @@
     </div>
 
         
-<?php // rating
+<?php // rating	 
      $this->widget('CStarRating',array(
     'name'=>'valoracion',
+    'id'=>'valoracion_',
+    'model'=>$model,
+    'attribute'=>'votos_id',
+    'minRating'=>1,
+    'maxRating'=>5,
+    'starCount'=>2,
     'callback'=>'
         function(){
         $.ajax({
         	alert("hola");
             type: "GET",
-            url: "'.Yii::app()->createUrl('promocion/votar').'",
+            url: "'.CController::createUrl('promocion/votar').'",
             data: "id='.$model->id.'&val=" + $(this).val(),
             success: function(msg){
                 alert( "Valoracion guardada: " + msg 

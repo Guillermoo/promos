@@ -159,9 +159,9 @@ class PromocionController extends Controller
         if ( Yii::app()->request->isAjaxRequest ){
         	echo "<p>AJAX</p>";
             $voto = Voto::model()->findByPk($_GET['id']);
-            $voto->votos_cantidad = $voto->vote_count + 1;
-            $voto->votos_suma = $voto->vote_sum + $_GET['val'];
-            $voto->votos_media = round($voto->vote_sum / $voto->vote_count,2);
+            $voto->votos_cantidad = $voto->votos_cantidad + 1;
+            $voto->votos_suma = $voto->votos_suma + $_GET['val'];
+            $voto->votos_media = round($voto->votos_suma / $voto->votos_cantidad,2);
                         
             if ($voto->save()){
                 echo CJSON::encode( array (
