@@ -3,7 +3,6 @@
 /* @var $model Promociones */
 /* @var $form CActiveForm */
 ?>
-
 <!--<div class="form">-->
 <? //Yii::import('ext.krichtexteditor.KRichTextEditor');?>
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
@@ -25,15 +24,15 @@
     <!-- Deberíamos controlar el SELECT para que no deje marcar el estado de la promoción si ya hemos llegado al límite. Es decir, si ya no podemos crear más promos activas, que la opción activa aparezca deshabilitada. 
     He pasado los siguientes parámetros a esta vista para poder controlar esto y otras cosas:
     $maxPromos: número máximo de promociones que permite el tipo de cuenta que tiene el usuario 
-
+    
     $maxActivas: máximas promos activas que permite la cuenta
-
+    
     $maxStock: máximas promos en stock que permite la cuenta
     
     $promoStock: número de promociones en stock que tiene el usuario
-
+    
     $promoActivas: número de promociones activas que tiene el usuario
-
+    
     Que desaparezca la opción de destacado si la promoción se marca como no-activa
      -->
 
@@ -51,7 +50,7 @@
             <?php echo $form->error($model,'titulo'); ?>
     </div>
 
-    <? if (UserModule::isCompany()):?>
+    <? if (UserModule::isCompany()): ?>
       <?/* <!-- <div class="row">
                 <div id="logo_form">
                     <?php /*echo $form->labelEx($model,'logo'); ?>
@@ -73,7 +72,7 @@
                 </div>
         </div>*/?>
         <div class="row">
-            <?php if (!$model->isNewRecord): ?>
+            <?php if(!$model->isNewRecord): ?>
                 <?php //(G)Cargamos el cargador de imágenes ?>
                 <?php if (!isset($image) || (!isset($model->item)) || (isset($item->path))): ?>
                     <?php //dsfh;?>
@@ -158,7 +157,7 @@
                     ),
                 ));*/?>
             <?php echo $form->datepickerRow($model, 'fecha_inicio',
-                array('hint'=>'Haz click para seleccionar la fecha.','options'=>array('dateFormat'=>'yy-mm-dd'),
+                array('hint'=>'Haz click para seleccionar la fecha.',
                 'prepend'=>'<i class="icon-calendar"></i>')); ?>
             <?php echo $form->error($model,'fecha_inicio'); ?>
     </div>
@@ -184,7 +183,7 @@
             <?php echo $form->error($model,'fecha_fin'); ?>
     </div>
 
-    <? if (UserModule::isAdmin()): ?>
+    <? if(UserModule::isAdmin()): ?>
         <div class="row">
                 <?php echo $form->labelEx($model,'fechaCreacion'); ?>
                 <?php echo $form->datepickerRow($model, 'fechaCreacion',
@@ -222,16 +221,17 @@
             <?php echo $form->error($model,'stock'); ?>
     </div>    
     <div class="row">
-        <?php echo $form->labelEx($model,'cat_id'); ?>
+        <?php echo $form->labelEx($model,'categoria'); ?>
 
-          <?php //echo $form->dropDownListRow($categorias, 'categorias_id', Categoria::itemAlias("PromoStatus"),array('options'=>array(Promocion::STATUS_BORRADOR=>array('selected'=>'selected')))); 
-         echo $form->dropDownList($model,'cat_id',CHtml::listData(Category::model()->findAll(), 'id', 'name'));
+          <?php 
+          //echo $form->dropDownListRow($categorias, 'categorias_id', Categoria::itemAlias("PromoStatus"),array('options'=>array(Promocion::STATUS_BORRADOR=>array('selected'=>'selected')))); 
+         echo $form->dropDownList($model,'categorias_id',CHtml::listData(Categoria::model()->findAll(), 'id', 'nombre'));
           ?>
 
-         <?php echo $form->error($model,'cat_id'); ?>
+         <?php echo $form->error($model,'categorias_id'); ?>
     </div>
     <div class="row buttons">
-            <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+            <?php echo CHtml::submitButton($model->isNewRecord ? 'Crear' : 'Guardar',array('class'=>'btn btn-success btn-large')); ?>
     </div>
 </fieldset>
 <?php $this->endWidget(); ?>

@@ -65,8 +65,8 @@ class Promocion extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('titulo, titulo_slug, resumen,  fecha_inicio, fecha_fin, destacado, precio, condiciones, stock, cat_id', 'required'),
-			array('id,user_id,cat_id,estado, destacado, stock,precio,cat_id', 'numerical', 'integerOnly'=>true),
+			array('titulo, titulo_slug, resumen,  fecha_inicio, fecha_fin, destacado, precio, categorias_id', 'required'),
+			array('id,user_id,categorias_id,estado, destacado, stock,precio', 'numerical', 'integerOnly'=>true),
 			array('titulo, titulo_slug, resumen', 'length', 'max'=>100),
 			array('fecha_inicio,fecha_fin', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true),//fechaCreación es un timestamp.. //, 'on' => 'insert'
 			//array('fecha_inicio,fecha_fin', 'default', 'value' => '0000-00-00 00:00:00', 'setOnEmpty' => true, 'on' => 'insert'),
@@ -75,7 +75,7 @@ class Promocion extends CActiveRecord
                         array('fecha_inicio,fecha_fin', 'checkFechas'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id,user_id,cat_id,nbempresa, titulo, titulo_slug, resumen, descripcion, descripcion_html, fecha_inicio, fecha_fin, fechaCreacion, destacado, precio, rebaja, condiciones, stock', 'safe', 'on'=>'search'),
+			array('id,user_id,categorias_id,nbempresa, titulo, titulo_slug, resumen, descripcion, descripcion_html, fecha_inicio, fecha_fin, fechaCreacion, destacado, precio, rebaja, condiciones, stock', 'safe', 'on'=>'search'),
 		);
 	}
         
@@ -116,7 +116,7 @@ class Promocion extends CActiveRecord
 			'id' => 'ID',
 			'user_id' => 'Empresa ID',
             'nbempresa' => 'Empresa',
-        	'cat_id' => 'Categoria',
+        	'categorias_id' => 'Categoria',
 			'estado' => 'Estado',
 			'titulo' => 'Titulo',
 			'titulo_slug' => 'titulo_slug',
@@ -132,6 +132,7 @@ class Promocion extends CActiveRecord
 			'condiciones' => 'Condiciones',
 			'stock' => 'Stock',
 			'categorias_id' => 'Id de categoria',
+			'categoria' => 'Categoria',
 		);
 	}
 	

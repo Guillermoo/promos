@@ -7,7 +7,7 @@ class PromocionController extends Controller
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
 	//public $layout='//layouts/column2';
-	public $defaultAction = 'index'; 
+	public $defaultAction = 'view'; 
 	
 	private $_model;
 
@@ -60,17 +60,18 @@ class PromocionController extends Controller
 		if (isset($title_slug)){
 			
 			$promocion=Promocion::model()->findByAttributes(array('titulo_slug'=>$title_slug));
-			$datos = Profile::model()->				findByAttributes(array('user_id'=>$promocion->user_id));
+			$datos = Profile::model()->findByAttributes(array('user_id'=>$promocion->user_id));
 
 			if (isset($promocion) && isset($datos)){			
 				//Cojo otras promociones para mostrarlas abajo
 				$criteria=new CDbCriteria;
+				$now = new CDbExpression("NOW()");
         		$criteria->limit = 8;
         		//$criteria->compare('destacado',Promocion::IS_NODESTACADA);
         		$criteria->compare('estado',Promocion::STATUS_ACTIVA);
+        		$criteria->addCondition('fecha_fin >= '.$now);
         		$criteria->select = 'id,titulo,titulo_slug,resumen,precio';
         		$criteria->order = 'RAND()';
-        		//$criteria->addCondition('exp_d > "'.$now.'" ');
 
 				$otrasPromos = Promocion::model()->findAll($criteria);
 
@@ -90,10 +91,12 @@ class PromocionController extends Controller
 	public function actionIndex()
 	{
 		$criteria=new CDbCriteria;
+		$now = new CDbExpression("NOW()");
         $criteria->with = array( 'item');
 
         //$criteria->limit = 6;
         $criteria->compare('estado',Promocion::STATUS_ACTIVA);
+        $criteria->addCondition('fecha_fin >= '.$now);
         $criteria->select = 'titulo,titulo_slug,resumen,precio';
         $criteria->order = 'RAND()';
         //$criteria->offset = 4;

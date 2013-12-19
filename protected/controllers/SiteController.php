@@ -34,12 +34,16 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
+		
 		$criteria=new CDbCriteria;
+		$now = new CDbExpression("NOW()");
+
         $criteria->with = array( 'item');
 
         $criteria->limit = 1;
         $criteria->compare('destacado',Promocion::IS_DESTACADA);
-        $criteria->compare('estado',Promocion::STATUS_ACTIVA);
+        $criteria->compare('estado',Promocion::STATUS_ACTIVA);        
+		$criteria->addCondition('fecha_fin >= '.$now);
         $criteria->select = 'titulo,titulo_slug,resumen,precio';
         $criteria->order = 'RAND()';
         //$criteria->addCondition('exp_d > "'.$now.'" ');
@@ -50,6 +54,7 @@ class SiteController extends Controller
         $criteria2->limit = 12;
         $criteria2->compare('destacado',Promocion::IS_NODESTACADA);
         $criteria2->compare('estado',Promocion::STATUS_ACTIVA);
+        $criteria2->addCondition('fecha_fin >= '.$now);
         $criteria2->select = 'titulo,titulo_slug,resumen,precio';
         $criteria2->order = 'RAND()';
         //$criteria->addCondition('exp_d > "'.$now.'" ');
