@@ -65,7 +65,7 @@ class Promocion extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('titulo, titulo_slug, resumen,  fecha_inicio, fecha_fin, destacado, precio, categorias_id', 'required'),
+			array('titulo, titulo_slug, resumen,  fecha_inicio, fecha_fin, precio, categorias_id', 'required'),
 			array('id,user_id,categorias_id,estado, destacado, stock,precio', 'numerical', 'integerOnly'=>true),
 			array('titulo, titulo_slug, resumen', 'length', 'max'=>100),
 			array('fecha_inicio,fecha_fin', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true),//fechaCreación es un timestamp.. //, 'on' => 'insert'

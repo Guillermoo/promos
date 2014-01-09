@@ -3,7 +3,7 @@
 		<?php $this->widget('bootstrap.widgets.TbNavbar', array(
     'type'=>'', // null or 'inverse'
     'brand'=>CHtml::image(Yii::app()->theme->getBaseUrl().'/img/logo.png')." Proemoción",
-    'brandUrl'=>Yii::app()->baseUrl,
+    'brandUrl'=>Yii::app()->getBaseUrl(true),
     'collapse'=>true, // requires bootstrap-responsive.css
     'items'=>array(
         array(

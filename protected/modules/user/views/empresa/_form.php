@@ -127,7 +127,7 @@
 	</div>	
 	<div class="clearfix">&nbsp;</div>
 	<div class="row">
-		<?php echo CHtml::submitButton('Guardar cambios'); ?>
+		<?php echo CHtml::submitButton('Guardar cambios',array('class'=>'btn btn-success btn-large')); ?>
 		<?php //Se poddría desabilitar el botón por ajax si las validaciones no se cumplen
 		//poniendo algo como ,array('disabled'=>true) en el submitButton?>
 	</div>

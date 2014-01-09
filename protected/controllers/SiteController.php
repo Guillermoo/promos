@@ -156,6 +156,10 @@ class SiteController extends Controller
 	public function actionPagoCancelado(){
 		$this->render('pago_cancelado');
 	}
+
+	public function actionMaintenance(){
+		$this->render("maintenance");
+	}
 	
 	/* Used to debug variables*/
     protected function Debug($var){

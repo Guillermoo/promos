@@ -9,6 +9,7 @@ class ActivationController extends Controller
 	 * Activation user account
 	 */
 	public function actionActivation () {
+		Yii::app()->theme = 'frontEnd';
 		$email = $_GET['email'];
 		$activkey = $_GET['activkey'];
 		if ($email&&$activkey) {

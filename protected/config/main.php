@@ -213,4 +213,6 @@ return array(
 		'path_imgs'=> realpath( Yii::app( )->getBasePath( )."/../" ),
 		'cuenta_paypal' => 'proemocion@proemocion.com',
 	),
+    'catchAllRequest'=>file_exists(dirname(__FILE__).'/.maintenance')
+        ? array('site/maintenance') : null,
 );

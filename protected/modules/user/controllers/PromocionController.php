@@ -172,6 +172,8 @@ class PromocionController extends Controller
             }
         }
 
+        //Esto se ejecuta si no se ha rellenado el formulario para crear la promocion
+
         Yii::import("xupload.models.XUploadForm");
         $image = new XUploadForm;
         

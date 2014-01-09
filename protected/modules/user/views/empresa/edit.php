@@ -2,7 +2,7 @@
 <?php $this->pageTitle=Yii::app()->name . ' - '.UserModule::t("Profile");?>
 
 <?php if(UserModule::isCompany()):?>
-    <h1><?php echo UserModule::t('Your company'); ?></h1>
+    <h1>Perfil de empresa</h1>
 <?php else: ?>
     <h1><?php echo UserModule::t('Edit commpany'); ?></h1>
 <?php endif;?>

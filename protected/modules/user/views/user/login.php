@@ -5,7 +5,7 @@ $this->breadcrumbs=array(
 	UserModule::t("Login"),
 );
 ?>
-<div class="clearfix" align="center"><p><?php echo CHtml::link(UserModule::t("Volver a las promociones"),Yii::app()->request->baseUrl, array('class' => 'btn')) ?></p></div>
+<div class="clearfix" align="center"><p><?php echo CHtml::link('Volver a las promociones',Yii::app()->getBaseUrl(true), array('class' => 'btn')) ?></p></div>
 <div class="well" align="center">
 <h1><?php echo UserModule::t("Login"); ?></h1>
 

@@ -38,11 +38,20 @@
 
 
     <? //if (!$model->isNewRecord):?>
-        <div class="row">            
-            <?php echo $form->dropDownListRow($model, 'estado', Promocion::itemAlias("PromoStatus"),array('options'=>array(Promocion::STATUS_ACTIVA=>array('selected'=>'selected')))); ?>
-            <?php echo $form->error($model,'estado'); ?>
-        </div>
+    <div class="row">            
+        <?php echo $form->dropDownListRow($model, 'estado', Promocion::itemAlias("PromoStatus"),array('options'=>array(Promocion::STATUS_ACTIVA=>array('selected'=>'selected')))); ?>
+        <?php echo $form->error($model,'estado'); ?>
+    </div>
+    <div class="row">
+        <?php echo $form->labelEx($model,'destacada'); ?>
+        <?php echo $form->checkbox($model, 'destacado'); ?>
+        <?php echo $form->error($model,'destacado'); ?>
+    </div>
     <?//endif;?>
+
+    <div class="row">
+           <br/><br/>
+    </div>
 
     <div class="row">
             <?php echo $form->labelEx($model,'titulo'); ?>
@@ -76,7 +85,7 @@
                 <?php //(G)Cargamos el cargador de imágenes ?>
                 <?php if (!isset($image) || (!isset($model->item)) || (isset($item->path))): ?>
                     <?php //dsfh;?>
-                    <?php echo $form->labelEx($model,'Imagen'); ?>
+                    <p>Elige una imagen para la promoción:</p>
                     <div id="logo_form">
                         <?php
                             Yii::app()->user->setState('model', 'promo');
@@ -142,8 +151,8 @@
     </div>
 
     <div class="row">
-            <?php //echo $form->labelEx($model,'fecha_inicio'); ?>
-            <?php /*$this->widget('zii.widgets.jui.CJuiDatePicker',array(
+        <?php //echo $form->labelEx($model,'fecha_inicio'); ?>
+        <?php /*$this->widget('zii.widgets.jui.CJuiDatePicker',array(
                     'attribute'=>'fecha_inicio',
                     'model'=>$model,
                     'value'=>$model->fecha_inicio,
@@ -156,9 +165,10 @@
                         //'debug'=>true,
                     ),
                 ));*/?>
-            <?php echo $form->datepickerRow($model, 'fecha_inicio',
+        <?php echo $form->datepickerRow($model, 'fecha_inicio',
                 array('hint'=>'Haz click para seleccionar la fecha.',
-                'prepend'=>'<i class="icon-calendar"></i>')); ?>
+                    'prepend'=>'<i class="icon-calendar"></i>',
+                    'options'=>array('format'=>'yyyy-mm-dd'))); ?>
             <?php echo $form->error($model,'fecha_inicio'); ?>
     </div>
 
@@ -178,8 +188,9 @@
                 ),
             ));*/?>
             <?php echo $form->datepickerRow($model, 'fecha_fin',
-                array('hint'=>'Haz click para seleccionar la fecha.','options'=>array('dateFormat'=>'yy-mm-dd'),
-                'prepend'=>'<i class="icon-calendar"></i>')); ?>
+                 array('hint'=>'Haz click para seleccionar la fecha.',
+                    'prepend'=>'<i class="icon-calendar"></i>',
+                    'options'=>array('format'=>'yyyy-mm-dd'))); ?>
             <?php echo $form->error($model,'fecha_fin'); ?>
     </div>
 
@@ -187,16 +198,10 @@
         <div class="row">
                 <?php echo $form->labelEx($model,'fechaCreacion'); ?>
                 <?php echo $form->datepickerRow($model, 'fechaCreacion',
-                array('hint'=>'Haz click para seleccionar la fecha.','options'=>array('dateFormat'=>'yy-mm-dd'),
-                'prepend'=>'<i class="icon-calendar"></i>')); ?>
+                array('hint'=>'Haz click para seleccionar la fecha.','prepend'=>'<i class="icon-calendar"></i>','options'=>array('format'=>'yyyy-mm-dd'))); ?>
                 <?php echo $form->error($model,'fechaCreacion'); ?>
         </div>
     <?endif;?>
-    <div class="row">
-            <?php echo $form->labelEx($model,'destacado'); ?>
-            <?php echo $form->checkbox($model, 'destacado'); ?>
-            <?php echo $form->error($model,'destacado'); ?>
-    </div>
 
     <div class="row">
             <?php echo $form->textFieldRow($model, 'precio', array('prepend'=>'€')); ?>

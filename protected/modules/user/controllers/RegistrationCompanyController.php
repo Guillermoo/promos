@@ -22,8 +22,8 @@ class RegistrationCompanyController extends Controller
 	public function actionRegistration() {
 		 Yii::app()->theme = 'frontEnd';
             $model = new RegistrationForm;
-            //$profile=new Profile;
-            $profile->regMode = true;
+            $profile=new Profile;
+            //$profile->regMode = true;
 			// ajax validator
 			if(isset($_POST['ajax']) && $_POST['ajax']==='registration-form')
 			{
@@ -43,7 +43,7 @@ class RegistrationCompanyController extends Controller
 						$model->activkey=UserModule::encrypting(microtime().$model->password);
 						$model->password=UserModule::encrypting($model->password);
 						$model->verifyPassword=UserModule::encrypting($model->verifyPassword);
-						$model->superuser=0;
+						$model->superuser=2;
 						$model->status=((Yii::app()->controller->module->activeAfterRegister)?User::STATUS_ACTIVE:User::STATUS_NOACTIVE);
 						
 						if ($model->save()) {
@@ -73,8 +73,11 @@ class RegistrationCompanyController extends Controller
 								}
 								$this->refresh();
 							}
+							//(h)
+							$this->render('/user/registrado',array('model'=>$model));
+                			Yii::app()->end();
 						}
-					} else $profile->validate();
+					} else $profile->validate();					
 				}
 			    $this->render('/user/registrationcompany',array('model'=>$model,'profile'=>$profile));
 		    }

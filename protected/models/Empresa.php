@@ -95,8 +95,8 @@ class Empresa extends CActiveRecord
     {
         return array(
             'id' => 'Empresa',
-            'user_id' => 'User name',
-            'nombre' => 'Name',
+            'user_id' => 'Nombre de usuario',
+            'nombre' => 'Nombre',
             'nombre_slug' => 'Friendly name',
             'cif' => 'Cif',
             'web' => 'Web',
