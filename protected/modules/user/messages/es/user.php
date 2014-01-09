@@ -18,7 +18,7 @@ return array(
     'This user\'s name already exists.' => 'Este nombre de usuario ya existe.',
     'This user\'s email address already exists.' => 'La dirección de email ya existe.',
 	'You registered from {site_name}' => 'Se ha registrado en {site_name}',
-	'Please activate you account go to {activation_url}' => 'Por favor, active su cuenta pinchando en el siguiente enlace (o copie y pégelo en una nueva ventana del navegador): {activation_url}',
+	'Please activate you account go to {activation_url}' => 'Por favor, active su cuenta pinchando en el siguiente enlace (o copie y péguelo en una nueva ventana del navegador): {activation_url}',
     'You account is not activated.' => "Su cuenta no está activada.",
     'You account is blocked.' => 'Su cuenta está bloqueada.',
     'Password is incorrect.' => 'La contraseña es incorrecta.',

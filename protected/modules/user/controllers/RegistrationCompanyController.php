@@ -72,12 +72,12 @@ class RegistrationCompanyController extends Controller
 									Yii::app()->user->setFlash('registration',UserModule::t("Thank you for your registration. Please check your email."));
 								}
 								$this->refresh();
-							}
-							//(h)
-							$this->render('/user/registrado',array('model'=>$model));
-                			Yii::app()->end();
+							}							
 						}
-					} else $profile->validate();					
+					} else $profile->validate();	
+					//(h)
+					$this->render('/user/registrado',array('model'=>$model));
+                	Yii::app()->end();				
 				}
 			    $this->render('/user/registrationcompany',array('model'=>$model,'profile'=>$profile));
 		    }

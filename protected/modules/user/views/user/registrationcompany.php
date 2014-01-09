@@ -52,8 +52,8 @@ $this->breadcrumbs=array(
 		<div class="row">
 			<?php echo $form->labelEx($model,'verifyCode'); ?>
 			
-			<?php $this->widget('CCaptcha'); ?>
-			<?php echo $form->textField($model,'verifyCode'); ?>
+			<?php $this->widget('CCaptcha'); ?><br/>
+			<?php echo $form->textField($model,'verifyCode',array('class'=>'input-small')); ?>
 			<?php echo $form->error($model,'verifyCode'); ?>
 			
 			<p class="hint"><?php echo UserModule::t("Please enter the letters as they are shown in the image above."); ?>
@@ -62,7 +62,7 @@ $this->breadcrumbs=array(
 	<?php endif; ?>
 	
 	<div class="row submit">
-		<?php echo CHtml::submitButton(UserModule::t("Register")); ?>
+		<?php echo CHtml::submitButton(UserModule::t("Register"),array('class'=>'btn btn-primary btn-large')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

@@ -103,6 +103,7 @@ class User extends CActiveRecord
             $relations['profile'] = array(self::HAS_ONE, 'Profile', 'user_id');
             $relations['item'] = array(self::HAS_ONE, 'Item', 'foreign_id');
             $relations['promocion'] = array(self::HAS_MANY, 'Promocion', 'user_id');
+            $relations['compra'] = array(self::HAS_MANY, 'Compra', 'id_usuario');
        // }
         
         return $relations;

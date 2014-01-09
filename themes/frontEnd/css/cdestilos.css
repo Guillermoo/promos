@@ -69,3 +69,7 @@ body{
 .destacado{
 	background-color: #fff;
 }
+.hint{
+	color: #979797;
+	font-size: 0.8em;
+}
