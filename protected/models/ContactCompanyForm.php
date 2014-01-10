@@ -7,10 +7,10 @@
  */
 class ContactCompanyForm extends CFormModel
 {
-	public $name;
+	public $nombre;
 	public $email;
-	public $subject;
-	public $body;
+	public $titulo;
+	public $texto;
 	public $verifyCode;
 
 	/**
@@ -20,7 +20,7 @@ class ContactCompanyForm extends CFormModel
 	{
 		return array(
 			// name, email, subject and body are required
-			array('name, email, subject, body', 'required'),
+			array('nombre, email, titulo, texto', 'required'),
 			// email has to be a valid email address
 			array('email', 'email'),
 			// verifyCode needs to be entered correctly

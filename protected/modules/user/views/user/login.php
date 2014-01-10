@@ -7,7 +7,7 @@ $this->breadcrumbs=array(
 ?>
 <div class="clearfix" align="center"><p><?php echo CHtml::link('Volver a las promociones',Yii::app()->getBaseUrl(true), array('class' => 'btn')) ?></p></div>
 <div class="well" align="center">
-<h1><?php echo UserModule::t("Login"); ?></h1>
+<h2><?php echo UserModule::t("Login"); ?></h2>
 
 <?php if(Yii::app()->user->hasFlash('loginMessage')): ?>
 <div class="success">
@@ -43,7 +43,7 @@ $this->breadcrumbs=array(
 	</div>
 
 	<div class="row submit">
-		<?php echo CHtml::submitButton(UserModule::t("LoginButton"),array('class' => 'btn btn-success btn-large')); ?>
+		<?php echo CHtml::submitButton(UserModule::t("LoginButton"),array('class' => 'btn btn-primary btn-large')); ?>
 	</div>
 	
 <?php echo CHtml::endForm(); ?>

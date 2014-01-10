@@ -19,7 +19,7 @@
 <fieldset>
     
         <p class="note">Los campos con <span class="required">*</span> son obligatorios.</p>
-        
+        <p>&nbsp;</p>
 	<?php //Sólo la compañía tiene reglas de validación ?>
 	<?php if (!UserModule::isCompany(Yii::app()->user->id) ):?>
 		<?php echo $form->errorSummary(array($empresa)); ?>

@@ -3,7 +3,7 @@
 /* @var $model ContactForm */
 /* @var $form TbActiveForm */
 
-$this->pageTitle=Yii::app()->name . ' - Contact Usss Theme Admin';
+$this->pageTitle=Yii::app()->name . ' - Contacto';
 $this->breadcrumbs=array(
 	'Contact',
 );
@@ -38,13 +38,13 @@ Si tienes alguna duda o quieres contactar con nosotros, hazlo a través del sigu
 
 	<?php echo $form->errorSummary($model); ?>
 
-    <?php echo $form->textFieldRow($model,'name'); ?>
+    <?php echo $form->textFieldRow($model,'nombre'); ?>
 
     <?php echo $form->textFieldRow($model,'email'); ?>
 
-    <?php echo $form->textFieldRow($model,'subject',array('size'=>60,'maxlength'=>128)); ?>
+    <?php echo $form->textFieldRow($model,'titulo',array('size'=>60,'maxlength'=>128)); ?>
 
-    <?php echo $form->textAreaRow($model,'body',array('rows'=>6, 'class'=>'span8')); ?>
+    <?php echo $form->textAreaRow($model,'texto',array('rows'=>6, 'class'=>'span8')); ?>
 
 	<?php /*if(CCaptcha::checkRequirements()):
 		echo $form->captchaRow($model,'verifyCode',array(

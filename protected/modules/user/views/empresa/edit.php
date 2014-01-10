@@ -6,7 +6,8 @@
 <?php else: ?>
     <h1><?php echo UserModule::t('Edit commpany'); ?></h1>
 <?php endif;?>
-
+<p>&nbsp;</p>
+<p>Si introduce los datos del perfil de empresa, los clientes potenciales podrán ver la siguiente información.</p>
 <?php
     echo $this->renderPartial('_form', array('action'=>'_form','empresa'=>$empresa,'image'=>$image));
 ?>
