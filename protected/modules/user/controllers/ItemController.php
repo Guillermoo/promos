@@ -15,10 +15,10 @@ class ItemController extends CController
 	    Yii::import( "xupload.models.XUploadForm" );
 	    
 	    //Here we define the paths where the files will be stored temporarily
-	    //$path = realpath( Yii::app( )->getBasePath( )."/../images/uploads/tmp/" )."/";
-	    //$publicPath = Yii::app( )->getBaseUrl( )."user/images/uploads/tmp/";
-	    $path = realpath( Yii::app( )->getBasePath( )."/../uploads/images/tmp/" )."/";
-	    $publicPath = Yii::app( )->getBaseUrl( )."/uploads/images/tmp/";
+	    $path = realpath( Yii::app( )->getBasePath( )."/../images/uploads/tmp/" )."/";
+	    $publicPath = Yii::app( )->getBaseUrl( )."user/images/uploads/tmp/";
+	    //$path = "localhost".Yii::app()->baseUrl."/uploads/images/tmp/";
+	    //$publicPath = "localhost".Yii::app()->baseUrl."/uploads/images/tmp/";
 	 
 	    //This is for IE which doens't handle 'Content-type: application/json' correctly
 	    header( 'Vary: Accept' );
@@ -34,7 +34,7 @@ class ItemController extends CController
 	        if( $_GET["_method"] == "delete" ) {
 	            if( $_GET["file"][0] !== '.' ) {
 	                $file = $path.$_GET["file"];
-	                $file_thumb = $path."/thumbs/".$_GET["file"];
+	                $file_thumb = $path."thumbs/".$_GET["file"];
 	                if( is_file( $file ) ) {
 	                    unlink( $file );
 	                }
@@ -62,9 +62,11 @@ class ItemController extends CController
 	                chmod( $path.$filename, 0777 );
 	                //here you can also generate the image versions you need 
 	                //using something like PHPThumb
-	 				$thumb=Yii::app()->phpThumb->create($path."/".$filename);
+	 				//$thumb=Yii::app()->phpThumb->create($path."/".$filename);
+	 				//(h)
+	 				$thumb=Yii::app()->phpThumb->create($path.$filename);
 					$thumb->resize(100,100);
-					$thumb->save($path."/thumbs/$filename");
+					$thumb->save($path."thumbs/$filename");
 	 
 	                //Now we need to save this path to the user's session
 	                if( Yii::app( )->user->hasState( 'images' ) ) {
