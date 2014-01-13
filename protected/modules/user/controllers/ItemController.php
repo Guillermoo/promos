@@ -9,6 +9,7 @@ class ItemController extends CController
         $model = new XUploadForm;
         $this -> render('index', array('model' => $model ));
     }*/
+    private $_model;
         
 
 	public function actionUpload( ) {
@@ -17,7 +18,7 @@ class ItemController extends CController
 	    //Here we define the paths where the files will be stored temporarily
 	    //$path = realpath( Yii::app( )->getBasePath( )."/../images/uploads/tmp/" )."/";
 	    //$publicPath = Yii::app( )->getBaseUrl( )."user/images/uploads/tmp/";
-	    $path = realpath( Yii::app( )->getBasePath( )."/../uploads/images/tmp/" )."/";
+	    $path = realpath( Yii::app( )->getBasePath( )."/../uploads/images/tmp" )."/";
 	    $publicPath = Yii::app( )->getBaseUrl( )."/uploads/images/tmp/";
 	 
 	    //This is for IE which doens't handle 'Content-type: application/json' correctly
@@ -57,14 +58,17 @@ class ItemController extends CController
 	            $filename = md5( Yii::app( )->user->id.microtime( ).$model->name);
 	            $filename .= ".".$model->file->getExtensionName( );
 	            if( $model->validate( ) ) {
-	                //Move our file to our temporary dir
+	                //Move our file to our temporary dir	                
 	                $model->file->saveAs( $path.$filename );
-	                chmod( $path.$filename, 0777 );
+	                //chmod( $path.$filename, 0777 );
+
 	                //here you can also generate the image versions you need 
 	                //using something like PHPThumb
+	 				
 	 				$thumb=Yii::app()->phpThumb->create($path."/".$filename);
 					$thumb->resize(100,100);
-					$thumb->save($path."/thumbs/$filename");
+					$thumb->save($path."thumbs/$filename");
+					
 	 
 	                //Now we need to save this path to the user's session
 	                if( Yii::app( )->user->hasState( 'images' ) ) {
@@ -82,9 +86,11 @@ class ItemController extends CController
 	                    'name' => $model->name,
 	                );
 	                Yii::app( )->user->setState( 'images', $userImages );
-
+	                
+	                //guarda bien la imagen y la thumb en el servidor y almacena la info en la BD, pero el id de empresa no lo pone bien, pone un 0 en la tabla items
 	                $this->addImages();
-	 
+	 				
+
 	                //Now we need to tell our widget that the upload was succesfull
 	                //We do so, using the json structure defined in
 	                // https://github.com/blueimp/jQuery-File-Upload/wiki/Setup
@@ -120,9 +126,11 @@ class ItemController extends CController
 	    if( Yii::app( )->user->hasState( 'images' ) ) {
 	        $userImages = Yii::app( )->user->getState( 'images' );
 	        $model = Yii::app( )->user->getState( 'model' );
-	        $foreign_id = Yii::app( )->user->getState( 'foreign_id' );
+	        //$foreign_id = Yii::app( )->user->getState( 'foreign_id' );	//esto está mal porque getState(foreign_id) me da null
+	        $foreign_id = $this->loadUser()->empresa->id;
 	        //Resolve the final path for our images
-	        $path = Yii::app( )->getBasePath( )."/../uploads/images/";
+	        //$path = Yii::app( )->getBasePath( )."/../uploads/images/";	        
+	    	$path = realpath( Yii::app( )->getBasePath( )."/../uploads/images" )."/";
 	        //Create the folder and give permissions if it doesnt exists
 	        if( !is_dir( $path ) ) {
 	            mkdir( $path );
@@ -191,6 +199,18 @@ class ItemController extends CController
                 )) );
         	}*/
         }
+	}
+
+	public function loadUser()
+	{
+		if($this->_model===null)
+		{
+                    if(Yii::app()->user->id)
+                            $this->_model=Yii::app()->controller->module->user();
+                    if($this->_model===null)
+                            $this->redirect(Yii::app()->controller->module->loginUrl);
+		}
+		return $this->_model;
 	}
 	
 	/* Used to debug variables*/

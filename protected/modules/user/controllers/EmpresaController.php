@@ -284,7 +284,7 @@ private function actualizaEmpresa($id=null){
         $empresa = $this->loadModel($id);
         $redirectOkEmpresa = 'empresa/edit/id/'.$empresa->id;
     }
-
+    $this->debug($empresa);
     // ajax validator   
     $this->performAjaxValidation(array($empresa));
 
