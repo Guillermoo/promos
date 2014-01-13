@@ -294,16 +294,16 @@ private function actualizaEmpresa($id=null){
 	//$this->debug($empresa->usuario->item);	
 
     //if (isset($empresa->item) )
-    $imageForm = Item::model()->find('foreign_id='.$empresa->id);
-    if(!$imageForm->id){
-    	echo "No hay imagen";
-    	$imageForm = $this->obtenImageForm($empresa->usuario->item);	
+    $image = Item::model()->find('foreign_id='.$empresa->id);
+    
+    if($image==null){    	
+    	$image = $this->obtenImageForm($empresa->usuario->item);	
     }
-    $this->debug($imageForm);
+    //$this->debug($image->name);
 	//$this->debug($empresa->usuario->item->attributes);
     $this->render('edit',array(
             'empresa'=>$empresa,
-            'image'=>$imageForm,
+            'image'=>$image,
     ));
 }
 

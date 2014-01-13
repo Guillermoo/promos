@@ -53,7 +53,7 @@
 	<div class="row">
         <?php echo $form->labelEx($image,'Imagen corporativa'); ?>
         <div id="logo_form">
-        <?php if (!isset($image) /*|| (!isset($empresa->usuario->item))*/): ?>
+        <?php if (!isset($image) || $image->name==null /*|| (!isset($empresa->usuario->item))*/): ?>
         	<?php
         		 Yii::app()->user->setState('model', 'empresa');
         		//$image['foreign_id'] = Yii::app()->user->id;
@@ -77,14 +77,9 @@
     		<?php echo CHtml::image(Yii::app()->getBaseUrl().$image->path,"image",array("width"=>350)); ?>
             <button class="btn btn-danger">
                     <i class="icon-trash icon-white"></i>
-                    <?php echo CHtml::ajaxLink('Eliminar', array(Yii::app()->request->baseUrl.'/user/item/delete','id'=>$empresa->usuario->item->id),
+                    <?php echo CHtml::ajaxLink('Eliminar', array(Yii::app()->getBaseUrl().'/user/item/delete','id'=>$image->id),
                     array('update' => '#logo_form'))?>
-            </button>
-            <?php echo CHtml::ajaxLink('Eliminar', array(
-            	'empresa/deleteItem',
-            	'id'=>$empresa->usuario->item->id),
-            	array('update' => '#logo_form'))?>
-            
+            </button>            
 	    	<?php  endif;?>
         </div>
     </div>
