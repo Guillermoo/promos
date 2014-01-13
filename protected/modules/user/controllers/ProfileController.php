@@ -82,8 +82,9 @@ class ProfileController extends Controller
 		//$this->layout = 'column1';
 		$model = $this->loadUser();
 		//$this->debug(Yii::app()->controller->module->user());
-		/*$this->debug($model->attributes);
-		$this->debug(Yii::app()->controller->module->user()->id);*/
+		//$this->debug($model->attributes);
+		
+		//$this->debug( Yii::app( )->user->getState( 'foreign_id' ));
 		$this->render('profile', array('model'=>$model));
 	}
 	
