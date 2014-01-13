@@ -284,7 +284,7 @@ private function actualizaEmpresa($id=null){
         $empresa = $this->loadModel($id);
         $redirectOkEmpresa = 'empresa/edit/id/'.$empresa->id;
     }
-    $this->debug($empresa);
+    //$this->debug($empresa);
     // ajax validator   
     $this->performAjaxValidation(array($empresa));
 
@@ -294,8 +294,12 @@ private function actualizaEmpresa($id=null){
 	//$this->debug($empresa->usuario->item);	
 
     //if (isset($empresa->item) )
-    $imageForm = $this->obtenImageForm($empresa->usuario->item);	
-
+    $imageForm = Item::model()->find('foreign_id='.$empresa->id);
+    if(!$imageForm->id){
+    	echo "No hay imagen";
+    	$imageForm = $this->obtenImageForm($empresa->usuario->item);	
+    }
+    $this->debug($imageForm);
 	//$this->debug($empresa->usuario->item->attributes);
     $this->render('edit',array(
             'empresa'=>$empresa,
