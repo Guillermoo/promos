@@ -146,8 +146,8 @@ class ProfileController extends Controller
 		$this->performAjaxValidation(array($profile));
 		
 		
-		if(isset($_POST['Profile'])){
-			$profile->attributes=$_POST['Profile'];
+		if(isset($_POST['profile-form'])){
+			$profile->attributes=$_POST['profile-form'];
 			
 			if($profile->validate()) {
 				if ($profile->save()){
@@ -157,7 +157,7 @@ class ProfileController extends Controller
 				};
 			} else $profile->validate();
 		}
-		$this->render('edit',array(
+		$this->render('profile',array(
 			'model'=>$model,
 		));
 	}

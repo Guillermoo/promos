@@ -6042,3 +6042,315 @@ Stack trace:
 REQUEST_URI=/user/promocion/update/id/1
 HTTP_REFERER=http://www.proemocion.com/user/mispromociones
 ---
+2014/01/14 10:40:53 [error] [exception.CException] exception 'CException' with message 'Propiedad "Promocion"."1" no se encuentra definida.' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/db/ar/CActiveRecord.php(143): CComponent->__get('1')
+#1 /var/www/vhosts/proemocion.com/httpdocs/protected/modules/user/controllers/PromocionController.php(221): CActiveRecord->__get('1')
+#2 [internal function]: PromocionController->actionUpdate('1')
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(PromocionController), Array)
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(PromocionController), Object(ReflectionMethod), Array)
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#11 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#12 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CController->run('update')
+#14 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/promocion/...')
+#15 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#16 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#17 {main}
+REQUEST_URI=/user/promocion/update/id/1
+HTTP_REFERER=http://www.proemocion.com/user/mispromociones
+---
+2014/01/14 11:22:29 [error] [system.db.CDbCommand] CDbCommand::fetch() falló: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'model="empresa" LIMIT 1' at line 1. La sentencia SQL ejecutada fue: SELECT * FROM `tbl_items` `t` WHERE foreign_id=7AND model="empresa" LIMIT 1.
+2014/01/14 11:22:29 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'model="empresa" LIMIT 1' at line 1' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/db/CDbCommand.php:541
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/db/CDbCommand.php(414): CDbCommand->queryInternal('fetch', Array, Array)
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/db/ar/CActiveRecord.php(1297): CDbCommand->queryRow()
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/db/ar/CActiveRecord.php(1402): CActiveRecord->query(Object(CDbCriteria))
+#3 /var/www/vhosts/proemocion.com/httpdocs/protected/modules/user/controllers/EmpresaController.php(297): CActiveRecord->find('foreign_id=7AND...')
+#4 /var/www/vhosts/proemocion.com/httpdocs/protected/modules/user/controllers/EmpresaController.php(370): EmpresaController->actualizaEmpresa()
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/actions/CInlineAction.php(49): EmpresaController->actionEmpresa()
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#11 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#12 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#13 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CController->run('empresa')
+#15 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/empresa/em...')
+#16 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#17 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#18 {main}
+REQUEST_URI=/user/empresa
+HTTP_REFERER=http://www.proemocion.com/user/promocion/update/id/1
+---
+2014/01/14 11:25:21 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Su solicitud es inválida.' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php:336
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CController->run('verpromos')
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('empresa/verprom...')
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#11 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#12 {main}
+REQUEST_URI=/empresa/verpromos/$promo-%3Eitem-%3Epath
+HTTP_REFERER=http://www.proemocion.com/empresa/verpromos/7
+---
+2014/01/14 12:12:46 [error] [system.db.CDbCommand] CDbCommand::fetch() falló: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND modelo = "promo" LIMIT 1' at line 1. La sentencia SQL ejecutada fue: SELECT * FROM `tbl_items` `t` WHERE foreign_id= AND modelo = "promo" LIMIT 1.
+2014/01/14 12:12:46 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND modelo = "promo" LIMIT 1' at line 1' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/db/CDbCommand.php:541
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/db/CDbCommand.php(414): CDbCommand->queryInternal('fetch', Array, Array)
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/db/ar/CActiveRecord.php(1297): CDbCommand->queryRow()
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/db/ar/CActiveRecord.php(1402): CActiveRecord->query(Object(CDbCriteria))
+#3 /var/www/vhosts/proemocion.com/httpdocs/themes/frontEnd/views/site/index.php(62): CActiveRecord->find('foreign_id= AND...')
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CBaseController.php(126): require('/var/www/vhosts...')
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/vhosts...', Array, true)
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/vhosts...', Array, true)
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(782): CController->renderPartial('index', Array, true)
+#8 /var/www/vhosts/proemocion.com/httpdocs/protected/controllers/SiteController.php(69): CController->render('index', Array)
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#12 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CController->run('')
+#14 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#15 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#16 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#17 {main}
+REQUEST_URI=/
+HTTP_REFERER=http://www.proemocion.com/user/empresa
+---
+2014/01/14 12:14:47 [error] [system.db.CDbCommand] CDbCommand::fetch() falló: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND modelo = "promo" LIMIT 1' at line 1. La sentencia SQL ejecutada fue: SELECT * FROM `tbl_items` `t` WHERE foreign_id= AND modelo = "promo" LIMIT 1.
+2014/01/14 12:14:47 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND modelo = "promo" LIMIT 1' at line 1' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/db/CDbCommand.php:541
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/db/CDbCommand.php(414): CDbCommand->queryInternal('fetch', Array, Array)
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/db/ar/CActiveRecord.php(1297): CDbCommand->queryRow()
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/db/ar/CActiveRecord.php(1402): CActiveRecord->query(Object(CDbCriteria))
+#3 /var/www/vhosts/proemocion.com/httpdocs/themes/frontEnd/views/site/index.php(63): CActiveRecord->find('foreign_id= AND...')
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CBaseController.php(126): require('/var/www/vhosts...')
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/vhosts...', Array, true)
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/vhosts...', Array, true)
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(782): CController->renderPartial('index', Array, true)
+#8 /var/www/vhosts/proemocion.com/httpdocs/protected/controllers/SiteController.php(69): CController->render('index', Array)
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#12 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CController->run('')
+#14 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#15 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#16 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#17 {main}
+REQUEST_URI=/
+HTTP_REFERER=http://www.proemocion.com/user/empresa
+---
+2014/01/14 12:16:59 [error] [system.db.CDbCommand] CDbCommand::fetch() falló: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'modelo' in 'where clause'. La sentencia SQL ejecutada fue: SELECT * FROM `tbl_items` `t` WHERE foreign_id=1 AND modelo = "promo" LIMIT 1.
+2014/01/14 12:16:59 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'modelo' in 'where clause'' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/db/CDbCommand.php:541
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/db/CDbCommand.php(414): CDbCommand->queryInternal('fetch', Array, Array)
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/db/ar/CActiveRecord.php(1297): CDbCommand->queryRow()
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/db/ar/CActiveRecord.php(1402): CActiveRecord->query(Object(CDbCriteria))
+#3 /var/www/vhosts/proemocion.com/httpdocs/themes/frontEnd/views/site/index.php(63): CActiveRecord->find('foreign_id=1 AN...')
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CBaseController.php(126): require('/var/www/vhosts...')
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/vhosts...', Array, true)
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/vhosts...', Array, true)
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(782): CController->renderPartial('index', Array, true)
+#8 /var/www/vhosts/proemocion.com/httpdocs/protected/controllers/SiteController.php(69): CController->render('index', Array)
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#12 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CController->run('')
+#14 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#15 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#16 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#17 {main}
+REQUEST_URI=/
+HTTP_REFERER=http://www.proemocion.com/user/empresa
+---
+2014/01/14 12:23:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "$promo->item->path"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('$promo->item->p...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/$promo-%3Eitem-%3Epath
+HTTP_REFERER=http://www.proemocion.com/
+---
+2014/01/14 12:24:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "$promo->item->path"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('$promo->item->p...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/$promo-%3Eitem-%3Epath
+HTTP_REFERER=http://www.proemocion.com/
+---
+2014/01/14 12:47:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "$promo->item->path" solicitada.' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(270): CController->missingAction('$promo->item->p...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CController->run('$promo->item->p...')
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('promocion/$prom...')
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/promocion/$promo-%3Eitem-%3Epath
+HTTP_REFERER=http://www.proemocion.com/promocion/tratamiento_facial
+---
+2014/01/14 12:47:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "$promo->item->path" solicitada.' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(270): CController->missingAction('$promo->item->p...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CController->run('$promo->item->p...')
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('promocion/$prom...')
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/promocion/$promo-%3Eitem-%3Epath
+HTTP_REFERER=http://www.proemocion.com/promocion/tratamiento_facial
+---
+2014/01/14 12:47:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "$promo->item->path" solicitada.' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(270): CController->missingAction('$promo->item->p...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CController->run('$promo->item->p...')
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('promocion/$prom...')
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/promocion/$promo-%3Eitem-%3Epath
+HTTP_REFERER=http://www.proemocion.com/promocion/tratamiento_facial
+---
+2014/01/14 12:49:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "$promo->item->path" solicitada.' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(270): CController->missingAction('$promo->item->p...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CController->run('$promo->item->p...')
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('promocion/$prom...')
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/promocion/$promo-%3Eitem-%3Epath
+HTTP_REFERER=http://www.proemocion.com/promocion/tratamiento_facial
+---
+2014/01/14 12:53:00 [error] [exception.CException] exception 'CException' with message 'CWebApplication y sus behaviors no tienen un método o closure llamado "app".' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CComponent.php:265
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/protected/views/promocion/view.php(189): CComponent->__call('app', Array)
+#1 /var/www/vhosts/proemocion.com/httpdocs/protected/views/promocion/view.php(189): CWebApplication->app()
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CBaseController.php(126): require('/var/www/vhosts...')
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/vhosts...', Array, true)
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/vhosts...', Array, true)
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(782): CController->renderPartial('view', Array, true)
+#6 /var/www/vhosts/proemocion.com/httpdocs/protected/controllers/PromocionController.php(80): CController->render('view', Array)
+#7 [internal function]: PromocionController->actionView('tratamiento_fac...')
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(PromocionController), Array)
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(PromocionController), Object(ReflectionMethod), Array)
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#17 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CController->run('view')
+#19 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('promocion/view/...')
+#20 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#21 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#22 {main}
+REQUEST_URI=/promocion/tratamiento_facial
+HTTP_REFERER=http://www.proemocion.com/
+---
+2014/01/14 13:12:02 [error] [exception.CException] exception 'CException' with message 'CCaptchaValidator.action "captcha" es inválido. No se há podido encontrar dicha acción en el controlador actual.' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/validators/CCaptchaValidator.php:75
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/validators/CCaptchaValidator.php(49): CCaptchaValidator->getCaptchaAction()
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/validators/CValidator.php(213): CCaptchaValidator->validateAttribute(Object(ContactForm), 'verifyCode')
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CModel.php(159): CValidator->validate(Object(ContactForm), NULL)
+#3 /var/www/vhosts/proemocion.com/httpdocs/protected/modules/user/controllers/SiteController.php(85): CModel->validate()
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionContact()
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#11 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#12 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CController->run('contact')
+#14 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/site/conta...')
+#15 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#16 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#17 {main}
+REQUEST_URI=/user/site/contact
+HTTP_REFERER=http://www.proemocion.com/user/site/contact
+---
+2014/01/14 13:17:21 [error] [exception.CException] exception 'CException' with message 'Propiedad "ContactForm"."name" no se encuentra definida.' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/protected/modules/user/controllers/SiteController.php(88): CComponent->__get('name')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionContact()
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CController->run('contact')
+#11 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/site/conta...')
+#12 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#13 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#14 {main}
+REQUEST_URI=/user/site/contact
+HTTP_REFERER=http://www.proemocion.com/user/site/contact
+---
+2014/01/14 13:26:20 [error] [exception.CException] exception 'CException' with message 'Propiedad "ContactForm"."asunto" no se encuentra definida.' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/protected/modules/user/controllers/SiteController.php(89): CComponent->__get('asunto')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionContact()
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CController->run('contact')
+#11 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/site/conta...')
+#12 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#13 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#14 {main}
+REQUEST_URI=/user/site/contact
+HTTP_REFERER=http://www.proemocion.com/user/site/contact
+---
+2014/01/14 13:33:56 [error] [exception.CException] exception 'CException' with message 'ProfileController no ha podido encontrar la vista "edit" solicitada.' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php:878
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(782): CController->renderPartial('edit', Array, true)
+#1 /var/www/vhosts/proemocion.com/httpdocs/protected/modules/user/controllers/ProfileController.php(162): CController->render('edit', Array)
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/actions/CInlineAction.php(49): ProfileController->actionUpdate()
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CController->run('update')
+#12 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/profile/up...')
+#13 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#14 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#15 {main}
+REQUEST_URI=/user/profile/update
+HTTP_REFERER=http://www.proemocion.com/user/profile
+---

@@ -56,7 +56,7 @@ Si tienes alguna duda o quieres contactar con nosotros, hazlo a través del sigu
 		<?php $this->widget('bootstrap.widgets.TbButton',array(
             'buttonType'=>'submit',
             'type'=>'primary',
-            'label'=>'Submit',
+            'label'=>'Enviar',
         )); ?>
 	</div>
 

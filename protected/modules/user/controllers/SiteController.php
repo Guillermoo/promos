@@ -84,19 +84,18 @@ class SiteController extends Controller
 			$model->attributes=$_POST['ContactForm'];
 			//$this->debug($model);
 			
-			if($model->validate())
-			{
-				$name='=?UTF-8?B?'.base64_encode($model->name).'?=';
-				$subject='=?UTF-8?B?'.base64_encode($model->subject).'?=';
+			//if($model->validate()){
+				$name='=?UTF-8?B?'.base64_encode($model->nombre).'?=';
+				$subject='=?UTF-8?B?'.base64_encode($model->titulo).'?=';
 				$headers="From: $name <{$model->email}>\r\n".
 					"Reply-To: {$model->email}\r\n".
 					"MIME-Version: 1.0\r\n".
 					"Content-type: text/plain; charset=UTF-8";
 
-				mail(Yii::app()->params['websiteEmail'],$subject,$model->body,$headers);
+				mail(Yii::app()->params['websiteEmail'],$subject,$model->texto,$headers);
 				Yii::app()->user->setFlash('contact','Gracias por contactar con nosotros. Le responderemos en cuanto nos sea posible');
 				$this->refresh();
-			}
+			//}
 		}
 		$this->render('contactempresa',array('model'=>$model));
 	}
