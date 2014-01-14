@@ -294,7 +294,7 @@ private function actualizaEmpresa($id=null){
 	//$this->debug($empresa->usuario->item);	
 
     //if (isset($empresa->item) )
-    $image = Item::model()->find('foreign_id='.$empresa->id);
+    $image = Item::model()->find('foreign_id='.$empresa->id.' AND model="empresa"');
     
     if($image==null){    	
     	$image = $this->obtenImageForm($empresa->usuario->item);	

@@ -60,31 +60,12 @@
     </div>
 
     <? if (UserModule::isCompany()): ?>
-      <?/* <!-- <div class="row">
-                <div id="logo_form">
-                    <?php /*echo $form->labelEx($model,'logo'); ?>
-
-                    <?php if (isset($item)):?><?//Si tiene una imagen cargada ?>
-                        <?php $imghtml=CHtml::image(Yii::app( )->getBaseUrl( ).$item->path);?>
-                        <?php echo CHtml::link($imghtml);?>
-                        <?php //$this->renderPartial('../layouts/_viewitem', array(
-                                //'imghtml' => $imghtml,'idimage'=>$model->usuario->item->id,'muestraBorrar'=>UserModule::isCompany(Yii::app()->user->id)));?><?php //El admin no puede borrar la imagen, o si??>
-                        <button class="btn btn-danger" data-type="POST" data-url=promocion/deleteItem?id=<?=$item->id ?> >
-                            <i class="icon-trash icon-white"></i>
-                            <span>Delete</span>
-                        </button>
-                    <?php else:?><?//Si no la tiene se muestra el form para cargar imágenes?>
-                        <?php $item = new Item();?>
-                        <?php echo $form->fileFieldRow($item, 'filename'); ?>
-                    <?php endif;?>
-                     
-                </div>
-        </div>*/?>
+      
         <div class="row">
             <?php if(!$model->isNewRecord): ?>
                 <?php //(G)Cargamos el cargador de imágenes ?>
-                <?php if (!isset($image) || (!isset($model->item)) || (isset($item->path))): ?>
-                    <?php //dsfh;?>
+
+                <?php if (!isset($image) || $image->name==null): ?>
                     <p>Elige una imagen para la promoción:</p>
                     <div id="logo_form">
                         <?php
@@ -107,15 +88,15 @@
                             );
                             ?>
                 <?php else: ?>
-                    <?php echo CHtml::image(Yii::app()->request->baseUrl.$model->item->path,"image",array("width"=>350)); ?>
+                    <?php echo CHtml::image(Yii::app()->getBaseUrl().$image->path,"image",array("width"=>350)); ?>
                     <button class="btn btn-danger">
                             <i class="icon-trash icon-white"></i>
-                            <?php echo CHtml::ajaxLink('Delete', array(Yii::app()->request->baseUrl.'/user/item/delete','id'=>$model->item->id),
+                            <?php echo CHtml::ajaxLink('Eliminar', array(Yii::app()->getBaseUrl().'/user/item/delete','id'=>$image->id),
                             array('update' => '#logo_form'))?>
                     </button>
                     <?php echo CHtml::ajaxLink('Delete', array(
                         'empresa/deleteItem',
-                        'id'=>$model->item->id),
+                        'id'=>$image->id),
                         array('update' => '#logo_form'))?>
                     
                 <?php  endif;?>

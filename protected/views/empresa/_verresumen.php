@@ -4,7 +4,7 @@
 			//así lo pone en el formulario del perfil de la empresa:
 			//echo CHtml::image(Yii::app()->request->baseUrl.$empresa->usuario->item->path,"image",array("width"=>350));			
 			//$usuario = User::model()->findByPk($data->user_id);
-			$image = Item::model()->find('foreign_id='.$data->id);
+			$image = Item::model()->find('foreign_id='.$data->id.' AND model="empresa"');
 			//$this->debug($usuario);
 			if(isset($image)): ?>
 				<a href="empresa/verpromos/<?php echo $data->id ?>" ><center><img src="<?php echo Yii::app()->getBaseUrl().$image->path; ?>" /></center></a>

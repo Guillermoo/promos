@@ -41,24 +41,24 @@
 	</div>
 </div>
 
-<!-- ########### Sistema de votación #####################3 -->
-	<div  id="valoracion<?=$model->id?>">
-		<?php 
-        if ($rating = Voto::model()->findByPk($model->votos_id)){ //if the record has an votos_id we echo it       
-            echo "Valoración: <strong>" . $rating->votos_media ."</strong>";
-            echo " " . $rating->votos_cantidad . " votos";
-        }else{
-        	$rating = new Voto;
-        	$rating->votos_cantidad = 0;
-        	$rating->votos_media = 0;
-        	$rating->votos_suma = 0;
-        	echo "Valoración: <strong>Todavía ha sido valorada</strong>";           
-        }
-		?>
-    </div>
+<!-- ########### Sistema de votación ##################### -->
+<div  id="valoracion<?=$model->id?>">
+	<?php 
+    if($rating = Voto::model()->findByPk($model->votos_id)){ //if the record has an votos_id we echo it       
+        echo "Valoración: <strong>" . $rating->votos_media ."</strong>";
+        echo " " . $rating->votos_cantidad . " votos";
+    }else{
+      	$rating = new Voto;
+       	$rating->votos_cantidad = 0;
+       	$rating->votos_media = 0;
+       	$rating->votos_suma = 0;
+       	echo "Valoración: <strong>Todavía ha sido valorada</strong>";           
+    }
+	?>
+</div>
 
         
-<?php // rating	 
+<?php //rating	 
      $this->widget('CStarRating',array(
     'name'=>'valoracion',
     'id'=>'valoracion_',

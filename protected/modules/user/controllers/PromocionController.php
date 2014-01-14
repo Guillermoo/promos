@@ -192,8 +192,7 @@ class PromocionController extends Controller
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
 	 */
-	public function actionUpdate($id=null)
-	{
+	public function actionUpdate($id=null){
             
         //adsgh;
         $this->_model=$this->loadModel($id);
@@ -218,15 +217,23 @@ class PromocionController extends Controller
             
             $this->redirect(array('update','id'=>$this->_model->id));
         }
-        if (isset($this->_model->item)){
+        //$this->debug($this->_model->id);
+        $image = Item::model()->find('foreign_id='.$this->_model->id);
+    
+        if($image==null){       
+            $image = $this->obtenImageForm($this->_model->usuario->item);    
+        }
+
+
+        /*if (isset($this->_model->item)){
             $imageForm = $this->obtenImageForm($this->_model->item);    
         }else{
             Yii::import("xupload.models.XUploadForm");
             $imageForm = new Item;
-        }
+        }*/
         //$this->debug($this->_model->item);
         $this->render('update',array('model'=>$this->_model,
-            'image'=>$imageForm,
+            'image'=>$image,
         ));
 
 	}

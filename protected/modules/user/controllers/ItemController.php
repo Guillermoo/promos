@@ -126,8 +126,12 @@ class ItemController extends CController
 	    if( Yii::app( )->user->hasState( 'images' ) ) {
 	        $userImages = Yii::app( )->user->getState( 'images' );
 	        $model = Yii::app( )->user->getState( 'model' );
-	        //$foreign_id = Yii::app( )->user->getState( 'foreign_id' );	//esto está mal porque getState(foreign_id) me da null
-	        $foreign_id = $this->loadUser()->empresa->id;
+	        $foreign_id = Yii::app( )->user->getState( 'foreign_id' );	//esto está mal porque getState(foreign_id) me da null
+	        
+	        /*Si pongo esto funciona bien con el logo de la empresa pero si estoy 	        poniendo una imagen a una promocion, el foreign_id del item me pone el 
+	        id de la empresa, en lugar del id de la promocion: */
+	        //$foreign_id = $this->loadUser()->empresa->id; 
+	        //$foreign_id = $model->id;
 	        //Resolve the final path for our images
 	        //$path = Yii::app( )->getBasePath( )."/../uploads/images/";	        
 	    	$path = realpath( Yii::app( )->getBasePath( )."/../uploads/images" )."/";
@@ -158,7 +162,7 @@ class ItemController extends CController
 	                    $img->created = $objDateTime;
 	                    $img->modified = $objDateTime;*/
 	                    
-	                    if( !$img->save( false) ) {
+	                    if( !$img->save(false) ) {
 	                        //Its always good to log something
 	                        Yii::log( "Could not save Image:\n".CVarDumper::dumpAsString( 
 	                            $img->getErrors( ) ), CLogger::LEVEL_ERROR,"" );

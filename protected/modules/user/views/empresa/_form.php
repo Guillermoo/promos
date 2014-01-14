@@ -24,38 +24,14 @@
 	<?php if (!UserModule::isCompany(Yii::app()->user->id) ):?>
 		<?php echo $form->errorSummary(array($empresa)); ?>
 	<?php endif;?>
-	
-	<!-- <div class="row"><!-- HAy que mostrar las categorías a las que pertenece pero no dejar editar -->
-		<!-- (G)De moment lo dejo así, ya se me ocurrirá algo mejor 
-		<?php /*echo $form->labelEx($model->empresa->categoria,'categoria_id'); ?>
-		<?php echo "Belonged categories: "?><br>
-		<?php foreach ($model->empresa->categoria as $miCat):?>
-			<b><?php echo $miCat->name;?></b><br>
-		<?php endforeach;*/?>
-		<?php //echo $form->dropDownListRow($empresa, 'contacto_id', $categorias, array('multiple'=>true)); ?>
-		<?php //echo $form->checkBoxListRow($listCat, 'id', array($categorias), array('hint'=>'<strong>Note:</strong> Labels surround all the options for much larger click areas.')); ?>
-		<?php //echo $form->error($empresa,'contacto_id'); ?>
-	</div> -->
-    <?php /*if (UserModule::isCompany()): ?>
-    	<?php
-			$this->widget('xupload.XUpload', array(
-				'url' => Yii::app()->createUrl("empresa/upload", array("parent_id" => 1)),
-				'model' => $image,
-				'attribute' => 'file',
-				'multiple' => false,
-			));
-		?>
 
-	<?php else:?>
-
-	<?php endif;*/?>
-	<?php //$this->debug($image);?>
 	<div class="row">
         <?php echo $form->labelEx($image,'Imagen corporativa'); ?>
         <div id="logo_form">
         <?php if (!isset($image) || $image->name==null /*|| (!isset($empresa->usuario->item))*/): ?>
         	<?php
         		 Yii::app()->user->setState('model', 'empresa');
+        		 Yii::app()->user->setState('foreign_id',$empresa->id);
         		//$image['foreign_id'] = Yii::app()->user->id;
 		        $this->widget( 'xupload.XUpload', array(
 		            'url' => Yii::app( )->createUrl( "user/item/upload"),
