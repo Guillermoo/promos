@@ -28,10 +28,10 @@
 	<div class="social span1"><?php echo CHtml::link(CHtml::image(Yii::app()->theme->baseurl.'/img/icon-facebook-big.png', $alt='facebook'),'http://www.facebook.com/'.$model->facebook,array('target'=>'_blank')) ?></div>
 		<div class="social span1"><?php echo CHtml::link(CHtml::image(Yii::app()->theme->baseurl.'/img/icon-twitter-big.png', $alt='twitter'),'http://www.twitter.com/'.$model->twitter,array('target'=>'_blank')) ?></div>
 		<div class="span12">			
-			<?php if(isset($model->usuario->item->path)){ ?>
+			<?php if(isset($image)){ ?>
 			<div class="thumbnail"> 
 				<?php
-						echo CHtml::image(Yii::app()->baseUrl.$model->usuario->item->path, $alt='logo');
+						echo CHtml::image(Yii::app()->getBaseUrl().$image->path, $alt='logo');
 					?>
 			</div>
 			<?php } ?>
