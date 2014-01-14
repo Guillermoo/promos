@@ -69,7 +69,7 @@ class PromocionController extends Controller
         		$criteria->limit = 8;
         		//$criteria->compare('destacado',Promocion::IS_NODESTACADA);
         		$criteria->compare('estado',Promocion::STATUS_ACTIVA);
-        		$criteria->addCondition('fecha_fin >= '.$now);
+        		$criteria->addCondition('fecha_fin >= '.$now.' AND id <> '.$promocion->id);
         		$criteria->select = 'id,titulo,titulo_slug,resumen,precio';
         		$criteria->order = 'RAND()';
 

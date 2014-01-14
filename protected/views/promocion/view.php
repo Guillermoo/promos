@@ -82,7 +82,6 @@
 ?>      
 <div id="rating_success_<?=$model->id;?>" style="display:none"></div> <!-- the div in which the confirmation message is shown-->
 <!-- #################################3 -->
-
 <div class="row-fluid product-detail">
 
 	<div class="span4">
@@ -172,8 +171,9 @@
 
 				<div class="tab-pane active" id="tab1">
 					<ul class="thumbnails product-list-inline-small">
+						<?php $cont=0; ?>
 						<?php foreach ($promos as $key => $promo):
-
+							$cont++;
 							if (isset($promo->item)): 
 								$path=$promo->item->path; 
 						 	else:
@@ -186,7 +186,7 @@
 								<span class="label label-info price">&euro; <? echo $promo->precio ?></span>
 								<!--<span class="label label-important price price-over">&euro; 1,<sup>99</sup></span>-->
 								<?php if (isset($promo->item)): ?>
-									<img data-hover="<?php echo Yii::app()->request->baseUrl.$path ?>" src="$promo->item->path" alt="<?php echo $promo->titulo ?>"  src="<?php echo Yii::app()->request->baseUrl.$path ?>">
+									<center><img data-hover="<?php echo Yii::app()->getBaseUrl().$path ?>" src="<?php echo Yii::app()->getBaseUrl().$path ?>" alt="<?php echo $promo->titulo ?>" ?></center>
 								<?php else: ?>
 									<img data-hover="<?php echo Yii::app()->request->baseUrl.$path ?>"  alt="<?php echo $promo->titulo ?>" src="<?php echo Yii::app()->request->baseUrl.$path ?>">
 								<?php endif; ?>
@@ -198,6 +198,9 @@
 						</li>							
 				<?php endforeach; ?>
 				</ul>
+				<?php if($cont==0): ?>
+					<div class="alert alert-info">No hay más promociones disponibles en este momento</div>
+				<?php endif;?>
 				</div>
 
 			</div>

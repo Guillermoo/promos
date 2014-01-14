@@ -31,25 +31,35 @@
 		<div class="row-fluid">
 			<div class="span12">
 				<ul class="thumbnails product-list-inline-small">
-					<?php foreach ($destacados as $key => $promo):	?>
-								
-						<li class="span3">
-							<div class="thumbnail destacado">
-								<?php if (isset($promo->item)): ?>
-									<?php //$this->debug(Yii::app()->request->baseUrl.$promo->item->path) ?>
-									<a href="promocion/<?=$promo->titulo_slug ?>"><img src="<?php echo Yii::app()->request->baseUrl.$promo->item->path ?>" alt=""></a>
-								<?php else: ?>
-									<a href="promocion/<?=$promo->titulo_slug ?>"><img src="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>" alt=""></a>
-								<?php endif; ?>
-							
-								<div class="caption">
-									<a href="promocion/<?=$promo->titulo_slug ?>"><?=$promo->titulo ?></a>
-									<p><?=$promo->resumen ?> <span class="label label-info price pull-right">&euro; <?=$promo->precio ?>,-</span></p>
-								</div>
+					<?php 
+					$cont = 0;
+					foreach ($destacados as $key => $promo):	
+					$cont++;										
+					$image = Item::model()->find('foreign_id='.$promo->id.' AND model = "promo"'); 
+					if (!isset($image) || $image->path==null): 							
+						$path=Yii::app()->params['no_image'];						
+					endif; ?>
+					?>
+					<li class="span3">
+						<div class="thumbnail destacado">
+							<?php if (!isset($path)): ?>
+								<?php //$this->debug(Yii::app()->request->baseUrl.$promo->item->path) ?>
+								<center><img data-hover="<?php echo Yii::app()->getBaseUrl().$image->path ?>" src="<?php echo Yii::app()->getBaseUrl().$image->path ?>" alt="<?php echo $promo->titulo ?>" src="<?php echo Yii::app()->getBaseUrl().$path ?>"></center>
+							<?php else: ?>
+								<a href="promocion/<?=$promo->titulo_slug ?>"><img src="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>" alt=""></a>
+							<?php endif; ?>
+						
+							<div class="caption">
+								<a href="promocion/<?=$promo->titulo_slug ?>"><?=$promo->titulo ?></a>
+								<p><?=$promo->resumen ?> <span class="label label-info price pull-right">&euro; <?=$promo->precio ?>,-</span></p>
 							</div>
-						</li>
+						</div>
+					</li>
 					<?php endforeach;?>
 				</ul>
+				<?php if($cont==0): ?>
+					<div class="alert alert-info">No hay ninguna promoción destacada en estos momentos<div>
+				<?php endif; ?>
 			</div>
 		</div>
 		<hr />
@@ -59,18 +69,17 @@
 		<div class="span12">
 			<ul class="thumbnails product-list-inline-large">
 				<?php foreach ($promos as $key => $promo):	
-						if (isset($promo->item)): 
-							$path=$promo->item->path; 
-						else:
-							$path=Yii::app()->params['no_image'];
+				$image = Item::model()->find('foreign_id='.$promo->id.' AND model = "promo"');
+						if (!isset($image) || $image->path==null): 							
+							$path=Yii::app()->params['no_image'];						
 						endif; ?>
 					<li class="span3">
 						<div class="thumbnail light">
 							<a href="promocion/<?=$promo->titulo_slug ?>">
 								<span class="label label-info price">&euro; <? echo $promo->precio ?>,-</span>
 								<!--<span class="label label-important price price-over">&euro; 1,<sup>99</sup></span>-->
-								<?php if (isset($promo->item)): ?>
-									<img data-hover="<?php echo Yii::app()->request->baseUrl.$path ?>" src="$promo->item->path" alt="<?php echo $promo->titulo ?>" src="<?php echo Yii::app()->request->baseUrl.$path ?>">
+								<?php if (!isset($path)): ?>
+									<center><img data-hover="<?php echo Yii::app()->getBaseUrl().$image->path ?>" src="<?php echo Yii::app()->getBaseUrl().$image->path ?>" alt="<?php echo $promo->titulo ?>" src="<?php echo Yii::app()->getBaseUrl().$path ?>"></center>
 								<?php else: ?>
 									<img data-hover="<?php echo Yii::app()->request->baseUrl.$path ?>"  alt="<?php echo $promo->titulo ?>" src="<?php echo Yii::app()->request->baseUrl.$path ?>">
 								<?php endif; ?>
