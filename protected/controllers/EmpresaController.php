@@ -61,7 +61,7 @@ class EmpresaController extends Controller
 	public function actionVerpromos($id){	
 
 		$model = $this->loadModel($id);
-		$image = Item::model()->find('foreign_id='.$id);
+		$image = Item::model()->find('foreign_id='.$id.' AND model="empresa"');
 		//$promos = $this->loadPromos($model->user_id);
 		
 		$this->render('portalempresa',array('model'=>$model,'image'=>$image

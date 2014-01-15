@@ -8,7 +8,7 @@
         array(
             'class'=>'bootstrap.widgets.TbMenu',
             'items'=>array(
-                array('url'=>Yii::app()->getModule('user')->profileUrl, 'label'=>Yii::app()->getModule('user')->t("Profile"), 'visible'=>!Yii::app()->user->isGuest, 'icon'=>'user', 'active'=>Yii::app()->controller->action->id=='profile'),
+                array('url'=>Yii::app()->getModule('user')->profileUrl, 'label'=>Yii::app()->getModule('user')->t("Profile"), 'visible'=>!Yii::app()->user->isGuest, 'icon'=>'user', 'active'=>(Yii::app()->controller->action->id=='profile' || Yii::app()->controller->action->id=='update')),
                  array('label'=>'Mis compras', 'url'=>Yii::app()->getModule('user')->historialcompras,'visible'=>!Yii::app()->user->isGuest,'icon'=>'gift', 'active'=>Yii::app()->controller->action->id=='historialCompras'),
                   array('label'=>'Contacto', 'url'=>Yii::app()->getModule('user')->contactoEmpresaUrl,'visible'=>!Yii::app()->user->isGuest,'icon'=>'envelope', 'active'=>Yii::app()->controller->action->id=='contact'),                         
             ),

@@ -58,7 +58,7 @@ class Profile extends CActiveRecord
 			//array('contacto_id', 'numerical', 'integerOnly'=>true),
 			array('username, lastname', 'length', 'max'=>50),
 			array('paypal_id', 'length', 'max'=>40),
-			array('direccion,telefono,cp,paypal_id, poblacion_id','required', 'except' => 'admin'),
+			array('direccion,telefono,cp,poblacion_id','required', 'except' => 'admin'), //he quitado paypal_id como obligatorio porque el usuario-comprador no tiene ese campo en el perfil
 			array('barrio,telefono,fax,cp,meses', 'numerical', 'integerOnly'=>true),
 			array('telefono, fax', 'length', 'max'=>50),
 			array('poblacion_id, direccion', 'length', 'max'=>150),
@@ -259,8 +259,8 @@ class Profile extends CActiveRecord
 		));
 	}
 	
-	public static function actualizaFechaTrasActivacion($profile=null){
-		if (isset($profile)){
+	public static function actualizaFechaTrasActivacion($profile=null){		
+		if (isset($profile) && UserModule::isCompany()){			
 			$find->profile->fecha_activacion = time();
 			$find->profile->fecha_fin = time() + Cuenta::DURACION_CUENTA_TRIAL;
 			//Igual da fallo de validación!!!!

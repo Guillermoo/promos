@@ -68,23 +68,22 @@ else:
 	foreach ($model->usuario->promocion as $key => $promo) {
 		if($promo->fecha_fin>date("Y-m-d")){
 ?>
-	<li class="span3">
-		<div class="thumbnail light">
-								<span class="label label-info price">&euro; <? echo $promo->precio ?>,-</span>
-								<div class="caption titulopromo"><h4><?php echo CHtml::link($promo->titulo ,'promocion/'.$promo->titulo) ?></h4></div>
-								<div class="descripcionpromo"><?php echo $promo->resumen ?></div>
-								<!--<span class="label label-important price price-over">&euro; 1,<sup>99</sup></span>-->
-								<?php if (isset($promo->item)): ?>
-									<img data-hover="<?php echo Yii::app()->request->baseUrl.$promo->item->path ?>" src="$promo->item->path" alt="">
-								<?php else: ?>
-									<img data-hover="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>"  alt="">
-								<?php endif; ?>
-							</a>
-							<div class="caption">
-								<a href="promo/<?=$promo->id ?>"><?php $promo->titulo ?></a>
-							</div>
-			</div>
-		</li>
+<li class="span3">
+	<div class="thumbnail light">
+		<a href="/promocion/<?=$promo->titulo_slug ?>">
+			<span class="label label-info price">&euro; <? echo $promo->precio ?></span>									
+			<?php if (isset($promo->item)): ?>
+				<center><img data-hover="<?php echo Yii::app()->request->baseUrl.$promo->item->path ?>" src="<?php echo Yii::app()->getBaseUrl().$promo->item->path ?>" alt=""></center>
+			<?php else: ?>
+				<img data-hover="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>"  alt="">
+			<?php endif; ?>
+		</a>
+		<div class="caption">
+			<a href="/promocion/<?=$promo->titulo_slug ?>"><?php echo $promo->titulo ?></a>
+		</div>
+	</div>			
+	<a href="/promocion/<?=$promo->titulo_slug ?>" class="btn btn-block">Ver promoción</a>
+</li>
 <?php
 		}
 	}

@@ -218,7 +218,7 @@ class PromocionController extends Controller
             $this->redirect(array('update','id'=>$this->_model->id));
         }
         //$this->debug($this->_model->id);
-        $image = Item::model()->find('foreign_id='.$this->_model->id);
+        $image = Item::model()->find('foreign_id='.$this->_model->id.' AND model = "promo"');
     
         if($image==null){       
             $image = $this->obtenImageForm($this->_model->usuario->item);    

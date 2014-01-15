@@ -93,10 +93,10 @@
 				    	'debug'=>YII_DEBUG,
 				    ),
 				));*/?>
-                <?php echo $form->datepickerRow($profile, 'fecha_activacion',
+                <?php /*echo $form->datepickerRow($profile, 'fecha_activacion',
                         array('hint'=>'Haz click para seleccionar la fecha',
                            'prepend'=>'<i class="icon-calendar"></i>')); ?>
-				<?php echo $form->error($profile,'fecha_activacion'); ?>
+				<?php echo $form->error($profile,'fecha_activacion'); */?>
 			</div>
 			<div class="row">
 				<?php /*echo $form->labelEx($profile,'fecha_fin'); ?>
@@ -115,10 +115,10 @@
 				    	'debug'=>YII_DEBUG,
 				    ),
 				));*/?>
-                                <?php echo $form->datepickerRow($profile, 'fecha_fin',
+                <?php /*echo $form->datepickerRow($profile, 'fecha_fin',
                                     array('hint'=>'Haz click para seleccionar la fecha',
                                     'prepend'=>'<i class="icon-calendar"></i>')); ?>
-				<?php echo $form->error($profile,'fecha_fin'); ?>
+				<?php echo $form->error($profile,'fecha_fin'); */?>
 			</div>
 			
 			<div class="row">
@@ -138,10 +138,10 @@
 				    	'debug'=>YII_DEBUG,
 				    ),
 				));*/?>
-                                <?php echo $form->datepickerRow($profile, 'fecha_pago',
+                <?php /*echo $form->datepickerRow($profile, 'fecha_pago',
                                     array('hint'=>'Haz click para selecioar la fecha',
                                     'prepend'=>'<i class="icon-calendar"></i>')); ?>
-				<?php echo $form->error($profile,'fecha_pago'); ?>
+				<?php echo $form->error($profile,'fecha_pago'); */?>
 			</div>
 			<div class="row">
 				<?php echo $form->labelEx($profile,'telefono'); ?>
