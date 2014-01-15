@@ -1,7 +1,7 @@
 <?php if(YII_RUTAS == true) echo __FILE__; ?>
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'profile-form',
-	'enableAjaxValidation'=>true,
+	'enableAjaxValidation'=>false,
 	//'type'=>'horizontal',
 	'action'=>'profile/update',
 	'clientOptions'=>array(
@@ -225,7 +225,7 @@
 			<? //$this->debug(User::getListaCiudades()); ?>
 			<div class="row">
                 <?php //echo $form->dropDownListRow($profile, 'poblacion_id', User::getListaCiudades()); 
-               echo $form->labelEx($profile,'poblacion_id'); ?>
+               echo $form->labelEx($profile,'poblacion'); ?>
 				<?php echo $form->textField($profile,'poblacion_id'); ?>
 				<?php echo $form->error($profile,'poblacion_id'); ?>
 			</div>

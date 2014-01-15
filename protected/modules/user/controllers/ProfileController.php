@@ -137,17 +137,16 @@ class ProfileController extends Controller
 	
 	public function actionUpdate(){
 		
-		$model = $this->loadUser();
-		
+		$model = $this->loadUser();		
 		$profile=$model->profile;
 		$profile->scenario = "paraValidar";
 		
 		// ajax validator
 		$this->performAjaxValidation(array($profile));
 		
-		
-		if(isset($_POST['profile-form'])){
-			$profile->attributes=$_POST['profile-form'];
+		//$this->debug($_POST['profile-form']);
+		if(isset($_POST['Profile'])){			
+			$profile->attributes=$_POST['Profile'];
 			
 			if($profile->validate()) {
 				if ($profile->save()){
@@ -157,6 +156,7 @@ class ProfileController extends Controller
 				};
 			} else $profile->validate();
 		}
+
 		$this->render('profile',array(
 			'model'=>$model,
 		));
@@ -245,8 +245,8 @@ class ProfileController extends Controller
 	/*(G) Debería validar contacto y profile*/
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='profile-form')
-		{
+		if(isset($_POST['ajax']) && $_POST['ajax']==='profile')
+		{			
 			echo UActiveForm::validate($model);
 			Yii::app()->end();
 		}

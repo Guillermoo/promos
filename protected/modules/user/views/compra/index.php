@@ -2,10 +2,6 @@
 /* @var $this CompraController */
 /* @var $dataProvider CActiveDataProvider */
 
-$this->breadcrumbs=array(
-	'Compras',
-);
-
 /*$this->menu=array(
 	array('label'=>'Create Compra', 'url'=>array('create')),
 	array('label'=>'Manage Compra', 'url'=>array('admin')),

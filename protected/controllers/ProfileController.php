@@ -102,7 +102,7 @@ class ProfileController extends Controller
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
+		//$this->debug($model->id);
 		if(isset($_POST['Profile']))
 		{
 			$model->attributes=$_POST['Profile'];
