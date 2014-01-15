@@ -19,9 +19,9 @@ class LoginController extends Controller
 				// validate user input and redirect to previous page if valid
 				if($model->validate()) {
 					$this->lastViset();//Para que se actualize la última vez visitado
-					/*if(UserModule::isCompany() || UserModule::isTrial()){
+					if(UserModule::isCompany() || UserModule::isTrial()){
 						$this->realizaComprobacionesMantenimiento();
-					}*/
+					}					
 					$this->redirigeSegunTipoUsuario();
 				}
 			}
@@ -39,7 +39,7 @@ class LoginController extends Controller
 		//COMPROBACIONES AL LOGEARSE. DEBERÍA COMPROBAR COSAS TAMBIÉN CUANDO ES = 2 
 		if ( ($model->status == 3) ){
 			if (User::cuentaCaducada($model) ){//Si devuelve true hay que cambiar
-				$model->status = 2;
+				$model->status = 2;				
 			};
 			if (User::tieneCamposMinimosRellenos($model) != true ){//Si devuelve true hay que cambiar
 				$model->status = 1;

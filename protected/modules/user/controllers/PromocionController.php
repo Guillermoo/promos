@@ -105,8 +105,14 @@ class PromocionController extends Controller
             
         if($usuario->status == 2){                
             $this->render('_hadtopay');
-            return;
+            Yii::app()->end();
+        }else{
+            if($usuario->status == 1){
+                $this->render('_faltaperfil');
+                Yii::app()->end();
+            }
         }
+
          
         //compruebo que puede crear una nueva promo de el tipo seleccionado
         $datosCuenta = Cuenta::model()->find('id=:id',
