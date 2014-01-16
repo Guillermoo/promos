@@ -38,7 +38,7 @@ array(
 	?>
 	<?php
 	if($numPromos < $maxPromos){
-		echo $this->renderPartial('_form', array('model'=>$model,'item'=>$item,'image'=>$image, 'maxPromos'=>$maxPromos, 'maxActivas'=>$datosCuenta->prom_activ, 'maxStock'=>$datosCuenta->prom_stock,'promoActivas'=>$numPromosActivas,'promoStock'=>$numPromosStock));
+		echo $this->renderPartial('_form', array('model'=>$model,'item'=>$item,'image'=>$image, 'maxPromos'=>$maxPromos, 'maxActivas'=>$datosCuenta->prom_activ, 'maxStock'=>$datosCuenta->prom_stock,'promoActivas'=>$numPromosActivas,'promoStock'=>$numPromosStock,'maxDest'=>$maxDest,'promosDest'=>$promosDest));
 	}else{
 		echo $this->renderPartial('_denied');
 	}

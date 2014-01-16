@@ -44,7 +44,12 @@
     </div>
     <div class="row">
         <?php echo $form->labelEx($model,'destacada'); ?>
-        <?php echo $form->checkbox($model, 'destacado'); ?>
+        <?php if($promosDest >= $maxDest):
+                echo $form->checkbox($model, 'destacado',array('disabled'=>'disabled')); 
+            else:
+                echo $form->checkbox($model,'destacado');
+            endif;
+            ?>
         <?php echo $form->error($model,'destacado'); ?>
     </div>
     <?//endif;?>

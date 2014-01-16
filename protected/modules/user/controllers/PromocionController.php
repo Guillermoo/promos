@@ -189,7 +189,7 @@ class PromocionController extends Controller
         $categorias=new CActiveDataProvider('Categoria');
 
         $this->render('create',array(
-                'model'=>$model,'item'=>$item,'image'=>$image,'cuenta'=>$usuario->profile->tipocuenta, 'categorias'=>$categorias
+                'model'=>$model,'item'=>$item,'image'=>$image,'cuenta'=>$usuario->profile->tipocuenta, 'categorias'=>$categorias,'promosDest'=>$numPromosDest, 'maxDest'=>$datosCuenta->prom_dest
         ));	
     }
 	
@@ -238,8 +238,17 @@ class PromocionController extends Controller
             $imageForm = new Item;
         }*/
         //$this->debug($this->_model->item);
+         $usuario = User::model()->findByPk(Yii::app()->user->id);
+         $datosCuenta = Cuenta::model()->find('id=:id',
+            array(
+                ':id'=>$usuario->profile->tipocuenta
+                ));
+        $numPromosDest = Promocion::model()->countByAttributes(array(
+            'user_id'=> Yii::app()->user->id, 'destacado'=>1
+        ));
+
         $this->render('update',array('model'=>$this->_model,
-            'image'=>$image,
+            'image'=>$image,'promosDest'=>$numPromosDest, 'maxDest'=>$datosCuenta->prom_dest
         ));
 
 	}
