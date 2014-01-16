@@ -66,7 +66,7 @@ class Promocion extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('titulo, titulo_slug, resumen,  fecha_inicio, fecha_fin, precio, categorias_id', 'required'),
-			array('id,user_id,categorias_id,estado, destacado, stock,precio', 'numerical', 'integerOnly'=>true),
+			array('id,user_id,categorias_id,estado, destacado, stock,precio,votos_suma, votos_media, votos_cantidad', 'numerical', 'integerOnly'=>true),
 			array('titulo, titulo_slug, resumen', 'length', 'max'=>100),
 			array('fecha_inicio,fecha_fin', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true),//fechaCreación es un timestamp.. //, 'on' => 'insert'
 			//array('fecha_inicio,fecha_fin', 'default', 'value' => '0000-00-00 00:00:00', 'setOnEmpty' => true, 'on' => 'insert'),
@@ -133,6 +133,9 @@ class Promocion extends CActiveRecord
 			'stock' => 'Stock',
 			'categorias_id' => 'Id de categoria',
 			'categoria' => 'Categoria',
+			'votos_cantidad' => 'Total votos',
+			'votos_media' => 'Nota media',
+			'votos_suma' => 'Suma votos',
 		);
 	}
 	

@@ -34,7 +34,7 @@ class PromocionController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','delete','promosActivas','promosStock','promosDestacadas'),
+				'actions'=>array('create','update','delete','promosActivas','promosStock','promosDestacadas','votar'),
 				//'users'=>array(Yii::app()->getModule('user')->user()->username),
 				'users'=>array('@'),
 			),
@@ -304,6 +304,9 @@ class PromocionController extends Controller
             //$this->_model->user_id = Yii::app()->user->id;
             //$model->estado = 1; //(H) esto por qué??
             $model->titulo_slug = UserModule::to_slug($model->titulo) ;
+            $model->votos_suma = 0;
+            $model->votos_media = 0;
+            $model->votos_cantidad = 0;
         }
     }
 
@@ -379,6 +382,33 @@ class PromocionController extends Controller
 
         $this->render('destacadas',array('dataProvider'=>$dataProvider));
 
+    }
+
+    public function actionVotar($id, $voto){
+        if(Yii::app()->user->id && UserModule::isBuyer()){ 
+            if(isset("votar-form")){
+                $model = Promo::model()->find('id ='.$id);
+            
+                $cantidad = $model->votos_cantidad;
+                $cantidad++;
+                $model->votos_cantidad  = $cantidad;
+            
+                $suma = $model->votos_suma;
+                $suma++;
+                $model->votos_suma = $suma;
+
+                $media = $model->votos_suma / $model->votos_cantidad;
+                $model->votos_media = $media;
+
+                if($model->save())
+                    return true;
+                return false;
+            }else{
+                $promo = Promo::model()->find('id ='.$id);
+                $this->render('votar',array('promo'=>$promo));
+            }
+        }
+        return false;
     }
 
     /* Used to debug variables*/

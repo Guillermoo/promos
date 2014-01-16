@@ -23,10 +23,11 @@ class RegistrationCompanyController extends Controller
 		 Yii::app()->theme = 'frontEnd';
             $model = new RegistrationForm;
             $profile=new Profile;
+            $redireccion = 1;
             //$profile->regMode = true;
 			// ajax validator
 			if(isset($_POST['ajax']) && $_POST['ajax']==='registration-form')
-			{
+			{				
 				echo UActiveForm::validate(array($model));
 				Yii::app()->end();
 			}
@@ -35,6 +36,7 @@ class RegistrationCompanyController extends Controller
 		    	$this->redirect(Yii::app()->controller->module->profileUrl);
 		    } else {
 		    	if(isset($_POST['RegistrationForm'])) {
+		    		$redireccion = 2;
 					$model->attributes=$_POST['RegistrationForm'];
 					//$profile->attributes=((isset($_POST['Profile'])?$_POST['Profile']:array()));
 					if($model->validate())
@@ -75,11 +77,12 @@ class RegistrationCompanyController extends Controller
 							}							
 						}
 					} else $profile->validate();	
-					//(h)
-					$this->render('/user/registrado',array('model'=>$model));
-                	Yii::app()->end();				
+					//(h)					                	
 				}
-			    $this->render('/user/registrationcompany',array('model'=>$model,'profile'=>$profile));
+				if($redireccion==1)
+			    	$this->render('/user/registrationcompany',array('model'=>$model,'profile'=>$profile));
+			    else
+			    	$this->render('/user/registrado',array('model'=>$model));
 		    }
 	}
 }

@@ -1,25 +1,23 @@
 <?php
 
 /**
- * This is the model class for table "{{compras}}".
+ * This is the model class for table "{{votos}}".
  *
- * The followings are the available columns in table '{{compras}}':
+ * The followings are the available columns in table '{{votos}}':
  * @property integer $id
- * @property integer $id_usuario
- * @property integer $id_promo
- * @property string $fecha_compra
- * @property integer $estado
+ * @property integer $votos_cantidad
+ * @property string $votos_media
+ * @property integer $votos_suma
  *
  * The followings are the available model relations:
- * @property Users $idUsuario
- * @property Promociones $idPromo
+ * @property Promociones[] $promociones
  */
-class Compra extends CActiveRecord
+class Voto extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return Compra the static model class
+	 * @return Voto the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -31,7 +29,7 @@ class Compra extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return '{{compras}}';
+		return '{{votos}}';
 	}
 
 	/**
@@ -42,11 +40,11 @@ class Compra extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_usuario, id_promo, fecha_compra, estado', 'required'),
-			array('id_usuario, id_promo, estado, votado', 'numerical', 'integerOnly'=>true),
+			array('votos_cantidad, votos_suma', 'numerical', 'integerOnly'=>true),
+			array('votos_media', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, id_usuario, id_promo, fecha_compra, estado', 'safe', 'on'=>'search'),
+			array('id, votos_cantidad, votos_media, votos_suma', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,8 +56,7 @@ class Compra extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idUsuario' => array(self::BELONGS_TO, 'Users', 'id_usuario'),
-			'idPromo' => array(self::BELONGS_TO, 'Promociones', 'id_promo'),
+			'promociones' => array(self::HAS_MANY, 'Promociones', 'votos_id'),
 		);
 	}
 
@@ -70,11 +67,9 @@ class Compra extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'id_usuario' => 'Id Usuario',
-			'id_promo' => 'Id Promo',
-			'fecha_compra' => 'Fecha Compra',
-			'estado' => 'Estado',
-			'votado' => 'Votado',
+			'votos_cantidad' => 'Votos Cantidad',
+			'votos_media' => 'Votos Media',
+			'votos_suma' => 'Votos Suma',
 		);
 	}
 
@@ -90,10 +85,9 @@ class Compra extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('id_usuario',$this->id_usuario);
-		$criteria->compare('id_promo',$this->id_promo);
-		$criteria->compare('fecha_compra',$this->fecha_compra,true);
-		$criteria->compare('estado',$this->estado);
+		$criteria->compare('votos_cantidad',$this->votos_cantidad);
+		$criteria->compare('votos_media',$this->votos_media,true);
+		$criteria->compare('votos_suma',$this->votos_suma);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

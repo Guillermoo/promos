@@ -1,22 +1,9 @@
 <?php
 /* @var $this CompraController */
 /* @var $model Compra */
-
-$this->breadcrumbs=array(
-	'Compras'=>array('index'),
-	$model->id,
-);
-
-$this->menu=array(
-	array('label'=>'List Compra', 'url'=>array('index')),
-	array('label'=>'Create Compra', 'url'=>array('create')),
-	array('label'=>'Update Compra', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete Compra', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Compra', 'url'=>array('admin')),
-);
 ?>
 
-<h1>View Compra #<?php echo $model->id; ?></h1>
+<h1>Identificador de compra: <?php echo $model->id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -26,5 +13,14 @@ $this->menu=array(
 		'id_promo',
 		'fecha_compra',
 		'estado',
+		'votado'.
 	),
-)); ?>
+)); 
+	if($model->votado == 0 && $model->estado == 1): ?>
+		<div>Puede votar la promoción <?php echo CHtml::link('haciendo click aquí','promocion/votar/id/'.$model->id_promo); ?> </div>
+	<?php else: ?>
+		<div>Ha votado esta promocion. Su valoracion: <strong><?php echo $model->votado ?></strong></div>
+	<?php endif; ?>
+
+?>
+
