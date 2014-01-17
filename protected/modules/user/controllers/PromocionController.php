@@ -30,7 +30,7 @@ class PromocionController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','promosActivas','promosStock','promosDestacadas','votar'),
+				'actions'=>array('create','update','promosActivas','promosStock','promosDestacadas','votar','index'),
 				//'users'=>array(Yii::app()->getModule('user')->user()->username),
 				'users'=>array('@'),
 			),
