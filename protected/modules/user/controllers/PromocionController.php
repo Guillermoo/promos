@@ -29,17 +29,13 @@ class PromocionController extends Controller
 	public function accessRules()
 	{
 		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
-			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','delete','promosActivas','promosStock','promosDestacadas','votar'),
+				'actions'=>array('create','update','promosActivas','promosStock','promosDestacadas','votar'),
 				//'users'=>array(Yii::app()->getModule('user')->user()->username),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin'),
+				'actions'=>array('admin', 'index', 'delete'),
 				'users'=>UserModule::getAdmins(),
 			),
 			array('deny',  // deny all users
@@ -384,29 +380,33 @@ class PromocionController extends Controller
 
     }
 
-    public function actionVotar($id, $voto){
+    public function actionVotar($id){
         if(Yii::app()->user->id && UserModule::isBuyer()){ 
-            if(isset("votar-form")){
-                $model = Promo::model()->find('id ='.$id);
-            
-                $cantidad = $model->votos_cantidad;
-                $cantidad++;
-                $model->votos_cantidad  = $cantidad;
-            
-                $suma = $model->votos_suma;
-                $suma++;
-                $model->votos_suma = $suma;
+            $model = new Promocion;
+            $model = Promocion::model()->find('id=:id',array(':id'=>$id));
+            $compra = Compra::model()->find('id_usuario=:id_usuario AND id_promo =:id_promo',array(':id_usuario'=>Yii::app()->user->id,':id_promo'=>$id));
+            if(isset($_POST['voto'])){                                
+                $voto = $_POST['voto']; 
+                //COMPRUEBO QUE ES UN VALOR VÁLIDO
+                if($voto < 1 || $voto >5){ 
+                    Yii::app()->user->setFlash('notification','Tiene que ser un valor entre 1 y 5');
+                    $this->render('votar',array('model'=>$model,'compra'=>$compra));
+                    Yii::app()->end();
+                }else{
+                    $model->votos_cantidad  =  $model->votos_cantidad + 1;
+        
+                    $model->votos_suma = $model->votos_suma + $voto;
 
-                $media = $model->votos_suma / $model->votos_cantidad;
-                $model->votos_media = $media;
-
-                if($model->save())
-                    return true;
-                return false;
-            }else{
-                $promo = Promo::model()->find('id ='.$id);
-                $this->render('votar',array('promo'=>$promo));
-            }
+                    $model->votos_media = $model->votos_suma / $model->votos_cantidad;
+                    
+                    if($model->save()){
+                        $compra->votado = $voto;
+                        $compra->save();
+                    }                    
+                }
+            }      
+            $this->render('votar',array('model'=>$model,'compra'=>$compra));
+            
         }
         return false;
     }

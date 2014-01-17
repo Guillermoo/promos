@@ -69,9 +69,9 @@ class Compra extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
+			'id' => 'Referencia',
 			'id_usuario' => 'Id Usuario',
-			'id_promo' => 'Id Promo',
+			'id_promo' => 'Ref. de la promoción',
 			'fecha_compra' => 'Fecha Compra',
 			'estado' => 'Estado',
 			'votado' => 'Votado',

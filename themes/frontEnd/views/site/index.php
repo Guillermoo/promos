@@ -39,19 +39,18 @@
 					if (!isset($image) || $image->path==null): 							
 						$path=Yii::app()->params['no_image'];						
 					endif; ?>
-					?>
 					<li class="span3">
 						<div class="thumbnail destacado">
 							<?php if (!isset($path)): ?>
 								<?php //$this->debug(Yii::app()->request->baseUrl.$promo->item->path) ?>
-								<center><img data-hover="<?php echo Yii::app()->getBaseUrl().$image->path ?>" src="<?php echo Yii::app()->getBaseUrl().$image->path ?>" alt="<?php echo $promo->titulo ?>" src="<?php echo Yii::app()->getBaseUrl().$path ?>"></center>
+								<center><img data-hover="<?php echo Yii::app()->getBaseUrl().$image->path ?>" src="<?php echo Yii::app()->getBaseUrl().$image->path ?>" alt="<?php echo $promo->titulo ?>"></center>
 							<?php else: ?>
 								<a href="promocion/<?=$promo->titulo_slug ?>"><img src="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>" alt=""></a>
 							<?php endif; ?>
 						
 							<div class="caption">
 								<a href="promocion/<?=$promo->titulo_slug ?>"><?=$promo->titulo ?></a>
-								<p><?=$promo->resumen ?> <span class="label label-info price pull-right">&euro; <?=$promo->precio ?>,-</span></p>
+								<p><?=$promo->resumen ?> <span class="label label-info price pull-right">&euro; <?=$promo->precio ?></span></p>
 							</div>
 						</div>
 					</li>

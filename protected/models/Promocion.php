@@ -56,7 +56,7 @@ class Promocion extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('user_id, estado, titulo, titulo_slug, resumen, descripcion, descripcion_html, fecha_inicio, fecha_fin, fechaCreacion, destacado, precio, rebaja, condiciones, stock', 'required'),
-			array('user_id, estado, destacado, categorias_id', 'numerical', 'integerOnly'=>true),
+			array('user_id, estado, destacado, categorias_id, votos_cantidad, votos_suma, votos_media', 'numerical', 'integerOnly'=>true),
 			array('titulo, titulo_slug, resumen', 'length', 'max'=>100),
 			array('descripcion, descripcion_html, condiciones', 'length', 'max'=>1000),
 			array('precio, rebaja', 'length', 'max'=>45),
@@ -78,7 +78,6 @@ class Promocion extends CActiveRecord
 			'comprases' => array(self::HAS_MANY, 'Compras', 'id_promo'),
 			'user' => array(self::BELONGS_TO, 'Users', 'user_id'),
 			'categorias' => array(self::BELONGS_TO, 'Categorias', 'categorias_id'),
-			'votos'=>array( self::BELONGS_TO, 'Votos', 'votos_id'),
 		);
 	}
 

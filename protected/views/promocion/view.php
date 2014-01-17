@@ -44,14 +44,10 @@
 <!-- ########### Sistema de votación ##################### -->
 <div  id="valoracion<?=$model->id?>">
 	<?php 
-    if($rating = Voto::model()->findByPk($model->votos_id)){ //if the record has an votos_id we echo it       
-        echo "Valoración: <strong>" . $rating->votos_media ."</strong>";
-        echo " " . $rating->votos_cantidad . " votos";
+    if($model->votos_suma>0){ //si tiene algún voto      
+        echo "Valoración: <strong>" . $model->votos_media ."</strong>";
+        echo " " . $model->votos_cantidad . " votos";
     }else{
-      	$rating = new Voto;
-       	$rating->votos_cantidad = 0;
-       	$rating->votos_media = 0;
-       	$rating->votos_suma = 0;
        	echo "Valoración: <strong>Todavía ha sido valorada</strong>";           
     }
 	?>
@@ -63,22 +59,11 @@
     'name'=>'valoracion',
     'id'=>'valoracion_',
     'model'=>$model,
-    'attribute'=>'votos_id',
+    'attribute'=>'votos_media',
     'minRating'=>1,
     'maxRating'=>5,
-    'starCount'=>2,
-    'callback'=>'
-        function(){
-        $.ajax({
-        	alert("hola");
-            type: "GET",
-            url: "'.CController::createUrl('promocion/votar').'",
-            data: "id='.$model->id.'&val=" + $(this).val(),
-            success: function(msg){
-                alert( "Valoracion guardada: " + msg 
-            )
-        }})}'
-));
+    'starCount'=>2,  
+	));
 ?>      
 <div id="rating_success_<?=$model->id;?>" style="display:none"></div> <!-- the div in which the confirmation message is shown-->
 <!-- #################################3 -->
