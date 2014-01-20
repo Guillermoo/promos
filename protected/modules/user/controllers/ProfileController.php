@@ -149,20 +149,25 @@ class ProfileController extends Controller
 			$profile->attributes=$_POST['Profile'];	
 			
 			if(UserModule::isBuyer()){					
-				if ($profile->save()){
-					$this->debug($profile->direccion);
+				if ($profile->save()){					
 					//Yii::app()->user->updateSession();
 					Yii::app()->user->setFlash('success',UserModule::t("Changes are saved."));
 					$this->redirect(array('/user/profile'));	
 				}			
 			}else{
-				if($profile->validate()) {			
+				if($profile->validate()) {					
 					if ($profile->save()){
 						//Yii::app()->user->updateSession();
-						Yii::app()->user->setFlash('success',UserModule::t("Changes are saved."));
-						$this->redirect(array('/user/profile'));	
-					};
-				} 
+						if($model->status == 1){
+							$model->status = 3;
+							if($model->save()){
+								Yii::app()->user->setFlash('success',UserModule::t("Changes are saved."));
+								$this->redirect(array('/user/profile'));
+							}
+							
+						}
+					} 
+				}
 			}
 		}
 

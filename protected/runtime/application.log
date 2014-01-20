@@ -5025,3 +5025,47 @@ Stack trace:
 REQUEST_URI=/~hugo/promos/uploads/images/f69d6677dd6f6d761d32de7b27179800.jpeg
 HTTP_REFERER=http://localhost/~hugo/promos/promocion/cualquiercosa
 ---
+2014/01/20 10:44:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/favicon.ico"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/themes/froggy/ico/favicon.ico
+---
+2014/01/20 10:47:51 [error] [php] Use of undefined constant this - assumed 'this' (C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\models\User.php:350)
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\db\ar\CActiveRecord.php(795): Profile->update()
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\ProfileController.php(161): Profile->save()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(49): ProfileController->actionUpdate()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): ProfileController->runAction()
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#7 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): ProfileController->filterAccessControl()
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): ProfileController->runActionWithFilters()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): ProfileController->run()
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CWebApplication->run()
+REQUEST_URI=/~hugo/promos/user/profile/update
+2014/01/20 12:41:16 [error] [php] Undefined variable: this (C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\models\User.php:350)
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\db\ar\CActiveRecord.php(795): Profile->update()
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\ProfileController.php(161): Profile->save()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(49): ProfileController->actionUpdate()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): ProfileController->runAction()
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#7 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): ProfileController->filterAccessControl()
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): ProfileController->runActionWithFilters()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): ProfileController->run()
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CWebApplication->run()
+REQUEST_URI=/~hugo/promos/user/profile/update
