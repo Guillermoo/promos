@@ -103,7 +103,7 @@ class PromocionController extends Controller
             $this->render('_hadtopay');
             Yii::app()->end();
         }else{
-            if($usuario->status == 1){
+            if(!isset($usuario->profile)){
                 $this->render('_faltaperfil');
                 Yii::app()->end();
             }

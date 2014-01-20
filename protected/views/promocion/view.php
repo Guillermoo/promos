@@ -55,27 +55,20 @@
       
 <div id="rating_success_<?=$model->id;?>">
 <?php 
-	 if($model->votos_suma>0){ //si tiene algún voto      
-        switch ($model->votos_media) {
-        	case 1:
-        		echo "<img src='".Yii::app()->getBaseUrl()."/img/starring5.png' />";
-        		break;
-        	case 2:
-        		echo "<img src='".Yii::app()->getBaseUrl()."/img/starring2.png' />";
-        		break;
-        	case 3:
-        		echo "<img src='".Yii::app()->getBaseUrl()."/img/starring3.png' />";
-        		break;
-        	case 4:
-        		echo "<img src='".Yii::app()->getBaseUrl()."/img/starring4.png' />";
-        		break;
-        	case 5:
-        		echo "<img src='".Yii::app()->getBaseUrl()."/img/starring5.png' />";
-        		break;
-        	default:
-        		echo "<img src='".Yii::app()->getBaseUrl()."/img/starring5.png' />";
-        		break;
-        }       
+	 if($model->votos_suma>0){ //si tiene algún voto    
+	 if($model->votos_suma <= 1.5)  
+	 	echo "<img src='".Yii::app()->getBaseUrl()."/img/starring1.png' alt='".$model->votos_media."' />";
+     else
+     	if($model->votos_suma <= 2.5)
+     		echo "<img src='".Yii::app()->getBaseUrl()."/img/starring2.png' />";
+     	else
+     		if($model->votos_suma <= 3.5)
+     			echo "<img src='".Yii::app()->getBaseUrl()."/img/starring3.png' />";
+     		else
+     			if($model->votos_suma <= 4.5)
+     				echo "<img src='".Yii::app()->getBaseUrl()."/img/starring4.png' />";
+     			else
+     				echo "<img src='".Yii::app()->getBaseUrl()."/img/starring5.png' title='Puntuación: ".$model->votos_media."'/>";   
     }
 ?>
 </div> <!-- the div in which the confirmation message is shown-->
