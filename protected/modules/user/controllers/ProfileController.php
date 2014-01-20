@@ -150,7 +150,7 @@ class ProfileController extends Controller
 			
 			if(UserModule::isBuyer()){					
 				if ($profile->save()){
-					$this->debug($profile->direccion);
+					//$this->debug($profile->direccion);
 					//Yii::app()->user->updateSession();
 					Yii::app()->user->setFlash('success',UserModule::t("Changes are saved."));
 					$this->redirect(array('/user/profile'));	

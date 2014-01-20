@@ -26,17 +26,13 @@ class CompraController extends Controller
 	 */
 	public function accessRules()
 	{
-		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
-			),
+		return array(		
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','comprado','historialCompras'),
+				'actions'=>array('comprado','historialCompras','view','index'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','delete','create','update',),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -154,8 +150,24 @@ class CompraController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Compra');
-		$this->render('index',array(
+		$id = Yii::app()->user->id;
+		//consulta anidada: WHERE id_promo = Alguna de de las ID de las promos de la empresa en cuestión
+		$criteria = new CDbCriteria();
+		$criteria->select = "id";
+		$criteria->condition = "user_id = ".$id;
+		$array_ids = Promocion::model()->findAll($criteria);
+		$ids = array();
+		foreach ($array_ids as $id_promo) {
+			$ids[] = $id_promo->user_id;
+		}
+		$dataProvider=new CActiveDataProvider('Compra',
+			array(
+    			'criteria'=>array(
+        		'condition'=>'id_usuario IN '.$ids,       		
+    			)
+    		)
+		);
+		$this->render('listaCompras',array(
 			'dataProvider'=>$dataProvider,
 		));
 	}
