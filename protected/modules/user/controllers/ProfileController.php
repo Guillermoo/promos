@@ -48,7 +48,7 @@ class ProfileController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','edit','profile','updateAjax','home'),
+				'actions'=>array('create','update','edit','profile','updateAjax','home','verDatos'),
 				'users'=>array('@'),
 			),
 			/*array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -96,6 +96,14 @@ class ProfileController extends Controller
 	{
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
+		));
+	}
+
+	public function actionVerDatos($id)
+	{
+		$model = Profile::model()->find('user_id=:user_id',array('user_id'=>$id));
+		$this->render('detalleUsuario',array(
+			'model'=>$model,
 		));
 	}
 	

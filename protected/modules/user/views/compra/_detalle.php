@@ -20,6 +20,6 @@
 	<?php endif; ?>
 	<div class ="clearfix">&nbsp;</div>
 </li>
-<?php echo CHtml::link('Información del comprador',array('user/verUsuario/id/'.$data->id_usuario)); ?>
+<?php echo CHtml::link('Información del comprador',array('profile/verDatos/id/'.$data->id_usuario),array('class'=>'btn btn-success')); ?>
 </div>
 

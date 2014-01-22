@@ -32,7 +32,7 @@ class UserController extends Controller
                             'users'=>UserModule::getAdmins(),
 			),
                         array('allow',
-                            'actions'=>array('contacto','verUsuario'),
+                            'actions'=>array('contacto',),
                             'users'=>array('@'),
                         ),
 			array('deny',  // deny all users
@@ -115,10 +115,6 @@ class UserController extends Controller
 		$this->render('historialcompras',array(
 			'dataProvider'=>$dataProvider,
 		));		
-	}
-
-	public function actionVerUsuario($id){
-		$this->render('view',array('model'=>$this->loadUser($id)));		 
 	}
 
 	/**
