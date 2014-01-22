@@ -16,6 +16,7 @@
                     array('label'=>Yii::app()->getModule('user')->t("Create"), 'url'=>Yii::app()->getModule('user')->crearPromocionUrl),
                     array('label'=>Yii::app()->getModule('user')->t("Administrate"), 'url'=>Yii::app()->getModule('user')->promocionesUrl),
                 )),
+                array('url'=>Yii::app()->getModule('user')->ventasUrl, 'label'=>'Mis ventas', 'visible'=>!Yii::app()->user->isGuest, 'icon'=>'star','active'=>Yii::app()->controller->id=='compra'),                
 		        //array('label'=>'Datos Empresa', 'icon'=>'book', 'url'=>'empresa', 'active'=>true, 'visible'=>Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id)),
 		        //array('label'=>'Promociones', 'icon'=>'home', 'url'=>'#', 'active'=>true),
 

@@ -3,11 +3,7 @@
 /* @var $data Compra */
 ?>
 <div class="view well">
-<li>
-	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
-	<?php echo CHtml::encode($data->id); ?>
-	<br />
-
+<li>	
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_promo')); ?>:</b>
 	<?php echo CHtml::encode($data->id_promo); ?>
 	<br />
@@ -24,13 +20,6 @@
 	<?php endif; ?>
 	<div class ="clearfix">&nbsp;</div>
 </li>
-
-<?php
-if($data->votos_suma==0): ?>
-		<div class="alert alert-info">Todavía no se ha valorado esta promoción</strong></div>
-	<?php else: ?>
-		<div class="alert alert-success">Esta promoción ha sido valorada con una media de: <strong><?php echo $data->votos_media ?></strong> entre <strong><?php echo $data->votos_suma ?></strong> votos.</div>
-<?php endif; ?>
+<?php echo CHtml::link('Información del comprador',array('user/verUsuario/id/'.$data->id_usuario)); ?>
 </div>
 
-<?php //Datos del usuario que ha realizado la compra: ?>

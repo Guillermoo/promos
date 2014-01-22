@@ -150,23 +150,15 @@ class CompraController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$id = Yii::app()->user->id;
-		//consulta anidada: WHERE id_promo = Alguna de de las ID de las promos de la empresa en cuestión
-		$criteria = new CDbCriteria();
-		$criteria->select = "id";
-		$criteria->condition = "user_id = ".$id;
-		$array_ids = Promocion::model()->findAll($criteria);
-		$ids = array();
-		foreach ($array_ids as $id_promo) {
-			$ids[] = $id_promo->user_id;
-		}
+		$id = Yii::app()->user->id;		
 		$dataProvider=new CActiveDataProvider('Compra',
 			array(
     			'criteria'=>array(
-        		'condition'=>'id_usuario IN '.$ids,       		
+        		'condition'=>'id_promo IN (select id from tbl_promociones WHERE user_id = '.Yii::app()->user->id.')',       		
     			)
     		)
 		);
+		$data=$dataProvider->getData();		
 		$this->render('listaCompras',array(
 			'dataProvider'=>$dataProvider,
 		));
