@@ -22,11 +22,19 @@
 <div class="span12">
 
 <? //$this->debug($model->attributes);?>
-<div class="row-fluid">
+<div class="row-fluid">	
+			<div class="span3">
+				<!--<button class="btn"><i class="icon-chevron-left"></i> <a href="/page2">Continue</a></button>-->
+				<?php $this->widget('bootstrap.widgets.TbButton', array(
+				    'label'=>'Volver',
+				    'htmlOptions'   => array('class'=>'btn'),
+				    'icon'=>'chevron-left',
+				    'type'=>null, // null, 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
+				    'size'=>'large', // null, 'large', 'small' or 'mini'
+				    'url'=>Yii::app()->user->returnUrl,
+				)); ?>
+			</div>	
 	<div class="span9">
-		<h2><?=$model->titulo ?></h2>
-	</div>
-	<div class="span3">
 		<div class="social-icons pull-right">		
 			<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;width&amp;layout=standard&amp;action=like&amp;show_faces=true&amp;share=true&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:30px;" allowTransparency="true"></iframe>
 			<p><a href="http://twitter.com/home?status=<?php echo urlencode("¡No te pierdas esta promoción! http://www.proemocion.com/promocion/$model->titulo_slug");?>" target="_blank" class="twitter-share-button"><img src="<?php echo Yii::app()->theme->baseUrl?>/img/tweet-button.png" /></a><p/>
@@ -101,29 +109,44 @@
 		</div>
 
 		<div class="row-fluid">
-			<div class="span12">
+			<div class="span7">
+				<?php if(isset($model->resumen)):?>
+					<p><?=$model->resumen ?></p>
+				<?php endif; ?>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span7">
 				<br>
 				<h4>Descripción</h4>
-				<p><?=$model->descripcion ?></p>
+				<?php if(isset($model->descripcion) && !empty($model->Descripción)):?>
+					<p><?=$model->descripcion ?></p>
+				<?php endif; ?>
+				<?php if(isset($model->descripcion_html) && !empty($model->descripcion_html)): ?>
+					<p><?=$model->descripcion_html ?></p>
+				<?php endif; ?>
 				<hr>
 			</div>
 		</div>
 
+		<div clas="row-fluid">
+			<?php if(isset($model->rebaja) && !empty($model->rebaja)): ?>
+				<div class="span12">
+					<div class="alert alert-success"><center><h4>¡<?php echo $model->rebaja ?> DE DESCUENTO!</h4></center></div>
+				</div>
+			<?php endif; ?>
+		</div>
+
+		<div clas="row-fluid">
+			<?php if(isset($model->condiciones) && !empty($model->condiciones)): ?>
+				<div class="span12">
+					<div>Condiciones: <?php echo $model->condiciones ?></div>
+				</div>
+			<?php endif; ?>
+		</div>
+
 		<div class="row-fluid">
-
-			<div class="span3">
-				<!--<button class="btn"><i class="icon-chevron-left"></i> <a href="/page2">Continue</a></button>-->
-				<?php $this->widget('bootstrap.widgets.TbButton', array(
-				    'label'=>'Volver',
-				    'htmlOptions'   => array('class'=>'btn'),
-				    'icon'=>'chevron-left',
-				    'type'=>null, // null, 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
-				    'size'=>'large', // null, 'large', 'small' or 'mini'
-				    'url'=>Yii::app()->user->returnUrl,
-				)); ?>
-			</div>
-
-			<div class="span9" align="right">
+			<div class="span12" align="right">
 				<?php
 				//Comprobar que es usuario registrado. Sino, no se muestra el botón de comprar
 				if(UserModule::isBuyer()):
@@ -145,7 +168,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>	
 
 </div>
 
