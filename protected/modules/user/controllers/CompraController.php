@@ -28,7 +28,7 @@ class CompraController extends Controller
 	{
 		return array(		
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('comprado','historialCompras','view','index'),
+				'actions'=>array('comprado','historialCompras','view','index','creaPdf'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -177,6 +177,39 @@ class CompraController extends Controller
 		$this->render('admin',array(
 			'model'=>$model,
 		));
+	}
+
+	public function actionCreaPdf(){
+		# mPDF
+		$mPDF1 = Yii::app()->ePdf->mpdf();
+
+		# You can easily override default constructor's params
+		$mPDF1 = Yii::app()->ePdf->mpdf('', 'A5');
+
+		# render (full page)
+		$mPDF1->WriteHTML($this->renderPartial('pdf', array(), true));
+
+		# Load a stylesheet
+		/*$stylesheet = file_get_contents(Yii::getPathOfAlias('webroot.css') . '/style.css');
+		$mPDF1->WriteHTML($stylesheet, 1);
+	*/
+		# renderPartial (only 'view' of current controller)
+		$mPDF1->WriteHTML('<table><tr><td>Hola mundo</td></tr></table>');
+
+		# Renders image
+		$mPDF1->WriteHTML(CHtml::image(Yii::app()->params['path_imgs']. '/noprofile.jpg' ));
+
+		//GENERAR UN CÓDIGO ALEATORIO E INSERTARLO EN EL PDF
+
+		//ALMACENAR EL CÓDIGO EN LA BD PARA RELACIONARLO CON EL USUARIO QUE COMPRA LA PROMOCIÓN
+
+		# Outputs ready PDF
+		$mPDF1->Output();
+
+
+
+		$this->render('enviadopdf',array('model'=>$mPDF1));
+
 	}
 
 	/**

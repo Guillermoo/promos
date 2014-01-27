@@ -347,7 +347,7 @@ class User extends CActiveRecord
 		$return = true;
 		
 		if (isset($model->profile))
-			$return = compruebaCamposMinimosProfile($model->profile);
+			$return =compruebaCamposMinimosProfile($model->profile);
 		
 		if (isset($model->empresa))
 			$return = compruebaCamposMinimosEmpresa($model->empresa);

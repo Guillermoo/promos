@@ -108,7 +108,7 @@ return array(
                             'coreCss' => true, //use css themes
             ),
             'ePdf' => array(
-            'class'         => 'ext.yii-pdf.EYiiPdf',
+            'class'         => 'application.extensions.yii_pdf.EYiiPdf',
             'params'        => array(
                 'mpdf'     => array(
                     'librarySourcePath' => 'application.vendors.mpdf.*',
