@@ -251,8 +251,10 @@ class CompraController extends Controller
 	public function actionComprobarCompra($id){
 		$model = new Compra;
 		$model = Compra::model()->find('id=:id',array(':id'=>$id));
+		$comprador = User::model()->find('user.id=:userId',array(':userId'=>$model->id_usuario));
+		$promo = Promocion::model()->find('t.id=:promoId',array(':promoId'=>$model->id_promo));
 		//$user = User::model()->find('id=:id',array(':id'=>$model->id_usuario));
-		$this->render('pdf', array('model'=>$model));
+		$this->render('pdf', array('model'=>$model,'comprador'=>$comprador,'promo'=>$promo));
 	}
 
 	/**
