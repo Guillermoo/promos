@@ -347,16 +347,16 @@ class User extends CActiveRecord
 		$return = true;
 		
 		if (isset($model->profile))
-			$return =compruebaCamposMinimosProfile($model->profile);
+			$return =$this->compruebaCamposMinimosProfile($model->profile);
 		
 		if (isset($model->empresa))
-			$return = compruebaCamposMinimosEmpresa($model->empresa);
+			$return = $this->compruebaCamposMinimosEmpresa($model->empresa);
 		
 		return $return;
 		
 	}
 	
-	private static function compruebaCamposMinimosProfile($profile){
+	private function compruebaCamposMinimosProfile($profile){
 		if (($profile->direccion == null) || ($profile->direccion == 0) )
 			$return =  "Falta el cmapo dirección";
 		

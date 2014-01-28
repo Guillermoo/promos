@@ -28,7 +28,7 @@ class CompraController extends Controller
 	{
 		return array(		
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('comprado','historialCompras','view','index','creaPdf'),
+				'actions'=>array('comprado','historialCompras','view','index','creaPdf','comprobarCompra'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -87,8 +87,14 @@ class CompraController extends Controller
 			//comprobar que el id de la promo existe
 			$model->id_usuario = Yii::app()->user->id;
 			$model->id_promo = $idPromo;
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			if($model->save()){
+				//genero el código y el pdf
+				if(creaPdf($model->id)){
+					$this->redirect(array('view','id'=>$model->id));
+				}else{
+					$this->redirect(array('view','id'=>$model->id)); //CAMBIAR LA VISTA??
+				}
+			}
 		}
 
 		$this->render('error');
@@ -187,7 +193,37 @@ class CompraController extends Controller
 		$mPDF1 = Yii::app()->ePdf->mpdf('', 'A5');
 
 		# render (full page)
-		$mPDF1->WriteHTML($this->renderPartial('pdf', array(), true));
+		$mPDF1->WriteHTML($this->renderPartial('pdf', array('model'=>$model), true));
+
+		# Load a stylesheet
+		//$stylesheet = file_get_contents(Yii::app()->getBaseUrl()."/css/bootstrap.css");
+		//$mPDF1->WriteHTML($stylesheet, 1);	
+		
+		# Renders image
+		//$mPDF1->WriteHTML(CHtml::image(Yii::app()->params['path_imgs']. '/noprofile.jpg' ));
+
+		//GENERAR UN CÓDIGO ALEATORIO E INSERTARLO EN EL PDF
+
+		//ALMACENAR EL CÓDIGO EN LA BD PARA RELACIONARLO CON EL USUARIO QUE COMPRA LA PROMOCIÓN
+
+		# Outputs ready PDF
+		$mPDF1->Output('Proemocion_comprobante');
+
+
+
+		$this->render('enviadopdf',array('model'=>$mPDF1));
+
+	}
+
+	private function creaPdf($model){
+		# mPDF
+		$mPDF1 = Yii::app()->ePdf->mpdf();
+
+		# You can easily override default constructor's params
+		$mPDF1 = Yii::app()->ePdf->mpdf('', 'A5');
+
+		# render (full page)
+		$mPDF1->WriteHTML($this->renderPartial('pdf', array('model'=>$model), true));
 
 		# Load a stylesheet
 		/*$stylesheet = file_get_contents(Yii::getPathOfAlias('webroot.css') . '/style.css');
@@ -204,12 +240,19 @@ class CompraController extends Controller
 		//ALMACENAR EL CÓDIGO EN LA BD PARA RELACIONARLO CON EL USUARIO QUE COMPRA LA PROMOCIÓN
 
 		# Outputs ready PDF
-		$mPDF1->Output();
+		$mPDF1->Output('Proemocion_comprobante');
 
 
 
 		$this->render('enviadopdf',array('model'=>$mPDF1));
 
+	}
+
+	public function actionComprobarCompra($id){
+		$model = new Compra;
+		$model = Compra::model()->find('id=:id',array(':id'=>$id));
+		//$user = User::model()->find('id=:id',array(':id'=>$model->id_usuario));
+		$this->render('pdf', array('model'=>$model));
 	}
 
 	/**
