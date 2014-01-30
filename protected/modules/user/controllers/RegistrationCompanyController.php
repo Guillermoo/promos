@@ -35,7 +35,7 @@ class RegistrationCompanyController extends Controller
 		    if (Yii::app()->user->id) {
 		    	$this->redirect(Yii::app()->controller->module->profileUrl);
 		    } else {
-		    	if(isset($_POST['RegistrationForm'])) {
+		    	if(isset($_POST['RegistrationForm'])){
 		    		$redireccion = 2;
 					$model->attributes=$_POST['RegistrationForm'];
 					//$profile->attributes=((isset($_POST['Profile'])?$_POST['Profile']:array()));
@@ -76,13 +76,16 @@ class RegistrationCompanyController extends Controller
 								$this->refresh();
 							}							
 						}
-					} else $profile->validate();	
-					//(h)					                	
-				}
-				if($redireccion==1)
-			    	$this->render('/user/registrationcompany',array('model'=>$model,'profile'=>$profile));
-			    else
-			    	$this->render('/user/registrado',array('model'=>$model));
+						$this->render('/user/registrado',array('model'=>$model));
+						Yii::app()->end();
+					} else{
+						$profile->validate();	
+						$this->render('/user/registrationcompany',array('model'=>$model));
+					}				   
+					            	
+				}			
+				$this->render('/user/registrationcompany',array('model'=>$model)); 	
+			    
 		    }
 	}
 }

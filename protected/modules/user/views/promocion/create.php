@@ -6,8 +6,7 @@
 	//Tengo que comprobar si puede crear una nueva promoción.
 	//Únicamente NO podrá crear una nueva si ya tiene todas las posibles en stock y activas.
 	//Habría que avisar de cuántas promos le quedan por crear de cada tipo
- 	$user = User::model()->findByPk(Yii::app()->user->id);
-
+ 	$user = User::model()->findByPk(Yii::app()->user->id); 	
  	//$this->debug($user);
 	//echo "<br/>Tipo cuenta: ".$user->profile->tipocuenta; 
 	//número de promociones que tiene el usuario:

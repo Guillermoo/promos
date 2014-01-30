@@ -103,9 +103,9 @@ class PromocionController extends Controller
             $this->render('_hadtopay');
             Yii::app()->end();
         }else{
-            if(!isset($usuario->profile)){
-                $this->render('_faltaperfil');
-                Yii::app()->end();
+            if($usuario->profile->username == null || $usuario->empresa->nombre ==null){ //el campo username es obligatorio, por lo que si este campo está vacío es que no ha rellenado eel perfil
+                $this->render('_faltaperfil');    
+                 Yii::app()->end();          
             }
         }
 

@@ -46,12 +46,15 @@ class RegistrationcompradorController extends RegistrationController
 
                         $transaction->rollback( );
                     }
-
-                } else $model->validate();                
-                $this->render('/user/registrado',array('model'=>$model));
-                Yii::app()->end();
+                    $this->render('/user/registrado',array('model'=>$model));
+                    Yii::app()->end();
+                } else{
+                    $model->validate();      
+                     $this->render('/user/registration',array('model'=>$model));          
+                }
+                                
             }
-            $this->render('/user/registration',array('model'=>$model));
+            $this->render('/user/registration',array('model'=>$model));             
         }
 	}
 	

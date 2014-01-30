@@ -6,11 +6,11 @@ $this->breadcrumbs=array(
 
 <h1>Registrar empresa</h1>
 
-<?php /*if(Yii::app()->user->hasFlash('registration')): ?>
+<?php if(Yii::app()->user->hasFlash('registration')): ?>
 <div class="success">
 <?php echo Yii::app()->user->getFlash('registration'); ?>
 </div>
-<?php else:*/ ?>
+<?php endif; ?>
 
 <div class="form">
 <?php $form=$this->beginWidget('UActiveForm', array(
