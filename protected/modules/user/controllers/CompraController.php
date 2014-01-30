@@ -185,15 +185,20 @@ class CompraController extends Controller
 		));
 	}
 
-	public function actionCreaPdf(){
+	public function actionCreaPdf($id){
+		$model = new Compra;
+		$model = Compra::model()->find('id=:id',array(':id'=>$id));
+		$comprador = User::model()->find('user.id=:userId',array(':userId'=>$model->id_usuario));
+		$promo = Promocion::model()->find('t.id=:promoId',array(':promoId'=>$model->id_promo));
+
 		# mPDF
 		$mPDF1 = Yii::app()->ePdf->mpdf();
 
 		# You can easily override default constructor's params
 		$mPDF1 = Yii::app()->ePdf->mpdf('', 'A5');
-
+		
 		# render (full page)
-		$mPDF1->WriteHTML($this->renderPartial('pdf', array('model'=>$model), true));
+		$mPDF1->WriteHTML($this->renderPartial('pdf', array('model'=>$model,'comprador'=>$comprador,'promo'=>$promo)),true);
 
 		# Load a stylesheet
 		//$stylesheet = file_get_contents(Yii::app()->getBaseUrl()."/css/bootstrap.css");
@@ -207,46 +212,14 @@ class CompraController extends Controller
 		//ALMACENAR EL CÓDIGO EN LA BD PARA RELACIONARLO CON EL USUARIO QUE COMPRA LA PROMOCIÓN
 
 		# Outputs ready PDF
-		$mPDF1->Output('Proemocion_comprobante');
+		$mPDF1->Output();
 
 
 
-		$this->render('enviadopdf',array('model'=>$mPDF1));
-
-	}
-
-	private function creaPdf($model){
-		# mPDF
-		$mPDF1 = Yii::app()->ePdf->mpdf();
-
-		# You can easily override default constructor's params
-		$mPDF1 = Yii::app()->ePdf->mpdf('', 'A5');
-
-		# render (full page)
-		$mPDF1->WriteHTML($this->renderPartial('pdf', array('model'=>$model), true));
-
-		# Load a stylesheet
-		/*$stylesheet = file_get_contents(Yii::getPathOfAlias('webroot.css') . '/style.css');
-		$mPDF1->WriteHTML($stylesheet, 1);
-	*/
-		# renderPartial (only 'view' of current controller)
-		$mPDF1->WriteHTML('<table><tr><td>Hola mundo</td></tr></table>');
-
-		# Renders image
-		$mPDF1->WriteHTML(CHtml::image(Yii::app()->params['path_imgs']. '/noprofile.jpg' ));
-
-		//GENERAR UN CÓDIGO ALEATORIO E INSERTARLO EN EL PDF
-
-		//ALMACENAR EL CÓDIGO EN LA BD PARA RELACIONARLO CON EL USUARIO QUE COMPRA LA PROMOCIÓN
-
-		# Outputs ready PDF
-		$mPDF1->Output('Proemocion_comprobante');
-
-
-
-		$this->render('enviadopdf',array('model'=>$mPDF1));
+		//$this->render('enviadopdf',array('model'=>$mPDF1));
 
 	}
+
 
 	public function actionComprobarCompra($id){
 		$model = new Compra;
