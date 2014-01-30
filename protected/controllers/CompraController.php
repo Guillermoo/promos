@@ -28,15 +28,11 @@ class CompraController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','checkoutCompra'),
+				'actions'=>array('checkoutCompra'),
 				'users'=>array('*'),
 			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
-			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','delete','create','update'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -187,8 +183,11 @@ class CompraController extends Controller
 				if (strcmp ($res, "VERIFIED") == 0) {
 					$todook = true;
 					// check the payment_status is Completed										
-					if(!strcmp($payment_status, "Completed"))
+					if(!strcmp($payment_status, "Completed")){
+						//pongo el valor cancelado en la tabla compras
+
 						Yii::app()->end();
+					}
 					// Comprobar que el txn_id no se ha procesado todavía
 					$compra = Compra::model()->find('referencia='.$txn_id);
 					if($compra)
@@ -208,6 +207,12 @@ class CompraController extends Controller
 
 					$this->insertarCompra($idUsuario,$idPromocion,$referencia,$precio, $custom);
 					//$this->insertarCompraPrueba();
+					$message = "El usuario con identificador ".$idUsuario." ha comprado la promoción con identificador ".$idPromocion.", cuyo precio es ".$precio." y la referencia es ".$referencia;
+
+					//enviar email a proemcion para informar de la compra					
+					UserModule::sendMail(Yii::app()->params['websiteEmail'],'Nueva compra',$message);
+
+					$this->render('comprado');
 
 				}else if (strcmp ($res, "INVALID") == 0) {
 					// log for manual investigation
@@ -219,7 +224,7 @@ class CompraController extends Controller
 		}
 	}
 
-	function insertarCompra($idUsuario,$idPromocion,$referencia,$precio,$custom){			
+	private function insertarCompra($idUsuario,$idPromocion,$referencia,$precio,$custom){			
 			$model=new Compra;
 
 			$model->id_usuario = $idUsuario;

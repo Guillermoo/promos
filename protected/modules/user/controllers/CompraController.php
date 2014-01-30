@@ -87,6 +87,7 @@ class CompraController extends Controller
 			//comprobar que el id de la promo existe
 			$model->id_usuario = Yii::app()->user->id;
 			$model->id_promo = $idPromo;
+			
 			if($model->save()){
 				//genero el código y el pdf
 				if(creaPdf($model->id)){
@@ -208,13 +209,14 @@ class CompraController extends Controller
 		//$mPDF1->WriteHTML(CHtml::image(Yii::app()->params['path_imgs']. '/noprofile.jpg' ));
 
 		//GENERAR UN CÓDIGO ALEATORIO E INSERTARLO EN EL PDF
-
+		$clave = UserModule::encrypting(microtime().$id);
+		$mPDF1->WriteHTML("<strong>CLAVE DE COMPRA: ".$clave."</strong>");
+		
 		//ALMACENAR EL CÓDIGO EN LA BD PARA RELACIONARLO CON EL USUARIO QUE COMPRA LA PROMOCIÓN
-
+		$model->clave = $clave;
+		$model->save();
 		# Outputs ready PDF
 		$mPDF1->Output();
-
-
 
 		//$this->render('enviadopdf',array('model'=>$mPDF1));
 
@@ -226,8 +228,8 @@ class CompraController extends Controller
 		$model = Compra::model()->find('id=:id',array(':id'=>$id));
 		$comprador = User::model()->find('user.id=:userId',array(':userId'=>$model->id_usuario));
 		$promo = Promocion::model()->find('t.id=:promoId',array(':promoId'=>$model->id_promo));
-		//$user = User::model()->find('id=:id',array(':id'=>$model->id_usuario));
-		$this->render('pdf', array('model'=>$model,'comprador'=>$comprador,'promo'=>$promo));
+		//$user = User::model()->find('id=:id',array(':id'=>$model->id_usuario));				
+		$this->render('pdf', array('model'=>$model,'comprador'=>$comprador,'promo'=>$promo,'clave'=>$clave));
 	}
 
 	/**

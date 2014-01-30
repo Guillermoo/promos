@@ -1,1 +1,1 @@
-<h1>NO compradoo</h1>
+<h1>NO comprado</h1>

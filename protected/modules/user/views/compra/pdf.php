@@ -19,6 +19,12 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/bootstrap.cs
       </div>
 
       <hr>      
+      <div class="row-fluid marketing destacado">
+        <div class="span12">
+          <p>CLAVE DE COMPRA: <?php echo $model->clave ?></p>
+        </div>
+      </div>
+      <hr>
       <h2>Datos de la compra</h2>
       <div class="row-fluid marketing">
         <div class="span6">

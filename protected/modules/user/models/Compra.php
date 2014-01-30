@@ -75,6 +75,7 @@ class Compra extends CActiveRecord
 			'fecha_compra' => 'Fecha Compra',
 			'estado' => 'Estado',
 			'votado' => 'Votado',
+			'clave' => 'Clave',
 		);
 	}
 
