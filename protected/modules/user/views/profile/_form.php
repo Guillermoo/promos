@@ -12,7 +12,7 @@
 ?>
 <fieldset>
 	<p class="note"><?php echo UserModule::t('Fields with <span class="required">*</span> are required.'); ?></p>
-	
+	<?php echo $form->errorSummary($model); ?>
 	<?php //echo $form->errorSummary(array($model,$model->profile)); ?>
 	
 	<?php if (UserModule::isSuperAdmin() || UserModule::isAdmin() ):?>
@@ -41,8 +41,8 @@
 			<?php echo $form->error($model,'status'); ?>
 		</div>
 	<?php endif; ?>
-	<?php if (UserModule::isCompany() ):?>
-		<?php $profile = $model->profile;?>
+	<?php if (UserModule::isCompany() ):?>	
+	<?php $profile = $model->profile; ?>			
 		<div class="fields">
 			<!-- Inicio profile -->
 			<div class="row"><!-- Tipo de cuenta -->
@@ -183,12 +183,12 @@
 	<?php endif;?>
 
 	<?php if (UserModule::isBuyer() ):?>
-		<?php $profile = $model->profile;?>
+		<?php $profile = $model->profile; ?>
 		<div class="fields">
 			<!-- Inicio profile -->		
 				
 			<div class="row">
-				<?php echo $form->labelEx($profile,'username',array('class'=>'')); ?>
+				<?php echo $form->labelEx($profile,'username'); ?>
 				<?php echo $form->textField($profile,'username',array('size'=>60,'maxlength'=>128)); ?>
 				<?php echo $form->error($profile,'username'); ?>
 			</div>
@@ -197,13 +197,13 @@
 				<?php echo $form->labelEx($profile,'lastname'); ?>
 				<?php echo $form->textField($profile,'lastname',array('size'=>60,'maxlength'=>128)); ?>
 				<?php echo $form->error($profile,'lastname'); ?>
-			</div>				
+			</div>		
 			
 			<div class="row">
 				<?php echo $form->labelEx($profile,'telefono'); ?>
 				<?php echo $form->textField($profile,'telefono',array('size'=>50,'maxlength'=>50)); ?>
 				<?php echo $form->error($profile,'telefono'); ?>
-			</div>
+			</div>						
 			
 			<div class="row">
 				<?php echo $form->labelEx($profile,'cp'); ?>
@@ -222,10 +222,9 @@
 				<?php echo $form->textField($profile,'direccion',array('size'=>60,'maxlength'=>120)); ?>
 				<?php echo $form->error($profile,'direccion'); ?>
 			</div>
-			<? //$this->debug(User::getListaCiudades()); ?>
+			
 			<div class="row">
-                <?php //echo $form->dropDownListRow($profile, 'poblacion_id', User::getListaCiudades()); 
-               echo $form->labelEx($profile,'poblacion'); ?>
+				<?php echo $form->labelEx($profile,'poblacion_id'); ?>
 				<?php echo $form->textField($profile,'poblacion_id'); ?>
 				<?php echo $form->error($profile,'poblacion_id'); ?>
 			</div>

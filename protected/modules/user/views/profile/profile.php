@@ -16,7 +16,7 @@
 
 	$this->renderPartial('_form', array('model'=>$model));
 }elseif(UserModule::isBuyer()){
-     $this->renderPartial('_form', array('model'=>$model));
+     $this->renderPartial('_form', array('model'=>$model));    
 }else{
     echo "No accesible";
 }

@@ -65,10 +65,12 @@ class ProfileController extends Controller
 	 * (G)De momento abrimos home que no hay nada pensado en que se mostrará.
 	 * Dejo el código comentado por si hace falta.
 	 * */
-	public function actionHome(){
-		
+	public function actionHome(){				
 		$model = $this->loadUser();
-
+		$model->profile = Profile::model()->find('user_id=:user_id',array(':user_id'=>$model->id));
+		if($model->profile == null){
+			$model->profile = new Profile;
+		}
 		$this->render('profile',array(
 	    	'model'=>$model
 	    ));
@@ -79,13 +81,15 @@ class ProfileController extends Controller
 	 */
 	public function actionProfile()
 	{
-		//$this->layout = 'column1';
 		$model = $this->loadUser();
-		//$this->debug(Yii::app()->controller->module->user());
-		//$this->debug($model->attributes);
+		$model->profile = Profile::model()->find('user_id=:user_id',array(':user_id'=>$model->id));
+		if($model->profile == null){
+			$model->profile = new Profile;
+		}			
 		
-		//$this->debug( Yii::app( )->user->getState( 'foreign_id' ));
-		$this->render('profile', array('model'=>$model));
+		$this->render('profile', array(
+			'model'=>$model
+		));
 	}
 	
 	/**
@@ -147,6 +151,7 @@ class ProfileController extends Controller
 		
 		$model = $this->loadUser();		
 		$profile=$model->profile;
+		
 		$profile->scenario = "paraValidar";
 		
 		// ajax validator
@@ -155,14 +160,15 @@ class ProfileController extends Controller
 		//$this->debug($_POST['profile-form']);
 		if(isset($_POST['Profile'])){			
 			$profile->attributes=$_POST['Profile'];	
-			
+			$profile->user_id = $model->id;
 			if(UserModule::isBuyer()){					
-
-				if ($profile->save()){					
-					//Yii::app()->user->updateSession();
-					Yii::app()->user->setFlash('success',UserModule::t("Changes are saved."));
-					$this->redirect(array('/user/profile'));	
-				}			
+				if($profile->validate()) {	
+					if ($profile->save()){					
+						//Yii::app()->user->updateSession();
+						Yii::app()->user->setFlash('success',UserModule::t("Changes are saved."));
+						$this->redirect(array('/user/profile'));	
+					}	
+				}		
 			}else{
 				if($profile->validate()) {					
 					if ($profile->save()){

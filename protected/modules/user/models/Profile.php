@@ -58,7 +58,7 @@ class Profile extends CActiveRecord
 			//array('contacto_id', 'numerical', 'integerOnly'=>true),
 			array('username, lastname', 'length', 'max'=>50),
 			array('paypal_id', 'length', 'max'=>40),
-			array('direccion,telefono,cp,poblacion_id','required', 'except' => 'admin'), //he quitado paypal_id como obligatorio porque el usuario-comprador no tiene ese campo en el perfil
+			array('username, lastname,direccion,telefono,cp,poblacion_id','required', 'except' => 'admin'), //he quitado paypal_id como obligatorio porque el usuario-comprador no tiene ese campo en el perfil
 			array('barrio,telefono,fax,cp,meses', 'numerical', 'integerOnly'=>true),
 			array('telefono, fax', 'length', 'max'=>50),
 			array('poblacion_id, direccion', 'length', 'max'=>150),
@@ -113,6 +113,10 @@ class Profile extends CActiveRecord
 			'fecha_activacion' => 'Fecha Activación',
 			'fecha_fin' => 'Fecha Fin',
 			'fecha_pago' => 'Fecha Pago',
+			'poblacion_id' => 'Población',
+			'direccion' => 'Dirección',
+			'telefono' => 'Teléfono',
+			'cp' => 'Código Postal',
 		);
 	}
 	

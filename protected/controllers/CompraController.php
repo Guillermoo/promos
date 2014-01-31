@@ -209,8 +209,11 @@ class CompraController extends Controller
 					//$this->insertarCompraPrueba();
 					$message = "El usuario con identificador ".$idUsuario." ha comprado la promoción con identificador ".$idPromocion.", cuyo precio es ".$precio." y la referencia es ".$referencia;
 
-					//enviar email a proemcion para informar de la compra					
+					//enviar email a proemocion para informar de la compra					
 					UserModule::sendMail(Yii::app()->params['websiteEmail'],'Nueva compra',$message);
+
+					//enviar email al usuario que ha comprado
+					//UserModule::sendMail(Yii::app()->params['websiteEmail'],'Proemoción',$message);					
 
 					$this->render('comprado');
 

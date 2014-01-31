@@ -43,7 +43,7 @@ $this->breadcrumbs=array(
 	</div>
 	
 	<div class="row">
-	Vuelva a escribir la contraseña:<br/>
+	<?php echo $form->labelEx($model,'verifyPassword'); ?>
 	<?php echo $form->passwordField($model,'verifyPassword'); ?>
 	<?php echo $form->error($model,'verifyPassword'); ?>
 	</div>
