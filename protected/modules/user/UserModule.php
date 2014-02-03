@@ -364,21 +364,37 @@ class UserModule extends CWebModule
 			/* hugo */
 			//Envío el email al usuario registrado
 			$mail = new phpmailer();
-			$mail->From = Yii::app()->params['websiteEmail'];
-			//$mail->AddCC('grillermo@gmail.com');
+			$mail->From = Yii::app()->params['websiteEmail'];			
 			$mail->FromName = 'Proemocion';
 			$mail->AddAddress($email);             
 			$mail->subject();
 			$mail->Body = $message;
-			$mail->AltBody = $altBody;
-			/*$mail->Body    = 'Uohhh! gracias por registrarte!!<b>ko!</b>';
-			$mail->AltBody = 'Uohhh! gracias por registrarte!!';*/
+			$mail->AltBody = $altBody;			
 			if(!$mail->Send()) {
 				Yii::app()->user->setFlash('registration',UserModule::t("El email no se ha podido enviar.."));
 				Yii::app()->user->setFlash('registration',UserModule::t('Error: ' . $mail->ErrorInfo));
    				exit;
 			}
 		}
+
+	public static function enviarEmailArchivoAdj($email,$subject,$message, $altBody, $archivo){
+			
+			/* hugo */
+			//Envío el email al usuario registrado
+			$mail = new phpmailer();
+			$mail->From = Yii::app()->params['websiteEmail'];			
+			$mail->FromName = 'Proemocion';
+			$mail->AddAddress($email);             
+			$mail->subject();
+			$mail->Body = $message;
+			$mail->AltBody = $altBody;	
+			$mail->AddAttachment($archivo,'comprado.pdf');		
+			if(!$mail->Send()) {
+				Yii::app()->user->setFlash('registration',UserModule::t("El email no se ha podido enviar.."));
+				Yii::app()->user->setFlash('registration',UserModule::t('Error: ' . $mail->ErrorInfo));
+   				exit;
+			}
+	}
 		
 	/**
 	 * Return safe user data.

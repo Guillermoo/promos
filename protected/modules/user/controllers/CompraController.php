@@ -28,7 +28,7 @@ class CompraController extends Controller
 	{
 		return array(		
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('comprado','historialCompras','view','index','creaPdf','comprobarCompra'),
+				'actions'=>array('comprado','historialCompras','view','index','comprobarCompra'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -87,15 +87,18 @@ class CompraController extends Controller
 			//comprobar que el id de la promo existe
 			$model->id_usuario = Yii::app()->user->id;
 			$model->id_promo = $idPromo;
-			
-			if($model->save()){
+			//GENERAR UN CÓDIGO ALEATORIO
+			$model->clave = UserModule::encrypting(microtime().$id);
+
+			if($model->save()){				
 				//genero el código y el pdf
-				if(creaPdf($model->id)){
-					$this->redirect(array('view','id'=>$model->id));
-				}else{
-					$this->redirect(array('view','id'=>$model->id)); //CAMBIAR LA VISTA??
-				}
-			}
+				$fichpdf = creaPdf($model->id)				
+				//envío el email al comprador
+				UserModule::sendmail(Yii::app()->user->email,'Proemoción','Ha comprado una promoción en www.proemocion.com. Gracias por su confianza. Puede consultar los datos de sus compras accediendo al panel de usuario accediendo a www.proemocion.com , logueándose como usuario y pinchando en la opción "Mis Compras" del menú.');
+				//envío email a proemocion para avisar 
+				UserModule::sendMail(Yii::app()->params['websiteEmail'],'Han comprado una promoción','El usuario: '.$model->id_usuario.' ha comprado la promoción: '.$model->id_promo);
+				$this->redirect(array('view','id'=>$model->id));				
+			}			
 		}
 
 		$this->render('error');
@@ -186,7 +189,7 @@ class CompraController extends Controller
 		));
 	}
 
-	public function actionCreaPdf($id){
+	private function CreaPdf($id){
 		$model = new Compra;
 		$model = Compra::model()->find('id=:id',array(':id'=>$id));
 		$comprador = User::model()->find('user.id=:userId',array(':userId'=>$model->id_usuario));
@@ -198,6 +201,7 @@ class CompraController extends Controller
 		# You can easily override default constructor's params
 		$mPDF1 = Yii::app()->ePdf->mpdf('', 'A5');
 		
+		$mPDF1->SetCreator('Proemocion');
 		# render (full page)
 		$mPDF1->WriteHTML($this->renderPartial('pdf', array('model'=>$model,'comprador'=>$comprador,'promo'=>$promo)),true);
 
@@ -207,10 +211,8 @@ class CompraController extends Controller
 		
 		# Renders image
 		//$mPDF1->WriteHTML(CHtml::image(Yii::app()->params['path_imgs']. '/noprofile.jpg' ));
-
-		//GENERAR UN CÓDIGO ALEATORIO E INSERTARLO EN EL PDF
-		$clave = UserModule::encrypting(microtime().$id);
-		$mPDF1->WriteHTML("<strong>CLAVE DE COMPRA: ".$clave."</strong>");
+		
+		$mPDF1->WriteHTML("<strong>CLAVE DE COMPRA: ".$model->clave."</strong>");
 		
 		//ALMACENAR EL CÓDIGO EN LA BD PARA RELACIONARLO CON EL USUARIO QUE COMPRA LA PROMOCIÓN
 		$model->clave = $clave;
