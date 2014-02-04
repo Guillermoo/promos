@@ -66,12 +66,10 @@ class ProfileController extends Controller
 	 * Dejo el código comentado por si hace falta.
 	 * */
 	public function actionHome(){
-		$profile = new Profile;
-		$model = new User;	
+		
 		$model = $this->loadUser();
-		if(!isset($model->profile)){
-			$model->profile = $profile;
-			$model->profile->user_id = Yii::app()->user->id;
+		if($model->profile === null){
+			$model->profile = new Profile;
 		}
 		$this->render('profile',array(
 	    	'model'=>$model
@@ -84,13 +82,7 @@ class ProfileController extends Controller
 	public function actionProfile()
 	{
 		//$this->layout = 'column1';
-		$profile = new Profile;
-		$model = new User;	
 		$model = $this->loadUser();
-		if($model->profile === null){
-			$model->profile = $profile;
-			$model->profile->user_id = $model->id;
-		}
 		//$this->debug(Yii::app()->controller->module->user());
 		//$this->debug($model->attributes);
 		
@@ -155,19 +147,15 @@ class ProfileController extends Controller
 	
 	public function actionUpdate(){
 		
-		$model = $this->loadUser();
-		if($model->profile===null){			
-			$profile = new Profile;
-			$profile->user_id = $model->id;
-			$model->profile = $profile;
-		}		
-		$profile=$model->profile;		
+		$model = $this->loadUser();		
+		$profile=$model->profile;
 		$profile->scenario = "paraValidar";
+		$this->debug($model);
 		// ajax validator
 		$this->performAjaxValidation(array($profile));
-		//$this->debug($_POST);
+		
 		//$this->debug($_POST['profile-form']);
-		if(isset($_POST['Profile'])){						
+		if(isset($_POST['Profile'])){			
 			$profile->attributes=$_POST['Profile'];	
 			
 			if(UserModule::isBuyer()){					
@@ -186,7 +174,6 @@ class ProfileController extends Controller
 					} 
 				}
 			}
-			
 		}
 
 		$this->render('profile',array(

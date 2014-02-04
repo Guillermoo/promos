@@ -2,6 +2,12 @@
 <?php $this->pageTitle=Yii::app()->name . ' - '.UserModule::t("Profile");?>
 
 <h1><?php echo UserModule::t('Tu perfil'); ?></h1>
+
+<?php if(Yii::app()->user->hasFlash('success')): ?>
+    <div class="alert alert-success">
+        <?php echo Yii::app()->user->getFlash('success'); ?>
+    </div>
+<?php endif; ?>
 <?php //$this->debug($model->profile); ?>
 <?php if(UserModule::isCompany()){
     if(!isset($model->profile)): ?>
