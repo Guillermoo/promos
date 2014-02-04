@@ -75,16 +75,16 @@ class RegistrationCompanyController extends Controller
 								}
 								$this->refresh();
 							}							
-						}
-						$this->render('/user/registrado',array('model'=>$model));
-						Yii::app()->end();
+						}						
 					} else{
 						$profile->validate();	
 						$this->render('/user/registrationcompany',array('model'=>$model));
+				
 					}				   
 					            	
-				}			
-				$this->render('/user/registrationcompany',array('model'=>$model)); 	
+				}else{			
+					$this->render('/user/registrationcompany',array('model'=>$model,'saludo'=>'hola')); 
+				}
 			    
 		    }
 	}

@@ -92,9 +92,9 @@ class CompraController extends Controller
 
 			if($model->save()){				
 				//genero el código y el pdf
-				$fichpdf = creaPdf($model->id)				
+				$creaPdf($model->id);				
 				//envío el email al comprador
-				UserModule::sendmail(Yii::app()->user->email,'Proemoción','Ha comprado una promoción en www.proemocion.com. Gracias por su confianza. Puede consultar los datos de sus compras accediendo al panel de usuario accediendo a www.proemocion.com , logueándose como usuario y pinchando en la opción "Mis Compras" del menú.');
+				UserModule::sendmail(Yii::app()->user->email,'Proemoción','Ha comprado una promoción en www.proemocion.com. Gracias por su confianza. Puede consultar los datos de sus compras accediendo al panel de usuario accediendo a www.proemocion.com , logueándose como usuario y pinchando en la opción Mis Compras del menú.');
 				//envío email a proemocion para avisar 
 				UserModule::sendMail(Yii::app()->params['websiteEmail'],'Han comprado una promoción','El usuario: '.$model->id_usuario.' ha comprado la promoción: '.$model->id_promo);
 				$this->redirect(array('view','id'=>$model->id));				

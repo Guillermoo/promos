@@ -3,7 +3,8 @@
 	'id'=>'profile-form',
 	'enableAjaxValidation'=>false,
 	//'type'=>'horizontal',
-	'action'=>'profile/update',
+	'action'=>$model->isNewRecord ? 'profile/create' : 'profile/update',
+	//'action'=>'profile/update',
 	'clientOptions'=>array(
 		'validateOnSubmit'=>true,
 	),
@@ -180,12 +181,12 @@
 				<?php echo $form->error($profile,'poblacion_id'); ?>
 			</div>
 		</div> 
-	<?php endif;?>
+	
 
-	<?php if (UserModule::isBuyer() ):?>
+	<?php else:?>
 		<?php $profile = $model->profile; ?>
 		<div class="fields">
-			<!-- Inicio profile -->		
+			<!-- Inicio profile comprador-->		
 				
 			<div class="row">
 				<?php echo $form->labelEx($profile,'username'); ?>

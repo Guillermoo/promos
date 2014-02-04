@@ -7,8 +7,8 @@ $this->breadcrumbs=array(
 <h1>Registrar empresa</h1>
 
 <?php if(Yii::app()->user->hasFlash('registration')): ?>
-<div class="success">
-<?php echo Yii::app()->user->getFlash('registration'); ?>
+<div class="alert alert-success">
+<h3><?php echo Yii::app()->user->getFlash('registration'); ?></h3>
 </div>
 <?php endif; ?>
 
