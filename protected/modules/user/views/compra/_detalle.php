@@ -21,7 +21,5 @@
 	<div class ="clearfix">&nbsp;</div>
 </li>
 <?php echo CHtml::link('Información del comprador',array('profile/verDatos/id/'.$data->id_usuario),array('class'=>'btn btn-success')); ?>
-<div class="row-fluid"><?php echo CHtml::link('Crea un pdf', array('compra/comprobarCompra/id/'.$data->id_promo)); ?></div>
-<div class="row-fluid"><?php echo CHtml::link('Crea un pdf', array('compra/creaPdf/id/'.$data->id_promo)); ?></div>
 </div>
 

@@ -39,7 +39,6 @@
 	<div class="row">
 		<?php echo $form->labelEx($empresa,'logo_sid'); ?>
 		<?php //echo $form->textField($empresa,'logo_id'); ?>
-		<?php $this->debug($empresa)?>
 		<?php if (isset($empresa->logo)):?>
 		
 		<?php else:?>
