@@ -62,19 +62,19 @@
 				
 			<div class="row">
 				<?php echo $form->labelEx($profile,'username'); ?>
-				<?php echo $form->textField($profile,'username',array('size'=>60,'maxlength'=>128)); ?>
+				<?php echo $form->textField($profile,'username',array('size'=>60,'maxlength'=>128,'placeholder'=>'MiNombre')); ?>
 				<?php echo $form->error($profile,'username'); ?>
 			</div>
 			
 			<div class="row">
 				<?php echo $form->labelEx($profile,'lastname'); ?>
-				<?php echo $form->textField($profile,'lastname',array('size'=>60,'maxlength'=>128)); ?>
+				<?php echo $form->textField($profile,'lastname',array('size'=>60,'maxlength'=>128,'placeholder'=>'MiApellido1 Miapellido2')); ?>
 				<?php echo $form->error($profile,'lastname'); ?>
 			</div>
 			
 			<div class="row">
 				<?php echo $form->labelEx($profile,'paypal_id'); ?>
-				<?php echo $form->textField($profile,'paypal_id',array('size'=>60,'maxlength'=>128)); ?>
+				<?php echo $form->textField($profile,'paypal_id',array('size'=>60,'maxlength'=>128,'placeholder'=>'El email de mi cuenta Paypal')); ?>
 				<?php echo $form->error($profile,'paypal_id'); ?>
 			</div>
 			
@@ -146,7 +146,7 @@
 			</div>
 			<div class="row">
 				<?php echo $form->labelEx($profile,'telefono'); ?>
-				<?php echo $form->textField($profile,'telefono',array('size'=>50,'maxlength'=>50)); ?>
+				<?php echo $form->textField($profile,'telefono',array('size'=>50,'maxlength'=>50,'placeholder'=>'600000000')); ?>
 				<?php echo $form->error($profile,'telefono'); ?>
 			</div>
 			
@@ -171,7 +171,7 @@
 			
 			<div class="row">
 				<?php echo $form->labelEx($profile,'direccion'); ?>
-				<?php echo $form->textField($profile,'direccion',array('size'=>60,'maxlength'=>120)); ?>
+				<?php echo $form->textField($profile,'direccion',array('size'=>60,'maxlength'=>120,'placeholder'=>'')); ?>
 				<?php echo $form->error($profile,'direccion'); ?>
 			</div>
 			
@@ -190,19 +190,19 @@
 				
 			<div class="row">
 				<?php echo $form->labelEx($profile,'username'); ?>
-				<?php echo $form->textField($profile,'username',array('size'=>60,'maxlength'=>128)); ?>
+				<?php echo $form->textField($profile,'username',array('size'=>60,'maxlength'=>128,'placeholder'=>'MiNombre')); ?>
 				<?php echo $form->error($profile,'username'); ?>
 			</div>
 			
 			<div class="row">
 				<?php echo $form->labelEx($profile,'lastname'); ?>
-				<?php echo $form->textField($profile,'lastname',array('size'=>60,'maxlength'=>128)); ?>
+				<?php echo $form->textField($profile,'lastname',array('size'=>60,'maxlength'=>128,'placeholder'=>'MiApellido1 Miapellido2')); ?>
 				<?php echo $form->error($profile,'lastname'); ?>
 			</div>		
 			
 			<div class="row">
 				<?php echo $form->labelEx($profile,'telefono'); ?>
-				<?php echo $form->textField($profile,'telefono',array('size'=>50,'maxlength'=>50)); ?>
+				<?php echo $form->textField($profile,'telefono',array('size'=>50,'maxlength'=>50,'placeholder'=>'600000000')); ?>
 				<?php echo $form->error($profile,'telefono'); ?>
 			</div>						
 			

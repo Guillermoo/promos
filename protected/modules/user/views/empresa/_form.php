@@ -81,19 +81,19 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($empresa,'Página web'); ?>
-		<?php echo $form->textField($empresa,'web',array('size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->textField($empresa,'web',array('size'=>60,'maxlength'=>100,'placeholder'=>'www.paginademiempresa.com')); ?>
 		<?php echo $form->error($empresa,'web'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($empresa,'Twitter'); ?>
-		<?php echo $form->textField($empresa,'twitter',array('size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->textField($empresa,'twitter',array('size'=>60,'maxlength'=>100,'placeholder'=>'http://www.twitter.com/twitterdemiempresa')); ?>
 		<?php echo $form->error($empresa,'twitter'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($empresa,'Facebook'); ?>
-		<?php echo $form->textField($empresa,'facebook',array('size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->textField($empresa,'facebook',array('size'=>60,'maxlength'=>100,'placeholder'=>'http://www.facebook.com/facebookdemiempresa')); ?>
 		<?php echo $form->error($empresa,'facebook'); ?>
 	</div>	
 	<div class="clearfix">&nbsp;</div>
