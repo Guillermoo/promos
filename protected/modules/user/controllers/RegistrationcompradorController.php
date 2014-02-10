@@ -53,8 +53,9 @@ class RegistrationcompradorController extends RegistrationController
                      $this->render('/user/registration',array('model'=>$model));          
                 }
                                 
+            }else{
+                $this->render('/user/registration',array('model'=>$model));            
             }
-            $this->render('/user/registration',array('model'=>$model));             
         }
 	}
 	

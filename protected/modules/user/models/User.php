@@ -127,6 +127,7 @@ class User extends CActiveRecord
 			'lastvisit_at' => UserModule::t("Last visit"),
 			'superuser' => UserModule::t("User type"),
 			'status' => UserModule::t("Status"),
+			'terminos' => 'He leído y acepto los términos y condiciones de uso',
 		);
 	}
 	

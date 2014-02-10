@@ -160,7 +160,9 @@ class SiteController extends Controller
 	public function actionMaintenance(){
 		$this->render("maintenance");
 	}
-	
+	public function actionTerminos(){
+		$this->render('ver_terminos');
+	}
 	/* Used to debug variables*/
     protected function Debug($var){
         $bt = debug_backtrace();

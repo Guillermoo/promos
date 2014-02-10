@@ -73,3 +73,6 @@ body{
 	color: #979797;
 	font-size: 0.8em;
 }
+.errorMessage{
+	color: red;
+}

@@ -8,15 +8,18 @@ class RegistrationForm extends User {
 	
 	public $verifyPassword;
 	public $verifyCode;
+	public $terminos;
 	
 	public function rules() {
 		$rules = array(
 			array('password, verifyPassword, email', 'required'),
 			array('password', 'length', 'max'=>128, 'min' => 4,'message' => UserModule::t("Incorrect password (minimal length 4 symbols).")),
+			 array('terminos', 'compare', 'compareValue' => true, 
+              'message' => UserModule::t('Tienes que leer y aceptar los términos y condiciones de uso')),
 			array('email', 'email', 'message' => UserModule::t("Email is invalid, please insert a valid email.")),
 			//array('username', 'unique', 'message' => UserModule::t("This user's name already exists.")),
 			array('email', 'unique', 'message' => UserModule::t("This user's email address already exists.")),
-			array('verifyPassword', 'compare', 'compareAttribute'=>'password', 'message' => UserModule::t("Retype Password is incorrect.")),
+			array('verifyPassword', 'compare', 'compareAttribute'=>'password', 'message' => UserModule::t("Retype Password is incorrect.")),			
 			//array('username', 'match', 'pattern' => '/^[A-Za-z0-9_]+$/u','message' => UserModule::t("Incorrect symbols (A-z0-9).")),
 		);
 		if (!(isset($_POST['ajax']) && $_POST['ajax']==='registration-form')) {
