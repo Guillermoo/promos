@@ -162,69 +162,69 @@ class CompraController extends Controller
 		$header .= "Content-Length: " . strlen($req) . "\r\n\r\n";
 		$fp = fsockopen ('ssl://www.paypal.com', 443, $errno, $errstr, 30);
 
-		// assign posted variables to local variables
-		$item_name = $_POST['item_name'];
-		$item_number = $_POST['item_number'];
-		$payment_status = $_POST['payment_status'];
-		$payment_amount = $_POST['mc_gross'];
-		$payment_currency = $_POST['mc_currency'];
-		$txn_id = $_POST['txn_id'];
-		$receiver_email = $_POST['receiver_email'];
-		$payer_email = $_POST['payer_email'];
-		$custom = $_POST['custom'];
+		// assign posted variables to local variables		
+			$item_name = $_POST['item_name'];
+			$item_number = $_POST['item_number'];
+			$payment_status = $_POST['payment_status'];
+			$payment_amount = $_POST['mc_gross'];
+			$payment_currency = $_POST['mc_currency'];
+			$txn_id = $_POST['txn_id'];
+			$receiver_email = $_POST['receiver_email'];
+			$payer_email = $_POST['payer_email'];
+			$custom = $_POST['custom'];
 
-		if (!$fp) {
-			// HTTP ERROR
-			Yii::app()->end();
-		}else{
-			fputs ($fp, $header . $req);
-			while (!feof($fp)) {
-				$res = fgets ($fp, 1024);
-				if (strcmp ($res, "VERIFIED") == 0) {
-					$todook = true;
-					// check the payment_status is Completed										
-					if(!strcmp($payment_status, "Completed")){
-						//pongo el valor cancelado en la tabla compras
+			if (!$fp) {
+				// HTTP ERROR
+				Yii::app()->end();
+			}else{
+				fputs ($fp, $header . $req);
+				while (!feof($fp)) {
+					$res = fgets ($fp, 1024);
+					if (strcmp ($res, "VERIFIED") == 0) {
+						$todook = true;
+						// check the payment_status is Completed										
+						if(!strcmp($payment_status, "Completed")){
+							//pongo el valor cancelado en la tabla compras
 
-						Yii::app()->end();
+							Yii::app()->end();
+						}
+						// Comprobar que el txn_id no se ha procesado todavía
+						$compra = Compra::model()->find('referencia='.$txn_id);
+						if($compra)
+							Yii::app()->end();
+						// Chequear que el receptor de la compra coincide con el email de paypal de la empresa
+						/*if(!stcmp($emailempresa, $receiver_email))
+							return false; */
+						// check that payment_amount/payment_currency are correct
+						
+						// procesar pago
+						$model = new Compra;
+
+						//cojo el id_usuario y el id_promo del campo custom
+						$ids = explode('_',$custom);
+						$idUsuario = $ids[0];
+						$idPromocion = $ids[1];
+
+						$this->insertarCompra($idUsuario,$idPromocion,$referencia,$precio, $custom);
+						//$this->insertarCompraPrueba();
+						$message = "El usuario con identificador ".$idUsuario." ha comprado la promoción con identificador ".$idPromocion.", cuyo precio es ".$precio." y la referencia es ".$referencia;
+
+						//enviar email a proemocion para informar de la compra					
+						UserModule::sendMail(Yii::app()->params['websiteEmail'],'Nueva compra',$message);
+
+						//enviar email al usuario que ha comprado
+						//UserModule::sendMail(Yii::app()->params['websiteEmail'],'Proemoción',$message);					
+
+						$this->render('comprado',array('model'=>$model));
+
+					}else if (strcmp ($res, "INVALID") == 0) {
+						// log for manual investigation
+						$this->render('nocomprado');
+						//$this->render('nocomprado');
 					}
-					// Comprobar que el txn_id no se ha procesado todavía
-					$compra = Compra::model()->find('referencia='.$txn_id);
-					if($compra)
-						Yii::app()->end();
-					// Chequear que el receptor de la compra coincide con el email de paypal de la empresa
-					/*if(!stcmp($emailempresa, $receiver_email))
-						return false; */
-					// check that payment_amount/payment_currency are correct
-					
-					// procesar pago
-					$model = new Compra;
-
-					//cojo el id_usuario y el id_promo del campo custom
-					$ids = explode('_',$custom);
-					$idUsuario = $ids[0];
-					$idPromocion = $ids[1];
-
-					$this->insertarCompra($idUsuario,$idPromocion,$referencia,$precio, $custom);
-					//$this->insertarCompraPrueba();
-					$message = "El usuario con identificador ".$idUsuario." ha comprado la promoción con identificador ".$idPromocion.", cuyo precio es ".$precio." y la referencia es ".$referencia;
-
-					//enviar email a proemocion para informar de la compra					
-					UserModule::sendMail(Yii::app()->params['websiteEmail'],'Nueva compra',$message);
-
-					//enviar email al usuario que ha comprado
-					//UserModule::sendMail(Yii::app()->params['websiteEmail'],'Proemoción',$message);					
-
-					$this->render('comprado');
-
-				}else if (strcmp ($res, "INVALID") == 0) {
-					// log for manual investigation
-					$this->render('nocomprado');
-					//$this->render('nocomprado');
 				}
-			}
-			fclose ($fp);
-		}
+				fclose ($fp);
+			}		
 	}
 
 	private function insertarCompra($idUsuario,$idPromocion,$referencia,$precio,$custom){			
