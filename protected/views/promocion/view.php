@@ -155,10 +155,11 @@
 						<input type="hidden" name="cmd" value="_xclick">
 						<input type="hidden" name="business" value="<?php echo $datos->paypal_id; ?>">
 						<input type="hidden" name="currency_code" value="EUR">
+						<input name="notify_url" value="http://www.proemocion.com/compra/checkoutCompra" type="hidden">
 						<input type="hidden" name="item_name" value="<?=$model->titulo ?>">
 						<input type="hidden" name="amount" value="<?=$model->precio ?>">
 						<input type="hidden" name="custom" value="<?=Yii::app()->user->id ?>_<?=$model->id; ?>" />
-						<input type="hidden" name="return" value="http://www.proemocion.com/compra/checkoutCompra" />
+						<input type="hidden" name="return" value="http://www.proemocion.com/site/pagoCorrecto" />
 						<input type="image" src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="Realice pagos con PayPal: es rápido, gratis y seguro">
 					</form>	
 				<?php else: ?>

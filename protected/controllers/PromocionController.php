@@ -55,7 +55,7 @@ class PromocionController extends Controller
 	 */
 	public function actionView($title_slug='')
 	{
-		//$dataProvider=new CActiveDataProvider('Promocion');
+		//$dataProvider=new CActiveDataProvider('Promocion');		
 		
 		if (isset($title_slug)){
 			

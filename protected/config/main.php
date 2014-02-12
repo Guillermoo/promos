@@ -102,6 +102,25 @@ return array(
 
 	// application components
 	'components'=>array(
+            'Paypal' => array(
+                'class'=>'application.components.Paypal',
+                'apiUsername' => 'proemocion_api1.proemocion.com',
+                'apiPassword' => 'ENVU6DCLB9L6AELF',
+                'apiSignature' => 'A0gFURFJhApKq6Rs1dviYnXTG7PYAb-ML-DEq3GEnNFHboH1d6YLiHhG',
+                'apiLive' => false,
+            
+                'returnUrl' => 'paypal/confirm/', //regardless of url management component
+                'cancelUrl' => 'paypal/cancel/', //regardless of url management component
+                 'currency' => 'EUR',
+                  // Default description to use, defaults to an empty string
+                //'defaultDescription' => '',
+ 
+                // Default Quantity to use, defaults to 1
+                //'defaultQuantity' => '1',
+ 
+                //The version of the paypal api to use, defaults to '3.0' (review PayPal documentation to include a valid API version)
+                //'version' => '3.0',
+            ),
             'bootstrap'=>array(
                             'class'=>'bootstrap.components.Bootstrap',
                             //'class' => 'ext.bootstrap.components.Bootstrap',
@@ -252,5 +271,20 @@ return array(
 		'cuenta_paypal' => 'proemocion@proemocion.com',
 	),
     'catchAllRequest'=>file_exists(dirname(__FILE__).'/.maintenance')
-        ? array('site/maintenance') : null,
+        ? array('site/maintenance') : null,    
 );
+
+//PAYPAL IPN
+    // Define LIVE constant as true if 'localhost' is not present in the host name. Configure the detecting of environment as necessary of course.
+/*defined('LIVE') || define('LIVE', strpos($_SERVER['HTTP_HOST'],'localhost')===false ? true : false);
+if (LIVE) {
+  define('PAYPAL_SANDBOX',false);
+  define('PAYPAL_HOST', 'ipnpb.paypal.com');
+  define('PAYPAL_URL', 'https://ipnpb.paypal.com/cgi-bin/webscr');
+  define('PAYPAL_EMAIL','proemocion@proemocion.com'); // live email of merchant
+}else{ */
+  define('PAYPAL_HOST', 'www.sandbox.paypal.com');
+  define('PAYPAL_URL', 'https://www.sandbox.paypal.com/uk/cgi-bin/webscr');
+  define('PAYPAL_EMAIL', 'hlanga.business@hlanga.es'); // dev email of merchant
+  define('PAYPAL_SANDBOX',true);
+//}

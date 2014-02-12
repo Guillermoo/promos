@@ -162,7 +162,11 @@ class CompraController extends Controller
 		$header .= "Content-Length: " . strlen($req) . "\r\n\r\n";
 		$fp = fsockopen ('ssl://www.paypal.com', 443, $errno, $errstr, 30);
 
-		// assign posted variables to local variables		
+		// assign posted variables to local variables	
+		if(!isset($_POST['txn_id'])){
+			$this->render('nocomprado');
+			Yii::app()->end;
+		}	
 			$item_name = $_POST['item_name'];
 			$item_number = $_POST['item_number'];
 			$payment_status = $_POST['payment_status'];
@@ -219,12 +223,58 @@ class CompraController extends Controller
 
 					}else if (strcmp ($res, "INVALID") == 0) {
 						// log for manual investigation
-						$this->render('nocomprado');
+						UserModule::sendMail(Yii::app()->params['websiteEmail'],'Compra NO COMPLETADA','Paypal devuelve INVALID');
 						//$this->render('nocomprado');
 					}
 				}
 				fclose ($fp);
 			}		
+	}
+
+	public function actionCheckoutCompra2(){
+		$token = trim($_GET['token']);
+		$payerId = trim($_GET['PayerID']);
+		
+		
+		
+		$result = Yii::app()->Paypal->GetExpressCheckoutDetails($token);
+
+		$result['PAYERID'] = $payerId; 
+		$result['TOKEN'] = $token; 
+		$result['ORDERTOTAL'] = 0.00;
+
+		//Detect errors 
+		if(!Yii::app()->Paypal->isCallSucceeded($result)){ 
+			if(Yii::app()->Paypal->apiLive === true){
+				//Live mode basic error message
+				$error = 'We were unable to process your request. Please try again later';
+			}else{
+				//Sandbox output the actual error message to dive in.
+				$error = $result['L_LONGMESSAGE0'];
+			}
+			echo $error;
+			Yii::app()->end();
+		}else{ 
+			
+			$paymentResult = Yii::app()->Paypal->DoExpressCheckoutPayment($result);
+			//Detect errors  
+			if(!Yii::app()->Paypal->isCallSucceeded($paymentResult)){
+				if(Yii::app()->Paypal->apiLive === true){
+					//Live mode basic error message
+					$error = 'We were unable to process your request. Please try again later';
+				}else{
+					//Sandbox output the actual error message to dive in.
+					$error = $paymentResult['L_LONGMESSAGE0'];
+				}
+				echo $error;
+				Yii::app()->end();
+			}else{
+				//payment was completed successfully
+				
+				$this->render('confirm');
+			}
+			
+		}
 	}
 
 	private function insertarCompra($idUsuario,$idPromocion,$referencia,$precio,$custom){			

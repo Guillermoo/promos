@@ -9,6 +9,7 @@
 	<div class="span12">
 		<h2>¡Correcto!</h2>
 		<div class="alert alert-success"><strong>El pago se ha realizado correctamente.</strong> ¡Gracias por confiar en Proemoción!</div>
+		<p> Gracias por su pago. Su transacción ha finalizado y le hemos enviado un recibo de su compra por correo electrónico. Puede acceder a su cuenta, www.paypal.com/es, para ver los detalles de esta transacción.</p>
 	</div>
 </div>
 

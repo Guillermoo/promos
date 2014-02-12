@@ -161,7 +161,7 @@ class SiteController extends Controller
 		$this->render("maintenance");
 	}
 	public function actionTerminos(){
-		$this->render('ver_terminos');
+		$this->render('terminos');
 	}
 	/* Used to debug variables*/
     protected function Debug($var){

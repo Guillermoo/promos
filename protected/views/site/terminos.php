@@ -1,4 +1,3 @@
-<?php echo "HOla" ?>
 <div class="row-fluid print-show">
 	<h3>Condiciones del servicio</h3>
 
