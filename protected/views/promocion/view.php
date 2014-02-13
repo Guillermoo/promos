@@ -151,17 +151,12 @@
 				//Comprobar que es usuario registrado. Sino, no se muestra el botón de comprar
 				if(UserModule::isBuyer()):
 				 ?>
-					<form name="_xclick" action="https://www.sandbox.paypal.com/es/cgi-bin/webscr" method="post">
-						<input type="hidden" name="cmd" value="_xclick">
-						<input type="hidden" name="business" value="<?php echo $datos->paypal_id; ?>">
-						<input type="hidden" name="currency_code" value="EUR">
-						<input name="notify_url" value="http://www.proemocion.com/compra/checkoutCompra" type="hidden">
-						<input type="hidden" name="item_name" value="<?=$model->titulo ?>">
-						<input type="hidden" name="amount" value="<?=$model->precio ?>">
-						<input type="hidden" name="custom" value="<?=Yii::app()->user->id ?>_<?=$model->id; ?>" />
-						<input type="hidden" name="return" value="http://www.proemocion.com/site/pagoCorrecto" />
-						<input type="image" src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="Realice pagos con PayPal: es rápido, gratis y seguro">
-					</form>	
+					<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="6GXW9XDULHFUG">
+<input type="image" src="https://www.sandbox.paypal.com/es_ES/ES/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal. La forma rápida y segura de pagar en Internet.">
+<img alt="" border="0" src="https://www.sandbox.paypal.com/es_ES/i/scr/pixel.gif" width="1" height="1">
+</form>
 				<?php else: ?>
 						<div class="alert alert-info"><h4>Para poder comprar una promoción debes estar registrado como usuario.</h4></div>
 						<div>
