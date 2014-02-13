@@ -148,6 +148,7 @@ class CompraController extends Controller
 	 */
 
 	public function actionCheckoutCompra(){
+		echo "Hola<br/>";			
 		// read the post from PayPal system and add 'cmd'
 		$req = 'cmd=_notify-validate';
 
@@ -156,18 +157,23 @@ class CompraController extends Controller
 			$req .= "&$key=$value";
 		}
 
+		#Abrimos el fichero en modo de escritura 
+		$DescriptorFichero = fopen("./".Yii::app()->theme->getBaseUrl()."/../../protected/runtime/fichero_ipn.txt","w"); 
+		//fputs($DescriptorFichero,'Comienzo'); 
+
 		// post back to PayPal system to validate
 		$header = "POST /cgi-bin/webscr HTTP/1.0\r\n"; //estaba así: $header .= "POST /cgi-bin/webscr HTTP/1.0\r\n";
 		$header .= "Host: www.sandbox.paypal.com\r\n";
 		$header .= "Content-Type: application/x-www-form-urlencoded\r\n";
 		$header .= "Content-Length: " . strlen($req) . "\r\n\r\n";
 		$fp = fsockopen ('ssl://www.sandbox.paypal.com', 443, $errno, $errstr, 30);
-
+		
 		// assign posted variables to local variables	
 		if(!isset($_POST['txn_id'])){
-			UserModule::sendMail(Yii::app()->params['websiteEmail'],'Paypal txt_id vacio','No se encuentra post txn_id');
-			Yii::app()->end();
-		}	
+			//UserModule::sendMail(Yii::app()->params['websiteEmail'],'Paypal txt_id vacio','No se encuentra post txn_id');
+			fputs($DescriptorFichero,' txn_id no encontrado'); 
+			//Yii::app()->end();
+		}else{	
 			$item_name = $_POST['item_name'];
 			$item_number = $_POST['item_number'];
 			$payment_status = $_POST['payment_status'];
@@ -177,60 +183,72 @@ class CompraController extends Controller
 			$receiver_email = $_POST['receiver_email'];
 			$payer_email = $_POST['payer_email'];
 			$custom = $_POST['custom'];
+			$precio = $_POST['amount'];
 
 			if (!$fp) {
 				// HTTP ERROR
-				UserModule::sendMail(Yii::app()->params['websiteEmail'],'Socket Pypal incorrecto','Paypal no puede crear el socket');
-				Yii::app()->end();
+				//UserModule::sendMail(Yii::app()->params['websiteEmail'],'Socket Pypal incorrecto','Paypal no puede crear el socket');
+				fputs($DescriptorFichero,' fp no valido (no crea el socket)'); 
+				//Yii::app()->end();
 			}else{
 				fputs ($fp, $header . $req);
 				while (!feof($fp)) {
 					$res = fgets ($fp, 1024);
 					if (strcmp ($res, "VERIFIED") == 0) {
+						//fputs($DescriptorFichero,'VERIFICADO OK'); 
 						$todook = true;
-						// check the payment_status is Completed										
-						if(!strcmp($payment_status, "Completed")){
+						// check the payment_status is Completed				
+						//fputs($DescriptorFichero,'Estatus: '.$payment_status); 						
+						if(strcmp($payment_status, "Completed")!=0){
 							//pongo el valor cancelado en la tabla compras
-
-							Yii::app()->end();
+							fputs($DescriptorFichero,' Pago NO COMPLETADO'); 
+							//Yii::app()->end();
 						}
 						// Comprobar que el txn_id no se ha procesado todavía
 						$compra = Compra::model()->find('referencia='.$txn_id);
-						if($compra)
-							Yii::app()->end();
+						if($compra){
+							fputs($DescriptorFichero,'La compra ya existe'); 
+							//Yii::app()->end();
+						}
 						// Chequear que el receptor de la compra coincide con el email de paypal de la empresa
 						/*if(!stcmp($emailempresa, $receiver_email))
 							return false; */
 						// check that payment_amount/payment_currency are correct
 						
 						// procesar pago
-						$model = new Compra;
+						//$model = new Compra;
 
 						//cojo el id_usuario y el id_promo del campo custom
 						$ids = explode('_',$custom);
 						$idUsuario = $ids[0];
 						$idPromocion = $ids[1];
 
-						$this->insertarCompra($idUsuario,$idPromocion,$referencia,$precio, $custom);
+						$this->insertarCompra($idUsuario,$idPromocion,$txn_id,$precio,$custom);
 						//$this->insertarCompraPrueba();
 						$message = "El usuario con identificador ".$idUsuario." ha comprado la promoción con identificador ".$idPromocion.", cuyo precio es ".$precio." y la referencia es ".$referencia;
 
-						//enviar email a proemocion para informar de la compra					
-						UserModule::sendMail(Yii::app()->params['websiteEmail'],'Nueva compra',$message);
+						//enviar email a proemocion para informar de la compra				
+						echo "Compra ok. Envío el email.<br/>";	
+						Yii::app()->getModule('user')->sendMail(Yii::app()->params['websiteEmail'],'Nueva compra',$message);
 
 						//enviar email al usuario que ha comprado
 						//UserModule::sendMail(Yii::app()->params['websiteEmail'],'Proemoción',$message);					
-
-						$this->render('comprado',array('model'=>$model));
-
+						//$this->render('comprado',array('model'=>$model));
+						fputs($DescriptorFichero,'Compra creada!'); 
 					}else if (strcmp ($res, "INVALID") == 0) {
+						fputs($DescriptorFichero,'INVALIDO'); 
 						// log for manual investigation
-						UserModule::sendMail(Yii::app()->params['websiteEmail'],'Compra NO COMPLETADA','Paypal devuelve INVALID');
+						//UserModule::sendMail(Yii::app()->params['websiteEmail'],'Compra NO COMPLETADA','Paypal devuelve INVALID');
 						//$this->render('nocomprado');
 					}
 				}
 				fclose ($fp);
+				fputs($DescriptorFichero,'Salgo de la funcion'); 
+				#Cerramos el fichero 
+				fclose($DescriptorFichero);
 			}		
+		} 
+		echo "Adios.<br/>";	
 	}
 
 	public function actionCheckoutCompra2(){
@@ -290,9 +308,9 @@ class CompraController extends Controller
 			$model->estado = 1;
 
 			if($model->save()){
-				$this->render('comprado',array('compra'=>$model));
+				//$this->render('comprado',array('compra'=>$model));
 			}else{
-				$this->render('nocomprado',array('compra'=>$model));
+				//$this->render('nocomprado',array('compra'=>$model));
 			}
 	}
 

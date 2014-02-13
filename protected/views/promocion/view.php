@@ -152,11 +152,15 @@
 				if(UserModule::isBuyer()):
 				 ?>
 					<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="6GXW9XDULHFUG">
-<input type="image" src="https://www.sandbox.paypal.com/es_ES/ES/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal. La forma rápida y segura de pagar en Internet.">
-<img alt="" border="0" src="https://www.sandbox.paypal.com/es_ES/i/scr/pixel.gif" width="1" height="1">
-</form>
+						<input type="hidden" name="cmd" value="_s-xclick">
+						<input type="hidden" name="hosted_button_id" value="6GXW9XDULHFUG">
+						<input type="hidden" name="business" value="<?php echo $datos->paypal_id; ?>">
+						<input type="hidden" name="item_name" value="<?=$model->titulo ?>">
+						<input type="hidden" name="amount" value="<?=$model->precio ?>">
+						<input type="hidden" name="custom" value="<?= Yii::app()->user->id ?>_<?=$model->id ?>">
+						<input type="image" src="https://www.sandbox.paypal.com/es_ES/ES/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal. La forma rápida y segura de pagar en Internet.">
+						<img alt="" border="0" src="https://www.sandbox.paypal.com/es_ES/i/scr/pixel.gif" width="1" height="1">
+					</form>
 				<?php else: ?>
 						<div class="alert alert-info"><h4>Para poder comprar una promoción debes estar registrado como usuario.</h4></div>
 						<div>
