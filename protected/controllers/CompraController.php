@@ -158,14 +158,15 @@ class CompraController extends Controller
 
 		// post back to PayPal system to validate
 		$header = "POST /cgi-bin/webscr HTTP/1.0\r\n"; //estaba así: $header .= "POST /cgi-bin/webscr HTTP/1.0\r\n";
+		$header .= "Host: www.sandbox.paypal.com\r\n";
 		$header .= "Content-Type: application/x-www-form-urlencoded\r\n";
 		$header .= "Content-Length: " . strlen($req) . "\r\n\r\n";
-		$fp = fsockopen ('ssl://www.paypal.com', 443, $errno, $errstr, 30);
+		$fp = fsockopen ('ssl://www.sandbox.paypal.com', 443, $errno, $errstr, 30);
 
 		// assign posted variables to local variables	
 		if(!isset($_POST['txn_id'])){
-			$this->render('nocomprado');
-			Yii::app()->end;
+			UserModule::sendMail(Yii::app()->params['websiteEmail'],'Paypal txt_id vacio','No se encuentra post txn_id');
+			Yii::app()->end();
 		}	
 			$item_name = $_POST['item_name'];
 			$item_number = $_POST['item_number'];
@@ -179,6 +180,7 @@ class CompraController extends Controller
 
 			if (!$fp) {
 				// HTTP ERROR
+				UserModule::sendMail(Yii::app()->params['websiteEmail'],'Socket Pypal incorrecto','Paypal no puede crear el socket');
 				Yii::app()->end();
 			}else{
 				fputs ($fp, $header . $req);
