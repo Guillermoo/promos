@@ -8074,3 +8074,954 @@ Stack trace:
 REQUEST_URI=/user/profile
 HTTP_REFERER=http://www.proemocion.com/user/compra/historialCompras
 ---
+2014/02/01 10:55:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "robots.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('robots.txt')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/robots.txt
+---
+2014/02/03 08:51:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "robots.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('robots.txt')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/robots.txt
+---
+2014/02/03 12:00:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "robots.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('robots.txt')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/robots.txt
+---
+2014/02/03 12:31:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "robots.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('robots.txt')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/robots.txt
+---
+2014/02/04 03:12:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "robots.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('robots.txt')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/robots.txt
+---
+2014/02/04 11:12:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "robots.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('robots.txt')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/robots.txt
+---
+2014/02/04 12:45:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "robots.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('robots.txt')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/robots.txt
+---
+2014/02/04 17:17:24 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'user_id'. La sentencia SQL ejecutada fue: INSERT INTO `tbl_profiles` (`tipocuenta`, `fecha_activacion`, `fecha_fin`, `fecha_pago`, `username`, `lastname`, `telefono`, `cp`, `direccion`, `poblacion_id`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9). Bound with :yp0=1, :yp1='0000-00-00', :yp2='0000-00-00', :yp3='0000-00-00', :yp4='Hugoss', :yp5='Langa', :yp6='636602253', :yp7='50292', :yp8='c/cautivico,3', :yp9='ÉPILA'.
+2014/02/04 17:17:24 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'user_id'' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/db/CDbCommand.php:357
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/db/ar/CActiveRecord.php(1023): CDbCommand->execute()
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/db/ar/CActiveRecord.php(795): CActiveRecord->insert(NULL)
+#2 /var/www/vhosts/proemocion.com/httpdocs/protected/modules/user/controllers/ProfileController.php(177): CActiveRecord->save()
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/actions/CInlineAction.php(49): ProfileController->actionUpdate()
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#11 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CController->run('update')
+#13 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/profile/up...')
+#14 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#15 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/user/profile/update
+HTTP_REFERER=http://www.proemocion.com/user/profile
+---
+2014/02/04 17:31:55 [error] [php] Creating default object from empty value (/var/www/vhosts/proemocion.com/httpdocs/protected/modules/user/controllers/ProfileController.php:160)
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): ProfileController->runAction()
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): ProfileController->filterAccessControl()
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): ProfileController->runActionWithFilters()
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): ProfileController->run()
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CWebApplication->run()
+REQUEST_URI=/user/profile/update
+2014/02/04 17:32:56 [error] [php] Creating default object from empty value (/var/www/vhosts/proemocion.com/httpdocs/protected/modules/user/controllers/ProfileController.php:160)
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): ProfileController->runAction()
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): ProfileController->filterAccessControl()
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): ProfileController->runActionWithFilters()
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): ProfileController->run()
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CWebApplication->run()
+REQUEST_URI=/user/profile/update
+2014/02/04 17:34:58 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'user_id'. La sentencia SQL ejecutada fue: INSERT INTO `tbl_profiles` (`tipocuenta`, `fecha_activacion`, `fecha_fin`, `fecha_pago`, `username`, `lastname`, `telefono`, `cp`, `direccion`, `poblacion_id`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9). Bound with :yp0=1, :yp1='0000-00-00', :yp2='0000-00-00', :yp3='0000-00-00', :yp4='Ratoncico', :yp5='Jingles', :yp6='636602253', :yp7='50290', :yp8='C/. SAN FRONTONIO, 25', :yp9='ÉPILA'.
+2014/02/04 17:34:58 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'user_id'' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/db/CDbCommand.php:357
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/db/ar/CActiveRecord.php(1023): CDbCommand->execute()
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/db/ar/CActiveRecord.php(795): CActiveRecord->insert(NULL)
+#2 /var/www/vhosts/proemocion.com/httpdocs/protected/modules/user/controllers/ProfileController.php(174): CActiveRecord->save()
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/actions/CInlineAction.php(49): ProfileController->actionUpdate()
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#11 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CController->run('update')
+#13 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/profile/up...')
+#14 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#15 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/user/profile/update
+HTTP_REFERER=http://www.proemocion.com/user/profile
+---
+2014/02/04 18:43:50 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'user_id'. La sentencia SQL ejecutada fue: INSERT INTO `tbl_profiles` (`tipocuenta`, `fecha_activacion`, `fecha_fin`, `fecha_pago`, `username`, `lastname`, `telefono`, `cp`, `direccion`, `poblacion_id`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9). Bound with :yp0=1, :yp1='0000-00-00', :yp2='0000-00-00', :yp3='0000-00-00', :yp4='Ratoncico', :yp5='Jingles', :yp6='636602253', :yp7='50290', :yp8='C/. SAN FRONTONIO, 25', :yp9='ÉPILA'.
+2014/02/04 18:43:50 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'user_id'' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/db/CDbCommand.php:357
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/db/ar/CActiveRecord.php(1023): CDbCommand->execute()
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/db/ar/CActiveRecord.php(795): CActiveRecord->insert(NULL)
+#2 /var/www/vhosts/proemocion.com/httpdocs/protected/modules/user/controllers/ProfileController.php(174): CActiveRecord->save()
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/actions/CInlineAction.php(49): ProfileController->actionUpdate()
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#11 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CController->run('update')
+#13 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/profile/up...')
+#14 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#15 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/user/profile/update
+HTTP_REFERER=http://www.proemocion.com/user/profile
+---
+2014/02/04 19:57:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "@HugoLanga"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('@HugoLanga')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/@HugoLanga
+---
+2014/02/05 00:01:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "www.facebook.com/hlanga"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('www.facebook.co...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/www.facebook.com/hlanga
+HTTP_REFERER=http://www.proemocion.com/empresas
+---
+2014/02/05 10:19:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "robots.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('robots.txt')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/robots.txt
+---
+2014/02/05 12:14:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "robots.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('robots.txt')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/robots.txt
+---
+2014/02/06 15:04:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "wp-content/plugins/akismet/readme.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('wp-content/plug...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/wp-content/plugins/akismet/readme.txt
+---
+2014/02/07 07:43:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "robots.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('robots.txt')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/robots.txt
+---
+2014/02/07 07:43:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "www.facebook.com/hlanga"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('www.facebook.co...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/www.facebook.com/hlanga
+---
+2014/02/07 13:34:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "activkey" solicitada.' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(270): CController->missingAction('activkey')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CController->run('activkey')
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/activation...')
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/user/activation/activkey/bda26cccd32c329e7e88106d9887251b/email/angelines%40grimsey.es
+---
+2014/02/08 17:14:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "robots.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('robots.txt')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/robots.txt
+---
+2014/02/08 22:10:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "robots.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('robots.txt')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/robots.txt
+---
+2014/02/09 06:12:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "robots.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('robots.txt')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/robots.txt
+---
+2014/02/09 10:18:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "admin.php"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('admin.php')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/admin.php
+---
+2014/02/09 10:18:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "administrator/index.php"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('administrator/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/administrator/index.php
+---
+2014/02/09 10:18:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "wp-login.php"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('wp-login.php')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/wp-login.php
+---
+2014/02/09 16:19:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "robots.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('robots.txt')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/robots.txt
+---
+2014/02/09 17:00:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "robots.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('robots.txt')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/robots.txt
+---
+2014/02/09 18:37:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "robots.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('robots.txt')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/robots.txt
+---
+2014/02/09 19:30:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "www.facebook.com/hlanga"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('www.facebook.co...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/www.facebook.com/hlanga
+---
+2014/02/10 06:47:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "robots.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('robots.txt')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/robots.txt
+HTTP_REFERER=http://proemocion.com/robots.txt
+---
+2014/02/10 19:18:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-57-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-57-precomposed.png
+---
+2014/02/10 19:18:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-144-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-144-precomposed.png
+---
+2014/02/10 19:18:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-57-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-57-precomposed.png
+---
+2014/02/10 19:19:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-144-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-144-precomposed.png
+---
+2014/02/10 19:19:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-57-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-57-precomposed.png
+---
+2014/02/10 19:19:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-144-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-144-precomposed.png
+---
+2014/02/10 19:19:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-57-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-57-precomposed.png
+---
+2014/02/11 00:22:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "robots.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('robots.txt')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/robots.txt
+---
+2014/02/11 01:49:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "robots.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('robots.txt')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/robots.txt
+---
+2014/02/11 07:08:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "robots.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('robots.txt')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/robots.txt
+---
+2014/02/11 18:18:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "robots.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('robots.txt')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/robots.txt
+---
+2014/02/13 00:26:16 [error] [exception.CException] exception 'CException' with message 'Propiedad "CWebApplication"."end" no se encuentra definida.' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CModule.php(105): CComponent->__get('end')
+#1 /var/www/vhosts/proemocion.com/httpdocs/protected/controllers/CompraController.php(168): CModule->__get('end')
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/actions/CInlineAction.php(49): CompraController->actionCheckoutCompra()
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CController->run('checkoutCompra')
+#12 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('compra/checkout...')
+#13 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#14 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#15 {main}
+REQUEST_URI=/compra/checkoutCompra
+---
+2014/02/13 00:42:10 [error] [php] include(UserModule.php): failed to open stream: No such file or directory (/var/www/vhosts/proemocion.com/httpdocs/yii/framework/YiiBase.php:421)
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/protected/controllers/CompraController.php(226): spl_autoload_call()
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/actions/CInlineAction.php(49): CompraController->actionCheckoutCompra()
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): CompraController->runAction()
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CompraController->filterAccessControl()
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CompraController->runActionWithFilters()
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CompraController->run()
+#11 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#12 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#13 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CWebApplication->run()
+REQUEST_URI=/compra/checkoutCompra
+2014/02/13 00:42:25 [error] [php] include(UserModule.php): failed to open stream: No such file or directory (/var/www/vhosts/proemocion.com/httpdocs/yii/framework/YiiBase.php:421)
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/protected/controllers/CompraController.php(226): spl_autoload_call()
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/actions/CInlineAction.php(49): CompraController->actionCheckoutCompra()
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): CompraController->runAction()
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CompraController->filterAccessControl()
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CompraController->runActionWithFilters()
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CompraController->run()
+#11 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#12 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#13 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CWebApplication->run()
+REQUEST_URI=/compra/checkoutCompra
+2014/02/13 00:42:48 [error] [php] include(UserModule.php): failed to open stream: No such file or directory (/var/www/vhosts/proemocion.com/httpdocs/yii/framework/YiiBase.php:421)
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/protected/controllers/CompraController.php(226): spl_autoload_call()
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/actions/CInlineAction.php(49): CompraController->actionCheckoutCompra()
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): CompraController->runAction()
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CompraController->filterAccessControl()
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CompraController->runActionWithFilters()
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CompraController->run()
+#11 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#12 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#13 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CWebApplication->run()
+REQUEST_URI=/compra/checkoutCompra
+2014/02/13 00:43:33 [error] [php] include(UserModule.php): failed to open stream: No such file or directory (/var/www/vhosts/proemocion.com/httpdocs/yii/framework/YiiBase.php:421)
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/protected/controllers/CompraController.php(226): spl_autoload_call()
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/actions/CInlineAction.php(49): CompraController->actionCheckoutCompra()
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): CompraController->runAction()
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CompraController->filterAccessControl()
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CompraController->runActionWithFilters()
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CompraController->run()
+#11 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#12 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#13 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CWebApplication->run()
+REQUEST_URI=/compra/checkoutCompra
+2014/02/13 00:44:57 [error] [php] include(UserModule.php): failed to open stream: No such file or directory (/var/www/vhosts/proemocion.com/httpdocs/yii/framework/YiiBase.php:421)
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/protected/controllers/CompraController.php(226): spl_autoload_call()
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/actions/CInlineAction.php(49): CompraController->actionCheckoutCompra()
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): CompraController->runAction()
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CompraController->filterAccessControl()
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CompraController->runActionWithFilters()
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CompraController->run()
+#11 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#12 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#13 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CWebApplication->run()
+REQUEST_URI=/compra/checkoutCompra
+2014/02/13 00:47:39 [error] [php] include(UserModule.php): failed to open stream: No such file or directory (/var/www/vhosts/proemocion.com/httpdocs/yii/framework/YiiBase.php:421)
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/protected/controllers/CompraController.php(226): spl_autoload_call()
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/actions/CInlineAction.php(49): CompraController->actionCheckoutCompra()
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): CompraController->runAction()
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CompraController->filterAccessControl()
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CompraController->runActionWithFilters()
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CompraController->run()
+#11 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#12 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#13 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CWebApplication->run()
+REQUEST_URI=/compra/checkoutCompra
+2014/02/13 00:53:01 [error] [php] include(UserModule.php): failed to open stream: No such file or directory (/var/www/vhosts/proemocion.com/httpdocs/yii/framework/YiiBase.php:421)
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/protected/controllers/CompraController.php(226): spl_autoload_call()
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/actions/CInlineAction.php(49): CompraController->actionCheckoutCompra()
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): CompraController->runAction()
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CompraController->filterAccessControl()
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CompraController->runActionWithFilters()
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CompraController->run()
+#11 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#12 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#13 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CWebApplication->run()
+REQUEST_URI=/compra/checkoutCompra
+2014/02/13 01:20:19 [error] [exception.CException] exception 'CException' with message 'Propiedad "CWebApplication"."end" no se encuentra definida.' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CModule.php(105): CComponent->__get('end')
+#1 /var/www/vhosts/proemocion.com/httpdocs/protected/controllers/CompraController.php(169): CModule->__get('end')
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/actions/CInlineAction.php(49): CompraController->actionCheckoutCompra()
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CController->run('checkoutCompra')
+#12 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('compra/checkout...')
+#13 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#14 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#15 {main}
+REQUEST_URI=/compra/checkoutCompra
+---
+2014/02/13 13:43:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "checkoutCompra" solicitada.' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(270): CController->missingAction('checkoutCompra')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CController->run('checkoutCompra')
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/checkoutCo...')
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/checkoutCompra
+---
+2014/02/13 13:44:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "CheckoutCompra" solicitada.' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(270): CController->missingAction('CheckoutCompra')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CController->run('CheckoutCompra')
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/CheckoutCo...')
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/CheckoutCompra
+---
+2014/02/13 13:46:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "comrpa/CheckoutCompra"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('comrpa/Checkout...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/comrpa/CheckoutCompra
+---
+2014/02/13 13:46:37 [error] [php] include(UserModule.php): failed to open stream: No such file or directory (/var/www/vhosts/proemocion.com/httpdocs/yii/framework/YiiBase.php:421)
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/protected/controllers/CompraController.php(168): spl_autoload_call()
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/actions/CInlineAction.php(49): CompraController->actionCheckoutCompra()
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): CompraController->runAction()
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CompraController->filterAccessControl()
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CompraController->runActionWithFilters()
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CompraController->run()
+#11 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#12 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#13 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CWebApplication->run()
+REQUEST_URI=/compra/CheckoutCompra
+2014/02/13 13:50:32 [error] [php] include(UserModule.php): failed to open stream: No such file or directory (/var/www/vhosts/proemocion.com/httpdocs/yii/framework/YiiBase.php:421)
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/protected/controllers/CompraController.php(168): spl_autoload_call()
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/actions/CInlineAction.php(49): CompraController->actionCheckoutCompra()
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): CompraController->runAction()
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CompraController->filterAccessControl()
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CompraController->runActionWithFilters()
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CompraController->run()
+#11 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#12 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#13 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CWebApplication->run()
+REQUEST_URI=/compra/CheckoutCompra
+2014/02/13 13:52:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "robots.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('robots.txt')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/robots.txt
+---
+2014/02/13 14:19:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-57-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-57-precomposed.png
+---
+2014/02/13 14:19:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-144-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-144-precomposed.png
+---
+2014/02/13 14:19:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-57-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-57-precomposed.png
+---
+2014/02/13 14:19:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-144-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-144-precomposed.png
+---
+2014/02/13 14:19:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-57-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-57-precomposed.png
+---
+2014/02/13 14:19:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-144-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-144-precomposed.png
+---
+2014/02/13 14:19:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-57-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-57-precomposed.png
+---
+2014/02/13 14:25:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "checkoutCompras" solicitada.' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(270): CController->missingAction('checkoutCompras')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CController->run('checkoutCompras')
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('compra/checkout...')
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/compra/checkoutCompras
+---
+2014/02/13 14:56:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "robots.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('robots.txt')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/robots.txt
+---
+2014/02/13 16:48:11 [error] [php] fopen(/themes/frontEnd/protected/runtime/fichero_ipn.txt): failed to open stream: No such file or directory (/var/www/vhosts/proemocion.com/httpdocs/protected/controllers/CompraController.php:160)
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): CompraController->runAction()
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CompraController->filterAccessControl()
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CompraController->runActionWithFilters()
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CompraController->run()
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#11 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CWebApplication->run()
+REQUEST_URI=/compra/checkoutCompra
+2014/02/13 16:48:33 [error] [php] fopen(/themes/frontEnd/protected/runtime/fichero_ipn.txt): failed to open stream: No such file or directory (/var/www/vhosts/proemocion.com/httpdocs/protected/controllers/CompraController.php:160)
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): CompraController->runAction()
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CompraController->filterAccessControl()
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CompraController->runActionWithFilters()
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CompraController->run()
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#11 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CWebApplication->run()
+REQUEST_URI=/compra/checkoutCompra
+2014/02/13 17:04:35 [error] [php] fopen(/themes/frontEnd/protected/runtime/fichero_ipn.txt): failed to open stream: No such file or directory (/var/www/vhosts/proemocion.com/httpdocs/protected/controllers/CompraController.php:160)
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): CompraController->runAction()
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CompraController->filterAccessControl()
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CompraController->runActionWithFilters()
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CompraController->run()
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#11 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CWebApplication->run()
+REQUEST_URI=/compra/checkoutCompra
+2014/02/13 17:04:57 [error] [php] fopen(/var/www/vhosts/proemocion.com/httpdocs/themes/frontEnd/protected/runtime/fichero_ipn.txt): failed to open stream: No such file or directory (/var/www/vhosts/proemocion.com/httpdocs/protected/controllers/CompraController.php:160)
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): CompraController->runAction()
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CompraController->filterAccessControl()
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CompraController->runActionWithFilters()
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CompraController->run()
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#11 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CWebApplication->run()
+REQUEST_URI=/compra/checkoutCompra
+2014/02/13 17:05:33 [error] [php] fopen(/themes/frontEnd../../protected/runtime/fichero_ipn.txt): failed to open stream: No such file or directory (/var/www/vhosts/proemocion.com/httpdocs/protected/controllers/CompraController.php:160)
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): CompraController->runAction()
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CompraController->filterAccessControl()
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CompraController->runActionWithFilters()
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CompraController->run()
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#11 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CWebApplication->run()
+REQUEST_URI=/compra/checkoutCompra
+2014/02/13 17:06:04 [error] [php] fopen(/themes/frontEnd/../../protected/runtime/fichero_ipn.txt): failed to open stream: No such file or directory (/var/www/vhosts/proemocion.com/httpdocs/protected/controllers/CompraController.php:160)
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): CompraController->runAction()
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CompraController->filterAccessControl()
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CompraController->runActionWithFilters()
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CompraController->run()
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#11 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CWebApplication->run()
+REQUEST_URI=/compra/checkoutCompra
+2014/02/13 17:06:37 [error] [php] include(UserModule.php): failed to open stream: No such file or directory (/var/www/vhosts/proemocion.com/httpdocs/yii/framework/YiiBase.php:421)
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/protected/controllers/CompraController.php(184): spl_autoload_call()
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/actions/CInlineAction.php(49): CompraController->actionCheckoutCompra()
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): CompraController->runAction()
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CompraController->filterAccessControl()
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CompraController->runActionWithFilters()
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CompraController->run()
+#11 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#12 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#13 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CWebApplication->run()
+REQUEST_URI=/compra/checkoutCompra
+2014/02/13 18:42:32 [error] [php] include(UserModule.php): failed to open stream: No such file or directory (/var/www/vhosts/proemocion.com/httpdocs/yii/framework/YiiBase.php:421)
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/protected/controllers/CompraController.php(152): spl_autoload_call()
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/actions/CInlineAction.php(49): CompraController->actionCheckoutCompra()
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(133): CompraController->runAction()
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CompraController->filterAccessControl()
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CompraController->runActionWithFilters()
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CompraController->run()
+#11 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#12 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#13 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CWebApplication->run()
+REQUEST_URI=/compra/checkoutCompra
+2014/02/13 20:15:32 [error] [exception.CException] exception 'CException' with message 'El archivo "365267_print.jpg" ha sido subido parcialmente.' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/validators/CFileValidator.php:192
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/validators/CFileValidator.php(172): CFileValidator->validateFile(Object(XUploadForm), 'file', Object(CUploadedFile))
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/validators/CValidator.php(213): CFileValidator->validateAttribute(Object(XUploadForm), 'file')
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CModel.php(159): CValidator->validate(Object(XUploadForm), NULL)
+#3 /var/www/vhosts/proemocion.com/httpdocs/protected/modules/user/controllers/ItemController.php(60): CModel->validate()
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/actions/CInlineAction.php(49): ItemController->actionUpload()
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CController->run('upload')
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/item/uploa...')
+#10 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#11 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#12 {main}
+REQUEST_URI=/user/item/upload
+HTTP_REFERER=http://www.proemocion.com/user/empresa
+---
+2014/02/13 20:31:54 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'Usted no se encuentra autorizado a realizar esta acción.' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/auth/CAccessControlFilter.php:179
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/auth/CAccessControlFilter.php(142): CAccessControlFilter->accessDenied(Object(RWebUser), 'Usted no se enc...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CController->run('view')
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/promocion/...')
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#11 {main}
+REQUEST_URI=/user/promocion/view/id/4
+HTTP_REFERER=http://www.proemocion.com/user/mispromociones
+---
+2014/02/13 20:45:51 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'Usted no se encuentra autorizado a realizar esta acción.' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/auth/CAccessControlFilter.php:179
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/auth/CAccessControlFilter.php(142): CAccessControlFilter->accessDenied(Object(RWebUser), 'Usted no se enc...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CController->run('view')
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/promocion/...')
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#11 {main}
+REQUEST_URI=/user/promocion/view/id/4
+HTTP_REFERER=http://www.proemocion.com/user/mispromociones
+---
+2014/02/14 03:22:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "robots.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('robots.txt')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/robots.txt
+---
+2014/02/14 04:58:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "robots.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('robots.txt')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/robots.txt
+---
+2014/02/14 13:50:33 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'Usted no se encuentra autorizado a realizar esta acción.' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/auth/CAccessControlFilter.php:179
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/auth/CAccessControlFilter.php(142): CAccessControlFilter->accessDenied(Object(RWebUser), 'Usted no se enc...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CController->run('delete')
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/promocion/...')
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#11 {main}
+REQUEST_URI=/user/promocion/delete/id/2?ajax=user-grid
+HTTP_REFERER=http://proemocion.com/user/mispromociones
+---
+2014/02/14 13:51:53 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'Usted no se encuentra autorizado a realizar esta acción.' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/auth/CAccessControlFilter.php:179
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/auth/CAccessControlFilter.php(142): CAccessControlFilter->accessDenied(Object(RWebUser), 'Usted no se enc...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CController->run('delete')
+#8 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/promocion/...')
+#9 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#11 {main}
+REQUEST_URI=/user/promocion/delete/id/2?ajax=user-grid
+HTTP_REFERER=http://proemocion.com/user/mispromociones
+---
+2014/02/14 15:05:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "robots.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('robots.txt')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/robots.txt
+---
+2014/02/15 01:26:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "administrator"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('administrator')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/administrator/
+HTTP_REFERER=proemocion.com
+---
+2014/02/15 02:33:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "robots.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('robots.txt')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/robots.txt
+---

@@ -87,7 +87,7 @@
 		<?php if (isset($model->item)): ?>
 			<?php $path=$model->item->path ?>
 		<?php else:?>
-			<?php $path=Yii::app()->params['no_image'] ?>
+			<?php $path=Yii::app()->params['no_image_big'] ?>
 		<?php endif; ?>
 		<a class="product-detail-lightbox colorbox hidden-phone" rel="colorbox1" href="<?php echo Yii::app()->request->baseUrl.$path ?>" title="<?=$model->titulo?>">
 				<img class="product-image" alt="Product A" src="<?php echo Yii::app()->request->baseUrl.$path ?>">
@@ -106,6 +106,17 @@
 				<span class="label label-important price">&euro; <?=$model->precio ?></span>
 			</div>
 
+		</div>
+
+		<div class="row-fluid">
+			<div class="span7">
+				<?php if(isset($model->fecha_fin)):
+						$segundos=strtotime($model->fecha_fin) - strtotime('now');
+						$dias=intval($segundos/60/60/24);
+					?>
+					<p><span class="label label-warning">¡A esta promoción le quedan <?php echo $dias ?> días!</p>
+				<?php endif; ?>
+			</div>
 		</div>
 
 		<div class="row-fluid">
@@ -201,9 +212,9 @@
 								<span class="label label-info price">&euro; <? echo $promo->precio ?></span>
 								<!--<span class="label label-important price price-over">&euro; 1,<sup>99</sup></span>-->
 								<?php if (isset($promo->item)): ?>
-									<center><img data-hover="<?php echo Yii::app()->getBaseUrl().$path ?>" src="<?php echo Yii::app()->getBaseUrl().$path ?>" alt="<?php echo $promo->titulo ?>" ?></center>
+									<center><img class="divpromothumb" data-hover="<?php echo Yii::app()->getBaseUrl().$path ?>" src="<?php echo Yii::app()->getBaseUrl().$path ?>" alt="<?php echo $promo->titulo ?>" ?></center>
 								<?php else: ?>
-									<img data-hover="<?php echo Yii::app()->request->baseUrl.$path ?>"  alt="<?php echo $promo->titulo ?>" src="<?php echo Yii::app()->request->baseUrl.$path ?>">
+									<center><img class="divpromothumb" data-hover="<?php echo Yii::app()->request->baseUrl.$path ?>"  alt="<?php echo $promo->titulo ?>" src="<?php echo Yii::app()->request->baseUrl.$path ?>"></center>
 								<?php endif; ?>
 								</a>
 								<div class="caption">

@@ -25,7 +25,10 @@
 			<?php if(isset($compra) && $compra->votado!=0): ?>
 				<div class="alert alert-success">Ya has valorado esta promoción. Tu valoración: <strong><?php echo CHtml::encode($compra->votado); ?></strong></div>
 			<?php else: ?>
-				<label>Valoración: </label><?php echo CHtml::textField('voto','',array('id'=>'voto', 'class'=>'span1','maxlength'=>2)); ?>					
+				<label>Valoración (del 1 al 5): </label><?php //echo CHtml::textField('voto','',array('id'=>'voto', 'class'=>'span1','maxlength'=>2)); 
+					echo CHtml::dropDownList('voto', 4, 
+              			array(1 => '1', 2 => '2', 3 => '3', 4 => '4', 5 => '5'));
+				?>					
 				<?php echo CHtml::submitButton('Valorar', array('class'=>'btn btn-success')); ?>	
 			<?php endif; ?>
 		</div>

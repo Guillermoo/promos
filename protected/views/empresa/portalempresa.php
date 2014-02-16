@@ -66,7 +66,7 @@ if(!isset($model->usuario->promocion) || empty($model->usuario->promocion)):
 <?php
 else:
 	foreach ($model->usuario->promocion as $key => $promo) {
-		if($promo->fecha_fin>date("Y-m-d")){
+		if($promo->fecha_fin>date("Y-m-d") && $promo->estado == 1){
 ?>
 <li class="span3">
 	<div class="thumbnail light">

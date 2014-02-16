@@ -266,6 +266,8 @@ return array(
 		'adminEmail'=>'hugoepila@gmail.com',
 		'websiteEmail'=>'proemocion@proemocion.com',
 		'no_image'=>'/img/no_img.jpg',
+        'no_image_big'=>'/img/no_img_big.jpg',
+        'no_image_emp'=>'/img/no_img_emp.jpg',
 		'url_paypal'=>'wwww.sadfsdf.com',
 		'path_imgs'=> realpath( Yii::app( )->getBasePath( )."/../" ),
 		'cuenta_paypal' => 'proemocion@proemocion.com',

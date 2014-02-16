@@ -78,9 +78,9 @@
 								<span class="label label-info price">&euro; <? echo $promo->precio ?></span>
 								<!--<span class="label label-important price price-over">&euro; 1,<sup>99</sup></span>-->
 								<?php if (isset($promo->item)): ?>
-									<center><img data-hover="<?php echo Yii::app()->getBaseUrl().$promo->item->path ?>" src="<?php echo Yii::app()->getBaseUrl().$promo->item->path ?>" alt="<?php echo $promo->titulo ?>" /></center>
+									<center><img data-hover="<?php echo Yii::app()->getBaseUrl().$promo->item->path ?>" src="<?php echo Yii::app()->getBaseUrl().$promo->item->path ?>" alt="<?php echo $promo->titulo ?>" class="divpromo" /></center>
 								<?php else: ?>
-									<img data-hover="<?php echo Yii::app()->request->baseUrl.$path ?>"  alt="<?php echo $promo->titulo ?>" src="<?php echo Yii::app()->request->baseUrl.$path ?>">
+									<img data-hover="<?php echo Yii::app()->request->baseUrl.$path ?>"  alt="<?php echo $promo->titulo ?>" src="<?php echo Yii::app()->request->baseUrl.$path ?>" class="divpromo">
 								<?php endif; ?>
 							</a>
 							<div class="caption">
