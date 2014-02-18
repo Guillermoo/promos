@@ -163,6 +163,9 @@ class SiteController extends Controller
 	public function actionTerminos(){
 		$this->render('terminos');
 	}
+	public function actionPdf(){
+		$this->render('pdf');
+	}
 	/* Used to debug variables*/
     protected function Debug($var){
         $bt = debug_backtrace();

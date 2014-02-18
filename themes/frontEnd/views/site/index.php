@@ -45,7 +45,7 @@
 								<?php //$this->debug(Yii::app()->request->baseUrl.$promo->item->path) ?>
 								<center><img data-hover="<?php echo Yii::app()->getBaseUrl().$image->path ?>" src="<?php echo Yii::app()->getBaseUrl().$image->path ?>" alt="<?php echo $promo->titulo ?>"></center>
 							<?php else: ?>
-								<a href="promocion/<?=$promo->titulo_slug ?>"><img src="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>" alt=""></a>
+								<center><a href="promocion/<?=$promo->titulo_slug ?>"><img src="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>" alt=""></a></center>
 							<?php endif; ?>
 						
 							<div class="caption">

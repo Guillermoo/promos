@@ -163,8 +163,11 @@
 				if(UserModule::isBuyer()):
 				 ?>
 					<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-						<input type="hidden" name="cmd" value="_s-xclick">
-						<input type="hidden" name="hosted_button_id" value="6GXW9XDULHFUG">
+						<input type="hidden" name="cmd" value="_xclick">
+						<intput type="hidden" name="notify_url" value="http://wwww.proemocion.com/compra/checkoutCompra">
+						<input type="hidden" name="quantity" value="1">
+						<input type="hidden" name="return" value="http://www.proemocion.com/site/pagoCorrecto" >
+						<!--<input type="hidden" name="hosted_button_id" value="6GXW9XDULHFUG"> -->
 						<input type="hidden" name="business" value="<?php echo $datos->paypal_id; ?>">
 						<input type="hidden" name="item_name" value="<?=$model->titulo ?>">
 						<input type="hidden" name="amount" value="<?=$model->precio ?>">

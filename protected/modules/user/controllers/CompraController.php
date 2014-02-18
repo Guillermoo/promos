@@ -28,7 +28,7 @@ class CompraController extends Controller
 	{
 		return array(		
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('comprado','historialCompras','view','index','comprobarCompra'),
+				'actions'=>array('comprado','historialCompras','view','index','comprobarCompra','creaPdf'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -189,9 +189,11 @@ class CompraController extends Controller
 		));
 	}
 
-	private function CreaPdf($id){
+	public function actionCreaPdf($id){
 		$model = new Compra;
 		$model = Compra::model()->find('id=:id',array(':id'=>$id));
+		echo "Compra: ".$model->fecha_compra;
+		if($model && Yii::app()->user->id == $model->id_usuario){
 		$comprador = User::model()->find('user.id=:userId',array(':userId'=>$model->id_usuario));
 		$promo = Promocion::model()->find('t.id=:promoId',array(':promoId'=>$model->id_promo));
 
@@ -221,6 +223,9 @@ class CompraController extends Controller
 		$mPDF1->Output();
 
 		//$this->render('enviadopdf',array('model'=>$mPDF1));
+	}else{
+		$this->redirect(Yii::app()->getModule('user')->homeUrl);
+	}
 
 	}
 
