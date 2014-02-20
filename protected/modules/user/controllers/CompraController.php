@@ -191,37 +191,35 @@ class CompraController extends Controller
 
 	public function actionCreaPdf($id){
 		$model = new Compra;
-		$model = Compra::model()->find('id=:id',array(':id'=>$id));
-		echo "Compra: ".$model->fecha_compra;
+		$model = Compra::model()->find('id=:id',array(':id'=>$id));		
 		if($model && Yii::app()->user->id == $model->id_usuario){
 		$comprador = User::model()->find('user.id=:userId',array(':userId'=>$model->id_usuario));
-		$promo = Promocion::model()->find('t.id=:promoId',array(':promoId'=>$model->id_promo));
-
+		$promo = Promocion::model()->find('t.id=:promoId',array(':promoId'=>$model->id_promo));	
+		$empresa = User::model()->find('user.id =:empresaId',array(':empresaId'=>$promo->user_id));	
 		# mPDF
 		$mPDF1 = Yii::app()->ePdf->mpdf();
 
 		# You can easily override default constructor's params
-		$mPDF1 = Yii::app()->ePdf->mpdf('', 'A5');
+		$mPDF1 = Yii::app()->ePdf->mpdf('', 'A4');
 		
 		$mPDF1->SetCreator('Proemocion');
-		# render (full page)
-		$mPDF1->WriteHTML($this->renderPartial('pdf', array('model'=>$model,'comprador'=>$comprador,'promo'=>$promo)),true);
+		$title = 'Proemoción';
 
 		# Load a stylesheet
-		//$stylesheet = file_get_contents(Yii::app()->getBaseUrl()."/css/bootstrap.css");
-		//$mPDF1->WriteHTML($stylesheet, 1);	
-		
+		$stylesheet = file_get_contents(Yii::getPathOfAlias('webroot.themes')."/frontEnd/bootstrap/css/bootstrap.css");
+		$mPDF1->WriteHTML($stylesheet, 1);
+
 		# Renders image
-		//$mPDF1->WriteHTML(CHtml::image(Yii::app()->params['path_imgs']. '/noprofile.jpg' ));
-		
-		$mPDF1->WriteHTML("<strong>CLAVE DE COMPRA: ".$model->clave."</strong>");
+		$mPDF1->WriteHTML(CHtml::image(Yii::getPathOfAlias('webroot.img').'/logo.png' ));
+
+		# render (full page)
+		$mPDF1->WriteHTML($this->renderPartial('pdf', array('model'=>$model,'comprador'=>$comprador,'promo'=>$promo,'empresa'=>$empresa),true));		
 		
 		//ALMACENAR EL CÓDIGO EN LA BD PARA RELACIONARLO CON EL USUARIO QUE COMPRA LA PROMOCIÓN
-		$model->clave = $clave;
-		$model->save();
+		//$model->referencia = $clave;
+		//$model->save();
 		# Outputs ready PDF
-		$mPDF1->Output();
-
+		$mPDF1->Output();		
 		//$this->render('enviadopdf',array('model'=>$mPDF1));
 	}else{
 		$this->redirect(Yii::app()->getModule('user')->homeUrl);
