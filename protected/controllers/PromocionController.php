@@ -69,14 +69,17 @@ class PromocionController extends Controller
         		$criteria->limit = 8;
         		//$criteria->compare('destacado',Promocion::IS_NODESTACADA);
         		$criteria->compare('estado',Promocion::STATUS_ACTIVA);
-        		$criteria->addCondition('fecha_fin >= '.$now.' AND id <> '.$promocion->id);
+        		$criteria->addCondition('fecha_fin >= '.$now.' AND fecha_inicio <= '.$now.' AND id <> '.$promocion->id);
         		$criteria->select = 'id,titulo,titulo_slug,resumen,precio';
         		$criteria->order = 'RAND()';
 
 				$otrasPromos = Promocion::model()->findAll($criteria);
 
+				//Cojo los datos de la empresa a la que pertenece la promoción
+				$empresa = User::model()->find('user.id=:id',array(':id'=>$promocion->user_id));
+
 				$this->render('view',array(
-					'model'=>$promocion, 'datos'=>$datos, 'promos'=>$otrasPromos
+					'model'=>$promocion, 'datos'=>$datos, 'promos'=>$otrasPromos, 'empresa'=>$empresa
 				));
 				Yii::app()->end();
 			}

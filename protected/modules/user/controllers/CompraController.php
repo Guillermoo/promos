@@ -87,22 +87,40 @@ class CompraController extends Controller
 			//comprobar que el id de la promo existe
 			$model->id_usuario = Yii::app()->user->id;
 			$model->id_promo = $idPromo;
-			//GENERAR UN CÓDIGO ALEATORIO
-			$model->clave = UserModule::encrypting(microtime().$id);
 
-			if($model->save()){				
-				//genero el código y el pdf
-				$creaPdf($model->id);				
-				//envío el email al comprador
-				UserModule::sendmail(Yii::app()->user->email,'Proemoción','Ha comprado una promoción en www.proemocion.com. Gracias por su confianza. Puede consultar los datos de sus compras accediendo al panel de usuario accediendo a www.proemocion.com , logueándose como usuario y pinchando en la opción Mis Compras del menú.');
-				//envío email a proemocion para avisar 
-				UserModule::sendMail(Yii::app()->params['websiteEmail'],'Han comprado una promoción','El usuario: '.$model->id_usuario.' ha comprado la promoción: '.$model->id_promo);
-				$this->redirect(array('view','id'=>$model->id));				
-			}			
+			//miro si esa compra ya existe
+			$compra = Compra::model()->find('id_usuario=:id_usuario AND id_promo=:id_promo',array(':id_usuario'=>Yii::app()->user->id,':id_promo'=>$idPromo));					
+			//si no existe la creo y la guardo en la BD
+			if(!$compra || !isset($compra->id)){		
+				//cojo los datos de la promocion para almacenarlos en compra
+				$promocion = Promocion::model()->find('id=:id',array(':id'=>$idPromo));
+				$model->precio = $promocion->precio;
+				$model->estado = 1;
+
+				//GENERAR UN CÓDIGO ALEATORIO
+				$model->referencia = UserModule::encrypting(microtime().$model->id_usuario);	
+				echo $model->referencia;			
+
+				if($model->save()){						
+					//envío el email al comprador
+					//Yii::app()->getModule('user')->sendMail(Yii::app()->user->email,'Proemoción','Ha comprado una promoción en www.proemocion.com. Gracias por su confianza. Puede consultar los datos de sus compras accediendo al panel de usuario accediendo a www.proemocion.com , logueándose como usuario y pinchando en la opción Mis Compras del menú.');
+
+					//envío email a proemocion para avisar 
+					//Yii::app()->getModule('user')->sendMail(Yii::app()->params['websiteEmail'],'Han comprado una promoción','El usuario: '.$model->id_usuario.' ha comprado la promoción: '.$model->id_promo);
+					//$this->redirect(array('view','id'=>$model->id));				
+				}	
+
+		}else{
+			$model = $compra;
 		}
-
-		$this->render('error');
+		//genero el código y el pdf
+		
+		$this->creaPdf($model->id);		
+		}else{
+			$this->render('error');
+		}
 	}
+
 	public function actionHistorialCompras()
 	{
 		$dataProvider=new CActiveDataProvider('Compra',array(
@@ -189,6 +207,45 @@ class CompraController extends Controller
 		));
 	}
 
+	public function creaPdf($id){
+		$model = new Compra;
+		$model = Compra::model()->find('id=:id',array(':id'=>$id));		
+		if($model && Yii::app()->user->id == $model->id_usuario){
+		$comprador = User::model()->find('user.id=:userId',array(':userId'=>$model->id_usuario));
+		$promo = Promocion::model()->find('t.id=:promoId',array(':promoId'=>$model->id_promo));	
+		$empresa = User::model()->find('user.id =:empresaId',array(':empresaId'=>$promo->user_id));	
+		# mPDF
+		$mPDF1 = Yii::app()->ePdf->mpdf();
+
+		# You can easily override default constructor's params
+		$mPDF1 = Yii::app()->ePdf->mpdf('', 'A4');
+		
+		$mPDF1->SetCreator('Proemocion');
+		$title = 'Proemoción';
+
+		# Load a stylesheet
+		$stylesheet = file_get_contents(Yii::getPathOfAlias('webroot.themes')."/frontEnd/bootstrap/css/bootstrap.css");
+		$mPDF1->WriteHTML($stylesheet, 1);
+
+		# Renders image
+		$mPDF1->WriteHTML(CHtml::image(Yii::getPathOfAlias('webroot.img').'/logo.png' ));
+
+		# render (full page)
+		$mPDF1->WriteHTML($this->renderPartial('pdf', array('model'=>$model,'comprador'=>$comprador,'promo'=>$promo,'empresa'=>$empresa),true));		
+		
+		//ALMACENAR EL CÓDIGO EN LA BD PARA RELACIONARLO CON EL USUARIO QUE COMPRA LA PROMOCIÓN
+		//$model->referencia = $clave;
+		//$model->save();
+		# Outputs ready PDF
+		$mPDF1->Output();		
+		//$this->render('enviadopdf',array('model'=>$mPDF1));
+		//$this->redirect(Yii::app()->request->urlReferrer);
+	}else{
+		$this->redirect(Yii::app()->getModule('user')->homeUrl);
+	}
+
+	}
+
 	public function actionCreaPdf($id){
 		$model = new Compra;
 		$model = Compra::model()->find('id=:id',array(':id'=>$id));		
@@ -221,6 +278,7 @@ class CompraController extends Controller
 		# Outputs ready PDF
 		$mPDF1->Output();		
 		//$this->render('enviadopdf',array('model'=>$mPDF1));
+		//$this->redirect(Yii::app()->request->urlReferrer);
 	}else{
 		$this->redirect(Yii::app()->getModule('user')->homeUrl);
 	}

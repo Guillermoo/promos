@@ -54,7 +54,7 @@ class SiteController extends Controller
         $criteria2->limit = 12;
         $criteria2->compare('destacado',Promocion::IS_NODESTACADA);
         $criteria2->compare('estado',Promocion::STATUS_ACTIVA);
-        $criteria2->addCondition('fecha_fin >= '.$now);
+        $criteria2->addCondition('fecha_fin >= '.$now.'AND fecha_inicio <= '.$now);
         $criteria2->select = 'id,titulo,titulo_slug,resumen,precio';
         $criteria2->order = 'RAND()';
         //$criteria->addCondition('exp_d > "'.$now.'" ');

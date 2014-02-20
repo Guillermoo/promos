@@ -94,7 +94,7 @@
 		</a>
 	</div>
 
-	<div class="span7 well">
+	<div class="span8 well">
 
 		<div class="row-fluid">
 
@@ -175,6 +175,14 @@
 						<input type="image" src="https://www.sandbox.paypal.com/es_ES/ES/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal. La forma rápida y segura de pagar en Internet.">
 						<img alt="" border="0" src="https://www.sandbox.paypal.com/es_ES/i/scr/pixel.gif" width="1" height="1">
 					</form>
+					<div class="alert alert-info"><strong>Para disfrutar de esta oferta debes presentar el cupón. Descarga el cupón pinchando en el botón de bajo y preséntalo en el establecimiento.</strong> (Exclusivo para usuarios registrados en Proemoción)</div>
+					<?php $this->widget('bootstrap.widgets.TbButton', array(
+    					'label'=>'¡Descarga el cupón!',
+    					'type'=>'success', // null, 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
+    					'size'=>'large', // null, 'large', 'small' or 'mini'
+    					'icon'=>'download-alt white',
+    					'url'=>array('user/compra/comprado/idPromo/'.$model->id),
+						)); ?>
 				<?php else: ?>
 						<div class="alert alert-info"><h4>Para poder comprar una promoción debes estar registrado como usuario.</h4></div>
 						<div>
@@ -185,6 +193,27 @@
 		</div>
 	</div>	
 
+</div>
+<div class="clearfix"><h2>Datos de la empresa</h2></div>
+	<div class="span12">
+	<div class="well">
+		<div class="row-fluid">				
+			<h3><? echo CHtml::link(CHtml::encode($empresa->empresa->nombre),array('empresa/verpromos', 'id'=>$empresa->empresa->id),array('target'=>'_blank')) ?></h3>
+		</div>
+		<div class="row-fluid span4">
+			<h4>Dirección</h4>
+			<div><? echo CHtml::encode($empresa->profile->direccion) ?></div>
+		</div>
+		<div class="row-fluid span3">
+			<h4>Teléfono</h4>
+			<div><? echo CHtml::encode($empresa->profile->telefono) ?></div>
+		</div>
+		<div class="row-fluid span4">
+			<h4>Página web</h4>
+			<div><? echo CHtml::encode($empresa->empresa->web) ?></div>
+		</div>
+		<div class="clearfix">&nbsp;</div>		
+	</div>
 </div>
 
 <div class="row-fluid">

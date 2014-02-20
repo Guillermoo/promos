@@ -42,7 +42,7 @@ class Compra extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_usuario, id_promo, fecha_compra, estado', 'required'),
+			array('id_usuario, id_promo, estado', 'required'),
 			array('id_usuario, id_promo, estado, votado', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
