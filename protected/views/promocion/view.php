@@ -182,6 +182,7 @@
     					'size'=>'large', // null, 'large', 'small' or 'mini'
     					'icon'=>'download-alt white',
     					'url'=>array('user/compra/comprado/idPromo/'.$model->id),
+    					'toggle'=>true,
 						)); ?>
 				<?php else: ?>
 						<div class="alert alert-info"><h4>Para poder comprar una promoción debes estar registrado como usuario.</h4></div>
