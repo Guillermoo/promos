@@ -162,6 +162,7 @@
 				//Comprobar que es usuario registrado. Sino, no se muestra el botón de comprar
 				if(UserModule::isBuyer()):
 				 ?>
+					<?php if($model->tipo == 0): ?>
 					<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 						<input type="hidden" name="cmd" value="_xclick">
 						<intput type="hidden" name="notify_url" value="http://wwww.proemocion.com/compra/checkoutCompra">
@@ -175,6 +176,7 @@
 						<input type="image" src="https://www.sandbox.paypal.com/es_ES/ES/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal. La forma rápida y segura de pagar en Internet.">
 						<img alt="" border="0" src="https://www.sandbox.paypal.com/es_ES/i/scr/pixel.gif" width="1" height="1">
 					</form>
+				<?php else: ?>
 					<div class="alert alert-info"><strong>Para disfrutar de esta oferta debes presentar el cupón. Descarga el cupón pinchando en el botón de bajo y preséntalo en el establecimiento.</strong> (Exclusivo para usuarios registrados en Proemoción)</div>
 					<?php $this->widget('bootstrap.widgets.TbButton', array(
     					'label'=>'¡Descarga el cupón!',
@@ -184,6 +186,7 @@
     					'url'=>array('user/compra/comprado/idPromo/'.$model->id),
     					'toggle'=>true,
 						)); ?>
+				<?php endif; ?>					
 				<?php else: ?>
 						<div class="alert alert-info"><h4>Para poder comprar una promoción debes estar registrado como usuario.</h4></div>
 						<div>
@@ -237,11 +240,10 @@
 								$path=$promo->item->path; 
 						 	else:
 								$path=Yii::app()->params['no_image'];
-							endif;
-						?>
-						<li class="span2">
-							<div class="thumbnail light">
-							<a href="<?=$promo->titulo_slug ?>">
+							endif; ?>
+							<li class="span2">
+								<div class="thumbnail light">
+								<a href="<?=$promo->titulo_slug ?>">
 								<span class="label label-info price">&euro; <? echo $promo->precio ?></span>
 								<!--<span class="label label-important price price-over">&euro; 1,<sup>99</sup></span>-->
 								<?php if (isset($promo->item)): ?>
@@ -250,11 +252,11 @@
 									<center><img class="divpromothumb" data-hover="<?php echo Yii::app()->request->baseUrl.$path ?>"  alt="<?php echo $promo->titulo ?>" src="<?php echo Yii::app()->request->baseUrl.$path ?>"></center>
 								<?php endif; ?>
 								</a>
-								<div class="caption">
+									<div class="caption">
 									<a href="<? echo $promo->titulo_slug ?>"><?php echo $promo->titulo ?><a href="<?=$promo->titulo_slug ?>" class="btn btn-block">Más información</a>
+									</div>
 								</div>
-							</div>
-						</li>							
+							</li>							
 				<?php endforeach; ?>
 				</ul>
 				<?php if($cont==0): ?>

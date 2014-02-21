@@ -66,8 +66,17 @@
     </div>
     <?//endif;?>
 
-    <div class="row">
+     <div class="row">
            <br/><br/>
+    </div>
+
+    <div class="row well"><p><strong>Selecciona el tipo de promoción que quieres crear:</strong>
+    <p>Una promoción de <strong>Pago por internet</strong> se ha de pagar antes de disfrutarla, por el método de pago que ofrece Proemoción.</p>
+    <p>Una promoción de tipo <strong>Cupón</strong> permite que los usuarios registrados puedan descargarse un cupón, el cual deberán presentar en tu establecimiento para poder disfrutar de la promoción.</p>
+     <div >             
+        <?php echo $form->dropDownListRow($model, 'tipo', Promocion::itemAlias("Tipo")); ?>
+        <?php echo $form->error($model,'tipo'); ?>
+    </div>   
     </div>
 
     <div class="row">

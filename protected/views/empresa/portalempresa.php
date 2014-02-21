@@ -75,7 +75,7 @@ else:
 			<?php if (isset($promo->item)): ?>
 				<center><img data-hover="<?php echo Yii::app()->request->baseUrl.$promo->item->path ?>" src="<?php echo Yii::app()->getBaseUrl().$promo->item->path ?>" alt=""></center>
 			<?php else: ?>
-				<img data-hover="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>"  alt="">
+				<img src="<?php echo Yii::app()->getBaseUrl().Yii::app()->params['no_image'] ?>"  alt="">
 			<?php endif; ?>
 		</a>
 		<div class="caption">

@@ -21,6 +21,7 @@
  * @property string $condiciones
  * @property string $stock
  * @property integer $categorias_id
+ *@property integer $tipo
  *
  * The followings are the available model relations:
  * @property Compras[] $comprases
@@ -56,7 +57,7 @@ class Promocion extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('user_id, estado, titulo, titulo_slug, resumen, descripcion, descripcion_html, fecha_inicio, fecha_fin, fechaCreacion, destacado, precio, rebaja, condiciones, stock', 'required'),
-			array('user_id, estado, destacado, categorias_id, votos_cantidad, votos_suma, votos_media', 'numerical', 'integerOnly'=>true),
+			array('user_id, estado, destacado, categorias_id, votos_cantidad, votos_suma, votos_media, tipo', 'numerical', 'integerOnly'=>true),
 			array('titulo, titulo_slug, resumen', 'length', 'max'=>100),
 			array('descripcion, descripcion_html, condiciones', 'length', 'max'=>1000),
 			array('precio, rebaja', 'length', 'max'=>45),
@@ -104,6 +105,7 @@ class Promocion extends CActiveRecord
 			'condiciones' => 'Condiciones',
 			'stock' => 'Stock',
 			'categorias_id' => 'Categorias',
+			'tipo' => 'Tipo de promoción',
 		);
 	}
 
@@ -135,6 +137,7 @@ class Promocion extends CActiveRecord
 		$criteria->compare('condiciones',$this->condiciones,true);
 		$criteria->compare('stock',$this->stock,true);
 		$criteria->compare('categorias_id',$this->categorias_id);
+		$criteria->compare('tipo',$this->tipo);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

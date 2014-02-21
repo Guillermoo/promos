@@ -21,6 +21,7 @@
  * @property string $rebaja
  * @property string $condiciones
  * @property integer $stock
+ * @property integer $tipo
  *
  * The followings are the available model relations:
  * @property Empresas $empresa
@@ -37,9 +38,12 @@ class Promocion extends CActiveRecord
 	const IS_DESTACADA=1;
     const IS_NODESTACADA=0;
 
+    const PAGO = 0;
+    const CUPON = 1;
+
     public $nbempresa;
     public $categoria;
-	
+	public $tipo;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -66,7 +70,7 @@ class Promocion extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('titulo, titulo_slug, resumen,  fecha_inicio, precio, categorias_id', 'required'),
-			array('id,user_id,categorias_id,estado, destacado, stock,precio,votos_suma, votos_media, votos_cantidad', 'numerical', 'integerOnly'=>true),
+			array('id,user_id,categorias_id,estado, destacado, stock,precio,votos_suma, votos_media, votos_cantidad, tipo', 'numerical', 'integerOnly'=>true),
 			array('titulo, titulo_slug, resumen', 'length', 'max'=>100),
 			array('fecha_inicio, fecha_fin', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true),//fechaCreación es un timestamp.. //, 'on' => 'insert'
 			//array('fecha_inicio,fecha_fin', 'default', 'value' => '0000-00-00 00:00:00', 'setOnEmpty' => true, 'on' => 'insert'),
@@ -75,7 +79,7 @@ class Promocion extends CActiveRecord
             //array('fecha_inicio, fecha_fin', 'checkFechas'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id,user_id,categorias_id,nbempresa, titulo, titulo_slug, resumen, descripcion, descripcion_html, fecha_inicio, fecha_fin, fechaCreacion, destacado, precio, rebaja, condiciones, stock', 'safe', 'on'=>'search'),
+			array('id,user_id,categorias_id,nbempresa, titulo, titulo_slug, resumen, descripcion, descripcion_html, fecha_inicio, fecha_fin, fechaCreacion, destacado, precio, rebaja, condiciones, stock, tipo', 'safe', 'on'=>'search'),
 		);
 	}
         
@@ -136,6 +140,7 @@ class Promocion extends CActiveRecord
 			'votos_cantidad' => 'Total votos',
 			'votos_media' => 'Nota media',
 			'votos_suma' => 'Suma votos',
+			'tipo' => 'Tipo de promoción',
 		);
 	}
 	
@@ -267,7 +272,10 @@ class Promocion extends CActiveRecord
 			),
 			'Destacado' => array(/*Se cargará el combo tipos de usuarios a la hora de crear usuarios desde*/
 				self::IS_DESTACADA => UserModule::t('Highlight'),
-                                self::IS_NODESTACADA => UserModule::t('No Highlight'),
+                self::IS_NODESTACADA => UserModule::t('No Highlight'),
+			),
+			'Tipo' => array(self::PAGO => 'Pago por internet', 
+							self::CUPON => 'Cupón',
 			),
 		);
 		if (isset($code))
