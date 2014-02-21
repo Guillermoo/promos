@@ -65,14 +65,14 @@ class Promocion extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('titulo, titulo_slug, resumen,  fecha_inicio, fecha_fin, precio, categorias_id', 'required'),
+			array('titulo, titulo_slug, resumen,  fecha_inicio, precio, categorias_id', 'required'),
 			array('id,user_id,categorias_id,estado, destacado, stock,precio,votos_suma, votos_media, votos_cantidad', 'numerical', 'integerOnly'=>true),
 			array('titulo, titulo_slug, resumen', 'length', 'max'=>100),
-			array('fecha_inicio,fecha_fin', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true),//fechaCreación es un timestamp.. //, 'on' => 'insert'
+			array('fecha_inicio, fecha_fin', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true),//fechaCreación es un timestamp.. //, 'on' => 'insert'
 			//array('fecha_inicio,fecha_fin', 'default', 'value' => '0000-00-00 00:00:00', 'setOnEmpty' => true, 'on' => 'insert'),
 			array('descripcion, descripcion_html, condiciones', 'length', 'max'=>1000),
 			array('precio, rebaja', 'length', 'max'=>45),
-                        array('fecha_inicio,fecha_fin', 'checkFechas'),
+            //array('fecha_inicio, fecha_fin', 'checkFechas'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id,user_id,categorias_id,nbempresa, titulo, titulo_slug, resumen, descripcion, descripcion_html, fecha_inicio, fecha_fin, fechaCreacion, destacado, precio, rebaja, condiciones, stock', 'safe', 'on'=>'search'),

@@ -8950,3 +8950,943 @@ Stack trace:
 REQUEST_URI=/user/promocion/view/id/4
 HTTP_REFERER=http://www.proemocion.com/user/mispromociones
 ---
+2014/02/21 12:54:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/favicon.ico"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/themes/froggy/ico/favicon.ico
+---
+2014/02/21 12:54:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/6
+---
+2014/02/21 12:54:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/6
+---
+2014/02/21 12:59:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/6
+---
+2014/02/21 12:59:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/6
+---
+2014/02/21 13:00:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/6
+---
+2014/02/21 13:00:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/6
+---
+2014/02/21 13:04:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/6
+---
+2014/02/21 13:04:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/6
+---
+2014/02/21 13:04:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 13:04:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 13:09:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/8
+---
+2014/02/21 13:09:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/8
+---
+2014/02/21 13:12:38 [error] [exception.CException] exception 'CException' with message 'Image file not found: //22de4e27fea76557898db9b34333a9ea.jpg' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\extensions\EPhpThumb\EPhpThumb.php:59
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\extensions\EPhpThumb\EPhpThumb.php(44): EPhpThumb::thumbFactory('//22de4e27fea76...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\ItemController.php(68): EPhpThumb->create('//22de4e27fea76...')
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(49): ItemController->actionUpload()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CController->run('upload')
+#7 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/item/uploa...')
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#10 {main}
+REQUEST_URI=/~hugo/promos/user/item/upload
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/8
+---
+2014/02/21 13:12:46 [error] [exception.CException] exception 'CException' with message 'Image file not found: //e5b7d34bff8814f2b9a915308a95d50a.jpg' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\extensions\EPhpThumb\EPhpThumb.php:59
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\extensions\EPhpThumb\EPhpThumb.php(44): EPhpThumb::thumbFactory('//e5b7d34bff881...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\ItemController.php(68): EPhpThumb->create('//e5b7d34bff881...')
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(49): ItemController->actionUpload()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CController->run('upload')
+#7 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/item/uploa...')
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#10 {main}
+REQUEST_URI=/~hugo/promos/user/item/upload
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/8
+---
+2014/02/21 13:19:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 13:19:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 13:25:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 13:25:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 13:26:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 13:26:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 13:27:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 13:27:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 13:28:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 13:28:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 13:28:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 13:28:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 13:28:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 13:28:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 13:29:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 13:29:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 13:29:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 13:29:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 13:29:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/6
+---
+2014/02/21 13:29:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/6
+---
+2014/02/21 13:46:26 [error] [php] Undefined variable: numPromosActivas (C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\_form.php:39)
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): PromocionController->renderFile()
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\update.php(9): PromocionController->renderPartial()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): PromocionController->renderInternal()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): PromocionController->renderFile()
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): PromocionController->renderPartial()
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\PromocionController.php(248): PromocionController->render()
+#7 unknown(0): PromocionController->actionUpdate()
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): PromocionController->runAction()
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): PromocionController->filterAccessControl()
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#16 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): PromocionController->runActionWithFilters()
+#18 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): PromocionController->run()
+#19 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#20 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#21 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CWebApplication->run()
+REQUEST_URI=/~hugo/promos/user/promocion/update/id/6
+2014/02/21 13:47:12 [error] [php] Undefined variable: maxActivas (C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\_form.php:39)
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): PromocionController->renderFile()
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\update.php(9): PromocionController->renderPartial()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): PromocionController->renderInternal()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): PromocionController->renderFile()
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): PromocionController->renderPartial()
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\PromocionController.php(248): PromocionController->render()
+#7 unknown(0): PromocionController->actionUpdate()
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): PromocionController->runAction()
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): PromocionController->filterAccessControl()
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#16 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): PromocionController->runActionWithFilters()
+#18 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): PromocionController->run()
+#19 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#20 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#21 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CWebApplication->run()
+REQUEST_URI=/~hugo/promos/user/promocion/update/id/6
+2014/02/21 13:47:32 [error] [php] Undefined variable: maxActivas (C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\_form.php:39)
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): PromocionController->renderFile()
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\update.php(9): PromocionController->renderPartial()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): PromocionController->renderInternal()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): PromocionController->renderFile()
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): PromocionController->renderPartial()
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\PromocionController.php(248): PromocionController->render()
+#7 unknown(0): PromocionController->actionUpdate()
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): PromocionController->runAction()
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): PromocionController->filterAccessControl()
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#16 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): PromocionController->runActionWithFilters()
+#18 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): PromocionController->run()
+#19 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#20 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#21 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CWebApplication->run()
+REQUEST_URI=/~hugo/promos/user/promocion/update/id/6
+2014/02/21 13:48:26 [error] [php] Undefined variable: datosCuenta (C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\_form.php:39)
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): PromocionController->renderFile()
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\create.php(40): PromocionController->renderPartial()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): PromocionController->renderInternal()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): PromocionController->renderFile()
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): PromocionController->renderPartial()
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\PromocionController.php(189): PromocionController->render()
+#7 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(49): PromocionController->actionCreate()
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): PromocionController->runAction()
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): PromocionController->filterAccessControl()
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): PromocionController->runActionWithFilters()
+#16 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): PromocionController->run()
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#18 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#19 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CWebApplication->run()
+REQUEST_URI=/~hugo/promos/user/promocion/create
+2014/02/21 13:49:18 [error] [exception.CException] exception 'CException' with message 'Propiedad "Promocion"."cuenta" no se encuentra definida.' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\db\ar\CActiveRecord.php(143): CComponent->__get('cuenta')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\_form.php(39): CActiveRecord->__get('cuenta')
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require('C:\Documents an...')
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Documents an...', Array, true)
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\Documents an...', Array, true)
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\create.php(40): CController->renderPartial('_form', Array)
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require('C:\Documents an...')
+#7 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Documents an...', Array, true)
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\Documents an...', Array, true)
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): CController->renderPartial('create', Array, true)
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\PromocionController.php(189): CController->render('create', Array)
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(49): PromocionController->actionCreate()
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#21 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/promocion/...')
+#22 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#23 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#24 {main}
+REQUEST_URI=/~hugo/promos/user/promocion/create
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/6
+---
+2014/02/21 13:49:35 [error] [exception.CException] exception 'CException' with message 'Propiedad "Promocion"."cuentas" no se encuentra definida.' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\db\ar\CActiveRecord.php(143): CComponent->__get('cuentas')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\_form.php(39): CActiveRecord->__get('cuentas')
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require('C:\Documents an...')
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Documents an...', Array, true)
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\Documents an...', Array, true)
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\create.php(40): CController->renderPartial('_form', Array)
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require('C:\Documents an...')
+#7 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Documents an...', Array, true)
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\Documents an...', Array, true)
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): CController->renderPartial('create', Array, true)
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\PromocionController.php(189): CController->render('create', Array)
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(49): PromocionController->actionCreate()
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#21 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/promocion/...')
+#22 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#23 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#24 {main}
+REQUEST_URI=/~hugo/promos/user/promocion/create
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/6
+---
+2014/02/21 13:50:28 [error] [php] Undefined variable: numPromosActivas (C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\_form.php:39)
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): PromocionController->renderFile()
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\create.php(40): PromocionController->renderPartial()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): PromocionController->renderInternal()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): PromocionController->renderFile()
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): PromocionController->renderPartial()
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\PromocionController.php(189): PromocionController->render()
+#7 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(49): PromocionController->actionCreate()
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): PromocionController->runAction()
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): PromocionController->filterAccessControl()
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): PromocionController->runActionWithFilters()
+#16 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): PromocionController->run()
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#18 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#19 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CWebApplication->run()
+REQUEST_URI=/~hugo/promos/user/promocion/create
+2014/02/21 13:50:37 [error] [php] Undefined variable: numPromosActivas (C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\_form.php:39)
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): PromocionController->renderFile()
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\create.php(40): PromocionController->renderPartial()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): PromocionController->renderInternal()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): PromocionController->renderFile()
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): PromocionController->renderPartial()
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\PromocionController.php(189): PromocionController->render()
+#7 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(49): PromocionController->actionCreate()
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): PromocionController->runAction()
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): PromocionController->filterAccessControl()
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): PromocionController->runActionWithFilters()
+#16 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): PromocionController->run()
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#18 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#19 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CWebApplication->run()
+REQUEST_URI=/~hugo/promos/user/promocion/create
+2014/02/21 13:51:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 13:51:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 13:51:28 [error] [php] Undefined variable: maxActivas (C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\_form.php:39)
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): PromocionController->renderFile()
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\update.php(9): PromocionController->renderPartial()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): PromocionController->renderInternal()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): PromocionController->renderFile()
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): PromocionController->renderPartial()
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\PromocionController.php(248): PromocionController->render()
+#7 unknown(0): PromocionController->actionUpdate()
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): PromocionController->runAction()
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): PromocionController->filterAccessControl()
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#16 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): PromocionController->runActionWithFilters()
+#18 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): PromocionController->run()
+#19 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#20 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#21 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CWebApplication->run()
+REQUEST_URI=/~hugo/promos/user/promocion/update/id/6
+2014/02/21 13:51:36 [error] [php] Undefined variable: maxActivas (C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\_form.php:39)
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): PromocionController->renderFile()
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\update.php(9): PromocionController->renderPartial()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): PromocionController->renderInternal()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): PromocionController->renderFile()
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): PromocionController->renderPartial()
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\PromocionController.php(248): PromocionController->render()
+#7 unknown(0): PromocionController->actionUpdate()
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): PromocionController->runAction()
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): PromocionController->filterAccessControl()
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#16 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): PromocionController->runActionWithFilters()
+#18 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): PromocionController->run()
+#19 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#20 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#21 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CWebApplication->run()
+REQUEST_URI=/~hugo/promos/user/promocion/update/id/6
+2014/02/21 13:53:19 [error] [exception.CException] exception 'CException' with message 'Propiedad "RWebUser"."profile" no se encuentra definida.' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\auth\CWebUser.php(140): CComponent->__get('profile')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\create.php(25): CWebUser->__get('profile')
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require('C:\Documents an...')
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Documents an...', Array, true)
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\Documents an...', Array, true)
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): CController->renderPartial('create', Array, true)
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\PromocionController.php(189): CController->render('create', Array)
+#7 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(49): PromocionController->actionCreate()
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/promocion/...')
+#18 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#19 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#20 {main}
+REQUEST_URI=/~hugo/promos/user/promocion/create
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/6
+---
+2014/02/21 13:58:28 [error] [exception.CException] exception 'CException' with message 'Propiedad "RWebUser"."profile" no se encuentra definida.' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\auth\CWebUser.php(140): CComponent->__get('profile')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\create.php(25): CWebUser->__get('profile')
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require('C:\Documents an...')
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Documents an...', Array, true)
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\Documents an...', Array, true)
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): CController->renderPartial('create', Array, true)
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\PromocionController.php(189): CController->render('create', Array)
+#7 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(49): PromocionController->actionCreate()
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/promocion/...')
+#18 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#19 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#20 {main}
+REQUEST_URI=/~hugo/promos/user/promocion/create
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 14:02:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/6
+---
+2014/02/21 14:02:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/6
+---
+2014/02/21 14:02:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 14:02:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 14:02:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/6
+---
+2014/02/21 14:02:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/6
+---
+2014/02/21 14:03:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 14:03:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 14:06:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/6
+---
+2014/02/21 14:06:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/6
+---
+2014/02/21 14:06:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 14:06:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 14:07:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/12
+---
+2014/02/21 14:07:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/12
+---
+2014/02/21 14:08:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/12
+---
+2014/02/21 14:08:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/12
+---
+2014/02/21 14:08:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/11
+---
+2014/02/21 14:08:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/11
+---
+2014/02/21 14:08:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/11
+---
+2014/02/21 14:08:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/11
+---
+2014/02/21 14:08:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/12
+---
+2014/02/21 14:08:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/12
+---
+2014/02/21 14:08:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/12
+---
+2014/02/21 14:08:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/12
+---
+2014/02/21 14:09:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/11
+---
+2014/02/21 14:09:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/11
+---
+2014/02/21 14:11:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/12
+---
+2014/02/21 14:11:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/update/id/12
+---
+2014/02/21 14:11:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 14:11:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 14:11:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/02/21 14:11:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---

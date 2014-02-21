@@ -21,8 +21,7 @@
 
     <?php echo $form->errorSummary($model); ?>
 
-    <!-- Deberíamos controlar el SELECT para que no deje marcar el estado de la promoción si ya hemos llegado al límite. Es decir, si ya no podemos crear más promos activas, que la opción activa aparezca deshabilitada. 
-    He pasado los siguientes parámetros a esta vista para poder controlar esto y otras cosas:
+    <!--    
     $maxPromos: número máximo de promociones que permite el tipo de cuenta que tiene el usuario 
     
     $maxActivas: máximas promos activas que permite la cuenta
@@ -32,16 +31,29 @@
     $promoStock: número de promociones en stock que tiene el usuario
     
     $promoActivas: número de promociones activas que tiene el usuario
-    
-    Que desaparezca la opción de destacado si la promoción se marca como no-activa
      -->
 
 
-    <? //if (!$model->isNewRecord):?>
-    <div class="row">            
-        <?php echo $form->dropDownListRow($model, 'estado', Promocion::itemAlias("PromoStatus"),array('options'=>array(Promocion::STATUS_ACTIVA=>array('selected'=>'selected')))); ?>
+    <? if ($model->isNewRecord):?>
+    <div class="row">      
+        <?php if($promoActivas == $maxActivas): ?>    
+            <?php echo $form->dropDownListRow($model, 'estado', Promocion::itemAlias("PromoStatus"),array('options'=>array(Promocion::STATUS_ACTIVA=>array('disabled'=>'disabled')))); ?>            
+        <?php else: ?>
+            <?php echo $form->dropDownListRow($model, 'estado', Promocion::itemAlias("PromoStatus"),array('options'=>array(Promocion::STATUS_ACTIVA=>array('selected'=>'selected')))); ?>
+        <?php endif; ?>
         <?php echo $form->error($model,'estado'); ?>
     </div>
+    <?php else: ?>
+    <div class="row">      
+        <?php if($promoActivas == $maxActivas && $model->estado == 0): ?> 
+            <div class="alert alert-warning">Has alcanzado el límite de promociones ACTIVAS</div>   
+            <?php echo $form->dropDownListRow($model, 'estado', Promocion::itemAlias("PromoStatus"),array('options'=>array(Promocion::STATUS_ACTIVA=>array('disabled'=>'disabled')))); ?>            
+        <?php else: ?>
+            <?php echo $form->dropDownListRow($model, 'estado', Promocion::itemAlias("PromoStatus"),array('options'=>array(Promocion::STATUS_ACTIVA=>array('selected'=>'selected')))); ?>
+        <?php endif; ?>
+        <?php echo $form->error($model,'estado'); ?>
+    </div>
+    <?php endif; ?>
     <div class="row">
         <?php echo $form->labelEx($model,'destacada'); ?>
         <?php if($promosDest >= $maxDest):
@@ -106,7 +118,8 @@
                     
                 <?php  endif;?>
                     </div>
-
+            <?php else: ?>
+                <div class="alert alert-info">Podrás poner una <strong>imagen para la promoción</strong> cuando ya tengas la promoción creada. Para ello, después de rellenar los datos y guardar la promoción, pincha en el botón de editar la promoción (icono de lápiz: &nbsp;<span class="icon icon-pencil">&nbsp;</span>) en el administrador de promociones</div>
             <?php  endif;?>
         </div>
     <?php endif; ?>
@@ -173,10 +186,16 @@
                     //'debug'=>true,
                 ),
             ));*/?>
+            <?php if($model->isNewRecord): ?>
             <?php echo $form->datepickerRow($model, 'fecha_fin',
                  array('hint'=>'Haz click para seleccionar la fecha.',
                     'prepend'=>'<i class="icon-calendar"></i>',
                     'options'=>array('format'=>'yyyy-mm-dd'))); ?>
+            <?php else: ?>
+            
+                <?php echo $form->labelEx($model,'fecha_fin'); ?>
+                <?php echo $form->textField($model,'fecha_fin',array('disabled' => true)); ?>
+            <?php endif; ?>
             <?php echo $form->error($model,'fecha_fin'); ?>
     </div>
 
