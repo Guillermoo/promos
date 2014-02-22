@@ -101,9 +101,16 @@ class CompraController extends Controller
 				$model->referencia = UserModule::encrypting(microtime().$model->id_usuario);	
 				echo $model->referencia;			
 
-				if($model->save()){						
-					//envío el email al comprador
-					//Yii::app()->getModule('user')->sendMail(Yii::app()->user->email,'Proemoción','Ha comprado una promoción en www.proemocion.com. Gracias por su confianza. Puede consultar los datos de sus compras accediendo al panel de usuario accediendo a www.proemocion.com , logueándose como usuario y pinchando en la opción Mis Compras del menú.');
+				if($model->save()){		
+					$empresa = User::model()->find('user.id=:id',array(':id'=>$promocion->user_id));				
+					if($promocion->tipo == 0){ //si la promocion se tiene que pagar por internet
+						$usuario = User::model()->find('user.id=:id',array(':id'=>Yii::app()->user->id));
+						//envío el email al comprador
+						Yii::app()->getModule('user')->sendMail($usuario->email,'Proemoción','Ha comprado una promoción en www.proemocion.com. Gracias por su confianza. Puede consultar los datos de sus compras accediendo al panel de usuario accediendo a www.proemocion.com , logueándose como usuario y pinchando en la opción Mis Compras del menú.');
+					}
+
+					//envio un email al comprador
+					Yii::app()->getModule('user')->sendMail($empresa->email,'Proemoción','Enhorabuena, alguien ha comprado una de sus promociones. Para más informacion acceda a su panel de usuario en www.proemocion.com, donde podrá ver todas las ventas realizadas.');
 
 					//envío email a proemocion para avisar 
 					//Yii::app()->getModule('user')->sendMail(Yii::app()->params['websiteEmail'],'Han comprado una promoción','El usuario: '.$model->id_usuario.' ha comprado la promoción: '.$model->id_promo);
@@ -208,9 +215,9 @@ class CompraController extends Controller
 	}
 
 	public function creaPdf($id){
-		$model = new Compra;
+		//$model = new Compra;
 		$model = Compra::model()->find('id=:id',array(':id'=>$id));		
-		if($model && Yii::app()->user->id == $model->id_usuario){
+		if(Yii::app()->user->id == $model->id_usuario){
 		$comprador = User::model()->find('user.id=:userId',array(':userId'=>$model->id_usuario));
 		$promo = Promocion::model()->find('t.id=:promoId',array(':promoId'=>$model->id_promo));	
 		$empresa = User::model()->find('user.id =:empresaId',array(':empresaId'=>$promo->user_id));	

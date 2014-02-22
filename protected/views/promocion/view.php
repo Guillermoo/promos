@@ -177,7 +177,7 @@
 						<img alt="" border="0" src="https://www.sandbox.paypal.com/es_ES/i/scr/pixel.gif" width="1" height="1">
 					</form>
 				<?php else: ?>
-					<div class="alert alert-info"><strong>Para disfrutar de esta oferta debes presentar el cupón. Descarga el cupón pinchando en el botón de bajo y preséntalo en el establecimiento.</strong> (Exclusivo para usuarios registrados en Proemoción)</div>
+					<div class="alert alert-info"><strong>Para disfrutar de esta oferta debes presentar el cupón. Descarga el cupón pinchando en el botón de abajo y preséntalo en el establecimiento.</strong> (Exclusivo para usuarios registrados en Proemoción)</div>
 					<?php $this->widget('bootstrap.widgets.TbButton', array(
     					'label'=>'¡Descarga el cupón!',
     					'type'=>'success', // null, 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'

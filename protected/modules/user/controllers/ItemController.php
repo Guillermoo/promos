@@ -188,7 +188,7 @@ class ItemController extends CController
 		//Here we check if we are deleting and uploaded file
 		//$id = $_POST["id"];
 	    //$this->debug($id);
-	    aaegh;
+	    //aaegh;
         if( isset( $id )) {
         	//if (Item::puedeBorrar($id) ){
         		Item::deleteItemFromDisk($id);
@@ -196,12 +196,15 @@ class ItemController extends CController
 				/*echo json_encode( array( 
 	                    array( "error" => "Borradooo",
 	                ) ) );*/
-				//$this->render
+				//$this->render;
         	/*}else{
         		echo json_encode( array( 
 	                    array( "error" => "No está permitido borrar!!!!",
                 )) );
         	}*/
+        	 /*echo json_encode( array( array(
+	                        "id" => $id,
+	                    ) ) );*/
         }
 	}
 

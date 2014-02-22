@@ -114,17 +114,14 @@
                             );
                             ?>
                 <?php else: ?>
+                    <div id="img_promo">
                     <?php echo CHtml::image(Yii::app()->getBaseUrl().$image->path,"image",array("width"=>350)); ?>
                     <button class="btn btn-danger">
                             <i class="icon-trash icon-white"></i>
                             <?php echo CHtml::ajaxLink('Eliminar', array(Yii::app()->getBaseUrl().'/user/item/delete','id'=>$image->id),
-                            array('update' => '#logo_form'))?>
-                    </button>
-                    <?php echo CHtml::ajaxLink('Delete', array(
-                        'empresa/deleteItem',
-                        'id'=>$image->id),
-                        array('update' => '#logo_form'))?>
-                    
+                            array('update' => '#img_promo'))?>
+                    </button>                   
+                    </div>
                 <?php  endif;?>
                     </div>
             <?php else: ?>

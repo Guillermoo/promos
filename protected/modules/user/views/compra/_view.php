@@ -2,26 +2,27 @@
 /* @var $this CompraController */
 /* @var $data Compra */
 ?>
+<?php 
+	$promo = Promocion::model()->find('id=:id',array(':id'=>$data->id_promo));
+?>
 <div class="view well">
 <li>
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
 	<?php echo CHtml::encode($data->id); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('id_promo')); ?>:</b>
-	<?php echo CHtml::encode($data->id_promo); ?>
+	<b><?php echo CHtml::encode($promo->getAttributeLabel('titulo')); ?>:</b>
+	<?php echo CHtml::encode($promo->titulo); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($promo->getAttributeLabel('resumen')); ?>:</b>
+	<?php echo CHtml::encode($promo->resumen); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('fecha_compra')); ?>:</b>
 	<?php echo CHtml::encode($data->fecha_compra); ?>
 	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('estado')); ?>:</b>
-	<?php if($data->estado == 1): ?>
-			<span class="label label-success">Compra realizada </span>
-	<?php else: ?>
-			<span class="label label-warning"> En proceso </span>
-	<?php endif; ?>
+	
 	<div class ="clearfix">&nbsp;</div>
 </li>
 

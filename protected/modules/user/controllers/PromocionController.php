@@ -30,7 +30,7 @@ class PromocionController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','promosActivas','promosStock','promosDestacadas','votar','index','delete'),
+				'actions'=>array('create','update','promosActivas','promosStock','promosDestacadas','votar','index', 'view','delete'),
 				//'users'=>array(Yii::app()->getModule('user')->user()->username),
 				'users'=>array('@'),
 			),
@@ -82,6 +82,7 @@ class PromocionController extends Controller
 	 */
 	public function actionView($id)
 	{
+        Yii::app()->theme = 'frontEnd';      
 		//$dataProvider=new CActiveDataProvider('Promocion');
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
