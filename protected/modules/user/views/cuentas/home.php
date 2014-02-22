@@ -3,8 +3,8 @@
 <?php //(G)Si el usuario no ha rellenado los campos mínimos para poder vender, le apareceŕa?>
 <?php //Hay que mirar que si es ?>
 <?php if ($model->status == 1):?>
-<div class="alert alert-success">
-  <strong>Atención!</strong> Está usando la suscripción gratuita.
+<div class="alert alert-info">
+  <strong>Atención!</strong> No ha comprado ningún Bono. No podrá publicar sus promociones hasta que no tenga uno.
 </div>
 
 <?php elseif($model->status == 2) :?>
@@ -13,10 +13,6 @@
 	<?php if($model->profile->tipocuenta != 3):?>
 		<?php echo "Todavía no se ha realizado el pago";?>
 	<?php endif;?>
-	<?php // cancelación de la suscripción ?>
-	<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_subscr-find&alias=CJRD44LCAZWBY">
-	<img src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_unsubscribe_SM.gif" border="0">
-	</a>
 	
 <?php endif;?>
 <div class="clearfix">&nbsp;</div>

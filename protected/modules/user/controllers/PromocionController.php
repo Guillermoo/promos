@@ -99,12 +99,15 @@ class PromocionController extends Controller
         //(H)si el status == 2 es que ha seleccionado un tipo de cuenta de pago pero todavía no ha pagado, por lo que no debe poder crear una nueva promoción
      
         $usuario = User::model()->findByPk(Yii::app()->user->id);
-            
+     
+        if($usuario->superuser == 2){ //es empresa          
+
+        //compruebo si los datos están rellenados o están pendiente de pago     
         if($usuario->status == 2){                
             $this->render('_hadtopay');
             Yii::app()->end();
         }else{
-            if($usuario->profile->username == null || $usuario->empresa->nombre ==null){ //el campo username es obligatorio, por lo que si este campo está vacío es que no ha rellenado eel perfil
+            if($usuario->profile->username == null || $usuario->empresa->nombre ==null){ //el campo username es obligatorio, por lo que si este campo está vacío es que no ha rellenado el perfil
                 $this->render('_faltaperfil');    
                  Yii::app()->end();          
             }
@@ -188,6 +191,9 @@ class PromocionController extends Controller
         $this->render('create',array(
                 'model'=>$model,'item'=>$item,'image'=>$image,'cuenta'=>$usuario->profile->tipocuenta, 'categorias'=>$categorias,'promosDest'=>$numPromosDest, 'maxDest'=>$datosCuenta->prom_dest
         ));	
+    }else{ //NO es empresa
+        $this->redirect(Yii::app()->user->returnUrl);
+    }
     }
 	
 /**

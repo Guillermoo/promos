@@ -36,7 +36,7 @@
 
     <? if ($model->isNewRecord):?>
     <div class="row">      
-        <?php if($promoActivas == $maxActivas): ?>    
+        <?php if($promoActivas == $maxActivas || (isset($verificado) && $verificado == 0)): ?>    
             <?php echo $form->dropDownListRow($model, 'estado', Promocion::itemAlias("PromoStatus"),array('options'=>array(Promocion::STATUS_ACTIVA=>array('disabled'=>'disabled')))); ?>            
         <?php else: ?>
             <?php echo $form->dropDownListRow($model, 'estado', Promocion::itemAlias("PromoStatus"),array('options'=>array(Promocion::STATUS_ACTIVA=>array('selected'=>'selected')))); ?>

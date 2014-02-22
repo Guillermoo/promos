@@ -166,6 +166,16 @@ class SiteController extends Controller
 	public function actionPdf(){
 		$this->render('pdf');
 	}
+	public function actionPagoMini(){
+		$this->render('bonoMini');
+
+	}
+	public function actionPagoBasico(){
+		$this->render('bonoBasico');
+	}
+	public function actionPagoPremium(){
+		$this->render('bonoPremium');
+	}
 	/* Used to debug variables*/
     protected function Debug($var){
         $bt = debug_backtrace();

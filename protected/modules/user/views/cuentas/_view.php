@@ -6,12 +6,12 @@
         <div class="span4 plan plan-name-<?php echo CHtml::encode($data->titulo); ?>">
           <div class="plan-name-<?php echo CHtml::encode($data->titulo); ?>-head">
             <h2><center><?php echo CHtml::encode($data->titulo); ?></center></h2>
-            <span><center><?php echo CHtml::encode($data->precio); ?> € / Mes</center></span>
+            <span><center><?php echo CHtml::encode($data->precio); ?> €</center></span>
           </div>
           <ul>
-            <li class="plan-feature"><?php echo CHtml::encode($data->prom_activ); ?> Promo activa</li>
-            <li class="plan-feature"><?php echo CHtml::encode($data->prom_stock); ?> Promos en stock</li>
-            <li class="plan-feature"><?php echo CHtml::encode($data->prom_dest); ?> Promos destacadas</li>
+            <li class="plan-feature"><?php echo CHtml::encode($data->prom_activ); ?> Promoción activa</li>
+            <li class="plan-feature"><?php echo CHtml::encode($data->prom_stock); ?> Promociones en stock</li>
+            <li class="plan-feature"><?php echo CHtml::encode($data->prom_dest); ?> Promociones destacadas</li>
           </ul>
 
             <p><center><a href="cuentas/verCuenta/id/<?php echo $data->id ?>" class="btn btn-large btn-inverse btn-plan-select"><i class="icon-white icon-ok"></i> Seleccionar</a></center></p>

@@ -15,6 +15,7 @@
  * @property string $facebook
  * @property string $urlTienda
  * @property string $modificado
+ * @property integer $verificado
  *
  * The followings are the available model relations:
  * @property Items $logo
@@ -57,6 +58,7 @@ class Empresa extends CActiveRecord
             array('cif', 'match', 'pattern' => '(X(-|\.)?0?\d{7}(-|\.)?[A-Z]|[A-Z](-|\.)?\d{7}(-|\.)?[0-9A-Z]|\d{8}(-|\.)?[A-Z])','message' => UserModule::t("The cif must be valid."), 'except' => 'admin'),
             array('nombre,nombre_slug,web, twitter, facebook, urlTienda', 'length', 'max'=>100),
             array('modificado', 'safe'),
+            array('verificado', 'numerical', 'integerOnly'=>true),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('nombre,nombre_slug, user_id, cif, web, twitter, facebook, urlTienda, modificado', 'safe', 'on'=>'search'),
@@ -105,6 +107,7 @@ class Empresa extends CActiveRecord
             'urlTienda' => 'Url Tienda',
             'modificado' => 'Modificado',
             'nbusuario' => 'Nombre de usuario',
+            'verificado' => 'Verificado',
         );
     }
 
@@ -131,6 +134,7 @@ class Empresa extends CActiveRecord
         $criteria->compare('urlTienda',$this->urlTienda,true);*/
         $criteria->compare('modificado',$this->modificado,true);
         $criteria->compare( 'usuario.username', $this->nbusuario, true );
+         $criteria->compare('verificado',$this->verificado,true);
         return new CActiveDataProvider($this, array(
                 'criteria'=>$criteria,
         ));

@@ -35,9 +35,18 @@ array(
 	if($datosCuenta->prom_stock == $numPromosStock)
 		echo "<div class=\"alert alert-warning\">No puedes crear más promociones en <b>STOCK</b></div>";
 	?>
+	<?php 
+	if($user->empresa->verificado == 0): ?>
+		<div class="row">			
+		<div class="well well-small">
+			<div class="alert alert-error"><b>ATENCIÓN:</b> No puedes publicar promociones hasta que no se verifica tu cuenta.
+		</div>
+		<p>Si ha rellenado los datos de su perfil y los datos de su empresa, un responsable de Proemoción verificará que su empresa es real y que los datos son correctos. Si es así, se activará su cuenta para que pueda publicar sus promociones. </p><p>Para cualquier consulta no dude en contactar con nosotros, bien por teléfono o a través del formulario de contacto pinchando en "Contacto" en el menú superior.</p></div>
+		</div>
+	<?php endif; ?>
 	<?php
 	if($numPromos < $maxPromos){
-		echo $this->renderPartial('_form', array('model'=>$model,'item'=>$item,'image'=>$image, 'maxPromos'=>$maxPromos, 'maxActivas'=>$datosCuenta->prom_activ, 'maxStock'=>$datosCuenta->prom_stock,'promoActivas'=>$numPromosActivas,'promoStock'=>$numPromosStock,'maxDest'=>$maxDest,'promosDest'=>$promosDest));
+		echo $this->renderPartial('_form', array('model'=>$model,'item'=>$item,'image'=>$image, 'maxPromos'=>$maxPromos, 'maxActivas'=>$datosCuenta->prom_activ, 'maxStock'=>$datosCuenta->prom_stock,'promoActivas'=>$numPromosActivas,'promoStock'=>$numPromosStock,'maxDest'=>$maxDest,'promosDest'=>$promosDest,'verificado'=>$user->empresa->verificado));
 	}else{
 		echo $this->renderPartial('_denied');
 	}

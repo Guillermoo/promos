@@ -23,7 +23,7 @@
   border-radius: 5px 5px 5px 5px;
  }
   
-.plan-name-Basic {
+.plan-name-BASICO {
   padding: 20px;
   color: #fff;
   background-color: #90C900;
@@ -32,7 +32,7 @@
   border-radius: 5px 5px 5px 5px;
  }
   
-.plan-name-Advanced {
+.plan-name-PREMIUM {
   padding: 20px;
   color: #fff;
   background-color: #0070FF;
@@ -41,7 +41,7 @@
   border-radius: 5px 5px 5px 5px;
   } 
 
-  .plan-name-Lite {
+  .plan-name-MINI {
   padding: 20px;
   color: #fff;
   background-color: #E70A8F;
@@ -49,7 +49,7 @@
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
   } 
-  .plan-name-Basic-head {
+  .plan-name-BASICO-head {
   padding: 20px;
   color: #fff;
   background-color: #4A8500;
@@ -58,7 +58,7 @@
   border-radius: 5px 5px 5px 5px;
  }
   
-.plan-name-Advanced-head {
+.plan-name-PREMIUM-head {
   padding: 20px;
   color: #fff;
   background-color: #0054BE;
@@ -67,7 +67,7 @@
   border-radius: 5px 5px 5px 5px;
   } 
 
-  .plan-name-Lite-head {
+  .plan-name-MINI-head {
   padding: 20px;
   color: #fff;
   background-color: #AF076C;

@@ -2,7 +2,7 @@
 <h2>Disponemos de los siguientes tipos de cuentas:</h2>
 <div class="row-fluid pricing-table pricing-three-column">
 <?php if ($model->status == 1):?>
-	<?php echo "Ud. está usando la cuenta gratuita. No cree que es un poco rancio?" ?>
+	<?php echo "Ud. está usando la cuenta gratuita" ?>
 <?php endif; ?>
 
 <div class="row-fluid pricing-table pricing-three-column">

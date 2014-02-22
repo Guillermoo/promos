@@ -134,7 +134,13 @@ class EmpresaController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Empresa');
+		$dataProvider=new CActiveDataProvider('Empresa', 
+			array(
+	    		'criteria'=>array(
+	        		'condition'=>'verificado = 1',
+	    		),
+			)
+		);
 		//$this->debug($dataProvider);
 		//$empresa = $this->loadModel($dataProvider->id_usuario);
 		//$this->debug($dataProvider->id);
