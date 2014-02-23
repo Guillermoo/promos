@@ -347,11 +347,27 @@ class User extends CActiveRecord
 		
 		$return = true;
 		
-		if (isset($model->profile))
-			$return = $this->compruebaCamposMinimosProfile($model->profile);
+		if (isset($model->profile)){
+			//$return = $this->compruebaCamposMinimosProfile($model->profile);
+			if (($model->profile->direccion == null) || ($model->profile->direccion == 0) )
+				$return =  "Falta el cmapo dirección";
 		
-		if (isset($model->empresa))
-			$return = $this->compruebaCamposMinimosEmpresa($model->empresa);
+			elseif (($model->profile->telefono == null) || (!isset($model->profile->telefono) || ($model->profile->telefono === '') ) 	)
+				$return = "Falta el cmapo telefono";
+		
+			elseif (($model->profile->paypal_id == null) || (!isset($model->profile->paypal_id) || ($model->profile->paypal_id === '') ) 	){
+				$return = false;
+			}
+		}
+		
+		if (isset($model->empresa)){
+			//$return = $this->compruebaCamposMinimosEmpresa($model->empresa);
+			if (($model->empresa->nombre == null) || (!isset($model->empresa->nombre)) )
+				$return =  "Falta el campo nombre";
+		
+			elseif (($model->empresa->cif == null) || (!isset($model->empresa->cif) )	)
+				$return =  "Falta el campo cif";	
+		}
 		
 		return $return;
 		
@@ -371,10 +387,10 @@ class User extends CActiveRecord
 	
 	private function compruebaCamposMinimosEmpresa($empresa){
 		if (($empresa->nombre == null) || (!isset($empresa->nombre)) )
-			$return =  "Falta el cmapo nombre";
+			$return =  "Falta el campo nombre";
 		
 		elseif (($empresa->cif == null) || (!isset($empresa->cif) )	)
-			$return =  "Falta el cmapo cif";	
+			$return =  "Falta el campo cif";	
 	}
 	
 	public static function cuentaCaducada($model){
