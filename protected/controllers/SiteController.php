@@ -43,7 +43,7 @@ class SiteController extends Controller
         $criteria->limit = 1;
         $criteria->compare('destacado',Promocion::IS_DESTACADA);
         $criteria->compare('estado',Promocion::STATUS_ACTIVA);        
-		$criteria->addCondition('fecha_fin >= '.$now);
+		$criteria->addCondition('fecha_fin >= '.$now.'AND fecha_inicio <= '.$now);
         $criteria->select = 'id,titulo,titulo_slug,resumen,precio';
         $criteria->order = 'RAND()';
         //$criteria->addCondition('exp_d > "'.$now.'" ');
@@ -175,6 +175,10 @@ class SiteController extends Controller
 	}
 	public function actionPagoPremium(){
 		$this->render('bonoPremium');
+	}
+
+	public function actionAbout(){
+		$this->render('pages/about');
 	}
 	/* Used to debug variables*/
     protected function Debug($var){

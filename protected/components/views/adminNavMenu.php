@@ -2,7 +2,7 @@
 	<!-- navbar de bootstrap -->
 	<?php $this->widget('bootstrap.widgets.TbNavbar', array(
 	    'type'=>'', // null or 'inverse'
-	    'brand'=>CHtml::image(Yii::app()->theme->getBaseUrl().'/img/logo.png').CHtml::link('Salir',array('/user/logout')),
+	    'brand'=>CHtml::image(Yii::app()->theme->getBaseUrl().'/img/logo.png'),
 	    'brandUrl'=>Yii::app()->baseUrl,
 	    'collapse'=>true, // requires bootstrap-responsive.css
 	    'items'=>array(

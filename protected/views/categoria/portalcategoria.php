@@ -36,9 +36,16 @@
 			<ul class="thumbnails product-list-inline-large">
 
 				<?php 
-				$proemos=Promocion::model()->findAllByAttributes(array(
-					'categorias_id'=>$model->id // $model= category model
-				));
+				$criteria=new CDbCriteria;
+				$now = new CDbExpression("NOW()");
+
+		        $criteria->with = array( 'item');
+		        //$criteria->compare('destacado',Promocion::IS_DESTACADA);
+		        $criteria->compare('estado',Promocion::STATUS_ACTIVA);        
+		        $criteria->compare('categorias_id',$model->id); 
+				$criteria->addCondition('fecha_fin >= '.$now.'AND fecha_inicio <= '.$now);
+		        $criteria->select = 'id,titulo,titulo_slug,resumen,precio';
+				$proemos=Promocion::model()->findAll($criteria);
 
 				if($proemos):
 					foreach($proemos as $promo): ?>

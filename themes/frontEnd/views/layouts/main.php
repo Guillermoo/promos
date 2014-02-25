@@ -23,6 +23,7 @@
 		<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/bootstrap/css/bootstrap-responsive.min.css">
 		<!-- Personalizacion CierzoDevs -->
 		<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/css/cdestilos.css">
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
 		<!-- --------------- -->
 		<script src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/js/config.js"></script>
 		<script src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/js/modernizr-2.6.2.min.js"></script>
@@ -119,7 +120,7 @@
 								<div class="nav-collapse">
 									<ul class="nav">
 										<?php 
-										if(Yii::app()->controller->id == 'site'):
+										if(Yii::app()->controller->action->id == 'index'):
 										?>
 										<li class="active"><a href=<?=Yii::app()->homeUrl ?> ><i class="icon-home"></i></a></li>
 									<?php else: ?>
@@ -140,7 +141,15 @@
 										else:
 											echo Chtml::link('Empresas',array('/empresas'));
 										endif;
-										?></li>										
+										?></li>			
+
+										<li><?php
+											if(Yii::app()->controller->action->id == 'about'):
+												echo CHtml::link('Qué es Proemoción',array('site/about'),array('class'=>'active')); 
+											else:
+												echo CHtml::link('Qué es Proemoción',array('site/about')); 
+											endif;
+										?></li>								
 									</ul>										
 								</div>
 							</div>
@@ -152,6 +161,7 @@
 		</div>
 	</body>
 	<div class="footer">
-			<p align="center"> ProEmoción - Tu web de promociones  |    contacto: 976 XXX XXX </p>
-		</div>
+			<p align="center"> ProEmoción - Tu web de promociones  |   contacto: 652 389 176  |  proemocion(arroba)proemocion.com | Zaragoza | España</p>
+			<p align="center">¿Quieres publicar tus promociones en Proemoción? Llámanos y te informaremos sin compromiso</p>				
+	</div>
 </html>

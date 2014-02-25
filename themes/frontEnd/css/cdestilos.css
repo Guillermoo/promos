@@ -83,3 +83,16 @@ body{
 .divpromothumb{
 	max-height: 120px;
 }
+
+.textopro{
+	font-size: 17px;
+	color: #4C4C4C;
+	max-width: 800px;
+	line-height: 30px;
+}
+.rounded{
+	-webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -khtml-border-radius: 8px;  
+    border-radius: 8px;
+}
