@@ -11,13 +11,13 @@
 }
 
 .footer{
-	padding: 10px;
+	padding: 20px;
 	background-color: #90C900;
 	color: #fff;
 	position: absolute;
 	width: 100%;
 	overflow: hidden;
-	height: 40px;
+	height: 80px;
 }
 .logo{
 	padding-bottom: 10px;

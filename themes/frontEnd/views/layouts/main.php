@@ -162,6 +162,7 @@
 	</body>
 	<div class="footer">
 			<p align="center"> ProEmoción - Tu web de promociones  |   contacto: 652 389 176  |  proemocion(arroba)proemocion.com | Zaragoza | España</p>
-			<p align="center">¿Quieres publicar tus promociones en Proemoción? Llámanos y te informaremos sin compromiso</p>				
+			<div class="clearfix">&nbsp;</div>
+			<p align="center">¿Quieres publicar tus promociones en ProEmoción? Llámanos y te informaremos sin compromiso</p>				
 	</div>
 </html>
