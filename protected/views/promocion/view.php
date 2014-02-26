@@ -127,7 +127,7 @@
 			</div>
 		</div>
 		<div class="row-fluid">
-			<div class="span7">
+			<div class="span12">
 				<br>
 				<h4>Descripción</h4>
 				<?php if(isset($model->descripcion) && !empty($model->Descripción)):?>

@@ -10,8 +10,9 @@ Supports Thumbs: false
 
 .theme-bar.slider-wrapper {
     position: relative;
-    border: 1px solid #333;
+    border: 2px solid #BEBEBE;
     overflow: hidden;
+    border-radius:8px;
 }
 .theme-bar .nivoSlider {
 	position:relative;

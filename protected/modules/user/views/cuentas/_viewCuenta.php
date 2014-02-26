@@ -36,36 +36,31 @@
     </div>
     </p>
     <p> 
-      El pago se debe realizar a través de paypal. Una vez que el pago se haya realizado, ya podrás comenzar a publicar promociones y ganar dinero.
+      El pago se puede hacer mediante PayPal o con tarjeta. Una vez que el pago se haya realizado, ya podrás comenzar a publicar promociones y ganar dinero.
       <div class="botonpaypal"><center>
     
-    <?php if($data->id == 1): ?>
     <?php //SI CAMBIO LOS BOTONES DE SUSCRIPCIÓN, MANTENER EL CAMPO "CUSTOM" ?>
     <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
       <input type="hidden" name="cmd" value="_s-xclick">
       <input type="hidden" name="custom" value="<?=Yii::app()->user->id ?>_<?=$data->id; ?>" />
-      <input type="hidden" name="hosted_button_id" value="ZYDSP49JCGQK4">
-      <input type="image" src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal. La forma rápida y segura de pagar en Internet.">
+      <intput type="hidden" name="notify_url" value="http://wwww.proemocion.com/compra/checkoutBono">
+      <input type="hidden" name="quantity" value="1">
+      <?php if($data->id == 1): ?>
+        <input type="hidden" name="return" value="http://www.proemocion.com/site/pagoMini" >
+      <?php endif; ?>
+      <?php if($data->id == 2): ?>
+        <input type="hidden" name="return" value="http://www.proemocion.com/site/pagoBasico" >
+      <?php endif; ?>
+      <?php if($data->id == 3): ?>
+        <input type="hidden" name="return" value="http://www.proemocion.com/site/pagoPremium" >
+      <?php endif; ?>
+      <input type="hidden" name="amount" value="<?=$data->precio ?>">      
+      <input type="hidden" name="business" value="<?php echo Yii::app()->params['websiteEmail'] ?>">
+      <input type="image" src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal. La forma rápida y segura de pagar en Internet.">
       <img alt="" border="0" src="https://www.paypalobjects.com/es_ES/i/scr/pixel.gif" width="1" height="1">
     </form>
-    <?php elseif ($data->id == 2): ?>
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-        <input type="hidden" name="cmd" value="_s-xclick">
-        <input type="hidden" name="custom" value="<?=Yii::app()->user->id ?>_<?=$data->id; ?>" />
-        <input type="hidden" name="hosted_button_id" value="WGBDB8K3J7AQ8">
-        <input type="image" src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal. La forma rápida y segura de pagar en Internet.">
-        <img alt="" border="0" src="https://www.paypalobjects.com/es_ES/i/scr/pixel.gif" width="1" height="1">
-      </form>
-    <?php elseif ($data->id == 3): ?>
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-        <input type="hidden" name="cmd" value="_s-xclick">
-        <input type="hidden" name="custom" value="<?=Yii::app()->user->id ?>_<?=$data->id; ?>" />
-        <input type="hidden" name="hosted_button_id" value="REZ4D8SXMC8KJ">
-        <input type="image" src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal. La forma rápida y segura de pagar en Internet.">
-        <img alt="" border="0" src="https://www.paypalobjects.com/es_ES/i/scr/pixel.gif" width="1" height="1">
-      </form>
-    <?php endif; ?>
 
+    </form>
     </center></div>
     
 
