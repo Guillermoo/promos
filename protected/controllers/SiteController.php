@@ -180,6 +180,7 @@ class SiteController extends Controller
 	public function actionAbout(){
 		$this->render('pages/about');
 	}
+
 	/* Used to debug variables*/
     protected function Debug($var){
         $bt = debug_backtrace();
