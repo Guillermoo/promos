@@ -304,7 +304,7 @@ class CompraController extends Controller
 		}
 	}
 
-	private function insertarCompra($idUsuario,$idPromocion,$referencia,$precio,$custom){			
+	public function insertarCompra($idUsuario,$idPromocion,$referencia,$precio,$custom){			
 			$model=new Compra;
 
 			$model->id_usuario = $idUsuario;
@@ -356,11 +356,11 @@ class CompraController extends Controller
 
 		// post back to PayPal system to validate
 		//$header = "POST /cgi-bin/webscr HTTP/1.0\r\n"; 
-		$header .= "POST /cgi-bin/webscr HTTP/1.0\r\n";
-		$header .= "Host: www.paypal.com\r\n";
+		$header = "POST /cgi-bin/webscr HTTP/1.0\r\n";
+		$header .= "Host: www.sandbox.paypal.com\r\n";
 		$header .= "Content-Type: application/x-www-form-urlencoded\r\n";
 		$header .= "Content-Length: " . strlen($req) . "\r\n\r\n";
-		$fp = fsockopen ('ssl://www.paypal.com', 443, $errno, $errstr, 30);
+		$fp = fsockopen ('ssl://www.sandbox.paypal.com', 443, $errno, $errstr, 30);
 		
 		// assign posted variables to local variables	
 		if(!isset($_POST['txn_id'])){
@@ -407,12 +407,12 @@ class CompraController extends Controller
 						$idUsuario = $ids[0];
 						$idBono = $ids[1];
 
+						$idUsuario = 11;
+						$idBono = 1;
+
 						$this->insertarCompra($idUsuario,$idBono,$txn_id,$precio,$custom);
 						//$this->insertarCompraPrueba();
-						$message = "El usuario con identificador ".$idUsuario." ha comprado el Bono ".$idBono.", cuyo precio es ".$precio.". Referencia de la compra: ".$referencia;
-
-						//enviar email a proemocion para informar de la compra						
-						Yii::app()->getModule('user')->sendMail(Yii::app()->params['websiteEmail'],'Nuevo BONO',$message);			
+							
 						}					
 					}else if (strcmp ($res, "INVALID") == 0) {
 						// log for manual investigation
@@ -420,7 +420,11 @@ class CompraController extends Controller
 						//$this->render('nocomprado');
 					}
 				}
-				fclose ($fp);				
+				fclose ($fp);	
+					$message = "El usuario con identificador ".$idUsuario." ha comprado el Bono ".$idBono.", cuyo precio es ".$precio.". Referencia de la compra: ".$referencia;
+
+						//enviar email a proemocion para informar de la compra						
+						Yii::app()->getModule('user')->sendMail(Yii::app()->params['websiteEmail'],'Nuevo BONO',$message);				
 			}		
 		} 
 	}

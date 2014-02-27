@@ -9575,3 +9575,253 @@ Stack trace:
 REQUEST_URI=/categoria/verpromos/5
 HTTP_REFERER=http://www.proemocion.com/categorias
 ---
+2014/02/26 04:50:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "robots.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('robots.txt')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/robots.txt
+---
+2014/02/26 08:47:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "robots.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('robots.txt')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/robots.txt
+---
+2014/02/26 11:07:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "about" solicitada.' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CController.php(270): CController->missingAction('about')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(282): CController->run('about')
+#2 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/site/about')
+#3 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/user/site/about
+---
+2014/02/26 13:53:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "robots.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('robots.txt')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/robots.txt
+---
+2014/02/26 14:32:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "robots.txt"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('robots.txt')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/robots.txt
+---
+2014/02/26 17:18:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-144-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-144-precomposed.png
+---
+2014/02/26 17:18:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-57-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-57-precomposed.png
+---
+2014/02/26 17:18:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-144-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-144-precomposed.png
+---
+2014/02/26 17:18:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-57-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-57-precomposed.png
+---
+2014/02/26 17:19:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-144-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-144-precomposed.png
+---
+2014/02/26 17:19:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-57-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-57-precomposed.png
+---
+2014/02/26 17:20:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-72-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-72-precomposed.png
+---
+2014/02/26 17:20:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-57-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-57-precomposed.png
+---
+2014/02/26 17:20:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-144-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-144-precomposed.png
+---
+2014/02/26 17:20:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-57-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-57-precomposed.png
+---
+2014/02/26 17:20:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-144-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-144-precomposed.png
+---
+2014/02/26 17:20:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-57-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-57-precomposed.png
+---
+2014/02/26 17:21:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-144-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-144-precomposed.png
+---
+2014/02/26 17:21:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-57-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-57-precomposed.png
+---
+2014/02/26 17:21:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-114-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-114-precomposed.png
+---
+2014/02/26 17:21:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-57-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-57-precomposed.png
+---
+2014/02/26 17:22:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-144-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-144-precomposed.png
+---
+2014/02/26 17:22:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-57-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-57-precomposed.png
+---
+2014/02/26 17:22:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-144-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-144-precomposed.png
+---
+2014/02/26 17:22:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-57-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-57-precomposed.png
+---
+2014/02/26 17:37:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-144-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-144-precomposed.png
+---
+2014/02/26 17:37:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-57-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-57-precomposed.png
+---
+2014/02/26 17:38:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-144-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-144-precomposed.png
+---
+2014/02/26 17:38:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-57-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-57-precomposed.png
+---
+2014/02/26 17:40:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-144-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-144-precomposed.png
+---
+2014/02/26 17:40:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/apple-touch-icon-57-precomposed.png"' in /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 /var/www/vhosts/proemocion.com/httpdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/vhosts/proemocion.com/httpdocs/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/themes/froggy/ico/apple-touch-icon-57-precomposed.png
+---
