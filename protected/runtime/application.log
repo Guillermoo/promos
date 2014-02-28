@@ -9890,3 +9890,18 @@ Stack trace:
 REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
 HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
 ---
+2014/02/28 14:01:05 [error] [php] fsockopen() [<a href='function.fsockopen'>function.fsockopen</a>]: unable to connect to ssl://www.sandbox.paypal.com:443 (Unable to find the socket transport &quot;ssl&quot; - did you forget to enable it when you configured PHP?) (C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\controllers\CompraController.php:368)
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): CompraController->runAction()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): CompraController->filterAccessControl()
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): CompraController->runActionWithFilters()
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CompraController->run()
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CWebApplication->run()
+REQUEST_URI=/~hugo/promos/compra/checkoutBono

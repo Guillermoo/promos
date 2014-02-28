@@ -436,15 +436,18 @@ class CompraController extends Controller
 							
 						}else{
 							// Comprobar que el txn_id no se ha procesado todavía
-							$compra = Compra::model()->find('referencia='.$txn_id);				
+							$compra = UsersCuentas::model()->find('referencia='.$txn_id);				
 							
 							// check that payment_amount/payment_currency are correct
-							
-							// procesar pago
-							$model = new Compra;							
 
+							//Establezco la fecha de caducidad
+							
+							$fecha = date("Y-m-d H:i:s");
+							$fecha_fin = strtotime ( '+2 month' , strtotime ( $fecha ) ) ;
+							$fecha_fin= date ( 'Y-m-d H:i:s' , $fecha_fin );
+							
 							//guardo los datos de la compra
-							$this->insertarCompra($idUsuario,$idBono,$txn_id,$precio,$custom);
+							$this->insertarCompraBono($idUsuario,$idBono,$txn_id,$precio,$custom,$fecha_fin);
 
 							//actualizo los datos del usuario-empresa
 							//IMPLEMENTAR ##### ******* ------------ !!!!!!!!!!!!
@@ -549,6 +552,24 @@ class CompraController extends Controller
 	   fclose($fp);  // Close the file
 	    
    	}
+
+   	public function insertarCompraBono($idUsuario,$idPromocion,$referencia,$precio,$custom,$fecha_fin){			
+			$model=new UsersCuentas;
+
+			$model->id_usuario = $idUsuario;
+			$model->id_cuenta = $idPromocion;
+			$model->referencia = $referencia;
+			$model->cant_pagado = $precio;
+			$model->fecha_inicio = date("Y-m-d H:i:s");
+			$model->fecha_fin = $fecha_fin;
+			$model->estado = 1;
+
+			if($model->save()){
+				//$this->render('comprado',array('compra'=>$model));
+			}else{
+				//$this->render('nocomprado',array('compra'=>$model));
+			}
+	}
 
 	public function loadModel($id)
 	{
