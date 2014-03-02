@@ -235,6 +235,8 @@ class CompraController extends Controller
 						$idUsuario = $ids[0];
 						$idPromocion = $ids[1];
 
+						if(!empty($idUsuario) && !empty($idPromocion)){
+
 						$this->insertarCompra($idUsuario,$idPromocion,$txn_id,$precio,$custom);
 						//$this->insertarCompraPrueba();
 						$message = "El usuario con identificador ".$idUsuario." ha comprado la promoción con identificador ".$idPromocion.", cuyo precio es ".$precio." y la referencia es ".$referencia;
@@ -243,6 +245,9 @@ class CompraController extends Controller
 						echo "Compra ok. Envío el email.<br/>";
 						Yii::app()->getModule('user')->sendMail(Yii::app()->params['websiteEmail'],'Nueva compra',$message);											
 						fputs($DescriptorFichero,'Compra creada!');
+						}else{
+							Yii::app()->getModule('user')->sendMail($payer_email,'Compra promocion no verificada','No se ha podido recuperar todos los datos del comprador o de la promoción.');	
+						}
 					}else if (strcmp ($res, "INVALID") == 0) {
 						fputs($DescriptorFichero,'INVALIDO');
 						// log for manual investigation
@@ -401,8 +406,6 @@ class CompraController extends Controller
 			//QUITAR LO SIGUIENTE PARA PRODUCCIÓN
 			$idUsuario = 11;
 			$idBono = 1;
-			
-
 
 			if (!$fp) {
 				// HTTP ERROR
@@ -418,9 +421,7 @@ class CompraController extends Controller
 					
 					if (strcmp ($res, "VERIFIED") == 0) {
 						$todook = true;
-
-						$mail_From = "From: sandbox@pptest.com";
-                        $mail_To = "hugoepila@gmail.com";
+						
                         $mail_Subject = "VERIFIED IPN";
                         $mail_Body = $req;
  
@@ -446,12 +447,20 @@ class CompraController extends Controller
 							$fecha_fin = strtotime ( '+2 month' , strtotime ( $fecha ) ) ;
 							$fecha_fin= date ( 'Y-m-d H:i:s' , $fecha_fin );
 							
+							$ids = explode('_',$custom);
+							$idUsuario = $ids[0];
+							$idPromocion = $ids[1];
+
+							if(!empty($idUsuario) && !empty($idPromocion)){
+
 							//guardo los datos de la compra
 							$this->insertarCompraBono($idUsuario,$idBono,$txn_id,$precio,$custom,$fecha_fin);
 
 							//actualizo los datos del usuario-empresa
-							//IMPLEMENTAR ##### ******* ------------ !!!!!!!!!!!!
-
+							
+							}else{
+								Yii::app()->getModule('user')->sendMail($payer_email,'Compra promocion no verificada','No se ha podido recuperar todos los datos del comprador o del Bono.');	
+							}
 												
 						}					
 					}else if (strcmp ($res, "INVALID") == 0) {
