@@ -36,7 +36,7 @@
 
     <? if ($model->isNewRecord):?>
     <div class="row">      
-        <?php if($promoActivas == $maxActivas || (isset($verificado) && $verificado == 0)): ?>    
+        <?php if($promoActivas == $maxActivas || (isset($verificado) && $verificado == 0) || ($fecha_fin != '0000-00-00' && (strtotime($fecha_fin) < strtotime(date('Y-m-d'))))): ?>    
             <?php echo $form->dropDownListRow($model, 'estado', Promocion::itemAlias("PromoStatus"),array('options'=>array(Promocion::STATUS_ACTIVA=>array('disabled'=>'disabled')))); ?>            
         <?php else: ?>
             <?php echo $form->dropDownListRow($model, 'estado', Promocion::itemAlias("PromoStatus"),array('options'=>array(Promocion::STATUS_ACTIVA=>array('selected'=>'selected')))); ?>
@@ -45,8 +45,8 @@
     </div>
     <?php else: ?>
     <div class="row">      
-        <?php if($promoActivas == $maxActivas && $model->estado == 0): ?> 
-            <div class="alert alert-warning">Has alcanzado el límite de promociones ACTIVAS</div>   
+        <?php if($promoActivas == $maxActivas && $model->estado == 0 || ($fecha_fin != '0000-00-00' && (strtotime($fecha_fin) < strtotime(date('Y-m-d'))))): ?> 
+            <div class="alert alert-warning">No puedes crear más promociones ACTIVAS</div>   
             <?php echo $form->dropDownListRow($model, 'estado', Promocion::itemAlias("PromoStatus"),array('options'=>array(Promocion::STATUS_ACTIVA=>array('disabled'=>'disabled')))); ?>            
         <?php else: ?>
             <?php echo $form->dropDownListRow($model, 'estado', Promocion::itemAlias("PromoStatus"),array('options'=>array(Promocion::STATUS_ACTIVA=>array('selected'=>'selected')))); ?>

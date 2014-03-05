@@ -6,8 +6,7 @@
 <?php endif;?>
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'empresa-form',
-	'enableAjaxValidation'=>false,
-	'type'=>'horizontal',
+	'enableAjaxValidation'=>false,	
     'action'=>$action,    
 	'clientOptions'=>array(
 		'validateOnSubmit'=>true,
@@ -96,13 +95,17 @@
 		<?php echo $form->textField($empresa,'facebook',array('size'=>60,'maxlength'=>100,'placeholder'=>'http://www.facebook.com/facebookdemiempresa')); ?>
 		<?php echo $form->error($empresa,'facebook'); ?>
 	</div>	
+	<div class="row">		
+		<?php echo $form->html5EditorRow($empresa,'observaciones',array('class'=>'span4', 'rows'=>5, 'height'=>'200', 'options'=>array('color'=>false,'image'=>false,'link'=>false))); ?>
+		<?php echo $form->error($empresa,'facebook'); ?>
+	</div>	
 	<?php if(UserModule::isAdmin()): ?>
 		<div class="clearfix">&nbsp;</div>
 		<div class="row well">
 			<p>Si los datos de la empresa son correctos y se verifica que es una empresa real hay que marcar la casilla de verificado, para que pueda publicar las promociones</p>
 			<?php echo $form->labelEx($empresa,'verificado'); ?>
 			<?php echo $form->checkBox($empresa,'verificado'); ?>
-			<?php echo $form->error($empresa,'facebook'); ?>
+			<?php echo $form->error($empresa,'verificado'); ?>
 		</div>
 	<?php endif; ?>
 	<div class="clearfix">&nbsp;</div>

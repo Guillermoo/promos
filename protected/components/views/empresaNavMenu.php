@@ -21,7 +21,7 @@
 		        //array('label'=>'Datos Empresa', 'icon'=>'book', 'url'=>'empresa', 'active'=>true, 'visible'=>Yii::app()->authManager->checkAccess('empresa', Yii::app()->user->id)),
 		        //array('label'=>'Promociones', 'icon'=>'home', 'url'=>'#', 'active'=>true),
 
-                array('label'=>'Suscripción', 'url'=>Yii::app()->getModule('user')->cuentaUrl,'icon'=>'shopping-cart', 'active'=>Yii::app()->controller->id=='cuentas'),
+                array('label'=>'Bonos', 'url'=>Yii::app()->getModule('user')->cuentaUrl,'icon'=>'shopping-cart', 'active'=>Yii::app()->controller->id=='cuentas'),
                 array('label'=>Yii::app()->getModule('user')->t("Contact"), 'url'=>Yii::app()->getModule('user')->contactoEmpresaUrl,'icon'=>'envelope', 'active'=>Yii::app()->controller->id=='site')
                 //array('label'=>'Baja', 'url'=>Yii::app()->getModule('user')->bajaUrl,'icon' => 'remove-circle'),
                 //array('label'=>'Debug', 'url'=>'empresa/misdebugs','active'=>false),           

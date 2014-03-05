@@ -1,6 +1,6 @@
 <?php if(YII_RUTAS == true) echo __FILE__; ?>
 <h2>Cuenta <strong>Lite</strong>:</h2>
-	<p>Esta suscripción le ofrece:
+	<p>Este Bono le ofrece:
     	<table class="table table-hover" align="center">
   		<tr>
   			<th>Característica</th>
@@ -32,7 +32,7 @@
     	(Poner ofertas por compra de varios meses y esas cosas si hay)
     </p>
     <p>	
-    	El pago se debe realizar a través de paypal. Una vez que el pago se haya realizado su suscripción a esta cuenta se activará automáticamente.
+    	El pago se debe realizar a través de paypal. Una vez que el pago se haya realizado, se activará automáticamente.
     	<div class="botonpaypal"><center>
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
     	'buttonType'=>'button',

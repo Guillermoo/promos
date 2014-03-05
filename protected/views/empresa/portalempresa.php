@@ -43,6 +43,11 @@
 
 		//$this->debug($model) ?>
 		</div>
+		<?php if(!empty($model->observaciones)): ?>
+		<span class="label label-info">Otra información:</span>
+		<div class="well clearfix"> <?php echo $model->observaciones; ?>
+		</div>
+	<?php endif; ?>
 	</div>
 </div>
 	

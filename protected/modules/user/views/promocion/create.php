@@ -44,9 +44,14 @@ array(
 		<p>Si ha rellenado los datos de su perfil y los datos de su empresa, un responsable de Proemoción verificará que su empresa es real y que los datos son correctos. Si es así, se activará su cuenta para que pueda publicar sus promociones. </p><p>Para cualquier consulta no dude en contactar con nosotros, bien por teléfono o a través del formulario de contacto pinchando en "Contacto" en el menú superior.</p></div>
 		</div>
 	<?php endif; ?>
+	<?php if($user->profile->fecha_fin != '0000-00-00' && strtotime($user->profile->fecha_fin) < strtotime(date('Y-m-d'))): ?>
+    <div class="alert alert-error">
+        <b>Su Bono ha caducado.</b> Para poder publicar promociones tienes que adquirir un nuevo bono.
+    </div>
+<?php endif; ?>
 	<?php
 	if($numPromos < $maxPromos){
-		echo $this->renderPartial('_form', array('model'=>$model,'item'=>$item,'image'=>$image, 'maxPromos'=>$maxPromos, 'maxActivas'=>$datosCuenta->prom_activ, 'maxStock'=>$datosCuenta->prom_stock,'promoActivas'=>$numPromosActivas,'promoStock'=>$numPromosStock,'maxDest'=>$maxDest,'promosDest'=>$promosDest,'verificado'=>$user->empresa->verificado));
+		echo $this->renderPartial('_form', array('model'=>$model,'item'=>$item,'image'=>$image, 'maxPromos'=>$maxPromos, 'maxActivas'=>$datosCuenta->prom_activ, 'maxStock'=>$datosCuenta->prom_stock,'promoActivas'=>$numPromosActivas,'promoStock'=>$numPromosStock,'maxDest'=>$maxDest,'promosDest'=>$promosDest,'verificado'=>$user->empresa->verificado,'fecha_fin'=>$user->profile->fecha_fin));
 	}else{
 		echo $this->renderPartial('_denied');
 	}

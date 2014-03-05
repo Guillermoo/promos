@@ -17,9 +17,20 @@
 <?php endif;
 	if($model->status == 2):?>
     <div class="alert alert-warning">
-        <b>No se ha verificado el pago de la suscripción.</b> Si ya ha efectuado el pago, por favor, <?php echo CHtml::link('contacte con el administrador','site/contact'); ?>
+        <b>No se ha verificado el pago del Bono.</b> Si ya ha efectuado el pago, por favor, <?php echo CHtml::link('contacte con el administrador','site/contact'); ?>
     </div>
-<?php endif; 
+<?php endif; ?> 
+<?php if($model->profile->fecha_fin != '0000-00-00' && (strtotime($model->profile->fecha_fin) < strtotime(date('Y-m-d')))): ?>
+    <div class="alert alert-error">
+        <b>Su Bono ha caducado.</b> Para poder publicar promociones tienes que adquirir un nuevo bono.
+    </div>
+<?php endif; ?>
+<?php if(strtotime($model->profile->fecha_fin) == strtotime(date('Y-m-d'))): ?>
+    <div class="alert alert-warning">
+        <b>Su Bono caduca hoy.</b> Cuando el Bono esté caducado no podrá seguir publicando promociones. Para ello tendrás que adquirir un nuevo Bono.
+    </div>
+<?php endif; ?>
+<?php 
 	$this->renderPartial('_form', array('model'=>$model));
 }else{   
     if(!isset($model->profile)): ?>

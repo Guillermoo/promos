@@ -59,6 +59,7 @@ class Empresa extends CActiveRecord
             array('nombre,nombre_slug,web, twitter, facebook, urlTienda', 'length', 'max'=>100),
             array('modificado', 'safe'),
             array('verificado', 'numerical', 'integerOnly'=>true),
+            array('observaciones', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('nombre,nombre_slug, user_id, cif, web, twitter, facebook, urlTienda, modificado', 'safe', 'on'=>'search'),
@@ -108,6 +109,7 @@ class Empresa extends CActiveRecord
             'modificado' => 'Modificado',
             'nbusuario' => 'Nombre de usuario',
             'verificado' => 'Verificado',
+            'observaciones' => 'Observaciones',
         );
     }
 
