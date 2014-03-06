@@ -90,7 +90,7 @@
         <div class="row">
             <?php if(!$model->isNewRecord): ?>
                 <?php //(G)Cargamos el cargador de imágenes ?>
-
+                <small>(Se recomienda que sea una imagen de 400 X 400 píxeles para que se vea correctamente)</small>
                 <?php if (!isset($image) || $image->name==null): ?>
                     <p>Elige una imagen para la promoción:</p>
                     <div id="logo_form">

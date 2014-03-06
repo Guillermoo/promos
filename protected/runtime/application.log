@@ -9905,3 +9905,139 @@ Stack trace:
 #10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
 #11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CWebApplication->run()
 REQUEST_URI=/~hugo/promos/compra/checkoutBono
+2014/03/06 11:19:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/favicon.ico"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/themes/froggy/ico/favicon.ico
+---
+2014/03/06 11:19:22 [error] [exception.CException] exception 'CException' with message 'Propiedad "Empresa"."verificado" no se encuentra definida.' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\db\ar\CActiveRecord.php(143): CComponent->__get('verificado')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\create.php(43): CActiveRecord->__get('verificado')
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require('C:\Documents an...')
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Documents an...', Array, true)
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\Documents an...', Array, true)
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): CController->renderPartial('create', Array, true)
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\PromocionController.php(193): CController->render('create', Array)
+#7 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(49): PromocionController->actionCreate()
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/promocion/...')
+#18 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#19 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#20 {main}
+REQUEST_URI=/~hugo/promos/user/promocion/create
+HTTP_REFERER=http://localhost/~hugo/promos/user/home
+---
+2014/03/06 11:20:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/03/06 11:20:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/promocion/create
+---
+2014/03/06 11:21:05 [error] [php] Undefined variable: fecha_fin (C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\_form.php:48)
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): PromocionController->renderFile()
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\update.php(23): PromocionController->renderPartial()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): PromocionController->renderInternal()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): PromocionController->renderFile()
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): PromocionController->renderPartial()
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\PromocionController.php(255): PromocionController->render()
+#7 unknown(0): PromocionController->actionUpdate()
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): PromocionController->runAction()
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): PromocionController->filterAccessControl()
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#16 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): PromocionController->runActionWithFilters()
+#18 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): PromocionController->run()
+#19 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#20 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#21 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CWebApplication->run()
+REQUEST_URI=/~hugo/promos/user/promocion/update/id/9
+2014/03/06 11:27:11 [error] [php] Undefined variable: fecha_fin (C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\_form.php:48)
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): PromocionController->renderFile()
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\update.php(23): PromocionController->renderPartial()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): PromocionController->renderInternal()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): PromocionController->renderFile()
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): PromocionController->renderPartial()
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\PromocionController.php(255): PromocionController->render()
+#7 unknown(0): PromocionController->actionUpdate()
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): PromocionController->runAction()
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): PromocionController->filterAccessControl()
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#16 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): PromocionController->runActionWithFilters()
+#18 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): PromocionController->run()
+#19 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#20 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#21 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CWebApplication->run()
+REQUEST_URI=/~hugo/promos/user/promocion/update/id/8
+2014/03/06 11:35:02 [error] [php] Undefined variable: fecha_fin (C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\_form.php:48)
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): PromocionController->renderFile()
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\promocion\update.php(23): PromocionController->renderPartial()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): PromocionController->renderInternal()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): PromocionController->renderFile()
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): PromocionController->renderPartial()
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\PromocionController.php(255): PromocionController->render()
+#7 unknown(0): PromocionController->actionUpdate()
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): PromocionController->runAction()
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): PromocionController->filterAccessControl()
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#16 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): PromocionController->runActionWithFilters()
+#18 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): PromocionController->run()
+#19 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#20 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#21 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CWebApplication->run()
+REQUEST_URI=/~hugo/promos/user/promocion/update/id/9
+2014/03/06 11:37:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/empresa
+---

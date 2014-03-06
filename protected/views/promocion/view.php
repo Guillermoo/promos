@@ -84,7 +84,7 @@
 <div class="row-fluid product-detail">
 
 	<div class="span4">
-		<?php if (isset($model->item)): ?>
+		<?php if (isset($model->item) && strcmp($model->item->model,'promo') == 0): ?>
 			<?php $path=$model->item->path ?>
 		<?php else:?>
 			<?php $path=Yii::app()->params['no_image_big'] ?>
@@ -236,7 +236,7 @@
 						<?php $cont=0; ?>
 						<?php foreach ($promos as $key => $promo):
 							$cont++;
-							if (isset($promo->item)): 
+							if (isset($promo->item) && strcmp($promo->item->model,'promo') == 0): 
 								$path=$promo->item->path; 
 						 	else:
 								$path=Yii::app()->params['no_image'];
