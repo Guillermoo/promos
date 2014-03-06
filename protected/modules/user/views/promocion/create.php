@@ -24,10 +24,14 @@
 array(
   ':id'=>$user->profile->tipocuenta
 ));
-	$maxPromos = $datosCuenta->prom_activ + $datosCuenta->prom_stock;
+	$maxPromos = $datosCuenta->prom_activ;
 	?>
 	<div class="alert alert-info">Número de promociones que tiene creadas: <?php echo "<b>".$numPromos." </b> de <b>".$maxPromos."</b>"; ?>. </div>	
 	<?php 
+	if($datosCuenta->prom_activ == 0): ?>
+		<div class="alert alert-warning"><b>No puedes publicar promociones hasta que no tengas un Bono</b>. Pincha en "Bonos" en el menú y escoge uno.</div>
+	<?php endif; ?>
+	<?php
 	if($datosCuenta->prom_activ == $numPromosActivas)
 		echo "<div class=\"alert alert-warning\">No puedes crear más promociones <b>ACTIVAS</b></div>";
 	?>
@@ -50,9 +54,5 @@ array(
     </div>
 <?php endif; ?>
 	<?php
-	if($numPromos < $maxPromos){
 		echo $this->renderPartial('_form', array('model'=>$model,'item'=>$item,'image'=>$image, 'maxPromos'=>$maxPromos, 'maxActivas'=>$datosCuenta->prom_activ, 'maxStock'=>$datosCuenta->prom_stock,'promoActivas'=>$numPromosActivas,'promoStock'=>$numPromosStock,'maxDest'=>$maxDest,'promosDest'=>$promosDest,'verificado'=>$user->empresa->verificado,'fecha_fin'=>$user->profile->fecha_fin));
-	}else{
-		echo $this->renderPartial('_denied');
-	}
 	?>

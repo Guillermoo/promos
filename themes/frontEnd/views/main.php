@@ -76,12 +76,9 @@
 										</div>
 									</li>
 								</ul>
-							</li>
+							</li>							
 							<li>
-								<?php echo cHtml::link('Nueva Empresa',Yii::app()->getModule('user')->registrationCompanyUrl);?>	
-							</li>
-							<li>
-								<?php echo cHtml::link('Nuevo Comprador',Yii::app()->getModule('user')->registrationUrl);?>	
+								<?php echo cHtml::link('Crear cuenta',Yii::app()->getModule('user')->registrationUrl);?>	
 							</li>
 						</ul>
 					</div>

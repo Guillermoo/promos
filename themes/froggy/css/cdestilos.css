@@ -49,6 +49,9 @@
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
   } 
+  .plan-name-GRATUITO{
+    display: none !important;
+  }
   .plan-name-BASICO-head {
   padding: 20px;
   color: #fff;

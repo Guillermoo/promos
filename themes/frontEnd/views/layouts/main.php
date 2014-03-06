@@ -67,11 +67,8 @@
 						</li>
 					</ul>
 				</li>
-				<li>		
-					<?php echo CHtml::link('Nueva Empresa',Yii::app()->baseUrl.'/user/registrationCompany');?>	
-				</li>
 				<li>
-					<?php echo CHtml::link('Nuevo Comprador',Yii::app()->baseUrl.'/user/registrarcomprador');?>	
+					<?php echo CHtml::link('Crear cuenta',Yii::app()->baseUrl.'/user/registrarcomprador');?>	
 				</li>
 		<?php else: ?>
 			<li>
@@ -145,9 +142,9 @@
 
 										<li><?php
 											if(Yii::app()->controller->action->id == 'about'):
-												echo CHtml::link('Qué es Proemoción',array('site/about'),array('class'=>'active')); 
+												echo CHtml::link('Qué es ProEmoción',array('site/about'),array('class'=>'active')); 
 											else:
-												echo CHtml::link('Qué es Proemoción',array('site/about')); 
+												echo CHtml::link('Qué es ProEmoción',array('site/about')); 
 											endif;
 										?></li>								
 									</ul>										
