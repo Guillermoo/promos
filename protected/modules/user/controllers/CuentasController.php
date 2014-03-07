@@ -40,7 +40,7 @@ class CuentasController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','delete','usuarioCuenta'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -178,6 +178,19 @@ class CuentasController extends Controller
 		$this->render('_viewCuenta',array(
 			'data'=>$this->loadModel($id),
 		));
+	}
+
+	public function actionUsuarioCuenta() {
+		//Asigno a un usuario un tipo de cuenta. Esta acción solo tiene que estar disponible para el Administrador.
+		if(isset($_POST['cuenta'])){
+			$user = User::model()->find('id=:id',array(':id'=>$idUsuario));
+			if(!empty($user)){
+				$user->profile->tipocuenta = $id;
+				$user->save();
+			}
+		}else{
+			$this->render('usuarioCuenta');
+		}
 	}
 	
 

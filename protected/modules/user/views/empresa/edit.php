@@ -35,6 +35,17 @@
 			<strong><?php echo $user->profile->direccion; ?></strong>
 		</div>
 	</div>
+	<div class="row">
+		<?php $this->widget(
+    		'bootstrap.widgets.TbButton',
+    		array(
+        		'label' => 'Asignar Bono',
+        		'type' => 'primary',
+        		'url' => array('cuenta/usuarioCuenta'),
+    		)
+		); ?>
+	</div>
+	<div class="clearfix">&nbsp;</div>
 <?php endif; ?>
 <?php
     echo $this->renderPartial('_form', array('action'=>'_form','empresa'=>$empresa,'image'=>$image));
