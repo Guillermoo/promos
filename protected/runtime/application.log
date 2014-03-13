@@ -7,3 +7,520 @@ Stack trace:
 REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
 HTTP_REFERER=http://localhost/~hugo/promos/user/admin
 ---
+2014/03/13 10:38:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/admin
+---
+2014/03/13 10:38:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "themes/froggy/ico/favicon.ico"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/froggy/i...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/themes/froggy/ico/favicon.ico
+---
+2014/03/13 10:38:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/empresa/edit/id/1
+---
+2014/03/13 10:39:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "user/cuenta/usuarioCuenta"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/cuenta/usu...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/user/cuenta/usuarioCuenta
+HTTP_REFERER=http://localhost/~hugo/promos/user/empresa/edit/id/1
+---
+2014/03/13 10:41:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "user/cuenta/usuarioCuenta"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/cuenta/usu...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/user/cuenta/usuarioCuenta
+HTTP_REFERER=http://localhost/~hugo/promos/user/empresa/edit/id/1
+---
+2014/03/13 10:43:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "user/cuentas"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/cuentas')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/user/cuentas
+HTTP_REFERER=http://localhost/~hugo/promos/user/home
+---
+2014/03/13 10:43:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "user/cuentas"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/cuentas')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/user/cuentas
+HTTP_REFERER=http://localhost/~hugo/promos/user/home
+---
+2014/03/13 10:43:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "user/cuenta"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/cuenta')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/user/cuenta
+---
+2014/03/13 10:44:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/admin
+---
+2014/03/13 10:44:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/empresa/edit/id/1
+---
+2014/03/13 10:44:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "user/cuenta/usuarioCuenta"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/cuenta/usu...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/user/cuenta/usuarioCuenta
+HTTP_REFERER=http://localhost/~hugo/promos/user/empresa/edit/id/1
+---
+2014/03/13 10:44:46 [error] [php] Undefined variable: model (C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\cuentas\usuarioCuenta.php:10)
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): CuentasController->renderFile()
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): CuentasController->renderPartial()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\CuentasController.php(192): CuentasController->render()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(49): CuentasController->actionUsuarioCuenta()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): CuentasController->runAction()
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): CuentasController->filterAccessControl()
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): CuentasController->runActionWithFilters()
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CuentasController->run()
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CWebApplication->run()
+REQUEST_URI=/~hugo/promos/user/cuentas/usuarioCuenta
+2014/03/13 11:23:09 [error] [exception.CException] exception 'CException' with message 'Cuentas y sus behaviors no tienen un método o closure llamado "getData".' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CComponent.php:265
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\db\ar\CActiveRecord.php(225): CComponent->__call('getData', Array)
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\zii\widgets\CBaseListView.php(107): CActiveRecord->__call('getData', Array)
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\zii\widgets\CBaseListView.php(107): Cuentas->getData()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\zii\widgets\CListView.php(203): CBaseListView->init()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(147): CListView->init()
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(172): CBaseController->createWidget('zii.widgets.CLi...', Array)
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\cuentas\usuarioCuenta.php(16): CBaseController->widget('zii.widgets.CLi...', Array)
+#7 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require('C:\Documents an...')
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Documents an...', Array, true)
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\Documents an...', Array, true)
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): CController->renderPartial('usuarioCuenta', Array, true)
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\CuentasController.php(193): CController->render('usuarioCuenta', Array)
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(49): CuentasController->actionUsuarioCuenta()
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#16 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#18 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#19 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#20 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CController->run('usuarioCuenta')
+#22 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/cuentas/us...')
+#23 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#24 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#25 {main}
+REQUEST_URI=/~hugo/promos/user/cuentas/usuarioCuenta
+---
+2014/03/13 11:24:51 [error] [exception.CException] exception 'CException' with message 'Cuentas y sus behaviors no tienen un método o closure llamado "getData".' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CComponent.php:265
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\db\ar\CActiveRecord.php(225): CComponent->__call('getData', Array)
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\zii\widgets\CBaseListView.php(107): CActiveRecord->__call('getData', Array)
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\zii\widgets\CBaseListView.php(107): Cuentas->getData()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\zii\widgets\CListView.php(203): CBaseListView->init()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(147): CListView->init()
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(172): CBaseController->createWidget('zii.widgets.CLi...', Array)
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\cuentas\usuarioCuenta.php(16): CBaseController->widget('zii.widgets.CLi...', Array)
+#7 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require('C:\Documents an...')
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Documents an...', Array, true)
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\Documents an...', Array, true)
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): CController->renderPartial('usuarioCuenta', Array, true)
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\CuentasController.php(193): CController->render('usuarioCuenta', Array)
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(49): CuentasController->actionUsuarioCuenta()
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#16 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#18 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#19 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#20 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CController->run('usuarioCuenta')
+#22 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/cuentas/us...')
+#23 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#24 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#25 {main}
+REQUEST_URI=/~hugo/promos/user/cuentas/usuarioCuenta
+---
+2014/03/13 11:28:28 [error] [php] Undefined variable: model (C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\cuentas\usuarioCuenta.php:10)
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): CuentasController->renderFile()
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): CuentasController->renderPartial()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\CuentasController.php(193): CuentasController->render()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(49): CuentasController->actionUsuarioCuenta()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): CuentasController->runAction()
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): CuentasController->filterAccessControl()
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): CuentasController->runActionWithFilters()
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CuentasController->run()
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CWebApplication->run()
+REQUEST_URI=/~hugo/promos/user/cuentas/usuarioCuenta
+2014/03/13 11:28:46 [error] [php] Undefined variable: form (C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\cuentas\_viewAdmin.php:13)
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\zii\widgets\CListView.php(281): CuentasController->renderFile()
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\zii\widgets\CBaseListView.php(160): CListView->renderItems()
+#2 unknown(0): CListView->renderSection()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\zii\widgets\CBaseListView.php(143): preg_replace_callback()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\zii\widgets\CBaseListView.php(128): CListView->renderContent()
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(173): CListView->run()
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\cuentas\usuarioCuenta.php(16): CuentasController->widget()
+#7 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require()
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): CuentasController->renderInternal()
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): CuentasController->renderFile()
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): CuentasController->renderPartial()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\CuentasController.php(193): CuentasController->render()
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(49): CuentasController->actionUsuarioCuenta()
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): CuentasController->runAction()
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#16 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): CuentasController->filterAccessControl()
+#18 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#19 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#20 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): CuentasController->runActionWithFilters()
+#21 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CuentasController->run()
+#22 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#23 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#24 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CWebApplication->run()
+REQUEST_URI=/~hugo/promos/user/cuentas/usuarioCuenta
+2014/03/13 12:30:18 [error] [php] Undefined variable: model (C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\cuentas\usuarioCuenta.php:24)
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): CuentasController->renderFile()
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): CuentasController->renderPartial()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\CuentasController.php(193): CuentasController->render()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(49): CuentasController->actionUsuarioCuenta()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): CuentasController->runAction()
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): CuentasController->filterAccessControl()
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): CuentasController->runActionWithFilters()
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CuentasController->run()
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CWebApplication->run()
+REQUEST_URI=/~hugo/promos/user/cuentas/usuarioCuenta
+2014/03/13 12:40:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/locales/bootstrap-datepicker.es.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/locales/bootstrap-datepicker.es.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/admin
+---
+2014/03/13 12:40:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "assets/84ad60d1/js/wysihtml5-0.3.0.js"' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/84ad60d1...')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/~hugo/promos/assets/84ad60d1/js/wysihtml5-0.3.0.js
+HTTP_REFERER=http://localhost/~hugo/promos/user/empresa/edit/id/1
+---
+2014/03/13 12:40:38 [error] [php] Trying to get property of non-object (C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\helpers\CHtml.php:2255)
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\widgets\CActiveForm.php(672): activeHiddenField()
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\cuentas\usuarioCuenta.php(12): CActiveForm->hiddenField()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): CuentasController->renderInternal()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): CuentasController->renderFile()
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): CuentasController->renderPartial()
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\CuentasController.php(194): CuentasController->render()
+#7 unknown(0): CuentasController->actionUsuarioCuenta()
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): CuentasController->runAction()
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): CuentasController->filterAccessControl()
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#16 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): CuentasController->runActionWithFilters()
+#18 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CuentasController->run()
+#19 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#20 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#21 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CWebApplication->run()
+REQUEST_URI=/~hugo/promos/user/cuentas/usuarioCuenta/id/7
+2014/03/13 13:16:35 [error] [exception.CException] exception 'CException' with message 'Propiedad "User"."7" no se encuentra definida.' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\db\ar\CActiveRecord.php(143): CComponent->__get('7')
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\helpers\CHtml.php(2255): CActiveRecord->__get('7')
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\helpers\CHtml.php(1980): CHtml::resolveValue(Object(User), '7')
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\helpers\CHtml.php(1372): CHtml::activeInputField('hidden', Object(User), '7', Array)
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\widgets\CActiveForm.php(672): CHtml::activeHiddenField(Object(User), '7', Array)
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\cuentas\usuarioCuenta.php(12): CActiveForm->hiddenField(Object(User), '7')
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require('C:\Documents an...')
+#7 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Documents an...', Array, true)
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\Documents an...', Array, true)
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): CController->renderPartial('usuarioCuenta', Array, true)
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\CuentasController.php(194): CController->render('usuarioCuenta', Array)
+#11 [internal function]: CuentasController->actionUsuarioCuenta('7')
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(CuentasController), Array)
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(CuentasController), Object(ReflectionMethod), Array)
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#16 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#18 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#19 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#20 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#21 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CController->run('usuarioCuenta')
+#23 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/cuentas/us...')
+#24 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#25 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CApplication->run()
+#26 {main}
+REQUEST_URI=/~hugo/promos/user/cuentas/usuarioCuenta/id/7
+HTTP_REFERER=http://localhost/~hugo/promos/user/empresa/edit/id/1
+---
+2014/03/13 13:26:29 [error] [php] Trying to get property of non-object (C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\helpers\CHtml.php:2255)
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\widgets\CActiveForm.php(672): activeHiddenField()
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\cuentas\usuarioCuenta.php(13): CActiveForm->hiddenField()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): CuentasController->renderInternal()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): CuentasController->renderFile()
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): CuentasController->renderPartial()
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\CuentasController.php(194): CuentasController->render()
+#7 unknown(0): CuentasController->actionUsuarioCuenta()
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): CuentasController->runAction()
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): CuentasController->filterAccessControl()
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#16 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): CuentasController->runActionWithFilters()
+#18 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CuentasController->run()
+#19 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#20 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#21 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CWebApplication->run()
+REQUEST_URI=/~hugo/promos/user/cuentas/usuarioCuenta
+2014/03/13 13:29:17 [error] [php] Trying to get property of non-object (C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\helpers\CHtml.php:2255)
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\widgets\CActiveForm.php(672): activeHiddenField()
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\cuentas\usuarioCuenta.php(13): CActiveForm->hiddenField()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): CuentasController->renderInternal()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): CuentasController->renderFile()
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): CuentasController->renderPartial()
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\CuentasController.php(194): CuentasController->render()
+#7 unknown(0): CuentasController->actionUsuarioCuenta()
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): CuentasController->runAction()
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): CuentasController->filterAccessControl()
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#16 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): CuentasController->runActionWithFilters()
+#18 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CuentasController->run()
+#19 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#20 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#21 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CWebApplication->run()
+REQUEST_URI=/~hugo/promos/user/cuentas/usuarioCuenta
+2014/03/13 13:30:14 [error] [php] Trying to get property of non-object (C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\helpers\CHtml.php:2255)
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\widgets\CActiveForm.php(672): activeHiddenField()
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\cuentas\usuarioCuenta.php(13): CActiveForm->hiddenField()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): CuentasController->renderInternal()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): CuentasController->renderFile()
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): CuentasController->renderPartial()
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\CuentasController.php(194): CuentasController->render()
+#7 unknown(0): CuentasController->actionUsuarioCuenta()
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): CuentasController->runAction()
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): CuentasController->filterAccessControl()
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#16 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): CuentasController->runActionWithFilters()
+#18 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CuentasController->run()
+#19 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#20 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#21 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CWebApplication->run()
+REQUEST_URI=/~hugo/promos/user/cuentas/usuarioCuenta
+2014/03/13 13:31:50 [error] [php] Trying to get property of non-object (C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\helpers\CHtml.php:2255)
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\widgets\CActiveForm.php(672): activeHiddenField()
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\cuentas\usuarioCuenta.php(13): CActiveForm->hiddenField()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): CuentasController->renderInternal()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): CuentasController->renderFile()
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): CuentasController->renderPartial()
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\CuentasController.php(195): CuentasController->render()
+#7 unknown(0): CuentasController->actionUsuarioCuenta()
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): CuentasController->runAction()
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): CuentasController->filterAccessControl()
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#16 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): CuentasController->runActionWithFilters()
+#18 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CuentasController->run()
+#19 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#20 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#21 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CWebApplication->run()
+REQUEST_URI=/~hugo/promos/user/cuentas/usuarioCuenta
+2014/03/13 13:32:12 [error] [php] Trying to get property of non-object (C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\helpers\CHtml.php:2255)
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\widgets\CActiveForm.php(672): activeHiddenField()
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\cuentas\usuarioCuenta.php(13): CActiveForm->hiddenField()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): CuentasController->renderInternal()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): CuentasController->renderFile()
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): CuentasController->renderPartial()
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\CuentasController.php(195): CuentasController->render()
+#7 unknown(0): CuentasController->actionUsuarioCuenta()
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): CuentasController->runAction()
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): CuentasController->filterAccessControl()
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#16 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): CuentasController->runActionWithFilters()
+#18 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CuentasController->run()
+#19 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#20 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#21 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CWebApplication->run()
+REQUEST_URI=/~hugo/promos/user/cuentas/usuarioCuenta
+2014/03/13 13:34:15 [error] [php] Trying to get property of non-object (C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\helpers\CHtml.php:2255)
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\widgets\CActiveForm.php(672): activeHiddenField()
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\cuentas\usuarioCuenta.php(13): CActiveForm->hiddenField()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): CuentasController->renderInternal()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): CuentasController->renderFile()
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): CuentasController->renderPartial()
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\CuentasController.php(195): CuentasController->render()
+#7 unknown(0): CuentasController->actionUsuarioCuenta()
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): CuentasController->runAction()
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): CuentasController->filterAccessControl()
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#16 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): CuentasController->runActionWithFilters()
+#18 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CuentasController->run()
+#19 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#20 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#21 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CWebApplication->run()
+REQUEST_URI=/~hugo/promos/user/cuentas/usuarioCuenta
+2014/03/13 13:34:31 [error] [php] Trying to get property of non-object (C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\helpers\CHtml.php:2255)
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\widgets\CActiveForm.php(672): activeHiddenField()
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\cuentas\usuarioCuenta.php(13): CActiveForm->hiddenField()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): CuentasController->renderInternal()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): CuentasController->renderFile()
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): CuentasController->renderPartial()
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\CuentasController.php(194): CuentasController->render()
+#7 unknown(0): CuentasController->actionUsuarioCuenta()
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): CuentasController->runAction()
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): CuentasController->filterAccessControl()
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#16 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): CuentasController->runActionWithFilters()
+#18 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CuentasController->run()
+#19 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#20 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#21 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CWebApplication->run()
+REQUEST_URI=/~hugo/promos/user/cuentas/usuarioCuenta
+2014/03/13 13:34:38 [error] [php] Trying to get property of non-object (C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\helpers\CHtml.php:2255)
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\widgets\CActiveForm.php(672): activeHiddenField()
+#1 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\views\cuentas\usuarioCuenta.php(13): CActiveForm->hiddenField()
+#2 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(126): require()
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CBaseController.php(95): CuentasController->renderInternal()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(869): CuentasController->renderFile()
+#5 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(782): CuentasController->renderPartial()
+#6 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\protected\modules\user\controllers\CuentasController.php(194): CuentasController->render()
+#7 unknown(0): CuentasController->actionUsuarioCuenta()
+#8 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#9 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(133): CuentasController->runAction()
+#12 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#14 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CInlineFilter.php(58): CuentasController->filterAccessControl()
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#16 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CController.php(265): CuentasController->runActionWithFilters()
+#18 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(282): CuentasController->run()
+#19 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#20 C:\Documents and Settings\Hugo\Mis documentos\GitHub\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#21 C:\Documents and Settings\Hugo\Mis documentos\GitHub\promos\index.php(14): CWebApplication->run()
+REQUEST_URI=/~hugo/promos/user/cuentas/usuarioCuenta

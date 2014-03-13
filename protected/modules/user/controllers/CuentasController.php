@@ -180,16 +180,18 @@ class CuentasController extends Controller
 		));
 	}
 
-	public function actionUsuarioCuenta() {
+	public function actionUsuarioCuenta($id=null) {
 		//Asigno a un usuario un tipo de cuenta. Esta acción solo tiene que estar disponible para el Administrador.
 		if(isset($_POST['cuenta'])){
-			$user = User::model()->find('id=:id',array(':id'=>$idUsuario));
-			if(!empty($user)){
-				$user->profile->tipocuenta = $id;
+			/*$user = User::model()->find('id=:id',array(':id'=>$User_id));
+			if(!empty($user) && !empty($idCuenta)){
+				$user->profile->tipocuenta = $idCuenta;
 				$user->save();
-			}
+			}*/
 		}else{
-			$this->render('usuarioCuenta');
+			$models=Cuentas::model()->findAll();
+			$user = User::model()->findByPk($id);
+			$this->render('usuarioCuenta', array('models' => $models, 'user'=>$user));
 		}
 	}
 	
