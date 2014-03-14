@@ -158,6 +158,11 @@ class CuentaController extends Controller
 		$header .= "Content-Length: " . strlen($req) . "\r\n\r\n";
 		$fp = fsockopen ('ssl://www.paypal.com', 443, $errno, $errstr, 30);
 
+		if(!isset($_POST['txn_id'])){		
+			echo "No hay txn_id";
+			Yii::app()->end();
+		}
+
 		// assign posted variables to local variables
 		$item_name = $_POST['item_name'];
 		$item_number = $_POST['item_number'];
@@ -200,6 +205,7 @@ class CuentaController extends Controller
 
 					$this->insertarCuenta($idUsuario,$idCuenta,$txn_id,$payment_amount);
 					//$this->insertarCompraPrueba();
+					mail(Yii::app()->params['websiteEmail'],'Nuevo Bono','Han comprado un bono', 'proemocion@proemocion.com');
 
 				}else if (strcmp ($res, "INVALID") == 0) {
 					// log for manual investigation
