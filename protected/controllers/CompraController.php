@@ -161,12 +161,12 @@ class CompraController extends Controller
 
 		// post back to PayPal system to validate
 		//$header = "POST /cgi-bin/webscr HTTP/1.0\r\n"; 
-		$header = "POST /cgi-bin/webscr HTTP/1.0\r\n";
-		$header .= "Host: www.sandbox.paypal.com\r\n";
+		$header = "POST /cgi-bin/webscr HTTP/1.1\r\n";
+		$header .= "Host: www.paypal.com\r\n";
 		$header .= "Content-Type: application/x-www-form-urlencoded\r\n";
 		$header .= "Content-Length: " . strlen($req) . "\r\n\r\n";
 		//abro socket de paypal
-		$fp = fsockopen ('ssl://www.sandbox.paypal.com', 443, $errno, $errstr, 30);
+		$fp = fsockopen ('ssl://www.paypal.com', 443, $errno, $errstr, 30);
 		
 		// assign posted variables to local variables	
 		if(!isset($_POST['txn_id'])){
@@ -234,7 +234,7 @@ class CompraController extends Controller
 					}else if (strcmp ($res, "INVALID") == 0) {	
 						// log for manual investigation
 						
-						$mail_From = "From: sandbox@pptest.com";
+						$mail_From = "From: paypal@paypal.com";
                         $mail_To = "proemocion@proemocion.com";
                         $mail_Subject = "INVALID IPN";
                         $mail_Body = $req;
@@ -346,11 +346,11 @@ class CompraController extends Controller
 		}
 
 		// post back to PayPal system to validate		
-		$header = "POST /cgi-bin/webscr HTTP/1.0\r\n";
-		$header .= "Host: www.sandbox.paypal.com:443\r\n";
+		$header = "POST /cgi-bin/webscr HTTP/1.1\r\n";
+		$header .= "Host: www.paypal.com:443\r\n";
 		$header .= "Content-Type: application/x-www-form-urlencoded\r\n";
 		$header .= "Content-Length: " . strlen($req) . "\r\n\r\n";
-		$fp = fsockopen ('ssl://www.sandbox.paypal.com', 443, $errno, $errstr, 30);
+		$fp = fsockopen ('ssl://www.paypal.com', 443, $errno, $errstr, 30);
 		
 		// assign posted variables to local variables	
 		if(!isset($_POST['txn_id'])){		
@@ -451,7 +451,7 @@ class CompraController extends Controller
 					}else if (strcmp ($res, "INVALID") == 0) {
 						// log for manual investigation		
 						
-						$mail_From = "From: sandbox@pptest.com";
+						$mail_From = "From: paypal@paypal.com";
                         $mail_To = "proemocion@proemocion.com";
                         $mail_Subject = "INVALID IPN";
                         $mail_Body = $req;
