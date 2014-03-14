@@ -182,12 +182,12 @@ class CuentasController extends Controller
 
 	public function actionUsuarioCuenta($id=null) {
 		//Asigno a un usuario un tipo de cuenta. Esta acción solo tiene que estar disponible para el Administrador.
-		if(isset($_POST['cuenta'])){
-			/*$user = User::model()->find('id=:id',array(':id'=>$User_id));
+		if(isset($_POST['cuenta-form'])){
+			$user = User::model()->find('id=:id',array(':id'=>$User_id));
 			if(!empty($user) && !empty($idCuenta)){
 				$user->profile->tipocuenta = $idCuenta;
 				$user->save();
-			}*/
+			}
 		}else{
 			$models=Cuentas::model()->findAll();
 			$user = User::model()->findByPk($id);
