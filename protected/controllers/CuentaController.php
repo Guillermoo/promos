@@ -184,8 +184,9 @@ class CuentaController extends Controller
 				if (strcmp ($res, "VERIFIED") == 0) {
 					$todook = true;
 					// check the payment_status is Completed										
-					if(!strcmp($payment_status, "Completed"))
+					if(!strcmp($payment_status, "Completed")){
 						Yii::app()->end();
+					}else{
 					// Comprobar que el txn_id no se ha procesado todavía
 					$compra = Compra::model()->find('referencia='.$txn_id);
 					if($compra)
@@ -206,6 +207,7 @@ class CuentaController extends Controller
 					$this->insertarCuenta($idUsuario,$idCuenta,$txn_id,$payment_amount);
 					//$this->insertarCompraPrueba();
 					mail(Yii::app()->params['websiteEmail'],'Nuevo Bono','Han comprado un bono', 'proemocion@proemocion.com');
+					}
 
 				}else if (strcmp ($res, "INVALID") == 0) {
 					// log for manual investigation

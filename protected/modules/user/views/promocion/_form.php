@@ -45,7 +45,7 @@
     </div>
     <?php else: ?>
     <div class="row">      
-        <?php if($promoActivas == $maxActivas && $model->estado == 0 || ($fecha_fin != '0000-00-00' && (strtotime($fecha_fin) < strtotime(date('Y-m-d'))))): ?> 
+        <?php if($promoActivas === $maxActivas && ($model->estado == 0 || ($fecha_fin != '0000-00-00' && (strtotime($fecha_fin) < strtotime(date('Y-m-d')))))): ?> 
             <div class="alert alert-warning">No puedes crear más promociones ACTIVAS</div>   
             <?php echo $form->dropDownListRow($model, 'estado', Promocion::itemAlias("PromoStatus"),array('options'=>array(Promocion::STATUS_ACTIVA=>array('disabled'=>'disabled')))); ?>            
         <?php else: ?>

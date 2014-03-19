@@ -162,11 +162,11 @@ class CompraController extends Controller
 		// post back to PayPal system to validate
 		//$header = "POST /cgi-bin/webscr HTTP/1.0\r\n"; 
 		$header = "POST /cgi-bin/webscr HTTP/1.1\r\n";
-		$header .= "Host: www.paypal.com\r\n";
+		$header .= "Host: www.sandbox.paypal.com\r\n";
 		$header .= "Content-Type: application/x-www-form-urlencoded\r\n";
 		$header .= "Content-Length: " . strlen($req) . "\r\n\r\n";
 		//abro socket de paypal
-		$fp = fsockopen ('ssl://www.paypal.com', 443, $errno, $errstr, 30);
+		$fp = fsockopen ('ssl://www.sandbox.paypal.com', 443, $errno, $errstr, 30);
 		
 		// assign posted variables to local variables	
 		if(!isset($_POST['txn_id'])){
@@ -347,10 +347,10 @@ class CompraController extends Controller
 
 		// post back to PayPal system to validate		
 		$header = "POST /cgi-bin/webscr HTTP/1.1\r\n";
-		$header .= "Host: www.paypal.com:443\r\n";
+		$header .= "Host: www.sandbox.paypal.com:443\r\n";
 		$header .= "Content-Type: application/x-www-form-urlencoded\r\n";
 		$header .= "Content-Length: " . strlen($req) . "\r\n\r\n";
-		$fp = fsockopen ('ssl://www.paypal.com', 443, $errno, $errstr, 30);
+		$fp = fsockopen ('ssl://www.sandbox.paypal.com', 443, $errno, $errstr, 30);
 		
 		// assign posted variables to local variables	
 		if(!isset($_POST['txn_id'])){		
@@ -380,14 +380,19 @@ class CompraController extends Controller
 			if($ids!=false && !empty($ids)){
 				$idUsuario = $ids[0];
 				$idBono = $ids[1];
-			}	
+			}
+
+			 mail("hugoepila@gmail.com", "Guay", "ids: ".$ids[0].$ids[1]."\n\n", "proemocion@proemocion.com");	
 
 			if (!$fp) {
-				// HTTP ERROR				
+				// HTTP ERROR		
+				mail("hugoepila@gmail.com", "No FP", "No se encuentra FP. app()->end()". "\n\n", "proemocion@proemocion.com");		
 				Yii::app()->end();
 			}else{
+				 mail("hugoepila@gmail.com", "FP ok", "el FP está bien... \n\n", "proemocion@proemocion.com");
 				fputs ($fp, $header . $req);
 				while (!feof($fp)) {
+
 					$res = fgets ($fp, 1024);					
 					
 					if (strcmp ($res, "VERIFIED") == 0) {
@@ -401,24 +406,29 @@ class CompraController extends Controller
                         }               
 
 						// check the payment_status is Completed
-						if(strcmp($payment_status, "Completed")!=0){					
-							
+						if(strcmp($payment_status, "Completed")!=0){									
 						}else{
 							// Comprobar que el txn_id no se ha procesado todavía
 							$compra = UsersCuentas::model()->find('referencia='.$txn_id);
 							if($compra){
+								mail("hugoepila@gmail.com", "La compra ya existe", "salgo de la función porque la referencia ya existe \n\n", "proemocion@proemocion.com");
 								return;
 							}
 
 							//Establezco la fecha de caducidad
 							
-							$fecha = date("Y-m-d H:i:s");
+							$fecha = date ( "Y-m-d H:i:s" );
 							$fecha_fin = strtotime ( '+2 month' , strtotime ( $fecha ) ) ;
 							$fecha_fin= date ( 'Y-m-d H:i:s' , $fecha_fin );						
 
 							if(!empty($idUsuario) && !empty($idBono)){
 
-								$bono = Cuenta::model()->find('id=:id',array(':id'=>$idBono));	
+								$bono = Cuenta::model()->find('id=:id',array(':id'=>$idBono));
+
+								if(empty($bono)){
+									Yii::app()->getModule('user')->sendMail($payer_email,'Bono invalido','No se han podido recuperar los datos del Bono.');
+									return;
+								}	
 
 								if($bono->precio != $precio){
 									 mail($mail_To, $mail_Subject,'El usuario con id: '.$idUsuario.' ha comprado el Bono con id: '.$idBono.' pero no coincide el precio que ha pagado con el que marca el Bono: Pagado -> '.$precio.', precio indicado: '.$bono->precio, $mail_From);
@@ -463,7 +473,8 @@ class CompraController extends Controller
                         mail($mail_To, $mail_Subject, $emailtext . "\n\n" . $mail_Body, $mail_From);
 					}
 				}
-				fclose ($fp);									      		      	
+				fclose ($fp);								
+				mail("hugoepila@gmail.com", "Se fini", "Termino el while \n\n", "proemocion@proemocion.com");	      	
 			}		
 		} 
 	}

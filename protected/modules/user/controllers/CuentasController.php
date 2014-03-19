@@ -180,16 +180,24 @@ class CuentasController extends Controller
 		));
 	}
 
-	public function actionUsuarioCuenta() {
+	public function actionUsuarioCuenta($user_id = null) {
 		//Asigno a un usuario un tipo de cuenta. Esta acción solo tiene que estar disponible para el Administrador.
-		if(isset($_POST['cuenta'])){
-			$user = User::model()->find('id=:id',array(':id'=>$idUsuario));
-			if(!empty($user)){
-				$user->profile->tipocuenta = $id;
-				$user->save();
-			}
-		}else{
-			$this->render('usuarioCuenta');
+		if(isset($_POST['Profile'])){
+			$atributos=$_POST['Profile'];			
+			$profile = Profile::model()->find('user_id=:id',array(':id'=>$_POST['Profile']['user_id']));
+			if(!empty($profile)){
+				$profile->tipocuenta =$_POST['Profile']['tipocuenta'];
+				if($profile->update()){
+					Yii::app()->user->setFlash('success', "Bono asignado!");
+				}else{
+					Yii::app()->user->setFlash('error', "No se han guardado los cambios");
+				}
+			}			
+
+			$this->render('usuarioCuenta', array('model' => $profile));
+		}else{			
+			$profile = Profile::model()->find('user_id=:user_id',array(':user_id'=>$user_id));
+			$this->render('usuarioCuenta', array('model' => $profile));
 		}
 	}
 	
@@ -221,5 +229,16 @@ class CuentasController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+	/* Used to debug variables*/
+    protected function Debug($var){
+        $bt = debug_backtrace();
+        $dump = new CVarDumper();
+        $debug = '<div style="display:block;background-color:gold;border-radius:10px;border:solid 1px brown;padding:10px;z-index:10000;"><pre>';
+        $debug .= '<h4>function: '.$bt[1]['function'].'() line('.$bt[0]['line'].')'.'</h4>';
+        $debug .=  $dump->dumpAsString($var);
+        $debug .= "</pre></div>\n";
+        Yii::app()->params['debugContent'] .=$debug;
+    }
 
 }
