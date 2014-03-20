@@ -4,8 +4,8 @@
 ?>
 <div class="view well">
 <li>	
-	<b><?php echo CHtml::encode($data->getAttributeLabel('id_promo')); ?>:</b>
-	<?php echo CHtml::encode($data->id_promo); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('referencia')); ?>:</b>
+	<span class="label label-info"><?php echo CHtml::encode($data->referencia); ?></span>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('fecha_compra')); ?>:</b>
@@ -14,12 +14,13 @@
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('estado')); ?>:</b>
 	<?php if($data->estado == 1): ?>
-			<span class="label label-success">Compra realizada </span>
+			<span >Compra realizada </span>
 	<?php else: ?>
 			<span class="label label-warning"> En proceso </span>
 	<?php endif; ?>
 	<div class ="clearfix">&nbsp;</div>
 </li>
-<?php echo CHtml::link('Información del comprador',array('profile/verDatos/id/'.$data->id_usuario),array('class'=>'btn btn-success')); ?>
+<span><?php 
+	echo CHtml::link('Ver Cupón',array('compra/view/id/'.$data->id),array('class'=>'btn btn-success')); ?></span>
 </div>
 
