@@ -96,3 +96,8 @@ body{
     -khtml-border-radius: 8px;  
     border-radius: 8px;
 }
+
+.thumbnailimg {
+	height: 250px;
+	width: 250px;
+}

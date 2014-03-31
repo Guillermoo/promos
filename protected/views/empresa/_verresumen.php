@@ -7,9 +7,9 @@
 			$image = Item::model()->find('foreign_id='.$data->id.' AND model="empresa"');
 			//$this->debug($usuario);
 			if(isset($image)): ?>
-				<a href="empresa/verpromos/<?php echo $data->id ?>" ><center><img src="<?php echo Yii::app()->getBaseUrl().$image->path; ?>" /></center></a>
+				<a href="empresa/verpromos/<?php echo $data->id ?>" ><center><img class="thumbnailimg" src="<?php echo Yii::app()->getBaseUrl().$image->path; ?>" /></center></a>
 			<?php else: ?>
-				<a href="empresa/verpromos/<?php echo $data->id ?>" ><img src="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>" />
+				<a href="empresa/verpromos/<?php echo $data->id ?>" ><img class="thumbnailimg" src="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>" />
 				</a>
 			<?php endif; ?>
 			<?php
@@ -22,6 +22,8 @@
 			?>
 			<?php if(isset($data->twitter) && !empty($data->twitter)): ?>
 			<a href="<?php echo $data->twitter ?>" target="_blank"><img src="<?php echo Yii::app()->theme->baseUrl?>/img/icon-twitter.png"/></a>
+			<?php else :?>
+				<br/>
 			<?php endif; ?>
 
 			<?php if(isset($data->facebook) && !empty($data->facebook)): ?>

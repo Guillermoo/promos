@@ -35,7 +35,7 @@
 								<div class="thumbnail">
 								<?php if (isset($promo->item)): ?>
 									<?php //$this->debug(Yii::app()->request->baseUrl.$promo->item->path) ?>
-									<a href="promo/<?=$promo->id ?>"><img src="<?php echo Yii::app()->request->baseUrl.$promo->item->path ?>" alt=""></a>
+									<a href="promo/<?=$promo->id ?>"><img class="thumbnailimgdest" src="<?php echo Yii::app()->request->baseUrl.$promo->item->path ?>" alt=""></a>
 								<?php else: ?>
 									<a href="promo/<?=$promo->id ?>"><img src="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>" alt=""></a>
 								<?php endif; ?>
@@ -70,7 +70,7 @@
 								<span class="label label-info price">&euro; <? echo $promo->precio ?>,-</span>
 								<!--<span class="label label-important price price-over">&euro; 1,<sup>99</sup></span>-->
 								<?php if (isset($promo->item)): ?>
-									<img data-hover="<?php echo Yii::app()->request->baseUrl.$promo->item->path ?>" src="$promo->item->path" alt="<?php echo $promo->titulo ?>" src="<?php echo Yii::app()->request->baseUrl.$path ?>">
+									<img class="thumbnailimg" data-hover="<?php echo Yii::app()->request->baseUrl.$promo->item->path ?>" src="$promo->item->path" alt="<?php echo $promo->titulo ?>" src="<?php echo Yii::app()->request->baseUrl.$path ?>">
 								<?php else: ?>
 									<img data-hover="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>"  alt="<?php echo $promo->titulo ?>" src="<?php echo Yii::app()->request->baseUrl.$path ?>">
 								<?php endif; ?>

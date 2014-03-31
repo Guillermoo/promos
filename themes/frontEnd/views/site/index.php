@@ -42,9 +42,9 @@
 						<div class="thumbnail destacado">
 							<?php if (!isset($path)): ?>
 								<?php //$this->debug(Yii::app()->request->baseUrl.$promo->item->path) ?>
-								<center><img data-hover="<?php echo Yii::app()->getBaseUrl().$image->path ?>" src="<?php echo Yii::app()->getBaseUrl().$image->path ?>" alt="<?php echo $promo->titulo ?>"></center>
+								<center><img class="thumbnailimgdest" data-hover="<?php echo Yii::app()->getBaseUrl().$image->path ?>" src="<?php echo Yii::app()->getBaseUrl().$image->path ?>" alt="<?php echo $promo->titulo ?>"></center>
 							<?php else: ?>
-								<center><a href="promocion/<?=$promo->titulo_slug ?>"><img src="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>" alt=""></a></center>
+								<center><a href="promocion/<?=$promo->titulo_slug ?>"><img class="thumbnailimgdest" src="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>" alt=""></a></center>
 							<?php endif; ?>
 						
 							<div class="caption">
@@ -76,10 +76,10 @@
 							<a href="promocion/<?=$promo->titulo_slug ?>">
 								<span class="label label-info price">&euro; <? echo $promo->precio ?></span>
 								<!--<span class="label label-important price price-over">&euro; 1,<sup>99</sup></span>-->
-								<?php if (isset($promo->item)): ?>
-									<center><img data-hover="<?php echo Yii::app()->getBaseUrl().$promo->item->path ?>" src="<?php echo Yii::app()->getBaseUrl().$promo->item->path ?>" alt="<?php echo $promo->titulo ?>" class="divpromo" /></center>
+								<?php if (isset($promo->item) && strcmp($model->item->model,'promo') == 0 ): ?>
+									<center><img class="thumbnailimg" data-hover="<?php echo Yii::app()->getBaseUrl().$promo->item->path ?>" src="<?php echo Yii::app()->getBaseUrl().$promo->item->path ?>" alt="<?php echo $promo->titulo ?>" class="divpromo" /></center>
 								<?php else: ?>
-									<img data-hover="<?php echo Yii::app()->request->baseUrl.$path ?>"  alt="<?php echo $promo->titulo ?>" src="<?php echo Yii::app()->request->baseUrl.$path ?>" class="divpromo">
+									<img class="thumbnailimg" data-hover="<?php echo Yii::app()->params['no_image'] ?>"  alt="<?php echo $promo->titulo ?>" src="<?php echo Yii::app()->params['no_image'] ?>" class="divpromo">
 								<?php endif; ?>
 							</a>
 							<div class="caption">
@@ -92,7 +92,4 @@
 			</ul>
 		</div>
 	</div>
-
-	
-
 </div>

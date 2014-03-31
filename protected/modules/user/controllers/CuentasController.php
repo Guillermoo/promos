@@ -180,6 +180,7 @@ class CuentasController extends Controller
 		));
 	}
 
+<<<<<<< HEAD
 	public function actionUsuarioCuenta($user_id = null) {
 		//Asigno a un usuario un tipo de cuenta. Esta acción solo tiene que estar disponible para el Administrador.
 		if(isset($_POST['Profile'])){
@@ -198,6 +199,20 @@ class CuentasController extends Controller
 		}else{			
 			$profile = Profile::model()->find('user_id=:user_id',array(':user_id'=>$user_id));
 			$this->render('usuarioCuenta', array('model' => $profile));
+=======
+	public function actionUsuarioCuenta($id=null) {
+		//Asigno a un usuario un tipo de cuenta. Esta acción solo tiene que estar disponible para el Administrador.
+		if(isset($_POST['cuenta-form'])){
+			$user = User::model()->find('id=:id',array(':id'=>$User_id));
+			if(!empty($user) && !empty($idCuenta)){
+				$user->profile->tipocuenta = $idCuenta;
+				$user->save();
+			}
+		}else{
+			$models=Cuentas::model()->findAll();
+			$user = User::model()->findByPk($id);
+			$this->render('usuarioCuenta', array('models' => $models, 'user'=>$user));
+>>>>>>> 7428083c8e0f2654c2590bbcee676795ccd299cc
 		}
 	}
 	
