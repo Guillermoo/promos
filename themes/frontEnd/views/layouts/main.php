@@ -1,17 +1,17 @@
 <!doctype html>
-<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="nl"><![endif]-->
-<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="nl"><![endif]-->
-<!--[if IE 8]><html class="no-js lt-ie9" lang="nl"><![endif]-->
-<!--[if IE]><html class="no-js ie" lang="nl"><![endif]-->
-<!--[if !IE]><!--><html class="no-js" lang="nl"><!--<![endif]-->
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="es"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="es"><![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="es"><![endif]-->
+<!--[if IE]><html class="no-js ie" lang="es"><![endif]-->
+<!--[if !IE]><!--><html class="no-js" lang="es"><!--<![endif]-->
 
 	<head>
 
 		<meta charset="utf-8">
 		<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 		<link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/img/favicon.ico">
-		<meta name="description" content="Promociones Zaragoza">
-		<meta name="author" content="BigBase - D. Tiems">
+		<meta name="description" content="Promociones Ofertas Zaragoza">
+		<meta name="author" content="Hugo Langa y Guillermo Cano">
 		<meta name="viewport" content="width=device-width">
 		<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu">
@@ -25,14 +25,6 @@
 		<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/css/cdestilos.css">
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
 		<!-- --------------- -->
-		<script src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/js/config.js"></script>
-		<script src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/js/modernizr-2.6.2.min.js"></script>
-		<script src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/js/jquery-1.8.1.min.js"></script>
-		<script src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/bootstrap/js/bootstrap.min.js"></script>
-		<script src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/js/jquery.nivo.slider.pack.js"></script>
-		<script src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/js/respond.min.js"></script>
-		<script src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/js/script.js"></script>
-
 	</head>
 
 	<body>	
@@ -154,7 +146,7 @@
 					</div>
 				</div>
 			</div>			
-		<div class="container">
+		<div class="container-fluid">
 			<?php echo $content; ?>			
 		</div>
 	</body>
@@ -163,4 +155,11 @@
 			<div class="clearfix">&nbsp;</div>
 			<p align="center">¿Quieres publicar tus promociones en ProEmoción? Llámanos y te informaremos sin compromiso</p>				
 	</div>
+	<script src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/js/config.js"></script>
+	<script src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/js/modernizr-2.6.2.min.js"></script>
+	<script src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/js/jquery-1.8.1.min.js"></script>
+	<script src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/bootstrap/js/bootstrap.min.js"></script>
+	<script src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/js/jquery.nivo.slider.pack.js"></script>
+	<script src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/js/respond.min.js"></script>
+	<script src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/js/script.js"></script>
 </html>
