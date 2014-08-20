@@ -88,7 +88,7 @@
 		<!--<div class="header-shadow"></div>--><!--He borrado esto poruqe no se veía el menú-->
 
 		<!-- Use class "container-fluid" on the following div for making complete website fluid -->
-		<div class="container">
+		
 
 			<div class="row-fluid print-hide">
 				<div class="span4">
@@ -154,6 +154,7 @@
 					</div>
 				</div>
 			</div>			
+		<div class="container">
 			<?php echo $content; ?>			
 		</div>
 	</body>
