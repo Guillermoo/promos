@@ -43,7 +43,9 @@ class LoginController extends Controller
 			};
 			if (User::tieneCamposMinimosRellenos($model) != true ){//Si devuelve true hay que cambiar
 				$model->status = 1;
-			};
+			}else{
+				$model->status = 2; //tiene rellenados los campos del perfil y de empresa
+			}
 			if ($model->status != 3)
 				$model->save(false);
 		}

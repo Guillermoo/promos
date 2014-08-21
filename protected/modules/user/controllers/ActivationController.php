@@ -19,6 +19,11 @@ class ActivationController extends Controller
 			} elseif(isset($find->activkey) && ($find->activkey==$activkey)) {
 				$find->activkey = UserModule::encrypting(microtime());
 				$find->status = User::STATUS_ACTIVE;
+
+				//Permito solo promociones de tipo cupón (de momento)
+				if( $find->superuser == 2 ){
+					$find->profile->tipocuenta = 0; //Pongo 0 para especificar que es un tipo de cuenta que solo permitirá crear promociones de tipo cupón
+				}
 				$find->save();
 				if (isset($find->profile))//No tiene porque ser una empresa.
 					Profile::actualizaFechaTrasActivacion($find->profile);
@@ -27,6 +32,7 @@ class ActivationController extends Controller
 				//envío un email a Proemocion avisando de que una empresa ha activado su cuenta
 				UserModule::sendMail(Yii::app()->params['websiteEmail'],'Nuevo registro','Se ha registrado una nueva empresa'
 					);				
+
 				}
 
 			    $this->render('/user/message',array('title'=>UserModule::t("User activation"),'content'=>UserModule::t("You account is activated.")));

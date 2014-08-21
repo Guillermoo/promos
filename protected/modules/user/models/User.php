@@ -350,13 +350,13 @@ class User extends CActiveRecord
 		if (isset($model->profile)){
 			//$return = $this->compruebaCamposMinimosProfile($model->profile);
 			if (($model->profile->direccion == null) || ($model->profile->direccion == 0) )
-				$return =  "Falta el cmapo dirección";
+				$return =  "Falta el campo dirección";
 		
 			elseif (($model->profile->telefono == null) || (!isset($model->profile->telefono) || ($model->profile->telefono === '') ) 	)
-				$return = "Falta el cmapo telefono";
+				$return = "Falta el campo teléfono";
 		
 			elseif (($model->profile->paypal_id == null) || (!isset($model->profile->paypal_id) || ($model->profile->paypal_id === '') ) 	){
-				$return = false;
+				//$return = false; NO COMPRUEBO EL CAMPO PAYPAL AQUÍ PORQUE NO ES OBLIGATORIO
 			}
 		}
 		
@@ -380,9 +380,9 @@ class User extends CActiveRecord
 		elseif (($profile->telefono == null) || (!isset($profile->telefono) || ($profile->telefono === '') ) 	)
 			$return = "Falta el cmapo telefono";
 		
-		elseif (($profile->paypal_id == null) || (!isset($profile->paypal_id) || ($profile->paypal_id === '') ) 	){
+		/*elseif (($profile->paypal_id == null) || (!isset($profile->paypal_id) || ($profile->paypal_id === '') ) 	){
 			$return = false;
-		}
+		}*/
 	}
 	
 	private function compruebaCamposMinimosEmpresa($empresa){
