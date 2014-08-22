@@ -36,7 +36,7 @@ class LoginController extends Controller
 		
 		$model = $this->loadModel();
 			
-		//COMPROBACIONES AL LOGEARSE. DEBERÍA COMPROBAR COSAS TAMBIÉN CUANDO ES = 2 
+		//COMPROBACIONES AL LOGEARSE
 		if ( ($model->status == 3) ){
 			if (User::cuentaCaducada($model) ){//Si devuelve true hay que cambiar
 				$model->status = 2;				
@@ -47,6 +47,23 @@ class LoginController extends Controller
 				$model->status = 2; //tiene rellenados los campos del perfil y de empresa
 			}
 			if ($model->status != 3)
+				$model->save(false);
+		}
+		if ( ($model->status == 2) ){
+			if (!User::cuentaCaducada($model) ){//Si devuelve true hay que cambiar
+				$model->status = 3;				
+			};
+			if (User::tieneCamposMinimosRellenos($model) != true ){//Si devuelve true hay que cambiar
+				$model->status = 1;
+			}
+			if ($model->status != 2)
+				$model->save(false);
+		}
+		if ( ($model->status == 1) ){
+			if (User::tieneCamposMinimosRellenos($model) == true ){//Si devuelve true hay que cambiar
+				$model->status = 2;
+			}
+			if ($model->status != 1)
 				$model->save(false);
 		}
 	}

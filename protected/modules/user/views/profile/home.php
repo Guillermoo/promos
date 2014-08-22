@@ -24,12 +24,6 @@
 	    ),
 	)); ?>
 	</div>
-<?php elseif($model->status == 2) :?>
-	<?php //$this->debug($model->profile->attributes);?>
-	<?php if($model->profile->tipocuenta != 3):?>
-		<?php echo "Tiene que pagar!!";?>
-	<?php endif;?>
-	<!-- Lo que tenga que salir de normal -->
 <?php endif;?>
 
 <?php 
@@ -51,8 +45,7 @@
     <a class="close" data-dismiss="modal">&times;</a>
     <h4>Modal header</h4>
 </div>
- <!-- AQUí HAY QUE PONER EL LAYOUT QUE QUEREMOS QUE SE HABRA CUANDO NOS LOGEAMOS Y 
- FALTAN POR EJEMPLO LSO CAMPOS A RELLENAR, O HACE FALTA PAGAR -->
+ 
 <div class="modal-body">
     <?php //$this->renderPartial('../layouts/contacto', array('model'=>$model));?>
 </div>
