@@ -18,7 +18,6 @@
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'cuenta-form',
 	'enableAjaxValidation'=>false,
-<<<<<<< HEAD
 	'method'=>'post',
 	)); ?>
 	<?php echo $form->hiddenField($model, 'user_id'); ?>
@@ -29,25 +28,6 @@
 		?>		
 	</div>
 	<div class="clearfix">&nbsp;</div>
-=======
-	'action'=>array('cuentas/usuarioCuenta'),
-)); ?>
-	<div class="row">
-	<?php echo $form->errorSummary($models); ?>
-	
-	<?php echo $form->hiddenField($user,'id'); ?>
-	<?php 
-  		// format models as $key=>$value with listData
-		$list = CHtml::listData($models, 
-                'id', 'titulo');
-	?>
-
-	<?php echo CHtml::dropDownList('idCuenta', 0, 
-        	$list,
-        	array('empty' => '(Elige un bono'));
-    ?>
-    </div>
->>>>>>> 7428083c8e0f2654c2590bbcee676795ccd299cc
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Guardar',array('class' => 'btn btn-primary btn-large')); ?>

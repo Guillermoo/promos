@@ -20,6 +20,6 @@
 		));
  ?>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model,'image'=>$image, 'promosDest'=>$promosDest, 'maxDest'=>$maxDest, 'maxActivas'=> $cuenta->prom_activ,'promoActivas'=>$numPromosActivas)); ?>
+<?php echo $this->renderPartial('_form', array('model'=>$model,'image'=>$image, 'promosDest'=>$promosDest, 'maxDest'=>$maxDest, 'maxActivas'=> $cuenta->prom_activ,'promoActivas'=>$numPromosActivas, 'fecha_fin'=>$profile->fecha_fin)); ?>
 
 

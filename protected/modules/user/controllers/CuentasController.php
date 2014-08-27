@@ -199,6 +199,7 @@ class CuentasController extends Controller
 		}else{			
 			$profile = Profile::model()->find('user_id=:user_id',array(':user_id'=>$user_id));
 			$this->render('usuarioCuenta', array('model' => $profile));
+		}
 	}
 	
 

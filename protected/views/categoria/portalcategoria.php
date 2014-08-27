@@ -52,11 +52,11 @@
  						<li class="span3">
 							<div class="thumbnail light">
 								<a href="/promocion/<?=$promo->titulo_slug ?>">
-									<span class="label label-info price">&euro; <? echo $promo->precio ?></span>									
+									<span class="label label-info price">&euro; <?php echo $promo->precio ?></span>									
 									<?php if (isset($promo->item)): ?>
-										<center><img data-hover="<?php echo Yii::app()->request->baseUrl.$promo->item->path ?>" src="<?php echo Yii::app()->getBaseUrl().$promo->item->path ?>" alt=""></center>
+										<center><img data-hover="<?php echo Yii::app()->request->baseUrl.$promo->item->path ?>" src="<?php echo Yii::app()->getBaseUrl().$promo->item->path ?>" alt="Promocion"></center>
 									<?php else: ?>
-										<img data-hover="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>"  alt="">
+										<img data-hover="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>" src="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>"  alt="Promocion">
 									<?php endif; ?>
 								</a>
 								<div class="caption">

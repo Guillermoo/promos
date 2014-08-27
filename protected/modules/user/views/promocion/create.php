@@ -1,6 +1,4 @@
 <h1>Crear Promoción</h1>
-
-
 <?php
 
 	//Tengo que comprobar si puede crear una nueva promoción.

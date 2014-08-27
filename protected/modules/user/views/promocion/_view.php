@@ -6,7 +6,7 @@
 <li class="span3">
 								<div class="thumbnail">
 								<?php if (isset($data->item)): ?>
-									<a href="<?php echo Yii::app()->request->baseUrl ?>/promocion/<?=$data->titulo_slug ?>" target="_blank"><img src="<?php echo Yii::app()->request->baseUrl.$promo->item->path ?>" alt=""></a>
+									<a href="<?php echo Yii::app()->request->baseUrl ?>/promocion/<?=$data->titulo_slug ?>" target="_blank"><img src="<?php echo Yii::app()->request->baseUrl.$data->item->path ?>" alt=""></a>
 								<?php else: ?>
 									<a href="<?php echo Yii::app()->request->baseUrl ?>/promocion/<?=$data->titulo_slug ?>" target="_blank"><img src="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>" alt=""></a>
 								<?php endif; ?>

@@ -103,29 +103,28 @@ class PromocionController extends Controller
         if($usuario->superuser == 2){ //es empresa          
 
         //compruebo si los datos están rellenados o están pendiente de pago     
-        if($usuario->status == 2){                
-            $this->render('_hadtopay');
-            Yii::app()->end();
-        }else{
-            if($usuario->profile->username == null || $usuario->empresa->nombre ==null){ //el campo username es obligatorio, por lo que si este campo está vacío es que no ha rellenado el perfil
-                $this->render('_faltaperfil');    
-                 Yii::app()->end();          
-            }
+        
+        if($usuario->profile->username == null || $usuario->empresa->nombre ==null){ //el campo username es obligatorio, por lo que si este campo está vacío es que no ha rellenado el perfil
+            $this->render('_faltaperfil');    
+            Yii::app()->end();          
         }
 
-         
+
         //compruebo que puede crear una nueva promo de el tipo seleccionado
-        $datosCuenta = Cuenta::model()->find('id=:id',
-            array(
+
+            $datosCuenta = Cuenta::model()->find('id=:id',
+                array(
                 ':id'=>$usuario->profile->tipocuenta
                 ));
-        $maxPromos = $datosCuenta->prom_activ + $datosCuenta->prom_stock;
-        $numPromos = Promocion::model()->countByAttributes(array(
-            'user_id'=> Yii::app()->user->id
+            $maxPromos = $datosCuenta->prom_activ + $datosCuenta->prom_stock;
+        
+
+            $numPromos = Promocion::model()->countByAttributes(array(
+                'user_id'=> Yii::app()->user->id
                 ));
 
-        if($numPromos == $maxPromos){
-            echo $this->renderPartial('_denied');
+        if($numPromos >= $maxPromos || $numPromos == $maxPromos){
+            echo $this->render('_denied');
         }
 
         $numPromosActivas = Promocion::model()->countByAttributes(array(
@@ -136,7 +135,7 @@ class PromocionController extends Controller
         ));          
         $numPromosDest = Promocion::model()->countByAttributes(array(
             'user_id'=> Yii::app()->user->id, 'destacado'=>1
-        ));                
+        ));              
                
 
         $model=new Promocion;
@@ -153,28 +152,32 @@ class PromocionController extends Controller
                 $this->redirect('create',array(
                 'model'=>$model,
                 ));
-        }
-        if($datosCuenta->prom_stock <= $numPromosStock && $model->estado == '0'){
-            Yii::app()->user->setFlash('error',UserModule::t("No puedes crear más promociones en <b>STOCK</b>"));
-            $this->redirect('create',array(
+            }
+            if($datosCuenta->prom_stock <= $numPromosStock && $model->estado == '0'){
+                Yii::app()->user->setFlash('error',UserModule::t("No puedes crear más promociones en <b>STOCK</b>"));
+                $this->redirect('create',array(
                 'model'=>$model,
                 ));
-        }
+            }
 
-        if($datosCuenta->prom_dest <= $numPromosDest){
-            $model->destacado = 0;
-            Yii::app()->user->setFlash('error',UserModule::t("No se ha marcado como destacada porque ha alcanzado el límite de destacadas."));
-        }
-    /**********************************/
+            if($datosCuenta->prom_dest <= $numPromosDest || $datosCuenta->prom_dest == 0){
+                $model->destacado = 0;
+                Yii::app()->user->setFlash('error',UserModule::t("No se ha marcado como destacada porque ha alcanzado el límite de destacadas."));
+            }
+
+            //ESTABLEZCO FECHA DE FIN AUTOMÁTICA
+            $model->fecha_fin = date('Y-m-d', strtotime($model->fecha_inicio. ' + '.Yii::app()->params['duracion_promos'].' days'));
+
+            /**********************************/
             $this->setCamposSecundarios($model);
 
             if($model->save()){
                 Yii::app()->user->setFlash('success',UserModule::t("Promotion created."));
                 //$this->redirect(array('mispromociones'));
                 $this->redirect(Yii::app()->getModule('user')->promocionesUrl);
-            }
-            else{
+            }else{
                 Yii::app()->user->setFlash('error',UserModule::t("Error creating the promotion."));
+                $this->redirect(Yii::app()->getModule('user')->promocionesUrl);
             }
         }
 
@@ -190,7 +193,7 @@ class PromocionController extends Controller
 
         $this->render('create',array(
                 'model'=>$model,'item'=>$item,'image'=>$image,'cuenta'=>$usuario->profile->tipocuenta, 'categorias'=>$categorias,'promosDest'=>$numPromosDest, 'maxDest'=>$datosCuenta->prom_dest
-        ));	
+        ));
     }else{ //NO es empresa
         $this->redirect(Yii::app()->user->returnUrl);
     }
@@ -203,7 +206,6 @@ class PromocionController extends Controller
 	 */
 	public function actionUpdate($id=null){
             
-        //adsgh;
         $this->_model=$this->loadModel($id);
         
         //$image = new Item();

@@ -271,6 +271,7 @@ return array(
 		'url_paypal'=>'wwww.sadfsdf.com',
 		'path_imgs'=> realpath( Yii::app( )->getBasePath( )."/../" ),
 		'cuenta_paypal' => 'proemocion@proemocion.com',
+        'duracion_promos' => '14',
 	),
     'catchAllRequest'=>file_exists(dirname(__FILE__).'/.maintenance')
         ? array('site/maintenance') : null,    

@@ -28,8 +28,6 @@ $('.search-form form').submit(function(){
     'keys'=>array('success','error'), 
     'htmlOptions'=>array('id'=>'flash'),
 )); ?><!-- flashes -->
-<? //$this->debug($model)?>
-<? //$this->debug(Promocion::itemAlias("PromoStatus"))?>
 <?php $this->widget('bootstrap.widgets.TbGridView', array(
 	'id'=>'user-grid',
 	'ajaxUpdate' => 'flash',

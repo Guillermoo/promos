@@ -41,11 +41,8 @@
     		array(
         		'label' => 'Asignar Bono',
         		'type' => 'primary',
-<<<<<<< HEAD
+
         		'url' => array('cuentas/usuarioCuenta/user_id/'.$user->id),
-=======
-        		'url' => array('cuentas/usuarioCuenta/id/'.$user->id),
->>>>>>> 7428083c8e0f2654c2590bbcee676795ccd299cc
     		)
 		); ?>
 	</div>
