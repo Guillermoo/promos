@@ -32,7 +32,7 @@ class XUploadForm extends CFormModel
         public function attributeLabels()
         {
                 return array(
-                        'file'=>'Upload files',
+                        'file'=>'Asignar imagen',
                 );
         }
 
@@ -45,7 +45,9 @@ class XUploadForm extends CFormModel
                 $lastsizestring = end($sizes);
 
                 foreach ($sizes as $sizestring) {
-                        if ($this->size < 1024) { break; }
+                        if ($this->size < 1024) { 
+                            break; 
+                        }
                         if ($sizestring != $lastsizestring) { $this->size /= 1024; }
                 }
                 if ($sizestring == $sizes[0]) { $retstring = '%01d %s'; } // Bytes aren't normally fractional
@@ -87,7 +89,7 @@ class XUploadForm extends CFormModel
         public function addImages( ) {
             //If we have pending images
             if( Yii::app( )->user->hasState( 'images' ) ) {
-                asdgh;
+                
                 $userImages = Yii::app( )->user->getState( 'images' );
                 //Resolve the final path for our images
                 $path = Yii::app( )->getBasePath( )."/../images/uploads/{$this->id}/";

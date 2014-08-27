@@ -101,6 +101,9 @@
                                 'htmlOptions' => array('id'=>'logo_form'),
                                 'attribute' => 'file',
                                 'multiple' => false,
+                                'options' => array(
+                                    'sizeLimit'=>100000,// maximum file size in bytes
+                                    ),
                                 //Note that we are using a custom view for our widget
                                 //Thats becase the default widget includes the 'form' 
                                 //which we don't want here
