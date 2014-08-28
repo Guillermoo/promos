@@ -43,7 +43,7 @@
 			<ul class="nav">
 				<?php if(Yii::app()->user->isGuest): ?>
 				<li>
-					<?php echo CHtml::link('Login',Yii::app()->baseUrl.'/user/login');?>							
+					<?php echo CHtml::link('Acceder',Yii::app()->baseUrl.'/user/login');?>							
 					<ul class="dropdown-menu">
 						<li>
 							<div class="dropdown-content">

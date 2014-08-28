@@ -12,7 +12,8 @@
 				<div class="ribbon"></div>
 				<div id="slider1" class="nivoslider">
 					<img src="<?php echo Yii::app()->request->baseUrl.'/themes//frontEnd'; ?>/img/header_01.jpg" alt="ProEmocion">
-					<img src="<?php echo Yii::app()->request->baseUrl.'/themes//frontEnd'; ?>/img/header_02.jpg" alt="" >			
+					<img src="<?php echo Yii::app()->request->baseUrl.'/themes//frontEnd'; ?>/img/header_04.jpg" alt="Zaragoza" >			
+					<img src="<?php echo Yii::app()->request->baseUrl.'/themes//frontEnd'; ?>/img/header_02.jpg" alt="Tu web de promociones" >
 				</div>
 			</div>
 		</div>
