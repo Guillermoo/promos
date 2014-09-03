@@ -19,7 +19,7 @@ $this->breadcrumbs=array(
 <div class="row-fluid">
 <div class="span12">
 
-<? //$this->debug($model->attributes);?>
+<?php //$this->debug($model->attributes);?>
 <div class="row-fluid">	
 			<div class="span3">
 				<!--<button class="btn"><i class="icon-chevron-left"></i> <a href="/page2">Continue</a></button>-->

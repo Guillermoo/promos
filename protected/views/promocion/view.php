@@ -21,7 +21,6 @@
 <div class="row-fluid">
 <div class="span12">
 
-<? //$this->debug($model->attributes);?>
 <div class="row-fluid">	
 			<div class="span3">
 				<!--<button class="btn"><i class="icon-chevron-left"></i> <a href="/page2">Continue</a></button>-->
@@ -163,30 +162,30 @@
 				if(UserModule::isBuyer()):
 				 ?>
 					<?php if($model->tipo == 0): ?>
-					<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-						<input type="hidden" name="cmd" value="_xclick">
-						<intput type="hidden" name="notify_url" value="http://wwww.proemocion.com/compra/checkoutCompra">
-						<input type="hidden" name="quantity" value="1">
-						<input type="hidden" name="return" value="http://www.proemocion.com/site/pagoCorrecto" >
-						<!--<input type="hidden" name="hosted_button_id" value="6GXW9XDULHFUG"> -->
-						<input type="hidden" name="business" value="<?php echo $datos->paypal_id; ?>">
-						<input type="hidden" name="item_name" value="<?=$model->titulo ?>">
-						<input type="hidden" name="amount" value="<?=$model->precio ?>">
-						<input type="hidden" name="custom" value="<?= Yii::app()->user->id ?>_<?=$model->id ?>">
-						<input type="image" src="https://www.sandbox.paypal.com/es_ES/ES/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal. La forma rápida y segura de pagar en Internet.">
-						<img alt="" border="0" src="https://www.sandbox.paypal.com/es_ES/i/scr/pixel.gif" width="1" height="1">
-					</form>
-				<?php else: ?>
-					<div class="alert alert-info"><strong>Para disfrutar de esta oferta debes presentar el cupón. Descarga el cupón pinchando en el botón de abajo y preséntalo en el establecimiento.</strong> (Exclusivo para usuarios registrados en Proemoción)</div>
-					<?php $this->widget('bootstrap.widgets.TbButton', array(
-    					'label'=>'¡Descarga el cupón!',
-    					'type'=>'success', // null, 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
-    					'size'=>'large', // null, 'large', 'small' or 'mini'
-    					'icon'=>'download-alt white',
-    					'url'=>array('user/compra/comprado/idPromo/'.$model->id),
-    					'toggle'=>true,
-						)); ?>
-				<?php endif; ?>					
+						<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+							<input type="hidden" name="cmd" value="_xclick">
+							<intput type="hidden" name="notify_url" value="http://wwww.proemocion.com/compra/checkoutCompra">
+							<input type="hidden" name="quantity" value="1">
+							<input type="hidden" name="return" value="http://www.proemocion.com/site/pagoCorrecto" >
+							<!--<input type="hidden" name="hosted_button_id" value="6GXW9XDULHFUG"> -->
+							<input type="hidden" name="business" value="<?php echo $datos->paypal_id; ?>">
+							<input type="hidden" name="item_name" value="<?=$model->titulo ?>">
+							<input type="hidden" name="amount" value="<?=$model->precio ?>">
+							<input type="hidden" name="custom" value="<?= Yii::app()->user->id ?>_<?=$model->id ?>">
+							<input type="image" src="https://www.sandbox.paypal.com/es_ES/ES/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal. La forma rápida y segura de pagar en Internet.">
+							<img alt="" border="0" src="https://www.sandbox.paypal.com/es_ES/i/scr/pixel.gif" width="1" height="1">
+						</form>
+					<?php else: ?>
+						<div class="alert alert-info"><strong>Para disfrutar de esta oferta debes presentar el cupón. Descarga el cupón pinchando en el botón de abajo y preséntalo en el establecimiento.</strong> (Exclusivo para usuarios registrados en Proemoción)</div>
+							<?php $this->widget('bootstrap.widgets.TbButton', array(
+    						'label'=>'¡Descarga el cupón!',
+    						'type'=>'success', // null, 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
+    						'size'=>'large', // null, 'large', 'small' or 'mini'
+    						'icon'=>'download-alt white',
+    						'url'=>array('user/compra/comprado/idPromo/'.$model->id),
+    						'toggle'=>true,
+							)); ?>
+					<?php endif; ?>					
 				<?php else: ?>
 						<div class="alert alert-info"><h4>Para poder comprar una promoción debes estar registrado como usuario.</h4></div>
 						<div>
@@ -202,19 +201,19 @@
 	<div class="span12">
 	<div class="well">
 		<div class="row-fluid">				
-			<h3><? echo CHtml::link(CHtml::encode($empresa->empresa->nombre),array('empresa/verpromos', 'id'=>$empresa->empresa->id),array('target'=>'_blank')) ?></h3>
+			<h3><?php echo CHtml::link(CHtml::encode($empresa->empresa->nombre),array('empresa/verpromos', 'id'=>$empresa->empresa->id),array('target'=>'_blank')) ?></h3>
 		</div>
 		<div class="row-fluid span4">
 			<h4>Dirección</h4>
-			<div><? echo CHtml::encode($empresa->profile->direccion) ?></div>
+			<div><?php echo CHtml::encode($empresa->profile->direccion) ?></div>
 		</div>
 		<div class="row-fluid span3">
 			<h4>Teléfono</h4>
-			<div><? echo CHtml::encode($empresa->profile->telefono) ?></div>
+			<div><?php echo CHtml::encode($empresa->profile->telefono) ?></div>
 		</div>
 		<div class="row-fluid span4">
 			<h4>Página web</h4>
-			<div><? echo CHtml::encode($empresa->empresa->web) ?></div>
+			<div><?php echo CHtml::encode($empresa->empresa->web) ?></div>
 		</div>
 		<div class="clearfix">&nbsp;</div>		
 	</div>
@@ -244,7 +243,7 @@
 							<li class="span2">
 								<div class="thumbnail light">
 								<a href="<?=$promo->titulo_slug ?>">
-								<span class="label label-info price">&euro; <? echo $promo->precio ?></span>
+								<span class="label label-info price">&euro; <?php echo $promo->precio ?></span>
 								<!--<span class="label label-important price price-over">&euro; 1,<sup>99</sup></span>-->
 								<?php if (isset($promo->item)): ?>
 									<center><img class="divpromothumb" data-hover="<?php echo Yii::app()->getBaseUrl().$path ?>" src="<?php echo Yii::app()->getBaseUrl().$path ?>" alt="<?php echo $promo->titulo ?>" ?></center>
@@ -253,7 +252,7 @@
 								<?php endif; ?>
 								</a>
 									<div class="caption">
-									<a href="<? echo $promo->titulo_slug ?>"><?php echo $promo->titulo ?><a href="<?=$promo->titulo_slug ?>" class="btn btn-block">Más información</a>
+									<a href="<?php echo $promo->titulo_slug ?>"><?php echo $promo->titulo ?><a href="<?=$promo->titulo_slug ?>" class="btn btn-block">Más información</a>
 									</div>
 								</div>
 							</li>							

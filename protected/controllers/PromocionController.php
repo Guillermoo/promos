@@ -91,8 +91,7 @@ class PromocionController extends Controller
 	/**
 	 * Lists all models.
 	 */
-	public function actionIndex()
-	{
+	public function actionIndex(){
 		$criteria=new CDbCriteria;
 		$now = new CDbExpression("NOW()");
         $criteria->with = array( 'item');
@@ -154,7 +153,6 @@ class PromocionController extends Controller
 
 		$promos = Promocion::model()->findAll($criteria2); */
 
-
 		$this->render('index',array(		
 			'promos'=>$promos,
 		));
@@ -177,7 +175,6 @@ class PromocionController extends Controller
                 ));
             }
         }
-        echo "<p>NO AJAX</p>";
     }
 
 	/* Used to debug variables*/
@@ -259,7 +256,4 @@ class PromocionController extends Controller
 			"
 	    ;
 	}
-
-	
-	
 }
