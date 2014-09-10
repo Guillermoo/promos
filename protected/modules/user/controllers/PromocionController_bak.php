@@ -97,69 +97,67 @@ class PromocionController extends Controller
         //(H)comprobar que el usuario puede crear una nueva promoción
         //(H)si el status == 3 es que ya ha pagado y, por tanto, habrá que comprobar qué tipo de cuenta tiene y cuántas promos en stock, activas y destacadas tiene, luego comprobar qué tipo de promoción es esta que quiere insertar y ver si puede hacerlo
         //(H)si el status == 2 es que ha seleccionado un tipo de cuenta de pago pero todavía no ha pagado, por lo que no debe poder crear una nueva promoción
-     
+       
         $usuario = User::model()->findByPk(Yii::app()->user->id);
-     
+        
         if($usuario->superuser == 2){ //es empresa          
 
-            //compruebo si los datos están rellenados o están pendiente de pago     
-        
-            if($usuario->profile->username == null || $usuario->empresa->nombre ==null){ //el campo username es obligatorio, por lo que si este campo está vacío es que no ha rellenado el perfil
-                $this->render('_faltaperfil');    
-                Yii::app()->end();          
-            }
+        //compruebo si los datos están rellenados o están pendiente de pago     
+            
+        if($usuario->profile->username == null || $usuario->empresa->nombre ==null){ //el campo username es obligatorio, por lo que si este campo está vacío es que no ha rellenado el perfil
+            $this->render('_faltaperfil');    
+            Yii::app()->end();          
+        }
 
 
-            //compruebo que puede crear una nueva promo de el tipo seleccionado
+        //compruebo que puede crear una nueva promo de el tipo seleccionado
 
-            $datosCuenta = Cuenta::model()->find('id=:id',
-                array(
+        $datosCuenta = Cuenta::model()->find('id=:id',
+            array(
                 ':id'=>$usuario->profile->tipocuenta
                 ));
-            $maxPromos = $datosCuenta->prom_activ + $datosCuenta->prom_stock;
+        $maxPromos = $datosCuenta->prom_activ + $datosCuenta->prom_stock;
         
 
-            $numPromos = Promocion::model()->countByAttributes(array(
-                'user_id'=> Yii::app()->user->id
-                ));
-
-            if($numPromos >= $maxPromos || $numPromos == $maxPromos){
-                echo $this->render('_denied');
-            }
-
-            $numPromosActivas = Promocion::model()->countByAttributes(array(
-                'user_id'=> Yii::app()->user->id, 'estado'=>1
+        $numPromos = Promocion::model()->countByAttributes(array(
+            'user_id'=> Yii::app()->user->id
             ));
-            $numPromosStock = Promocion::model()->countByAttributes(array(
-                'user_id'=> Yii::app()->user->id, 'estado'=>0
+
+        if($numPromos >= $maxPromos || $numPromos == $maxPromos){
+            echo $this->render('_denied');
+        }
+
+        $numPromosActivas = Promocion::model()->countByAttributes(array(
+            'user_id'=> Yii::app()->user->id, 'estado'=>1
+            ));
+        $numPromosStock = Promocion::model()->countByAttributes(array(
+            'user_id'=> Yii::app()->user->id, 'estado'=>0
             ));          
-            $numPromosDest = Promocion::model()->countByAttributes(array(
-                'user_id'=> Yii::app()->user->id, 'destacado'=>1
+        $numPromosDest = Promocion::model()->countByAttributes(array(
+            'user_id'=> Yii::app()->user->id, 'destacado'=>1
             ));              
-                   
+        
 
-            $model=new Promocion;
-            $model->scenario = "insert";
+        $model=new Promocion;
+        $model->scenario = "insert";
 
-            $this->performAjaxValidation(array($model));
+        $this->performAjaxValidation(array($model));
 
         /***  COMPROBACIÓN DE QUE SE PUEDE ****/        
         if(isset($_POST['Promocion'])){
             $model->attributes=$_POST['Promocion'];
 
-            echo "TIPO: ".$model->tipo;
-
             if($datosCuenta->prom_activ <= $numPromosActivas && $model->estado == '1'){
                 Yii::app()->user->setFlash('error',UserModule::t("No puedes crear más promociones <b>ACTIVAS</b>"));
                 $this->redirect('create',array(
-                'model'=>$model,
-                ));
+                    'model'=>$model,
+                    ));
             }
             if($datosCuenta->prom_stock <= $numPromosStock && $model->estado == '0'){
                 Yii::app()->user->setFlash('error',UserModule::t("No puedes crear más promociones en <b>STOCK</b>"));
                 $this->redirect('create',array(
-                'model'=>$model,
-                ));
+                    'model'=>$model,
+                    ));
             }
 
             if($datosCuenta->prom_dest <= $numPromosDest || $datosCuenta->prom_dest == 0){
@@ -175,10 +173,8 @@ class PromocionController extends Controller
 
             if($model->save()){
                 Yii::app()->user->setFlash('success',UserModule::t("Promotion created."));
-                echo "<br/>tipo fin: ".$model->tipo;
                 //$this->redirect(array('mispromociones'));
-                //$this->redirect(Yii::app()->getModule('user')->promocionesUrl);
-                Yii::app()->end();
+                $this->redirect(Yii::app()->getModule('user')->promocionesUrl);
             }else{
                 Yii::app()->user->setFlash('error',UserModule::t("Error creating the promotion."));
                 $this->redirect(Yii::app()->getModule('user')->promocionesUrl);
@@ -196,11 +192,11 @@ class PromocionController extends Controller
         $categorias=new CActiveDataProvider('Categoria');
 
         $this->render('create',array(
-                'model'=>$model,'item'=>$item,'image'=>$image,'cuenta'=>$usuario->profile->tipocuenta, 'categorias'=>$categorias,'promosDest'=>$numPromosDest, 'maxDest'=>$datosCuenta->prom_dest
-        ));
-        }else{ //NO es empresa
-            $this->redirect(Yii::app()->user->returnUrl);
-        }
+            'model'=>$model,'item'=>$item,'image'=>$image,'cuenta'=>$usuario->profile->tipocuenta, 'categorias'=>$categorias,'promosDest'=>$numPromosDest, 'maxDest'=>$datosCuenta->prom_dest
+            ));
+    }else{ //NO es empresa
+        $this->redirect(Yii::app()->user->returnUrl);
+    }
     }
 	
 /**
@@ -263,34 +259,34 @@ class PromocionController extends Controller
 	}
 
     private function obtenImageForm($item=null){
-        Yii::import("xupload.models.XUploadForm");
-        $imageForm = new XUploadForm;
+    Yii::import("xupload.models.XUploadForm");
+    $imageForm = new XUploadForm;
 
-        if (isset($item)){
-            $imageForm->name = $item->filename;
-            //$imageForm->file = $item->path;
-            $imageForm->file = CUploadedFile::getInstance( $item, 'file' );
-            $imageForm->mime_type = $item->tipo;
-            $imageForm->size = $item->size;
-            $imageForm->filename = $item->filename;
-            $path =  Yii::app( )->getBaseUrl( );
+    if (isset($item)){
+        $imageForm->name = $item->filename;
+        //$imageForm->file = $item->path;
+        $imageForm->file = CUploadedFile::getInstance( $item, 'file' );
+        $imageForm->mime_type = $item->tipo;
+        $imageForm->size = $item->size;
+        $imageForm->filename = $item->filename;
+        $path =  Yii::app( )->getBaseUrl( );
 
-            echo json_encode( array( array(
-                "name" => $imageForm->name,
-                "type" => $imageForm->mime_type,
-                "size" => $imageForm->size,
-                "url" =>  $path.$item->path,
-                "thumbnail_url" => $path."thumbs/".$item->filename,
-                "delete_url" => $this->createUrl( "upload", array(
-                    "_method" => "delete",
-                    "file" => $item->filename
-                ) ),
-                "delete_type" => "POST"
-            ) ) );
-        }
-        
-        //Para cargar/gestionar el logo
-        return $imageForm ;
+        echo json_encode( array( array(
+            "name" => $imageForm->name,
+            "type" => $imageForm->mime_type,
+            "size" => $imageForm->size,
+            "url" =>  $path.$item->path,
+            "thumbnail_url" => $path."thumbs/".$item->filename,
+            "delete_url" => $this->createUrl( "upload", array(
+                "_method" => "delete",
+                "file" => $item->filename
+            ) ),
+            "delete_type" => "POST"
+        ) ) );
+    }
+    
+    //Para cargar/gestionar el logo
+    return $imageForm ;
 
 }
 

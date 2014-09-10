@@ -119,9 +119,9 @@
 										<!--<li><?php //echo Chtml::link('Promociones',array('/promociones'))?></li>-->
 										<li><?php 
 										if(Yii::app()->controller->id == 'categoria'):
-											echo Chtml::link('Categorias',array('/categorias'),array('class'=>'active')); 
+											echo Chtml::link('Categorías',array('/categorias'),array('class'=>'active')); 
 										else: 
-											echo Chtml::link('Categorias',array('/categorias')); 
+											echo Chtml::link('Categorías',array('/categorias')); 
 										endif;
 										?></li>
 										<li><?php 

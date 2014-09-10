@@ -88,8 +88,7 @@ class XUploadForm extends CFormModel
          
         public function addImages( ) {
             //If we have pending images
-            if( Yii::app( )->user->hasState( 'images' ) ) {
-l                
+            if( Yii::app( )->user->hasState( 'images' ) ) {                
                 $userImages = Yii::app( )->user->getState( 'images' );
                 //Resolve the final path for our images
                 $path = Yii::app( )->getBasePath( )."/../images/uploads/{$this->id}/";
