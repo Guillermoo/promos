@@ -82,7 +82,7 @@ $this->breadcrumbs=array(
 <div class="row-fluid product-detail">
 
 	<div class="span4">
-		<?php if (isset($model->item)): ?>
+		<?php if (isset($model->item) && strcmp($model->item->model,"promo") == 0 ): ?>
 			<?php $path=$model->item->path ?>
 		<?php else:?>
 			<?php $path=Yii::app()->params['no_image_big'] ?>
@@ -107,8 +107,8 @@ $this->breadcrumbs=array(
 		</div>
 
 		<div class="row-fluid">
-			<div class="span7">
-				<?php if(isset($model->fecha_fin)):
+			<div class="span7">				
+				<?php if( isset($model->fecha_fin) && strtotime($model->fecha_fin) >= strtotime(date("Y-m-d")) ):
 						$segundos=strtotime($model->fecha_fin) - strtotime('now');
 						$dias=intval($segundos/60/60/24);
 					?>

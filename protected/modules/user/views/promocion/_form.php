@@ -4,7 +4,7 @@
 /* @var $form CActiveForm */
 ?>
 <!--<div class="form">-->
-<? //Yii::import('ext.krichtexteditor.KRichTextEditor');?>
+<?php //Yii::import('ext.krichtexteditor.KRichTextEditor');?>
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'promociones-form',
 	'enableAjaxValidation'=>true,
@@ -15,9 +15,8 @@
 	),
 	'htmlOptions' => array('enctype'=>'multipart/form-data')
 )); ?>
-
 <fieldset>
-    <p class="note">Los campos con <span class="required">*</span> son obligatorios.</p>
+     <p class="note">Los campos con <span class="required">*</span> son obligatorios.</p>
 
     <?php echo $form->errorSummary($model); ?>
 
@@ -33,16 +32,15 @@
     $promoActivas: número de promociones activas que tiene el usuario
      -->
 
-
-    <? if ($model->isNewRecord):?>
-    <div class="row">      
-        <?php if($promoActivas == $maxActivas || (isset($verificado) && $verificado == 0) || ($fecha_fin != '0000-00-00' && (strtotime($fecha_fin) < strtotime(date('Y-m-d'))))): ?>    
-            <?php echo $form->dropDownListRow($model, 'estado', Promocion::itemAlias("PromoStatus"),array('options'=>array(Promocion::STATUS_ACTIVA=>array('disabled'=>'disabled')))); ?>            
-        <?php else: ?>
+     <?php if ($model->isNewRecord): ?>
+        <div class="row">
+            <?php if($promoActivas == $maxActivas || (isset($verificado) && $verificado == 0) || ($fecha_fin != '0000-00-00' && (strtotime($fecha_fin) < strtotime(date('Y-m-d'))))): ?>
+            <?php echo $form->dropDownListRow($model, 'estado', Promocion::itemAlias("PromoStatus"),array('options'=>array(Promocion::STATUS_ACTIVA=>array('disabled'=>'disabled')))); ?>
+            <?php else: ?>
             <?php echo $form->dropDownListRow($model, 'estado', Promocion::itemAlias("PromoStatus"),array('options'=>array(Promocion::STATUS_ACTIVA=>array('selected'=>'selected')))); ?>
-        <?php endif; ?>
-        <?php echo $form->error($model,'estado'); ?>
-    </div>
+            <?php endif; ?>
+            <?php echo $form->error($model,'estado'); ?>
+        </div>
     <?php else: ?>
     <div class="row">      
         <?php if($promoActivas === $maxActivas && ($model->estado == 0 || ($fecha_fin != '0000-00-00' && (strtotime($fecha_fin) < strtotime(date('Y-m-d')))))): ?> 
@@ -54,25 +52,23 @@
         <?php echo $form->error($model,'estado'); ?>
     </div>
     <?php endif; ?>
-    <div class="row">
-        <?php echo $form->labelEx($model,'destacada'); ?>
-        <?php if($promosDest >= $maxDest):
-                echo $form->checkbox($model, 'destacado',array('disabled'=>'disabled')); 
-            else:
+
+      <div class="row">
+       
+        <?php if($promosDest < $maxDest): 
+                echo $form->labelEx($model,'destacada'); 
                 echo $form->checkbox($model,'destacado');
-            endif;
-            ?>
+            endif; ?>
         <?php echo $form->error($model,'destacado'); ?>
     </div>
-    <?//endif;?>
 
-     <div class="row">
+    <div class="row">
            <br/><br/>
     </div>
 
     <div class="row well"><p><strong>Selecciona el tipo de promoción que quieres crear:</strong>
-    <p>Una promoción de <strong>Pago por internet</strong> se ha de pagar antes de disfrutarla, por el método de pago que ofrece Proemoción.</p>
-    <p>Una promoción de tipo <strong>Cupón</strong> permite que los usuarios registrados puedan descargarse un cupón, el cual deberán presentar en tu establecimiento para poder disfrutar de la promoción.</p>
+         <p>Una promoción de tipo <strong>Cupón</strong> permite que los usuarios registrados puedan descargarse un cupón, el cual deberán presentar en tu establecimiento para poder disfrutar de la promoción.</p>
+    <p>Una promoción de <strong>Pago por internet (Todavía no disponible)</strong> se ha de pagar antes de disfrutarla, por el método de pago que ofrece Proemoción.</p>
      <div >             
         <?php echo $form->dropDownListRow($model, 'tipo', Promocion::itemAlias("Tipo")); ?>
         <?php echo $form->error($model,'tipo'); ?>
@@ -85,13 +81,13 @@
             <?php echo $form->error($model,'titulo'); ?>
     </div>
 
-    <? if (UserModule::isCompany()): ?>
+    <?php if (UserModule::isCompany()): ?>
       
         <div class="row">
             <?php if(!$model->isNewRecord): ?>
                 <?php //(G)Cargamos el cargador de imágenes ?>
                 <small>(Se recomienda que sea una imagen de 400 X 400 píxeles para que se vea correctamente)</small>
-                <?php if (!isset($image) || $image->name==null): ?>
+                <?php if ( !isset($model->image) ): ?>
                     <p>Elige una imagen para la promoción:</p>
                     <div id="logo_form">
                         <?php
@@ -105,6 +101,9 @@
                                 'htmlOptions' => array('id'=>'logo_form'),
                                 'attribute' => 'file',
                                 'multiple' => false,
+                                'options' => array(
+                                    'sizeLimit'=>100000,// maximum file size in bytes
+                                    ),
                                 //Note that we are using a custom view for our widget
                                 //Thats becase the default widget includes the 'form' 
                                 //which we don't want here
@@ -125,7 +124,7 @@
                 <?php  endif;?>
                     </div>
             <?php else: ?>
-                <div class="alert alert-info">Podrás poner una <strong>imagen para la promoción</strong> cuando ya tengas la promoción creada. Para ello, después de rellenar los datos y guardar la promoción, pincha en el botón de editar la promoción (icono de lápiz: &nbsp;<span class="icon icon-pencil">&nbsp;</span>) en el administrador de promociones</div>
+                <div class="alert alert-info">Podrás poner una <strong>imagen para la promoción</strong> cuando ya tengas la promoción creada. Para ello, después de rellenar los datos y guardar la promoción, pincha en el botón de editar la promoción (icono de lápiz: &nbsp;<span class="icon icon-pencil">&nbsp;</span>) en el administrador de promociones (menú superior: Mis promociones -> Administrar)</div>
             <?php  endif;?>
         </div>
     <?php endif; ?>
@@ -177,42 +176,14 @@
             <?php echo $form->error($model,'fecha_inicio'); ?>
     </div>
 
-    <div class="row">
-            <?php //echo $form->labelEx($model,'fecha_fin'); ?>
-            <?php /*$this->widget('zii.widgets.jui.CJuiDatePicker',array(
-                'attribute'=>'fecha_fin',
-                    'model'=>$model,
-                    'value'=>$model->fecha_fin,
-                // additional javascript options for the date picker plugin
-                'options'=>array(
-                    'dateFormat'=>'yy-mm-dd',
-                    'showAnim'=>'fold',
-                    'changeMonth'=>'true', 
-                    'changeYear'=>'true',
-                    //'debug'=>true,
-                ),
-            ));*/?>
-            <?php if($model->isNewRecord): ?>
-            <?php echo $form->datepickerRow($model, 'fecha_fin',
-                 array('hint'=>'Haz click para seleccionar la fecha.',
-                    'prepend'=>'<i class="icon-calendar"></i>',
-                    'options'=>array('format'=>'yyyy-mm-dd'))); ?>
-            <?php else: ?>
-            
-                <?php echo $form->labelEx($model,'fecha_fin'); ?>
-                <?php echo $form->textField($model,'fecha_fin',array('disabled' => true)); ?>
-            <?php endif; ?>
-            <?php echo $form->error($model,'fecha_fin'); ?>
-    </div>
-
-    <? if(UserModule::isAdmin()): ?>
+    <?php if(UserModule::isAdmin()): ?>
         <div class="row">
                 <?php echo $form->labelEx($model,'fechaCreacion'); ?>
                 <?php echo $form->datepickerRow($model, 'fechaCreacion',
                 array('hint'=>'Haz click para seleccionar la fecha.','prepend'=>'<i class="icon-calendar"></i>','options'=>array('format'=>'yyyy-mm-dd'))); ?>
                 <?php echo $form->error($model,'fechaCreacion'); ?>
         </div>
-    <?endif;?>
+    <?php endif;?>
 
     <div class="row">
             <?php echo $form->textFieldRow($model, 'precio', array('prepend'=>'€')); ?>
@@ -220,8 +191,8 @@
     </div>
 
     <div class="row">
-            <?php echo $form->labelEx($model,'rebaja'); ?>
-            <?php echo $form->textField($model,'rebaja',array('size'=>45,'maxlength'=>45)); ?>
+            <?php echo $form->labelEx($model,'descuento'); ?>
+            <?php echo $form->textField($model,'rebaja',array('size'=>45,'maxlength'=>45, 'placeholder'=>'Ej: 25% o 19€')); ?>
             <?php echo $form->error($model,'rebaja'); ?>
     </div>
 
@@ -230,12 +201,7 @@
             <?php echo $form->textField($model,'condiciones',array('size'=>60,'maxlength'=>1000)); ?>
             <?php echo $form->error($model,'condiciones'); ?>
     </div>
-
-    <div class="row">
-            <?php echo $form->labelEx($model,'stock'); ?>
-            <?php echo $form->textField($model,'stock'); ?>
-            <?php echo $form->error($model,'stock'); ?>
-    </div>    
+ 
     <div class="row">
         <?php echo $form->labelEx($model,'categoria'); ?>
 
@@ -249,6 +215,8 @@
     <div class="row buttons">
             <?php echo CHtml::submitButton($model->isNewRecord ? 'Crear' : 'Guardar',array('class'=>'btn btn-success btn-large')); ?>
     </div>
+
+
 </fieldset>
 <?php $this->endWidget(); ?>
 <script>

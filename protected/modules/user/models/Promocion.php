@@ -274,8 +274,8 @@ class Promocion extends CActiveRecord
 				self::IS_DESTACADA => UserModule::t('Highlight'),
                 self::IS_NODESTACADA => UserModule::t('No Highlight'),
 			),
-			'Tipo' => array(self::PAGO => 'Pago por internet', 
-							self::CUPON => 'Cupón',
+			'Tipo' => array(self::CUPON => 'Cupón',
+							//self::PAGO => 'Pago por internet',
 			),
 		);
 		if (isset($code))
