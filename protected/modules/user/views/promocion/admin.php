@@ -24,6 +24,12 @@ $('.search-form form').submit(function(){
 )); ?>
 </div><!-- search-form -->
 
+<?php if(Yii::app()->user->hasFlash('error')):?>
+    <div class="alert alert-error">
+        <?php echo Yii::app()->user->getFlash('success'); ?>
+    </div>
+<?php endif; ?>
+
 <?php $this->widget('application.extensions.flash.Flash', array(
     'keys'=>array('success','error'), 
     'htmlOptions'=>array('id'=>'flash'),

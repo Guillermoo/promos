@@ -124,7 +124,8 @@ class PromocionController extends Controller
                 ));
 
             if($numPromos >= $maxPromos || $numPromos == $maxPromos){
-                echo $this->render('_denied');
+                $this->render('_denied');
+                Yii::app()->end();
             }
 
             $numPromosActivas = Promocion::model()->countByAttributes(array(
@@ -145,9 +146,7 @@ class PromocionController extends Controller
 
         /***  COMPROBACIÓN DE QUE SE PUEDE ****/        
         if(isset($_POST['Promocion'])){
-            $model->attributes=$_POST['Promocion'];
-
-            echo "TIPO: ".$model->tipo;
+            $model->attributes=$_POST['Promocion'];            
 
             if($datosCuenta->prom_activ <= $numPromosActivas && $model->estado == '1'){
                 Yii::app()->user->setFlash('error',UserModule::t("No puedes crear más promociones <b>ACTIVAS</b>"));
@@ -175,8 +174,7 @@ class PromocionController extends Controller
 
             if($model->save()){
                 Yii::app()->user->setFlash('success',UserModule::t("Promotion created."));
-                echo "<br/>tipo fin: ".$model->tipo;
-                //$this->redirect(array('mispromociones'));
+                $this->redirect(array('mispromociones'));
                 //$this->redirect(Yii::app()->getModule('user')->promocionesUrl);
                 Yii::app()->end();
             }else{

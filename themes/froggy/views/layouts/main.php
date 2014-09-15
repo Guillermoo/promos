@@ -62,12 +62,12 @@
 </div>
     
 <footer>
-   <div class="footer_container">
+  <div class="footer_container">
    <div class="container">
-   <p style="margin-left:10px;">Proemoción</p>
+      <p align="center"> ProEmoción - Tu web de promociones  |   contacto: 652 389 176  |  proemocion@proemocion.com | Zaragoza | España</p>
     </div>
-      </div>
-    </footer>
+  </div>
+</footer>
 
 
 

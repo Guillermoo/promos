@@ -70,7 +70,7 @@
          <p>Una promoción de tipo <strong>Cupón</strong> permite que los usuarios registrados puedan descargarse un cupón, el cual deberán presentar en tu establecimiento para poder disfrutar de la promoción.</p>
     <p>Una promoción de <strong>Pago por internet (Todavía no disponible)</strong> se ha de pagar antes de disfrutarla, por el método de pago que ofrece Proemoción.</p>
      <div >             
-        <?php echo $form->dropDownListRow($model, 'tipo', Promocion::itemAlias("Tipo"),array("disabled"=>"disabled")); ?>
+        <?php echo $form->dropDownListRow($model, 'tipo', Promocion::itemAlias("Tipo")); ?>
         <?php echo $form->error($model,'tipo'); ?>
     </div>   
     </div>
