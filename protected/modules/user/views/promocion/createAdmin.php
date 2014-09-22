@@ -1,10 +1,5 @@
-<?php
-/* @var $this PromocionesController */
-/* @var $model Promociones */
-/* @var $form CActiveForm */
-?>
-<!--<div class="form">-->
-<?php //Yii::import('ext.krichtexteditor.KRichTextEditor');?>
+<h1>Crear Promoción</h1>
+
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'promociones-form',
 	'enableAjaxValidation'=>true,

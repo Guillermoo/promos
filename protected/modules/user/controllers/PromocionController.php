@@ -35,7 +35,7 @@ class PromocionController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin', 'index', 'delete'),
+				'actions'=>array('admin', 'index', 'delete','createAdmin'),
 				'users'=>UserModule::getAdmins(),
 			),
 			array('deny',  // deny all users
@@ -93,6 +93,61 @@ class PromocionController extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
+    public function actionCreateAdmin(){
+        if(isset($_POST['Promocion'])){
+            $model->attributes=$_POST['Promocion'];            
+            //$model->user_id = 
+            if($datosCuenta->prom_activ <= $numPromosActivas && $model->estado == '1'){
+                Yii::app()->user->setFlash('error',UserModule::t("No puedes crear más promociones <b>ACTIVAS</b>"));
+                $this->redirect('create',array(
+                'model'=>$model,
+                ));
+            }
+            if($datosCuenta->prom_stock <= $numPromosStock && $model->estado == '0'){
+                Yii::app()->user->setFlash('error',UserModule::t("No puedes crear más promociones en <b>STOCK</b>"));
+                $this->redirect('create',array(
+                'model'=>$model,
+                ));
+            }
+
+            if($datosCuenta->prom_dest <= $numPromosDest || $datosCuenta->prom_dest == 0){
+                $model->destacado = 0;
+                Yii::app()->user->setFlash('error',UserModule::t("No se ha marcado como destacada porque ha alcanzado el límite de destacadas."));
+            }
+
+            //ESTABLEZCO FECHA DE FIN AUTOMÁTICA
+            $model->fecha_fin = date('Y-m-d', strtotime($model->fecha_inicio. ' + '.Yii::app()->params['duracion_promos'].' days'));
+
+            /**********************************/
+            $this->setCamposSecundarios($model);
+
+            if($model->save()){
+                Yii::app()->user->setFlash('success',UserModule::t("Promotion created."));
+                $this->redirect(array('mispromociones'));
+                //$this->redirect(Yii::app()->getModule('user')->promocionesUrl);
+                Yii::app()->end();
+            }else{
+                Yii::app()->user->setFlash('error',UserModule::t("Error creating the promotion."));
+                $this->redirect(Yii::app()->getModule('user')->promocionesUrl);
+            }
+        }
+
+        Yii::import("xupload.models.XUploadForm");
+        $image = new XUploadForm;
+        
+        $item = new Item;
+        
+        //Leer los tipos de categoría a los que puede pertenecer la promoción
+        $categorias=new CActiveDataProvider('Categoria');
+
+        $this->render('createAdmin',array(
+                'model'=>$model,'item'=>$item,'image'=>$image,'cuenta'=>$usuario->profile->tipocuenta, 'categorias'=>$categorias,'promosDest'=>$numPromosDest, 'maxDest'=>$datosCuenta->prom_dest
+        ));
+        }else{ //NO es empresa
+            $this->redirect(Yii::app()->user->returnUrl);
+        }
+    }
+
 	public function actionCreate(){
         //(H)comprobar que el usuario puede crear una nueva promoción
         //(H)si el status == 3 es que ya ha pagado y, por tanto, habrá que comprobar qué tipo de cuenta tiene y cuántas promos en stock, activas y destacadas tiene, luego comprobar qué tipo de promoción es esta que quiere insertar y ver si puede hacerlo
