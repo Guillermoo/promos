@@ -35,7 +35,7 @@ class PromocionController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin', 'index', 'delete','createAdmin'),
+				'actions'=>array('admin', 'index', 'delete','createAdmin','updateAdmin'),
 				'users'=>UserModule::getAdmins(),
 			),
 			array('deny',  // deny all users
@@ -94,26 +94,16 @@ class PromocionController extends Controller
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
     public function actionCreateAdmin(){
+        $model=new Promocion;
+        $model->scenario = "insert";
+
+        $this->performAjaxValidation(array($model));
+
         if(isset($_POST['Promocion'])){
             $model->attributes=$_POST['Promocion'];            
-            //$model->user_id = 
-            if($datosCuenta->prom_activ <= $numPromosActivas && $model->estado == '1'){
-                Yii::app()->user->setFlash('error',UserModule::t("No puedes crear más promociones <b>ACTIVAS</b>"));
-                $this->redirect('create',array(
-                'model'=>$model,
-                ));
-            }
-            if($datosCuenta->prom_stock <= $numPromosStock && $model->estado == '0'){
-                Yii::app()->user->setFlash('error',UserModule::t("No puedes crear más promociones en <b>STOCK</b>"));
-                $this->redirect('create',array(
-                'model'=>$model,
-                ));
-            }
+            
+            //COMPROBAR QUE EL USUARIO PUEDE TENER MÁS PROMOCIONES
 
-            if($datosCuenta->prom_dest <= $numPromosDest || $datosCuenta->prom_dest == 0){
-                $model->destacado = 0;
-                Yii::app()->user->setFlash('error',UserModule::t("No se ha marcado como destacada porque ha alcanzado el límite de destacadas."));
-            }
 
             //ESTABLEZCO FECHA DE FIN AUTOMÁTICA
             $model->fecha_fin = date('Y-m-d', strtotime($model->fecha_inicio. ' + '.Yii::app()->params['duracion_promos'].' days'));
@@ -123,12 +113,13 @@ class PromocionController extends Controller
 
             if($model->save()){
                 Yii::app()->user->setFlash('success',UserModule::t("Promotion created."));
-                $this->redirect(array('mispromociones'));
+
+                $this->render('updateAdmin/id/'.$model()->getPrimaryKey());
                 //$this->redirect(Yii::app()->getModule('user')->promocionesUrl);
                 Yii::app()->end();
             }else{
                 Yii::app()->user->setFlash('error',UserModule::t("Error creating the promotion."));
-                $this->redirect(Yii::app()->getModule('user')->promocionesUrl);
+                $this->redirect(Yii::app()->getModule('user')->createAdmin);
             }
         }
 
@@ -137,15 +128,10 @@ class PromocionController extends Controller
         
         $item = new Item;
         
-        //Leer los tipos de categoría a los que puede pertenecer la promoción
-        $categorias=new CActiveDataProvider('Categoria');
-
+        //Leer los tipos de categoría a los que puede pertenecer 
         $this->render('createAdmin',array(
-                'model'=>$model,'item'=>$item,'image'=>$image,'cuenta'=>$usuario->profile->tipocuenta, 'categorias'=>$categorias,'promosDest'=>$numPromosDest, 'maxDest'=>$datosCuenta->prom_dest
+                'model'=>$model,'item'=>$item,'image'=>$image,
         ));
-        }else{ //NO es empresa
-            $this->redirect(Yii::app()->user->returnUrl);
-        }
     }
 
 	public function actionCreate(){
@@ -314,6 +300,80 @@ class PromocionController extends Controller
         ));
 
 	}
+
+    public function actionUpdateAdmin($id=null){
+            
+        $this->_model=$this->loadModel($id);
+        
+        //$image = new Item();
+       /* $image=Item::model()->find(
+              array(
+              'condition'=>'foreign_id='.$id.' AND model="promo"',
+         )); */
+
+        // Uncomment the following line if AJAX validation is needed
+        $this->performAjaxValidation(array($this->_model));
+
+        if(isset($_POST['Promocion']))
+        {
+            $this->_model->attributes=$_POST['Promocion'];
+
+            if($this->_model->save())
+                Yii::app()->user->setFlash('success',UserModule::t("Promotion updated."));
+            else
+                Yii::app()->user->setFlash('error',UserModule::t("Error updating the promotion."));
+            
+            $this->redirect(array('update','id'=>$this->_model->id));
+        }
+        //$this->debug($this->_model->id);
+        $image = Item::model()->find('foreign_id='.$this->_model->id.' AND model = "promo"');
+    
+        if($image==null){       
+            $image = $this->obtenImageForm($this->_model->usuario->item);    
+        }
+
+
+        $this->render('updateAdmin',array('model'=>$this->_model,
+            'image'=>$image
+        ));
+
+    }
+
+    private function updateAdmin($id=null){
+            
+        $this->_model=$this->loadModel($id);
+        
+        //$image = new Item();
+       /* $image=Item::model()->find(
+              array(
+              'condition'=>'foreign_id='.$id.' AND model="promo"',
+         )); */
+
+        // Uncomment the following line if AJAX validation is needed
+        $this->performAjaxValidation(array($this->_model));
+
+        //$this->debug($this->_model->id);
+        $image = Item::model()->find('foreign_id='.$this->_model->id.' AND model = "promo"');
+    
+        if($image==null){       
+            $image = $this->obtenImageForm($this->_model->usuario->item);    
+        }
+
+
+        /*if (isset($this->_model->item)){
+            $imageForm = $this->obtenImageForm($this->_model->item);    
+        }else{
+            Yii::import("xupload.models.XUploadForm");
+            $imageForm = new Item;
+        }*/
+        //$this->debug($this->_model->item);
+    
+        $this->render('updateAdmin',array('model'=>$this->_model,
+            'image'=>$image
+        ));
+
+    }
+
 
     private function obtenImageForm($item=null){
         Yii::import("xupload.models.XUploadForm");

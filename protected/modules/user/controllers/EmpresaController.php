@@ -156,6 +156,14 @@ class EmpresaController extends Controller
             ));
 	}
 	
+	public function actionDelete($id){
+		$this->loadModel($id)->delete();
+
+		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+		if(!isset($_GET['ajax']))
+			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+	}
+	
 	public function actionDeleteItem($id){
 		//Here we check if we are deleting and uploaded file
 		if(Yii::app()->request->isAjaxRequest)

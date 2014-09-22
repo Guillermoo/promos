@@ -38,6 +38,13 @@
 		<span class="label label-info">Web:</span>
 		<div class="well clearfix"> <?php echo "<a href='".$model->web."' target='_blank'>".$model->web."</a>" ?>
 		</div>
+
+		<span class="label label-info">Teléfono:</span>
+		<div class="well clearfix"> <?php echo $model->usuario->profile->telefono;
+
+		//$this->debug($model) ?>
+		</div>
+
 		<span class="label label-info">Dirección:</span>
 		<div class="well clearfix"> <?php echo $model->usuario->profile->direccion;
 

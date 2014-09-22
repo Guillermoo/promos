@@ -16,6 +16,10 @@
 		//array('label'=>UserModule::t('Manage Profile Field'), 'url'=>array('/user/profileField/admin'), 'visible'=>UserModule::isSuperAdmin()),
 		//array('label'=>UserModule::t('Create Profile Field'), 'url'=>array('/user/profileField/create'), 'visible'=>UserModule::isSuperAdmin()),
 		array('label'=>UserModule::t('Administrar categorías'), 'url'=>array('/categoria/admin'), 'visible'=>UserModule::isSuperAdmin()),
+
+        array('label'=>UserModule::t('Crear Promoción'), 'url'=>Yii::app()->getModule('user')->createAdmin, 'visible'=>UserModule::isAdmin()),
+
+        //array('label'=>UserModule::t('Bonos'), 'url'=>array('cuentas/verCuentas')),
         //array('label'=>'LIST HEADER'),
     	//array('url'=>Yii::app()->getModule('user')->logoutUrl, 'label'=>Yii::app()->getModule('user')->t("Logout").' ('.Yii::app()->user->name.')', 'visible'=>!Yii::app()->user->isGuest),
     	/*array('url'=>Yii::app()->getModule('user')->loginUrl, 'label'=>Yii::app()->getModule('user')->t("Login"), 'visible'=>Yii::app()->user->isGuest),

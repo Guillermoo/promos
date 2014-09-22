@@ -1,10 +1,10 @@
-<h1>Crear Promoción</h1>
+<h1>Actualizar Promoción</h1>
 
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'promociones-form',
 	'enableAjaxValidation'=>true,
         //'action'=>'update/id/'.$model->id,
-    'action'=>$model->isNewRecord ? 'createAdmin' : 'update/id/'.$model->id,
+    'action'=>'updateAdmin/id/'.$model->id,
 	'clientOptions'=>array(
             'validateOnSubmit'=>true,
 	),
@@ -65,10 +65,8 @@
             <?php echo $form->error($model,'titulo'); ?>
     </div>
 
-    <?php if (UserModule::isCompany()): ?>
       
         <div class="row">
-            <?php if(!$model->isNewRecord): ?>
                 <?php //(G)Cargamos el cargador de imágenes ?>
                 <small>(Se recomienda que sea una imagen de 400 X 400 píxeles para que se vea correctamente)</small>
                 <?php if ( !isset($model->image) ): ?>
@@ -107,11 +105,7 @@
                     </div>
                 <?php  endif;?>
                     </div>
-            <?php else: ?>
-                <div class="alert alert-info">Podrás poner una <strong>imagen para la promoción</strong> cuando ya tengas la promoción creada. Para ello, después de rellenar los datos y guardar la promoción, pincha en el botón de editar la promoción (icono de lápiz: &nbsp;<span class="icon icon-pencil">&nbsp;</span>) en el administrador de promociones (menú superior: Mis promociones -> Administrar)</div>
-            <?php  endif;?>
         </div>
-    <?php endif; ?>
 
     <div class="row">
             <?php echo $form->textAreaRow($model, 'resumen', array('class'=>'span8', 'rows'=>5)); ?>

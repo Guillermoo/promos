@@ -6,7 +6,7 @@
 $user = Yii::app()->getComponent('user');
 $user->setFlash(
     'error',
-    '<strong>Oooppss!</strong> No se pudo encontrar la promoción seleccionado.'
+    '<strong>Oooppss!</strong> No se pudo encontrar la promoción seleccionada.'
 );
 
 // Render them all with single `TbAlert`
@@ -27,5 +27,3 @@ $this->widget('bootstrap.widgets.TbAlert', array(
 ));
 
 ?>
-
-Y aquí alguna imagen típica de error con algún botón enlace return o lo que sea.

@@ -77,6 +77,23 @@ $('.search-form form').submit(function(){
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
 			'template'=>'{view} {update} {delete}',
+				'buttons'=>array(
+                            'view' => array(
+                                'label'=>'Ver',
+                                //'imageUrl'=>Yii::app()->request->baseUrl.'/images/email.png',
+                                'url'=>'Yii::app()->createUrl("user/promocion/view", array("id"=>$data->id))',
+                            ),
+                            'update' => array(
+                                'label'=>'Editar',
+                                //'imageUrl'=>Yii::app()->request->baseUrl.'/images/email.png',
+                                'url'=>'Yii::app()->createUrl("user/promocion/updateAdmin", array("id"=>$data->id))',
+                            ),
+                        'delete' => array(
+                                'label'=>'Borrar',
+                                //'imageUrl'=>Yii::app()->request->baseUrl.'/images/email.png',
+                                'url'=>'Yii::app()->createUrl("user/promocion/delete", array("id"=>$data->id))',
+                            ),
+                        ),
 			'htmlOptions'=>array('style'=>'width: 50px'),
 		),
 	),

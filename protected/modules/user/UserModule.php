@@ -82,6 +82,8 @@ class UserModule extends CWebModule
 	public $listaCategorias = array("/categoria");
 	public $comprado = array("/user/compra/comprado");
 	public $ventasUrl = array("/user/compra/");
+	public $createAdmin = array("/user/promocion/createAdmin");
+	public $updateAdmin = array("/user/promocion/updateAdmin");
 	/**
 	 * @var int
 	 * @desc Remember Me Time (seconds), defalt = 2592000 (30 days)
