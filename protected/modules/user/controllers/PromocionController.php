@@ -96,12 +96,10 @@ class PromocionController extends Controller
     public function actionCreateAdmin(){
         $model=new Promocion;
         $model->scenario = "insert";
-
         $this->performAjaxValidation(array($model));
 
         if(isset($_POST['Promocion'])){
             $model->attributes=$_POST['Promocion'];            
-            
             //COMPROBAR QUE EL USUARIO PUEDE TENER MÁS PROMOCIONES
 
 
@@ -113,13 +111,13 @@ class PromocionController extends Controller
 
             if($model->save()){
                 Yii::app()->user->setFlash('success',UserModule::t("Promotion created."));
-
-                $this->render('updateAdmin/id/'.$model()->getPrimaryKey());
+                $this->render('updateAdmin',array('model'=>$model));
                 //$this->redirect(Yii::app()->getModule('user')->promocionesUrl);
                 Yii::app()->end();
             }else{
                 Yii::app()->user->setFlash('error',UserModule::t("Error creating the promotion."));
-                $this->redirect(Yii::app()->getModule('user')->createAdmin);
+                echo "error";
+                $this->render(Yii::app()->getModule('user')->createAdmin);
             }
         }
 

@@ -73,6 +73,9 @@
                     <p>Elige una imagen para la promoción:</p>
                     <div id="logo_form">
                         <?php
+                            if(!isset($image)){
+                                $image = new Item;
+                            }
                             Yii::app()->user->setState('model', 'promo');
                             Yii::app()->user->setState('foreign_id',$model->id );
                             $this->widget( 'xupload.XUpload', array(
