@@ -34,74 +34,7 @@ $('.search-form form').submit(function(){
     'keys'=>array('success','error'), 
     'htmlOptions'=>array('id'=>'flash'),
 )); ?><!-- flashes -->
-
-<?php if( UserModule::isAdmin() ): ?>
-	<?php $this->widget('bootstrap.widgets.TbGridView', array(
-		'id'=>'user-grid',
-		'ajaxUpdate' => 'flash',
-		'dataProvider'=>$model->search(),
-		//'filter'=>$model,
-		'type'=>'striped',
-		'enableSorting' => true,
-		'columns'=>array(
-	                array( 
-	                    'name'=>'id', 
-	                    'visible'=>YII_DEBUG,
-	                ),
-			//'user_id',
-	                array( 
-	                    'name'=>'nbempresa', 
-	                    'value'=>'CHtml::link(CHtml::encode($data->usuario->empresa->nombre),Yii::app()->createUrl("user/empresa/edit",array("id"=>$data->usuario->empresa->id)))',
-	                    'filter' => Empresa::getEmpresas(),
-	                    'type'=>'raw',
-	                    'visible'=>!UserModule::isCompany(),
-	                ),
-	                array(
-	                    'name'=>'estado',
-	                    'value'=>'Promocion::itemAlias("PromoStatus",$data->estado)',
-	                    'filter'=>'',
-			),
-			'titulo',
-			//'titulo_slug',
-			'resumen',
-			/*
-			'descripcion',
-			'descripcion_html',
-			'fecha_inicio',
-			'fecha_fin',
-			'fechaCreacion',
-			'destacado',
-			'precio',
-			'rebaja',
-			'condiciones',
-			'stock',
-			*/
-			array(
-				'class'=>'bootstrap.widgets.TbButtonColumn',
-				'template'=>'{view} {update} {delete}',
-					'buttons'=>array(
-	                            'view' => array(
-	                                'label'=>'Ver',
-	                                //'imageUrl'=>Yii::app()->request->baseUrl.'/images/email.png',
-	                                'url'=>'Yii::app()->createUrl("user/promocion/view", array("id"=>$data->id))',
-	                            ),
-	                            'update' => array(
-	                                'label'=>'Editar',
-	                                //'imageUrl'=>Yii::app()->request->baseUrl.'/images/email.png',
-	                                'url'=>'Yii::app()->createUrl("user/promocion/updateAdmin", array("id"=>$data->id))',
-	                            ),
-	                        'delete' => array(
-	                                'label'=>'Borrar',
-	                                //'imageUrl'=>Yii::app()->request->baseUrl.'/images/email.png',
-	                                'url'=>'Yii::app()->createUrl("user/promocion/delete", array("id"=>$data->id))',
-	                            ),
-	                        ),
-				'htmlOptions'=>array('style'=>'width: 50px'),
-			),
-		),
-	)); ?>
-<?php else: ?>
-	<?php $this->widget('bootstrap.widgets.TbGridView', array(
+<?php $this->widget('bootstrap.widgets.TbGridView', array(
 	'id'=>'user-grid',
 	'ajaxUpdate' => 'flash',
 	'dataProvider'=>$model->search(),
@@ -153,7 +86,7 @@ $('.search-form form').submit(function(){
                             'update' => array(
                                 'label'=>'Editar',
                                 //'imageUrl'=>Yii::app()->request->baseUrl.'/images/email.png',
-                                'url'=>'Yii::app()->createUrl("user/promocion/update", array("id"=>$data->id))',
+                                'url'=>'Yii::app()->createUrl("user/promocion/updateAdmin", array("id"=>$data->id))',
                             ),
                         'delete' => array(
                                 'label'=>'Borrar',
@@ -165,4 +98,3 @@ $('.search-form form').submit(function(){
 		),
 	),
 )); ?>
-<?php endif; ?>

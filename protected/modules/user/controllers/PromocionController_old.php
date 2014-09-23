@@ -35,7 +35,7 @@ class PromocionController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin', 'index', 'delete','updateAdmin'),
+				'actions'=>array('admin', 'index', 'delete','createAdmin','updateAdmin'),
 				'users'=>UserModule::getAdmins(),
 			),
 			array('deny',  // deny all users
@@ -84,16 +84,54 @@ class PromocionController extends Controller
 	{
         Yii::app()->theme = 'frontEnd';      
 		//$dataProvider=new CActiveDataProvider('Promocion');
-        $promo = new Promocion;
-        $promo = $this->loadModel($id);
-        $promo->item = Item::model()->find('foreign_id='.$promo->id.' AND model = "promo"');
-		$this->render('view',array('model'=>$promo));
+		$this->render('view',array(
+			'model'=>$this->loadModel($id),
+		));
 	}
 
 	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
+    public function actionCreateAdmin(){
+        $model=new Promocion;
+        $model->scenario = "insert";
+        $this->performAjaxValidation(array($model));
+
+        if(isset($_POST['Promocion'])){
+            $model->attributes=$_POST['Promocion'];            
+            //COMPROBAR QUE EL USUARIO PUEDE TENER MÁS PROMOCIONES
+
+
+            //ESTABLEZCO FECHA DE FIN AUTOMÁTICA
+            $model->fecha_fin = date('Y-m-d', strtotime($model->fecha_inicio. ' + '.Yii::app()->params['duracion_promos'].' days'));
+
+            /**********************************/
+            $this->setCamposSecundarios($model);
+
+            if($model->save()){
+                Yii::app()->user->setFlash('success',UserModule::t("Promotion created."));
+                $this->render('updateAdmin',array('model'=>$model));
+                //$this->redirect(Yii::app()->getModule('user')->promocionesUrl);
+                Yii::app()->end();
+            }else{
+                Yii::app()->user->setFlash('error',UserModule::t("Error creating the promotion."));
+                echo "error";
+                $this->render(Yii::app()->getModule('user')->createAdmin);
+            }
+        }
+
+        Yii::import("xupload.models.XUploadForm");
+        $image = new XUploadForm;
+        
+        $item = new Item;
+        
+        //Leer los tipos de categoría a los que puede pertenecer 
+        $this->render('createAdmin',array(
+                'model'=>$model,'item'=>$item,'image'=>$image,
+        ));
+    }
+
 	public function actionCreate(){
         //(H)comprobar que el usuario puede crear una nueva promoción
         //(H)si el status == 3 es que ya ha pagado y, por tanto, habrá que comprobar qué tipo de cuenta tiene y cuántas promos en stock, activas y destacadas tiene, luego comprobar qué tipo de promoción es esta que quiere insertar y ver si puede hacerlo
@@ -103,79 +141,84 @@ class PromocionController extends Controller
      
         if($usuario->superuser == 2){ //es empresa          
 
-        //compruebo si los datos están rellenados o están pendiente de pago     
-        if($usuario->status == 2){                
-            $this->render('_hadtopay');
-            Yii::app()->end();
-        }else{
+            //compruebo si los datos están rellenados o están pendiente de pago     
+        
             if($usuario->profile->username == null || $usuario->empresa->nombre ==null){ //el campo username es obligatorio, por lo que si este campo está vacío es que no ha rellenado el perfil
                 $this->render('_faltaperfil');    
-                 Yii::app()->end();          
+                Yii::app()->end();          
             }
-        }
 
-         
-        //compruebo que puede crear una nueva promo de el tipo seleccionado
-        $datosCuenta = Cuenta::model()->find('id=:id',
-            array(
+
+            //compruebo que puede crear una nueva promo de el tipo seleccionado
+
+            $datosCuenta = Cuenta::model()->find('id=:id',
+                array(
                 ':id'=>$usuario->profile->tipocuenta
                 ));
-        $maxPromos = $datosCuenta->prom_activ + $datosCuenta->prom_stock;
-        $numPromos = Promocion::model()->countByAttributes(array(
-            'user_id'=> Yii::app()->user->id
+            $maxPromos = $datosCuenta->prom_activ + $datosCuenta->prom_stock;
+        
+
+            $numPromos = Promocion::model()->countByAttributes(array(
+                'user_id'=> Yii::app()->user->id
                 ));
 
-        if($numPromos == $maxPromos){
-            echo $this->renderPartial('_denied');
-        }
+            if($numPromos >= $maxPromos || $numPromos == $maxPromos){
+                $this->render('_denied');
+                Yii::app()->end();
+            }
 
-        $numPromosActivas = Promocion::model()->countByAttributes(array(
-            'user_id'=> Yii::app()->user->id, 'estado'=>1
-        ));
-        $numPromosStock = Promocion::model()->countByAttributes(array(
-            'user_id'=> Yii::app()->user->id, 'estado'=>0
-        ));          
-        $numPromosDest = Promocion::model()->countByAttributes(array(
-            'user_id'=> Yii::app()->user->id, 'destacado'=>1
-        ));                
-               
+            $numPromosActivas = Promocion::model()->countByAttributes(array(
+                'user_id'=> Yii::app()->user->id, 'estado'=>1
+            ));
+            $numPromosStock = Promocion::model()->countByAttributes(array(
+                'user_id'=> Yii::app()->user->id, 'estado'=>0
+            ));          
+            $numPromosDest = Promocion::model()->countByAttributes(array(
+                'user_id'=> Yii::app()->user->id, 'destacado'=>1
+            ));              
+                   
 
-        $model=new Promocion;
-        $model->scenario = "insert";
+            $model=new Promocion;
+            $model->scenario = "insert";
 
-        $this->performAjaxValidation(array($model));
+            $this->performAjaxValidation(array($model));
 
         /***  COMPROBACIÓN DE QUE SE PUEDE ****/        
         if(isset($_POST['Promocion'])){
-            $model->attributes=$_POST['Promocion'];
+            $model->attributes=$_POST['Promocion'];            
 
             if($datosCuenta->prom_activ <= $numPromosActivas && $model->estado == '1'){
                 Yii::app()->user->setFlash('error',UserModule::t("No puedes crear más promociones <b>ACTIVAS</b>"));
                 $this->redirect('create',array(
                 'model'=>$model,
                 ));
-        }
-        if($datosCuenta->prom_stock <= $numPromosStock && $model->estado == '0'){
-            Yii::app()->user->setFlash('error',UserModule::t("No puedes crear más promociones en <b>STOCK</b>"));
-            $this->redirect('create',array(
+            }
+            if($datosCuenta->prom_stock <= $numPromosStock && $model->estado == '0'){
+                Yii::app()->user->setFlash('error',UserModule::t("No puedes crear más promociones en <b>STOCK</b>"));
+                $this->redirect('create',array(
                 'model'=>$model,
                 ));
-        }
+            }
 
-        if($datosCuenta->prom_dest <= $numPromosDest){
-            $model->destacado = 0;
-            Yii::app()->user->setFlash('error',UserModule::t("No se ha marcado como destacada porque ha alcanzado el límite de destacadas."));
-        }
-    /**********************************/
+            if($datosCuenta->prom_dest <= $numPromosDest || $datosCuenta->prom_dest == 0){
+                $model->destacado = 0;
+                Yii::app()->user->setFlash('error',UserModule::t("No se ha marcado como destacada porque ha alcanzado el límite de destacadas."));
+            }
+
+            //ESTABLEZCO FECHA DE FIN AUTOMÁTICA
+            $model->fecha_fin = date('Y-m-d', strtotime($model->fecha_inicio. ' + '.Yii::app()->params['duracion_promos'].' days'));
+
+            /**********************************/
             $this->setCamposSecundarios($model);
 
             if($model->save()){
                 Yii::app()->user->setFlash('success',UserModule::t("Promotion created."));
-                //$this->redirect(array('mispromociones'));
-                $this->redirect(Yii::app()->getModule('user')->promocionesUrl);
-            }
-            else{
+                $this->redirect(array('mispromociones'));
+                //$this->redirect(Yii::app()->getModule('user')->promocionesUrl);
+                Yii::app()->end();
+            }else{
                 Yii::app()->user->setFlash('error',UserModule::t("Error creating the promotion."));
+                $this->redirect(Yii::app()->getModule('user')->promocionesUrl);
             }
         }
 
@@ -191,10 +234,10 @@ class PromocionController extends Controller
 
         $this->render('create',array(
                 'model'=>$model,'item'=>$item,'image'=>$image,'cuenta'=>$usuario->profile->tipocuenta, 'categorias'=>$categorias,'promosDest'=>$numPromosDest, 'maxDest'=>$datosCuenta->prom_dest
-        ));	
-    }else{ //NO es empresa
-        $this->redirect(Yii::app()->user->returnUrl);
-    }
+        ));
+        }else{ //NO es empresa
+            $this->redirect(Yii::app()->user->returnUrl);
+        }
     }
 	
 /**
@@ -204,7 +247,6 @@ class PromocionController extends Controller
 	 */
 	public function actionUpdate($id=null){
             
-        //adsgh;
         $this->_model=$this->loadModel($id);
         
         //$image = new Item();
@@ -216,7 +258,8 @@ class PromocionController extends Controller
         // Uncomment the following line if AJAX validation is needed
         $this->performAjaxValidation(array($this->_model));
 
-        if(isset($_POST['Promocion'])){
+        if(isset($_POST['Promocion']))
+        {
             $this->_model->attributes=$_POST['Promocion'];
 
             if($this->_model->save())
@@ -258,7 +301,6 @@ class PromocionController extends Controller
 
     public function actionUpdateAdmin($id=null){
             
-        //adsgh;
         $this->_model=$this->loadModel($id);
         
         //$image = new Item();
@@ -270,7 +312,8 @@ class PromocionController extends Controller
         // Uncomment the following line if AJAX validation is needed
         $this->performAjaxValidation(array($this->_model));
 
-        if(isset($_POST['Promocion'])){
+        if(isset($_POST['Promocion']))
+        {
             $this->_model->attributes=$_POST['Promocion'];
 
             if($this->_model->save())
@@ -282,9 +325,35 @@ class PromocionController extends Controller
         }
         //$this->debug($this->_model->id);
         $image = Item::model()->find('foreign_id='.$this->_model->id.' AND model = "promo"');
+    
+        if($image==null){       
+            $image = $this->obtenImageForm($this->_model->usuario->item);    
+        }
 
 
-        if( $image==null ){       
+        $this->render('updateAdmin',array('model'=>$this->_model,
+            'image'=>$image
+        ));
+
+    }
+
+    private function updateAdmin($id=null){
+            
+        $this->_model=$this->loadModel($id);
+        
+        //$image = new Item();
+       /* $image=Item::model()->find(
+              array(
+              'condition'=>'foreign_id='.$id.' AND model="promo"',
+         )); */
+
+        // Uncomment the following line if AJAX validation is needed
+        $this->performAjaxValidation(array($this->_model));
+
+        //$this->debug($this->_model->id);
+        $image = Item::model()->find('foreign_id='.$this->_model->id.' AND model = "promo"');
+    
+        if($image==null){       
             $image = $this->obtenImageForm($this->_model->usuario->item);    
         }
 
@@ -296,43 +365,43 @@ class PromocionController extends Controller
             $imageForm = new Item;
         }*/
         //$this->debug($this->_model->item);
-        
-
+    
         $this->render('updateAdmin',array('model'=>$this->_model,
-            'image'=>$image,
+            'image'=>$image
         ));
 
     }
 
+
     private function obtenImageForm($item=null){
-    Yii::import("xupload.models.XUploadForm");
-    $imageForm = new XUploadForm;
+        Yii::import("xupload.models.XUploadForm");
+        $imageForm = new XUploadForm;
 
-    if (isset($item)){
-        $imageForm->name = $item->filename;
-        //$imageForm->file = $item->path;
-        $imageForm->file = CUploadedFile::getInstance( $item, 'file' );
-        $imageForm->mime_type = $item->tipo;
-        $imageForm->size = $item->size;
-        $imageForm->filename = $item->filename;
-        $path =  Yii::app( )->getBaseUrl( );
+        if (isset($item)){
+            $imageForm->name = $item->filename;
+            //$imageForm->file = $item->path;
+            $imageForm->file = CUploadedFile::getInstance( $item, 'file' );
+            $imageForm->mime_type = $item->tipo;
+            $imageForm->size = $item->size;
+            $imageForm->filename = $item->filename;
+            $path =  Yii::app( )->getBaseUrl( );
 
-        echo json_encode( array( array(
-            "name" => $imageForm->name,
-            "type" => $imageForm->mime_type,
-            "size" => $imageForm->size,
-            "url" =>  $path.$item->path,
-            "thumbnail_url" => $path."thumbs/".$item->filename,
-            "delete_url" => $this->createUrl( "upload", array(
-                "_method" => "delete",
-                "file" => $item->filename
-            ) ),
-            "delete_type" => "POST"
-        ) ) );
-    }
-    
-    //Para cargar/gestionar el logo
-    return $imageForm ;
+            echo json_encode( array( array(
+                "name" => $imageForm->name,
+                "type" => $imageForm->mime_type,
+                "size" => $imageForm->size,
+                "url" =>  $path.$item->path,
+                "thumbnail_url" => $path."thumbs/".$item->filename,
+                "delete_url" => $this->createUrl( "upload", array(
+                    "_method" => "delete",
+                    "file" => $item->filename
+                ) ),
+                "delete_type" => "POST"
+            ) ) );
+        }
+        
+        //Para cargar/gestionar el logo
+        return $imageForm ;
 
 }
 
@@ -551,7 +620,4 @@ class PromocionController extends Controller
                     "
         ;
     }
-
-	
-	
 }
