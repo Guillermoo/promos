@@ -3,7 +3,7 @@
 /* @var $data Categoria */
 ?>
 
-<li class="span3">
+<li class="span3 cajacategoria">
 	<div class="thumbnail">
 
 	<b>

@@ -103,9 +103,8 @@
 			<div class="row-fluid print-hide">
 				<div class="span12">
 					<div class="navbar main-nav" id="menupral">
-						<div class="navbar-inner">
-							<div class="container">
-								<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">menu</a>
+						<div class="navbar-inner">							
+								<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">menú</a>
 								<div class="nav-collapse">
 									<ul class="nav">
 										<?php 
@@ -140,8 +139,7 @@
 											endif;
 										?></li>								
 									</ul>										
-								</div>
-							</div>
+								</div>							
 						</div>
 					</div>
 				</div>

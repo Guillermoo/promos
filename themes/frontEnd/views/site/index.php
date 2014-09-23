@@ -77,7 +77,10 @@
 							<a href="promocion/<?=$promo->titulo_slug ?>">
 								<span class="label label-info price">&euro; <?php echo $promo->precio ?></span>
 								<!--<span class="label label-important price price-over">&euro; 1,<sup>99</sup></span>-->
-								<?php if (isset($promo->item) && strcmp($model->item->model,'promo') == 0 ): ?>
+								<?php $image = Item::model()->find('foreign_id='.$promo->id.' AND model="promo"'); ?>
+								<?php if ( !empty($image) ): 
+									$promo->item = $image;
+									?>
 									<center><img class="thumbnailimg" data-hover="<?php echo Yii::app()->getBaseUrl().$promo->item->path ?>" src="<?php echo Yii::app()->getBaseUrl().$promo->item->path ?>" alt="<?php echo $promo->titulo ?>" class="divpromo" /></center>
 								<?php else: ?>
 									<center><img class="thumbnailimg" data-hover="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>"  alt="<?php echo $promo->titulo ?>" src="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>" class="divpromo"></center>

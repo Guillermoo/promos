@@ -16,6 +16,7 @@
 	color: #fff;
 	position: absolute;
 	width: 100%;
+	left: 0;
 	overflow: hidden;
 	height: 80px;
 }
@@ -101,11 +102,24 @@ body{
 	height: 250px;
 	width: 250px;
 }
-
-.aviso{
-  font-size: 1.8em;
-  line-height: 1.5em;
+.errorSummary li{
+	list-style-type: none;
+	 padding: 8px 35px 8px 14px;
+  margin-bottom: 20px;
+  color: #c09853;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  background-color: #fcf8e3;
+  border: 1px solid #fbeed5;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  color: #b94a48;
+  background-color: #f2dede;
+  border-color: #eed3d7;
 }
-
-.aviso img{
-	border-radius: 20px 20px 20px 20px;
+.cajacategoria{
+	margin-bottom: 50px;
+}
+.empresa{
+	min-height: 200px;
+}

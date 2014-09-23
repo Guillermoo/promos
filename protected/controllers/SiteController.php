@@ -40,10 +40,10 @@ class SiteController extends Controller
 
         $criteria->with = array( 'item');
 
-        $criteria->limit = 1;
+        $criteria->limit = 4;
         $criteria->compare('destacado',Promocion::IS_DESTACADA);
         $criteria->compare('estado',Promocion::STATUS_ACTIVA);        
-		$criteria->addCondition('fecha_fin >= '.$now.'AND fecha_inicio <= '.$now);
+		$criteria->addCondition('fecha_fin >= '.$now.' AND fecha_inicio <= '.$now);
         $criteria->select = 'id,titulo,titulo_slug,resumen,precio';
         $criteria->order = 'RAND()';
         //$criteria->addCondition('exp_d > "'.$now.'" ');
@@ -52,11 +52,14 @@ class SiteController extends Controller
 
 		$criteria2=new CDbCriteria;
         $criteria2->limit = 12;
+        $criteria2->alias = 'u';
         $criteria2->compare('destacado',Promocion::IS_NODESTACADA);
         $criteria2->compare('estado',Promocion::STATUS_ACTIVA);
-        $criteria2->addCondition('fecha_fin >= '.$now.'AND fecha_inicio <= '.$now);
-        $criteria2->select = 'id,titulo,titulo_slug,resumen,precio';
+        $criteria2->addCondition('DATE(fecha_inicio) <= '.$now);
+        $criteria2->addCondition('DATE(fecha_fin) > '.$now);
+        $criteria2->select = 'u.id,titulo,titulo_slug,resumen,precio';
         $criteria2->order = 'RAND()';
+
         //$criteria->addCondition('exp_d > "'.$now.'" ');
 
 		$promos = Promocion::model()->findAll($criteria2);

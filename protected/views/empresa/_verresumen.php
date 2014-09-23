@@ -1,4 +1,4 @@
-<li class="span3">
+<div class="span3">
 	<div class="thumbnail">
 		<?php 
 			//así lo pone en el formulario del perfil de la empresa:
@@ -30,4 +30,4 @@
 			<a href="<?php echo $data->facebook ?>" target="_blank"><img src="<?php echo Yii::app()->theme->baseUrl?>/img/icon-facebook.png"/></a>
 			<?php endif; ?>
 	</div>
-</li>
+</div>

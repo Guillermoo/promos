@@ -79,6 +79,7 @@ class Promocion extends CActiveRecord
 			'comprases' => array(self::HAS_MANY, 'Compras', 'id_promo'),
 			'user' => array(self::BELONGS_TO, 'Users', 'user_id'),
 			'categorias' => array(self::BELONGS_TO, 'Categorias', 'categorias_id'),
+			'item' => array(self::HAS_ONE, 'Item', 'foreign_id'),
 		);
 	}
 

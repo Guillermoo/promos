@@ -107,7 +107,7 @@ class Promocion extends CActiveRecord
 			'usuario' => array(self::BELONGS_TO, 'User', 'user_id'),
 			'categoria' => array(self::BELONGS_TO, 'Categoria', 'categorias_id'),
 			'item' => array(self::HAS_ONE, 'Item', 'foreign_id'),
-			//'image' => array(self::HAS_MANY, 'Item', 'id'),
+		//	'image' => array(self::HAS_MANY, 'Item', 'id'),
 		);
 	}
 
