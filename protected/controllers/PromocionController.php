@@ -60,6 +60,7 @@ class PromocionController extends Controller
 		if (isset($title_slug)){
 			
 			$promocion=Promocion::model()->findByAttributes(array('titulo_slug'=>$title_slug));
+			$promocion->item = Item::model()->find('foreign_id='.$promocion->id.' AND model = "promo"');
 			$datos = Profile::model()->findByAttributes(array('user_id'=>$promocion->user_id));
 
 			if (isset($promocion) && isset($datos)){			

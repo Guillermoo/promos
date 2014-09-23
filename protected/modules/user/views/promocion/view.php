@@ -61,7 +61,7 @@ $this->breadcrumbs=array(
       
 <div id="rating_success_<?=$model->id;?>">
 <?php 
-	 if($model->votos_suma>0){ //si tiene algún voto    
+	 if($model->votos_suma > 0){ //si tiene algún voto    
 	 if($model->votos_suma <= 1.5)  
 	 	echo "<img src='".Yii::app()->getBaseUrl()."/img/starring1.png' alt='".$model->votos_media."' />";
      else
@@ -80,10 +80,9 @@ $this->breadcrumbs=array(
 </div> <!-- the div in which the confirmation message is shown-->
 <!-- #################################3 -->
 <div class="row-fluid product-detail">
-
 	<div class="span4">
 		<?php if (isset($model->item) && strcmp($model->item->model,"promo") == 0 ): ?>
-			<?php $path=$model->item->path ?>
+			<?php $path=$model->item->path; ?>
 		<?php else:?>
 			<?php $path=Yii::app()->params['no_image_big'] ?>
 		<?php endif; ?>

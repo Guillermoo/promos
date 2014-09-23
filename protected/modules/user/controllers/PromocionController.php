@@ -35,7 +35,7 @@ class PromocionController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin', 'index', 'delete'),
+				'actions'=>array('admin', 'index', 'delete','updateAdmin'),
 				'users'=>UserModule::getAdmins(),
 			),
 			array('deny',  // deny all users
@@ -84,9 +84,10 @@ class PromocionController extends Controller
 	{
         Yii::app()->theme = 'frontEnd';      
 		//$dataProvider=new CActiveDataProvider('Promocion');
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
+        $promo = new Promocion;
+        $promo = $this->loadModel($id);
+        $promo->item = Item::model()->find('foreign_id='.$promo->id.' AND model = "promo"');
+		$this->render('view',array('model'=>$promo));
 	}
 
 	/**
@@ -215,8 +216,7 @@ class PromocionController extends Controller
         // Uncomment the following line if AJAX validation is needed
         $this->performAjaxValidation(array($this->_model));
 
-        if(isset($_POST['Promocion']))
-        {
+        if(isset($_POST['Promocion'])){
             $this->_model->attributes=$_POST['Promocion'];
 
             if($this->_model->save())
@@ -255,6 +255,53 @@ class PromocionController extends Controller
         ));
 
 	}
+
+    public function actionUpdateAdmin($id=null){
+            
+        //adsgh;
+        $this->_model=$this->loadModel($id);
+        
+        //$image = new Item();
+       /* $image=Item::model()->find(
+              array(
+              'condition'=>'foreign_id='.$id.' AND model="promo"',
+         )); */
+
+        // Uncomment the following line if AJAX validation is needed
+        $this->performAjaxValidation(array($this->_model));
+
+        if(isset($_POST['Promocion'])){
+            $this->_model->attributes=$_POST['Promocion'];
+
+            if($this->_model->save())
+                Yii::app()->user->setFlash('success',UserModule::t("Promotion updated."));
+            else
+                Yii::app()->user->setFlash('error',UserModule::t("Error updating the promotion."));
+            
+            $this->redirect(array('update','id'=>$this->_model->id));
+        }
+        //$this->debug($this->_model->id);
+        $image = Item::model()->find('foreign_id='.$this->_model->id.' AND model = "promo"');
+    
+        if($image==null){       
+            $image = $this->obtenImageForm($this->_model->usuario->item);    
+        }
+
+
+        /*if (isset($this->_model->item)){
+            $imageForm = $this->obtenImageForm($this->_model->item);    
+        }else{
+            Yii::import("xupload.models.XUploadForm");
+            $imageForm = new Item;
+        }*/
+        //$this->debug($this->_model->item);
+        
+
+        $this->render('updateAdmin',array('model'=>$this->_model,
+            'image'=>$image,
+        ));
+
+    }
 
     private function obtenImageForm($item=null){
     Yii::import("xupload.models.XUploadForm");
