@@ -350,8 +350,9 @@ private function obtenImageForm($item=null){
     private function guardaDatosForm($empresa,$redirectOkEmpresa=null){
         
         if ($empresa!=null){
-            if(isset($_POST['Empresa'])){
+            if(isset($_POST['Empresa'])){            	
                 $empresa->attributes=$_POST['Empresa'];
+                $this->debug($empresa->attributes);
                 if($empresa->validate()) {
                     try {
                         if ($empresa->save())

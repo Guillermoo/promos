@@ -47,8 +47,8 @@
 
 		<span class="label label-info">Dirección:</span>
 		<div class="well clearfix"> <?php echo $model->usuario->profile->direccion;
-
 		//$this->debug($model) ?>
+		<div class="mapa"><?php echo $model->map; ?></div>
 		</div>
 		<?php if(!empty($model->observaciones)): ?>
 		<span class="label label-info">Otra información:</span>

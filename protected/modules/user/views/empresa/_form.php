@@ -100,6 +100,11 @@
 		<?php echo $form->error($empresa,'facebook'); ?>
 	</div>	
 	<?php if(UserModule::isAdmin()): ?>
+		<div class="row">		
+			<?php echo $form->labelEx($empresa,'map'); ?>
+			<?php echo $form->textField($empresa,'map',array('size'=>60,'maxlength'=>900,'placeholder'=>'Código de GoogleMaps')); ?>
+			<?php echo $form->error($empresa,'map'); ?>
+		</div>
 		<div class="clearfix">&nbsp;</div>
 		<div class="row well">
 			<p>Si los datos de la empresa son correctos y se verifica que es una empresa real hay que marcar la casilla de verificado, para que pueda publicar las promociones</p>

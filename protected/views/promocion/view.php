@@ -215,7 +215,14 @@
 			<h4>Página web</h4>
 			<div><?php echo CHtml::encode($empresa->empresa->web) ?></div>
 		</div>
-		<div class="clearfix">&nbsp;</div>		
+		<div class="clearfix">&nbsp;</div>	
+		<?php if( !empty($empresa->empresa->map) ): ?>
+			<hr>
+			<div class="row-fluid span12">
+				<div><center><?php echo $empresa->empresa->map; ?></center></div>
+			</div>
+			<div class="clearfix">&nbsp;</div>
+		<?php endif; ?>
 	</div>
 </div>
 
