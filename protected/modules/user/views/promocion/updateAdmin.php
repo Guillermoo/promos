@@ -159,10 +159,9 @@
 
     <?php if(UserModule::isAdmin()): ?>
         <div class="row">
-                <?php echo $form->labelEx($model,'fechaCreacion'); ?>
-                <?php echo $form->datepickerRow($model, 'fechaCreacion',
+                <?php echo $form->datepickerRow($model, 'fecha_fin',
                 array('hint'=>'Haz click para seleccionar la fecha.','prepend'=>'<i class="icon-calendar"></i>','options'=>array('format'=>'yyyy-mm-dd'))); ?>
-                <?php echo $form->error($model,'fechaCreacion'); ?>
+                <?php echo $form->error($model,'fecha_fin'); ?>
         </div>
     <?php endif;?>
 

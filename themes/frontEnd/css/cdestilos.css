@@ -3,6 +3,11 @@
 		display: none !important;
 	}
 }
+@media (max-width: 600px) {
+	.mapa iframe{				
+		display: none !important;
+	}
+}
 .header-shadow{
 	background-color: #F0F0F0;
 }

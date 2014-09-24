@@ -9,7 +9,7 @@
 			if(isset($image)): ?>
 				<a href="empresa/verpromos/<?php echo $data->id ?>" ><center><img class="thumbnailimg" src="<?php echo Yii::app()->getBaseUrl().$image->path; ?>" /></center></a>
 			<?php else: ?>
-				<a href="empresa/verpromos/<?php echo $data->id ?>" ><img class="thumbnailimg" src="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>" />
+				<a href="empresa/verpromos/<?php echo $data->id ?>" ><center><img class="thumbnailimg" src="<?php echo Yii::app()->request->baseUrl.Yii::app()->params['no_image'] ?>" /></center>
 				</a>
 			<?php endif; ?>
 			<?php

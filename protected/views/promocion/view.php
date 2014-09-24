@@ -28,7 +28,7 @@
 				    'label'=>'Volver',
 				    'htmlOptions'   => array('class'=>'btn'),
 				    'icon'=>'chevron-left',
-				    'type'=>null, // null, 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
+				    'type'=>'info', // null, 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
 				    'size'=>'large', // null, 'large', 'small' or 'mini'
 				    'url'=>Yii::app()->user->returnUrl,
 				)); ?>
@@ -218,8 +218,8 @@
 		<div class="clearfix">&nbsp;</div>	
 		<?php if( !empty($empresa->empresa->map) ): ?>
 			<hr>
-			<div class="row-fluid span12">
-				<div><center><?php echo $empresa->empresa->map; ?></center></div>
+			<div class="row-fluid span10">
+				<div class="flex-video widescreen mapa"><center><?php echo $empresa->empresa->map; ?></center></div>
 			</div>
 			<div class="clearfix">&nbsp;</div>
 		<?php endif; ?>

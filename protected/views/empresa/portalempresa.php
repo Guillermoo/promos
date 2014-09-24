@@ -15,7 +15,7 @@
 	<div class="span12">
 		<center><?php $this->widget('bootstrap.widgets.TbButton', array(
     		'label'=>'Listado empresas',
-    		'type'=>'', // null, 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
+    		'type'=>'info', // null, 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
     		'size'=>'large', // null, 'large', 'small' or 'mini'
     		'icon'=>' icon-arrow-left',
     		'url'=>array('/empresas')
@@ -48,7 +48,7 @@
 		<span class="label label-info">Dirección:</span>
 		<div class="well clearfix"> <?php echo $model->usuario->profile->direccion;
 		//$this->debug($model) ?>
-		<div class="mapa"><?php echo $model->map; ?></div>
+		<div class="lex-video widescreen mapa"><?php echo $model->map; ?></div>
 		</div>
 		<?php if(!empty($model->observaciones)): ?>
 		<span class="label label-info">Otra información:</span>
@@ -80,7 +80,7 @@
 								<?php else: ?>
 									<?php $imagen = Item::model()->find('foreign_id='.$promo->id.' AND model="promo"'); ?>
 									<?php if( !empty( $imagen )): ?>
-										<center><img data-hover="<?php echo Yii::app()->request->baseUrl.$promo->item->path ?>" src="<?php echo Yii::app()->getBaseUrl().$promo->item->path ?>" alt=""></center>
+										<center><img data-hover="<?php echo Yii::app()->request->baseUrl.$imagen->path ?>" src="<?php echo Yii::app()->getBaseUrl().$imagen->path ?>" alt=""></center>
 									<?php else: ?>
 									<img src="<?php echo Yii::app()->getBaseUrl().Yii::app()->params['no_image'] ?>"  alt="">
 									<?php endif; ?>				
