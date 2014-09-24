@@ -3,7 +3,10 @@ $this->breadcrumbs=array(
 	UserModule::t("Registration"),
 );
 ?>
-
+<div class="container-fluid">
+<div class="row-fluid">
+	<div class="span12">
+		<center>
 <h1>¡Regístrate gratis!</h1>
 <div class="row-fluid">
 <div class="span12">
@@ -24,7 +27,7 @@ $this->breadcrumbs=array(
 	'htmlOptions' => array('enctype'=>'multipart/form-data'),
 )); ?>
 
-	<p class="note"><?php echo UserModule::t('Fields with <span class="required">*</span> are required.'); ?></p>
+	<p class="note"><small><?php echo UserModule::t('Fields with <span class="required">*</span> are required.'); ?></small></p>
 	
 	<?php //echo $form->errorSummary(array($model)); ?>
 
@@ -188,5 +191,7 @@ $this->breadcrumbs=array(
 <?php $this->endWidget(); ?>
 </div><!-- form -->
 <?php endif; ?>
+</center>
+</div>
 </div>
 </div>

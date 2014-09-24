@@ -36,10 +36,7 @@
   </head>
 
 <body>
-  <?php if(!Yii::app()->user->isGuest){ ?>
-  <div class="logout medium twitter button radius"><em class="icon icon-off"> </em> <?php echo cHtml::link('Salir ('.Yii::app()->user->name.')',Yii::app()->getModule('user')->logoutUrl);?></div>
-  <?php } ?>
-      <!--START SUB-NAVBAR -->
+<!--START SUB-NAVBAR -->
 <div class="subnav subnav-fixed">               
   <ul class="nav nav-pills">
   <?php 
@@ -91,6 +88,14 @@
 <!--<script type="text/javascript" src="assets/js/bootstrap.js"></script>
 <script src="assets/js/scriptdash.js" type="text/javascript"></script>-->
 
-            
-  </body>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-55129249-1', 'auto');
+    ga('send', 'pageview');
+  </script>            
+</body>
 </html>

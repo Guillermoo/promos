@@ -39,7 +39,7 @@ return array(
     'activation key' => "Clave de activación",
     'User activation' => "Activación de usuario",
     'You account is active.' => 'Su cuenta está activa.',
-    'You account is activated.' => 'Su cuenta está activada. Puede acceder pinchando en Login',
+    'You account is activated.' => 'Su cuenta está activada. Puede acceder pinchando en Acceder',
     'Incorrect activation URL.' => 'La URL de activación es incorrecta.',
     'Registration date' => "Fecha de registro",
     'Last visit' => 'Última visita',

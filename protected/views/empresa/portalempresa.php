@@ -59,48 +59,42 @@
 </div>
 	
 <h3> Proemociones de <?php echo $model->nombre; ?>:</h3>
-<?php /*$this->widget('zii.widgets.CDetailView', array(
-	'data'=>$promos,
-	'attributes'=>array(
-		'titulo',
-		'resumen',
-	),
-)); 
-/* CAMBIAR EL MÉTODO DE MOSTRAR LAS PROMOS, A VER SI NO ME LAS MUESTRA POR ESTO. MOSTRARLAS CON UN FOR */
-?>
+
 <div class="row-fluid">
-		<div class="span12">
-			<ul class="thumbnails product-list-inline-large">
-<?php
-if(!isset($model->usuario->promocion) || empty($model->usuario->promocion)):
-?>
-	<div class="alert alert-info">Esta empresa no tiene ninguna promoción activada</div>
-<?php
-else:
-	foreach ($model->usuario->promocion as $key => $promo) {
-		if($promo->fecha_fin>date("Y-m-d") && $promo->estado == 1){
-?>
-<li class="span3">
-	<div class="thumbnail light">
-		<a href="/promocion/<?=$promo->titulo_slug ?>">
-			<span class="label label-info price">&euro; <? echo $promo->precio ?></span>									
-			<?php if (isset($promo->item)): ?>
-				<center><img data-hover="<?php echo Yii::app()->request->baseUrl.$promo->item->path ?>" src="<?php echo Yii::app()->getBaseUrl().$promo->item->path ?>" alt=""></center>
-			<?php else: ?>
-				<img src="<?php echo Yii::app()->getBaseUrl().Yii::app()->params['no_image'] ?>"  alt="">
-			<?php endif; ?>
-		</a>
-		<div class="caption">
-			<a href="/promocion/<?=$promo->titulo_slug ?>"><?php echo $promo->titulo ?></a>
-		</div>
-	</div>			
-	<a href="/promocion/<?=$promo->titulo_slug ?>" class="btn btn-block">Ver promoción</a>
-</li>
-<?php
-		}
-	}
-endif;
-?>
-</ul>
-</div>
+	<div class="span12">
+		<ul class="thumbnails product-list-inline-large">
+		<?php
+		if(!isset($model->usuario->promocion) || empty($model->usuario->promocion)):
+		?>
+			<div class="alert alert-info">Esta empresa no tiene ninguna promoción en este momento</div>
+		<?php
+		else:
+			foreach ($model->usuario->promocion as $key => $promo):
+				if($promo->fecha_fin>date("Y-m-d") && $promo->estado == 1): ?>
+					<li class="span3">
+						<div class="thumbnail light">
+							<a href="/promocion/<?=$promo->titulo_slug ?>">
+								<span class="label label-info price">&euro; <? echo $promo->precio ?></span>									
+								<?php if ( isset($promo->item) && strcmp($promo->item->model,"promo") == 0 ): ?>
+									<center><img data-hover="<?php echo Yii::app()->request->baseUrl.$promo->item->path ?>" src="<?php echo Yii::app()->getBaseUrl().$promo->item->path ?>" alt=""></center>
+								<?php else: ?>
+									<?php $imagen = Item::model()->find('foreign_id='.$promo->id.' AND model="promo"'); ?>
+									<?php if( !empty( $imagen )): ?>
+										<center><img data-hover="<?php echo Yii::app()->request->baseUrl.$promo->item->path ?>" src="<?php echo Yii::app()->getBaseUrl().$promo->item->path ?>" alt=""></center>
+									<?php else: ?>
+									<img src="<?php echo Yii::app()->getBaseUrl().Yii::app()->params['no_image'] ?>"  alt="">
+									<?php endif; ?>				
+								<?php endif; ?>
+							</a>
+							<div class="caption">
+								<a href="/promocion/<?=$promo->titulo_slug ?>"><?php echo $promo->titulo ?></a>
+							</div>
+						</div>			
+						<a href="/promocion/<?=$promo->titulo_slug ?>" class="btn btn-block">Ver promoción</a>
+					</li>
+				<?php endif;
+			endforeach;
+		endif; ?>
+		</ul>
+	</div>
 </div>

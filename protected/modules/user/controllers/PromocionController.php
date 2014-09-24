@@ -35,7 +35,7 @@ class PromocionController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin', 'index', 'delete','updateAdmin'),
+				'actions'=>array('admin', 'index', 'delete', 'createAdmin','updateAdmin'),
 				'users'=>UserModule::getAdmins(),
 			),
 			array('deny',  // deny all users
@@ -94,6 +94,36 @@ class PromocionController extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
+    public function actionCreateAdmin(){
+        $model=new Promocion;
+        $model->scenario = "insert";
+        $this->performAjaxValidation(array($model));
+        if(isset($_POST['Promocion'])){
+            $model->attributes=$_POST['Promocion'];
+        //COMPROBAR QUE EL USUARIO PUEDE TENER MÁS PROMOCIONES
+        //ESTABLEZCO FECHA DE FIN AUTOMÁTICA
+            $model->fecha_fin = date('Y-m-d', strtotime($model->fecha_inicio. ' + '.Yii::app()->params['duracion_promos'].' days'));
+            /**********************************/
+            $this->setCamposSecundarios($model);
+            if($model->save()){
+                Yii::app()->user->setFlash('success',UserModule::t("Promotion created."));
+                $this->render('updateAdmin/id/'.$model()->getPrimaryKey());
+                //$this->redirect(Yii::app()->getModule('user')->promocionesUrl);
+                Yii::app()->end();
+            }else{
+                Yii::app()->user->setFlash('error',UserModule::t("Error creating the promotion."));
+                $this->redirect(Yii::app()->getModule('user')->createAdmin);
+            }
+        }
+        Yii::import("xupload.models.XUploadForm");
+        $image = new XUploadForm;
+        $item = new Item;
+        //Leer los tipos de categoría a los que puede pertenecer
+        $this->render('createAdmin',array(
+            'model'=>$model,'item'=>$item,'image'=>$image,
+            ));
+    }
+
 	public function actionCreate(){
         //(H)comprobar que el usuario puede crear una nueva promoción
         //(H)si el status == 3 es que ya ha pagado y, por tanto, habrá que comprobar qué tipo de cuenta tiene y cuántas promos en stock, activas y destacadas tiene, luego comprobar qué tipo de promoción es esta que quiere insertar y ver si puede hacerlo
@@ -282,9 +312,8 @@ class PromocionController extends Controller
         }
         //$this->debug($this->_model->id);
         $image = Item::model()->find('foreign_id='.$this->_model->id.' AND model = "promo"');
-
-
-        if( $image==null ){       
+    
+        if($image==null){       
             $image = $this->obtenImageForm($this->_model->usuario->item);    
         }
 

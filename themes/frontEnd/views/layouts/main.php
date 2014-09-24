@@ -147,7 +147,7 @@
 		<div class="container-fluid">
 			<?php echo $content; ?>			
 		</div>
-	</body>
+	
 	<div class="footer">
 			<p align="center"> ProEmoción - Tu web de promociones  |   contacto: 652 389 176  |  proemocion(arroba)proemocion.com | Zaragoza | España</p>
 			<div class="clearfix">&nbsp;</div>
@@ -160,4 +160,14 @@
 	<script src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/js/jquery.nivo.slider.pack.js"></script>
 	<script src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/js/respond.min.js"></script>
 	<script src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/js/script.js"></script>
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-55129249-1', 'auto');
+	  ga('send', 'pageview');
+	</script>
+</body>
 </html>

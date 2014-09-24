@@ -3,7 +3,9 @@ $this->breadcrumbs=array(
 	UserModule::t("Registration"),
 );
 ?>
-
+<div class="container-fluid">
+<div class="row-fluid">
+	<div class="span12"><center>
 <h1>Registrar empresa</h1>
 
 <?php if(Yii::app()->user->hasFlash('registration')): ?>
@@ -23,7 +25,7 @@ $this->breadcrumbs=array(
 	'htmlOptions' => array('enctype'=>'multipart/form-data'),
 )); ?>
 
-	<p class="note"><?php echo UserModule::t('Fields with <span class="required">*</span> are required.'); ?></p>
+	<p class="note"><small><?php echo UserModule::t('Fields with <span class="required">*</span> are required.'); ?></small></p>
 	
 	<?php //echo $form->errorSummary(array($model)); ?>
 	
@@ -60,6 +62,7 @@ $this->breadcrumbs=array(
 			<br/><?php echo UserModule::t("Letters are not case-sensitive."); ?></p>
 		</div>
 	<?php endif; ?>
+
 	<div class="row">	
 	<?php echo $form->checkBox($model,'terminos'); ?>
 	<?php //echo CHtml::link('He leído y acepto los términos y condiciones de uso',array('/site/terminos'),array('target'=>'blank')); ?>
@@ -70,7 +73,7 @@ $this->breadcrumbs=array(
     'bootstrap.widgets.TbModal',
     array('id' => 'myModal')
 ); ?>
- 
+ 	
     <div class="modal-header">
         <a class="close" data-dismiss="modal">&times;</a>
         <h4>Condiciones del servicio</h4>
@@ -186,3 +189,7 @@ $this->breadcrumbs=array(
 <?php $this->endWidget(); ?>
 </div><!-- form -->
 <?php //endif; ?>
+	</center>
+</div>
+</div>
+</div>

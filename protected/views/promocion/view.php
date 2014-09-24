@@ -238,7 +238,12 @@
 							if (isset($promo->item) && strcmp($promo->item->model,'promo') == 0): 
 								$path=$promo->item->path; 
 						 	else:
-								$path=Yii::app()->params['no_image'];
+						 		$imagen = Item::model()->find('foreign_id='.$promo->id.' AND model="promo"');
+						 		if( !empty( $imagen) ):
+						 			$path = $imagen->path;
+						 		else:
+									$path = Yii::app()->params['no_image'];
+								endif;
 							endif; ?>
 							<li class="span2">
 								<div class="thumbnail light">

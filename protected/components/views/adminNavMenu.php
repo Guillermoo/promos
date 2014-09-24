@@ -11,6 +11,7 @@
 	            'items'=>array(	            	
 	                array('url'=>Yii::app()->getModule('user')->listaUsuarios, 'label'=>Yii::app()->getModule('user')->t("Usuarios"), 'visible'=>!Yii::app()->user->isGuest, 'active'=>(Yii::app()->controller->action->id=='admin' && Yii::app()->controller->id=='admin')),
 	                array('url'=>Yii::app()->getModule('user')->profileUrl, 'label'=>Yii::app()->getModule('user')->t("Profile"),'active'=>(Yii::app()->controller->action->id=='profile')),
+	                array('label'=>'Salir('.Yii::app()->user->name.')', 'url'=>Yii::app()->getModule('user')->logoutUrl,'visible'=>!Yii::app()->user->isGuest,'icon'=>'off'), 
 	                             
 	            ),
 	        ),              

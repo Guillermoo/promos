@@ -1,3 +1,11 @@
+.logout{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 99999;
+  color: #4DB848;
+}
+
 .menulatusuario{
 	display: none;
 }
