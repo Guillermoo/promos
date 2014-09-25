@@ -6,7 +6,7 @@ class UserController extends Controller
 	 * @var CActiveRecord the currently loaded data model instance.
 	 */
 	private $_model;
-	public $layout = 'user_column2';
+	public $layout = 'column2';
 	
 	/**
 	 * @return array action filters
@@ -28,15 +28,15 @@ class UserController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-                            'actions'=>array('index','view'),
-                            'users'=>UserModule::getAdmins(),
+            'actions'=>array('index','view','verUsuario'),
+            'users'=>UserModule::getAdmins(),
 			),
-                        array('allow',
-                            'actions'=>array('contacto',),
-                            'users'=>array('@'),
-                        ),
+            array('allow',
+            'actions'=>array('contacto',),
+            'users'=>array('@'),
+            ),
 			array('deny',  // deny all users
-                            'users'=>array('*'),
+            'users'=>array('*'),
 			),
 		);
 	}	
@@ -51,6 +51,20 @@ class UserController extends Controller
 			'model'=>$this->_model,
 		));
 	}
+
+	public function actionVerUsuario($id)
+	{
+		$id = htmlentities(strip_tags($id));
+		if( !empty( $id ) ){
+			$this->_model = $this->loadUser( $id );
+			$profile = Profile::model()->find('user_id=:id',array(':id'=>$this->_model->id));
+			$profile = 
+			$this->render('view',array(
+			'model'=>$this->_model,'profile'=>$profile,
+			));
+		}
+	}
+
 
 	/**
 	 * Lists all models.

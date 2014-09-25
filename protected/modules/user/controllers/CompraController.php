@@ -32,8 +32,8 @@ class CompraController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete','create','update',),
-				'users'=>array('admin'),
+				'actions'=>array('admin','delete','create','update','listar'),
+				'users'=>UserModule::getAdmins(),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -138,6 +138,18 @@ class CompraController extends Controller
 		//$this->debug($dataProvider);
 
 		$this->render('index',array(
+			'dataProvider'=>$dataProvider,
+		));
+	}
+
+	public function actionListar()
+	{
+		$layout='//layouts/column1';
+		$dataProvider=new CActiveDataProvider('Compra');
+
+		//$this->debug($dataProvider);
+
+		$this->render('listar',array(
 			'dataProvider'=>$dataProvider,
 		));
 	}

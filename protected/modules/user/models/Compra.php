@@ -58,8 +58,8 @@ class Compra extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idUsuario' => array(self::BELONGS_TO, 'Users', 'id_usuario'),
-			'idPromo' => array(self::BELONGS_TO, 'Promociones', 'id_promo'),
+			'usuario' => array(self::BELONGS_TO, 'User', 'id_usuario'),
+			'promo' => array(self::BELONGS_TO, 'Promocion', 'id_promo'),
 		);
 	}
 

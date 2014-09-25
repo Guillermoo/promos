@@ -18,6 +18,7 @@
 		array('label'=>UserModule::t('Administrar categorías'), 'url'=>array('/categoria/admin'), 'visible'=>UserModule::isSuperAdmin()),
 
         array('label'=>UserModule::t('Crear Promoción'), 'url'=>Yii::app()->getModule('user')->createAdmin, 'visible'=>UserModule::isAdmin()),
+        array('label'=>UserModule::t('Ver compras'), 'url'=>'compra/listar', 'visible'=>UserModule::isAdmin()),
 
         //array('label'=>UserModule::t('Bonos'), 'url'=>array('cuentas/verCuentas')),
         //array('label'=>'LIST HEADER'),
