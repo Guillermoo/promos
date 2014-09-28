@@ -96,7 +96,12 @@
 				</div>					
 				<br>
 				<div class="span5">
-					<img src="<?php echo Yii::app()->request->baseUrl.'/themes/frontEnd'; ?>/img/banner_top.jpg" alt="No shipping">
+					<div class="social">
+						<span class="siguenos">¡Síguenos en las redes sociales!</span>
+					<?php echo CHtml::link(CHtml::image(Yii::app()->theme->baseurl.'/img/icon-facebook-big.png', $alt='facebook',array('width'=>'80px','height'=>'80px')),'https://es-es.facebook.com/proemocion.zaragoza',array('target'=>'_blank')) ?>
+					<?php echo CHtml::link(CHtml::image(Yii::app()->theme->baseurl.'/img/icon-twitter-big.png', $alt='twitter' ,array('width'=>'80px','height'=>'80px')),'https://twitter.com/Proemocion',array('target'=>'_blank')) ?>
+				</div>
+					
 				</div>
 			</div>
 
